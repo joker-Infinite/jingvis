@@ -21,14 +21,25 @@
                   </div>-->
             <div class="bottom_left" @mouseover="mouseHover('BD')">
                 <div class="select_type">
-                    <el-radio class="checkboxItem" @change="changeRadio(1)" v-model="select" :label="1">加油站</el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadio(2)" v-model="select" :label="2">合作收入</el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadio(3)" v-model="select" :label="3">自营商店</el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioBD(1)" v-model="selectBD" :label="1">加油站
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioBD(2)" v-model="selectBD" :label="2">合作收入
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioBD(3)" v-model="selectBD" :label="3">自营商店
+                    </el-radio>
                 </div>
                 <operations class="operations" @showOne="showOne"></operations>
                 <div id="HomeTopRight_bottom_left"></div>
             </div>
             <div class="bottom_right" @mouseover="mouseHover('CD')">
+                <div class="select_type">
+                    <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">加油站
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">合作收入
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">自营商店
+                    </el-radio>
+                </div>
                 <operations class="operations" @showOne="showOne"></operations>
                 <div id="HomeTopRight_bottom_right"></div>
             </div>
@@ -46,7 +57,8 @@
         components: {ShowECharts, Operations},
         data() {
             return {
-                select: 1,
+                selectBD: 1,
+                selectCD: 1,
                 AD: {},
                 BD: {},
                 CD: {},
@@ -60,7 +72,10 @@
             showOne() {
                 this.$refs['showECharts'].openDialog(this.option);
             },
-            changeRadio(v) {
+            changeRadioBD(v) {
+                console.log(v);
+            },
+            changeRadioCD(v) {
                 console.log(v);
             },
             initECharts_top() {
@@ -176,452 +191,6 @@
                 };
                 HomeTopRight_top.setOption(option);
             },
-            /*initECharts_bottom() {
-              let HomeTopRight_bottomIA = this.$echarts.init(
-                document.getElementById("HomeTopRight_bottomIA")
-              );
-              let HomeTopRight_bottomIB = this.$echarts.init(
-                document.getElementById("HomeTopRight_bottomIB")
-              );
-              let HomeTopRight_bottomIC = this.$echarts.init(
-                document.getElementById("HomeTopRight_bottomIC")
-              );
-              let HomeTopRight_bottomID = this.$echarts.init(
-                document.getElementById("HomeTopRight_bottomID")
-              );
-              let optionA = {
-                barWidth: 10, //设置柱状图的粗细
-                tooltip: {
-                  trigger: "axis",
-                  formatter: function(val) {
-                    return val[0].name + "<br>" + val[0].value + "%";
-                  }
-                },
-                title: {
-                  text: "{a|     加油站营收前五}",
-                  show: true,
-                  textStyle: {
-                    fontFamily: "幼圆",
-                    lineHeight: 30,
-                    rich: {
-                      a: {
-                        color: "#FFF",
-                        fontSize: "15",
-                        height: 15,
-                        width: 15
-                      }
-                    }
-                  }
-                },
-                legend: {
-                  data: ["c", "d"],
-                  icon: "circle",
-                  textStyle: {
-                    color: "#FFF"
-                  },
-                  itemWidth: 10,
-                  itemHeight: 10,
-                  left: 0,
-                  top: 25
-                },
-                xAxis: [
-                  {
-                    type: "value",
-                    show: true,
-                    min: 0,
-                    max: 250,
-                    axisLine: {
-                      lineStyle: {
-                        color: "#FFF"
-                      }
-                    },
-                    splitLine: {
-                      show: false
-                    },
-                    axisTick: {
-                      //坐标轴刻度
-                      show: false
-                    }
-                  }
-                ],
-                yAxis: [
-                  {
-                    show: true,
-                    type: "category",
-                    data: ["1", "2", "3", "4", "5"],
-                    axisLine: {
-                      lineStyle: {
-                        color: "#fff"
-                      }
-                    },
-                    axisTick: {
-                      //坐标轴刻度
-                      show: false
-                    },
-                    axisLabel: {
-                      textStyle: {
-                        color: "#FFF"
-                      }
-                    },
-                    splitLine: {
-                      show: false
-                    }
-                  }
-                ],
-                grid: {
-                  width: "auto",
-                  height: "70%",
-                  top: "20%"
-                },
-                series: [
-                  {
-                    data: [120, 200, 150, 80, 70],
-                    type: "bar",
-                    color: "rgba(208,137,208,0.5)",
-                    showBackground: true,
-                    backgroundStyle: {
-                      color: "rgba(255,255,255,0.2)"
-                    },
-                    itemStyle: {
-                      normal: {
-                        barBorderRadius: 30, //设置柱状图为圆角
-                        color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                          { offset: 0, color: "#e65962" },
-                          { offset: 0.5, color: "#f6a573" },
-                          { offset: 1, color: "#FFe295" }
-                        ])
-                      }
-                    },
-                    barCategoryGap: "100%"
-                  }
-                ]
-              };
-              let optionB = {
-                barWidth: 10, //设置柱状图的粗细
-                tooltip: {
-                  trigger: "axis",
-                  formatter: function(val) {
-                    return val[0].name + "<br>" + val[0].value + "%";
-                  }
-                },
-                title: {
-                  text: "{a|     加油站营收后五}",
-                  show: true,
-                  textStyle: {
-                    fontFamily: "幼圆",
-                    lineHeight: 30,
-                    rich: {
-                      a: {
-                        color: "#FFF",
-                        fontSize: "15",
-                        height: 15,
-                        width: 15
-                      }
-                    }
-                  }
-                },
-                legend: {
-                  data: ["c", "d"],
-                  icon: "circle",
-                  textStyle: {
-                    color: "#FFF"
-                  },
-                  itemWidth: 10,
-                  itemHeight: 10,
-                  left: 0,
-                  top: 25
-                },
-                xAxis: [
-                  {
-                    type: "value",
-                    show: true,
-                    min: 0,
-                    max: 250,
-                    axisLine: {
-                      lineStyle: {
-                        color: "#FFF"
-                      }
-                    },
-                    splitLine: {
-                      show: false
-                    },
-                    axisTick: {
-                      //坐标轴刻度
-                      show: false
-                    }
-                  }
-                ],
-                yAxis: [
-                  {
-                    show: true,
-                    type: "category",
-                    data: ["1", "2", "3", "4", "5"],
-                    axisLine: {
-                      lineStyle: {
-                        color: "#fff"
-                      }
-                    },
-                    axisTick: {
-                      //坐标轴刻度
-                      show: false
-                    },
-                    axisLabel: {
-                      textStyle: {
-                        color: "#FFF"
-                      }
-                    },
-                    splitLine: {
-                      show: false
-                    }
-                  }
-                ],
-                grid: {
-                  width: "auto",
-                  height: "70%",
-                  top: "20%"
-                },
-                series: [
-                  {
-                    data: [120, 200, 150, 80, 70],
-                    type: "bar",
-                    color: "rgba(208,137,208,0.5)",
-                    showBackground: true,
-                    backgroundStyle: {
-                      color: "rgba(255,255,255,0.2)"
-                    },
-                    itemStyle: {
-                      normal: {
-                        barBorderRadius: 30, //设置柱状图为圆角
-                        color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                          { offset: 0, color: "#e65962" },
-                          { offset: 0.5, color: "#f6a573" },
-                          { offset: 1, color: "#FFe295" }
-                        ])
-                      }
-                    },
-                    barCategoryGap: "100%"
-                  }
-                ]
-              };
-              let optionC = {
-                barWidth: 10, //设置柱状图的粗细
-                tooltip: {
-                  trigger: "axis",
-                  formatter: function(val) {
-                    return val[0].name + "<br>" + val[0].value + "%";
-                  }
-                },
-                title: {
-                  text: "{a|     自营商店营收前五}",
-                  show: true,
-                  textStyle: {
-                    fontFamily: "幼圆",
-                    lineHeight: 30,
-                    rich: {
-                      a: {
-                        color: "#FFF",
-                        fontSize: "15",
-                        height: 15,
-                        width: 15
-                      }
-                    }
-                  }
-                },
-                legend: {
-                  data: ["c", "d"],
-                  icon: "circle",
-                  textStyle: {
-                    color: "#FFF"
-                  },
-                  itemWidth: 10,
-                  itemHeight: 10,
-                  left: 0,
-                  top: 25
-                },
-                xAxis: [
-                  {
-                    type: "value",
-                    show: true,
-                    min: 0,
-                    max: 250,
-                    axisLine: {
-                      lineStyle: {
-                        color: "#FFF"
-                      }
-                    },
-                    splitLine: {
-                      show: false
-                    },
-                    axisTick: {
-                      //坐标轴刻度
-                      show: false
-                    }
-                  }
-                ],
-                yAxis: [
-                  {
-                    show: true,
-                    type: "category",
-                    data: ["1", "2", "3", "4", "5"],
-                    axisLine: {
-                      lineStyle: {
-                        color: "#fff"
-                      }
-                    },
-                    axisTick: {
-                      //坐标轴刻度
-                      show: false
-                    },
-                    axisLabel: {
-                      textStyle: {
-                        color: "#FFF"
-                      }
-                    },
-                    splitLine: {
-                      show: false
-                    }
-                  }
-                ],
-                grid: {
-                  width: "auto",
-                  height: "70%",
-                  top: "20%"
-                },
-                series: [
-                  {
-                    data: [120, 200, 150, 80, 70],
-                    type: "bar",
-                    color: "rgba(208,137,208,0.5)",
-                    showBackground: true,
-                    backgroundStyle: {
-                      color: "rgba(255,255,255,0.2)"
-                    },
-                    itemStyle: {
-                      normal: {
-                        barBorderRadius: 30, //设置柱状图为圆角
-                        color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                          { offset: 0, color: "#e65962" },
-                          { offset: 0.5, color: "#f6a573" },
-                          { offset: 1, color: "#FFe295" }
-                        ])
-                      }
-                    },
-                    barCategoryGap: "100%"
-                  }
-                ]
-              };
-              let optionD = {
-                barWidth: 10, //设置柱状图的粗细
-                tooltip: {
-                  trigger: "axis",
-                  formatter: function(val) {
-                    return val[0].name + "<br>" + val[0].value + "%";
-                  }
-                },
-                title: {
-                  text: "{a|     自营商店营收后五}",
-                  show: true,
-                  textStyle: {
-                    fontFamily: "幼圆",
-                    lineHeight: 30,
-                    rich: {
-                      a: {
-                        color: "#FFF",
-                        fontSize: "15",
-                        height: 15,
-                        width: 15
-                      }
-                    }
-                  }
-                },
-                legend: {
-                  data: ["c", "d"],
-                  icon: "circle",
-                  textStyle: {
-                    color: "#FFF"
-                  },
-                  itemWidth: 10,
-                  itemHeight: 10,
-                  left: 0,
-                  top: 25
-                },
-                xAxis: [
-                  {
-                    type: "value",
-                    show: true,
-                    min: 0,
-                    max: 250,
-                    axisLine: {
-                      lineStyle: {
-                        color: "#FFF"
-                      }
-                    },
-                    splitLine: {
-                      show: false
-                    },
-                    axisTick: {
-                      //坐标轴刻度
-                      show: false
-                    }
-                  }
-                ],
-                yAxis: [
-                  {
-                    show: true,
-                    type: "category",
-                    data: ["1", "2", "3", "4", "5"],
-                    axisLine: {
-                      lineStyle: {
-                        color: "#fff"
-                      }
-                    },
-                    axisTick: {
-                      //坐标轴刻度
-                      show: false
-                    },
-                    axisLabel: {
-                      textStyle: {
-                        color: "#FFF"
-                      }
-                    },
-                    splitLine: {
-                      show: false
-                    }
-                  }
-                ],
-                grid: {
-                  width: "auto",
-                  height: "70%",
-                  top: "20%"
-                },
-                series: [
-                  {
-                    data: [120, 200, 150, 80, 70],
-                    type: "bar",
-                    color: "rgba(208,137,208,0.5)",
-                    showBackground: true,
-                    backgroundStyle: {
-                      color: "rgba(255,255,255,0.2)"
-                    },
-                    itemStyle: {
-                      normal: {
-                        barBorderRadius: 30, //设置柱状图为圆角
-                        color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                          { offset: 0, color: "#e65962" },
-                          { offset: 0.5, color: "#f6a573" },
-                          { offset: 1, color: "#FFe295" }
-                        ])
-                      }
-                    },
-                    barCategoryGap: "100%"
-                  }
-                ]
-              };
-              HomeTopRight_bottomIA.setOption(optionA);
-              HomeTopRight_bottomIB.setOption(optionB);
-              HomeTopRight_bottomIC.setOption(optionC);
-              HomeTopRight_bottomID.setOption(optionD);
-            },*/
             initECharts_bottom_left() {
                 let HomeTopRight_bottom_left = this.$echarts.init(
                     document.getElementById("HomeTopRight_bottom_left")
@@ -959,6 +528,19 @@
                 float: right;
                 position: relative;
 
+                .select_type {
+                    width: 30%;
+                    height: 25%;
+                    position: absolute;
+                    bottom: 0;
+                    right: 5%;
+                    z-index: 999;
+
+                    .checkboxItem {
+                        color: white;
+                    }
+                }
+
                 #HomeTopRight_bottom_right {
                     height: 100%;
                     width: 100%;
@@ -968,31 +550,6 @@
             .bottom_right:hover .operations {
                 display: block;
             }
-
-            /* .item {
-                         width: 49%;
-                         height: 48%;
-
-                         #HomeTopRight_bottomIA {
-                             width: 100%;
-                             height: 100%;
-                         }
-
-                         #HomeTopRight_bottomIB {
-                             width: 100%;
-                             height: 100%;
-                         }
-
-                         #HomeTopRight_bottomIC {
-                             width: 100%;
-                             height: 100%;
-                         }
-
-                         #HomeTopRight_bottomID {
-                             width: 100%;
-                             height: 100%;
-                         }
-                     }*/
         }
     }
 </style>

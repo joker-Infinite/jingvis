@@ -94,9 +94,7 @@
                 let HomeBottomF = this.$echarts.init(
                     document.getElementById("HomeBottomF")
                 );
-                let HomeBottomG = this.$echarts.init(
-                    document.getElementById("HomeBottomG")
-                );
+
                 this.AD = option;
                 HomeBottomA.setOption(option);
                 HomeBottomB.setOption(option);
@@ -104,6 +102,126 @@
                 HomeBottomD.setOption(option);
                 HomeBottomE.setOption(option);
                 HomeBottomF.setOption(option);
+            },
+            initBottomEnd() {
+                let HomeBottomG = this.$echarts.init(
+                    document.getElementById("HomeBottomG")
+                );
+                let option = {
+                    barWidth: 5,
+                    title: {
+                        text: "{a|     收益率}",
+                        show: true,
+                        textStyle: {
+                            fontFamily: "幼圆",
+                            lineHeight: 30,
+                            rich: {
+                                a: {
+                                    color: "#FFF",
+                                    fontSize: "15",
+                                    height: 15,
+                                    width: 15
+                                }
+                            }
+                        }
+                    },
+                    tooltip: {
+                        trigger: "axis",
+                        axisPointer: {
+                            // 坐标轴指示器，坐标轴触发有效
+                            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        top: 80,
+                        bottom: 30
+                    },
+                    xAxis: {
+                        type: "value",
+                        position: "bottom",
+                        axisTick: {
+                            //坐标轴刻度
+                            show: false
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: "#FFF"
+                            }
+                        },
+                        splitLine: {show: false},
+                        axisLine: {
+                            lineStyle: {
+                                color: "#FFF"
+                            }
+                        }
+                    },
+                    yAxis: {
+                        type: "category",
+                        axisLine: {show: false},
+                        axisLabel: {show: false},
+                        axisTick: {show: false},
+                        splitLine: {show: false},
+                        data: [
+                            "a公司",
+                            "b公司",
+                            "c公司",
+                            "d公司",
+                            "e公司",
+                        ]
+                    },
+                    series: [
+                        {
+                            name: "收入",
+                            type: "bar",
+                            stack: "总量",
+                            label: {
+                                show: true,
+                                formatter: "{b}"
+                            },
+                            data: [
+                                0.6,
+                                0.7,
+                                0.8,
+                                0.9,
+                                1,
+                            ],
+                            markLine: {
+                                data: [
+                                    {
+                                        type: "average",
+                                        name: "平均值",
+                                        xAxis: 0.5 //设置平均值所在位置
+                                    }
+                                ],
+                                symbol: ["none", "none"],
+                                position: "insideTopCenter",
+                                itemStyle: {
+                                    normal: {
+                                        lineStyle: {
+                                            type: "dotted",
+                                            color: "white"
+                                        },
+                                        label: {
+                                            show: true,
+                                            position: "middle",
+                                            formatter: "数据平均 : 100"
+                                        }
+                                    }
+                                },
+                                large: true,
+                                effect: {
+                                    show: false,
+                                    loop: true,
+                                    period: 0,
+                                    scaleSize: 2,
+                                    color: null,
+                                    shadowColor: null,
+                                    shadowBlur: null
+                                }
+                            }
+                        }
+                    ]
+                };
                 HomeBottomG.setOption(option);
             }
         },
@@ -507,6 +625,7 @@
                 ]
             };
             this.initECharts_bottom(this.option_A);
+            this.initBottomEnd();
         }
     };
 </script>

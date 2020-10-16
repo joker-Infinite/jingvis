@@ -153,7 +153,7 @@
             width: 100%;
             height: 30px;
             line-height: 30px;
-            background: rgba(0, 0, 0, .3);
+            background: rgba(0, 0, 0, .5);
             position: absolute;
             z-index: 99;
             overflow: hidden;
