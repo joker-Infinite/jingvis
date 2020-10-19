@@ -22,7 +22,6 @@
 
 <script>
     import item from './common/index'
-    import navCommon from "./common/navCommon";
 
     export default {
         name: "test",
