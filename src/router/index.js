@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../pages/Home";
 import test from "../pages/levelPages_two/test";
 import testC from '../pages/ComparedData/test'
+import compared from  '../pages/ComparedData/compared'
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/testC",
     name: "test",
     component: testC
+  },
+  {
+    path: "/compared",
+    name: "compared",
+    component: compared
   },
 ];
 
