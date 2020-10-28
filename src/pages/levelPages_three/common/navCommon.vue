@@ -1,10 +1,15 @@
 <template>
     <div class="nav" style="width: 100%;height: 96%">
-        <div class="left" id="left">
-            <div :id="'box'+ix" class="box" v-for="(it,ix) in tabData">
-                {{it.content}} 第{{ix}}个盒子
-            </div>
-        </div>
+        <el-collapse class="left" id="left" v-model="activeName">
+            <el-collapse-item :name="ix" :id="'box'+ix" class="box" v-for="(it,ix) in tabData">
+                <template slot="title">
+                    <span style="display: inline-block;width: 20px"></span>
+                    <i class="header-icon el-icon-info"></i>
+                    <span style="display: inline-block;width: 5px"></span>
+                    {{it.content}}
+                </template>
+            </el-collapse-item>
+        </el-collapse>
         <div class="right">
             <div class="navBar">
                 <p v-for="(it,ix) in tabData" @click="goto(ix)" :class="{'active':isActive === ix}">
@@ -19,6 +24,7 @@
         name: "navCommon",
         data() {
             return {
+                activeName: [0, 1, 2, 3, 4],
                 isActive: 0,
                 tabData: [],
                 navData: [],
@@ -27,17 +33,11 @@
         },
         methods: {
             /**
-             * @param data 从树节点传来的数据
+             * @param data
              * */
             refresh(data) {
-                this.tabData = [];
+                this.tabData = data;
                 this.isActive = 0;
-                for (let i = 0; i < 5; i++) {
-                    this.tabData.push({
-                        name: data.label + '-tab' + (i + 1),
-                        content: data.label + (i + 1)
-                    })
-                }
                 this.$nextTick(_ => {
                     document.querySelector('#box0').scrollIntoView(true);
                 })
@@ -105,14 +105,21 @@
 
             .box {
                 width: 100%;
-                height: 80%;
-                margin-bottom: 20px;
                 background: #d4d4d4;
+                text-align: center;
             }
         }
 
         .left::-webkit-scrollbar {
             display: none;
+        }
+
+        .left /deep/ .el-collapse-item > .el-collapse-item__wrap {
+            min-height: 500px;
+        }
+
+        .left /deep/ .el-collapse-item > div > .el-collapse-item__header {
+            background: #f7f7f7;
         }
 
         .right {
