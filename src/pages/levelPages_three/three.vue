@@ -12,11 +12,11 @@
         data() {
             return {
                 tabData: [
-                    {content: '基础信息'},
-                    {content: '经营信息'},
-                    {content: '合同信息'},
-                    {content: '特产信息'},
-                    {content: '特色信息'},
+                    {content: '基础信息',imgData:[1]},
+                    {content: '经营信息',imgData:[1,2]},
+                    {content: '合同信息',imgData:[1,3]},
+                    {content: '特产信息',imgData:[1,4]},
+                    {content: '特色信息',imgData:[1]},
                 ]
             }
         },
@@ -33,7 +33,7 @@
         width: 1000px;
         min-height: 900px;
         margin: auto;
-        background: #ededed;
+        background: #fff;
         position: relative;
     }
 </style>

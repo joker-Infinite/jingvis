@@ -1,13 +1,36 @@
 <template>
-    <div class="nav" style="width: 100%;height: 96%">
+    <div class="nav">
         <el-collapse class="left" id="left" v-model="activeName">
             <el-collapse-item :name="ix" :id="'box'+ix" class="box" v-for="(it,ix) in tabData">
                 <template slot="title">
                     <span style="display: inline-block;width: 20px"></span>
-                    <i class="header-icon el-icon-info"></i>
+                    <i :class="{
+                        'header-icon':true,
+                        'el-icon-info':ix === 0,
+                        'el-icon-data-line':ix === 1,
+                        'el-icon-tickets':ix === 2,
+                        'el-icon-tableware':ix === 3,
+                        'el-icon-view':ix === 4}"></i>
                     <span style="display: inline-block;width: 5px"></span>
                     {{it.content}}
                 </template>
+                <div class="content_l">
+                    <div class="form_box">
+                        <el-form :model="formData" label-width="110px" v-if="ix === 0">
+                            <el-col :span="12" v-for="item in baseData">
+                                <el-form-item :label="item.label+'：'">
+                                    <!--                                    <el-input :value="item.value"></el-input>-->
+                                    {{item.value}}
+                                </el-form-item>
+                            </el-col>
+                        </el-form>
+                    </div>
+                </div>
+                <div class="content_r">
+                    <div class="img_box">
+                        <img-common v-for="i in 4" :img-data="it.imgData"></img-common>
+                    </div>
+                </div>
             </el-collapse-item>
         </el-collapse>
         <div class="right">
@@ -20,15 +43,52 @@
 </template>
 
 <script>
+    import ImgCommon from "./imgCommon";
+
     export default {
         name: "navCommon",
+        components: {ImgCommon},
         data() {
             return {
                 activeName: [0, 1, 2, 3, 4],
                 isActive: 0,
                 tabData: [],
                 navData: [],
-                height: 0
+                formData: {},
+                baseData: [
+                    {label: '服务区', value: '蔡甸服务区'},
+                    {label: '类别', value: '一类服务区'},
+                    {label: '所属公司', value: '孝感分公司'},
+                    {label: '开通状况', value: '是'},
+                    {label: '开通时间', value: '2002.11'},
+                    {label: '所在高速', value: '京港澳高速'},
+                    {label: '高速编号', value: 'G4'},
+                    {label: '高速桩号', value: 'K1165'},
+                    {label: '占地面积', value: '131'},
+                    {label: '建筑面积', value: '87333.3'},
+                    {label: '经营面积', value: '15347.26'},
+                    {label: '绿化面积', value: '5689.64'},
+                    {label: '日均车流量', value: '33960.7'},
+                    {label: '日高峰期车流量', value: '3500'},
+                    {label: '厕所等级', value: '五星'},
+                    {label: '厕所改造时间', value: '2018.09'},
+                    {label: '男女蹲位数量', value: '114，126'},
+                    {label: '小便器阀数量', value: '114'},
+                    {label: '大车位个数', value: '112'},
+                    {label: '小车位个数', value: '150'},
+                    {label: '保安人数', value: '18'},
+                    {label: '保洁人数', value: '35'},
+                    {label: '加油站开通', value: '是'},
+                    {label: '加油机数量', value: '14'},
+                    {label: '充电桩数量', value: '8'},
+                    {label: '充电桩分布', value: '双侧'},
+                    {label: '所属地域', value: '孝感市孝南区'},
+                    {label: '路段管理单位', value: '京珠运营公司'},
+                    {label: '服务区负责人', value: '王永红'},
+                    {label: '联系方式', value: '18071019995'},
+                    {label: '停车场面积', value: '90757.3'},
+                    {label: '加油站管理单位', value: '中石化'},
+                ]
             }
         },
         methods: {
@@ -88,7 +148,7 @@
 <style scoped lang="less">
     .nav {
         width: 100%;
-        height: 96%;
+        height: 100%;
         position: absolute;
         top: 0;
         bottom: 0;
@@ -114,12 +174,60 @@
             display: none;
         }
 
-        .left /deep/ .el-collapse-item > .el-collapse-item__wrap {
+        /*.left /deep/ .el-collapse-item > .el-collapse-item__wrap {
             min-height: 500px;
+        }*/
+
+        .left /deep/ .el-collapse-item > .el-collapse-item__wrap > .el-collapse-item__content {
+            font-size: 14px;
+
+            .content_l {
+                min-height: 500px;
+                width: 60%;
+                float: left;
+
+                .form_box {
+                    overflow: hidden;
+                    margin: 20px;
+                }
+
+                .form_box /deep/ .el-form > .el-col > .el-form-item > .el-form-item__label {
+                    font-size: 12px;
+                    line-height: 30px;
+                }
+
+                .form_box /deep/ .el-form > .el-col > .el-form-item {
+                    height: 30px;
+                    text-align: left;
+                }
+
+                .form_box /deep/ .el-form > .el-col > .el-form-item > .el-form-item__content {
+                    height: 30px;
+                    line-height: 30px;
+                }
+
+                .form_box /deep/ .el-form > .el-col > .el-form-item > .el-form-item__content > .el-input > .el-input__inner {
+                    height: 30px;
+                    line-height: 30px;
+                    border: none;
+                }
+            }
+
+            .content_r {
+                min-height: 500px;
+                width: 40%;
+                float: right;
+
+                .img_box {
+                    overflow: hidden;
+                    margin: 20px;
+                }
+            }
         }
 
         .left /deep/ .el-collapse-item > div > .el-collapse-item__header {
             background: #f7f7f7;
+            font-size: 16px;
         }
 
         .right {
@@ -137,15 +245,21 @@
                 border-left: 1px solid #999999;
 
                 .active {
-                    color: red;
+                    color: #409eff;
+                    border-left: 5px solid #409eff;
                 }
             }
 
             .navBar > p {
                 text-indent: 20px;
                 line-height: 30px;
+                border-left: 5px solid rgba(0, 0, 0, 0);
                 cursor: pointer;
             }
         }
+    }
+
+    .nav /deep/ .el-collapse {
+        box-shadow: 0 0 1px 0 rgba(0, 0, 0, .5);
     }
 </style>

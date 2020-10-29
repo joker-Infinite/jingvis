@@ -130,13 +130,15 @@
                 border-left: 1px solid #999999;
 
                 .active {
-                    color: red;
+                    color: #409eff;
+                    border-left: 5px solid #409eff;
                 }
             }
 
             .navBar > p {
                 text-indent: 20px;
                 line-height: 30px;
+                border-left: 5px solid rgba(0, 0, 0, 0);
                 cursor: pointer;
             }
         }
