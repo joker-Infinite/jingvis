@@ -14,19 +14,60 @@
                     <span style="display: inline-block;width: 5px"></span>
                     {{it.content}}
                 </template>
-                <div class="content_l">
+                <div class="content_l" :style="{width:it.content === '服务区状态'?'100%':'60%'}">
                     <div class="form_box">
-                        <el-form :model="formData" label-width="110px" v-if="ix === 0">
+                        <el-form :model="formStatus" label-width="110px" v-if="it.content === '服务区状态'">
+                            <el-col :span="24">
+                                <el-form-item label="服务区状态：">
+                                    <el-radio-group v-model="formStatus.service">
+                                        <el-radio label="正常"></el-radio>
+                                        <el-radio label="关闭"></el-radio>
+                                        <el-radio label="能进不能出"></el-radio>
+                                        <el-radio label="能出不能进"></el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="24">
+                                <el-form-item label="加油站状态：">
+                                    <el-checkbox-group v-model="formStatus.gas" @change="gasType(formStatus.gas)">
+                                        <el-checkbox :value="1" label="正常" :disabled="closed"></el-checkbox>
+                                        <el-checkbox :value="2" label="停业" :disabled="normal"></el-checkbox>
+                                        <el-checkbox :value="3" label="汽油" class="checkbox_select" :disabled="closed">
+                                            <template slot="default">
+                                                汽油
+                                                <el-select v-model="formStatus.gasoline"
+                                                           :class="{'disabled':gasolineDisabled}"
+                                                           :disabled="gasolineDisabled" multiple>
+                                                    <el-option :value="1" :label="92"></el-option>
+                                                    <el-option :value="2" :label="95"></el-option>
+                                                    <el-option :value="3" :label="98"></el-option>
+                                                </el-select>
+                                                告罄
+                                            </template>
+                                        </el-checkbox>
+                                        <el-checkbox :value="4" label="柴油告罄" :disabled="closed"></el-checkbox>
+                                    </el-checkbox-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="24">
+                                <el-form-item label="自营商店：">
+                                    <el-radio-group>
+                                        <el-radio label="正常"></el-radio>
+                                        <el-radio label="停业"></el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                        </el-form>
+                        <el-form :model="formBasis" label-width="110px" v-if="it.content === '基础信息'">
                             <el-col :span="12" v-for="item in baseData">
                                 <el-form-item :label="item.label+'：'">
-                                    <!--                                    <el-input :value="item.value"></el-input>-->
                                     {{item.value}}
                                 </el-form-item>
                             </el-col>
                         </el-form>
                     </div>
                 </div>
-                <div class="content_r">
+                <div class="content_r" v-if="ix !==0">
                     <div class="img_box">
                         <img-common v-for="i in 4" :img-data="it.imgData"></img-common>
                     </div>
@@ -50,11 +91,19 @@
         components: {ImgCommon},
         data() {
             return {
+                closed: false,
+                normal: false,
+                gasolineDisabled: false,
                 activeName: [0, 1, 2, 3, 4],
                 isActive: 0,
                 tabData: [],
                 navData: [],
-                formData: {},
+                formBasis: {},
+                formStatus: {
+                    service: '',
+                    gas: ['汽油'],
+                    gasoline: [1, 2, 3]
+                },
                 baseData: [
                     {label: '服务区', value: '蔡甸服务区'},
                     {label: '类别', value: '一类服务区'},
@@ -92,6 +141,22 @@
             }
         },
         methods: {
+            gasType(v) {
+                if (v.indexOf('停业') !== -1) {
+                    this.gasolineDisabled = true;
+                    this.closed = true;
+                } else {
+                    this.gasolineDisabled = false;
+                    this.closed = false;
+                }
+                ;
+
+                if (v.indexOf('正常') !== -1) {
+                    this.normal = true;
+                } else {
+                    this.normal = false;
+                }
+            },
             /**
              * @param data
              * */
@@ -189,6 +254,45 @@
                 .form_box {
                     overflow: hidden;
                     margin: 20px;
+
+                    .checkbox_select /deep/ .el-checkbox__label > .el-select > .el-input {
+                        min-width: 50px !important;
+                        border: none;
+                    }
+
+                    .checkbox_select /deep/ .el-checkbox__label > .el-select {
+                        /*max-width: 120px !important;*/
+                        border: none;
+                    }
+
+                    .checkbox_select /deep/ .el-checkbox__label > .el-select > .el-select__tags {
+                        /*max-width: 120px !important;*/
+                    }
+
+                    .checkbox_select /deep/ .el-checkbox__label > .el-select > .el-input > .el-input__inner {
+                        border: none;
+                        border-bottom: 1px solid #e5e5e5;
+                    }
+
+                    .checkbox_select /deep/ .el-checkbox__label > .el-select > .is-disabled > .el-input__inner {
+                        background: white;
+                        border: none;
+                        padding-right: 0;
+                        max-width: 120px !important;
+                    }
+
+                    .checkbox_select /deep/ .el-checkbox__label > .disabled {
+                        max-width: 120px !important;
+                        border: none;
+                    }
+
+                    .checkbox_select /deep/ .el-checkbox__label > .disabled > .el-select__tags {
+                        max-width: 120px !important;
+                    }
+
+                    .checkbox_select /deep/ .el-checkbox__label > .disabled > .is-disabled > .el-input__suffix {
+                        display: none;
+                    }
                 }
 
                 .form_box /deep/ .el-form > .el-col > .el-form-item > .el-form-item__label {

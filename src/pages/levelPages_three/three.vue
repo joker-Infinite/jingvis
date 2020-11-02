@@ -12,6 +12,7 @@
         data() {
             return {
                 tabData: [
+                    {content: '服务区状态',imgData:[1]},
                     {content: '基础信息',imgData:[1]},
                     {content: '经营信息',imgData:[1,2]},
                     {content: '合同信息',imgData:[1,3]},
