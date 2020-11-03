@@ -6,17 +6,19 @@
                     <span style="display: inline-block;width: 20px"></span>
                     <i :class="{
                         'header-icon':true,
-                        'el-icon-info':ix === 0,
-                        'el-icon-data-line':ix === 1,
-                        'el-icon-tickets':ix === 2,
-                        'el-icon-tableware':ix === 3,
-                        'el-icon-view':ix === 4}"></i>
+                        'el-icon-open':ix === 0,
+                        'el-icon-info':ix === 1,
+                        'el-icon-data-line':ix === 2,
+                        'el-icon-tickets':ix === 3,
+                        'el-icon-tableware':ix === 4,
+                        'el-icon-view':ix === 5}"></i>
                     <span style="display: inline-block;width: 5px"></span>
                     {{it.content}}
                 </template>
-                <div class="content_l" :style="{width:it.content === '服务区状态'?'100%':'60%'}">
+                <div class="content_l"
+                     :style="{width:(it.content === '服务区状态'||it.content === '特产信息'||it.content === '特色信息')?'100%':'60%'}">
                     <div class="form_box">
-                        <el-form :model="formStatus" label-width="110px" v-if="it.content === '服务区状态'">
+                        <el-form class="baseForm" :model="formStatus" label-width="110px" v-if="it.content === '服务区状态'">
                             <el-col :span="24">
                                 <el-form-item label="服务区状态：">
                                     <el-radio-group v-model="formStatus.service">
@@ -51,23 +53,99 @@
                             </el-col>
                             <el-col :span="24">
                                 <el-form-item label="自营商店：">
-                                    <el-radio-group>
+                                    <el-radio-group v-model="formStatus.store">
                                         <el-radio label="正常"></el-radio>
                                         <el-radio label="停业"></el-radio>
                                     </el-radio-group>
                                 </el-form-item>
                             </el-col>
                         </el-form>
-                        <el-form :model="formBasis" label-width="110px" v-if="it.content === '基础信息'">
+                        <el-form class="baseForm" :model="formBasis" label-width="110px" v-if="it.content === '基础信息'">
                             <el-col :span="12" v-for="item in baseData">
                                 <el-form-item :label="item.label+'：'">
                                     {{item.value}}
                                 </el-form-item>
                             </el-col>
                         </el-form>
+                        <el-form class="common" :model="formSpecialty" label-width="100px" v-if="it.content === '特产信息'">
+                            <el-col :span="12">
+                                <el-form-item label="名称">
+                                    <el-input v-model="formSpecialty.name"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="类型">
+                                    <el-input v-model="formSpecialty.type"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="联系人员">
+                                    <el-input v-model="formSpecialty.contactPerson"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="手机号码">
+                                    <el-input v-model="formSpecialty.mobile"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="电子邮箱">
+                                    <el-input v-model="formSpecialty.Email"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="地址">
+                                    <el-input v-model="formSpecialty.address"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="24">
+                                <el-form-item label="描述">
+                                    <el-input type="textarea" resize="none" :rows='6' show-word-limit :maxlength="500"
+                                              v-model="formSpecialty.remark"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-form>
+                        <el-form class="common" :model="formFeatures" label-width="100px" v-if="it.content === '特色信息'">
+                            <el-col :span="12">
+                                <el-form-item label="名称">
+                                    <el-input v-model="formFeatures.name"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="类型">
+                                    <el-input v-model="formFeatures.type"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="联系人员">
+                                    <el-input v-model="formFeatures.contactPerson"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="手机号码">
+                                    <el-input v-model="formFeatures.mobile"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="电子邮箱">
+                                    <el-input v-model="formFeatures.Email"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="地址">
+                                    <el-input v-model="formFeatures.address"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="24">
+                                <el-form-item label="描述">
+                                    <el-input type="textarea" resize="none" :rows='6' show-word-limit :maxlength="500"
+                                              v-model="formFeatures.remark"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-form>
                     </div>
                 </div>
-                <div class="content_r" v-if="ix !==0">
+                <div class="content_r" v-if="ix ===1">
                     <div class="img_box">
                         <img-common v-for="i in 4" :img-data="it.imgData"></img-common>
                     </div>
@@ -94,7 +172,7 @@
                 closed: false,
                 normal: false,
                 gasolineDisabled: false,
-                activeName: [0, 1, 2, 3, 4],
+                activeName: [0, 1, 2, 3, 4, 5],
                 isActive: 0,
                 tabData: [],
                 navData: [],
@@ -102,7 +180,28 @@
                 formStatus: {
                     service: '',
                     gas: ['汽油'],
-                    gasoline: [1, 2, 3]
+                    gasoline: [1, 2, 3],
+                    store: ''
+                },
+                //特色
+                formFeatures: {
+                    name: '',
+                    type: '',
+                    remark: '',
+                    contactPerson: '',
+                    mobile: '',
+                    Email: '',
+                    address: ''
+                },
+                //特产
+                formSpecialty: {
+                    name: '',
+                    type: '',
+                    remark: '',
+                    contactPerson: '',
+                    mobile: '',
+                    Email: '',
+                    address: ''
                 },
                 baseData: [
                     {label: '服务区', value: '蔡甸服务区'},
@@ -149,13 +248,8 @@
                     this.gasolineDisabled = false;
                     this.closed = false;
                 }
-                ;
 
-                if (v.indexOf('正常') !== -1) {
-                    this.normal = true;
-                } else {
-                    this.normal = false;
-                }
+                this.normal = v.indexOf('正常') !== -1;
             },
             /**
              * @param data
@@ -295,22 +389,22 @@
                     }
                 }
 
-                .form_box /deep/ .el-form > .el-col > .el-form-item > .el-form-item__label {
-                    font-size: 12px;
-                    line-height: 30px;
-                }
-
-                .form_box /deep/ .el-form > .el-col > .el-form-item {
+                .form_box > .baseForm /deep/ .el-col > .el-form-item {
                     height: 30px;
                     text-align: left;
                 }
 
-                .form_box /deep/ .el-form > .el-col > .el-form-item > .el-form-item__content {
+                .form_box > .baseForm /deep/ .el-col > .el-form-item > .el-form-item__label {
+                    font-size: 12px;
+                    line-height: 30px;
+                }
+
+                .form_box > .baseForm /deep/ .el-col > .el-form-item > .el-form-item__content {
                     height: 30px;
                     line-height: 30px;
                 }
 
-                .form_box /deep/ .el-form > .el-col > .el-form-item > .el-form-item__content > .el-input > .el-input__inner {
+                .form_box > .baseForm /deep/ .el-col > .el-form-item > .el-form-item__content > .el-input > .el-input__inner {
                     height: 30px;
                     line-height: 30px;
                     border: none;

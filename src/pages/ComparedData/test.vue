@@ -449,8 +449,8 @@
 
 <style scoped lang="less">
     .container {
-        width: 1900px;
-        height: 900px;
+        width: 1920px;
+        height: 1080px;
 
         .left {
             width: 80%;
