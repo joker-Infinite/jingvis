@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <div class="left">
-            <div style="width: 10%;height: 100%;float: left">
+            <div style="width: 10%;height: 100%;float: left;background: #00b8fe">
                 <div class="customizeBtn">
-                    <el-button type="primary" @click="customizeTemplate">自定义模板</el-button>
+                    <el-button @click="customizeTemplate"><i class="el-icon-document-add"></i> 自定义模板</el-button>
                 </div>
                 <div class="navBox">
                     <div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div style="width: 90%;height: 100%;float: right">
-                <div class="head_tabs" style="height: 5%">
+                <div class="head_tabs" style="height:10%">
                     <div class="tabs">
                         <div @click="tabClick(item.value)"
                              :class="{ tabs_item: true, borderBottom: tabIndex === item.value}"
@@ -29,8 +29,9 @@
                              @click="addTabs"></div>
                     </div>
                 </div>
-                <div style="width: 100%;height: 95%">
-                    <el-table :data="tableData_" ref="table" border height="100%">
+                <div style="width: 100%;height: 90%">
+                    <el-table :data="tableData_" ref="table" border height="100%"
+                              style="width: 96%;margin: 0 2%;border-radius: 10px; box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);">
                         <el-table-column
                                 align="center"
                                 v-for="(it, ix) in columns"
@@ -449,34 +450,34 @@
 
 <style scoped lang="less">
     .container {
-        width: 1920px;
-        height: 1080px;
+        width: 1900px;
+        height: 900px;
 
         .left {
             width: 80%;
             height: 100%;
             float: left;
-            background: #ffffff;
-            overflow-y: scroll;
+            background: #ECF4F6;
 
             .head_tabs {
                 width: 100%;
                 overflow: hidden;
-                background: #F5F7FA;
 
                 .tabs {
-                    width: 100%;
+                    width: 96%;
+                    margin: 0 2%;
                     height: 100%;
                     display: flex;
                     flex-direction: row;
                     flex-wrap: nowrap;
                     justify-content: flex-start;
-                    border: 1px solid #DCDFE6;
+                    /*border: 1px solid #DCDFE6;*/
                     align-items: center;
 
                     .tabs_item {
+                        margin: 0 10px;
                         width: 200px;
-                        height: 100%;
+                        height: 70%;
                         text-align: center;
                         display: flex;
                         flex-wrap: nowrap;
@@ -484,6 +485,9 @@
                         justify-content: space-around;
                         cursor: pointer;
                         position: relative;
+                        border-radius: 5px;
+                        background: #FFF;
+                        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
 
                         .del {
                             position: absolute;
@@ -513,13 +517,13 @@
                     }
 
                     .borderBottom {
-                        background: #FFFFFF;
-                        color: #409EFF;
+                        background: #409EFF;
+                        color: #FFF;
                     }
 
                     .tabs_item:hover {
-                        background: #FFFFFF;
-                        color: #409EFF;
+                        background: #409EFF;
+                        color: #FFF;
                     }
 
                     .tabs_item:hover .del {
@@ -540,14 +544,12 @@
                     display: inline-block;
                     width: 80%;
                     margin: 0 10%;
-                    background: #eeeeee;
                     line-height: 2;
                     text-align: center;
                     cursor: pointer;
                 }
 
                 .active {
-                    background: #333333;
                     color: white;
                 }
             }
@@ -564,10 +566,17 @@
                 height: 30px;
                 width: 80%;
                 margin: 0 auto;
-                font-size: 12px;
+                font-size: 16px;
                 line-height: 30px;
                 padding: 0 5px;
                 border-radius: 0;
+                background: none;
+                border: none;
+            }
+
+            .customizeBtn /deep/ .el-button:hover {
+                color: white;
+                background: none;
             }
 
             .head {
@@ -608,7 +617,7 @@
             width: 100%;
             height: 78%;
             /*float: right;*/
-            background: #d6e764;
+            background: #ECF4F6;
             overflow-y: scroll;
             position: relative;
 
@@ -617,7 +626,7 @@
                 height: 215px;
                 background: #fff;
                 position: relative;
-                border: 1px solid #989898;
+                box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
                 border-radius: 5px;
                 margin: 5px auto;
                 overflow: hidden;
@@ -759,7 +768,7 @@
             bottom: 0;
             width: 100%;
             height: 22%;
-            background: #e6e6e6;
+            background: #ECF4F6;
             overflow: hidden;
 
             .selectCon {

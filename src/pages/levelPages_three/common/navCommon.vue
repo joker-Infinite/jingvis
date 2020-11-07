@@ -155,7 +155,7 @@
         <div class="right">
             <div class="navBar">
                 <p v-for="(it,ix) in tabData" @click="goto(ix)" :class="{'active':isActive === ix}">
-                    {{it.content}}</p>
+                  <i :class="tabData_icon[ix]"></i> {{it.content}}</p>
             </div>
         </div>
     </div>
@@ -175,6 +175,7 @@
                 activeName: [0, 1, 2, 3, 4, 5],
                 isActive: 0,
                 tabData: [],
+                tabData_icon:['el-icon-open','el-icon-info','el-icon-data-line','el-icon-tickets','el-icon-tableware','el-icon-view',],
                 navData: [],
                 formBasis: {},
                 formStatus: {
@@ -324,7 +325,7 @@
 
             .box {
                 width: 100%;
-                background: #d4d4d4;
+                /*background: #d4d4d4;*/
                 text-align: center;
             }
         }
@@ -424,8 +425,17 @@
         }
 
         .left /deep/ .el-collapse-item > div > .el-collapse-item__header {
-            background: #f7f7f7;
+            background: rgba(119, 123, 255, 0.84);
+            border-radius: 10px;
             font-size: 16px;
+            width: 95%;
+            margin: auto;
+            color: white;
+            border: none;
+        }
+
+        .left /deep/ .el-collapse-item > .el-collapse-item__wrap {
+            border: none;
         }
 
         .right {
@@ -449,7 +459,7 @@
             }
 
             .navBar > p {
-                text-indent: 20px;
+                text-indent: 10px;
                 line-height: 30px;
                 border-left: 5px solid rgba(0, 0, 0, 0);
                 cursor: pointer;
@@ -458,6 +468,6 @@
     }
 
     .nav /deep/ .el-collapse {
-        box-shadow: 0 0 1px 0 rgba(0, 0, 0, .5);
+        /*box-shadow: 0 0 1px 0 rgba(0, 0, 0, .5);*/
     }
 </style>
