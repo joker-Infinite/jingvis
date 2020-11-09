@@ -5,40 +5,50 @@ import test from "../pages/levelPages_two/test";
 import testC from '../pages/ComparedData/test'
 import compared from  '../pages/ComparedData/compared'
 import three from "../pages/levelPages_three/three";
-
+import business from "../pages/serviceBusiness/business.vue"
+import login from "../pages/login/login.vue"
 Vue.use(VueRouter);
 
 const routes = [
   {
-    //首页
     path: "/",
     name: "Home",
     component: Home
   },
   {
-    //二级页面
+    path: "/login",
+    name: "login",
+    component: login
+  },
+  {
     path: "/test",
     name: "test",
     component: test
   },
+  // 对比
   {
-    //对比页面
     path: "/testC",
     name: "test",
     component: testC
   },
+
   {
-    //对比页面——副本
     path: "/compared",
     name: "compared",
     component: compared
   },
+  // 服务区
   {
-    //三级页面
     path: "/three",
     name: "three",
     component: three
   },
+  {
+    path: "/business",
+    name: "business",
+    component: business
+  },
+  
 ];
 
 const router = new VueRouter({

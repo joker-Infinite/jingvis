@@ -101,7 +101,7 @@ export default {
     },
     methods: {
         mouseHover(v) {
-            this.option = this.[v];
+            this.option = this[v];
         },
         showOne(is) {
             if (is === 1) {
