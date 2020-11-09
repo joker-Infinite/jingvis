@@ -37,7 +37,7 @@ export default {
   methods: {
     mouseHover(v) {
       console.log(v);
-      // this.option = this.[v];
+      this.option = this.[v];
     },
     showOne() {
       // 修改柱状图的粗细

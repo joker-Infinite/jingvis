@@ -7,7 +7,7 @@
             <HomeTopLeft></HomeTopLeft>
           </div>
           <div class="H_top_center">
-            <center-map></center-map>
+            <center-map @showMap="showMap"></center-map>
           </div>
           <div class="H_top_right">
             <HomeTopRight></HomeTopRight>
@@ -20,6 +20,7 @@
       </div>
     </div>
     <show-e-charts ref="showECharts"></show-e-charts>
+    <show-map ref="showMap"></show-map>
   </div>
 </template>
 
@@ -29,6 +30,7 @@ import CenterMap from "./map/centerMap";
 import HomeTopRight from "./EChartsFiles/HomeTopRight";
 import HomeBottom from "./EChartsFiles/HomeBottom";
 import ShowECharts from "./common/showECharts";
+import ShowMap from "./common/showMap";
 
 export default {
   name: "Home",
@@ -36,11 +38,21 @@ export default {
     return {};
   },
   methods: {
+    showMap(v) {
+      this.$refs["showMap"].openDialog();
+    },
     showOne(v) {
       this.$refs["showECharts"].openDialog(v);
     }
   },
-  components: { ShowECharts, HomeBottom, HomeTopRight, CenterMap, HomeTopLeft }
+  components: {
+    ShowMap,
+    ShowECharts,
+    HomeBottom,
+    HomeTopRight,
+    CenterMap,
+    HomeTopLeft
+  }
 };
 </script>
 

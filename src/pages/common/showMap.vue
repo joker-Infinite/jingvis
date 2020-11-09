@@ -1,61 +1,67 @@
 <template>
-  <div class="amap-page-container">
-    <div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
-    <div class="Real-timeInformation">
-      <div id="con">
-        <p v-for="i in timeInformation" :key="i">
-          {{ i }}
-        </p>
+  <el-dialog :visible.sync="visible" width="90%" class="big">
+    <div style="width: 100%;height: 900px">
+      <div class="amap-page-container">
+        <div class="Real-timeInformation">
+          <div id="cons">
+            <p v-for="i in timeInformation" :key="i">
+              {{ i }}
+            </p>
+          </div>
+        </div>
+        <el-amap
+          vid="amapDemos"
+          :center="center"
+          :zoom="zoom"
+          class="amap-demo"
+          :events="events"
+          :map-style="mapStyle"
+          pitch-enable="false"
+        >
+          <el-amap-marker
+            v-for="(marker, index) in markers"
+            :key="index"
+            :events="marker.events"
+            :position="marker.position"
+            :icon="marker.icon"
+          />
+          <el-amap-info-window
+            v-if="window"
+            :position="window.position"
+            :visible="window.visible"
+            :content="window.content"
+            :offset="window.offset"
+            :close-when-click-map="true"
+            :is-custom="true"
+          >
+            <div id="info-windows">
+              <p style="line-height: 30px;text-align: center">
+                {{ window.address }}
+              </p>
+              <p
+                style="text-align: center;font-size: 20px;font-weight: 700;"
+                v-for="i in 3"
+                :key="i"
+              >
+                {{ i }}+XXXXXXXXXXX
+              </p>
+            </div>
+          </el-amap-info-window>
+        </el-amap>
       </div>
     </div>
-    <el-amap
-      vid="amapDemo"
-      :center="center"
-      :zoom="zoom"
-      class="amap-demo"
-      :events="events"
-      :map-style="mapStyle"
-      pitch-enable="false"
-    >
-      <el-amap-marker
-        v-for="(marker, index) in markers"
-        :key="index"
-        :events="marker.events"
-        :position="marker.position"
-        :icon="marker.icon"
-      />
-      <el-amap-info-window
-        v-if="window"
-        :position="window.position"
-        :visible="window.visible"
-        :content="window.content"
-        :offset="window.offset"
-        :close-when-click-map="true"
-        :is-custom="true"
-      >
-        <div id="info-window">
-          <p style="line-height: 30px;text-align: center">
-            {{ window.address }}
-          </p>
-          <p
-            style="text-align: center;font-size: 20px;font-weight: 700;"
-            v-for="i in 3"
-            :key="i"
-          >
-            {{ i }}+XXXXXXXXXXX
-          </p>
-        </div>
-      </el-amap-info-window>
-    </el-amap>
-  </div>
+  </el-dialog>
 </template>
 
 <script>
+import CenterMap from "../map/centerMap";
+
 export default {
-  name: "centerMap",
-  components: {},
+  name: "showMap",
+  components: { CenterMap },
   data() {
     return {
+      visible: false,
       data: [
         // {
         //   position: "114.286298, 30.5855",
@@ -93,11 +99,11 @@ export default {
     });
   },
   methods: {
-    enlargeMap() {
-      this.$emit("showMap", true);
+    openDialog() {
+      this.visible = true;
     },
     check() {
-      let con = document.getElementById("con");
+      let con = document.getElementById("cons");
       if (this.i < this.timeInformation.length - 1) {
         this.i++;
         con.style.marginTop = -30 * this.i + "px";
@@ -171,8 +177,29 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.big {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.big /deep/ .el-dialog {
+  margin-top: 6vh !important;
+}
+
+.big /deep/ .el-dialog > .el-dialog__header {
+  padding: 0;
+}
+
+.big /deep/ .el-dialog > .el-dialog__body {
+  padding: 0;
+}
+
 .amap-demo {
-  height: 99.7%;
+  height: 100%;
   width: 100%;
 }
 
@@ -184,7 +211,7 @@ export default {
   .enlarge {
     position: absolute;
     right: 0;
-    bottom: 2px;
+    bottom: 0;
     width: 30px;
     height: 30px;
     background: rgba(0, 0, 0, 0);
@@ -210,20 +237,20 @@ export default {
     margin-top: 0.5em;
     box-sizing: border-box;
 
-    #con {
+    #cons {
       width: 100%;
       height: 100%;
       color: red;
       transition: linear 0.3s;
     }
 
-    #con > p {
+    #cons > p {
       text-indent: 10px;
     }
   }
 }
 
-#info-window {
+#info-windows {
   width: 211px;
   height: 146px;
   margin-left: 30px;

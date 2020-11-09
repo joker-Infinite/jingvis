@@ -1,24 +1,28 @@
 <template>
   <div class="content">
     <div class="top" @mouseover="mouseHover('AD')">
-      <operations class="operations" @showOne="showOne(1)"></operations>
+      <operations
+        class="operations"
+        time="time"
+        @showOne="showOne(1)"
+      ></operations>
       <div id="HomeTopRight_top"></div>
     </div>
     <div style="width: 100%;height: 2%"></div>
     <div class="bottom">
       <!--<div class="item">
-                      <div id="HomeTopRight_bottomIA"></div>
-                  </div>
-                  <div class="item">
-                      <div id="HomeTopRight_bottomIB"></div>
-                  </div>
-                  <div style="width: 100%;height: 3%"></div>
-                  <div class="item">
-                      <div id="HomeTopRight_bottomIC"></div>
-                  </div>
-                  <div class="item">
-                      <div id="HomeTopRight_bottomID"></div>
-                  </div>-->
+                            <div id="HomeTopRight_bottomIA"></div>
+                        </div>
+                        <div class="item">
+                            <div id="HomeTopRight_bottomIB"></div>
+                        </div>
+                        <div style="width: 100%;height: 3%"></div>
+                        <div class="item">
+                            <div id="HomeTopRight_bottomIC"></div>
+                        </div>
+                        <div class="item">
+                            <div id="HomeTopRight_bottomID"></div>
+                        </div>-->
       <div class="bottom_left" @mouseover="mouseHover('BD')">
         <div class="select_type">
           <el-radio
@@ -100,19 +104,19 @@ export default {
             this.option = this.[v];
         },
         showOne(is) {
-            if(is===1){
-                this.AD.title.textStyle.rich.a.fontSize=25;
-                this.AD.title.y='4%';
-                this.$refs['showECharts'].openDialog(this.AD);
-                this.$refs['showECharts'].isShow=false;
-            }else{
-                this.option.title.padding=50;
-                this.option.title.textStyle.rich.a.fontSize=25;
-                this.option.title.x="center",
-                this.option.title.y="-3%"
-                this.option.barWidth=30;
-                this.option.grid.top="20%"
-                this.$refs['showECharts'].isShow=true;
+            if (is === 1) {
+                this.AD.title.textStyle.rich.a.fontSize = 25;
+                this.AD.title.y = '4%';
+                this.$refs['showECharts'].openDialog(this.AD,'time');
+                this.$refs['showECharts'].isShow = false;
+            } else {
+                this.option.title.padding = 50;
+                this.option.title.textStyle.rich.a.fontSize = 25;
+                this.option.title.x = "center",
+                    this.option.title.y = "-3%"
+                this.option.barWidth = 30;
+                this.option.grid.top = "20%"
+                this.$refs['showECharts'].isShow = true;
                 this.$refs['showECharts'].openDialog(this.option);
             }
         },
@@ -130,7 +134,7 @@ export default {
                 title: {
                     text: "{a|     省份访问TOP10}",
                     show: true,
-                    x:'center',
+                    x: 'center',
                     textStyle: {
                         fontFamily: "幼圆",
                         lineHeight: 30,
@@ -145,16 +149,16 @@ export default {
                     }
                 },
 
-               tooltip: {
+                tooltip: {
                     trigger: "item",
                     triggerOn: "mousemove"
                 },
                 series: {
                     type: "sankey",
                     layout: "none",
-                    right:'10%',
-                    top:'20%',
-                     focusNodeAdjacency: "inEdges",
+                    right: '10%',
+                    top: '20%',
+                    focusNodeAdjacency: "inEdges",
                     label: {
                         color: "#FFF"
                     },
@@ -269,7 +273,7 @@ export default {
                 barWidth: 20,
                 title: {
                     text: "{a|     营收前五及后五}",
-                    y:'6',
+                    y: '6',
                     show: true,
                     textStyle: {
                         fontFamily: "幼圆",
@@ -339,12 +343,12 @@ export default {
                         type: "bar",
                         stack: "总量",
                         itemStyle: {
-                                normal: {
-                                    // barBorderRadius: 30, //设置柱状图为圆角
-                                    color:new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-                                        offset: 0,
-                                        color: 'rgba(45,111,243,1)'
-                                    },
+                            normal: {
+                                // barBorderRadius: 30, //设置柱状图为圆角
+                                color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(45,111,243,1)'
+                                },
                                     {
                                         offset: 0.5,
                                         color: 'rgba(134,85,161,1)'
@@ -353,9 +357,9 @@ export default {
                                         offset: 1,
                                         color: 'rgba(247,52,57,1)'
                                     },
-                                    ]),
-                                }
-                            },
+                                ]),
+                            }
+                        },
                         label: {
                             show: true,
                             formatter: "{b}"
@@ -420,7 +424,7 @@ export default {
                 title: {
                     text: "{a|     千人营收前五及后五}",
                     // x:"center",
-                    y:'6',
+                    y: '6',
                     show: true,
                     textStyle: {
                         fontFamily: "幼圆",
@@ -490,19 +494,19 @@ export default {
                         type: "bar",
                         stack: "总量",
                         itemStyle: {
-                                normal: {
-                                    // barBorderRadius: 30, //设置柱状图为圆角
-                                    color:new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-                                        offset: 0,
-                                        color: 'rgba(45,111,243,1)'
-                                    },
+                            normal: {
+                                // barBorderRadius: 30, //设置柱状图为圆角
+                                color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(45,111,243,1)'
+                                },
                                     {
                                         offset: 1,
                                         color: 'rgba(245,184,14,1)'
                                     },
-                                    ]),
-                                }
-                            },
+                                ]),
+                            }
+                        },
                         label: {
                             show: true,
                             formatter: "{b}"
@@ -574,13 +578,16 @@ export default {
   margin: 0;
   // margin-left: .3em;
 }
+
 .content /deep/ .el-radio__label {
   padding: 0;
   margin-left: 0.2em;
 }
+
 .content /deep/ .el-radio {
   margin-right: 1em;
 }
+
 .content {
   width: 100%;
   height: 100%;
@@ -630,6 +637,7 @@ export default {
         .checkboxItem {
           color: white;
         }
+
         .el-radio__label {
           // margin-right: em;
         }
@@ -662,6 +670,7 @@ export default {
         left: 2%;
         z-index: 999;
         display: flex;
+
         .checkboxItem {
           color: white;
         }

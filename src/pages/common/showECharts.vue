@@ -1,6 +1,21 @@
 <template>
   <div style="width: 100%" class="box">
     <el-dialog :visible.sync="visible" width="80vh">
+      <div class="time">
+        <span class="text_icon">从</span>
+        <el-date-picker
+          v-model="time"
+          type="daterange"
+          align="right"
+          unlink-panels
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          :picker-options="pickerOptions"
+        >
+        </el-date-picker>
+        <el-button>搜索</el-button>
+      </div>
       <div class="bigShow" v-if="visible">
         <div id="commonECharts_data"></div>
         <div id="commonECharts"></div>
@@ -51,18 +66,31 @@
 <script>
 export default {
   name: "showECharts",
+  props: {
+    timeSelect: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
+      time: "",
       visible: false,
       two: false,
       visible_: false,
       isShow: false,
-      selectBD: 1
+      selectBD: 1,
+      pickerOptions: {}
     };
   },
   methods: {
     changeRadioBD(v) {},
-    openDialog(v) {
+    openDialog(v, t) {
+      if (t === "time") {
+        this.timeSelect = true;
+      } else {
+        this.timeSelect = false;
+      }
       if (Array.isArray(v) === true) {
         this.visible_ = true;
         this.$nextTick(_ => {
@@ -119,20 +147,24 @@ export default {
   font-size: 1.5em;
   color: #fff;
 }
+
 .select_type {
   width: 100%;
   position: absolute;
-  top: 16%;
+  top: 20%;
   left: 10%;
   z-index: 999;
+
   .checkboxItem {
     color: white;
   }
 }
+
 .box /deep/ .el-dialog__wrapper > .el-dialog {
-  background: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
 }
+
 .box /deep/ .el-dialog__body {
   padding: 0;
 }
@@ -144,6 +176,48 @@ export default {
   color: red;
   z-index: 1000;
 }
+
+.box /deep/ .el-dialog__header > .el-dialog__headerbtn > .el-dialog__close {
+  color: white;
+}
+
+.time {
+  background: rgb(0 18 53);
+  color: white;
+  /*border: 3px solid rgb(22, 154, 252);*/
+  box-shadow: 0 0 10px rgb(22, 115, 210) inset;
+  border-bottom: none;
+
+  .text_icon {
+    padding: 0 10px;
+  }
+}
+
+.time /deep/ .el-date-editor {
+  background: none;
+  border: none;
+}
+
+.time /deep/ .el-date-editor > .el-range-input {
+  color: black;
+  /*background: none;*/
+}
+
+.time /deep/ .el-date-editor > .el-range-separator {
+  color: white;
+}
+
+.time /deep/ .el-date-editor > .el-input__icon {
+  color: white;
+}
+
+.time /deep/ .el-button {
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: white;
+}
+
 .bigShow {
   width: 100%;
   height: 60vh;
