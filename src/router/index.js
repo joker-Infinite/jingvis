@@ -2,23 +2,23 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../pages/Home";
 import test from "../pages/levelPages_two/test";
-import testC from '../pages/ComparedData/test'
-import compared from  '../pages/ComparedData/compared'
+import testC from "../pages/ComparedData/test";
+import compared from "../pages/ComparedData/compared";
 import three from "../pages/levelPages_three/three";
-import business from "../pages/serviceBusiness/business.vue"
-import login from "../pages/login/login.vue"
+import business from "../pages/serviceBusiness/business.vue";
+import login from "../pages/login/login.vue";
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/login",
     name: "login",
     component: login
+  },
+  {
+    path: "/Home",
+    name: "Home",
+    component: Home
   },
   {
     path: "/test",
@@ -47,8 +47,7 @@ const routes = [
     path: "/business",
     name: "business",
     component: business
-  },
-  
+  }
 ];
 
 const router = new VueRouter({

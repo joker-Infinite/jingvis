@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-    <div style=" width: 20%;height: 100%;float: right; position: relative">
+    <div style=" width: 20%;height: 100%;float: left; position: relative">
       <div class="right">
         <div class="box" v-for="(it, ix) in columns" v-if="ix !== 0">
           <div class="title">
@@ -570,10 +570,10 @@ export default {
 <style scoped lang="less">
 .container {
   width: 1900px;
-  height: 900px;
+  height: 950px;
 
   .left {
-    width: 80%;
+    width: 70%;
     height: 100%;
     float: left;
     background: #ecf4f6;
