@@ -75,7 +75,7 @@
           <template slot="title">
             <i class="el-icon-office-building"></i>
             <span slot="title">商业指标</span>
-          </template>
+</template>
         </el-submenu>
       </el-menu>
     </div>
@@ -176,7 +176,6 @@ export default {
             path: "/Home".replace("#", "")
           });
           window.open(routeData.href, "_blank");
-
           break;
         case "2":
           this.$refs.common.isComponent = "business";

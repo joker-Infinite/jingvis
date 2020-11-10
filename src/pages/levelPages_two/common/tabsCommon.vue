@@ -58,7 +58,10 @@ export default {
     },
     handleScroll(e) {
       this.scroll = e.target.scrollTop;
-      this.$refs.business.isscrollTop(e.target.scrollTop);
+      if(this.isComponent!=='three'){
+
+        this.$refs.business.isscrollTop(e.target.scrollTop);
+      }
       // this.$emit('iscommon',e.target.scrollTop)
       // console.log(e.target.scrollTop)
     }

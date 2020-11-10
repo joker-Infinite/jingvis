@@ -2,11 +2,13 @@
     <div class="content" :style="{ height: isshow ? '800px' : '400px' }">
         <div v-if="businessId.id" class="top">
             <div class="left" @mouseover="mouseHover('A', businessId.id[0], businessId.data.left)">
+                <!-- {{businessId.id[0]}} -->
                 <div class="con" :id="businessId.id[0]"></div>
                 <div class="ListTable" :id="businessId.id[0] + 1"></div>
                 <information class="information" @isData="isData" ref="inform"></information>
             </div>
             <div class="center" @mouseover="mouseHover('B', businessId.id[1], businessId.data.center)">
+                <!-- {{businessId.id[1]}} -->
                 <div class="con" :id="businessId.id[1]"></div>
                 <div class="ListTable" :id="businessId.id[1] + 1"></div>
                 <information @isData="isData" class="information" ref="inform"></information>
@@ -33,7 +35,7 @@
                     <p>发放成本</p>
                     <p><span>3258</span>元</p>
                 </div>
-                <div id="Echartspercentage"></div>
+                <div class="proportion" :id="businessId.echartsBottoms+'w'"></div>
             </div>
         </div>
     </div>
@@ -601,7 +603,7 @@ export default {
         },
         percentage() {
             let Echarts = this.$echarts.init(
-                document.getElementById("Echartspercentage")
+                document.getElementById(this.businessId.echartsBottoms+'w')
             );
             const handred = 100;
             let point = 66;
@@ -691,7 +693,6 @@ export default {
             // this.businessId = data;
             setTimeout(() => {
                 if (data.id) {
-                      console.log('调用了',data.id)
                       this.businessId.id=data.id;
                       this.businessId.data=data.data
                       this.businessId.echartsBottoms=data.echartsBottoms
@@ -833,7 +834,7 @@ export default {
                 margin-left: 1em;
                 margin-bottom: 0.4em;
             }
-            #Echartspercentage {
+            .proportion {
                 position: absolute;
                 width: 44%;
                 height: 60%;
@@ -847,12 +848,11 @@ export default {
                 height: 25%;
                 border-radius: 20px;
                 color: #fff;
-
                 p {
-                    margin-left: 50px;
-                    line-height: 40px;
+                    margin-left: 20%;
+                    line-height: 3em;
                     span {
-                        font-size: 40px;
+                        font-size: 3em;
                     }
                 }
             }
