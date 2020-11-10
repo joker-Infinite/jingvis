@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="left">
-      <div style="width: 10%;height: 100%;float: left;background: #00b8fe">
+      <div style="width: 10%;height: 100%;float: left;background: #737AEF">
         <div class="customizeBtn">
           <el-button @click="customizeTemplate"
             ><i class="el-icon-document-add"></i> 自定义模板</el-button
@@ -570,7 +570,7 @@ export default {
 <style scoped lang="less">
 .container {
   width: 1900px;
-  height: 950px;
+  height: 930px;
 
   .left {
     width: 70%;
@@ -617,7 +617,7 @@ export default {
             text-align: center;
             top: 2px;
             right: 2px;
-            color: #f56c6c;
+            color: #fff;
           }
         }
 
@@ -632,16 +632,16 @@ export default {
         }
 
         .tabsAdd:hover {
-          color: #409eff;
+          color: #737AEF;
         }
 
         .borderBottom {
-          background: #409eff;
+          background: #737AEF;
           color: #fff;
         }
 
         .tabs_item:hover {
-          background: #409eff;
+          background: #737AEF;
           color: #fff;
         }
 
