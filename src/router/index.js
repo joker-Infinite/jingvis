@@ -25,7 +25,7 @@ const routes = [
     name: "test",
     component: test
   },
-  // 对比
+  // 对比1
   {
     path: "/testC",
     name: "test",
