@@ -87,7 +87,7 @@ export default {
   },
   mounted() {
     this.timeClear = setInterval(this.check, 3000);
-    this.$axios.get("/api/fuwuqugis/list_sainfor").then(res => {
+    this.$axios.get("/api/jtService/list_jtService").then(res => {
       this.data = res.data.data;
       this.point();
     });

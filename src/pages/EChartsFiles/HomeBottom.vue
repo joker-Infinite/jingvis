@@ -97,7 +97,7 @@ export default {
         option.title.textStyle.rich.a.fontSize = 25;
         option.barWidth = 30;
         option.title.padding = [50, 50, 50, 50];
-        option.legend.top = "80";
+        option.legend.top = "100";
         option.legend.right = "50";
         this.$emit("showOne", option);
       }

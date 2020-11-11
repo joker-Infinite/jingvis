@@ -632,16 +632,16 @@ export default {
         }
 
         .tabsAdd:hover {
-          color: #737AEF;
+          color: #737aef;
         }
 
         .borderBottom {
-          background: #737AEF;
+          background: #737aef;
           color: #fff;
         }
 
         .tabs_item:hover {
-          background: #737AEF;
+          background: #737aef;
           color: #fff;
         }
 

@@ -13,9 +13,9 @@ export default {
   methods: {
     operations(v) {
       this.$emit("isData", v);
-    },
+    }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="less" scoped>

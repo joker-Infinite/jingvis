@@ -1,24 +1,24 @@
 <template>
-    <div class="content">
-        <div></div>
-    </div>
+  <div class="content">
+    <div></div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "navigation",
-        data() {
-            return {
-                navData: []
-            }
-        },
-        methods: {}
-    }
+export default {
+  name: "navigation",
+  data() {
+    return {
+      navData: []
+    };
+  },
+  methods: {}
+};
 </script>
 
 <style scoped lang="less">
-    .content {
-        width: 100%;
-        height: 100%;
-    }
+.content {
+  width: 100%;
+  height: 100%;
+}
 </style>
