@@ -32,9 +32,9 @@ export default {
 <style scoped lang="less">
 .container {
   width: 100%;
-  height: 950px;
+  /*height: 100%;*/
   margin: auto;
-  background: #fff;
+  background: #F3F7FF;
   position: relative;
 }
 </style>
