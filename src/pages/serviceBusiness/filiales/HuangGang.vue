@@ -179,7 +179,7 @@ export default {
             padding-top: 5%;
             box-sizing: border-box;
             position: fixed;
-            box-shadow: 1, 1, 1, 10 rgba(0, 0, 0, 1);
+            /*box-shadow: 1, 1, 1, 10 rgba(0, 0, 0, 1);*/
             width: 8%;
             height: 80%;
             background: #fff;

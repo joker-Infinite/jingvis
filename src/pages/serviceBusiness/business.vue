@@ -115,9 +115,9 @@ export default {
                 };
                 let timeId = setTimeout(() => {
                     this.$refs.scrollDiv.isechartsShow(this.$refs.scrollDiv.businessId3);
-                     window.clearTimeout(timeId) 
+                     window.clearTimeout(timeId)
                 }, 100);
-               
+
             }
             if ( this.bool[1] && val > 300) {
               console.log('调用了 HomeEchartsLeft4')
@@ -137,7 +137,7 @@ export default {
                     this.$refs.scrollDiv.isechartsShow(this.$refs.scrollDiv.businessId4);
                     window.clearTimeout(timeId)
                 }, 10);
-                
+
                 // this.$refs.scrollDiv.businessId6.show=true;
             }
             if (this.bool[2] && val > 1100 ) {
@@ -158,7 +158,7 @@ export default {
                     this.$refs.scrollDiv.isechartsShow(this.$refs.scrollDiv.businessId5);
                      window.clearTimeout(timeId)
                 }, 10);
-               
+
             }
             if (this.bool[3] && val > 2000) {
                 this.bool[3] = false;
@@ -178,7 +178,7 @@ export default {
                     this.$refs.scrollDiv.isechartsShow(this.$refs.scrollDiv.businessId6);
                     window.clearTimeout(timeId)
                 }, 10);
-                
+
             }
         }
     },
@@ -213,7 +213,7 @@ export default {
             padding-bottom: 5%;
             box-sizing: border-box;
             position: fixed;
-            box-shadow: 1, 1, 1, 10 rgba(0, 0, 0, 1);
+            /*box-shadow: 1, 1, 1, 10 rgba(0, 0, 0, 1);*/
             width: 8%;
             // height: 80%;
             background: #fff;

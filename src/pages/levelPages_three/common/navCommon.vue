@@ -564,7 +564,7 @@ export default {
             padding-bottom: 5%;
             box-sizing: border-box;
             position: fixed;
-            box-shadow: 1, 1, 1, 10 rgba(0, 0, 0, 1);
+            /*box-shadow: 1px 1px 1px 10px rgba(0, 0, 0, 1);*/
             width: 9%;
             // height: 80%;
             background: #fff;
