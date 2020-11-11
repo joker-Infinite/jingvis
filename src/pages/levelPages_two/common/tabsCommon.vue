@@ -53,7 +53,6 @@ export default {
       // }
     },
     isCom(val) {
-      console.log(val, 88888888888888);
       this.isComponent = val;
     },
     handleScroll(e) {

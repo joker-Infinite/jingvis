@@ -118,7 +118,6 @@ export default {
       const markers = [];
       const windows = [];
       const that = this;
-      console.log(this.data, 456);
       let data = [];
       this.data.forEach((item, index) => {
         if (
@@ -141,7 +140,6 @@ export default {
                 that.windows.forEach(window => {
                   window.visible = false; // 关闭窗体
                 });
-                console.log(that.windows[index], index, that.markers[index]);
                 that.window = that.windows[index];
                 that.$nextTick(() => {
                   that.window.visible = true;

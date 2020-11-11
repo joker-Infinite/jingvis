@@ -20,73 +20,76 @@
 </template>
 
 <script>
-export default {
-  name: "navCommon",
-  data() {
-    return {
-      isActive: 0,
-      tabData: [],
-      navData: [],
-      height: 0
-    };
-  },
-  methods: {
-    /**
-     * @param data 从树节点传来的数据
-     * */
-    refresh(data) {
-      this.tabData = [];
-      this.isActive = 0;
-      for (let i = 0; i < 5; i++) {
-        this.tabData.push({
-          name: data.label + "-tab" + (i + 1),
-          content: data.label + (i + 1)
-        });
+    export default {
+        name: "navCommon",
+        data() {
+            return {
+                isActive: 0,
+                tabData: [],
+                navData: [],
+                height: 0,
+                
+            }
+        },
+        methods: {
+            /**
+             * @param data 从树节点传来的数据
+             * */
+            refresh(data) {
+                this.tabData = [];
+                this.isActive = 0;
+                for (let i = 0; i < 5; i++) {
+                    this.tabData.push({
+                        name: data.label + '-tab' + (i + 1),
+                        content: data.label + (i + 1)
+                    })
+                }
+                this.$nextTick(_ => {
+                    document.querySelector('#box0').scrollIntoView(true);
+                })
+            },
+            /**
+             * @param v 所点击导航的下标
+             * */
+            goto(v) {
+                let id = '#box' + v;
+                document.querySelector(id).scrollIntoView(true);
+            },
+            /**
+             * 监听滚动事件
+             * */
+            scrollChange() {
+                let left = document.getElementById('left');
+                left.addEventListener('scroll', _ => {
+                    this.navData = [];
+                    this.tabData.forEach((item, index) => {
+                        this.navData.push(
+                            {
+                                index: index,
+                                height: document.getElementById('box' + index).offsetTop
+                            }
+                        );
+                    });
+                    this.navBar(left.scrollTop);
+                })
+            },
+            /**
+             * 滚动后导航选中
+             * */
+            navBar(v) {
+                for (let i = 0; i < this.navData.length; i++) {
+                    if (v < this.navData[i].height || v == this.navData[i].height) {
+                        this.isActive = i;
+                        break;
+                    }
+                }
+            }
+        },
+        mounted() {
+            this.scrollChange();
+        },
+
       }
-      this.$nextTick(_ => {
-        document.querySelector("#box0").scrollIntoView(true);
-      });
-    },
-    /**
-     * @param v 所点击导航的下标
-     * */
-    goto(v) {
-      let id = "#box" + v;
-      document.querySelector(id).scrollIntoView(true);
-    },
-    /**
-     * 监听滚动事件
-     * */
-    scrollChange() {
-      let left = document.getElementById("left");
-      left.addEventListener("scroll", _ => {
-        this.navData = [];
-        this.tabData.forEach((item, index) => {
-          this.navData.push({
-            index: index,
-            height: document.getElementById("box" + index).offsetTop
-          });
-        });
-        console.log(left.scrollTop);
-        this.navBar(left.scrollTop);
-      });
-    },
-    /**
-     * 滚动后导航选中
-     * */
-    navBar(v) {
-      for (let i = 0; i < this.navData.length; i++) {
-        if (v < this.navData[i].height || v == this.navData[i].height) {
-          this.isActive = i;
-          break;
-        }
-      }
-    }
-  },
-  mounted() {
-    this.scrollChange();
-  }
-};
 </script>
 
 <style scoped lang="less">
