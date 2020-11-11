@@ -34,6 +34,7 @@
         :header-cell-style="{ 'text-align': 'center' }"
         :cell-style="{ 'text-align': 'center' }"
         :span-method="arraySpanMethod"
+        @row-click="serviceDetail"
         border
         style="width: 100%"
       >
