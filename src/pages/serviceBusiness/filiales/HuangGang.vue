@@ -2,7 +2,7 @@
   <div class="business" :style="{ width: widths }">
     <div class="businessMargin">
       <my-table @isShoww="isShoww" @isCom="isCom"></my-table>
-      <business ref="busine"></business>
+      <business :quantityShow="quantityShow" ref="busine"></business>
     </div>
     <el-backtop></el-backtop>
   </div>
@@ -15,6 +15,7 @@ export default {
   props: ["scroll"],
   data() {
     return {
+      quantityShow:true,
       bool: [true, true, true, true],
       isHover: 0,
       scrollTop: "",
@@ -32,7 +33,20 @@ export default {
       this.$emit("isCom", val);
     },
     isShoww(val) {
-      this.$refs.busine.businessId[0].show = false;
+      this.quantityShow=false
+      this.$refs.busine.businessIdData.businessId.forEach((element,index) => {
+        this.$refs.busine.businessIdData.businessId[index].show = false;
+        this.$refs.busine.isechartsShow()
+      });
+      this.$refs.busine.businessIdData.profitbusinessId.forEach((element,index) => {
+        this.$refs.busine.businessIdData.profitbusinessId[index].show = false;
+        this.$refs.busine.isechartsShow()
+      });
+      this.$refs.busine.businessIdData.costbusinessId.forEach((element,index) => {
+        this.$refs.busine.businessIdData.costbusinessId[index].show = false;
+        this.$refs.busine.isechartsShow()
+      });
+      
     },
     // // 滚动条的监听
     isscrollTop(val) {
