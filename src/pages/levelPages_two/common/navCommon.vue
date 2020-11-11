@@ -65,7 +65,6 @@
                             }
                         );
                     });
-                    console.log(left.scrollTop)
                     this.navBar(left.scrollTop);
                 })
             },

@@ -32,7 +32,7 @@ export default {
 <style scoped lang="less">
 .container {
   width: 100%;
-  min-height: 950px;
+  height: 950px;
   margin: auto;
   background: #fff;
   position: relative;

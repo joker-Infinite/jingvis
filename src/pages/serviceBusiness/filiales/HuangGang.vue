@@ -77,7 +77,6 @@ export default {
             this.$emit("isCom", val);
         },
         isscrollTop(val) {
-            console.log(val, "我能1");
             this.navData.forEach((element, index) => {
                 if (val >= element) {
                     this.isHover = index;

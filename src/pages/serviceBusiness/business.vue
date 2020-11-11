@@ -95,7 +95,6 @@ export default {
         isscrollTop(val) {
             // console.log(val, "我能");
             this.navData.forEach((element, index) => {
-              console.log(val,element,'zhang')
                 if (val >= element) {
                     this.isHover = index;
                 }
@@ -120,7 +119,6 @@ export default {
 
             }
             if ( this.bool[1] && val > 300) {
-              console.log('调用了 HomeEchartsLeft4')
                 this.bool[1] = false;
                 this.$refs.scrollDiv.businessId4 = {
                     id: ["HomeEchartsLeft4", "HomeEchartsCenter4", "HomeEchartsRight4"],

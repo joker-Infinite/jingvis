@@ -185,7 +185,6 @@ export default {
                 max: option.xAxis[0].data.length * 100,
                 show: false
             }
-            console.log(option.series[2])
             option.series[2].data = option.series[2].data.map((x, i) => [35 + i * 100, x] )
             // option.series[3].data = option.series[3].data.map((x, i) => [73 + i * 100, x])
             EchartsLeft.setOption(option);

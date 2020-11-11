@@ -264,7 +264,6 @@ export default {
             businessEchartsFWQ.setOption(option);
         },
         handleChange(val) {
-            console.log(val);
         }
     },
     mounted() {

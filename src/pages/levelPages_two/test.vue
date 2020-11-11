@@ -169,7 +169,6 @@ export default {
     selectMenu(is) {
       let tabs = document.getElementById("tabs");
       tabs.scrollTop = 0;
-      console.log(is);
       switch (is) {
         case "1":
           let routeData = this.$router.resolve({
@@ -194,11 +193,9 @@ export default {
       }
     },
     handleOpen(key, keyPath) {
-      console.log(key, keyPath, 123);
       this.selectMenu(key);
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath, 456);
       this.selectMenu(key);
     },
     ...mapMutations(["isLoadUpdata"]),

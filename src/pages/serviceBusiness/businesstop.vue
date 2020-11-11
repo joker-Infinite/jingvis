@@ -117,7 +117,6 @@ export default {
     },
     methods: {
         handleChange(val) {
-            console.log(val);
         },
         iconList(is) {
             if (is === 1) {

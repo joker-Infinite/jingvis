@@ -80,7 +80,6 @@ export default {
     methods: {
         ...mapMutations(["isresizeData"]),
         mouseHover(v, id, data) {
-            console.log(id);
             this.isvalue = v;
             this.required.id = id;
             this.required.data = data;
@@ -89,7 +88,6 @@ export default {
         isData(val) {
             this.isExcle = val;
             this.isEchartsIsTable();
-            console.log(val);
             // this.$refs.inform.show = false;
         },
         // 用来图表跟数据切换的
@@ -696,11 +694,9 @@ export default {
                       this.businessId.id=data.id;
                       this.businessId.data=data.data
                       this.businessId.echartsBottoms=data.echartsBottoms
-                      console.log(this.businessId,this.businessId.echartsBottoms,data,99999999999999)
                       this.HomeEchartsLeft();
                       this.HomeEchartsCenter();
                       this.HomeEchartsRight();
-                      console.log(typeof(this.businessId.echartsBottoms)!='undefined',88888888888888888)
                       if (typeof(this.businessId.echartsBottoms)!='undefined') {
                           this.EchartsBottom();
                           this.percentage();
@@ -708,7 +704,6 @@ export default {
                 }
             }, 10);
 
-             console.log(this.businessId.id,5555)
         }
     },
     mounted() {

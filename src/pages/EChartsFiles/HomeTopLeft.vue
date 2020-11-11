@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     mouseHover(v) {
-      console.log(v);
       this.option = this.[v];
     },
     showOne() {

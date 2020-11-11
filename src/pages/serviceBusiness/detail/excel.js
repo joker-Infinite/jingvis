@@ -21,7 +21,6 @@ function outExe(tableDatas) {
 			});
 			table.push(wen)
 		});
-		console.log(table)
 		// tableDatas[0].forEach((val, inx) => {
 		// 	console.log(wen, 44444444444444444444444444444444444444)
 		// 	table.push(wen)

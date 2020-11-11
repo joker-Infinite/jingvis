@@ -272,7 +272,6 @@ export default {
     },
     watch: {
         '$store.state.refresh': function () {
-            console.log('wo')
             this.businessId.id.forEach(element => {
                 document.getElementById(element).setAttribute('_echarts_instance_', '');
             });

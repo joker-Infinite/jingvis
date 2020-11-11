@@ -14,7 +14,7 @@
             </div>
         </div>
         <div>
-            <el-table :data="tableData" align="center" :header-cell-style="{ 'text-align': 'center' }" :cell-style="{ 'text-align': 'center' }"
+            <el-table :data="tableData" @row-click="rowClick" align="center" :header-cell-style="{ 'text-align': 'center' }" :cell-style="{ 'text-align': 'center' }"
                 :span-method="arraySpanMethod" border style="width: 100%">
                 <el-table-column prop="id" label="服务区名称" width="180">
                     <template slot-scope="{ row }">
@@ -124,6 +124,9 @@ export default {
         };
     },
     methods: {
+        rowClick(row){
+            this.$emit("isCom", "three");
+        },
         serviceDetail(row) {
             this.$emit("isCom", "three");
         },

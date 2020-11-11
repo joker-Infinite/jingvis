@@ -112,7 +112,6 @@ export default {
       const markers = [];
       const windows = [];
       const that = this;
-      console.log(this.data, 456);
       let data = [];
       this.data.forEach((item, index) => {
         if (

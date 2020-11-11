@@ -121,10 +121,8 @@ export default {
             }
         },
         changeRadioBD(v) {
-            console.log(v);
         },
         changeRadioCD(v) {
-            console.log(v);
         },
         initECharts_top() {
             let HomeTopRight_top = this.$echarts.init(
