@@ -15,7 +15,8 @@
                 <div class="ListTable" :id="businessId.id[1] + 1"></div>
                 <information @isData="isData" class="information" ref="inform"></information>
             </div>
-            <div v-if="businessId.show" class="right right1" @mouseover="mouseHover('C', businessId.id[2], businessId.data.left,businessId.data.centerxAis,businessId.name)">
+            <div v-if="businessId.show" class="right right1"
+                @mouseover="mouseHover('C', businessId.id[2], businessId.data.left,businessId.data.centerxAis,businessId.name)">
                 <div class="con" :id="businessId.id[2]"></div>
                 <div class="ListTable" :id="businessId.id[2] + 1"></div>
                 <information @isData="isData" class="information" ref="inform"></information>
@@ -23,7 +24,7 @@
         </div>
         <div class="bottom" v-if="isshow">
             <div class="bottomLeft" @mouseover="
-          mouseHover('D', businessId.echartsBottoms, businessId.data.left,businessId.data.xAis,businessId.name)
+          mouseHover('D', businessId.echartsBottoms, businessId.data.buttom,businessId.data.buttomyAis,businessId.name)
         ">
                 <div class="con" :id="businessId.echartsBottoms"></div>
                 <div class="ListTable" :id="businessId.echartsBottoms + 1"></div>
@@ -104,12 +105,14 @@ export default {
                 let wen = this.$echarts.init(document.getElementById(this.required.id));
                 wen.setOption({}, true);
                 document.getElementById(this.required.id + 1).style.zIndex = 1;
-                let table = `<table bordercolor="#CC0000" cellspacing="0" cellpadding="0"  width=100%; border=1>`;
-                table += `<tr><th colspan="2">${this.required.name}</th></tr>`;
+                let table = `<table bordercolor="#CC0000" cellspacing="0" cellpadding="0"  width=90%; border=1>`;
+                table += `<tr><th colspan="${this.required.data.length+1}">${this.required.name}</th></tr>`;
                 this.required.data[0].forEach((val, inx) => {
                     table += `<tr align="center">`;
                     table += `<td>${this.required.xAis[inx]}</td>`;
-                    table += `<td>${this.required.data[0][inx]}</td>`;
+                    this.required.data.forEach((element,index) => {
+                        table += `<td>${this.required.data[index][inx]}</td>`;
+                    });
                     table += `</tr>`;
                 });
                 table += `</table>`;
@@ -525,7 +528,7 @@ export default {
                 },
                 yAxis: {
                     type: "category",
-                    data: ["北京", "上海", "天津", "深圳", "456", "7889", "99789"],
+                    data: this_.businessId.data.buttomyAis,
                     splitLine: { show: false },
                     axisTick: { show: false },
                     axisLine: { show: false }
@@ -567,7 +570,7 @@ export default {
                             }
                         },
                         z: 10,
-                        data: [320, 302, 301, 543, 320, 302, 301]
+                        data: this_.businessId.data.buttom[0]
                     },
                     {
                         name: "B门店",
@@ -588,7 +591,7 @@ export default {
                             }
                         },
                         z: 5,
-                        data: [90, 230, 210, 432, 320, 302, 301]
+                        data: this_.businessId.data.buttom[1]
                     },
                     {
                         name: "B门店",
@@ -610,7 +613,7 @@ export default {
                             }
                         },
                         z: 5,
-                        data: [10, 10, 10, 10, 10, 10, 10]
+                        data: this_.businessId.data.buttom[2]
                     }
                 ]
             };
@@ -705,11 +708,11 @@ export default {
             Echarts.setOption(option);
         },
         isechartsShow() {
-              this.businessId.id.forEach((element,index)=>{
-                this.businessId.id[index]=element+5
-              })
-                this.HomeEchartsLeft();
-            
+            this.businessId.id.forEach((element, index) => {
+                this.businessId.id[index] = element + 5
+            })
+            this.HomeEchartsLeft();
+
 
             // this.HomeEchartsCenter();
         }
@@ -759,6 +762,8 @@ export default {
     top: 15%;
     left: 0;
     z-index: -10;
+    display: flex;
+    justify-content: center;
     overflow: auto;
 }
 .con {
@@ -835,7 +840,7 @@ export default {
                 font-weight: bolder;
                 font-size: 1.5em;
                 margin-left: 1em;
-                margin-bottom: 0.4em;
+                margin-top: 0.8em;
             }
             .proportion {
                 position: absolute;

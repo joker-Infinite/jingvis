@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         handleChange(val) {
-            console.log(val, "dianji");
+            // console.log(val, "dianji");
             // this.$refs.busin.isechartsShow(data);
         },
         iconList(is) {

@@ -129,6 +129,7 @@ export default {
         },
         inquire() {
             this.$emit("isShoww", true);
+            
         },
         arraySpanMethod({ row, column, rowIndex, columnIndex }) {
             // if (rowIndex === 0) {

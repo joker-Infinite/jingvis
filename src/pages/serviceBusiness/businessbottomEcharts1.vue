@@ -1,12 +1,14 @@
 <template>
     <div class="businsstopDatil" v-if="businessId.id">
         <div class="leftin">
-            <div class="left" :id="businessId.id[0]"></div>
-            <information @isData="isData" class="information" ref="inform"></information>
+            <div class="left" @mouseover="mouseHover('A', businessId.id[0], businessId.data,businessId.name)" :id="businessId.id[0]"></div>
+            <div class="ListTable" :id="businessId.id[0] + 'W'"></div>
+            <information  @isData="isData" class="information" ref="inform"></information>
         </div>
         <div class="rightin">
-            <div class="right" :id="businessId.id[1]"></div>
-            <information @isData="isData" class="information" ref="inform"></information>
+            <div class="right" @mouseover="mouseHover('B', businessId.id[1], businessId.data,businessId.name)" :id="businessId.id[1]"></div>
+            <div class="ListTable" :id="businessId.id[1] + 'W'"></div>
+            <information  @isData="isData" class="information" ref="inform"></information>
         </div>
     </div>
 </template>
@@ -21,7 +23,14 @@ export default {
         }
     },
     data() {
-        return {};
+        return {
+             isExcle: '',
+            isvalue: '',
+            required: {
+                id: '',
+                name: ''
+            },
+        };
     },
 
 
@@ -177,7 +186,6 @@ export default {
                         data: [62, 80, 80, 62, 60, 55, 45, 30, 15, 106, 55, 45, 30, 15, 1],
                         barWidth: 12,
                         barCategoryGap: 50,
-
                         itemStyle: {
                             normal: {
                                 show: true,
@@ -193,7 +201,6 @@ export default {
                         data: [65, 55, 60, 45, 42, 15, 12, 5, 106, 55, 45, 30, 15, 1],
                         barWidth: 12,
                         barCategoryGap: 50,
-
                         itemStyle: {
                             normal: {
                                 show: true,
@@ -373,7 +380,56 @@ export default {
             //   window.clearTimeout(stims)
             // }, 10);
         },
-        isData(data) { }
+         mouseHover(v, id, name) {
+            //  console.log(v, id, name,5555)
+            this.isvalue = v;
+            this.required.id = id;
+            // this.required.data = data;
+            // this.required.xAis = xAis;
+            this.required.name = name
+        },
+        // 传过来的数据
+        isData(val) {
+            this.isExcle = val;
+            this.isEchartsIsTable();
+            // this.$refs.inform.show = false;
+        },
+        // 用来图表跟数据切换的
+        isEchartsIsTable() {
+            if (this.isExcle == "datas") {
+                let wen = this.$echarts.init(document.getElementById(this.required.id));
+                wen.setOption({}, true);
+                document.getElementById(this.required.id + 'W').style.zIndex = 1;
+                let table = `<table bordercolor="#CC0000" cellspacing="0" cellpadding="0"  width=100%; border=1>`;
+                table += `<tr><th colspan="2">${this.required.name}</th></tr>`;
+                // this.required.data[0].forEach((val, inx) => {
+                //     table += `<tr align="center">`;
+                //     table += `<td>${this.required.xAis[inx]}</td>`;
+                //     table += `<td>${this.required.data[0][inx]}</td>`;
+                //     table += `</tr>`;
+                // });
+                table += `</table>`;
+                document.getElementById(this.required.id + 'W').innerHTML = table;
+            }
+            if (this.isExcle == "focus") {
+                document.getElementById(this.required.id + 'W').style.zIndex = -1;
+                document.getElementById(this.required.id + 'W').innerHTML = "";
+                switch (this.isvalue) {
+                    case "A":
+                        this.EchartsLeft();
+                        break;
+                    case "B":
+                        this.EchartsRight();
+                        break;
+                    default:
+
+                        break;
+                }
+            }
+            if (this.isExcle == "excel") {
+                outExe(this.required);
+            }
+        },
     },
 
     watch: {
@@ -386,6 +442,15 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.ListTable {
+    width: 100%;
+    height: 85%;
+    position: absolute;
+    top: 15%;
+    left: 0;
+    z-index: -10;
+    overflow: auto;
+}
 .businsstopDatil {
     width: 100%;
     height: 400px;

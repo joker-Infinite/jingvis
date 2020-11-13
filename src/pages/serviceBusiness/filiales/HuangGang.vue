@@ -34,6 +34,8 @@ export default {
     },
     isShoww(val) {
       this.quantityShow=false
+      this.$refs.busine.index=5;
+      this.$refs.busine.anchorData.splice(3,1)
       this.$refs.busine.businessIdData.businessId.forEach((element,index) => {
         this.$refs.busine.businessIdData.businessId[index].show = false;
         this.$refs.busine.isechartsShow()

@@ -4,11 +4,14 @@
             <div>品牌分类</div>
             <div class="echarts">
                 <div class="left">
-                    <div style="margin-right:1.6%" class="con" :id="businessId.id[0]"></div>
+                    <div @mouseover="mouseHover('A', businessId.id[0], businessId.data,businessId.name)" style="margin-right:1.6%" class="con"
+                        :id="businessId.id[0]"></div>
+                    <div class="ListTable" :id="businessId.id[0]+'W'"></div>
                     <information @isData="isData" class="information" ref="inform"></information>
                 </div>
                 <div class="right">
-                    <div class="con" :id="businessId.id[1]"></div>
+                    <div @mouseover="mouseHover('B', businessId.id[1], businessId.data,businessId.name)" class="con" :id="businessId.id[1]"></div>
+                     <div class="ListTable" :id="businessId.id[1]+'W'"></div>
                     <information @isData="isData" class="information" ref="inform"></information>
                 </div>
             </div>
@@ -43,6 +46,12 @@ export default {
     components: { information },
     data() {
         return {
+            isExcle: '',
+            isvalue: '',
+            required: {
+                id: '',
+                name: ''
+            },
             tableData: [
                 {
                     date: "一线品牌",
@@ -290,21 +299,55 @@ export default {
             EchartsRight.setOption(option);
         },
         isechartsShow(data) {
-            // // this.businessId = data;
-            // let stims= setTimeout(() => {
-            //   if (data.id) {
-            //     this.businessId.id = data.id;
-            //     // this.businessId.data = data.data;
-            //     // this.businessId.echartsBottoms = data.echartsBottoms;
-            //     this.echartsLeft();
-            //     this.echartsRight();
-            //   }
-            //   window.clearTimeout(stims)
-            // }, 10);
+            
         },
-        isData(val){
-            console.log(val)
-        }
+        isData(val) {
+            this.isExcle = val;
+            this.isEchartsIsTable();
+        },
+        // 用来图表跟数据切换的
+        isEchartsIsTable() {
+            if (this.isExcle == "datas") {
+                let wen = this.$echarts.init(document.getElementById(this.required.id));
+                wen.setOption({}, true);
+                document.getElementById(this.required.id + 'W').style.zIndex = 1;
+                let table = `<table bordercolor="#CC0000" cellspacing="0" cellpadding="0"  width=100%; border=1>`;
+                table += `<tr><th colspan="2">${this.required.name}</th></tr>`;
+                // this.required.data[0].forEach((val, inx) => {
+                //     table += `<tr align="center">`;
+                //     table += `<td>${this.required.xAis[inx]}</td>`;
+                //     table += `<td>${this.required.data[0][inx]}</td>`;
+                //     table += `</tr>`;
+                // });
+                table += `</table>`;
+                document.getElementById(this.required.id + 'W').innerHTML = table;
+            }
+            if (this.isExcle == "focus") {
+                document.getElementById(this.required.id + 'W').style.zIndex = -1;
+                document.getElementById(this.required.id + 'W').innerHTML = "";
+                switch (this.isvalue) {
+                    case "A":
+                        this.echartsLeft();
+                        break;
+                    case "B":
+                        this.echartsRight();
+                        break;
+                    default:
+                       
+                        break;
+                }
+            }
+            if (this.isExcle == "excel") {
+                outExe(this.required);
+            }
+        },
+        mouseHover(v, id, name) {
+            this.isvalue = v;
+            this.required.id = id;
+            // this.required.data = data;
+            // this.required.xAis = xAis;
+            this.required.name = name
+        },
     },
     mounted() {
         this.echartsLeft();
@@ -312,7 +355,6 @@ export default {
     },
     watch: {
         "$store.state.refresh": function () {
-            console.log("wo");
             this.businessId.id.forEach(element => {
                 document.getElementById(element).setAttribute("_echarts_instance_", "");
             });
@@ -325,9 +367,18 @@ export default {
 <style lang="less" scoped>
 .con {
     height: 100%;
-    
+
     background: url("../../assets/business/frame 1.png") no-repeat;
     background-size: 100% 100%;
+}
+.ListTable {
+    width: 100%;
+    height: 85%;
+    position: absolute;
+    top: 15%;
+    left: 0;
+    z-index: -10;
+    overflow: auto;
 }
 .bottom /deep/ .el-table {
     border-radius: 10px;
@@ -336,17 +387,17 @@ export default {
     height: 640px;
     .top {
         height: 400px;
-        
+
         .echarts {
             height: 100%;
             width: 100%;
             display: flex;
-            .left{
+            .left {
                 width: 50%;
                 height: 100%;
                 position: relative;
             }
-            .right{
+            .right {
                 width: 50%;
                 height: 100%;
                 position: relative;
@@ -360,10 +411,10 @@ export default {
         background-size: 100% 100%;
     }
 }
-.left:hover > .information{
+.left:hover > .information {
     display: block;
 }
-.right:hover > .information{
+.right:hover > .information {
     display: block;
 }
 </style>

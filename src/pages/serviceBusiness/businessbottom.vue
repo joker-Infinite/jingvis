@@ -40,6 +40,7 @@ export default {
     components: { BusinessBottomEcharts, BusinessBottomEcharts1,information },
     data() {
         return {
+            
             quantityShow:'2',
             quantitativeStructure: ["1", "2", "3"],
             rateofreturn: ["1", "2"],
@@ -249,7 +250,7 @@ export default {
             businessEchartsFWQ.setOption(option);
         },
         handleChange(val) {
-            console.log(val);
+            // console.log(val);
         },
         isechartsShow(data) {
             // this.$refs.businessButton.isechartsShow(data)

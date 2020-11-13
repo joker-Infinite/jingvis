@@ -33,6 +33,7 @@ export default {
             ispackUp: false,
             isHover: 0,
             scrollTop: "",
+            index: 6,
             isActive: 0,
             tabData: [],
             navData: [],
@@ -145,7 +146,13 @@ export default {
                                 "12"
                             ],
                             center: [[1.45, 2.93, 3.15, 4, 5]],
-                            centerxAis: ["特产", "小吃", "餐饮", "便利店", "加油"]
+                            centerxAis: ["特产", "小吃", "餐饮", "便利店", "加油"],
+                            buttom: [
+                                [320, 302, 301, 543, 320, 302, 301],
+                                [90, 230, 210, 432, 320, 302, 301],
+                                [10, 10, 10, 100, 10, 10, 10]
+                            ],
+                            buttomyAis: ["北京", "上海", "天津", "深圳", "456", "7889", "99789"]
                         },
                         echartsBottoms: "echartsBottom"
                     },
@@ -173,7 +180,13 @@ export default {
                                 "12"
                             ],
                             center: [[1.45, 2.93, 3.15, 4, 5]],
-                            centerxAis: ["特产", "小吃", "餐饮", "便利店", "加油"]
+                            centerxAis: ["特产", "小吃", "餐饮", "便利店", "加油"],
+                            buttom: [
+                                [320, 302, 301, 543, 320, 302, 301],
+                                [90, 230, 210, 432, 320, 302, 301],
+                                [10, 10, 10, 100, 10, 10, 10]
+                            ],
+                            buttomyAis: ["北京", "上海", "天津", "深圳", "456", "7889", "99789"]
                         },
                         echartsBottoms: "echartsBottom2"
                     },
@@ -201,7 +214,13 @@ export default {
                                 "12"
                             ],
                             center: [[1.45, 2.93, 3.15, 4, 5]],
-                            centerxAis: ["特产", "小吃", "餐饮", "便利店", "加油"]
+                            centerxAis: ["特产", "小吃", "餐饮", "便利店", "加油"],
+                            buttom: [
+                                [320, 302, 301, 543, 320, 302, 301],
+                                [90, 230, 210, 432, 320, 302, 301],
+                                [10, 10, 10, 100, 10, 10, 10]
+                            ],
+                            buttomyAis: ["北京", "上海", "天津", "深圳", "456", "7889", "99789"]
                         },
                         echartsBottoms: "echartsBottom2"
                     }
@@ -287,9 +306,19 @@ export default {
 
     methods: {
         goto(v) {
-            let id = "#box" + (v + 1);
-            document.querySelector(id).scrollIntoView(true);
+            let id
+            if (this.index == 6) {
+                id = "#box" + (v + 1);
+            } else {
+                id = "#box" + (v + 1);
+                if (v >= 3) {
+                    id = "#box" + (v + 2);
+                }
+            }
+            console.log(this.navData[v], this.navData, v)
+            console.log(document.getElementById("box" + 6).offsetTop)
             this.isHover = v;
+            document.querySelector(id).scrollIntoView(true);
         },
         packup() {
             if (this.ispackUp) {
@@ -315,7 +344,7 @@ export default {
                 }
             });
         },
-        isechartsShow(){
+        isechartsShow() {
             this.$refs.scrollDiv.isechartsShow()
         },
         isaxios(url, nianfen, id, i, is) {
@@ -354,7 +383,7 @@ export default {
         // this.isaxios('/jtService/list_jtservice_profit_month', '2019-01-01', 3, 'bar')
         // this.isaxios('/jtService/list_jtservice_profit_format', '2019-01-01', 3, 'pie')
         let time = setTimeout(() => {
-            for (let i = 1; i <= 6; i++) {
+            for (let i = 1; i <= this.index; i++) {
                 if (i <= 3) {
                     this.navData.push(document.getElementById("box" + i).offsetTop);
                 } else {
@@ -369,9 +398,23 @@ export default {
         this.$refs.scrollBottom.quantitativeStructurebusinessId = this.businessIdData.quantitativeStructurebusinessId;
         this.$refs.scrollBottom.rateofreturnbusinessId = this.businessIdData.rateofreturnbusinessId;
     },
-    watch:{
-        quantityShow(){
+    watch: {
+        quantityShow() {
             this.$refs.scrollBottom.quantityShow = this.quantityShow;
+        },
+        index() {
+            this.navData = [];
+                for (let i = 1; i <= this.index; i++) {
+                    if (i <= 3) {
+                        this.navData.push(document.getElementById("box" + i).offsetTop);
+                    } else {
+                        if(i==4){
+                            this.navData.push(document.getElementById("box" + (i+1)).offsetTop);
+                        }else{
+                            this.navData.push(document.getElementById("box" + (i+1)).offsetTop);
+                        }
+                    }
+                }
         }
     }
 };
