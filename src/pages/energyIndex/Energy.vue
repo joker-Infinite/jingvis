@@ -67,7 +67,7 @@
                         this.navData.push(
                             {
                                 index: index,
-                                height: document.getElementById('box' + index).offsetTop
+                                height: document.getElementById('box' + index).offsetTop-20
                             }
                         );
                     });
@@ -139,7 +139,7 @@
                 display: none;
             }
 
-            .right {
+            /*.right {
                 width: 10%;
                 height: 100%;
                 float: right;
@@ -163,6 +163,47 @@
                     text-indent: 20px;
                     line-height: 30px;
                     border-left: 5px solid rgba(0, 0, 0, 0);
+                    cursor: pointer;
+                }
+            }*/
+            .right {
+                width: 20%;
+                float: right;
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                justify-content: center;
+
+                .navBar {
+                    padding-top: 5%;
+                    padding-bottom: 5%;
+                    box-sizing: border-box;
+                    position: fixed;
+                    /*box-shadow: 1px 1px 1px 10px rgba(0, 0, 0, 1);*/
+                    width: 9%;
+                    // height: 80%;
+                    background: #fff;
+                    z-index: 100;
+                    top: 10%;
+                    right: 1%;
+                    border-radius: 10px;
+
+                    .active {
+                        // color: #409eff;
+                        // border-left: 5px solid #409eff;
+                        background: #737aef;
+                        margin-left: -8%;
+                        margin-right: 8%;
+                        border-radius: 10px;
+                        padding-left: 40px;
+                    }
+                }
+
+                .navBar > p {
+                    // cursor: pointer;
+                    padding: 10% 0;
+                    margin: 15% 0;
+                    margin-left: 25%;
                     cursor: pointer;
                 }
             }

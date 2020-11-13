@@ -46,13 +46,13 @@
                 });
                 let option = {
                     title: {
-                        text: '折线图堆叠'
+                        text: '油品批零差价默认展示总量'
                     },
                     tooltip: {
                         trigger: 'axis'
                     },
                     legend: {
-                        data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                        data: ['总量', '汽油', '柴油', '92', '95', '96', '0']
                     },
                     grid: {
                         left: '3%',
@@ -63,45 +63,60 @@
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
-                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                        data: ['Jan', 'Fab', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                     },
                     yAxis: {
                         type: 'value'
                     },
                     series: [
                         {
-                            name: '邮件营销',
+                            name: '总量',
                             type: 'line',
                             stack: '总量',
-                            data: [120, 132, 101, 134, 90, 230, 210]
+                            data: [120, 132, 101, 134, 90, 230, 210, 32, 12, 453, 321, 453]
                         },
                         {
-                            name: '联盟广告',
+                            name: '汽油',
                             type: 'line',
                             stack: '总量',
-                            data: [220, 182, 191, 234, 290, 330, 310]
+                            data: [220, 182, 191, 234, 290, 330, 310, 43, 231, 546, 456, 546]
                         },
                         {
-                            name: '视频广告',
+                            name: '柴油',
                             type: 'line',
                             stack: '总量',
-                            data: [150, 232, 201, 154, 190, 330, 410]
+                            data: [150, 232, 201, 154, 190, 330, 410, 55, 33, 553, 456, 553]
                         },
                         {
-                            name: '直接访问',
+                            name: '92',
                             type: 'line',
                             stack: '总量',
-                            data: [320, 332, 301, 334, 390, 330, 320]
+                            data: [320, 332, 301, 334, 390, 330, 320, 321, 432, 675, 156, 675]
                         },
                         {
-                            name: '搜索引擎',
+                            name: '95',
                             type: 'line',
                             stack: '总量',
-                            data: [820, 932, 901, 934, 1290, 1330, 1320]
-                        }
+                            data: [820, 932, 901, 934, 1290, 1330, 1320, 321, 901, 765, 489, 765]
+                        },
+                        {
+                            name: '96',
+                            type: 'line',
+                            stack: '总量',
+                            data: [321, 435, 654, 876, 987, 524, 214, 458, 465, 123, 156, 123]
+                        },
+                        {
+                            name: '0',
+                            type: 'line',
+                            stack: '总量',
+                            data: [489, 43, 1456, 345, 1459, 735, 156, 156, 12, 56, 35, 56]
+                        },
                     ]
                 };
                 let option_ = {
+                    title: {
+                        text: ''
+                    },
                     tooltip: {
                         trigger: 'item',
                         formatter: '{a} <br/>{b}: {c} ({d}%)'
@@ -142,6 +157,9 @@
                     ]
                 };
                 let option_vb = {
+                    title: {
+                        text: ''
+                    },
                     xAxis: {
                         type: 'category',
                         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -159,6 +177,9 @@
                     }]
                 };
                 let option_hb = {
+                    title: {
+                        text: '各个高速订单个数'
+                    },
                     xAxis: {
                         type: 'value'
                     },
@@ -182,9 +203,24 @@
                         this.$echarts.init(document.getElementById(item)).setOption(option);
                     }
                     if (index === 1 || index === 2 || index === 4 || index === 8 || index === 9 || index === 11) {
+                        if (index === 1 || index === 8) {
+                            option_.title.text = '销量环形对比单位（吨）';
+                        }
+                        if (index === 2 || index === 9) {
+                            option_.title.text = '';
+                        }
+                        if (index === 4 || index === 11) {
+                            option_.title.text = '各个高速的订单个数占比';
+                        }
                         this.$echarts.init(document.getElementById(item)).setOption(option_);
                     }
                     if (index === 3 || index === 6 || index === 10 || index === 13) {
+                        if (index === 3 || index === 10) {
+                            option_vb.title.text = '订单个数每月统计'
+                        }
+                        if (index === 6 || index === 13) {
+                            option_vb.title.text = '点击高速展示加油站订单个数'
+                        }
                         this.$echarts.init(document.getElementById(item)).setOption(option_vb);
                     }
                     if (index === 5 || index === 12) {

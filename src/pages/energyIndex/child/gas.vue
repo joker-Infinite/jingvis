@@ -4,14 +4,14 @@
         <el-collapse v-model="activeName">
             <el-collapse-item title="2020年加油站分布" name="1">
                 <div class="item">
-                    <div id="gasA" style="width: 98%"></div>
+                    <div id="gasA" style="width: 98%">展示加油站展示油库</div>
                     <div id="gasB" style="width: 58.5%"></div>
                     <div id="gasC" style="width: 38.5%"></div>
                 </div>
             </el-collapse-item>
             <el-collapse-item title="2019年加油站分布" name="2">
                 <div class="item">
-                    <div id="gasD" style="width: 98%"></div>
+                    <div id="gasD" style="width: 98%">展示加油站展示油库</div>
                     <div id="gasE" style="width: 58.5%"></div>
                     <div id="gasF" style="width: 38.5%"></div>
                 </div>
@@ -37,6 +37,7 @@
                     arr.push('gas' + i);
                 });
                 let option_vb = {
+                    title:{text:'加油站个数'},
                     xAxis: {
                         type: 'category',
                         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

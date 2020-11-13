@@ -7,8 +7,11 @@
                     <div class="big" id="CollectionRateA"></div>
                     <div class="medium" id="CollectionRateB"></div>
                     <div class="small" id="CollectionRateC"></div>
-                    <div style="width: 48.5%;margin-bottom: 0" id="CollectionRateD"></div>
-                    <div style="width: 48.5%;margin-bottom: 0" id="CollectionRateE"></div>
+                    <div style="width: 48.5%;margin-bottom: 0;height: 600px" id="CollectionRateD"></div>
+                    <div style="width: 48.5%;margin-bottom: 0;height: 600px" id="CollectionRateE">
+                        <my-table :columns="columns" height="580px" :multiple="false" :border="false"
+                                  :data="tableData"></my-table>
+                    </div>
                 </div>
             </el-collapse-item>
             <el-collapse-item title="2019年回款率" name="2">
@@ -16,8 +19,10 @@
                     <div class="big" id="CollectionRateF"></div>
                     <div class="medium" id="CollectionRateG"></div>
                     <div class="small" id="CollectionRateH"></div>
-                    <div style="width: 48.5%;margin-bottom: 0" id="CollectionRateI"></div>
-                    <div style="width: 48.5%;margin-bottom: 0" id="CollectionRateJ"></div>
+                    <div style="width: 48.5%;margin-bottom: 0;height: 600px" id="CollectionRateI"></div>
+                    <div style="width: 48.5%;margin-bottom: 0;height: 600px" id="CollectionRateJ">
+                        <my-table :columns="columns" height="580px" :multiple="false" :data="tableData"></my-table>
+                    </div>
                 </div>
             </el-collapse-item>
             <el-collapse-item title="查看更多" name="3"></el-collapse-item>
@@ -26,12 +31,24 @@
 </template>
 
 <script>
+    import MyTable from "../../common/myTable";
+
     export default {
         name: "CollectionRate",
+        components: {MyTable},
         data() {
             return {
                 activeName: ['1', '2'],
-                order: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+                order: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+                columns: [
+                    {prop: 'A', label: '批发商'},
+                    {prop: 'B', label: '总体占比'},
+                    {prop: 'C', label: '毛利'},
+                    {prop: 'D', label: '汽油'},
+                    {prop: 'E', label: '柴油'},
+                    {prop: 'F', label: '总量(吨)'},
+                ],
+                tableData: []
             }
         },
         methods: {
@@ -42,7 +59,7 @@
                 });
                 let option_l = {
                     title: {
-                        text: '折线图堆叠'
+                        text: '各个公司的现金流'
                     },
                     tooltip: {
                         trigger: 'axis'
@@ -98,7 +115,53 @@
                         }
                     ]
                 };
-                let option_p = {
+                let option_p1 = {
+                    title: {
+                        text: '各个公司回款占比'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b}: {c} ({d}%)'
+                    },
+                    legend: {
+                        left: 'center',
+                        top: 'bottom',
+                        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                    },
+                    series: [
+                        {
+                            name: '访问来源',
+                            type: 'pie',
+                            radius: ['50%', '70%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {value: 335, name: '直接访问'},
+                                {value: 310, name: '邮件营销'},
+                                {value: 234, name: '联盟广告'},
+                                {value: 135, name: '视频广告'},
+                                {value: 1548, name: '搜索引擎'}
+                            ]
+                        }
+                    ]
+                };
+                let option_p2 = {
+                    title: {
+                        text: '欠钱公司占比'
+                    },
                     tooltip: {
                         trigger: 'item',
                         formatter: '{a} <br/>{b}: {c} ({d}%)'
@@ -160,8 +223,11 @@
                     if (index === 0 || index === 5) {
                         this.$echarts.init(document.getElementById(item)).setOption(option_l);
                     }
-                    if (index === 1 || index === 2 || index === 6 || index === 7) {
-                        this.$echarts.init(document.getElementById(item)).setOption(option_p);
+                    if (index === 1 || index === 6) {
+                        this.$echarts.init(document.getElementById(item)).setOption(option_p1);
+                    }
+                    if (index === 2 || index === 7) {
+                        this.$echarts.init(document.getElementById(item)).setOption(option_p2);
                     }
                     if (index === 3 || index === 8) {
                         this.$echarts.init(document.getElementById(item)).setOption(option_hb);
@@ -171,6 +237,11 @@
         },
         mounted() {
             this.initECharts();
+            for (let i = 1; i < 12; i++) {
+                this.tableData.push(
+                    {A: '批发商' + i, B: '8%', C: '8%', D: '8%', E: '8%', F: i + '0000'}
+                )
+            }
         }
     }
 </script>
