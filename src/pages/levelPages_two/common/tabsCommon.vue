@@ -16,9 +16,10 @@ import business from "../../serviceBusiness/business";
 import huanggang from "../../serviceBusiness/filiales/HuangGang";
 import three from "../../levelPages_three/three";
 import testC from "../../ComparedData/test";
+import Energy from "../../energyIndex/Energy";
 export default {
   name: "tabsCommon",
-  components: { business, huanggang, testC, three },
+  components: { business, huanggang, testC, three,Energy },
   data() {
     return {
       isComponent: "business",

@@ -180,6 +180,10 @@ export default {
           this.$refs.common.isComponent = "business";
           this.fullscreenLoading = false;
           break;
+          case "3":
+          this.$refs.common.isComponent = "Energy";
+          this.fullscreenLoading = false;
+          break;
         case "1-1":
           this.$refs.common.isComponent = "huanggang";
           this.fullscreenLoading = false;
