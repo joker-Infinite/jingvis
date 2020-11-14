@@ -1,19 +1,26 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+    <div id="app">
+        <router-view/>
+    </div>
 </template>
 
 <script>
-export default {
-  name: "app",
-  components: {}
-};
+    export default {
+        name: "app",
+        components: {}
+    };
 </script>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-}
+<style lang="less">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #app {
+        position: fixed;
+        background: aquamarine;
+        width: 100%;
+        height: 100%;
+    }
 </style>
