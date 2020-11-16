@@ -2,13 +2,20 @@
     <div class="container">
         <div class="collapse" id="collapse">
             <el-collapse v-model="activeName">
-                <el-collapse-item :name="ix" :id="'box' + ix" :class="{'box':true,'noPD':ix===0}"
-                                  v-for="(it, ix) in collapseData">
+                <el-collapse-item :name="index" :id="'box' + index" :class="{'box':true,'noPD':index===0}"
+                                  v-for="(item, index) in collapseData">
                     <template slot="title">
-                        {{it.name}}
+                        {{item.name}}
                     </template>
                     <div class="collapseItem">
-                        <slot :name="'collapse' + ix"></slot>
+                        <div v-for="(it,ix) in item.ECharts.EChartsItem"
+                             :style="{width:it.width,borderRadius:it.borderRadius}">
+                            <div class="itemTitle">
+                                {{it.title}}
+                            </div>
+                            <div class="eChartsItem" :ref="item.ECharts.id+ix" :id="item.ECharts.id+ix"
+                                 :style="it.style"></div>
+                        </div>
                     </div>
                 </el-collapse-item>
             </el-collapse>
@@ -16,7 +23,7 @@
         <div class="navigation">
             <div class="navBar">
                 <p></p>
-                <p style="cursor: pointer;" @click="collapseAll">{{index%2===0?'全部收起':'全部展开'}}</p>
+                <p style="cursor: pointer;" @click="collapseAll">{{sumClick%2===0?'全部收起':'全部展开'}}</p>
                 <p style="cursor: pointer;" v-for="(it, ix) in collapseData" @click="goto(ix)"
                    :class="{active: isActive === ix }"
                    :key="ix">
@@ -48,22 +55,37 @@
                 activeName_: [],
                 isActive: 0,
                 navData: [],
-                index: 0
+                sumClick: 0
             }
         },
         methods: {
+            async initECharts(v) {
+                await new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve()
+                    }, 500)
+                })
+                v.forEach((item, index) => {
+                    item.ECharts.EChartsItem.forEach((it, ix) => {
+                        let id = item.ECharts.id + ix;
+                        this.$nextTick(_ => {
+                            this.$echarts.init(document.getElementById(id)).setOption(it.option);
+                        })
+                    });
+                });
+            },
             /*
             * 全部收齐/展开
             * */
             collapseAll() {
                 this.activeName = [];
-                if (this.index % 2 === 0) {
+                if (this.sumClick % 2 === 0) {
                     this.activeName = [];
                 }
-                if (this.index % 2 !== 0) {
+                if (this.sumClick % 2 !== 0) {
                     this.activeName = this.activeName_;
                 }
-                this.index++;
+                this.sumClick++;
             },
             /**
              * @param v 所点击导航的下标
@@ -102,6 +124,7 @@
         },
         mounted() {
             this.scrollChange();
+            this.initECharts(this.collapseData);
             this.collapseData.forEach((it, ix) => {
                 this.activeName_.push(ix);
                 this.activeName.push(ix);
@@ -138,6 +161,7 @@
 
         .collapse /deep/ .el-collapse > .el-collapse-item > .el-collapse-item__wrap {
             border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0) !important;
         }
 
         .collapse /deep/ .el-collapse > .el-collapse-item > div > .el-collapse-item__header {
@@ -206,9 +230,31 @@
         }
 
         .collapseItem {
-            background: #979797;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
             width: 100%;
-            min-height: 500px
+            min-height: 300px;
+
+            .itemTitle {
+                width: 100%;
+                background: white;
+                line-height: 60px;
+                text-indent: 10px;
+                font-size: 20px;
+                font-weight: 700;
+                border-bottom: 5px solid #F3F7FF;
+            }
+
+            .eChartsItem {
+                width: 100%;
+            }
+        }
+
+        .collapseItem > div {
+            height: 100%;
+            overflow: hidden;
         }
     }
 </style>
