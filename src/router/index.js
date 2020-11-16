@@ -31,13 +31,25 @@ for (let moduleName in modules) {
 
 const routes = [
     {
-        path: "/",
+        path: '/',
+        redirect: '/login'
+    },
+    {
+        path: "/Home",
         name: "Home",
         component: Home,
         meta: {title: '首页'},
         children: [
             ...routeModules
         ]
+    },
+    {
+        path: '/login',
+        component: () => import(/* webpackChunkName: "frame" */'../../src/components/login.vue')
+    },
+    {
+        path: '/homeKanBan',
+        component: () => import(/* webpackChunkName: "frame" */'../pages/homeKanBan/homeKanBan')
     },
 ];
 

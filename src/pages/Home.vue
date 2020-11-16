@@ -80,24 +80,27 @@
                 this.clickMenu(k);
             },
             clickMenu(v) {
-                 if (v === '1') {
-                     this.$router.push('/');
-                 }
-                 if (v === '2') {
-                     this.$router.push('/serviceArea/serviceArea');
-                 }
-                 if (v === '3') {
-                     this.$router.push('/energy/energy');
-                 }
-                 if (v === '4') {
-                     this.$router.push('/media/media');
-                 }
-                 if (v === '5') {
-                     this.$router.push('/business/business');
-                 }
-                 if (v === '2-0') {
-                     this.$router.push('/serviceArea/huangGang');
-                 }
+                if (v === '1') {
+                    let routeData = this.$router.resolve({
+                        path: "/homeKanBan".replace("#", "")
+                    });
+                    window.open(routeData.href, "_blank");
+                }
+                if (v === '2') {
+                    this.$router.push('/serviceArea/serviceArea');
+                }
+                if (v === '3') {
+                    this.$router.push('/energy/energy');
+                }
+                if (v === '4') {
+                    this.$router.push('/media/media');
+                }
+                if (v === '5') {
+                    this.$router.push('/business/business');
+                }
+                if (v === '2-0') {
+                    this.$router.push('/serviceArea/huangGang');
+                }
             }
         },
     }
