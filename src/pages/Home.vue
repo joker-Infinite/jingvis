@@ -7,6 +7,9 @@
                     @select="select"
                     @open="open"
                     @close="close">
+                <div style="text-align: right">
+                    <i class="el-icon-s-unfold"></i>
+                </div>
                 <el-menu-item index="1">
                     <i class="el-icon-menu"></i>
                     <span slot="title">首页</span>

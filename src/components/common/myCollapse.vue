@@ -4,17 +4,35 @@
             <el-collapse v-model="activeName">
                 <el-collapse-item :name="index" :id="'box' + index" :class="{'box':true,'noPD':index===0}"
                                   v-for="(item, index) in collapseData">
-                    <template slot="title">
-                        {{item.name}}
-                    </template>
+                    <template slot="title">{{item.collapseName}}</template>
                     <div class="collapseItem">
                         <div v-for="(it,ix) in item.ECharts.EChartsItem"
-                             :style="{width:it.width,borderRadius:it.borderRadius}">
-                            <div class="itemTitle">
-                                {{it.title}}
+                             :style="{width:it.width,borderRadius:it.borderRadius,marginBottom:'20px'}">
+                            <div v-if="it.option.length === 1">
+                                <div class="itemTitle">{{it.title}}</div>
+                                <div class="eChartsItem" :id="item.ECharts.id+ix"
+                                     :style="it.style"></div>
                             </div>
-                            <div class="eChartsItem" :ref="item.ECharts.id+ix" :id="item.ECharts.id+ix"
-                                 :style="it.style"></div>
+                            <div v-if="it.option.length > 1">
+                                <div class="itemTitle">{{it.title+ix}}</div>
+                                <div style="width: 100%;height: 40px;background: white;text-align: left;padding-left: 20px">
+                                    <el-date-picker
+                                            v-model="time"
+                                            type="monthrange"
+                                            range-separator="至"
+                                            start-placeholder="开始月份"
+                                            end-placeholder="结束月份">
+                                    </el-date-picker>
+                                    <span style="display: inline-block;width: 20px"></span>
+                                    <el-button type="primary">搜索</el-button>
+                                </div>
+                                <div class="double" :style="{width:it.width}">
+                                    <div v-for="(sit,six) in it.option" :style="sit.style">
+                                        <div class="eChartsItem" :id="item.ECharts.id+ix+'-'+six"
+                                             style="width: 100%;height: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </el-collapse-item>
@@ -25,11 +43,9 @@
                 <p></p>
                 <p style="cursor: pointer;" @click="collapseAll">{{sumClick%2===0?'全部收起':'全部展开'}}</p>
                 <p style="cursor: pointer;" v-for="(it, ix) in collapseData" @click="goto(ix)"
-                   :class="{active: isActive === ix }"
-                   :key="ix">
+                   :class="{active: isActive === ix }" :key="ix">
                     <img class="img" :src="isActive === ix?it.iconActive:it.icon"/>
-                    {{it.name}}
-                </p>
+                    {{it.name}}</p>
                 <p></p>
             </div>
         </div>
@@ -55,7 +71,8 @@
                 activeName_: [],
                 isActive: 0,
                 navData: [],
-                sumClick: 0
+                sumClick: 0,
+                time: ''
             }
         },
         methods: {
@@ -64,12 +81,22 @@
                     setTimeout(() => {
                         resolve()
                     }, 500)
-                })
+                });
                 v.forEach((item, index) => {
                     item.ECharts.EChartsItem.forEach((it, ix) => {
                         let id = item.ECharts.id + ix;
                         this.$nextTick(_ => {
-                            this.$echarts.init(document.getElementById(id)).setOption(it.option);
+                            if (it.option.length === 1) {
+                                this.$echarts.init(document.getElementById(id)).setOption(it.option[0]);
+                            }
+                            if (it.option.length > 1) {
+                                it.option.forEach((cit, cix) => {
+                                    let cid = item.ECharts.id + ix + '-' + cix;
+                                    this.$nextTick(_ => {
+                                        this.$echarts.init(document.getElementById(cid)).setOption(cit.option);
+                                    })
+                                });
+                            }
                         })
                     });
                 });
@@ -233,28 +260,45 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-between;
             width: 100%;
             min-height: 300px;
 
             .itemTitle {
                 width: 100%;
+                height: 45px;
                 background: white;
-                line-height: 60px;
+                line-height: 45px;
                 text-indent: 10px;
-                font-size: 20px;
-                font-weight: 700;
+                font-size: 18px;
+                font-weight: 600;
                 border-bottom: 5px solid #F3F7FF;
             }
 
             .eChartsItem {
                 width: 100%;
+                height: 100%;
             }
         }
 
         .collapseItem > div {
             height: 100%;
             overflow: hidden;
+        }
+
+        .collapseItem > div > div {
+            height: 100%;
+            overflow: hidden;
+
+            .double {
+                height: 100%;
+                overflow: hidden;
+                display: flex;
+                flex-direction: row;
+                background: white;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
         }
     }
 </style>
