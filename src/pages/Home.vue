@@ -1,14 +1,15 @@
 <template>
     <div class="container">
-        <div class="nav">
+        <div class="nav" id="nav">
             <el-menu
+                    :collapse="menuStatus%2===0"
                     :default-active="key"
                     class="el-menu-vertical-demo"
                     @select="select"
                     @open="open"
                     @close="close">
-                <div style="text-align: right">
-                    <i class="el-icon-s-unfold"></i>
+                <div class="oc" id="oc" style="text-align: right">
+                    <i :class="menuStatus%2===0?'el-icon-s-unfold':'el-icon-s-fold'" @click="menuOC"></i>
                 </div>
                 <el-menu-item index="1">
                     <i class="el-icon-menu"></i>
@@ -24,7 +25,7 @@
                 </el-submenu>
             </el-menu>
         </div>
-        <div class="con">
+        <div class="con" id="con_">
             <router-view></router-view>
         </div>
     </div>
@@ -59,9 +60,32 @@
                 ],
                 menuItem: ['黄冈分公司', '宜昌分公司', '孝感分公司', '十堰分公司', '恩施分公司', '咸宁分公司', '服务区对比'],
                 key: '',
+                menuStatus: 1,
             }
         },
         methods: {
+            menuOC() {
+                this.menuStatus++;
+                let nav = document.querySelector("#nav");
+                let con = document.querySelector("#con_");
+                if (this.menuStatus % 2 === 0) {
+                    Object.assign(nav.style, {
+                        minWidth: '0',
+                        width: '64px'
+                    });
+                    Object.assign(con.style, {
+                        width: '100%'
+                    })
+                } else {
+                    Object.assign(nav.style, {
+                        minWidth: '200px',
+                        width: '10%'
+                    });
+                    Object.assign(con.style, {
+                        width: '90%'
+                    })
+                }
+            },
             /**
              * 菜单子节点事件
              * @param k 当前节点index
@@ -119,11 +143,21 @@
         justify-content: left;
 
         .nav {
-            width: 10%;
             min-width: 200px;
             height: 100%;
-            background: #ffe438;
             overflow-y: scroll;
+            transition: linear 0.3s;
+
+            .oc {
+                margin-right: 20px;
+            }
+
+            .oc > i {
+                font-size: 20px;
+                line-height: 25px;
+                cursor: pointer;
+                color: #909399;
+            }
         }
 
         .nav::-webkit-scrollbar {
@@ -132,11 +166,14 @@
 
         .nav /deep/ .el-menu {
             height: 100%;
+            transition: linear 0.3s;
         }
 
         .con {
             width: 90%;
             height: 100%;
+            background: #F3F7FF;
+            transition: linear 0.3s;
         }
     }
 </style>

@@ -215,7 +215,7 @@
                         text-indent: 10px;
                         font-size: 18px;
                         font-weight: 600;
-                        border-bottom: 5px solid #A8D9FF;
+                        border-bottom: 5px solid #F3F7FF;
                     }
 
                     .query {
@@ -232,12 +232,12 @@
                     }
 
                     .query /deep/ .el-input__inner {
-                        background: #d0d1ff;
+                        /*background: #d0d1ff;*/
                     }
 
                     .query /deep/ .el-input__inner > .el-range-input {
-                        background: #d0d1ff;
-                        color: white;
+                        /*background: #d0d1ff;*/
+                        /*color: white;*/
                     }
                 }
             }

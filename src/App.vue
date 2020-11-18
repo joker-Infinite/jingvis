@@ -19,7 +19,7 @@
 
     #app {
         position: fixed;
-        background: #a8d9ff;
+        background: #F3F7FF;
         width: 100%;
         height: 100%;
     }
