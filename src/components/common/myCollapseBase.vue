@@ -27,6 +27,15 @@
                                 <div v-for="(wit,wix) in sit.EChartsItem"
                                      :style="wit.style"
                                      :id="cit.id+'-'+six+'-'+wix">
+                                    <div v-if="wit.type === 'map'||wit.type === 'table'">
+                                        <my-table :columns="wit.columns"
+                                                  height="580px"
+                                                  :multiple="false"
+                                                  :border="false"
+                                                  :data="wit.tableData"
+                                                  v-if="wit.type === 'table'"
+                                        ></my-table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -49,8 +58,11 @@
 </template>
 
 <script>
+    import MyTable from "./myTable";
+
     export default {
         name: "myCollapseBase",
+        components: {MyTable},
         props: {
             collapseData: {
                 type: Array,

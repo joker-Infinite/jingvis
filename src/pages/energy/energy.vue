@@ -41,7 +41,7 @@
                                                 style: {
                                                     width: '100%',
                                                     height: '600px',
-                                                    background: '#B9FFC8'
+                                                    background: '#FFF'
                                                 },
                                             }
                                         ]
@@ -64,8 +64,22 @@
                                                 style: {
                                                     width: '100%',
                                                     height: '600px',
-                                                    background: '#B9FFC8'
+                                                    background: '#FFF'
                                                 },
+                                                columns: [
+                                                    { prop: 'A', label: '批发商' },
+                                                    { prop: 'B', label: '总体占比' },
+                                                    { prop: 'C', label: '毛利' },
+                                                    { prop: 'D', label: '汽油' },
+                                                    { prop: 'E', label: '柴油' },
+                                                    { prop: 'F', label: '总量(吨)' },
+                                                ],
+                                                tableData: [
+                                                    { A: '批发商11', B: '8%', C: '8%', D: '8%', E: '8%', F: '110000' },
+                                                    { A: '批发商12', B: '8%', C: '8%', D: '8%', E: '8%', F: '120000' },
+                                                    { A: '批发商13', B: '8%', C: '8%', D: '8%', E: '8%', F: '130000' },
+                                                    { A: '批发商14', B: '8%', C: '8%', D: '8%', E: '8%', F: '140000' },
+                                                ]
                                             }
                                         ]
                                     },
