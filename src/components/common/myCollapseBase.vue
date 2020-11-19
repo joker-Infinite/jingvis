@@ -6,13 +6,18 @@
           <el-collapse-item
             v-for="(cit, cix) in item.collapseItem"
             :name="item.id + cix"
+            :key="cix"
             :class="{ noMargin: cix === 0 }"
           >
             <template slot="title">
               {{ cit.collapseTitle }}
             </template>
             <div class="ECharts" style="width: 100%;min-height: 100px;">
-              <div v-for="(sit, six) in cit.EChartsBox" :style="sit.style">
+              <div
+                v-for="(sit, six) in cit.EChartsBox"
+                :key="six"
+                :style="sit.style"
+              >
                 <div class="Title">{{ sit.title }}</div>
                 <div class="query">
                   <el-date-picker
@@ -29,11 +34,12 @@
                     v-if="sit.select"
                   ></el-select>
                   <el-button type="primary" v-if="sit.time || sit.select"
-                    >搜索</el-button
-                  >
+                    >搜索
+                  </el-button>
                 </div>
                 <div
                   v-for="(wit, wix) in sit.EChartsItem"
+                  :key="wix"
                   :style="wit.style"
                   :id="cit.id + '-' + six + '-' + wix"
                 >
@@ -44,6 +50,7 @@
                       :multiple="false"
                       :border="false"
                       :data="wit.tableData"
+                      :is-pagination="wit.isPagination"
                       v-if="wit.type === 'table'"
                     ></my-table>
                   </div>
@@ -101,6 +108,7 @@ export default {
   methods: {
     async initECharts(v) {
       let timeID = "";
+      let that = this;
       await new Promise(resolve => {
         timeID = setInterval(() => {
           if (this.time !== v.length) {
@@ -125,7 +133,7 @@ export default {
           if (this.time === v.length) {
             clearInterval(timeID);
           }
-        }, 800);
+        }, 1000);
       });
     },
     /**
@@ -183,14 +191,7 @@ export default {
       this.sumClick++;
     }
   },
-  async mounted() {
-    let timeID;
-    await new Promise(resolve => {
-      timeID = setTimeout(_ => {
-        resolve();
-      }, 10);
-    });
-    clearTimeout(timeID);
+  mounted() {
     this.scrollChange();
     this.initECharts(this.collapseData);
     this.collapseData.forEach(i => {
@@ -220,7 +221,7 @@ export default {
 
     .box_ {
       width: 100%;
-      min-height: 100px;
+      min-height: 10px;
       margin-bottom: 8px;
 
       .ECharts {
@@ -270,6 +271,10 @@ export default {
           /*color: white;*/
         }
       }
+    }
+
+    .box_ /deep/ .el-collapse {
+      border-bottom: none;
     }
 
     .box_ /deep/ .el-collapse > .noMargin > div > .el-collapse-item__header {
@@ -336,6 +341,7 @@ export default {
         margin-right: 8%;
         color: white;
         padding-left: 40px;
+        box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.3);
       }
     }
 

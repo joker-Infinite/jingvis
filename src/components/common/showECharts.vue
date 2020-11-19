@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%" class="box">
-    <el-dialog :visible.sync="visible" width="80vh">
+    <el-dialog :visible.sync="visible" width="80vh" :modal="false">
       <div class="time" v-if="timeSelect">
         <span class="text_icon">从</span>
         <el-date-picker
@@ -152,7 +152,7 @@ export default {
 .select_type {
   width: 100%;
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 10%;
   z-index: 999;
 
