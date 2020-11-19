@@ -2969,7 +2969,6 @@ export default {
                               data.forEach((element, index) => {
                                 datas.push([35 + index * 100, element]);
                               });
-                              console.log(datas, 55555555);
                               return datas;
                             })()
                           }
