@@ -1,317 +1,357 @@
 <template>
-    <div class="container">
-        <div class="collapse" id="collapse">
-            <div v-for="(item,index) in collapseData" :id="item.id" class="box_">
-                <el-collapse v-model="activeName">
-                    <el-collapse-item v-for="(cit,cix) in item.collapseItem"
-                                      :name="item.id+cix"
-                                      :class="{'noMargin':cix ===0}">
-                        <template slot="title">
-                            {{cit.collapseTitle}}
-                        </template>
-                        <div class="ECharts" style="width: 100%;min-height: 100px;">
-                            <div v-for="(sit,six) in cit.EChartsBox" :style="sit.style">
-                                <div class="Title">{{sit.title}}</div>
-                                <div class="query">
-                                    <el-date-picker
-                                            v-if="sit.time"
-                                            v-model="sit.timeValue"
-                                            type="monthrange"
-                                            range-separator="至"
-                                            start-placeholder="开始月份"
-                                            end-placeholder="结束月份">
-                                    </el-date-picker>
-                                    <el-select v-model="sit.selectValue" v-if="sit.select"></el-select>
-                                    <el-button type="primary" v-if="sit.time||sit.select">搜索</el-button>
-                                </div>
-                                <div v-for="(wit,wix) in sit.EChartsItem"
-                                     :style="wit.style"
-                                     :id="cit.id+'-'+six+'-'+wix">
-                                    <div v-if="wit.type === 'map'||wit.type === 'table'">
-                                        <my-table :columns="wit.columns"
-                                                  height="580px"
-                                                  :multiple="false"
-                                                  :border="false"
-                                                  :data="wit.tableData"
-                                                  v-if="wit.type === 'table'"
-                                        ></my-table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </el-collapse-item>
-                </el-collapse>
+  <div class="container">
+    <div class="collapse" id="collapse">
+      <div v-for="(item, index) in collapseData" :id="item.id" class="box_">
+        <el-collapse v-model="activeName">
+          <el-collapse-item
+            v-for="(cit, cix) in item.collapseItem"
+            :name="item.id + cix"
+            :class="{ noMargin: cix === 0 }"
+          >
+            <template slot="title">
+              {{ cit.collapseTitle }}
+            </template>
+            <div class="ECharts" style="width: 100%;min-height: 100px;">
+              <div v-for="(sit, six) in cit.EChartsBox" :style="sit.style">
+                <div class="Title">{{ sit.title }}</div>
+                <div class="query">
+                  <el-date-picker
+                    v-if="sit.time"
+                    v-model="sit.timeValue"
+                    type="monthrange"
+                    range-separator="至"
+                    start-placeholder="开始月份"
+                    end-placeholder="结束月份"
+                  >
+                  </el-date-picker>
+                  <el-select
+                    v-model="sit.selectValue"
+                    v-if="sit.select"
+                  ></el-select>
+                  <el-button type="primary" v-if="sit.time || sit.select"
+                    >搜索</el-button
+                  >
+                </div>
+                <div
+                  v-for="(wit, wix) in sit.EChartsItem"
+                  :style="wit.style"
+                  :id="cit.id + '-' + six + '-' + wix"
+                >
+                  <div v-if="wit.type === 'map' || wit.type === 'table'">
+                    <my-table
+                      :columns="wit.columns"
+                      height="580px"
+                      :multiple="false"
+                      :border="false"
+                      :data="wit.tableData"
+                      v-if="wit.type === 'table'"
+                    ></my-table>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-        <div class="navigation">
-            <div class="navBar">
-                <p></p>
-                <p style="cursor: pointer;" @click="collapseAll">{{sumClick%2===0?'全部收起':'全部展开'}}</p>
-                <p style="cursor: pointer;" v-for="(it, ix) in collapseData" @click="goto(it.id)"
-                   :class="{active: isActive == ix }" :key="ix">
-                    <img class="img" :src="isActive == ix ? it.iconActive:it.icon"/>
-                    {{it.name}}</p>
-                <p></p>
-            </div>
-        </div>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
     </div>
+    <div class="navigation">
+      <div class="navBar">
+        <p></p>
+        <p style="cursor: pointer;" @click="collapseAll">
+          {{ sumClick % 2 === 0 ? "全部收起" : "全部展开" }}
+        </p>
+        <p
+          style="cursor: pointer;"
+          v-for="(it, ix) in collapseData"
+          @click="goto(it.id)"
+          :class="{ active: isActive == ix }"
+          :key="ix"
+        >
+          <img class="img" :src="isActive == ix ? it.iconActive : it.icon" />
+          {{ it.name }}
+        </p>
+        <p></p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-    import MyTable from "./myTable";
+import MyTable from "./myTable";
 
-    export default {
-        name: "myCollapseBase",
-        components: {MyTable},
-        props: {
-            collapseData: {
-                type: Array,
-                default: []
-            }
-        },
-        data() {
-            return {
-                activeName: [],
-                activeName_: [],
-                sumClick: '',
-                isActive: '',
-                time: 0,
-                selectTime: ''
-            }
-        },
-        methods: {
-            async initECharts(v) {
-                let timeID = '';
-                await new Promise((resolve) => {
-                    timeID = setInterval(() => {
-                        if (this.time !== v.length) {
-                            v[this.time].collapseItem.forEach((m, n) => {
-                                m.EChartsBox.forEach((kt, ki) => {
-                                    kt.EChartsItem.forEach((mt, mx) => {
-                                        this.$nextTick(_ => {
-                                            if (mt.type !== 'map' && mt.type !== 'table') {
-                                                this.$echarts.init(document.getElementById(m.id + '-' + ki + '-' + mx)).setOption(mt.option);
-                                            }
-                                        })
-                                    })
-                                })
-                            });
-                            this.time++;
-                            resolve();
-                        }
-                        if (this.time === v.length) {
-                            clearInterval(timeID);
-                        }
-                    }, 800)
-                });
-            },
-            /**
-             * @param v 所点击导航的下标
-             * */
-            goto(v) {
-                document.querySelector('#' + v).scrollIntoView(true);
-            },
-            /**
-             * 监听滚动事件
-             * */
-            scrollChange() {
-                let collapse = document.getElementById("collapse");
-                collapse.addEventListener("scroll", _ => {
-                    this.navData = [];
-                    this.collapseData.forEach((item, index) => {
-                        this.navData.push({
-                            index: index,
-                            height: document.getElementById(item.id).offsetTop - 1
-                        });
-                    });
-                    this.navBar(collapse.scrollTop);
-                });
-            },
-            /**
-             * 滚动后导航选中
-             * */
-            navBar(v) {
-                for (let i = 0; i < this.navData.length; i++) {
-                    if (i < this.navData.length - 1) {
-                        if (v > this.navData[i].height && v < this.navData[i + 1].height) {
-                            this.isActive = i;
-                            break;
-                        }
-                    }
-                    if (i === this.navData.length - 1) {
-                        if (v > this.navData[i].height) {
-                            this.isActive = i;
-                            break;
-                        }
-                    }
-                }
-            },
-            /*
-            * 全部收齐/展开
-            * */
-            collapseAll() {
-                this.activeName = [];
-                if (this.sumClick % 2 === 0) {
-                    this.activeName = [];
-                }
-                if (this.sumClick % 2 !== 0) {
-                    this.activeName = this.activeName_;
-                }
-                this.sumClick++;
-            },
-        },
-        mounted() {
-            this.scrollChange();
-            this.initECharts(this.collapseData);
-            this.collapseData.forEach(i => {
-                i.collapseItem.forEach((ci, cx) => {
-                    this.activeName.push(i.id + cx);
-                    this.activeName_.push(i.id + cx);
-                })
-            })
-        }
+export default {
+  name: "myCollapseBase",
+  components: { MyTable },
+  props: {
+    collapseData: {
+      type: Array,
+      default: []
     }
+  },
+  data() {
+    return {
+      activeName: [],
+      activeName_: [],
+      sumClick: "",
+      isActive: "",
+      time: 0,
+      selectTime: ""
+    };
+  },
+  methods: {
+    async initECharts(v) {
+      let timeID = "";
+      await new Promise(resolve => {
+        timeID = setInterval(() => {
+          if (this.time !== v.length) {
+            v[this.time].collapseItem.forEach((m, n) => {
+              m.EChartsBox.forEach((kt, ki) => {
+                kt.EChartsItem.forEach((mt, mx) => {
+                  this.$nextTick(_ => {
+                    if (mt.type !== "map" && mt.type !== "table") {
+                      this.$echarts
+                        .init(
+                          document.getElementById(m.id + "-" + ki + "-" + mx)
+                        )
+                        .setOption(mt.option);
+                    }
+                  });
+                });
+              });
+            });
+            this.time++;
+            resolve();
+          }
+          if (this.time === v.length) {
+            clearInterval(timeID);
+          }
+        }, 800);
+      });
+    },
+    /**
+     * @param v 所点击导航的下标
+     * */
+    goto(v) {
+      document.querySelector("#" + v).scrollIntoView(true);
+    },
+    /**
+     * 监听滚动事件
+     * */
+    scrollChange() {
+      let collapse = document.getElementById("collapse");
+      collapse.addEventListener("scroll", _ => {
+        this.navData = [];
+        this.collapseData.forEach((item, index) => {
+          this.navData.push({
+            index: index,
+            height: document.getElementById(item.id).offsetTop - 1
+          });
+        });
+        this.navBar(collapse.scrollTop);
+      });
+    },
+    /**
+     * 滚动后导航选中
+     * */
+    navBar(v) {
+      for (let i = 0; i < this.navData.length; i++) {
+        if (i < this.navData.length - 1) {
+          if (v > this.navData[i].height && v < this.navData[i + 1].height) {
+            this.isActive = i;
+            break;
+          }
+        }
+        if (i === this.navData.length - 1) {
+          if (v > this.navData[i].height) {
+            this.isActive = i;
+            break;
+          }
+        }
+      }
+    },
+    /*
+     * 全部收齐/展开
+     * */
+    collapseAll() {
+      this.activeName = [];
+      if (this.sumClick % 2 === 0) {
+        this.activeName = [];
+      }
+      if (this.sumClick % 2 !== 0) {
+        this.activeName = this.activeName_;
+      }
+      this.sumClick++;
+    }
+  },
+  async mounted() {
+    let timeID;
+    await new Promise(resolve => {
+      timeID = setTimeout(_ => {
+        resolve();
+      }, 10);
+    });
+    clearTimeout(timeID);
+    this.scrollChange();
+    this.initECharts(this.collapseData);
+    this.collapseData.forEach(i => {
+      i.collapseItem.forEach((ci, cx) => {
+        this.activeName.push(i.id + cx);
+        this.activeName_.push(i.id + cx);
+      });
+    });
+  }
+};
 </script>
 
 <style scoped lang="less">
-    .container {
-        width: 100%;
-        height: 100%;
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .collapse {
+    width: 85%;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
+    .box_ {
+      width: 100%;
+      min-height: 100px;
+      margin-bottom: 8px;
+
+      .ECharts {
         display: flex;
-        flex-wrap: nowrap;
         flex-direction: row;
-        justify-content: space-around;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
 
-        .collapse {
-            width: 85%;
-            height: 100%;
-            overflow-y: scroll;
-            scroll-behavior: smooth;
+      .ECharts > div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
 
-            .box_ {
-                width: 100%;
-                min-height: 100px;
-                margin-bottom: 8px;
-
-                .ECharts {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: space-between;
-                }
-
-                .ECharts > div {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: space-between;
-                    position: relative;
-
-                    .Title {
-                        width: 100%;
-                        height: 45px;
-                        background: white;
-                        line-height: 45px;
-                        text-indent: 10px;
-                        font-size: 18px;
-                        font-weight: 600;
-                        border-bottom: 5px solid #F3F7FF;
-                    }
-
-                    .query {
-                        position: absolute;
-                        width: 90%;
-                        padding: 0 5%;
-                        height: 40px;
-                        z-index: 999;
-                        left: 0;
-                        top: 50px;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-around;
-                    }
-
-                    .query /deep/ .el-input__inner {
-                        /*background: #d0d1ff;*/
-                    }
-
-                    .query /deep/ .el-input__inner > .el-range-input {
-                        /*background: #d0d1ff;*/
-                        /*color: white;*/
-                    }
-                }
-            }
-
-            .box_ /deep/ .el-collapse > .noMargin > div > .el-collapse-item__header {
-                margin-top: 0 !important;
-            }
-
-            .box_ /deep/ .el-collapse > .el-collapse-item {
-            }
-
-            .box_ /deep/ .el-collapse > .el-collapse-item > div > .el-collapse-item__header {
-                background: #737AEF;
-                border-radius: 10px;
-                font-size: 16px;
-                height: 48px;
-                line-height: 48px;
-                margin: 8px 0;
-                width: 100%;
-                color: white;
-                border: none;
-                text-indent: 10px;
-            }
-
-            .box_ /deep/ .el-collapse > .el-collapse-item > .el-collapse-item__wrap {
-                background-color: rgba(0, 0, 0, 0) !important;
-            }
-
-            .box_ /deep/ .el-collapse > .el-collapse-item > .el-collapse-item__wrap > .el-collapse-item__content {
-                padding-bottom: 0;
-            }
+        .Title {
+          width: 100%;
+          height: 45px;
+          background: white;
+          line-height: 45px;
+          text-indent: 10px;
+          font-size: 18px;
+          font-weight: 600;
+          border-bottom: 5px solid #f3f7ff;
         }
 
-        .collapse::-webkit-scrollbar {
-            display: none;
+        .query {
+          position: absolute;
+          width: 90%;
+          padding: 0 5%;
+          height: 40px;
+          z-index: 999;
+          left: 0;
+          top: 50px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
         }
 
-        .navigation {
-            width: 10%;
-            height: 100%;
-            display: flex;
-            flex-wrap: nowrap;
-            flex-direction: column;
-            justify-content: center;
-
-            .navBar {
-                box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .3);
-                width: 100%;
-                // height: 80%;
-                background: #fff;
-                border-radius: 10px;
-
-                .active {
-                    background: #737aef;
-                    margin-left: -8%;
-                    margin-right: 8%;
-                    color: white;
-                    padding-left: 40px;
-                }
-            }
-
-            .navBar > p {
-                // cursor: pointer;
-                font-size: 16px;
-                padding: 10% 0;
-                margin: 5% 0;
-                margin-left: 25%;
-                transition: linear 0.3s;
-                border-radius: 10px;
-
-                .img {
-                    vertical-align: -6px;
-                }
-            }
+        .query /deep/ .el-input__inner {
+          /*background: #d0d1ff;*/
         }
+
+        .query /deep/ .el-input__inner > .el-range-input {
+          /*background: #d0d1ff;*/
+          /*color: white;*/
+        }
+      }
     }
+
+    .box_ /deep/ .el-collapse > .noMargin > div > .el-collapse-item__header {
+      margin-top: 0 !important;
+    }
+
+    .box_ /deep/ .el-collapse > .el-collapse-item {
+    }
+
+    .box_
+      /deep/
+      .el-collapse
+      > .el-collapse-item
+      > div
+      > .el-collapse-item__header {
+      background: #737aef;
+      border-radius: 10px;
+      font-size: 16px;
+      height: 48px;
+      line-height: 48px;
+      margin: 8px 0;
+      width: 100%;
+      color: white;
+      border: none;
+      text-indent: 10px;
+    }
+
+    .box_ /deep/ .el-collapse > .el-collapse-item > .el-collapse-item__wrap {
+      background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    .box_
+      /deep/
+      .el-collapse
+      > .el-collapse-item
+      > .el-collapse-item__wrap
+      > .el-collapse-item__content {
+      padding-bottom: 0;
+    }
+  }
+
+  .collapse::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navigation {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+
+    .navBar {
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+      width: 100%;
+      // height: 80%;
+      background: #fff;
+      border-radius: 10px;
+
+      .active {
+        background: #737aef;
+        margin-left: -8%;
+        margin-right: 8%;
+        color: white;
+        padding-left: 40px;
+      }
+    }
+
+    .navBar > p {
+      // cursor: pointer;
+      font-size: 16px;
+      padding: 10% 0;
+      margin: 5% 0;
+      margin-left: 25%;
+      transition: linear 0.3s;
+      border-radius: 10px;
+
+      .img {
+        vertical-align: -6px;
+      }
+    }
+  }
+}
 </style>
