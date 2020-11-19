@@ -66,8 +66,18 @@ export default {
                         height: "600px",
                         background: "#FFF"
                       },
+                      isPagination: true,
                       columns: [
-                        { prop: "A", label: "批发商" },
+                        {
+                          prop: "A",
+                          label: "批发商",
+                          children: [
+                            { prop: "G", label: "批发商1" },
+                            { prop: "H", label: "批发商2" },
+                            { prop: "I", label: "批发商3" },
+                            { prop: "J", label: "批发商4" }
+                          ]
+                        },
                         { prop: "B", label: "总体占比" },
                         { prop: "C", label: "毛利" },
                         { prop: "D", label: "汽油" },
@@ -76,36 +86,26 @@ export default {
                       ],
                       tableData: [
                         {
-                          A: "批发商11",
+                          G: "231",
                           B: "8%",
                           C: "8%",
                           D: "8%",
                           E: "8%",
-                          F: "110000"
+                          F: "110000",
+                          H: "231",
+                          I: "232",
+                          J: "54"
                         },
                         {
-                          A: "批发商12",
+                          G: "43",
                           B: "8%",
                           C: "8%",
                           D: "8%",
                           E: "8%",
-                          F: "120000"
-                        },
-                        {
-                          A: "批发商13",
-                          B: "8%",
-                          C: "8%",
-                          D: "8%",
-                          E: "8%",
-                          F: "130000"
-                        },
-                        {
-                          A: "批发商14",
-                          B: "8%",
-                          C: "8%",
-                          D: "8%",
-                          E: "8%",
-                          F: "140000"
+                          F: "110000",
+                          H: "231",
+                          I: "232",
+                          J: "54"
                         }
                       ]
                     }
