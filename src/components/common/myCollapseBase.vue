@@ -112,10 +112,10 @@
         methods: {
             async refresh() {
                 let timeID = '';
-                this.time_ = 0;
+                this.time_ = -1;
                 await new Promise((resolve) => {
                     timeID = setInterval(_ => {
-                        if (this.time_ !== this.EChartsData_.length) {
+                        if (this.time_ > -1 && this.time_ !== this.EChartsData_.length) {
                             let data = this.EChartsData_[this.time_];
                             data.EChartsBox.forEach((fi, fx) => {
                                 fi.EChartsItem.forEach((si, sx) => {
@@ -128,13 +128,13 @@
                                     }
                                 })
                             });
-                            this.time_++;
                         }
-                        if (this.time_ === this.EChartsData.length) {
+                        if (this.time_ === this.EChartsData_.length) {
                             clearInterval(timeID);
                             resolve()
                         }
-                    }, 250)
+                        this.time_++;
+                    }, 400)
                 })
             },
             async initECharts() {
