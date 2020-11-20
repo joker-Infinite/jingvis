@@ -3,21 +3,17 @@
         <div class="collapse" id="collapse">
             <div v-for="(item, index) in collapseData" :key="index" :id="item.id" class="box_">
                 <el-collapse v-model="activeName">
-                    <el-collapse-item
-                            v-for="(cit, cix) in item.collapseItem"
-                            :name="item.id + cix"
-                            :key="cix"
-                            :class="{ noMargin: cix === 0 }"
-                    >
+                    <el-collapse-item v-for="(cit, cix) in item.collapseItem"
+                                      :name="item.id + cix"
+                                      :key="cix"
+                                      :class="{ noMargin: cix === 0 }">
                         <template slot="title">
                             {{ cit.collapseTitle }}
                         </template>
                         <div class="ECharts" style="width: 100%;min-height: 100px;">
-                            <div
-                                    v-for="(sit, six) in cit.EChartsBox"
-                                    :key="six"
-                                    :style="sit.style"
-                            >
+                            <div v-for="(sit, six) in cit.EChartsBox"
+                                 :key="six"
+                                 :style="sit.style">
                                 <div class="Title">{{ sit.title }}</div>
                                 <div class="query">
                                     <el-date-picker
@@ -37,23 +33,23 @@
                                     >搜索
                                     </el-button>
                                 </div>
-                                <div
-                                        v-for="(wit, wix) in sit.EChartsItem"
-                                        :key="wix"
-                                        :style="wit.style"
-                                        :id="cit.id + '-' + six + '-' + wix"
-                                >
-                                    <div v-if="wit.type === 'map' || wit.type === 'table'">
-                                        <my-table
-                                                @selectionChange="row=>{$emit('selectionChange',row)}"
-                                                :columns="wit.columns"
-                                                :height="wit.height ? wit.height : '500px'"
-                                                :multiple="false"
-                                                :border="false"
-                                                :data="wit.tableData"
-                                                :is-pagination="wit.isPagination"
-                                                v-if="wit.type === 'table'"
-                                        ></my-table>
+                                <div v-for="(wit, wix) in sit.EChartsItem"
+                                     :key="wix"
+                                     :style="wit.style"
+                                     class="echarts"
+                                     :id="cit.id + '-' + six + '-' + wix">
+                                    <div v-if="!!wit.type&&wit.type!=='box'">
+                                        <my-table @selectionChange="row=>{$emit('selectionChange',row)}"
+                                                  :columns="wit.columns"
+                                                  :height="wit.height ? wit.height : '500px'"
+                                                  :multiple="false"
+                                                  :border="false"
+                                                  :data="wit.tableData"
+                                                  :is-pagination="wit.isPagination"
+                                                  v-if="wit.type === 'table'"/>
+                                    </div>
+                                    <div v-if="wit.type&&wit.type === 'box'" :style="wit.style.style">
+                                        {{wit.style.style.content}}
                                     </div>
                                 </div>
                             </div>
@@ -112,15 +108,15 @@
         methods: {
             async refresh() {
                 let timeID = '';
-                this.time_ = 0;
+                this.time_ = -1;
                 await new Promise((resolve) => {
                     timeID = setInterval(_ => {
-                        if (this.time_ !== this.EChartsData_.length) {
+                        if (this.time_ > -1 && this.time_ !== this.EChartsData_.length) {
                             let data = this.EChartsData_[this.time_];
                             data.EChartsBox.forEach((fi, fx) => {
                                 fi.EChartsItem.forEach((si, sx) => {
                                     let id = this.EChartsData_[this.time_].id + '-' + fx + '-' + sx;
-                                    if (si.type !== 'table' && si.type !== 'map') {
+                                    if (si.type !== 'table' && si.type !== 'map' && si.type !== 'box') {
                                         this.$echarts.init(document.getElementById(id)).dispose();
                                         this.$nextTick(_ => {
                                             this.$echarts.init(document.getElementById(id)).setOption(si.option);
@@ -128,13 +124,13 @@
                                     }
                                 })
                             });
-                            this.time_++;
                         }
-                        if (this.time_ === this.EChartsData.length) {
+                        if (this.time_ === this.EChartsData_.length) {
                             clearInterval(timeID);
                             resolve()
                         }
-                    }, 250)
+                        this.time_++;
+                    }, 400)
                 })
             },
             async initECharts() {
@@ -222,7 +218,7 @@
                     m.EChartsBox.forEach((kt, ki) => {
                         kt.EChartsItem.forEach((mt, mx) => {
                             this.$nextTick((_) => {
-                                if (mt.type !== "map" && mt.type !== "table") {
+                                if (mt.type !== "map" && mt.type !== "table" && mt.type !== "box") {
                                     this.EChartsData.push({
                                         id: m.id + "-" + ki + "-" + mx,
                                         option: mt.option
@@ -287,17 +283,25 @@
                         position: absolute;
                         width: 90%;
                         padding: 0 5%;
-                        height: 40px;
+                        height: 60px;
                         z-index: 999;
                         left: 0;
                         top: 50px;
                         display: flex;
                         flex-direction: row;
-                        justify-content: space-around;
+                        justify-content: flex-end;
+                    }
+
+                    .query /deep/ .el-date-editor {
+                        margin: 10px 20px 0 0;
                     }
 
                     .query /deep/ .el-input__inner {
-                        /*background: #d0d1ff;*/
+                        margin: 10px 20px 0 0;
+                    }
+
+                    .query /deep/ .el-button {
+                        margin: 10px 20px;
                     }
 
                     .query /deep/ .el-input__inner > .el-range-input {

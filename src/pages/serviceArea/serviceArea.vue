@@ -1,6 +1,9 @@
 <template>
   <div style="width: 100%;height: 100%;font-size: 50px">
-    <my-collapse-base :collapseData="collapseData"></my-collapse-base>
+    <my-collapse-base
+      ref="collapse"
+      :collapseData="collapseData"
+    ></my-collapse-base>
   </div>
 </template>
 
@@ -10,6 +13,12 @@ import MyCollapseBase from "../../components/common/myCollapseBase";
 export default {
   name: "serviceArea",
   components: { MyCollapseBase },
+  props: {
+    viewChange: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       collapseData: [
@@ -2017,7 +2026,7 @@ export default {
                       },
                       option: {
                         title: {
-                          text: "公司成本种类预算成本",
+                          text: "",
                           top: 20,
                           left: 20,
                         },
@@ -2153,12 +2162,147 @@ export default {
                   },
                   EChartsItem: [
                     {
-                      /*ECharts的属性*/
+                      type: "box",
                       style: {
-                        width: "100%",
+                        width: "30%",
                         height: "400px",
+                        position: "relative",
+                        style: {
+                          content: "2000万",
+                          width: "90%",
+                          height: "150px",
+                          background: "#38d",
+                          position: "absolute",
+                          top: "100px",
+                          left: "5%",
+                          borderRadius: "10px",
+                          lineHeight: "150px",
+                          fontWeight: 700,
+                          textAlign: "center",
+                          fontSize: "30px",
+                        },
                       },
                       option: {},
+                    },
+                    {
+                      type: "box",
+                      /*ECharts的属性*/
+                      style: {
+                        width: "30%",
+                        height: "400px",
+                        position: "relative",
+                        style: {
+                          content: "9999万",
+                          width: "90%",
+                          height: "150px",
+                          background: "#81dd9d",
+                          position: "absolute",
+                          top: "150px",
+                          left: "5%",
+                          borderRadius: "10px",
+                          lineHeight: "150px",
+                          fontWeight: 700,
+                          textAlign: "center",
+                          fontSize: "30px",
+                        },
+                      },
+                      option: {},
+                    },
+                    {
+                      /*ECharts的属性*/
+                      style: {
+                        width: "40%",
+                        height: "400px",
+                      },
+                      option: {
+                        title: {
+                          text: "",
+                        },
+                        grid: {
+                          top: "20%",
+                          right: "40",
+                          left: "60",
+                          bottom: "40", //图表尺寸大小
+                        },
+                        legend: {
+                          orient: "horizontal",
+                          bottom: 10,
+                        },
+                        tooltip: {
+                          trigger: "item",
+                        },
+                        series: [
+                          {
+                            type: "pie",
+                            center: ["50%", "50%"],
+                            radius: ["25%", "40%"],
+                            clockwise: true,
+                            avoidLabelOverlap: true,
+                            hoverOffset: 15,
+                            itemStyle: {
+                              normal: {
+                                color: function(params) {
+                                  let colorList = [
+                                    "#1fcaa8",
+                                    "#15b3e2",
+                                    "#f69f41",
+                                    "#f2535f",
+                                    "#2e65fd",
+                                  ];
+                                  return colorList[params.dataIndex];
+                                },
+                              },
+                            },
+                            label: {
+                              show: true,
+                              position: "outer",
+                              width: 0,
+                              height: 0,
+                              lineHeight: 0,
+                              backgroundColor: "auto",
+                              padding: [2, -2, 2, -2],
+                              borderRadius: 2,
+                              distanceToLabelLine: 0,
+                              normal: {
+                                formatter(v) {
+                                  let text = v.name + "\n" + v.percent + "%";
+                                  return text;
+                                },
+                                textStyle: {
+                                  fontSize: 12,
+                                },
+                              },
+                            },
+                            labelLine: {
+                              normal: {
+                                length: 30,
+                                length2: 25,
+                                lineStyle: {
+                                  width: 1,
+                                },
+                              },
+                            },
+                            data: (function() {
+                              let data = [];
+                              let title = [
+                                "特产",
+                                "小吃",
+                                "餐饮",
+                                "便利店",
+                                "加油",
+                              ];
+                              let datas = [1.45, 2.93, 3.15, 4, 5];
+                              datas.forEach((element, index) => {
+                                data.push({
+                                  name: title[index],
+                                  value: element,
+                                });
+                              });
+                              return data;
+                            })(),
+                          },
+                        ],
+                      },
                     },
                   ],
                 },
@@ -2577,7 +2721,7 @@ export default {
                       },
                       option: {
                         title: {
-                          text: "公司成本种类预算成本",
+                          text: "",
                           top: 20,
                           left: 20,
                         },
@@ -4470,32 +4614,101 @@ export default {
       //   });
     },
   },
+  created() {
+    this.isaxios();
+    // //  // 营收2020
+    // this.isaxios("/jtService/list_jtservice_revenue_month", "2020-01-01", "businessId", 0, "bar");
+    // this.isaxios("/jtService/list_jtservice_revenue_format", "2020-01-01", "businessId", 0, "pie");
+    // // // 营收2019
+    // this.isaxios("/jtService/list_jtservice_revenue_month", "2019-01-01", "businessId", 1, "bar");
+    // this.isaxios("/jtService/list_jtservice_revenue_format", "2019-01-01", "businessId", 1, "pie");
+    // // // 利润2020
+    // this.isaxios("/jtService/list_jtservice_revenue_month", "2020-01-01", "profitbusinessId", 0, "bar");
+    // this.isaxios("/jtService/list_jtservice_revenue_format", "2020-01-01", "profitbusinessId", 0, "pie");
+    // // // 利润2019
+    // this.isaxios("/jtService/list_jtservice_revenue_month", "2019-01-01", "profitbusinessId", 1, "bar");
+    // this.isaxios("/jtService/list_jtservice_revenue_format", "2019-01-01", "profitbusinessId", 1, "pie");
+    // this.isaxios('/jtService/list_jtservice_profit_month', '2019-01-01', 3, 'bar')
+    // this.isaxios('/jtService/list_jtservice_profit_format', '2019-01-01', 3, 'pie')
+  },
+  watch: {
+    viewChange() {
+      this.$refs["collapse"].refresh(this.collapseData);
+    },
+  },
+  methods: {
+    isaxios(url, nianfen, id, i, is) {
+      // console.log(
+      //   this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option
+      //     .xAxis[0].data
+      // );
+      // this.$axios
+      //   .get("/api" + url, {
+      //     params: { nianfen: nianfen, serviceCompanyId: "", serviceId: "" },
+      //   })
+      //   .then((res) => {
+      //     res.data.data.forEach((element) => {
+      //       if (is === "bar") {
+      //         // this.businessIdData[id][i].data.left[0].push(element.yAxis / 100);
+      //         // this.businessIdData[id][i].data.left[1].push(element.yAxis / 100);
+      //         // this.businessIdData[id][i].data.xAis.push(element.xBxis + "月");
+      //       }
+      //       if (is === "pie") {
+      //         this.businessId[i].data.center[0].push(element.yAxis / 100);
+      //       }
+      //     });
+      //   });
+    },
+  },
   mounted() {
     // this.isaxios();
-    this.$axios.get('/api/index/finance_type_list').then((res)=>{
-      this.$axios.get('/api/index/plate_list',{params:{mohu:'服务区板块'}}).then((id)=>{
-        this.$axios.get('/api/jtService/list_fuwuquzongyingshou',{params:{financeTypeId:res.data.data[0].financeTypeId,nianfen:'2020',plateId:id.data.data[0].plateId}}).then((res)=>{
-          // console.log(res.data.data)
-          let xBxis=[];
-          let yAxis = [];
-          res.data.data.forEach(element => {
-            xBxis.push(element.xBxis)
-            yAxis.push(element.yAxis)
-          // this.collapseData[0].collapseItem[0].EChartsItem[0].option.xAxis[0].data=[5,5,5,]
-        })
-        this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data=xBxis;
-        console.log(this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data)
-      });
-    })
-    })
-    this.$axios.get('/api/index/finance_type_list').then((res)=>{
-      this.$axios.get('/api/index/plate_list',{params:{mohu:'服务区板块'}}).then((id)=>{
-        // console.log(id.data.data[0].plateId)
-        this.$axios.get('/api/jtService/list_fuwuquzongyingshou',{params:{financeTypeId:res.data.data[0].financeTypeId,nianfen:'2019',plateId:id.data.data[0].plateId}}).then((res)=>{
-          // console.log(res.data.data)
-        })
-      })
-    })
+    this.$axios.get("/api/index/finance_type_list").then((res) => {
+      this.$axios
+        .get("/api/index/plate_list", { params: { mohu: "服务区板块" } })
+        .then((id) => {
+          this.$axios
+            .get("/api/jtService/list_fuwuquzongyingshou", {
+              params: {
+                financeTypeId: res.data.data[0].financeTypeId,
+                nianfen: "2020",
+                plateId: id.data.data[0].plateId,
+              },
+            })
+            .then((res) => {
+              // console.log(res.data.data)
+              let xBxis = [];
+              let yAxis = [];
+              res.data.data.forEach((element) => {
+                xBxis.push(element.xBxis);
+                yAxis.push(element.yAxis);
+                // this.collapseData[0].collapseItem[0].EChartsItem[0].option.xAxis[0].data=[5,5,5,]
+              });
+              this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = xBxis;
+              console.log(
+                this.collapseData[0].collapseItem[0].EChartsBox[0]
+                  .EChartsItem[0].option.xAxis[0].data
+              );
+            });
+        });
+    });
+    this.$axios.get("/api/index/finance_type_list").then((res) => {
+      this.$axios
+        .get("/api/index/plate_list", { params: { mohu: "服务区板块" } })
+        .then((id) => {
+          // console.log(id.data.data[0].plateId)
+          this.$axios
+            .get("/api/jtService/list_fuwuquzongyingshou", {
+              params: {
+                financeTypeId: res.data.data[0].financeTypeId,
+                nianfen: "2019",
+                plateId: id.data.data[0].plateId,
+              },
+            })
+            .then((res) => {
+              // console.log(res.data.data)
+            });
+        });
+    });
     // //  // 营收2020
     // this.isaxios("/jtService/list_jtservice_revenue_month", "2020-01-01", "businessId", 0, "bar");
     // this.isaxios("/jtService/list_jtservice_revenue_format", "2020-01-01", "businessId", 0, "pie");

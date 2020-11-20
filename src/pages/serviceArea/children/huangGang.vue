@@ -1,6 +1,7 @@
 <template>
   <div style="width: 100%;height: 100%;font-size: 50px">
     <my-collapse-base
+            ref="collapse"
       @selectionChange="selectionChange"
       :collapseData="collapseData"
     ></my-collapse-base>
@@ -14,6 +15,12 @@ import MyCollapseBase from "../../../components/common/myCollapseBase";
 export default {
   name: "serviceArea",
   components: { MyCollapseBase },
+  props: {
+    viewChange: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       collapseData: [
@@ -36,7 +43,7 @@ export default {
                   style: {
                     cursor:'pointer',
                     width: "100%",
-                    height: "600px",
+                    height: "650px",
                     borderRadius: "10px",
                     background: "white",
                     overflow: "hidden",
@@ -45,9 +52,9 @@ export default {
                   EChartsItem: [
                     {
                       type: "table",
+                      height: "650px",
                       style: {
                         width: "100%",
-                        height: "500px",
                         background: "#FFF",
                       },
                       isPagination: true,
@@ -4558,6 +4565,11 @@ export default {
       // console.log(val);
     },
   },
+  watch: {
+    viewChange() {
+      this.$refs['collapse'].refresh(this.collapseData)
+    }
+  }
 };
 </script>
 

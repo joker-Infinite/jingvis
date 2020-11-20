@@ -2,7 +2,7 @@
   <div class="table">
     <el-table
       :data="data"
-      :height="parseInt(height) - 40 + 'px'"
+      :height="parseInt(height) - 200 + 'px'"
       style="width: 100%"
       :border="border"
       highlight-current-row
