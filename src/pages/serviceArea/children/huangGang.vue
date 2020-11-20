@@ -1,8 +1,8 @@
 <template>
-    <div style="width: 100%;height: 100%;font-size: 50px">
-        <my-collapse-base :collapseData="collapseData"></my-collapse-base>
-    </div>
-    <!-- 55555 -->
+  <div style="width: 100%;height: 100%;font-size: 50px">
+    <my-collapse-base :collapseData="collapseData"></my-collapse-base>
+  </div>
+  <!-- 55555 -->
 </template>
 
 <script>
@@ -32,34 +32,46 @@ export default {
                   selectValue: "",
                   style: {
                     width: "100%",
-                    height: "400px",
+                    height: "600px",
                     borderRadius: "10px",
                     background: "white",
-                    marginBottom: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       type: "table",
                       style: {
                         width: "100%",
-                        height: "400px",
-                        marginTop: "50px",
-                        background: "#FFF"
+                        height: "500px",
+                        background: "#FFF",
                       },
+                      isPagination: true,
                       columns: [
                         { prop: "A", label: "服务区名称" },
                         { prop: "B", label: "高速名称" },
-                        { prop: "C", label: "大车" },
-                        { prop: "D", label: "小车" },
+                        {
+                          prop: "C",
+                          label: "车流量(辆)",
+                          children: [
+                            { prop: "maxcart", label: "大车" },
+                            { prop: "mincart", label: "小车" },
+                          ],
+                        },
                         { prop: "E", label: "收益(元)" },
-                        { prop: "F", label: "利润(元)" },
-                        { prop: "F", label: "坪效(元)" },
-                        { prop: "F", label: "面积(m)" },
-                        { prop: "F", label: "加油" },
-                        { prop: "F", label: "小吃" },
-                        { prop: "F", label: "便利店" },
-                        { prop: "F", label: "餐饮" }
+                        { prop: "G", label: "利润(元)" },
+                        { prop: "H", label: "坪效(元)" },
+                        { prop: "I", label: "面积(m)" },
+
+                        {
+                          prop: "J",
+                          label: "业态订单数",
+                          children: [
+                            { prop: "refuel", label: "加油" },
+                            { prop: "snack", label: "小吃" },
+                            { prop: "convenience", label: "便利店" },
+                            { prop: "catering", label: "餐饮" },
+                          ],
+                        },
                       ],
                       tableData: [
                         {
@@ -68,7 +80,7 @@ export default {
                           C: "8%",
                           D: "8%",
                           E: "8%",
-                          F: "110000"
+                          F: "110000",
                         },
                         {
                           A: "批发商12",
@@ -76,7 +88,7 @@ export default {
                           C: "8%",
                           D: "8%",
                           E: "8%",
-                          F: "120000"
+                          F: "120000",
                         },
                         {
                           A: "批发商13",
@@ -84,7 +96,7 @@ export default {
                           C: "8%",
                           D: "8%",
                           E: "8%",
-                          F: "130000"
+                          F: "130000",
                         },
                         {
                           A: "批发商14",
@@ -92,15 +104,15 @@ export default {
                           C: "8%",
                           D: "8%",
                           E: "8%",
-                          F: "140000"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                          F: "140000",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           id: "revenue",
@@ -121,30 +133,30 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
                           trigger: "axis",
                           formatter: function(val) {
                             return val[0].name + ":" + val[0].value + "元";
-                          }
+                          },
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         xAxis: [
                           {
@@ -162,24 +174,24 @@ export default {
                               "9",
                               "10",
                               "11",
-                              "12"
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
-                            }
-                          }
+                              show: false,
+                            },
+                          },
                         ],
                         yAxis: [
                           {
@@ -187,24 +199,24 @@ export default {
                               formatter: "{value}",
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               lineStyle: {
                                 color: "rgba(131,101,101,0.2)",
-                                type: "dashed"
-                              }
-                            }
-                          }
+                                type: "dashed",
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -221,15 +233,15 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             barWidth: "16px",
                             itemStyle: {
                               normal: {
                                 color: "#38A0FF",
-                                barBorderRadius: [30, 30, 30, 30]
-                              }
-                            }
+                                barBorderRadius: [30, 30, 30, 30],
+                              },
+                            },
                           },
                           {
                             data: [
@@ -244,7 +256,7 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             type: "line",
                             name: "折线图",
@@ -254,18 +266,18 @@ export default {
                               width: 2,
                               shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
                               shadowBlur: 10,
-                              shadowOffsetY: 10
+                              shadowOffsetY: 10,
                             },
                             areaStyle: {
                               normal: {
-                                color: "rgba(0,0,0,0)"
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                color: "rgba(0,0,0,0)",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收2",
@@ -278,31 +290,31 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -320,11 +332,11 @@ export default {
                                     "#15b3e2",
                                     "#f69f41",
                                     "#f2535f",
-                                    "#2e65fd"
+                                    "#2e65fd",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -342,18 +354,18 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 25,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: (function() {
                               let data = [];
@@ -362,22 +374,22 @@ export default {
                                 "小吃",
                                 "餐饮",
                                 "便利店",
-                                "加油"
+                                "加油",
                               ];
                               let datas = [1.45, 2.93, 3.15, 4, 5];
                               datas.forEach((element, index) => {
                                 data.push({
                                   name: title[index],
-                                  value: element
+                                  value: element,
                                 });
                               });
                               return data;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收3",
@@ -390,26 +402,26 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
 
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
 
                         series: [
@@ -430,11 +442,11 @@ export default {
                                     "#2e65fd",
                                     "#1fcaa8",
                                     "#ee6565",
-                                    "#fec02a"
+                                    "#fec02a",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -452,9 +464,9 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
 
                             labelLine: {
@@ -462,43 +474,43 @@ export default {
                                 length: 30,
                                 length2: 10,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "宜昌",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "恩施",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "孝感",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "咸宁",
-                                value: 4.78
+                                value: 4.78,
                               },
                               {
                                 name: "十堰",
-                                value: 5.93
+                                value: 5.93,
                               },
                               {
                                 name: "黄冈",
-                                value: 5.73
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
+                                value: 5.73,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             {
               id: "revenue_2019",
@@ -513,30 +525,30 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
                           trigger: "axis",
                           formatter: function(val) {
                             return val[0].name + ":" + val[0].value + "元";
-                          }
+                          },
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         xAxis: [
                           {
@@ -554,24 +566,24 @@ export default {
                               "9",
                               "10",
                               "11",
-                              "12"
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
-                            }
-                          }
+                              show: false,
+                            },
+                          },
                         ],
                         yAxis: [
                           {
@@ -579,24 +591,24 @@ export default {
                               formatter: "{value}",
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               lineStyle: {
                                 color: "rgba(131,101,101,0.2)",
-                                type: "dashed"
-                              }
-                            }
-                          }
+                                type: "dashed",
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -613,15 +625,15 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             barWidth: "16px",
                             itemStyle: {
                               normal: {
                                 color: "#38A0FF",
-                                barBorderRadius: [30, 30, 30, 30]
-                              }
-                            }
+                                barBorderRadius: [30, 30, 30, 30],
+                              },
+                            },
                           },
                           {
                             data: [
@@ -636,7 +648,7 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             type: "line",
                             name: "折线图",
@@ -646,18 +658,18 @@ export default {
                               width: 2,
                               shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
                               shadowBlur: 10,
-                              shadowOffsetY: 10
+                              shadowOffsetY: 10,
                             },
                             areaStyle: {
                               normal: {
-                                color: "rgba(0,0,0,0)"
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                color: "rgba(0,0,0,0)",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收2",
@@ -670,31 +682,31 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -712,11 +724,11 @@ export default {
                                     "#15b3e2",
                                     "#f69f41",
                                     "#f2535f",
-                                    "#2e65fd"
+                                    "#2e65fd",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -734,18 +746,18 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 25,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: (function() {
                               let data = [];
@@ -754,22 +766,22 @@ export default {
                                 "小吃",
                                 "餐饮",
                                 "便利店",
-                                "加油"
+                                "加油",
                               ];
                               let datas = [1.45, 2.93, 3.15, 4, 5];
                               datas.forEach((element, index) => {
                                 data.push({
                                   name: title[index],
-                                  value: element
+                                  value: element,
                                 });
                               });
                               return data;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收3",
@@ -782,26 +794,26 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
 
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
 
                         series: [
@@ -822,11 +834,11 @@ export default {
                                     "#2e65fd",
                                     "#1fcaa8",
                                     "#ee6565",
-                                    "#fec02a"
+                                    "#fec02a",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -844,9 +856,9 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
 
                             labelLine: {
@@ -854,45 +866,45 @@ export default {
                                 length: 30,
                                 length2: 10,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "宜昌",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "恩施",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "孝感",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "咸宁",
-                                value: 4.78
+                                value: 4.78,
                               },
                               {
                                 name: "十堰",
-                                value: 5.93
+                                value: 5.93,
                               },
                               {
                                 name: "黄冈",
-                                value: 5.73
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                                value: 5.73,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           id: "profit",
@@ -913,30 +925,30 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
                           trigger: "axis",
                           formatter: function(val) {
                             return val[0].name + ":" + val[0].value + "元";
-                          }
+                          },
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         xAxis: [
                           {
@@ -954,24 +966,24 @@ export default {
                               "9",
                               "10",
                               "11",
-                              "12"
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
-                            }
-                          }
+                              show: false,
+                            },
+                          },
                         ],
                         yAxis: [
                           {
@@ -979,24 +991,24 @@ export default {
                               formatter: "{value}",
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               lineStyle: {
                                 color: "rgba(131,101,101,0.2)",
-                                type: "dashed"
-                              }
-                            }
-                          }
+                                type: "dashed",
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -1013,15 +1025,15 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             barWidth: "16px",
                             itemStyle: {
                               normal: {
                                 color: "#38A0FF",
-                                barBorderRadius: [30, 30, 30, 30]
-                              }
-                            }
+                                barBorderRadius: [30, 30, 30, 30],
+                              },
+                            },
                           },
                           {
                             data: [
@@ -1036,7 +1048,7 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             type: "line",
                             name: "折线图",
@@ -1046,18 +1058,18 @@ export default {
                               width: 2,
                               shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
                               shadowBlur: 10,
-                              shadowOffsetY: 10
+                              shadowOffsetY: 10,
                             },
                             areaStyle: {
                               normal: {
-                                color: "rgba(0,0,0,0)"
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                color: "rgba(0,0,0,0)",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收2",
@@ -1070,31 +1082,31 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -1112,11 +1124,11 @@ export default {
                                     "#15b3e2",
                                     "#f69f41",
                                     "#f2535f",
-                                    "#2e65fd"
+                                    "#2e65fd",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -1134,18 +1146,18 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 25,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: (function() {
                               let data = [];
@@ -1154,23 +1166,23 @@ export default {
                                 "小吃",
                                 "餐饮",
                                 "便利店",
-                                "加油"
+                                "加油",
                               ];
                               [1.45, 2.93, 3.15, 4, 5].forEach(
                                 (element, index) => {
                                   data.push({
                                     name: title[index],
-                                    value: element
+                                    value: element,
                                   });
                                 }
                               );
                               return data;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收3",
@@ -1183,26 +1195,26 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
 
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
 
                         series: [
@@ -1223,11 +1235,11 @@ export default {
                                     "#2e65fd",
                                     "#1fcaa8",
                                     "#ee6565",
-                                    "#fec02a"
+                                    "#fec02a",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -1245,9 +1257,9 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
 
                             labelLine: {
@@ -1255,43 +1267,43 @@ export default {
                                 length: 30,
                                 length2: 10,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "宜昌",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "恩施",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "孝感",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "咸宁",
-                                value: 4.78
+                                value: 4.78,
                               },
                               {
                                 name: "十堰",
-                                value: 5.93
+                                value: 5.93,
                               },
                               {
                                 name: "黄冈",
-                                value: 5.73
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
+                                value: 5.73,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             {
               id: "profit_2019",
@@ -1306,30 +1318,30 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
                           trigger: "axis",
                           formatter: function(val) {
                             return val[0].name + ":" + val[0].value + "元";
-                          }
+                          },
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         xAxis: [
                           {
@@ -1347,24 +1359,24 @@ export default {
                               "9",
                               "10",
                               "11",
-                              "12"
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
-                            }
-                          }
+                              show: false,
+                            },
+                          },
                         ],
                         yAxis: [
                           {
@@ -1372,24 +1384,24 @@ export default {
                               formatter: "{value}",
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               lineStyle: {
                                 color: "rgba(131,101,101,0.2)",
-                                type: "dashed"
-                              }
-                            }
-                          }
+                                type: "dashed",
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -1406,15 +1418,15 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             barWidth: "16px",
                             itemStyle: {
                               normal: {
                                 color: "#38A0FF",
-                                barBorderRadius: [30, 30, 30, 30]
-                              }
-                            }
+                                barBorderRadius: [30, 30, 30, 30],
+                              },
+                            },
                           },
                           {
                             data: [
@@ -1429,7 +1441,7 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             type: "line",
                             name: "折线图",
@@ -1439,18 +1451,18 @@ export default {
                               width: 2,
                               shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
                               shadowBlur: 10,
-                              shadowOffsetY: 10
+                              shadowOffsetY: 10,
                             },
                             areaStyle: {
                               normal: {
-                                color: "rgba(0,0,0,0)"
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                color: "rgba(0,0,0,0)",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收2",
@@ -1463,31 +1475,31 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -1505,11 +1517,11 @@ export default {
                                     "#15b3e2",
                                     "#f69f41",
                                     "#f2535f",
-                                    "#2e65fd"
+                                    "#2e65fd",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -1527,18 +1539,18 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 25,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: (function() {
                               let data = [];
@@ -1547,22 +1559,22 @@ export default {
                                 "小吃",
                                 "餐饮",
                                 "便利店",
-                                "加油"
+                                "加油",
                               ];
                               let datas = [1.45, 2.93, 3.15, 40, 5];
                               datas.forEach((element, index) => {
                                 data.push({
                                   name: title[index],
-                                  value: element
+                                  value: element,
                                 });
                               });
                               return data;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收3",
@@ -1575,26 +1587,26 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
 
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
 
                         series: [
@@ -1615,11 +1627,11 @@ export default {
                                     "#2e65fd",
                                     "#1fcaa8",
                                     "#ee6565",
-                                    "#fec02a"
+                                    "#fec02a",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -1637,9 +1649,9 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
 
                             labelLine: {
@@ -1647,45 +1659,45 @@ export default {
                                 length: 30,
                                 length2: 10,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "宜昌",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "恩施",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "孝感",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "咸宁",
-                                value: 4.78
+                                value: 4.78,
                               },
                               {
                                 name: "十堰",
-                                value: 5.93
+                                value: 5.93,
                               },
                               {
                                 name: "黄冈",
-                                value: 5.73
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                                value: 5.73,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           id: "cost",
@@ -1706,30 +1718,30 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
                           trigger: "axis",
                           formatter: function(val) {
                             return val[0].name + ":" + val[0].value + "元";
-                          }
+                          },
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         xAxis: [
                           {
@@ -1747,24 +1759,24 @@ export default {
                               "9",
                               "10",
                               "11",
-                              "12"
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
-                            }
-                          }
+                              show: false,
+                            },
+                          },
                         ],
                         yAxis: [
                           {
@@ -1772,24 +1784,24 @@ export default {
                               formatter: "{value}",
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               lineStyle: {
                                 color: "rgba(131,101,101,0.2)",
-                                type: "dashed"
-                              }
-                            }
-                          }
+                                type: "dashed",
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -1806,15 +1818,15 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             barWidth: "16px",
                             itemStyle: {
                               normal: {
                                 color: "#38A0FF",
-                                barBorderRadius: [30, 30, 30, 30]
-                              }
-                            }
+                                barBorderRadius: [30, 30, 30, 30],
+                              },
+                            },
                           },
                           {
                             data: [
@@ -1829,7 +1841,7 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             type: "line",
                             name: "折线图",
@@ -1839,18 +1851,18 @@ export default {
                               width: 2,
                               shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
                               shadowBlur: 10,
-                              shadowOffsetY: 10
+                              shadowOffsetY: 10,
                             },
                             areaStyle: {
                               normal: {
-                                color: "rgba(0,0,0,0)"
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                color: "rgba(0,0,0,0)",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收2",
@@ -1863,31 +1875,31 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -1905,11 +1917,11 @@ export default {
                                     "#15b3e2",
                                     "#f69f41",
                                     "#f2535f",
-                                    "#2e65fd"
+                                    "#2e65fd",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -1927,18 +1939,18 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 25,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: (function() {
                               let data = [];
@@ -1947,22 +1959,22 @@ export default {
                                 "小吃",
                                 "餐饮",
                                 "便利店",
-                                "加油"
+                                "加油",
                               ];
                               let datas = [1.45, 2.93, 3.15, 4, 5];
                               datas.forEach((element, index) => {
                                 data.push({
                                   name: title[index],
-                                  value: element
+                                  value: element,
                                 });
                               });
                               return data;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收3",
@@ -1975,26 +1987,26 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
 
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
 
                         series: [
@@ -2015,11 +2027,11 @@ export default {
                                     "#2e65fd",
                                     "#1fcaa8",
                                     "#ee6565",
-                                    "#fec02a"
+                                    "#fec02a",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -2037,9 +2049,9 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
 
                             labelLine: {
@@ -2047,41 +2059,41 @@ export default {
                                 length: 30,
                                 length2: 10,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "宜昌",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "恩施",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "孝感",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "咸宁",
-                                value: 4.78
+                                value: 4.78,
                               },
                               {
                                 name: "十堰",
-                                value: 5.93
+                                value: 5.93,
                               },
                               {
                                 name: "黄冈",
-                                value: 5.73
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                value: 5.73,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "公司成本种类预算成本",
@@ -2095,20 +2107,20 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop: "10px"
+                    marginTop: "10px",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
                           text: "公司成本种类预算成本",
                           top: 20,
-                          left: 20
+                          left: 20,
                         },
                         tooltip: {
                           trigger: "axis",
@@ -2126,20 +2138,20 @@ export default {
                               val[2].value +
                               "%"
                             );
-                          }
+                          },
                         },
                         grid: {
                           left: "3%",
                           right: "4%",
                           bottom: "3%",
-                          containLabel: true
+                          containLabel: true,
                         },
                         xAxis: {
                           type: "value",
                           splitLine: { show: false },
                           axisTick: { show: false },
                           axisLine: { show: false },
-                          axisLabel: { show: false }
+                          axisLabel: { show: false },
                         },
                         yAxis: {
                           type: "category",
@@ -2150,11 +2162,11 @@ export default {
                             "深圳",
                             "456",
                             "7889",
-                            "99789"
+                            "99789",
                           ],
                           splitLine: { show: false },
                           axisTick: { show: false },
-                          axisLine: { show: false }
+                          axisLine: { show: false },
                         },
                         series: [
                           {
@@ -2165,18 +2177,18 @@ export default {
                             itemStyle: {
                               normal: {
                                 color: "#379DFB",
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
+                                barBorderRadius: [5, 5, 5, 5],
+                              },
                             },
                             label: {
                               normal: {
                                 show: true,
                                 color: "#fff",
-                                position: "insideRight"
-                              }
+                                position: "insideRight",
+                              },
                             },
                             z: 10,
-                            data: [320, 302, 301, 543, 320, 302, 301]
+                            data: [320, 302, 301, 543, 320, 302, 301],
                           },
                           {
                             name: "B门店",
@@ -2186,18 +2198,18 @@ export default {
                               normal: {
                                 color: "#dfe5f1",
                                 shadowBlur: [0, 0, 0, 10],
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
+                                barBorderRadius: [5, 5, 5, 5],
+                              },
                             },
                             label: {
                               normal: {
                                 show: true,
                                 color: "#000",
-                                position: "insideRight"
-                              }
+                                position: "insideRight",
+                              },
                             },
                             z: 5,
-                            data: [90, 230, 210, 432, 320, 302, 301]
+                            data: [90, 230, 210, 432, 320, 302, 301],
                           },
                           {
                             name: "B门店",
@@ -2207,24 +2219,24 @@ export default {
                               normal: {
                                 color: "rgba(237,125,49, 0)",
                                 shadowBlur: [0, 0, 0, 10],
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
+                                barBorderRadius: [5, 5, 5, 5],
+                              },
                             },
                             label: {
                               normal: {
                                 color: "red",
                                 show: true,
                                 position: [10, 5],
-                                formatter: "{c}%"
-                              }
+                                formatter: "{c}%",
+                              },
                             },
                             z: 5,
-                            data: [10, 10, 10, 100, 10, 10, 10]
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            data: [10, 10, 10, 100, 10, 10, 10],
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "总公司成本",
@@ -2238,20 +2250,20 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop: "10px"
+                    marginTop: "10px",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
-                      option: {}
-                    }
-                  ]
-                }
-              ]
+                      option: {},
+                    },
+                  ],
+                },
+              ],
             },
             {
               id: "cost_2019",
@@ -2266,30 +2278,30 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
                           trigger: "axis",
                           formatter: function(val) {
                             return val[0].name + ":" + val[0].value + "元";
-                          }
+                          },
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         xAxis: [
                           {
@@ -2307,24 +2319,24 @@ export default {
                               "9",
                               "10",
                               "11",
-                              "12"
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
-                            }
-                          }
+                              show: false,
+                            },
+                          },
                         ],
                         yAxis: [
                           {
@@ -2332,24 +2344,24 @@ export default {
                               formatter: "{value}",
                               color: "#999",
                               textStyle: {
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
                               lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
+                                color: "rgba(107,107,107,0.37)",
+                              },
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               lineStyle: {
                                 color: "rgba(131,101,101,0.2)",
-                                type: "dashed"
-                              }
-                            }
-                          }
+                                type: "dashed",
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -2366,15 +2378,15 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             barWidth: "16px",
                             itemStyle: {
                               normal: {
                                 color: "#38A0FF",
-                                barBorderRadius: [30, 30, 30, 30]
-                              }
-                            }
+                                barBorderRadius: [30, 30, 30, 30],
+                              },
+                            },
                           },
                           {
                             data: [
@@ -2389,7 +2401,7 @@ export default {
                               40,
                               80,
                               50,
-                              360
+                              360,
                             ],
                             type: "line",
                             name: "折线图",
@@ -2399,18 +2411,18 @@ export default {
                               width: 2,
                               shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
                               shadowBlur: 10,
-                              shadowOffsetY: 10
+                              shadowOffsetY: 10,
                             },
                             areaStyle: {
                               normal: {
-                                color: "rgba(0,0,0,0)"
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                color: "rgba(0,0,0,0)",
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收2",
@@ -2423,31 +2435,31 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -2465,11 +2477,11 @@ export default {
                                     "#15b3e2",
                                     "#f69f41",
                                     "#f2535f",
-                                    "#2e65fd"
+                                    "#2e65fd",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -2487,18 +2499,18 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 25,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: (function() {
                               let data = [];
@@ -2507,22 +2519,22 @@ export default {
                                 "小吃",
                                 "餐饮",
                                 "便利店",
-                                "加油"
+                                "加油",
                               ];
                               let datas = [1.45, 2.93, 3.15, 4, 5];
                               datas.forEach((element, index) => {
                                 data.push({
                                   name: title[index],
-                                  value: element
+                                  value: element,
                                 });
                               });
                               return data;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "营收3",
@@ -2535,26 +2547,26 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
 
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
 
                         series: [
@@ -2575,11 +2587,11 @@ export default {
                                     "#2e65fd",
                                     "#1fcaa8",
                                     "#ee6565",
-                                    "#fec02a"
+                                    "#fec02a",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -2597,9 +2609,9 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
 
                             labelLine: {
@@ -2607,41 +2619,41 @@ export default {
                                 length: 30,
                                 length2: 10,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "宜昌",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "恩施",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "孝感",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "咸宁",
-                                value: 4.78
+                                value: 4.78,
                               },
                               {
                                 name: "十堰",
-                                value: 5.93
+                                value: 5.93,
                               },
                               {
                                 name: "黄冈",
-                                value: 5.73
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                value: 5.73,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "公司成本种类预算成本",
@@ -2655,20 +2667,20 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop: "10px"
+                    marginTop: "10px",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
                           text: "公司成本种类预算成本",
                           top: 20,
-                          left: 20
+                          left: 20,
                         },
                         tooltip: {
                           trigger: "axis",
@@ -2686,20 +2698,20 @@ export default {
                               val[2].value +
                               "%"
                             );
-                          }
+                          },
                         },
                         grid: {
                           left: "3%",
                           right: "4%",
                           bottom: "3%",
-                          containLabel: true
+                          containLabel: true,
                         },
                         xAxis: {
                           type: "value",
                           splitLine: { show: false },
                           axisTick: { show: false },
                           axisLine: { show: false },
-                          axisLabel: { show: false }
+                          axisLabel: { show: false },
                         },
                         yAxis: {
                           type: "category",
@@ -2710,11 +2722,11 @@ export default {
                             "深圳",
                             "456",
                             "7889",
-                            "99789"
+                            "99789",
                           ],
                           splitLine: { show: false },
                           axisTick: { show: false },
-                          axisLine: { show: false }
+                          axisLine: { show: false },
                         },
                         series: [
                           {
@@ -2725,18 +2737,18 @@ export default {
                             itemStyle: {
                               normal: {
                                 color: "#379DFB",
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
+                                barBorderRadius: [5, 5, 5, 5],
+                              },
                             },
                             label: {
                               normal: {
                                 show: true,
                                 color: "#fff",
-                                position: "insideRight"
-                              }
+                                position: "insideRight",
+                              },
                             },
                             z: 10,
-                            data: [320, 302, 301, 543, 320, 302, 301]
+                            data: [320, 302, 301, 543, 320, 302, 301],
                           },
                           {
                             name: "B门店",
@@ -2746,18 +2758,18 @@ export default {
                               normal: {
                                 color: "#dfe5f1",
                                 shadowBlur: [0, 0, 0, 10],
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
+                                barBorderRadius: [5, 5, 5, 5],
+                              },
                             },
                             label: {
                               normal: {
                                 show: true,
                                 color: "#000",
-                                position: "insideRight"
-                              }
+                                position: "insideRight",
+                              },
                             },
                             z: 5,
-                            data: [90, 230, 210, 432, 320, 302, 301]
+                            data: [90, 230, 210, 432, 320, 302, 301],
                           },
                           {
                             name: "B门店",
@@ -2767,24 +2779,24 @@ export default {
                               normal: {
                                 color: "rgba(237,125,49, 0)",
                                 shadowBlur: [0, 0, 0, 10],
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
+                                barBorderRadius: [5, 5, 5, 5],
+                              },
                             },
                             label: {
                               normal: {
                                 color: "red",
                                 show: true,
                                 position: [10, 5],
-                                formatter: "{c}%"
-                              }
+                                formatter: "{c}%",
+                              },
                             },
                             z: 5,
-                            data: [10, 10, 10, 100, 10, 10, 10]
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            data: [10, 10, 10, 100, 10, 10, 10],
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "总公司成本",
@@ -2798,22 +2810,22 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop: "10px"
+                    marginTop: "10px",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
-                      option: {}
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                      option: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           id: "quantity",
@@ -2834,14 +2846,14 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         tooltip: {
@@ -2851,8 +2863,8 @@ export default {
                           axisPointer: {
                             type: "none",
                             label: {
-                              backgroundColor: "rgba(0,0,0,0)"
-                            }
+                              backgroundColor: "rgba(0,0,0,0)",
+                            },
                           },
                           formatter: function(val) {
                             return (
@@ -2883,8 +2895,8 @@ export default {
                             color: "#fff",
                             fontStyle: "normal",
                             fontFamily: "微软雅黑",
-                            fontSize: 12
-                          }
+                            fontSize: 12,
+                          },
                         },
                         grid: {
                           left: "10%",
@@ -2892,7 +2904,7 @@ export default {
                           bottom: "5%",
                           top: "10%",
                           //	padding:'0 0 10 0',
-                          containLabel: true
+                          containLabel: true,
                         },
                         legend: {
                           //图例组件，颜色和名字
@@ -2904,22 +2916,22 @@ export default {
                           itemHeight: 10,
                           data: [
                             {
-                              name: "接手"
+                              name: "接手",
                               //icon:'image://../wwwroot/js/url2.png', //路径
                             },
                             {
-                              name: "投营"
+                              name: "投营",
                             },
                             {
-                              name: "总数量"
-                            }
+                              name: "总数量",
+                            },
                           ],
                           textStyle: {
                             color: "#a8aab0",
                             fontStyle: "normal",
                             fontFamily: "微软雅黑",
-                            fontSize: 12
-                          }
+                            fontSize: 12,
+                          },
                         },
                         xAxis: [
                           {
@@ -2931,7 +2943,7 @@ export default {
                               "2017",
                               "2018",
                               "2019",
-                              "2020"
+                              "2020",
                             ],
                             axisLabel: {
                               //坐标轴刻度标签的相关设置。
@@ -2941,30 +2953,30 @@ export default {
                                 color: "#c8c9c9",
                                 fontStyle: "normal",
                                 fontFamily: "微软雅黑",
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                               // rotate: 50,
                             },
                             axisTick: {
                               //坐标轴刻度相关设置。
-                              show: false
+                              show: false,
                             },
                             axisLine: {
                               //坐标轴轴线相关设置
                               lineStyle: {
                                 color: "#c8c9c9",
-                                opacity: 1
-                              }
+                                opacity: 1,
+                              },
                             },
                             splitLine: {
                               //坐标轴在 grid 区域中的分隔线。
-                              show: false
-                            }
+                              show: false,
+                            },
                           },
                           {
                             type: "value",
-                            show: false
-                          }
+                            show: false,
+                          },
                         ],
                         yAxis: [
                           {
@@ -2975,23 +2987,23 @@ export default {
                                 color: "#c8c9c9",
                                 fontStyle: "normal",
                                 fontFamily: "微软雅黑",
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
-                              show: false
+                              show: false,
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               show: true,
                               lineStyle: {
                                 color: ["#fff"],
-                                opacity: 0.06
-                              }
-                            }
-                          }
+                                opacity: 0.06,
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -3006,9 +3018,9 @@ export default {
                                 show: true,
                                 color: "#01a4f7",
                                 barBorderRadius: 50,
-                                borderWidth: 0
-                              }
-                            }
+                                borderWidth: 0,
+                              },
+                            },
                           },
                           {
                             name: "投营",
@@ -3023,9 +3035,9 @@ export default {
                                 show: true,
                                 color: "#0fd927",
                                 barBorderRadius: 50,
-                                borderWidth: 0
-                              }
-                            }
+                                borderWidth: 0,
+                              },
+                            },
                           },
                           {
                             name: "总数量",
@@ -3040,17 +3052,17 @@ export default {
                                 show: true,
                                 color: "#fcc32d",
                                 barBorderRadius: 50,
-                                borderWidth: 0
-                              }
-                            }
+                                borderWidth: 0,
+                              },
+                            },
                           },
                           {
                             xAxisIndex: 1,
                             type: "line",
                             itemStyle: {
                               normal: {
-                                color: "#b37eeb"
-                              }
+                                color: "#b37eeb",
+                              },
                             },
                             data: (function() {
                               let data = [65, 55, 60, 45, 42, 15];
@@ -3059,16 +3071,16 @@ export default {
                                 datas.push([35 + index * 100, element]);
                               });
                               return datas;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           id: "construction",
@@ -3089,14 +3101,14 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "49%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
@@ -3106,26 +3118,26 @@ export default {
                           // x: 'center',
                           // y: 'center',
                           textStyle: {
-                            fontSize: 18
+                            fontSize: 18,
                           },
                           subtext: "85000",
                           subtextStyle: {
                             fontSize: 45,
-                            color: "#1edf57"
-                          }
+                            color: "#1edf57",
+                          },
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -3141,11 +3153,11 @@ export default {
                                   let colorList = [
                                     "#fd866a",
                                     "#9e87ff",
-                                    "#73acff"
+                                    "#73acff",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -3163,50 +3175,50 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 15
-                                }
-                              }
+                                  fontSize: 15,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 30,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "传统",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "品牌",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "特色",
-                                value: 3.15
-                              }
-                            ]
-                          }
-                        ]
-                      }
+                                value: 3.15,
+                              },
+                            ],
+                          },
+                        ],
+                      },
                     },
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "49%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          formatter: "{b}:{c}: ({d}%)"
+                          formatter: "{b}:{c}: ({d}%)",
                         },
 
                         series: [
@@ -3215,7 +3227,7 @@ export default {
                             type: "pie",
                             radius: [0, "30%"],
                             label: {
-                              position: "inner"
+                              position: "inner",
                             },
                             itemStyle: {
                               normal: {
@@ -3225,28 +3237,28 @@ export default {
                                   let colorList = [
                                     "#73acff",
                                     "#fd866a",
-                                    "#9e87ff"
+                                    "#9e87ff",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
 
                             selectedMode: "single",
                             data: [
                               {
                                 value: 875,
-                                name: "特色"
+                                name: "特色",
                               },
                               {
                                 value: 1239,
-                                name: "传统"
+                                name: "传统",
                               },
                               {
                                 value: 1239,
-                                name: "品牌"
-                              }
-                            ]
+                                name: "品牌",
+                              },
+                            ],
                           },
                           {
                             name: "招标方式",
@@ -3259,20 +3271,20 @@ export default {
                                   let colorList = [
                                     "#73acff",
                                     "#fd866a",
-                                    "#9e87ff"
+                                    "#9e87ff",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 30,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -3290,33 +3302,33 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 15
-                                }
-                              }
+                                  fontSize: 15,
+                                },
+                              },
                             },
 
                             data: [
                               {
                                 value: 875,
                                 name: "特色",
-                                type: "特色"
+                                type: "特色",
                               },
                               {
                                 value: 1239,
                                 name: "传统",
-                                type: "传统"
+                                type: "传统",
                               },
                               {
                                 value: 1239,
                                 name: "品牌",
-                                type: "品牌"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                type: "品牌",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "table列表",
@@ -3329,7 +3341,7 @@ export default {
                     background: "white",
                     marginBottom: "10px",
                     marginTop: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
@@ -3337,7 +3349,7 @@ export default {
                       style: {
                         width: "100%",
                         height: "400px",
-                        background: "#fff"
+                        background: "#fff",
                       },
                       columns: [
                         { prop: "A", label: "业态结构" },
@@ -3348,7 +3360,7 @@ export default {
                         { prop: "F", label: "收入(元)" },
                         { prop: "G", label: "客单价(元)" },
                         { prop: "H", label: "坪效(元)" },
-                        { prop: "I", label: "利润(元)" }
+                        { prop: "I", label: "利润(元)" },
                       ],
                       tableData: [
                         {
@@ -3360,7 +3372,7 @@ export default {
                           F: "110000",
                           G: "110000",
                           H: "110000",
-                          I: "110000"
+                          I: "110000",
                         },
                         {
                           A: "本地特色",
@@ -3371,7 +3383,7 @@ export default {
                           F: "120000",
                           G: "110000",
                           H: "110000",
-                          I: "110000"
+                          I: "110000",
                         },
                         {
                           A: "传统产业",
@@ -3382,13 +3394,13 @@ export default {
                           F: "130000",
                           G: "110000",
                           H: "110000",
-                          I: "110000"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+                          I: "110000",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             {
               id: "construction_2019",
@@ -3403,14 +3415,14 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "49%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
@@ -3420,26 +3432,26 @@ export default {
                           // x: 'center',
                           // y: 'center',
                           textStyle: {
-                            fontSize: 18
+                            fontSize: 18,
                           },
                           subtext: "85000",
                           subtextStyle: {
                             fontSize: 45,
-                            color: "#1edf57"
-                          }
+                            color: "#1edf57",
+                          },
                         },
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -3455,11 +3467,11 @@ export default {
                                   let colorList = [
                                     "#fd866a",
                                     "#9e87ff",
-                                    "#73acff"
+                                    "#73acff",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -3477,50 +3489,50 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 15
-                                }
-                              }
+                                  fontSize: 15,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 30,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "传统",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "品牌",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "特色",
-                                value: 3.15
-                              }
-                            ]
-                          }
-                        ]
-                      }
+                                value: 3.15,
+                              },
+                            ],
+                          },
+                        ],
+                      },
                     },
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "49%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          formatter: "{b}:{c}: ({d}%)"
+                          formatter: "{b}:{c}: ({d}%)",
                         },
 
                         series: [
@@ -3529,7 +3541,7 @@ export default {
                             type: "pie",
                             radius: [0, "30%"],
                             label: {
-                              position: "inner"
+                              position: "inner",
                             },
                             itemStyle: {
                               normal: {
@@ -3539,28 +3551,28 @@ export default {
                                   let colorList = [
                                     "#73acff",
                                     "#fd866a",
-                                    "#9e87ff"
+                                    "#9e87ff",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
 
                             selectedMode: "single",
                             data: [
                               {
                                 value: 875,
-                                name: "特色"
+                                name: "特色",
                               },
                               {
                                 value: 1239,
-                                name: "传统"
+                                name: "传统",
                               },
                               {
                                 value: 1239,
-                                name: "品牌"
-                              }
-                            ]
+                                name: "品牌",
+                              },
+                            ],
                           },
                           {
                             name: "招标方式",
@@ -3573,20 +3585,20 @@ export default {
                                   let colorList = [
                                     "#73acff",
                                     "#fd866a",
-                                    "#9e87ff"
+                                    "#9e87ff",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 30,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -3604,33 +3616,33 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 15
-                                }
-                              }
+                                  fontSize: 15,
+                                },
+                              },
                             },
 
                             data: [
                               {
                                 value: 875,
                                 name: "特色",
-                                type: "特色"
+                                type: "特色",
                               },
                               {
                                 value: 1239,
                                 name: "传统",
-                                type: "传统"
+                                type: "传统",
                               },
                               {
                                 value: 1239,
                                 name: "品牌",
-                                type: "品牌"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                                type: "品牌",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "table列表",
@@ -3643,7 +3655,7 @@ export default {
                     background: "white",
                     marginBottom: "10px",
                     marginTop: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
@@ -3651,7 +3663,7 @@ export default {
                       style: {
                         width: "100%",
                         height: "400px",
-                        background: "#fff"
+                        background: "#fff",
                       },
                       columns: [
                         { prop: "A", label: "业态结构" },
@@ -3662,7 +3674,7 @@ export default {
                         { prop: "F", label: "收入(元)" },
                         { prop: "G", label: "客单价(元)" },
                         { prop: "H", label: "坪效(元)" },
-                        { prop: "I", label: "利润(元)" }
+                        { prop: "I", label: "利润(元)" },
                       ],
                       tableData: [
                         {
@@ -3674,7 +3686,7 @@ export default {
                           F: "110000",
                           G: "110000",
                           H: "110000",
-                          I: "110000"
+                          I: "110000",
                         },
                         {
                           A: "本地特色",
@@ -3685,7 +3697,7 @@ export default {
                           F: "120000",
                           G: "110000",
                           H: "110000",
-                          I: "110000"
+                          I: "110000",
                         },
                         {
                           A: "传统产业",
@@ -3696,15 +3708,15 @@ export default {
                           F: "130000",
                           G: "110000",
                           H: "110000",
-                          I: "110000"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+                          I: "110000",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           id: "rateofreturn",
@@ -3725,18 +3737,18 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
                           //提示框组件
@@ -3745,15 +3757,15 @@ export default {
                           axisPointer: {
                             type: "shadow",
                             label: {
-                              backgroundColor: "#6a7985"
-                            }
+                              backgroundColor: "#6a7985",
+                            },
                           },
                           textStyle: {
                             color: "#fff",
                             fontStyle: "normal",
                             fontFamily: "微软雅黑",
-                            fontSize: 12
-                          }
+                            fontSize: 12,
+                          },
                         },
                         grid: {
                           left: "10%",
@@ -3761,7 +3773,7 @@ export default {
                           bottom: "10%",
                           top: "20%",
                           //	padding:'0 0 10 0',
-                          containLabel: true
+                          containLabel: true,
                         },
                         legend: {
                           //图例组件，颜色和名字
@@ -3772,22 +3784,22 @@ export default {
                           itemHeight: 10,
                           data: [
                             {
-                              name: "接手"
+                              name: "接手",
                               //icon:'image://../wwwroot/js/url2.png', //路径
                             },
                             {
-                              name: "投营"
+                              name: "投营",
                             },
                             {
-                              name: "总数量"
-                            }
+                              name: "总数量",
+                            },
                           ],
                           textStyle: {
                             color: "#a8aab0",
                             fontStyle: "normal",
                             fontFamily: "微软雅黑",
-                            fontSize: 12
-                          }
+                            fontSize: 12,
+                          },
                         },
                         xAxis: [
                           {
@@ -3805,7 +3817,7 @@ export default {
                               "9月",
                               "10月",
                               "11月",
-                              "12月"
+                              "12月",
                             ],
                             axisLabel: {
                               //坐标轴刻度标签的相关设置。
@@ -3815,25 +3827,25 @@ export default {
                                 color: "#c8c9c9",
                                 fontStyle: "normal",
                                 fontFamily: "微软雅黑",
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                               // rotate: 50,
                             },
                             axisTick: {
                               //坐标轴刻度相关设置。
-                              show: false
+                              show: false,
                             },
                             axisLine: {
                               //坐标轴轴线相关设置
                               lineStyle: {
                                 color: "#c8c9c9",
-                                opacity: 1
-                              }
+                                opacity: 1,
+                              },
                             },
                             splitLine: {
                               //坐标轴在 grid 区域中的分隔线。
-                              show: false
-                            }
+                              show: false,
+                            },
                           },
                           {
                             type: "value",
@@ -3850,10 +3862,10 @@ export default {
                                 "9月",
                                 "10月",
                                 "11月",
-                                "12月"
+                                "12月",
                               ].length * 100,
-                            show: false
-                          }
+                            show: false,
+                          },
                         ],
                         yAxis: [
                           {
@@ -3864,23 +3876,23 @@ export default {
                                 color: "#c8c9c9",
                                 fontStyle: "normal",
                                 fontFamily: "微软雅黑",
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
-                              show: false
+                              show: false,
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               show: true,
                               lineStyle: {
                                 color: ["#fff"],
-                                opacity: 0.06
-                              }
-                            }
-                          }
+                                opacity: 0.06,
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -3901,7 +3913,7 @@ export default {
                               45,
                               30,
                               15,
-                              1
+                              1,
                             ],
                             barWidth: 12,
                             barCategoryGap: 50,
@@ -3910,9 +3922,9 @@ export default {
                                 show: true,
                                 color: "#3aa1ff",
                                 barBorderRadius: 50,
-                                borderWidth: 0
-                              }
-                            }
+                                borderWidth: 0,
+                              },
+                            },
                           },
                           {
                             name: "未收",
@@ -3931,7 +3943,7 @@ export default {
                               45,
                               30,
                               15,
-                              1
+                              1,
                             ],
                             barWidth: 12,
                             barCategoryGap: 50,
@@ -3940,17 +3952,17 @@ export default {
                                 show: true,
                                 color: "#fc5ea9",
                                 barBorderRadius: 50,
-                                borderWidth: 0
-                              }
-                            }
+                                borderWidth: 0,
+                              },
+                            },
                           },
                           {
                             xAxisIndex: 1,
                             type: "line",
                             itemStyle: {
                               normal: {
-                                color: "#b37eeb"
-                              }
+                                color: "#b37eeb",
+                              },
                             },
                             data: (function() {
                               let data = [
@@ -3965,19 +3977,19 @@ export default {
                                 15,
                                 106,
                                 55,
-                                45
+                                45,
                               ];
                               let datas = [];
                               data.forEach((element, index) => {
                                 datas.push([35 + index * 100, element]);
                               });
                               return datas;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "店面收入完成百分比",
@@ -3990,14 +4002,14 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: [
@@ -4008,22 +4020,22 @@ export default {
                             x: "center",
                             y: "center",
                             textStyle: {
-                              fontSize: 20
-                            }
-                          }
+                              fontSize: 20,
+                            },
+                          },
                         ],
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -4044,11 +4056,11 @@ export default {
                                     "#2ccc44",
                                     "#ffbc32",
                                     "#fd866a",
-                                    "#1ca7ff"
+                                    "#1ca7ff",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -4066,60 +4078,60 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 30,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "A供应商",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "B供应商",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "C供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "D供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "E供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "F供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "H供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "其他",
-                                value: 3.15
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
+                                value: 3.15,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             {
               id: "rateofreturn_2019",
@@ -4134,18 +4146,18 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: {
-                          text: ""
+                          text: "",
                         },
                         tooltip: {
                           //提示框组件
@@ -4154,15 +4166,15 @@ export default {
                           axisPointer: {
                             type: "shadow",
                             label: {
-                              backgroundColor: "#6a7985"
-                            }
+                              backgroundColor: "#6a7985",
+                            },
                           },
                           textStyle: {
                             color: "#fff",
                             fontStyle: "normal",
                             fontFamily: "微软雅黑",
-                            fontSize: 12
-                          }
+                            fontSize: 12,
+                          },
                         },
                         grid: {
                           left: "10%",
@@ -4170,7 +4182,7 @@ export default {
                           bottom: "10%",
                           top: "20%",
                           //	padding:'0 0 10 0',
-                          containLabel: true
+                          containLabel: true,
                         },
                         legend: {
                           //图例组件，颜色和名字
@@ -4181,22 +4193,22 @@ export default {
                           itemHeight: 10,
                           data: [
                             {
-                              name: "接手"
+                              name: "接手",
                               //icon:'image://../wwwroot/js/url2.png', //路径
                             },
                             {
-                              name: "投营"
+                              name: "投营",
                             },
                             {
-                              name: "总数量"
-                            }
+                              name: "总数量",
+                            },
                           ],
                           textStyle: {
                             color: "#a8aab0",
                             fontStyle: "normal",
                             fontFamily: "微软雅黑",
-                            fontSize: 12
-                          }
+                            fontSize: 12,
+                          },
                         },
                         xAxis: [
                           {
@@ -4214,7 +4226,7 @@ export default {
                               "9月",
                               "10月",
                               "11月",
-                              "12月"
+                              "12月",
                             ],
                             axisLabel: {
                               //坐标轴刻度标签的相关设置。
@@ -4224,25 +4236,25 @@ export default {
                                 color: "#c8c9c9",
                                 fontStyle: "normal",
                                 fontFamily: "微软雅黑",
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                               // rotate: 50,
                             },
                             axisTick: {
                               //坐标轴刻度相关设置。
-                              show: false
+                              show: false,
                             },
                             axisLine: {
                               //坐标轴轴线相关设置
                               lineStyle: {
                                 color: "#c8c9c9",
-                                opacity: 1
-                              }
+                                opacity: 1,
+                              },
                             },
                             splitLine: {
                               //坐标轴在 grid 区域中的分隔线。
-                              show: false
-                            }
+                              show: false,
+                            },
                           },
                           {
                             type: "value",
@@ -4259,10 +4271,10 @@ export default {
                                 "9月",
                                 "10月",
                                 "11月",
-                                "12月"
+                                "12月",
                               ].length * 100,
-                            show: false
-                          }
+                            show: false,
+                          },
                         ],
                         yAxis: [
                           {
@@ -4273,23 +4285,23 @@ export default {
                                 color: "#c8c9c9",
                                 fontStyle: "normal",
                                 fontFamily: "微软雅黑",
-                                fontSize: 12
-                              }
+                                fontSize: 12,
+                              },
                             },
                             axisLine: {
-                              show: false
+                              show: false,
                             },
                             axisTick: {
-                              show: false
+                              show: false,
                             },
                             splitLine: {
                               show: true,
                               lineStyle: {
                                 color: ["#fff"],
-                                opacity: 0.06
-                              }
-                            }
-                          }
+                                opacity: 0.06,
+                              },
+                            },
+                          },
                         ],
                         series: [
                           {
@@ -4310,7 +4322,7 @@ export default {
                               45,
                               30,
                               15,
-                              1
+                              1,
                             ],
                             barWidth: 12,
                             barCategoryGap: 50,
@@ -4319,9 +4331,9 @@ export default {
                                 show: true,
                                 color: "#3aa1ff",
                                 barBorderRadius: 50,
-                                borderWidth: 0
-                              }
-                            }
+                                borderWidth: 0,
+                              },
+                            },
                           },
                           {
                             name: "未收",
@@ -4340,7 +4352,7 @@ export default {
                               45,
                               30,
                               15,
-                              1
+                              1,
                             ],
                             barWidth: 12,
                             barCategoryGap: 50,
@@ -4349,17 +4361,17 @@ export default {
                                 show: true,
                                 color: "#fc5ea9",
                                 barBorderRadius: 50,
-                                borderWidth: 0
-                              }
-                            }
+                                borderWidth: 0,
+                              },
+                            },
                           },
                           {
                             xAxisIndex: 1,
                             type: "line",
                             itemStyle: {
                               normal: {
-                                color: "#b37eeb"
-                              }
+                                color: "#b37eeb",
+                              },
                             },
                             data: (function() {
                               let data = [
@@ -4374,19 +4386,19 @@ export default {
                                 15,
                                 106,
                                 55,
-                                45
+                                45,
                               ];
                               let datas = [];
                               data.forEach((element, index) => {
                                 datas.push([35 + index * 100, element]);
                               });
                               return datas;
-                            })()
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            })(),
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   title: "店面收入完成百分比",
@@ -4399,14 +4411,14 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "400px"
+                        height: "400px",
                       },
                       option: {
                         title: [
@@ -4417,22 +4429,22 @@ export default {
                             x: "center",
                             y: "center",
                             textStyle: {
-                              fontSize: 20
-                            }
-                          }
+                              fontSize: 20,
+                            },
+                          },
                         ],
                         grid: {
                           top: "20%",
                           right: "40",
                           left: "60",
-                          bottom: "40" //图表尺寸大小
+                          bottom: "40", //图表尺寸大小
                         },
                         legend: {
                           orient: "horizontal",
-                          bottom: 10
+                          bottom: 10,
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
                         },
                         series: [
                           {
@@ -4453,11 +4465,11 @@ export default {
                                     "#2ccc44",
                                     "#ffbc32",
                                     "#fd866a",
-                                    "#1ca7ff"
+                                    "#1ca7ff",
                                   ];
                                   return colorList[params.dataIndex];
-                                }
-                              }
+                                },
+                              },
                             },
                             label: {
                               show: true,
@@ -4475,66 +4487,66 @@ export default {
                                   return text;
                                 },
                                 textStyle: {
-                                  fontSize: 12
-                                }
-                              }
+                                  fontSize: 12,
+                                },
+                              },
                             },
                             labelLine: {
                               normal: {
                                 length: 30,
                                 length2: 30,
                                 lineStyle: {
-                                  width: 1
-                                }
-                              }
+                                  width: 1,
+                                },
+                              },
                             },
                             data: [
                               {
                                 name: "A供应商",
-                                value: 1.45
+                                value: 1.45,
                               },
                               {
                                 name: "B供应商",
-                                value: 2.93
+                                value: 2.93,
                               },
                               {
                                 name: "C供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "D供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "E供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "F供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "H供应商",
-                                value: 3.15
+                                value: 3.15,
                               },
                               {
                                 name: "其他",
-                                value: 3.15
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                                value: 3.15,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 

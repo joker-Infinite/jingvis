@@ -46,7 +46,7 @@
                   <div v-if="wit.type === 'map' || wit.type === 'table'">
                     <my-table
                       :columns="wit.columns"
-                      height="580px"
+                      :height="wit.height ? wit.height : '500px'"
                       :multiple="false"
                       :border="false"
                       :data="wit.tableData"
@@ -92,8 +92,8 @@ export default {
   props: {
     collapseData: {
       type: Array,
-      default: []
-    }
+      default: [],
+    },
   },
   data() {
     return {
@@ -102,20 +102,20 @@ export default {
       sumClick: "",
       isActive: "",
       time: 0,
-      selectTime: ""
+      selectTime: "",
     };
   },
   methods: {
     async initECharts(v) {
       let timeID = "";
       let that = this;
-      await new Promise(resolve => {
+      await new Promise((resolve) => {
         timeID = setInterval(() => {
           if (this.time !== v.length) {
             v[this.time].collapseItem.forEach((m, n) => {
               m.EChartsBox.forEach((kt, ki) => {
                 kt.EChartsItem.forEach((mt, mx) => {
-                  this.$nextTick(_ => {
+                  this.$nextTick((_) => {
                     if (mt.type !== "map" && mt.type !== "table") {
                       this.$echarts
                         .init(
@@ -147,12 +147,12 @@ export default {
      * */
     scrollChange() {
       let collapse = document.getElementById("collapse");
-      collapse.addEventListener("scroll", _ => {
+      collapse.addEventListener("scroll", (_) => {
         this.navData = [];
         this.collapseData.forEach((item, index) => {
           this.navData.push({
             index: index,
-            height: document.getElementById(item.id).offsetTop - 1
+            height: document.getElementById(item.id).offsetTop - 1,
           });
         });
         this.navBar(collapse.scrollTop);
@@ -189,18 +189,18 @@ export default {
         this.activeName = this.activeName_;
       }
       this.sumClick++;
-    }
+    },
   },
   mounted() {
     this.scrollChange();
     this.initECharts(this.collapseData);
-    this.collapseData.forEach(i => {
+    this.collapseData.forEach((i) => {
       i.collapseItem.forEach((ci, cx) => {
         this.activeName.push(i.id + cx);
         this.activeName_.push(i.id + cx);
       });
     });
-  }
+  },
 };
 </script>
 
