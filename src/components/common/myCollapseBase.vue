@@ -105,19 +105,28 @@
                 time: 0,
                 time_: 0,
                 selectTime: "",
-                EChartsData: []
+                EChartsData: [],
+                EChartsData_: [],
             };
         },
         methods: {
-            async refresh(v) {
+            async refresh() {
                 let timeID = '';
+                this.time_ = 0;
                 await new Promise((resolve) => {
                     timeID = setInterval(_ => {
-                        if (this.time_ !== this.EChartsData.length) {
-                            let item = this.EChartsData[this.time_];
-                            this.$echarts.init(document.getElementById(item.id)).dispose();
-                            this.$nextTick(_ => {
-                                this.$echarts.init(document.getElementById(item.id)).setOption(item.option);
+                        if (this.time_ !== this.EChartsData_.length) {
+                            let data = this.EChartsData_[this.time_];
+                            data.EChartsBox.forEach((fi, fx) => {
+                                fi.EChartsItem.forEach((si, sx) => {
+                                    let id = this.EChartsData_[this.time_].id + '-' + fx + '-' + sx;
+                                    if (si.type !== 'table' && si.type !== 'map') {
+                                        this.$echarts.init(document.getElementById(id)).dispose();
+                                        this.$nextTick(_ => {
+                                            this.$echarts.init(document.getElementById(id)).setOption(si.option);
+                                        });
+                                    }
+                                })
                             });
                             this.time_++;
                         }
@@ -125,36 +134,23 @@
                             clearInterval(timeID);
                             resolve()
                         }
-                    }, 100)
+                    }, 250)
                 })
             },
-            async initECharts(v, refresh) {
+            async initECharts() {
                 let timeID = "";
                 await new Promise((resolve) => {
                     timeID = setInterval(() => {
-                        if (this.time !== v.length) {
-                            v[this.time].collapseItem.forEach((m, n) => {
-                                m.EChartsBox.forEach((kt, ki) => {
-                                    kt.EChartsItem.forEach((mt, mx) => {
-                                        this.$nextTick((_) => {
-                                            if (mt.type !== "map" && mt.type !== "table") {
-                                                this.EChartsData.push({
-                                                    id: m.id + "-" + ki + "-" + mx,
-                                                    option: mt.option
-                                                });
-                                                this.$echarts.init(document.getElementById(m.id + "-" + ki + "-" + mx)).setOption(mt.option);
-                                            }
-                                        });
-                                    });
-                                });
-                            });
+                        if (this.time !== this.EChartsData.length) {
+                            let item = this.EChartsData[this.time];
+                            this.$echarts.init(document.getElementById(item.id)).setOption(item.option);
                             this.time++;
                             resolve();
                         }
-                        if (this.time === v.length) {
+                        if (this.time === this.EChartsData.length) {
                             clearInterval(timeID);
                         }
-                    }, 1000);
+                    }, 70);
                 });
             },
             /**
@@ -214,13 +210,30 @@
         },
         mounted() {
             this.scrollChange();
-            this.initECharts(this.collapseData);
             this.collapseData.forEach((i) => {
-                i.collapseItem.forEach((ci, cx) => {
+                i.collapseItem.forEach((m, cx) => {
+
                     this.activeName.push(i.id + cx);
                     this.activeName_.push(i.id + cx);
+                    this.EChartsData_.push({
+                        id: m.id,
+                        EChartsBox: m.EChartsBox
+                    });
+                    m.EChartsBox.forEach((kt, ki) => {
+                        kt.EChartsItem.forEach((mt, mx) => {
+                            this.$nextTick((_) => {
+                                if (mt.type !== "map" && mt.type !== "table") {
+                                    this.EChartsData.push({
+                                        id: m.id + "-" + ki + "-" + mx,
+                                        option: mt.option
+                                    });
+                                }
+                            });
+                        });
+                    });
                 });
             });
+            this.initECharts(this.collapseData);
         },
     };
 </script>
