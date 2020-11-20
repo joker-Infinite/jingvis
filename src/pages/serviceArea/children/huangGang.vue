@@ -1,6 +1,9 @@
 <template>
   <div style="width: 100%;height: 100%;font-size: 50px">
-    <my-collapse-base :collapseData="collapseData"></my-collapse-base>
+    <my-collapse-base
+      @selectionChange="selectionChange"
+      :collapseData="collapseData"
+    ></my-collapse-base>
   </div>
   <!-- 55555 -->
 </template>
@@ -31,11 +34,13 @@ export default {
                   timeValue: "",
                   selectValue: "",
                   style: {
+                    cursor:'pointer',
                     width: "100%",
                     height: "600px",
                     borderRadius: "10px",
                     background: "white",
                     overflow: "hidden",
+
                   },
                   EChartsItem: [
                     {
@@ -4546,6 +4551,12 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    selectionChange(val) {
+      this.$router.push("/details/details");
+      // console.log(val);
+    },
   },
 };
 </script>

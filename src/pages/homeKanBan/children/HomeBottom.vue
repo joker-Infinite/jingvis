@@ -65,7 +65,8 @@ export default {
       select: "A",
       option_A: {},
       option_B: {},
-      options: {}
+      options: {},
+      resizeData: [],
     };
   },
   methods: {
@@ -121,7 +122,12 @@ export default {
       let HomeBottomF = this.$echarts.init(
         document.getElementById("HomeBottomF")
       );
-
+      this.resizeData.push(HomeBottomA);
+      this.resizeData.push(HomeBottomB);
+      this.resizeData.push(HomeBottomC);
+      this.resizeData.push(HomeBottomD);
+      this.resizeData.push(HomeBottomE);
+      this.resizeData.push(HomeBottomA);
       this.AD = option;
       HomeBottomA.setOption(option);
       HomeBottomB.setOption(option);
@@ -143,46 +149,46 @@ export default {
           show: true,
           textStyle: {
             fontFamily: "幼圆",
-            lineHeight: 30,
+            lineHeight: 25,
             rich: {
               a: {
                 color: "#FFF",
                 fontSize: "15",
                 height: 15,
-                width: 15
-              }
-            }
-          }
+                width: 15,
+              },
+            },
+          },
         },
         tooltip: {
           trigger: "axis",
           axisPointer: {
             // 坐标轴指示器，坐标轴触发有效
-            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
-          }
+            type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
+          },
         },
         grid: {
           top: "15%",
-          bottom: 30
+          bottom: 30,
         },
         xAxis: {
           type: "value",
           position: "bottom",
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           axisLabel: {
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           splitLine: { show: false },
           axisLine: {
             lineStyle: {
-              color: "#FFF"
-            }
-          }
+              color: "#FFF",
+            },
+          },
         },
         yAxis: {
           type: "category",
@@ -190,7 +196,7 @@ export default {
           axisLabel: { show: false },
           axisTick: { show: false },
           splitLine: { show: false },
-          data: ["a公司", "b公司", "c公司", "d公司", "e公司"]
+          data: ["a公司", "b公司", "c公司", "d公司", "e公司"],
         },
         series: [
           {
@@ -203,18 +209,18 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
                   {
                     offset: 0,
-                    color: "rgba(192,42,84,1)"
+                    color: "rgba(192,42,84,1)",
                   },
                   {
                     offset: 1,
-                    color: "rgba(127,69,224,1)"
-                  }
-                ])
-              }
+                    color: "rgba(127,69,224,1)",
+                  },
+                ]),
+              },
             },
             label: {
               show: true,
-              formatter: "{b}"
+              formatter: "{b}",
             },
             data: [0.6, 0.7, 0.8, 0.9, 1],
             markLine: {
@@ -222,8 +228,8 @@ export default {
                 {
                   type: "average",
                   name: "平均值",
-                  xAxis: 0.8 //设置平均值所在位置
-                }
+                  xAxis: 0.8, //设置平均值所在位置
+                },
               ],
               symbol: ["none", "none"],
               position: "insideTopCenter",
@@ -231,14 +237,14 @@ export default {
                 normal: {
                   lineStyle: {
                     type: "dotted",
-                    color: "white"
+                    color: "white",
                   },
                   label: {
                     show: true,
                     position: "middle",
-                    formatter: "数据平均 : 100"
-                  }
-                }
+                    formatter: "数据平均 : 100",
+                  },
+                },
               },
               large: true,
               effect: {
@@ -248,15 +254,20 @@ export default {
                 scaleSize: 2,
                 color: null,
                 shadowColor: null,
-                shadowBlur: null
-              }
-            }
-          }
-        ]
+                shadowBlur: null,
+              },
+            },
+          },
+        ],
       };
       this.options = option;
       HomeBottomG.setOption(option);
-    }
+    },
+    isResize() {
+      this.resizeData.forEach((element) => {
+        element.resize();
+      });
+    },
   },
   mounted() {
     this.option_A = {
@@ -267,7 +278,7 @@ export default {
         // height: "auto",
         top: "27%",
         left: "18%",
-        bottom: "30px"
+        bottom: "30px",
       },
       title: {
         text: "{a|     完成百分比}",
@@ -276,16 +287,16 @@ export default {
         y: -5,
         textStyle: {
           fontFamily: "幼圆",
-          lineHeight: 30,
+          lineHeight: 25,
           rich: {
             a: {
               color: "#FFF",
               fontSize: "15",
               height: 15,
-              width: 15
-            }
-          }
-        }
+              width: 15,
+            },
+          },
+        },
       },
 
       tooltip: {
@@ -294,14 +305,14 @@ export default {
           type: "line",
           lineStyle: {
             color: "red",
-            width: 1
+            width: 1,
             // shadowBlur:5,
             // opacity:1
-          }
+          },
         },
         formatter: function(list) {
           return list[0].name + ":" + list[0].value;
-        }
+        },
       },
       color: ["red", "#a549ff"],
       legend: {
@@ -311,40 +322,40 @@ export default {
             textStyle: {
               // fontSize:12,
               fontWeight: "bolder",
-              color: "#fff"
-            }
+              color: "#fff",
+            },
           },
-          "b"
+          "b",
         ],
         icon: "circle",
         orient: "horizontal",
         textStyle: {
           fontSize: "",
-          color: "#FFF"
+          color: "#FFF",
         },
         itemWidth: 10,
         itemHeight: 10,
         right: 20,
         top: 25,
-        borderColor: "yellow"
+        borderColor: "yellow",
       },
       xAxis: [
         {
           type: "category",
           data: ["a", "b", "c", "d"],
           axisPointer: {
-            type: "shadow"
+            type: "shadow",
           },
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           axisLabel: {
             textStyle: {
-              color: "#FFF"
-            }
-          }
-        }
+              color: "#FFF",
+            },
+          },
+        },
       ],
       yAxis: [
         {
@@ -355,19 +366,19 @@ export default {
           axisLabel: {
             formatter: "{value}%",
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           splitLine: {
             lineStyle: {
               type: "dashed",
-              color: "#001e6c"
-            }
-          }
+              color: "#001e6c",
+            },
+          },
         },
         {
           type: "value",
@@ -375,32 +386,32 @@ export default {
           max: 10,
           interval: 3,
           axisLabel: {
-            formatter: value => {
+            formatter: (value) => {
               let arr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
               return arr[value];
             },
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           splitLine: {
             lineStyle: {
               type: "dashed",
-              color: "#001e6c"
-            }
-          }
-        }
+              color: "#001e6c",
+            },
+          },
+        },
       ],
       series: [
         {
           name: "a",
           type: "line",
           yAxisIndex: 1,
-          data: [2, 2, 9, 7]
+          data: [2, 2, 9, 7],
         },
         {
           name: "b",
@@ -415,10 +426,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 20,
@@ -429,10 +440,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 80,
@@ -443,10 +454,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 90,
@@ -457,14 +468,14 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
-            }
-          ]
-        }
-      ]
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
+            },
+          ],
+        },
+      ],
     };
     this.option_B = {
       barWidth: 10,
@@ -474,7 +485,7 @@ export default {
         // height: "auto",
         top: "27%",
         left: "18%",
-        bottom: "30px"
+        bottom: "30px",
       },
       title: {
         text: "{a|     完成百分比}",
@@ -487,10 +498,10 @@ export default {
               color: "#FFF",
               fontSize: "15",
               height: 15,
-              width: 15
-            }
-          }
-        }
+              width: 15,
+            },
+          },
+        },
       },
       color: ["red", "#a549ff"],
       legend: {
@@ -498,30 +509,30 @@ export default {
         icon: "circle",
         orient: "horizontal",
         textStyle: {
-          color: "#FFF"
+          color: "#FFF",
         },
         itemWidth: 10,
         itemHeight: 10,
         right: 20,
-        top: 25
+        top: 25,
       },
       xAxis: [
         {
           type: "category",
           data: ["a", "b", "c", "d"],
           axisPointer: {
-            type: "shadow"
+            type: "shadow",
           },
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           axisLabel: {
             textStyle: {
-              color: "#FFF"
-            }
-          }
-        }
+              color: "#FFF",
+            },
+          },
+        },
       ],
       yAxis: [
         {
@@ -532,13 +543,13 @@ export default {
           axisLabel: {
             formatter: "{value}%",
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           axisTick: {
             //坐标轴刻度
-            show: false
-          }
+            show: false,
+          },
         },
         {
           type: "value",
@@ -546,7 +557,7 @@ export default {
           max: 12,
           interval: 2,
           axisLabel: {
-            formatter: value => {
+            formatter: (value) => {
               let arr = [
                 "1",
                 "2",
@@ -559,26 +570,26 @@ export default {
                 "9",
                 "10",
                 "11",
-                "12"
+                "12",
               ];
               return arr[value];
             },
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           axisTick: {
             //坐标轴刻度
-            show: false
-          }
-        }
+            show: false,
+          },
+        },
       ],
       series: [
         {
           name: "a",
           type: "line",
           yAxisIndex: 1,
-          data: [4, 9, 6, 3]
+          data: [4, 9, 6, 3],
         },
         {
           name: "b",
@@ -593,10 +604,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 44,
@@ -607,10 +618,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 55,
@@ -621,10 +632,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 76,
@@ -635,18 +646,18 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
-            }
-          ]
-        }
-      ]
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
+            },
+          ],
+        },
+      ],
     };
     this.initECharts_bottom(this.option_A);
     this.initBottomEnd();
-  }
+  },
 };
 </script>
 

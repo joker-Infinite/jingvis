@@ -67,7 +67,6 @@
                             "十堰分公司",
                             "恩施分公司",
                             "咸宁分公司",
-                            "服务区对比"
                         ]
                     },
                     {
@@ -179,6 +178,9 @@
                 }
                 if (v === "2-1") {
                     this.$router.push("/serviceArea/huangGang");
+                }
+                if (v === "3-2") {
+                    this.$router.push("/comparison/comparison");
                 }
             }
         }

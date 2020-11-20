@@ -81,7 +81,7 @@ export default {
       visible_: false,
       isShow: false,
       selectBD: 1,
-      pickerOptions: {}
+      pickerOptions: {},
     };
   },
   methods: {
@@ -94,13 +94,13 @@ export default {
       }
       if (Array.isArray(v) === true) {
         this.visible_ = true;
-        this.$nextTick(_ => {
+        this.$nextTick((_) => {
           this.inntECharts_(v);
           this.isShow = false;
         });
       } else {
         this.visible = true;
-        this.$nextTick(_ => {
+        this.$nextTick((_) => {
           this.initECharts(v);
           // this.isShow=false;
         });
@@ -110,7 +110,7 @@ export default {
       document
         .getElementById("commonECharts")
         .removeAttribute("_echarts_instance_");
-      this.$nextTick(_ => {
+      this.$nextTick((_) => {
         let commonECharts = this.$echarts.init(
           document.getElementById("commonECharts")
         );
@@ -125,7 +125,7 @@ export default {
       document
         .getElementById("commonEChartsRight")
         .removeAttribute("_echarts_instance_");
-      this.$nextTick(_ => {
+      this.$nextTick((_) => {
         let commonEChartsLeft = this.$echarts.init(
           document.getElementById("commonEChartsLeft")
         );
@@ -135,8 +135,8 @@ export default {
         commonEChartsLeft.setOption(option[0]);
         commonEChartsRight.setOption(option[1]);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

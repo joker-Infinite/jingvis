@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="collapse" id="collapse">
-            <div v-for="(item, index) in collapseData" :id="item.id" class="box_">
+            <div v-for="(item, index) in collapseData" :key="index" :id="item.id" class="box_">
                 <el-collapse v-model="activeName">
                     <el-collapse-item
                             v-for="(cit, cix) in item.collapseItem"

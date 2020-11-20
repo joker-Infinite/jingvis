@@ -96,7 +96,8 @@ export default {
       AD: {},
       BD: {},
       CD: {},
-      option: {}
+      option: {},
+      resizeData: [],
     };
   },
   methods: {
@@ -131,6 +132,7 @@ export default {
       let HomeTopRight_top = this.$echarts.init(
         document.getElementById("HomeTopRight_top")
       );
+      this.resizeData.push(HomeTopRight_top);
       let option = (this.AD = {
         title: {
           text: "{a|     省份访问TOP10}",
@@ -138,21 +140,21 @@ export default {
           x: "center",
           textStyle: {
             fontFamily: "幼圆",
-            lineHeight: 30,
+            lineHeight: 15,
             rich: {
               a: {
                 color: "#FFF",
                 fontSize: "15",
                 height: 15,
-                width: 15
-              }
-            }
-          }
+                width: 15,
+              },
+            },
+          },
         },
 
         tooltip: {
           trigger: "item",
-          triggerOn: "mousemove"
+          triggerOn: "mousemove",
         },
         series: {
           type: "sankey",
@@ -161,107 +163,107 @@ export default {
           top: "20%",
           focusNodeAdjacency: "inEdges",
           label: {
-            color: "#FFF"
+            color: "#FFF",
           },
           data: [
             {
-              name: "a"
+              name: "a",
             },
             {
-              name: "b"
+              name: "b",
             },
             {
-              name: "a1"
+              name: "a1",
             },
             {
-              name: "a2"
+              name: "a2",
             },
             {
-              name: "b1"
+              name: "b1",
             },
             {
-              name: "c"
-            }
+              name: "c",
+            },
           ],
           links: [
             {
               source: "a",
               target: "a1",
-              value: 5
+              value: 5,
             },
             {
               source: "a",
               target: "a2",
-              value: 3
+              value: 3,
             },
             {
               source: "b",
               target: "b1",
-              value: 8
+              value: 8,
             },
             {
               source: "a",
               target: "b1",
-              value: 3
+              value: 3,
             },
             {
               source: "b1",
               target: "a1",
-              value: 1
+              value: 1,
             },
             {
               source: "b1",
               target: "c",
-              value: 2
-            }
+              value: 2,
+            },
           ],
           focusNodeAdjacency: true,
           levels: [
             {
               depth: 0,
               itemStyle: {
-                color: "#ff82ce"
+                color: "#ff82ce",
               },
               lineStyle: {
                 color: "source",
-                opacity: 0.5
-              }
+                opacity: 0.5,
+              },
             },
             {
               depth: 1,
               itemStyle: {
-                color: "#00aeff"
+                color: "#00aeff",
               },
               lineStyle: {
                 color: "source",
-                opacity: 0.6
-              }
+                opacity: 0.6,
+              },
             },
             {
               depth: 2,
               itemStyle: {
-                color: "#eae375"
+                color: "#eae375",
               },
               lineStyle: {
                 color: "source",
-                opacity: 0.6
-              }
+                opacity: 0.6,
+              },
             },
             {
               depth: 3,
               itemStyle: {
-                color: "#f5eb4c"
+                color: "#f5eb4c",
               },
               lineStyle: {
                 color: "source",
-                opacity: 0.6
-              }
-            }
+                opacity: 0.6,
+              },
+            },
           ],
           lineStyle: {
-            curveness: 0.5
-          }
-        }
+            curveness: 0.5,
+          },
+        },
       });
       HomeTopRight_top.setOption(option);
     },
@@ -269,6 +271,7 @@ export default {
       let HomeTopRight_bottom_left = this.$echarts.init(
         document.getElementById("HomeTopRight_bottom_left")
       );
+      this.resizeData.push(HomeTopRight_bottom_left);
       let option = (this.BD = {
         barWidth: 20,
         title: {
@@ -283,40 +286,40 @@ export default {
                 color: "#FFF",
                 fontSize: "15",
                 height: 15,
-                width: 15
-              }
-            }
-          }
+                width: 15,
+              },
+            },
+          },
         },
         tooltip: {
           trigger: "axis",
           axisPointer: {
             // 坐标轴指示器，坐标轴触发有效
-            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
-          }
+            type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
+          },
         },
         grid: {
           top: "20%",
-          bottom: 30
+          bottom: 30,
         },
         xAxis: {
           type: "value",
           position: "bottom",
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           axisLabel: {
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           splitLine: { show: false },
           axisLine: {
             lineStyle: {
-              color: "#FFF"
-            }
-          }
+              color: "#FFF",
+            },
+          },
         },
         yAxis: {
           type: "category",
@@ -334,8 +337,8 @@ export default {
             "g公司",
             "h公司",
             "i公司",
-            "j公司"
-          ]
+            "j公司",
+          ],
         },
         series: [
           {
@@ -348,22 +351,22 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
                   {
                     offset: 0,
-                    color: "rgba(45,111,243,1)"
+                    color: "rgba(45,111,243,1)",
                   },
                   {
                     offset: 0.5,
-                    color: "rgba(134,85,161,1)"
+                    color: "rgba(134,85,161,1)",
                   },
                   {
                     offset: 1,
-                    color: "rgba(247,52,57,1)"
-                  }
-                ])
-              }
+                    color: "rgba(247,52,57,1)",
+                  },
+                ]),
+              },
             },
             label: {
               show: true,
-              formatter: "{b}"
+              formatter: "{b}",
             },
             data: [0.09, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1],
             markLine: {
@@ -371,8 +374,8 @@ export default {
                 {
                   type: "average",
                   name: "平均值",
-                  xAxis: 0.5 //设置平均值所在位置
-                }
+                  xAxis: 0.5, //设置平均值所在位置
+                },
               ],
               symbol: ["none", "none"],
               position: "insideTopCenter",
@@ -380,14 +383,14 @@ export default {
                 normal: {
                   lineStyle: {
                     type: "dotted",
-                    color: "white"
+                    color: "white",
                   },
                   label: {
                     show: true,
                     position: "middle",
-                    formatter: "数据平均 : 100"
-                  }
-                }
+                    formatter: "数据平均 : 100",
+                  },
+                },
               },
               large: true,
               effect: {
@@ -397,11 +400,11 @@ export default {
                 scaleSize: 2,
                 color: null,
                 shadowColor: null,
-                shadowBlur: null
-              }
-            }
-          }
-        ]
+                shadowBlur: null,
+              },
+            },
+          },
+        ],
       });
       HomeTopRight_bottom_left.setOption(option);
     },
@@ -409,6 +412,7 @@ export default {
       let HomeTopRight_bottom_right = this.$echarts.init(
         document.getElementById("HomeTopRight_bottom_right")
       );
+      this.resizeData.push(HomeTopRight_bottom_right);
       let option = (this.CD = {
         barWidth: 20,
         title: {
@@ -424,40 +428,40 @@ export default {
                 color: "#FFF",
                 fontSize: "15",
                 height: 15,
-                width: 15
-              }
-            }
-          }
+                width: 15,
+              },
+            },
+          },
         },
         tooltip: {
           trigger: "axis",
           axisPointer: {
             // 坐标轴指示器，坐标轴触发有效
-            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
-          }
+            type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
+          },
         },
         grid: {
           top: "20%",
-          bottom: 30
+          bottom: 30,
         },
         xAxis: {
           type: "value",
           position: "bottom",
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           axisLabel: {
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           splitLine: { show: false },
           axisLine: {
             lineStyle: {
-              color: "#FFF"
-            }
-          }
+              color: "#FFF",
+            },
+          },
         },
         yAxis: {
           type: "category",
@@ -475,8 +479,8 @@ export default {
             "g公司",
             "h公司",
             "i公司",
-            "j公司"
-          ]
+            "j公司",
+          ],
         },
         series: [
           {
@@ -489,18 +493,18 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
                   {
                     offset: 0,
-                    color: "rgba(45,111,243,1)"
+                    color: "rgba(45,111,243,1)",
                   },
                   {
                     offset: 1,
-                    color: "rgba(245,184,14,1)"
-                  }
-                ])
-              }
+                    color: "rgba(245,184,14,1)",
+                  },
+                ]),
+              },
             },
             label: {
               show: true,
-              formatter: "{b}"
+              formatter: "{b}",
             },
             data: [0.09, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1],
             markLine: {
@@ -508,8 +512,8 @@ export default {
                 {
                   type: "average",
                   name: "平均值",
-                  xAxis: 0.5 //设置平均值所在位置
-                }
+                  xAxis: 0.5, //设置平均值所在位置
+                },
               ],
               symbol: ["none", "none"],
               position: "insideTopCenter",
@@ -517,14 +521,14 @@ export default {
                 normal: {
                   lineStyle: {
                     type: "dotted",
-                    color: "white"
+                    color: "white",
                   },
                   label: {
                     show: true,
                     position: "middle",
-                    formatter: "数据平均 : 100"
-                  }
-                }
+                    formatter: "数据平均 : 100",
+                  },
+                },
               },
               large: true,
               effect: {
@@ -534,21 +538,26 @@ export default {
                 scaleSize: 2,
                 color: null,
                 shadowColor: null,
-                shadowBlur: null
-              }
-            }
-          }
-        ]
+                shadowBlur: null,
+              },
+            },
+          },
+        ],
       });
       HomeTopRight_bottom_right.setOption(option);
-    }
+    },
+    isResize() {
+      this.resizeData.forEach((element) => {
+        element.resize();
+      });
+    },
   },
   mounted() {
     this.initECharts_top();
     // this.initECharts_bottom();
     this.initECharts_bottom_left();
     this.initECharts_bottom_right();
-  }
+  },
 };
 </script>
 
@@ -613,7 +622,6 @@ export default {
         left: 2%;
         z-index: 999;
         font-size: 12px !important;
-
         .checkboxItem {
           color: white;
         }
@@ -649,7 +657,6 @@ export default {
         top: 15%;
         left: 2%;
         z-index: 999;
-        display: flex;
 
         .checkboxItem {
           color: white;

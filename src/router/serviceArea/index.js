@@ -4,12 +4,12 @@
 export default [
     {
         path: 'serviceArea',
-        name:'serviceArea',
+        name: 'serviceArea',
         component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/serviceArea.vue'),
     },
     {
         path: 'huangGang',
-        name:'huangGang',
+        name: 'huangGang',
         component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/huangGang.vue'),
-    }
+    },
 ]
