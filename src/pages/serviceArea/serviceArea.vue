@@ -4470,8 +4470,32 @@ export default {
       //   });
     },
   },
-  created() {
-    this.isaxios();
+  mounted() {
+    // this.isaxios();
+    this.$axios.get('/api/index/finance_type_list').then((res)=>{
+      this.$axios.get('/api/index/plate_list',{params:{mohu:'服务区板块'}}).then((id)=>{
+        this.$axios.get('/api/jtService/list_fuwuquzongyingshou',{params:{financeTypeId:res.data.data[0].financeTypeId,nianfen:'2020',plateId:id.data.data[0].plateId}}).then((res)=>{
+          // console.log(res.data.data)
+          let xBxis=[];
+          let yAxis = [];
+          res.data.data.forEach(element => {
+            xBxis.push(element.xBxis)
+            yAxis.push(element.yAxis)
+          // this.collapseData[0].collapseItem[0].EChartsItem[0].option.xAxis[0].data=[5,5,5,]
+        })
+        this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data=xBxis;
+        console.log(this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data)
+      });
+    })
+    })
+    this.$axios.get('/api/index/finance_type_list').then((res)=>{
+      this.$axios.get('/api/index/plate_list',{params:{mohu:'服务区板块'}}).then((id)=>{
+        // console.log(id.data.data[0].plateId)
+        this.$axios.get('/api/jtService/list_fuwuquzongyingshou',{params:{financeTypeId:res.data.data[0].financeTypeId,nianfen:'2019',plateId:id.data.data[0].plateId}}).then((res)=>{
+          // console.log(res.data.data)
+        })
+      })
+    })
     // //  // 营收2020
     // this.isaxios("/jtService/list_jtservice_revenue_month", "2020-01-01", "businessId", 0, "bar");
     // this.isaxios("/jtService/list_jtservice_revenue_format", "2020-01-01", "businessId", 0, "pie");

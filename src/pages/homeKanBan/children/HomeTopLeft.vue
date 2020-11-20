@@ -208,7 +208,7 @@ export default {
                 ]
             });
             var sum = 0;
-            this.$axios.get('/api/jt_finance/list_jtfinance_groupnian').then((res) => {
+            this.$axios.get('/api/index/list_jtfinance_groupnian').then((res) => {
                 res.data.data.forEach(element => {
                     sum += element.yAxis / 100
                 });
@@ -376,7 +376,7 @@ export default {
             });
             var sum = 0;
             var money = []
-            this.$axios.get('/api/jtsupplier/list_jtsupplier_groupnian').then((res) => {
+            this.$axios.get('/api/index/list_jtsupplier_groupnian').then((res) => {
                 res.data.data.forEach(element => {
                     sum += parseFloat(element.yAxis)
                 });
@@ -550,7 +550,7 @@ export default {
             });
             var sum=0;
             let company=[]
-            this.$axios.get('/api/jtsupplier/jtsupplier_arrears_topfive').then((res) => {
+            this.$axios.get('/api/index/jtsupplier_arrears_topfive').then((res) => {
                 // res.data.data.sort(function (a, b) {
                 //     return b.xBxis-a.xBxis;
                 // })

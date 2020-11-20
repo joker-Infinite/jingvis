@@ -5,7 +5,7 @@
         :class="{ btn: true, select: select === 'A' }"
         @click="selectOption('A')"
       >
-        成交率
+        营<i style="display: inline-block;height: 17px;width: 100%"></i>收
       </div>
       <div
         :class="{ btn: true, select: select === 'B' }"
@@ -67,6 +67,7 @@ export default {
       option_B: {},
       options: {},
       resizeData: [],
+      financeTypeId: "",
     };
   },
   methods: {
@@ -79,7 +80,28 @@ export default {
       this.initECharts_bottom(this.option_B);
     },
     mouseHover(v) {
-      this.option = this.AD;
+      switch (v) {
+        case "AD":
+          this.option = this.AD;
+          break;
+        case "BD":
+          this.option = this.BD;
+          break;
+        case "CD":
+          this.option = this.CD;
+          break;
+        case "DD":
+          this.option = this.DD;
+          break;
+        case "ED":
+          this.option = this.ED;
+          break;
+        case "FD":
+          this.option = this.FD;
+          break;
+        default:
+          break;
+      }
     },
     showOne(is) {
       let option = JSON.parse(JSON.stringify(this.option));
@@ -94,12 +116,9 @@ export default {
         options.title.padding = [50, 50, 50, 50];
         this.$emit("showOne", options);
       } else {
-        option.legend.textStyle.fontSize = 20;
         option.title.textStyle.rich.a.fontSize = 25;
         option.barWidth = 30;
         option.title.padding = [50, 50, 50, 50];
-        option.legend.top = "100";
-        option.legend.right = "50";
         this.$emit("showOne", option);
       }
     },
@@ -122,19 +141,261 @@ export default {
       let HomeBottomF = this.$echarts.init(
         document.getElementById("HomeBottomF")
       );
-      this.resizeData.push(HomeBottomA);
-      this.resizeData.push(HomeBottomB);
-      this.resizeData.push(HomeBottomC);
-      this.resizeData.push(HomeBottomD);
-      this.resizeData.push(HomeBottomE);
-      this.resizeData.push(HomeBottomA);
-      this.AD = option;
-      HomeBottomA.setOption(option);
-      HomeBottomB.setOption(option);
-      HomeBottomC.setOption(option);
-      HomeBottomD.setOption(option);
-      HomeBottomE.setOption(option);
-      HomeBottomF.setOption(option);
+
+      let datas = "";
+
+      this.$axios.get("/api/index/plate_list").then((res) => {
+        datas = res.data.data;
+        this.$axios
+          .get("/api/index/liudabankuai", {
+            params: {
+              financeTypeId: this.financeTypeId,
+              plateId: datas[0].plateId,
+            },
+          })
+          .then((res) => {
+            this.AD = option
+            let optionss =  this.AD
+            optionss.title.text = `{a|     ${datas[0].plateName}}`;
+            let xBxis = [];
+            let yAxis = [];
+            res.data.data.forEach((element) => {
+              xBxis.push(element.xBxis);
+              let Yaxis = {
+                value: element.yAxis,
+                itemStyle: {
+                  normal: {
+                    // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+                    position: "inside",
+                    color: new this.$echarts.graphic.LinearGradient(
+                      0,
+                      0,
+                      0,
+                      1,
+                      [
+                        { offset: 0, color: "rgb(166,72,255,1)" },
+                        { offset: 0.5, color: "rgb(44,30,255,1)" },
+                        { offset: 1, color: "rgb(70,70,255,0)" },
+                      ]
+                    ),
+                  },
+                },
+              };
+              yAxis.push(Yaxis);
+            });
+            
+            
+            optionss.xAxis[0].data = xBxis;
+            optionss.series[0].data = yAxis;
+            this.AD = optionss;
+            HomeBottomA.setOption(this.AD);
+          });
+        this.$axios
+          .get("/api/index/liudabankuai", {
+            params: {
+              financeTypeId: this.financeTypeId,
+              plateId: datas[8].plateId,
+            },
+          })
+          .then((res) => {
+            let optionss = option
+            optionss.title.text = `{a|     ${datas[8].plateName}}`;
+            let xBxis = [];
+            let yAxis = [];
+            res.data.data.forEach((element) => {
+              xBxis.push(element.xBxis);
+              let Yaxis = {
+                value: element.yAxis,
+                itemStyle: {
+                  normal: {
+                    // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+                    position: "inside",
+                    color: new this.$echarts.graphic.LinearGradient(
+                      0,
+                      0,
+                      0,
+                      1,
+                      [
+                        { offset: 0, color: "rgb(166,72,255,1)" },
+                        { offset: 0.5, color: "rgb(44,30,255,1)" },
+                        { offset: 1, color: "rgb(70,70,255,0)" },
+                      ]
+                    ),
+                  },
+                },
+              };
+              yAxis.push(Yaxis);
+            });
+            optionss.xAxis[0].data = xBxis;
+            optionss.series[0].data = yAxis;
+            this.BD = optionss;
+            HomeBottomB.setOption(optionss);
+          });
+        this.$axios
+          .get("/api/index/liudabankuai", {
+            params: {
+              financeTypeId: this.financeTypeId,
+              plateId: datas[3].plateId,
+            },
+          })
+          .then((res) => {
+            let optionss = option;
+            optionss.title.text = `{a|     ${datas[3].plateName}}`;
+            let xBxis = [];
+            let yAxis = [];
+            res.data.data.forEach((element) => {
+              xBxis.push(element.xBxis);
+              let Yaxis = {
+                value: element.yAxis,
+                itemStyle: {
+                  normal: {
+                    // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+                    position: "inside",
+                    color: new this.$echarts.graphic.LinearGradient(
+                      0,
+                      0,
+                      0,
+                      1,
+                      [
+                        { offset: 0, color: "rgb(166,72,255,1)" },
+                        { offset: 0.5, color: "rgb(44,30,255,1)" },
+                        { offset: 1, color: "rgb(70,70,255,0)" },
+                      ]
+                    ),
+                  },
+                },
+              };
+              yAxis.push(Yaxis);
+            });
+            optionss.xAxis[0].data = xBxis;
+            optionss.series[0].data = yAxis;
+            this.CD = optionss;
+            HomeBottomC.setOption(optionss);
+          });
+        this.$axios
+          .get("/api/index/liudabankuai", {
+            params: {
+              financeTypeId: this.financeTypeId,
+              plateId: datas[4].plateId,
+            },
+          })
+          .then((res) => {
+            let optionss = option;
+            optionss.title.text = `{a|     ${datas[4].plateName}}`;
+            let xBxis = [];
+            let yAxis = [];
+            res.data.data.forEach((element) => {
+              xBxis.push(element.xBxis);
+              let Yaxis = {
+                value: element.yAxis,
+                itemStyle: {
+                  normal: {
+                    // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+                    position: "inside",
+                    color: new this.$echarts.graphic.LinearGradient(
+                      0,
+                      0,
+                      0,
+                      1,
+                      [
+                        { offset: 0, color: "rgb(166,72,255,1)" },
+                        { offset: 0.5, color: "rgb(44,30,255,1)" },
+                        { offset: 1, color: "rgb(70,70,255,0)" },
+                      ]
+                    ),
+                  },
+                },
+              };
+              yAxis.push(Yaxis);
+            });
+            optionss.xAxis[0].data = xBxis;
+            optionss.series[0].data = yAxis;
+            this.DD = optionss;
+            HomeBottomD.setOption(optionss);
+          });
+        this.$axios
+          .get("/api/index/liudabankuai", {
+            params: {
+              financeTypeId: this.financeTypeId,
+              plateId: datas[2].plateId,
+            },
+          })
+          .then((res) => {
+            let optionss = option;
+            optionss.title.text = `{a|     ${datas[2].plateName}}`;
+            let xBxis = [];
+            let yAxis = [];
+            res.data.data.forEach((element) => {
+              xBxis.push(element.xBxis);
+              let Yaxis = {
+                value: element.yAxis,
+                itemStyle: {
+                  normal: {
+                    // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+                    position: "inside",
+                    color: new this.$echarts.graphic.LinearGradient(
+                      0,
+                      0,
+                      0,
+                      1,
+                      [
+                        { offset: 0, color: "rgb(166,72,255,1)" },
+                        { offset: 0.5, color: "rgb(44,30,255,1)" },
+                        { offset: 1, color: "rgb(70,70,255,0)" },
+                      ]
+                    ),
+                  },
+                },
+              };
+              yAxis.push(Yaxis);
+            });
+            optionss.xAxis[0].data = xBxis;
+            optionss.series[0].data = yAxis;
+            this.ED = optionss;
+            HomeBottomE.setOption(optionss);
+          });
+        this.$axios
+          .get("/api/index/liudabankuai", {
+            params: {
+              financeTypeId: this.financeTypeId,
+              plateId: datas[6].plateId,
+            },
+          })
+          .then((res) => {
+            let optionss = option;
+            optionss.title.text = `{a|     ${datas[6].plateName}}`;
+            let xBxis = [];
+            let yAxis = [];
+            res.data.data.forEach((element) => {
+              xBxis.push(element.xBxis);
+              let Yaxis = {
+                value: element.yAxis,
+                itemStyle: {
+                  normal: {
+                    // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+                    position: "inside",
+                    color: new this.$echarts.graphic.LinearGradient(
+                      0,
+                      0,
+                      0,
+                      1,
+                      [
+                        { offset: 0, color: "rgb(166,72,255,1)" },
+                        { offset: 0.5, color: "rgb(44,30,255,1)" },
+                        { offset: 1, color: "rgb(70,70,255,0)" },
+                      ]
+                    ),
+                  },
+                },
+              };
+              yAxis.push(Yaxis);
+            });
+            optionss.xAxis[0].data = xBxis;
+            optionss.series[0].data = yAxis;
+            this.FD = option;
+            HomeBottomF.setOption(optionss);
+          });
+      });
     },
     initBottomEnd() {
       let HomeBottomG = this.$echarts.init(
@@ -274,7 +535,7 @@ export default {
       barWidth: 10,
       grid: {
         show: true,
-        width: "65%",
+        width: "70%",
         // height: "auto",
         top: "27%",
         left: "18%",
@@ -311,38 +572,22 @@ export default {
           },
         },
         formatter: function(list) {
-          return list[0].name + ":" + list[0].value;
+          return (
+            "营收" +
+            ":" +
+            "<br/>" +
+            list[0].axisValue +
+            "<br/>" +
+            list[0].value / 10000 +
+            "万元"
+          );
         },
       },
       color: ["red", "#a549ff"],
-      legend: {
-        data: [
-          {
-            name: "a",
-            textStyle: {
-              // fontSize:12,
-              fontWeight: "bolder",
-              color: "#fff",
-            },
-          },
-          "b",
-        ],
-        icon: "circle",
-        orient: "horizontal",
-        textStyle: {
-          fontSize: "",
-          color: "#FFF",
-        },
-        itemWidth: 10,
-        itemHeight: 10,
-        right: 20,
-        top: 25,
-        borderColor: "yellow",
-      },
       xAxis: [
         {
           type: "category",
-          data: ["a", "b", "c", "d"],
+          data: [],
           axisPointer: {
             type: "shadow",
           },
@@ -360,35 +605,12 @@ export default {
       yAxis: [
         {
           type: "value",
-          min: 0,
-          max: 100,
-          interval: 50,
+          // min: 0,
+          // max: 100,
+          // interval: 50,
           axisLabel: {
-            formatter: "{value}%",
-            textStyle: {
-              color: "#FFF",
-            },
-          },
-          axisTick: {
-            //坐标轴刻度
-            show: false,
-          },
-          splitLine: {
-            lineStyle: {
-              type: "dashed",
-              color: "#001e6c",
-            },
-          },
-        },
-        {
-          type: "value",
-          min: 0,
-          max: 10,
-          interval: 3,
-          axisLabel: {
-            formatter: (value) => {
-              let arr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-              return arr[value];
+            formatter: function(val) {
+              return val / 10000;
             },
             textStyle: {
               color: "#FFF",
@@ -408,13 +630,7 @@ export default {
       ],
       series: [
         {
-          name: "a",
-          type: "line",
-          yAxisIndex: 1,
-          data: [2, 2, 9, 7],
-        },
-        {
-          name: "b",
+          name: "营收",
           type: "bar",
           data: [
             {
@@ -477,184 +693,176 @@ export default {
         },
       ],
     };
-    this.option_B = {
-      barWidth: 10,
-      grid: {
-        show: true,
-        width: "65%",
-        // height: "auto",
-        top: "27%",
-        left: "18%",
-        bottom: "30px",
-      },
-      title: {
-        text: "{a|     完成百分比}",
-        show: true,
-        textStyle: {
-          fontFamily: "幼圆",
-          lineHeight: 30,
-          rich: {
-            a: {
-              color: "#FFF",
-              fontSize: "15",
-              height: 15,
-              width: 15,
-            },
-          },
-        },
-      },
-      color: ["red", "#a549ff"],
-      legend: {
-        data: ["a", "b"],
-        icon: "circle",
-        orient: "horizontal",
-        textStyle: {
-          color: "#FFF",
-        },
-        itemWidth: 10,
-        itemHeight: 10,
-        right: 20,
-        top: 25,
-      },
-      xAxis: [
-        {
-          type: "category",
-          data: ["a", "b", "c", "d"],
-          axisPointer: {
-            type: "shadow",
-          },
-          axisTick: {
-            //坐标轴刻度
-            show: false,
-          },
-          axisLabel: {
-            textStyle: {
-              color: "#FFF",
-            },
-          },
-        },
-      ],
-      yAxis: [
-        {
-          type: "value",
-          min: 0,
-          max: 100,
-          interval: 50,
-          axisLabel: {
-            formatter: "{value}%",
-            textStyle: {
-              color: "#FFF",
-            },
-          },
-          axisTick: {
-            //坐标轴刻度
-            show: false,
-          },
-        },
-        {
-          type: "value",
-          min: 1,
-          max: 12,
-          interval: 2,
-          axisLabel: {
-            formatter: (value) => {
-              let arr = [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11",
-                "12",
-              ];
-              return arr[value];
-            },
-            textStyle: {
-              color: "#FFF",
-            },
-          },
-          axisTick: {
-            //坐标轴刻度
-            show: false,
-          },
-        },
-      ],
-      series: [
-        {
-          name: "a",
-          type: "line",
-          yAxisIndex: 1,
-          data: [4, 9, 6, 3],
-        },
-        {
-          name: "b",
-          type: "bar",
-          data: [
-            {
-              value: 32,
-              itemStyle: {
-                normal: {
-                  // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
-                  position: "inside",
-                  color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                    { offset: 0, color: "rgb(166,72,255,1)" },
-                    { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" },
-                  ]),
-                },
-              },
-            },
-            {
-              value: 44,
-              itemStyle: {
-                normal: {
-                  // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
-                  position: "inside",
-                  color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                    { offset: 0, color: "rgb(166,72,255,1)" },
-                    { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" },
-                  ]),
-                },
-              },
-            },
-            {
-              value: 55,
-              itemStyle: {
-                normal: {
-                  // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
-                  position: "inside",
-                  color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                    { offset: 0, color: "rgb(166,72,255,1)" },
-                    { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" },
-                  ]),
-                },
-              },
-            },
-            {
-              value: 76,
-              itemStyle: {
-                normal: {
-                  // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
-                  position: "inside",
-                  color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                    { offset: 0, color: "rgb(166,72,255,1)" },
-                    { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" },
-                  ]),
-                },
-              },
-            },
-          ],
-        },
-      ],
-    };
+    // this.option_B = {
+    //   barWidth: 10,
+    //   grid: {
+    //     show: true,
+    //     width: "65%",
+    //     // height: "auto",
+    //     top: "27%",
+    //     left: "18%",
+    //     bottom: "30px",
+    //   },
+    //   title: {
+    //     text: "{a|     完成百分比}",
+    //     show: true,
+    //     textStyle: {
+    //       fontFamily: "幼圆",
+    //       lineHeight: 30,
+    //       rich: {
+    //         a: {
+    //           color: "#FFF",
+    //           fontSize: "15",
+    //           height: 15,
+    //           width: 15,
+    //         },
+    //       },
+    //     },
+    //   },
+    //   color: ["red", "#a549ff"],
+
+    //   xAxis: [
+    //     {
+    //       type: "category",
+    //       data: ["a", "b", "c", "d"],
+    //       axisPointer: {
+    //         type: "shadow",
+    //       },
+    //       axisTick: {
+    //         //坐标轴刻度
+    //         show: false,
+    //       },
+    //       axisLabel: {
+    //         textStyle: {
+    //           color: "#FFF",
+    //         },
+    //       },
+    //     },
+    //   ],
+    //   yAxis: [
+    //     {
+    //       type: "value",
+    //       min: 0,
+    //       max: 100,
+    //       interval: 50,
+    //       axisLabel: {
+    //         formatter: "{value}%",
+    //         textStyle: {
+    //           color: "#FFF",
+    //         },
+    //       },
+    //       axisTick: {
+    //         //坐标轴刻度
+    //         show: false,
+    //       },
+    //     },
+    //     {
+    //       type: "value",
+    //       min: 1,
+    //       max: 12,
+    //       interval: 2,
+    //       axisLabel: {
+    //         formatter: (value) => {
+    //           let arr = [
+    //             "1",
+    //             "2",
+    //             "3",
+    //             "4",
+    //             "5",
+    //             "6",
+    //             "7",
+    //             "8",
+    //             "9",
+    //             "10",
+    //             "11",
+    //             "12",
+    //           ];
+    //           return arr[value];
+    //         },
+    //         textStyle: {
+    //           color: "#FFF",
+    //         },
+    //       },
+    //       axisTick: {
+    //         //坐标轴刻度
+    //         show: false,
+    //       },
+    //     },
+    //   ],
+    //   series: [
+    //     {
+    //       name: "a",
+    //       type: "line",
+    //       yAxisIndex: 1,
+    //       data: [4, 9, 6, 3],
+    //     },
+    //     {
+    //       name: "b",
+    //       type: "bar",
+    //       data: [
+    //         {
+    //           value: 32,
+    //           itemStyle: {
+    //             normal: {
+    //               // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+    //               position: "inside",
+    //               color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+    //                 { offset: 0, color: "rgb(166,72,255,1)" },
+    //                 { offset: 0.5, color: "rgb(44,30,255,1)" },
+    //                 { offset: 1, color: "rgb(70,70,255,0)" },
+    //               ]),
+    //             },
+    //           },
+    //         },
+    //         {
+    //           value: 44,
+    //           itemStyle: {
+    //             normal: {
+    //               // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+    //               position: "inside",
+    //               color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+    //                 { offset: 0, color: "rgb(166,72,255,1)" },
+    //                 { offset: 0.5, color: "rgb(44,30,255,1)" },
+    //                 { offset: 1, color: "rgb(70,70,255,0)" },
+    //               ]),
+    //             },
+    //           },
+    //         },
+    //         {
+    //           value: 55,
+    //           itemStyle: {
+    //             normal: {
+    //               // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+    //               position: "inside",
+    //               color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+    //                 { offset: 0, color: "rgb(166,72,255,1)" },
+    //                 { offset: 0.5, color: "rgb(44,30,255,1)" },
+    //                 { offset: 1, color: "rgb(70,70,255,0)" },
+    //               ]),
+    //             },
+    //           },
+    //         },
+    //         {
+    //           value: 76,
+    //           itemStyle: {
+    //             normal: {
+    //               // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
+    //               position: "inside",
+    //               color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+    //                 { offset: 0, color: "rgb(166,72,255,1)" },
+    //                 { offset: 0.5, color: "rgb(44,30,255,1)" },
+    //                 { offset: 1, color: "rgb(70,70,255,0)" },
+    //               ]),
+    //             },
+    //           },
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // };
+    this.$axios.get("/api/index/finance_type_list").then((res) => {
+      this.financeTypeId = res.data.data[0].financeTypeId;
+    });
     this.initECharts_bottom(this.option_A);
     this.initBottomEnd();
   },
