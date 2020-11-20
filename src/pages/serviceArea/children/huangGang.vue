@@ -1,6 +1,7 @@
 <template>
   <div style="width: 100%;height: 100%;font-size: 50px">
     <my-collapse-base
+            ref="collapse"
       @selectionChange="selectionChange"
       :collapseData="collapseData"
     ></my-collapse-base>
@@ -14,6 +15,12 @@ import MyCollapseBase from "../../../components/common/myCollapseBase";
 export default {
   name: "serviceArea",
   components: { MyCollapseBase },
+  props: {
+    viewChange: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       collapseData: [
@@ -4558,6 +4565,11 @@ export default {
       // console.log(val);
     },
   },
+  watch: {
+    viewChange() {
+      this.$refs['collapse'].refresh(this.collapseData)
+    }
+  }
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%;height: 100%;font-size: 50px">
-    <my-collapse-base :collapseData="collapseData"></my-collapse-base>
+    <my-collapse-base  ref="collapse" :collapseData="collapseData"></my-collapse-base>
   </div>
 </template>
 
@@ -10,6 +10,12 @@ import MyCollapseBase from "../../components/common/myCollapseBase";
 export default {
   name: "serviceArea",
   components: { MyCollapseBase },
+  props: {
+    viewChange: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       collapseData: [
@@ -4487,6 +4493,11 @@ export default {
     // this.isaxios('/jtService/list_jtservice_profit_month', '2019-01-01', 3, 'bar')
     // this.isaxios('/jtService/list_jtservice_profit_format', '2019-01-01', 3, 'pie')
   },
+  watch: {
+    viewChange() {
+      this.$refs['collapse'].refresh(this.collapseData)
+    }
+  }
 };
 </script>
 
