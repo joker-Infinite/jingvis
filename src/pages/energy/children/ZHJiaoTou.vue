@@ -1861,7 +1861,7 @@
                                         ],
                                     },
                                     {
-                                        title: "欠钱公司占比",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
