@@ -157,6 +157,7 @@
                 this.clickMenu(k);
             },
             clickMenu(v) {
+                console.log(v)
                 this.isActive = v.charAt(0);
                 if (v === "1") {
                     let routeData = this.$router.resolve({
@@ -202,6 +203,12 @@
                 }
                 if (v === "4-0") {
                     this.$router.push("/energy/ZHJiaoTou");
+                }
+                if (v === "5-1") {
+                    this.$router.push("/energy/YPLingShou");
+                }
+                if (v === "5-2") {
+                    this.$router.push("/energy/FYPLingShou");
                 }
             }
         }

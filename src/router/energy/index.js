@@ -12,4 +12,14 @@ export default [
         name:'ZHJiaoTou',
         component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/ZHJiaoTou.vue'),
     },
+    {
+        path: 'YPLingShou',
+        name:'YPLingShou',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/YPLingShou.vue'),
+    },
+    {
+        path: 'FYPLingShou',
+        name:'FYPLingShou',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/FYPLingShou.vue'),
+    },
 ]
