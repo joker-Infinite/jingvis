@@ -43,7 +43,7 @@
                                                   :columns="wit.columns"
                                                   :height="wit.height ? wit.height : '500px'"
                                                   :multiple="false"
-                                                  :border="false"
+                                                  :border="wit.border?wit.border:false"
                                                   :data="wit.tableData"
                                                   :is-pagination="wit.isPagination"
                                                   v-if="wit.type === 'table'"/>

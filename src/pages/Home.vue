@@ -200,6 +200,9 @@
                 if (v === "3-2") {
                     this.$router.push("/comparison/comparison");
                 }
+                if (v === "4-0") {
+                    this.$router.push("/energy/ZHJiaoTou");
+                }
             }
         }
     };
