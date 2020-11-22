@@ -176,8 +176,26 @@
                 if (v === "5") {
                     this.$router.push("/business/business");
                 }
+                if (v === "2-0") {
+                    this.$router.push("/serviceArea/serviceArea");
+                }
                 if (v === "2-1") {
                     this.$router.push("/serviceArea/huangGang");
+                }
+                if (v === "2-2") {
+                    this.$router.push("/serviceArea/yiChang");
+                }
+                if (v === "2-3") {
+                    this.$router.push("/serviceArea/xiaoGan");
+                }
+                if (v === "2-4") {
+                    this.$router.push("/serviceArea/shiYan");
+                }
+                if (v === "2-5") {
+                    this.$router.push("/serviceArea/enShi");
+                }
+                if (v === "2-6") {
+                    this.$router.push("/serviceArea/xianNing");
                 }
                 if (v === "3-2") {
                     this.$router.push("/comparison/comparison");
