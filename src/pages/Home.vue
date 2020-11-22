@@ -204,6 +204,9 @@
                 if (v === "4-0") {
                     this.$router.push("/energy/ZHJiaoTou");
                 }
+                if (v === "4-0-0") {
+                    this.$router.push("/energy/JYZXiangQing");
+                }
                 if (v === "5-1") {
                     this.$router.push("/energy/YPLingShou");
                 }

@@ -2,6 +2,7 @@
     <div style="width: 100%;height: 100%;font-size: 50px">
         <my-collapse-base
                 ref="collapse"
+                @selectionChange="selectionChange"
                 :collapseData="collapseData"
         ></my-collapse-base>
     </div>
@@ -5171,6 +5172,12 @@
                     },
                 ],
             };
+        },
+        methods: {
+            selectionChange(val) {
+                this.$router.push("/details/details");
+                // console.log(val);
+            },
         },
         watch: {
             viewChange() {

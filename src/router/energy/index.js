@@ -22,4 +22,9 @@ export default [
         name:'FYPLingShou',
         component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/FYPLingShou.vue'),
     },
+    {
+        path: 'JYZXiangQing',
+        name:'JYZXiangQing',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/JYZXiangQing.vue'),
+    },
 ]
