@@ -37,4 +37,9 @@ export default [
         name: 'yiChang',
         component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/yiChang.vue'),
     },
+    {
+        path: 'FWQYeTai',
+        name: 'FWQYeTai',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/FWQYeTai.vue'),
+    },
 ]

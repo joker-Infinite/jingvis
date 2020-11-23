@@ -68,7 +68,7 @@
                                     <div v-if="!!wit.type&&wit.type!=='box'">
                                         <my-table @selectionChange="row=>{$emit('selectionChange',row)}"
                                                   :columns="wit.columns"
-                                                  :height="wit.height ? wit.height : '500px'"
+                                                  :height="wit.height ? wit.height : '300px'"
                                                   :multiple="false"
                                                   :border="wit.border?wit.border:false"
                                                   :data="wit.tableData"
