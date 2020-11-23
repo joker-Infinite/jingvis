@@ -62,6 +62,7 @@
                                 </div>
                                 <div v-for="(wit, wix) in sit.EChartsItem"
                                      :key="wix"
+                                     style="margin-bottom:100px;"
                                      :style="wit.style"
                                      class="echarts"
                                      :id="cit.id + '-' + six + '-' + wix">
@@ -256,7 +257,7 @@
                     });
                 });
             });
-            // this.initECharts(this.collapseData);
+            this.initECharts(this.collapseData);
         },
     };
 </script>
@@ -269,7 +270,7 @@
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: space-around;
-
+        
         .collapse {
             width: 85%;
             height: 100%;
@@ -336,6 +337,7 @@
                     }
 
                     .query {
+                        
                         position: absolute;
                         width: 90%;
                         padding: 0 5%;

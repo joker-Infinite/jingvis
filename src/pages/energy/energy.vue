@@ -54,7 +54,7 @@
                                                 },
                                                 option: {
                                                     title: {
-                                                        text: "465",
+                                                        text: "",
                                                     },
                                                     barWidth: 20,
                                                     tooltip: {
@@ -147,7 +147,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A公司", "B公司", "C公司", "D公司", "E公司"],
                                                     },
                                                     series: [
@@ -217,7 +217,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: [
                                                             "过票",
                                                             "油品批发",
@@ -409,7 +409,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A公司", "B公司", "C公司", "D公司", "E公司"],
                                                     },
                                                     series: [
@@ -479,7 +479,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: [
                                                             "过票",
                                                             "油品批发",
@@ -679,7 +679,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A公司", "B公司", "C公司", "D公司", "E公司"],
                                                     },
                                                     series: [
@@ -749,7 +749,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: [
                                                             "过票",
                                                             "油品批发",
@@ -941,7 +941,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A公司", "B公司", "C公司", "D公司", "E公司"],
                                                     },
                                                     series: [
@@ -1011,7 +1011,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: [
                                                             "过票",
                                                             "油品批发",
@@ -1319,7 +1319,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["柴油", "汽油"],
                                                     },
                                                     series: [
@@ -1424,7 +1424,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["92", "95", "98", "0"],
                                                     },
                                                     series: [
@@ -1626,7 +1626,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A高速", "Mary", "jim", "Tony", "May"],
                                                     },
                                                     series: [
@@ -2091,7 +2091,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                       bottom: "10px",
                                                         data: ["柴油", "汽油"],
                                                     },
                                                     series: [
@@ -2196,7 +2196,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["92", "95", "98", "0"],
                                                     },
                                                     series: [
@@ -2398,7 +2398,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A高速", "Mary", "jim", "Tony", "May"],
                                                     },
                                                     series: [
@@ -3164,7 +3164,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A公司", "B公司", "C公司", "D公司"],
                                                     },
                                                     series: [
@@ -3265,7 +3265,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A公司", "B公司", "C公司", "D公司"],
                                                     },
                                                     series: [
@@ -3443,9 +3443,10 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
+                                                height: "600px",
                                                 style: {
                                                     width: "100%",
-                                                    height: "600px",
+                                                    height: "550px",
                                                     marginTop: "50px",
                                                     background: "#FFF",
                                                 },
@@ -3630,7 +3631,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A公司", "B公司", "C公司", "D公司"],
                                                     },
                                                     series: [
@@ -3731,7 +3732,7 @@
                                                     },
                                                     legend: {
                                                         left: "center",
-                                                        top: "bottom",
+                                                        bottom: "10px",
                                                         data: ["A公司", "B公司", "C公司", "D公司"],
                                                     },
                                                     series: [
@@ -3909,6 +3910,7 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
+                                                height: "600px",
                                                 style: {
                                                     width: "100%",
                                                     height: "600px",
