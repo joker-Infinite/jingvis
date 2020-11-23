@@ -67,7 +67,7 @@ export default {
       option_B: {},
       options: {},
       resizeData: [],
-      financeTypeId: ""
+      financeTypeId: "",
     };
   },
   methods: {
@@ -76,14 +76,14 @@ export default {
       HomeBottom.setOption(option);
       this.$axios
         .get(url, {
-          params: { financeTypeId: this.financeTypeId, plateId: plateId }
+          params: { financeTypeId: this.financeTypeId, plateId: plateId },
         })
-        .then(res => {
+        .then((res) => {
           let optionss = clone(option);
           optionss.title.text = `{a|     ${title}}`;
           let xBxis = [];
           let yAxis = [];
-          res.data.data.forEach(element => {
+          res.data.data.forEach((element) => {
             xBxis.push(element.xBxis);
             let Yaxis = {
               value: element.yAxis,
@@ -94,10 +94,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             };
             yAxis.push(Yaxis);
           });
@@ -120,7 +120,6 @@ export default {
       switch (v) {
         case "AD":
           this.option = this.AD;
-
           break;
         case "BD":
           this.option = this.BD;
@@ -144,19 +143,24 @@ export default {
     showOne(is) {
       let option = clone(this.option);
       let options = clone(this.options);
-      console.log(option.yAxis[0].axisLabel.formatter);
-      options.title.x = "center";
-      options.title.y = "-3%";
-      option.title.x = "center";
-      option.title.y = "-3%";
       if (is === 1) {
+        options.title.x = "center";
+        options.title.y = "-3%";
         options.title.textStyle.rich.a.fontSize = 25;
         options.barWidth = 30;
-        options.title.padding = [50, 50, 50, 50];
+        options.series[0].markLine.data=[{
+                  type: "average",
+                  name: "平均值",
+                  xAxis: 0.8, //设置平均值所在位置
+                }],
+        (options.title.padding = [50, 50, 50, 50]);
         this.$emit("showOne", options);
       } else {
         option.title.textStyle.rich.a.fontSize = 25;
         option.barWidth = 30;
+        option.xAxis[0].axisLabel.rotate = 40;
+        option.title.x = "center";
+        option.title.y = "-3%";
         option.title.padding = [50, 50, 50, 50];
         this.$emit("showOne", option);
       }
@@ -181,17 +185,7 @@ export default {
         document.getElementById("HomeBottomF")
       );
       let datas = "";
-      console.log(option, 888);
-      this.isAxios(
-        "/api/index/liudabankuai",
-        this.financeTypeId,
-        1,
-        1,
-        option,
-        "AD",
-        HomeBottomA
-      );
-      this.$axios.get("/api/index/plate_list").then(res => {
+      this.$axios.get("/api/jt_finance/plate_list").then((res) => {
         datas = res.data.data;
         this.isAxios(
           "/api/index/liudabankuai",
@@ -268,40 +262,40 @@ export default {
                 color: "#FFF",
                 fontSize: "15",
                 height: 15,
-                width: 15
-              }
-            }
-          }
+                width: 15,
+              },
+            },
+          },
         },
         tooltip: {
           trigger: "axis",
           axisPointer: {
             // 坐标轴指示器，坐标轴触发有效
-            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
-          }
+            type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
+          },
         },
         grid: {
           top: "15%",
-          bottom: 30
+          bottom: 30,
         },
         xAxis: {
           type: "value",
           position: "bottom",
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           axisLabel: {
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           splitLine: { show: false },
           axisLine: {
             lineStyle: {
-              color: "#FFF"
-            }
-          }
+              color: "#FFF",
+            },
+          },
         },
         yAxis: {
           type: "category",
@@ -309,7 +303,7 @@ export default {
           axisLabel: { show: false },
           axisTick: { show: false },
           splitLine: { show: false },
-          data: ["a公司", "b公司", "c公司", "d公司", "e公司"]
+          data: ["a公司", "b公司", "c公司", "d公司", "e公司"],
         },
         series: [
           {
@@ -322,27 +316,23 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
                   {
                     offset: 0,
-                    color: "rgba(192,42,84,1)"
+                    color: "rgba(192,42,84,1)",
                   },
                   {
                     offset: 1,
-                    color: "rgba(127,69,224,1)"
-                  }
-                ])
-              }
+                    color: "rgba(127,69,224,1)",
+                  },
+                ]),
+              },
             },
             label: {
               show: true,
-              formatter: "{b}"
+              formatter: "{b}",
             },
             data: [0.6, 0.7, 0.8, 0.9, 1],
             markLine: {
               data: [
-                {
-                  type: "average",
-                  name: "平均值",
-                  xAxis: 0.8 //设置平均值所在位置
-                }
+                
               ],
               symbol: ["none", "none"],
               position: "insideTopCenter",
@@ -350,14 +340,14 @@ export default {
                 normal: {
                   lineStyle: {
                     type: "dotted",
-                    color: "white"
+                    color: "white",
                   },
                   label: {
                     show: true,
                     position: "middle",
-                    formatter: "数据平均 : 100"
-                  }
-                }
+                    formatter: "数据平均 : 100",
+                  },
+                },
               },
               large: true,
               effect: {
@@ -367,20 +357,20 @@ export default {
                 scaleSize: 2,
                 color: null,
                 shadowColor: null,
-                shadowBlur: null
-              }
-            }
-          }
-        ]
+                shadowBlur: null,
+              },
+            },
+          },
+        ],
       };
       this.options = option;
       HomeBottomG.setOption(option);
     },
     isResize() {
-      this.resizeData.forEach(element => {
+      this.resizeData.forEach((element) => {
         element.resize();
       });
-    }
+    },
   },
   mounted() {
     this.option_A = {
@@ -390,7 +380,7 @@ export default {
         top: "33%",
         left: "18%",
         right: "8%",
-        bottom: "20%"
+        bottom: "20%",
       },
       title: {
         text: "{a|     完成百分比}",
@@ -405,10 +395,10 @@ export default {
               color: "#FFF",
               fontSize: "15",
               height: 15,
-              width: 15
-            }
-          }
-        }
+              width: 15,
+            },
+          },
+        },
       },
 
       tooltip: {
@@ -417,12 +407,12 @@ export default {
           type: "line",
           lineStyle: {
             color: "red",
-            width: 1
+            width: 1,
             // shadowBlur:5,
             // opacity:1
-          }
+          },
         },
-        formatter: function(list) {
+        formatter: function (list) {
           return (
             "营收" +
             ":" +
@@ -432,7 +422,7 @@ export default {
             list[0].value / 10000 +
             "万元"
           );
-        }
+        },
       },
       color: ["red", "#a549ff"],
       xAxis: [
@@ -446,22 +436,21 @@ export default {
             "2020-05",
             "2020-6",
             "2020-7",
-            "2002-5"
+            "2002-5",
           ],
           axisPointer: {
-            type: "shadow"
+            type: "shadow",
           },
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           axisLabel: {
             textStyle: {
-              color: "#FFF"
-            }
-            // rotate:45
-          }
-        }
+              color: "#FFF",
+            },
+          },
+        },
       ],
       yAxis: [
         {
@@ -469,32 +458,32 @@ export default {
           axisLine: {
             show: false,
             lineStyle: {
-              color: "#fff"
-            }
+              color: "#fff",
+            },
           },
           type: "value",
           // min: 0,
           // max: 100,
           // interval: 50,
           axisLabel: {
-            formatter: function(val) {
+            formatter: function (val) {
               return val / 10000;
             },
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           splitLine: {
             lineStyle: {
               type: "dashed",
-              color: "#001e6c"
-            }
-          }
-        }
+              color: "#001e6c",
+            },
+          },
+        },
       ],
       series: [
         {
@@ -510,10 +499,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 20,
@@ -524,10 +513,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 80,
@@ -538,10 +527,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 90,
@@ -552,14 +541,14 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
-            }
-          ]
-        }
-      ]
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
+            },
+          ],
+        },
+      ],
     };
     let b = JSON.parse(JSON.stringify(this.option_A));
     this.option_B = {
@@ -570,7 +559,7 @@ export default {
         // height: "auto",
         top: "27%",
         left: "18%",
-        bottom: "30px"
+        bottom: "30px",
       },
       title: {
         text: "{a|     完成百分比}",
@@ -583,10 +572,10 @@ export default {
               color: "#FFF",
               fontSize: "15",
               height: 15,
-              width: 15
-            }
-          }
-        }
+              width: 15,
+            },
+          },
+        },
       },
       color: ["red", "#a549ff"],
 
@@ -595,18 +584,18 @@ export default {
           type: "category",
           data: ["a", "b", "c", "d"],
           axisPointer: {
-            type: "shadow"
+            type: "shadow",
           },
           axisTick: {
             //坐标轴刻度
-            show: false
+            show: false,
           },
           axisLabel: {
             textStyle: {
-              color: "#FFF"
-            }
-          }
-        }
+              color: "#FFF",
+            },
+          },
+        },
       ],
       yAxis: [
         {
@@ -617,13 +606,13 @@ export default {
           axisLabel: {
             formatter: "{value}%",
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           axisTick: {
             //坐标轴刻度
-            show: false
-          }
+            show: false,
+          },
         },
         {
           type: "value",
@@ -631,7 +620,7 @@ export default {
           max: 12,
           interval: 2,
           axisLabel: {
-            formatter: value => {
+            formatter: (value) => {
               let arr = [
                 "1",
                 "2",
@@ -644,26 +633,26 @@ export default {
                 "9",
                 "10",
                 "11",
-                "12"
+                "12",
               ];
               return arr[value];
             },
             textStyle: {
-              color: "#FFF"
-            }
+              color: "#FFF",
+            },
           },
           axisTick: {
             //坐标轴刻度
-            show: false
-          }
-        }
+            show: false,
+          },
+        },
       ],
       series: [
         {
           name: "a",
           type: "line",
           yAxisIndex: 1,
-          data: [4, 9, 6, 3]
+          data: [4, 9, 6, 3],
         },
         {
           name: "b",
@@ -678,10 +667,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 44,
@@ -692,10 +681,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 55,
@@ -706,10 +695,10 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
             },
             {
               value: 76,
@@ -720,21 +709,21 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: "rgb(166,72,255,1)" },
                     { offset: 0.5, color: "rgb(44,30,255,1)" },
-                    { offset: 1, color: "rgb(70,70,255,0)" }
-                  ])
-                }
-              }
-            }
-          ]
-        }
-      ]
+                    { offset: 1, color: "rgb(70,70,255,0)" },
+                  ]),
+                },
+              },
+            },
+          ],
+        },
+      ],
     };
     // this.$axios.get("/api/index/finance_type_list").then((res) => {
     //   this.financeTypeId = res.data.data[0].financeTypeId;
     // });
     this.initECharts_bottom(this.option_A);
     this.initBottomEnd();
-  }
+  },
 };
 </script>
 

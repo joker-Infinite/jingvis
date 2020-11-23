@@ -11,6 +11,33 @@
                             {{ cit.collapseTitle }}
                         </template>
                         <div class="ECharts" style="width: 100%;min-height: 100px;">
+                            <div class="allQuery" v-if="false">
+                                    <div>
+                                    <el-input></el-input>
+                                    <el-select
+                                    ></el-select>
+                                    <el-date-picker
+                                        type="monthrange"
+                                        range-separator="至"
+                                        start-placeholder="开始月份"
+                                        end-placeholder="结束月份">
+                                    </el-date-picker>
+                                    <el-button type="primary" 
+                                    >搜索
+                                    </el-button>
+                                    <el-button type="primary" 
+                                    >搜索
+                                    </el-button>
+                                    <el-button type="primary" 
+                                    >搜索
+                                    </el-button>
+                                    <el-button type="primary" 
+                                    >搜索
+                                    </el-button>
+                                    </div>
+                            
+                                
+                            </div>
                             <div v-for="(sit, six) in cit.EChartsBox"
                                  :key="six"
                                  :style="sit.style">
@@ -229,7 +256,7 @@
                     });
                 });
             });
-            this.initECharts(this.collapseData);
+            // this.initECharts(this.collapseData);
         },
     };
 </script>
@@ -259,6 +286,35 @@
                     flex-direction: row;
                     flex-wrap: wrap;
                     justify-content: space-between;
+                    .allQuery{
+                        width:100%;
+                        height:60px;
+                        background:#fff;
+                        margin-bottom:10px;
+                        padding:0 20px;
+                        display:flex;
+                        align-items: center;
+                        // flex-direction: column;
+                        border-radius: 10px;
+                    }
+                    .allQuery /deep/ .el-date-editor {
+                        margin: 10px 20px 0 0;
+                    }
+
+                    .allQuery /deep/ .el-input {
+                        margin: 10px 20px 10px 10px;
+                        width: 200px;
+                    }
+
+                    .allQuery /deep/ .el-button {
+                        margin: 10px 20px;
+                    }
+
+                    .allQuery /deep/ .el-select{
+                        margin: 0 20px;
+                        /*background: #d0d1ff;*/
+                        /*color: white;*/
+                    }
                 }
 
                 .ECharts > div {

@@ -54,7 +54,7 @@
                                                 },
                                                 option: {
                                                     title: {
-                                                        text: "",
+                                                        text: "465",
                                                     },
                                                     barWidth: 20,
                                                     tooltip: {
@@ -3968,7 +3968,11 @@
                 ],
             };
         },
+        mounted(){
+            this.$refs["collapse"].initECharts(this.collapseData);
+        },
         methods: {
+            
             selectionChange(v) {
                 console.log(v);
             }

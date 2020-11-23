@@ -299,7 +299,7 @@ export default {
           },
         },
         grid: {
-          top: "20%",
+          top: "25%",
           bottom: 30,
         },
         xAxis: {
@@ -441,7 +441,7 @@ export default {
           },
         },
         grid: {
-          top: "20%",
+          top: "25%",
           bottom: 30,
         },
         xAxis: {
@@ -510,6 +510,7 @@ export default {
             markLine: {
               data: [
                 {
+                  show:true,
                   type: "average",
                   name: "平均值",
                   xAxis: 0.5, //设置平均值所在位置

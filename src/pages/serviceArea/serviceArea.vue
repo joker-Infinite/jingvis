@@ -4591,82 +4591,72 @@ export default {
     };
   },
   methods: {
-    isAxios(url, nianfen, id, i, is) {
-      this.$axios
-        .get("/api/jtService/list_fuwuquzongyingshou", {
-          // params: {
-          //   financeTypeId: res.data.data[0].financeTypeId,
-          //   nianfen: "2020",
-          //   plateId: id.data.data[0].plateId,
-          // },
-        })
-        .then((res) => {
-          // console.log(res.data.data)
-          let xBxis = [];
-          let yAxis = [];
-          res.data.data.forEach((element) => {
-            xBxis.push(element.xBxis);
-            yAxis.push(element.yAxis);
-            // this.collapseData[0].collapseItem[0].EChartsItem[0].option.xAxis[0].data=[5,5,5,]
-          });
-          this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = xBxis;
-        });
+    isAxios(url,time,plateId,financeTypeId) {
+      return new Promise((resolve) => {
+         this.$axios.get(url, {
+                  params: {
+                    financeTypeId: financeTypeId,
+                    nianfen: time,
+                    plateId: plateId,
+                  },
+                }).then((res) => {
+                  let xBxis = [];
+                  let yAxis = [];
+                  res.data.data.forEach(element => {
+                    xBxis.push(element.xBxis)
+                    yAxis.push(element.yAxis)
+                  });
+                  resolve({xBxis:xBxis,yAxis:yAxis})
+                  
+                });
+      });
     },
+    getSomething(n) {
+      
+    },
+    async requestSomething(id,res) {
+      // 这时something会等到异步请求的结果回来后才进行赋值，同时不会执行之后的代码
+      const something = await this.isAxios('/api/jtService/list_fuwuquzongyingshou','2020',id[0].plateId,res[0].financeTypeId);
+      // id.data.data[0].plateId,res.data.data[0].financeTypeId
+      this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[0].data = something.yAxis
+      this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[1].data = something.yAxis
+      this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = something.xBxis;
+    },
+  },
+  async mounted() {
+   await this.$axios.get("/api/jt_finance/finance_type_list").then((res) => {
+          this.$axios.get("/api/jt_finance/plate_list", { params: { mohu: "服务区板块" } }).then((id) => {
+               this.requestSomething(id.data.data,res.data.data);
+            });
+        });
+    this.$refs["collapse"].initECharts(this.collapseData);
+    // expected output: 'calling1','resolved','calling2'
+    // isAxios(url, nianfen, id, i, is) {
+    //   this.$axios
+    //     .get("/api/jtService/list_fuwuquzongyingshou", {
+    //       // params: {
+    //       //   financeTypeId: res.data.data[0].financeTypeId,
+    //       //   nianfen: "2020",
+    //       //   plateId: id.data.data[0].plateId,
+    //       // },
+    //     })
+    //     .then((res) => {
+    //       // console.log(res.data.data)
+    //       let xBxis = [];
+    //       let yAxis = [];
+    //       res.data.data.forEach((element) => {
+    //         xBxis.push(element.xBxis);
+    //         yAxis.push(element.yAxis);
+    //         // this.collapseData[0].collapseItem[0].EChartsItem[0].option.xAxis[0].data=[5,5,5,]
+    //       });
+    //       this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = xBxis;
+    //     });
+    // },
   },
   watch: {
     viewChange() {
       this.$refs["collapse"].refresh(this.collapseData);
     },
-  },
-  created() {
-    setTimeout(() => {
-      this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = [
-        55555,
-        55,
-        50,
-        5,
-        5,
-        5,
-        5,
-      ];
-    }, 1000);
-    this.$axios.get("/api/index/finance_type_list").then((res) => {
-      this.$axios
-        .get("/api/index/plate_list", { params: { mohu: "服务区板块" } })
-        .then((id) => {});
-    });
-    this.$axios.get("/api/index/finance_type_list").then((res) => {
-      this.$axios
-        .get("/api/index/plate_list", { params: { mohu: "服务区板块" } })
-        .then((id) => {
-          // console.log(id.data.data[0].plateId)
-          this.$axios
-            .get("/api/jtService/list_fuwuquzongyingshou", {
-              params: {
-                financeTypeId: res.data.data[0].financeTypeId,
-                nianfen: "2019",
-                plateId: id.data.data[0].plateId,
-              },
-            })
-            .then((res) => {
-              // console.log(res.data.data)
-            });
-        });
-    });
-    // //  // 营收2020
-    // this.isaxios("/jtService/list_jtservice_revenue_month", "2020-01-01", "businessId", 0, "bar");
-    // this.isaxios("/jtService/list_jtservice_revenue_format", "2020-01-01", "businessId", 0, "pie");
-    // // // 营收2019
-    // this.isaxios("/jtService/list_jtservice_revenue_month", "2019-01-01", "businessId", 1, "bar");
-    // this.isaxios("/jtService/list_jtservice_revenue_format", "2019-01-01", "businessId", 1, "pie");
-    // // // 利润2020
-    // this.isaxios("/jtService/list_jtservice_revenue_month", "2020-01-01", "profitbusinessId", 0, "bar");
-    // this.isaxios("/jtService/list_jtservice_revenue_format", "2020-01-01", "profitbusinessId", 0, "pie");
-    // // // 利润2019
-    // this.isaxios("/jtService/list_jtservice_revenue_month", "2019-01-01", "profitbusinessId", 1, "bar");
-    // this.isaxios("/jtService/list_jtservice_revenue_format", "2019-01-01", "profitbusinessId", 1, "pie");
-    // this.isaxios('/jtService/list_jtservice_profit_month', '2019-01-01', 3, 'bar')
-    // this.isaxios('/jtService/list_jtservice_profit_format', '2019-01-01', 3, 'pie')
   },
 };
 </script>

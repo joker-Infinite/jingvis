@@ -551,9 +551,9 @@ export default {
       var sum = 0;
       let company = []
       this.$axios.get('/api/index/jtsupplier_arrears_topfive').then((res) => {
-        // res.data.data.sort(function (a, b) {
-        //     return b.xBxis-a.xBxis;
-        // })
+        res.data.data.sort(function (a, b) {
+            return b.xBxis-a.xBxis;
+        })
         let color = ["#00df4b", "#008bf7", "#ffb541", "#ff6a6a", "#ff6a8a"]
         res.data.data.forEach((element, index) => {
           sum += parseFloat(element.xBxis)
