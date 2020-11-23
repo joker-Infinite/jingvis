@@ -12,31 +12,29 @@
                         </template>
                         <div class="ECharts" style="width: 100%;min-height: 100px;">
                             <div class="allQuery" v-if="false">
-                                    <div>
+                                <div>
                                     <el-input></el-input>
                                     <el-select
                                     ></el-select>
                                     <el-date-picker
-                                        type="monthrange"
-                                        range-separator="至"
-                                        start-placeholder="开始月份"
-                                        end-placeholder="结束月份">
+                                            type="monthrange"
+                                            range-separator="至"
+                                            start-placeholder="开始月份"
+                                            end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button type="primary" 
+                                    <el-button type="primary"
                                     >搜索
                                     </el-button>
-                                    <el-button type="primary" 
+                                    <el-button type="primary"
                                     >搜索
                                     </el-button>
-                                    <el-button type="primary" 
+                                    <el-button type="primary"
                                     >搜索
                                     </el-button>
-                                    <el-button type="primary" 
+                                    <el-button type="primary"
                                     >搜索
                                     </el-button>
-                                    </div>
-                            
-                                
+                                </div>
                             </div>
                             <div v-for="(sit, six) in cit.EChartsBox"
                                  :key="six"
@@ -131,6 +129,7 @@
                 selectTime: "",
                 EChartsData: [],
                 EChartsData_: [],
+                timeID: []
             };
         },
         methods: {
@@ -158,7 +157,8 @@
                             resolve()
                         }
                         this.time_++;
-                    }, 400)
+                    }, 400);
+                    this.timeID.push(timeID);
                 })
             },
             async initECharts() {
@@ -175,6 +175,7 @@
                             clearInterval(timeID);
                         }
                     }, 70);
+                    this.timeID.push(timeID);
                 });
             },
             /**
@@ -259,6 +260,11 @@
             });
             this.initECharts(this.collapseData);
         },
+        beforeDestroy() {
+            this.timeID.forEach(i => {
+                clearInterval(i);
+            })
+        }
     };
 </script>
 
@@ -287,17 +293,19 @@
                     flex-direction: row;
                     flex-wrap: wrap;
                     justify-content: space-between;
-                    .allQuery{
-                        width:100%;
-                        height:60px;
-                        background:#fff;
-                        margin-bottom:10px;
-                        padding:0 20px;
-                        display:flex;
+
+                    .allQuery {
+                        width: 100%;
+                        height: 60px;
+                        background: #fff;
+                        margin-bottom: 10px;
+                        padding: 0 20px;
+                        display: flex;
                         align-items: center;
                         // flex-direction: column;
                         border-radius: 10px;
                     }
+
                     .allQuery /deep/ .el-date-editor {
                         margin: 10px 20px 0 0;
                     }
@@ -311,7 +319,7 @@
                         margin: 10px 20px;
                     }
 
-                    .allQuery /deep/ .el-select{
+                    .allQuery /deep/ .el-select {
                         margin: 0 20px;
                         /*background: #d0d1ff;*/
                         /*color: white;*/

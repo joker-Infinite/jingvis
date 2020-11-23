@@ -1522,10 +1522,11 @@
                                         EChartsItem: [
                                             {
                                                 type: 'table',
+                                                height:'550px',
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "450px",
                                                 },
                                                 columns: [
                                                     {prop: 'a', label: '加油站'},
