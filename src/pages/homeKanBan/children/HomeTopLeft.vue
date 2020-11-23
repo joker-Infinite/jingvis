@@ -22,7 +22,7 @@
 <script>
 import Operations from "../../../components/common/operations";
 import ShowECharts from "../../../components/common/showECharts";
-
+import clone from "../../../../public/api/clone"
 export default {
   name: "HomeTopLeft",
   components: { ShowECharts, Operations },
@@ -409,7 +409,7 @@ export default {
         document.getElementById("HomeTopLeft_bottom")
       );
       let max = 0;
-      let option = (this.CD = {
+      let option = (  {
         barWidth: "10", //设置柱状图的粗细
         tooltip: {
           trigger: "axis",
@@ -513,11 +513,7 @@ export default {
             barCategoryGap: "100%",
             markLine: {
               data: [
-                {
-                  type: "average",
-                  name: "平均值",
-                  xAxis: 1000 //设置平均值所在位置
-                }
+                
               ],
               symbol: ["none", "none"],
               position: "insideTopCenter",
@@ -552,12 +548,12 @@ export default {
       let company = []
       this.$axios.get('/api/index/jtsupplier_arrears_topfive').then((res) => {
         res.data.data.sort(function (a, b) {
-            return b.xBxis-a.xBxis;
+            return a.xBxis-b.xBxis;
         })
         let color = ["#00df4b", "#008bf7", "#ffb541", "#ff6a6a", "#ff6a8a"]
         res.data.data.forEach((element, index) => {
           sum += parseFloat(element.xBxis)
-          option.yAxis[0].data.push(index + 1)
+          option.yAxis[0].data.unshift(index + 1)
           option.series[0].data.push({
             value: element.xBxis,
             itemStyle: {
@@ -570,8 +566,13 @@ export default {
           this.company.push(element.yAxis)
           company.push(element.yAxis)
         });
-        option.series[0].markLine.data[0].xAxis = sum / res.data.data.length
-        option.series[0].markLine.itemStyle.normal.label.formatter = "数据平均 : " + sum / res.data.data.length
+        this.CD = clone(option)
+        this.CD.series[0].markLine.data=[{
+                  type: "average",
+                  name: "平均值",
+                  xAxis: 1000 //设置平均值所在位置
+                }]
+        this.CD.series[0].markLine.itemStyle.normal.label.formatter = "数据平均 : " + sum / res.data.data.length
         HomeTopLeft_bottom.setOption(option);
 
       })

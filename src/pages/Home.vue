@@ -106,7 +106,7 @@
                 ],
                 key: "",
                 menuStatus: 1,
-                isActive: '2'
+                isActive: '2-0'
             };
         },
         methods: {

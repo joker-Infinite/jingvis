@@ -34,7 +34,7 @@
                 if (this.name == '' && this.pwd == '') {
                     this.$message.error('账号或密码不能为空哦');
                 }else{
-                    this.$router.push('/energy/energy')
+                    this.$router.push('/serviceArea/serviceArea')
                 }
 
             }

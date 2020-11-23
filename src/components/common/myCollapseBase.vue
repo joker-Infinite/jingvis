@@ -258,7 +258,7 @@
                     });
                 });
             });
-            this.initECharts(this.collapseData);
+            // this.initECharts(this.collapseData);
         },
         beforeDestroy() {
             this.timeID.forEach(i => {

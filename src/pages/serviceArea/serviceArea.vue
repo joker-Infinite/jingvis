@@ -56,9 +56,9 @@ export default {
                                                     formatter: function (val) {
                                                         return (
                                                             val[0].name +
-                                                            ":" +
-                                                            val[0].value +
-                                                            "元"
+                                                            ":" +"<br />" + 
+                                                            val[0].value/10000 +
+                                                            "万元"
                                                         );
                                                     },
                                                 },
@@ -107,8 +107,9 @@ export default {
                                                 yAxis: [
                                                     {
                                                         axisLabel: {
-                                                            formatter:
-                                                                "{value}",
+                                                            formatter:function(val){
+                                                                return val / 10000
+                                                            },
                                                             color: "#999",
                                                             textStyle: {
                                                                 fontSize: 12,
@@ -5487,14 +5488,13 @@ export default {
     methods: {
         isAxios(url, time, plateId, financeTypeId) {
             return new Promise((resolve) => {
-                this.$axios
-                    .get(url, {
-                        params: {
-                            financeTypeId: financeTypeId,
-                            nianfen: time,
-                            plateId: plateId,
-                        },
-                    })
+                this.$axios.get(url, {
+                    params: {
+                        financeTypeId: financeTypeId,
+                        nianfen: time,
+                        plateId: plateId,
+                    },
+                })
                     .then((res) => {
                         let xBxis = [];
                         let yAxis = [];
@@ -5502,7 +5502,7 @@ export default {
                             xBxis.push(element.xBxis);
                             yAxis.push(element.yAxis);
                         });
-                        console.log({ xBxis: xBxis, yAxis: yAxis })
+                        
                         resolve({ xBxis: xBxis, yAxis: yAxis });
                     });
             });
@@ -5523,16 +5523,22 @@ export default {
                 something.yAxis;
             this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data =
                 something.xBxis;
+                this.$nextTick(_=>{
+                    this.$refs["collapse"].initECharts(this.collapseData);
+                })
+        
         },
     },
     async mounted() {
-        await this.$axios.get("/api/jt_finance/finance_type_list").then((res) => {
-            this.$axios.get("/api/jt_finance/plate_list", { params: { mohu: "服务区板块" }, }).then((id) => {
-                console.log(456465)
-                this.requestSomething(id.data.data, res.data.data);
-                this.$refs["collapse"].initECharts(this.collapseData);
-            });
-        });
+        const [res,data] = await Promise.all([this.$axios.get("/api/jt_finance/finance_type_list"),this.$axios.get("/api/jt_finance/plate_list", { params: { mohu: "服务区板块" }, })]);
+        this.requestSomething(res.data.data, data.data.data)
+       // await this.$axios.get("/api/jt_finance/finance_type_list").then((res) => {
+        //   await  this.$axios.get("/api/jt_finance/plate_list", { params: { mohu: "服务区板块" }, }).then((id) => {
+        //         console.log(456465)
+        //        await this.requestSomething(id.data.data, res.data.data);
+        //         this.$refs["collapse"].initECharts(this.collapseData);
+        //     });
+        // });
         // expected output: 'calling1','resolved','calling2'
         // isAxios(url, nianfen, id, i, is) {
         //   this.$axios
