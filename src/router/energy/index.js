@@ -5,26 +5,31 @@ export default [
     {
         path: 'energy',
         name:'energy',
-        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/energy.vue'),
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/energy.vue'),
     },
     {
         path: 'ZHJiaoTou',
         name:'ZHJiaoTou',
-        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/ZHJiaoTou.vue'),
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/ZHJiaoTou.vue'),
     },
     {
         path: 'YPLingShou',
         name:'YPLingShou',
-        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/YPLingShou.vue'),
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/YPLingShou.vue'),
     },
     {
         path: 'FYPLingShou',
         name:'FYPLingShou',
-        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/FYPLingShou.vue'),
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/FYPLingShou.vue'),
     },
     {
         path: 'JYZXiangQing',
         name:'JYZXiangQing',
-        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/energy/children/JYZXiangQing.vue'),
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/JYZXiangQing.vue'),
+    },
+    {
+        path: 'piFa',
+        name:'piFa',
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/piFa.vue'),
     },
 ]

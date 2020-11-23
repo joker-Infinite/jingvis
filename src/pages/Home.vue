@@ -198,6 +198,9 @@
                 if (v === "2-6") {
                     this.$router.push("/serviceArea/xianNing");
                 }
+                if (v === "3-1") {
+                    this.$router.push("/serviceArea/FWQYeTai");
+                }
                 if (v === "3-2") {
                     this.$router.push("/comparison/comparison");
                 }
@@ -206,6 +209,9 @@
                 }
                 if (v === "4-0-0") {
                     this.$router.push("/energy/JYZXiangQing");
+                }
+                if (v === "5-0") {
+                    this.$router.push("/energy/piFa");
                 }
                 if (v === "5-1") {
                     this.$router.push("/energy/YPLingShou");
