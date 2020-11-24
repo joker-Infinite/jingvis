@@ -130,6 +130,12 @@
                             {
                                 id: "revenue_2020",
                                 collapseTitle: "2020年营收",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -522,6 +528,12 @@
                             {
                                 id: "revenue_2019",
                                 collapseTitle: "2019年营收",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -927,6 +939,12 @@
                             {
                                 id: "profit_2020",
                                 collapseTitle: "2020年利润",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -1320,6 +1338,12 @@
                             {
                                 id: "profit_2019",
                                 collapseTitle: "2019年利润",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -1725,6 +1749,12 @@
                             {
                                 id: "cost_2020",
                                 collapseTitle: "2020年成本",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "实际成本",
@@ -2417,6 +2447,12 @@
                             {
                                 id: "cost_2019",
                                 collapseTitle: "2019年成本",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "实际成本",

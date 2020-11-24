@@ -20,9 +20,10 @@
                                  style="width: 100%;height: 100px;background: white;border-radius: 10px"></div>
                             <div class="allQuery" v-if="cit.allQuery">
                                 <div>
-                                    <el-input placeholder="请输入内容"></el-input>
-                                    <el-select></el-select>
+                                    <el-input v-if="cit.allQueryData.input" placeholder="请输入内容"></el-input>
+                                    <el-select v-if="cit.allQueryData.select"></el-select>
                                     <el-date-picker
+                                            v-if="cit.allQueryData.time"
                                             type="monthrange"
                                             range-separator="至"
                                             start-placeholder="开始月份"
@@ -57,7 +58,7 @@
                                 </div>
                                 <div v-for="(wit, wix) in sit.EChartsItem"
                                      :key="wix"
-                                     style=" margin-bottom: 100px;position: relative;"
+                                     style="position: relative;"
                                      :style="wit.style"
                                      class="echarts"
                                      @mouseover="mouseover(wit, wix, sit.title)">
@@ -69,14 +70,15 @@
                                     <div v-if="!wit.type"
                                          style="width: 100%; height: 100%"
                                          :id="cit.id + '-' + six + '-' + wix"></div>
-                                    <div style=" width: 100%; height: 100%; margin-top: 60px;"
+                                    <div style=" width: 100%; height: 100%;"
+                                         :style="{marginTop:sit.time || sit.select?'10px':''}"
                                          v-if="!!wit.type && wit.type !== 'box'">
                                         <my-table
                                                 @selectionChange="(row) => {$emit('selectionChange',row);}"
                                                 :columns="wit.columns"
                                                 :height="wit.height? wit.height:'300px'"
                                                 :multiple="false"
-                                                :border=" wit.border ? wit.border : false"
+                                                :border=" wit.border ? wit.border : true"
                                                 :data="wit.tableData"
                                                 :is-pagination="wit.isPagination"
                                                 v-if="wit.type === 'table'">
