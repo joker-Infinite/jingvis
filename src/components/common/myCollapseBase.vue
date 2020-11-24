@@ -40,7 +40,7 @@
                                  :key="six"
                                  :style="sit.style">
                                 <div class="Title">{{ sit.title }}</div>
-                                <div class="query">
+                                <div class="query" v-if="sit.time||sit.select">
                                     <el-date-picker
                                             v-if="sit.time"
                                             v-model="sit.timeValue"
@@ -64,7 +64,7 @@
                                      :style="wit.style"
                                      class="echarts"
                                      :id="cit.id + '-' + six + '-' + wix">
-                                    <div v-if="!!wit.type&&wit.type!=='box'">
+                                    <div style="width: 100%;height: 100%" v-if="!!wit.type&&wit.type!=='box'">
                                         <my-table @selectionChange="row=>{$emit('selectionChange',row)}"
                                                   :columns="wit.columns"
                                                   :height="wit.height ? wit.height : '300px'"
@@ -72,7 +72,10 @@
                                                   :border="wit.border?wit.border:false"
                                                   :data="wit.tableData"
                                                   :is-pagination="wit.isPagination"
-                                                  v-if="wit.type === 'table'"/>
+                                                  v-if="wit.type === 'table'">
+                                        </my-table>
+                                        <my-map v-if="wit.type === 'map'"
+                                                :vid="cit.id + '-' + six + '-' + wix"></my-map>
                                     </div>
                                     <div v-if="wit.type&&wit.type === 'box'" :style="wit.style.style">
                                         {{wit.style.style.content}}
@@ -108,10 +111,11 @@
 
 <script>
     import MyTable from "./myTable";
+    import MyMap from "./myMap";
 
     export default {
         name: "myCollapseBase",
-        components: {MyTable},
+        components: {MyMap, MyTable},
         props: {
             collapseData: {
                 type: Array,
@@ -140,17 +144,19 @@
                     timeID = setInterval(_ => {
                         if (this.time_ > -1 && this.time_ !== this.EChartsData_.length) {
                             let data = this.EChartsData_[this.time_];
-                            data.EChartsBox.forEach((fi, fx) => {
-                                fi.EChartsItem.forEach((si, sx) => {
-                                    let id = this.EChartsData_[this.time_].id + '-' + fx + '-' + sx;
-                                    if (si.type !== 'table' && si.type !== 'map' && si.type !== 'box') {
-                                        this.$echarts.init(document.getElementById(id)).dispose();
-                                        this.$nextTick(_ => {
-                                            this.$echarts.init(document.getElementById(id)).setOption(si.option);
-                                        });
-                                    }
-                                })
-                            });
+                            if (data.EChartsBox) {
+                                data.EChartsBox.forEach((fi, fx) => {
+                                    fi.EChartsItem.forEach((si, sx) => {
+                                        let id = this.EChartsData_[this.time_].id + '-' + fx + '-' + sx;
+                                        if (si.type !== 'table' && si.type !== 'map' && si.type !== 'box') {
+                                            this.$echarts.init(document.getElementById(id)).dispose();
+                                            this.$nextTick(_ => {
+                                                this.$echarts.init(document.getElementById(id)).setOption(si.option);
+                                            });
+                                        }
+                                    })
+                                });
+                            }
                         }
                         if (this.time_ === this.EChartsData_.length) {
                             clearInterval(timeID);
@@ -237,25 +243,28 @@
             this.scrollChange();
             this.collapseData.forEach((i) => {
                 i.collapseItem.forEach((m, cx) => {
-
-                    this.activeName.push(i.id + cx);
-                    this.activeName_.push(i.id + cx);
-                    this.EChartsData_.push({
-                        id: m.id,
-                        EChartsBox: m.EChartsBox
-                    });
-                    m.EChartsBox.forEach((kt, ki) => {
-                        kt.EChartsItem.forEach((mt, mx) => {
-                            this.$nextTick((_) => {
-                                if (mt.type !== "map" && mt.type !== "table" && mt.type !== "box") {
-                                    this.EChartsData.push({
-                                        id: m.id + "-" + ki + "-" + mx,
-                                        option: mt.option
-                                    });
-                                }
+                    if (m.id) {
+                        this.activeName.push(i.id + cx);
+                        this.activeName_.push(i.id + cx);
+                        this.EChartsData_.push({
+                            id: m.id,
+                            EChartsBox: m.EChartsBox
+                        });
+                    }
+                    if (m.EChartsBox) {
+                        m.EChartsBox.forEach((kt, ki) => {
+                            kt.EChartsItem.forEach((mt, mx) => {
+                                this.$nextTick(_ => {
+                                    if (mt.type !== "map" && mt.type !== "table" && mt.type !== "box") {
+                                        this.EChartsData.push({
+                                            id: m.id + "-" + ki + "-" + mx,
+                                            option: mt.option
+                                        });
+                                    }
+                                });
                             });
                         });
-                    });
+                    }
                 });
             });
             this.initECharts(this.collapseData);

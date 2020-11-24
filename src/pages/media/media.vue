@@ -1,6 +1,6 @@
 <template>
     <div style="width: 100%;height: 100%;font-size: 50px">
-        <my-collapse-base :collapseData="collapseData"></my-collapse-base>
+        <my-collapse-base :collapseData="collapseData" ref="collapse"></my-collapse-base>
     </div>
 </template>
 

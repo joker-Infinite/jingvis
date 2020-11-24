@@ -10,6 +10,7 @@
 
 <script>
     import MyCollapseBase from "../../../components/common/myCollapseBase";
+
     export default {
         name: "yiChang",
         components: {MyCollapseBase},
@@ -4855,6 +4856,9 @@
                 this.$router.push("/details/details");
                 // console.log(val);
             },
+        },
+        mounted() {
+            this.$refs["collapse"].initECharts(this.collapseData);
         },
         watch: {
             viewChange() {

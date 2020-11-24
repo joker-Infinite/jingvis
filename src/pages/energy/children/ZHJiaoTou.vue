@@ -1380,7 +1380,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "600px",
                                                 },
                                                 option: {},
                                             },
@@ -1967,6 +1967,9 @@
                     },
                 ],
             };
+        },
+        mounted() {
+            this.$refs["collapse"].initECharts(this.collapseData);
         },
         watch: {
             viewChange() {
