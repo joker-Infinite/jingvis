@@ -31,6 +31,12 @@
                             {
                                 id: "revenue_2020",
                                 collapseTitle: "2020年营收",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -405,6 +411,12 @@
                             {
                                 id: "profit_2020",
                                 collapseTitle: "2020年利润",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -895,70 +907,89 @@
                                                 },
                                                 option: {
                                                     title: {
-                                                        text: '',
-                                                        top: 20,
-                                                        left: '5%'
+                                                        text: "",
                                                     },
-                                                    tooltip: {
-                                                        trigger: 'item',
-                                                        formatter: '{a} <br/>{b}: {c} ({d}%)'
+                                                    grid: {
+                                                        top: "20%",
+                                                        right: "40",
+                                                        left: "60",
+                                                        bottom: "40", //图表尺寸大小
                                                     },
                                                     legend: {
-                                                        left: 'center',
-                                                        top: 'bottom',
-                                                        data: ['柴油', '汽油']
+                                                        orient: "horizontal",
+                                                        bottom: 10,
+                                                    },
+                                                    tooltip: {
+                                                        trigger: "item",
                                                     },
                                                     series: [
                                                         {
-                                                            name: '',
-                                                            type: 'pie',
-                                                            radius: ['50%', '70%'],
-                                                            avoidLabelOverlap: false,
+                                                            type: "pie",
+                                                            center: ["50%", "50%"],
+                                                            radius: ["50%", "70%"],
+                                                            clockwise: true,
+                                                            avoidLabelOverlap: true,
+                                                            hoverOffset: 15,
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#1fcaa8",
+                                                                            "#15b3e2",
+                                                                            "#f69f41",
+                                                                            "#f2535f",
+                                                                            "#2e65fd",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
                                                             label: {
-                                                                formatter: function (val) {
-                                                                    return val.name + '\n' + val.percent + '%'
-                                                                }
+                                                                show: true,
+                                                                position: "outer",
+                                                                width: 0,
+                                                                height: 0,
+                                                                lineHeight: 0,
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
+                                                                borderRadius: 2,
+                                                                distanceToLabelLine: 0,
+                                                                normal: {
+                                                                    formatter(v) {
+                                                                        let text = v.name + "\n" + v.percent + "%";
+                                                                        return text;
+                                                                    },
+                                                                    textStyle: {
+                                                                        fontSize: 12,
+                                                                    },
+                                                                },
                                                             },
                                                             labelLine: {
                                                                 normal: {
-                                                                    length: 20,
-                                                                    length2: 30,
+                                                                    length: 30,
+                                                                    length2: 25,
                                                                     lineStyle: {
-                                                                        width: 1
-                                                                    }
-                                                                }
+                                                                        width: 1,
+                                                                    },
+                                                                },
                                                             },
-                                                            data: [
-                                                                {value: 335, name: '柴油'},
-                                                                {value: 310, name: '汽油'},
-                                                            ]
+                                                            data: (function () {
+                                                                let data = [];
+                                                                let title = [
+                                                                    "汽油",
+                                                                    "柴油",
+                                                                ];
+                                                                let datas = [1.45, 2.93];
+                                                                datas.forEach((element, index) => {
+                                                                    data.push({
+                                                                        name: title[index],
+                                                                        value: element,
+                                                                    });
+                                                                });
+                                                                return data;
+                                                            })(),
                                                         },
-                                                        {
-                                                            name: '访问来源',
-                                                            type: 'pie',
-                                                            radius: ['50%', '70%'],
-                                                            avoidLabelOverlap: false,
-                                                            label: {
-                                                                position: 'inner',
-                                                                formatter: '{b}：{c}亿元',
-                                                            },
-                                                            emphasis: {
-                                                                label: {
-                                                                    show: true,
-                                                                    fontSize: '30',
-                                                                    fontWeight: 'bold'
-                                                                }
-                                                            },
-                                                            labelLine: {
-                                                                show: true
-                                                            },
-                                                            data: [
-                                                                {value: 335, name: '柴油'},
-                                                                {value: 310, name: '汽油'},
-                                                            ]
-                                                        }
-
-                                                    ]
+                                                    ],
                                                 },
                                             },
                                             {
@@ -969,70 +1000,94 @@
                                                 },
                                                 option: {
                                                     title: {
-                                                        text: '',
-                                                        top: 20,
-                                                        left: '5%'
+                                                        text: "",
                                                     },
-                                                    tooltip: {
-                                                        trigger: 'item',
-                                                        formatter: '{a} <br/>{b}: {c} ({d}%)'
+                                                    grid: {
+                                                        top: "20%",
+                                                        right: "40",
+                                                        left: "60",
+                                                        bottom: "40", //图表尺寸大小
                                                     },
                                                     legend: {
-                                                        left: 'center',
-                                                        top: 'bottom',
-                                                        data: ['柴油', '汽油']
+                                                        orient: "horizontal",
+                                                        bottom: 10,
+                                                    },
+                                                    tooltip: {
+                                                        trigger: "item",
                                                     },
                                                     series: [
                                                         {
-                                                            name: '',
-                                                            type: 'pie',
-                                                            radius: ['50%', '70%'],
-                                                            avoidLabelOverlap: false,
+                                                            type: "pie",
+                                                            center: ["50%", "50%"],
+                                                            radius: ["50%", "70%"],
+                                                            clockwise: true,
+                                                            avoidLabelOverlap: true,
+                                                            hoverOffset: 15,
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#1fcaa8",
+                                                                            "#15b3e2",
+                                                                            "#f69f41",
+                                                                            "#f2535f",
+                                                                            "#2e65fd",
+                                                                            "#fd7a31",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
                                                             label: {
-                                                                formatter: function (val) {
-                                                                    return val.name + '\n' + val.percent + '%'
-                                                                }
+                                                                show: true,
+                                                                position: "outer",
+                                                                width: 0,
+                                                                height: 0,
+                                                                lineHeight: 0,
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
+                                                                borderRadius: 2,
+                                                                distanceToLabelLine: 0,
+                                                                normal: {
+                                                                    formatter(v) {
+                                                                        let text = v.name + "\n" + v.percent + "%";
+                                                                        return text;
+                                                                    },
+                                                                    textStyle: {
+                                                                        fontSize: 12,
+                                                                    },
+                                                                },
                                                             },
                                                             labelLine: {
                                                                 normal: {
-                                                                    length: 20,
-                                                                    length2: 30,
+                                                                    length: 30,
+                                                                    length2: 25,
                                                                     lineStyle: {
-                                                                        width: 1
-                                                                    }
-                                                                }
+                                                                        width: 1,
+                                                                    },
+                                                                },
                                                             },
-                                                            data: [
-                                                                {value: 335, name: '柴油'},
-                                                                {value: 310, name: '汽油'},
-                                                            ]
+                                                            data: (function () {
+                                                                let data = [];
+                                                                let title = [
+                                                                    "E92",
+                                                                    "E95",
+                                                                    "92",
+                                                                    "95",
+                                                                    "98",
+                                                                    "0",
+                                                                ];
+                                                                let datas = [1.45, 2.93, 3.15, 4, 5, 8];
+                                                                datas.forEach((element, index) => {
+                                                                    data.push({
+                                                                        name: title[index],
+                                                                        value: element,
+                                                                    });
+                                                                });
+                                                                return data;
+                                                            })(),
                                                         },
-                                                        {
-                                                            name: '访问来源',
-                                                            type: 'pie',
-                                                            radius: ['50%', '70%'],
-                                                            avoidLabelOverlap: false,
-                                                            label: {
-                                                                position: 'inner',
-                                                                formatter: '{b}：{c}亿元',
-                                                            },
-                                                            emphasis: {
-                                                                label: {
-                                                                    show: true,
-                                                                    fontSize: '30',
-                                                                    fontWeight: 'bold'
-                                                                }
-                                                            },
-                                                            labelLine: {
-                                                                show: true
-                                                            },
-                                                            data: [
-                                                                {value: 335, name: '柴油'},
-                                                                {value: 310, name: '汽油'},
-                                                            ]
-                                                        }
-
-                                                    ]
+                                                    ],
                                                 },
                                             },
                                         ],
@@ -1111,70 +1166,94 @@
                                                 },
                                                 option: {
                                                     title: {
-                                                        text: '',
-                                                        top: 20,
-                                                        left: '5%'
+                                                        text: "",
                                                     },
-                                                    tooltip: {
-                                                        trigger: 'item',
-                                                        formatter: '{a} <br/>{b}: {c} ({d}%)'
+                                                    grid: {
+                                                        top: "20%",
+                                                        right: "40",
+                                                        left: "60",
+                                                        bottom: "40", //图表尺寸大小
                                                     },
                                                     legend: {
-                                                        left: 'center',
-                                                        top: 'bottom',
-                                                        data: ['柴油', '汽油']
+                                                        orient: "horizontal",
+                                                        bottom: 10,
+                                                    },
+                                                    tooltip: {
+                                                        trigger: "item",
                                                     },
                                                     series: [
                                                         {
-                                                            name: '',
-                                                            type: 'pie',
-                                                            radius: ['50%', '70%'],
-                                                            avoidLabelOverlap: false,
+                                                            type: "pie",
+                                                            center: ["50%", "50%"],
+                                                            radius: ["50%", "70%"],
+                                                            clockwise: true,
+                                                            avoidLabelOverlap: true,
+                                                            hoverOffset: 15,
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#1fcaa8",
+                                                                            "#15b3e2",
+                                                                            "#f69f41",
+                                                                            "#f2535f",
+                                                                            "#2e65fd",
+                                                                            "#fd7a31",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
                                                             label: {
-                                                                formatter: function (val) {
-                                                                    return val.name + '\n' + val.percent + '%'
-                                                                }
+                                                                show: true,
+                                                                position: "outer",
+                                                                width: 0,
+                                                                height: 0,
+                                                                lineHeight: 0,
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
+                                                                borderRadius: 2,
+                                                                distanceToLabelLine: 0,
+                                                                normal: {
+                                                                    formatter(v) {
+                                                                        let text = v.name + "\n" + v.percent + "%";
+                                                                        return text;
+                                                                    },
+                                                                    textStyle: {
+                                                                        fontSize: 12,
+                                                                    },
+                                                                },
                                                             },
                                                             labelLine: {
                                                                 normal: {
-                                                                    length: 20,
-                                                                    length2: 30,
+                                                                    length: 30,
+                                                                    length2: 25,
                                                                     lineStyle: {
-                                                                        width: 1
-                                                                    }
-                                                                }
+                                                                        width: 1,
+                                                                    },
+                                                                },
                                                             },
-                                                            data: [
-                                                                {value: 335, name: '柴油'},
-                                                                {value: 310, name: '汽油'},
-                                                            ]
+                                                            data: (function () {
+                                                                let data = [];
+                                                                let title = [
+                                                                    "A高速",
+                                                                    "B高速",
+                                                                    "C高速",
+                                                                    "D高速",
+                                                                    "E高速",
+                                                                    "F高速",
+                                                                ];
+                                                                let datas = [1.45, 2.93, 3.15, 4, 5, 8];
+                                                                datas.forEach((element, index) => {
+                                                                    data.push({
+                                                                        name: title[index],
+                                                                        value: element,
+                                                                    });
+                                                                });
+                                                                return data;
+                                                            })(),
                                                         },
-                                                        {
-                                                            name: '访问来源',
-                                                            type: 'pie',
-                                                            radius: ['50%', '70%'],
-                                                            avoidLabelOverlap: false,
-                                                            label: {
-                                                                position: 'inner',
-                                                                formatter: '{b}：{c}亿元',
-                                                            },
-                                                            emphasis: {
-                                                                label: {
-                                                                    show: true,
-                                                                    fontSize: '30',
-                                                                    fontWeight: 'bold'
-                                                                }
-                                                            },
-                                                            labelLine: {
-                                                                show: true
-                                                            },
-                                                            data: [
-                                                                {value: 335, name: '柴油'},
-                                                                {value: 310, name: '汽油'},
-                                                            ]
-                                                        }
-
-                                                    ]
+                                                    ],
                                                 },
                                             },
                                         ],
@@ -1475,8 +1554,8 @@
                                             {
                                                 type: 'table',
                                                 /*ECharts的属性*/
-                                                height:"500px",
-                                                isPagination:true,
+                                                height: "500px",
+                                                isPagination: true,
                                                 style: {
                                                     width: "100%",
                                                     height: "400px",
@@ -1489,11 +1568,39 @@
                                                     {prop: 'e', label: '柴油（金额/订单）'},
                                                     {prop: 'f', label: '时间'},
                                                 ],
-                                                tableData:[
-                                                    {a:'xxx加油站',b:'XXX高速',c:'xxx公司',d:'22/33',e:'22/99',f:'2020/12/9'},
-                                                    {a:'xxx加油站',b:'XXX高速',c:'xxx公司',d:'22/33',e:'22/99',f:'2020/12/9'},
-                                                    {a:'xxx加油站',b:'XXX高速',c:'xxx公司',d:'22/33',e:'22/99',f:'2020/12/9'},
-                                                    {a:'xxx加油站',b:'XXX高速',c:'xxx公司',d:'22/33',e:'22/99',f:'2020/12/9'},
+                                                tableData: [
+                                                    {
+                                                        a: 'xxx加油站',
+                                                        b: 'XXX高速',
+                                                        c: 'xxx公司',
+                                                        d: '22/33',
+                                                        e: '22/99',
+                                                        f: '2020/12/9'
+                                                    },
+                                                    {
+                                                        a: 'xxx加油站',
+                                                        b: 'XXX高速',
+                                                        c: 'xxx公司',
+                                                        d: '22/33',
+                                                        e: '22/99',
+                                                        f: '2020/12/9'
+                                                    },
+                                                    {
+                                                        a: 'xxx加油站',
+                                                        b: 'XXX高速',
+                                                        c: 'xxx公司',
+                                                        d: '22/33',
+                                                        e: '22/99',
+                                                        f: '2020/12/9'
+                                                    },
+                                                    {
+                                                        a: 'xxx加油站',
+                                                        b: 'XXX高速',
+                                                        c: 'xxx公司',
+                                                        d: '22/33',
+                                                        e: '22/99',
+                                                        f: '2020/12/9'
+                                                    },
                                                 ],
                                                 option: {},
                                             },

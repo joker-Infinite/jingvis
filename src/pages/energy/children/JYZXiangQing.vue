@@ -38,18 +38,21 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "500px",
+                                            height: "300px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
                                         EChartsItem: [
                                             {
-                                                type: 'map',
+                                                type: 'box',
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "500px",
+                                                    height: "300px",
+                                                    style:{
+                                                        content:'加油站基本信息',
+                                                    }
                                                 },
                                                 option: {},
                                             },

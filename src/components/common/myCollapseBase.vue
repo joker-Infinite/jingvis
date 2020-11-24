@@ -18,7 +18,7 @@
                              style="width: 100%; min-height: 100px">
                             <div v-if="cit.EChartsBox.length === 0"
                                  style="width: 100%;height: 100px;background: white;border-radius: 10px"></div>
-                            <div class="allQuery" v-if="cit.allQuery">
+                            <div class="allQuery" v-if="cit.allQuery&&cit.allQueryData">
                                 <div>
                                     <el-input v-if="cit.allQueryData.input" placeholder="请输入内容"></el-input>
                                     <el-select v-if="cit.allQueryData.select"></el-select>

@@ -29,6 +29,12 @@
                             {
                                 id: "a_2020",
                                 collapseTitle: "2020年营收",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -113,7 +119,7 @@
                                     },
                                     {
                                         title: "",
-                                        time: true,
+                                        time: false,
                                         select: false,
                                         timeValue: "",
                                         selectValue: "",
@@ -300,6 +306,12 @@
                             {
                                 id: "b_2020",
                                 collapseTitle: "2020年利润",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -384,7 +396,7 @@
                                     },
                                     {
                                         title: "",
-                                        time: true,
+                                        time: false,
                                         select: false,
                                         timeValue: "",
                                         selectValue: "",
@@ -1227,7 +1239,12 @@
                             {
                                 id: "e_2020",
                                 collapseTitle: "油库状态",
-                                allQuery:true,
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "油库 库存",

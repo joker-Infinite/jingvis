@@ -23,7 +23,7 @@ export default {
                             collapseTitle: "2020年营收",
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -347,7 +347,7 @@ export default {
                             collapseTitle: "2020年利润",
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -988,7 +988,7 @@ export default {
                             collapseTitle: "2020年面积与个数",
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "",
                                     time: true,
                                     timeValue: "",
                                     style: {
@@ -1889,7 +1889,7 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
-                                            height: "700px",
+                                            height: "600px",
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",

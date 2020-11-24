@@ -32,6 +32,11 @@
                                 id: "revenue_2020",
                                 collapseTitle: "2020年营收",
                                 allQuery: true,
+                                allQueryData:{
+                                    input:false,
+                                    select:false,
+                                    time:true,
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -407,6 +412,11 @@
                                 id: "profit_2020",
                                 collapseTitle: "2020年利润",
                                 allQuery: true,
+                                allQueryData:{
+                                    input:false,
+                                    select:false,
+                                    time:true,
+                                },
                                 EChartsBox: [
                                     {
                                         title: "",
@@ -1404,7 +1414,7 @@
                                 collapseTitle: "2020年加油站分布",
                                 EChartsBox: [
                                     {
-                                        title: "展示加油站展示油库",
+                                        title: "展示加油站",
                                         time: false,
                                         timeValue: "",
                                         style: {

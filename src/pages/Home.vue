@@ -177,6 +177,9 @@
                 if (v === "6") {
                     this.$router.push("/media/media");
                 }
+                if (v === "6-0") {
+                    this.$router.push("/media/media");
+                }
                 if (v === "5") {
                     this.$router.push("/energy/piFa");
                 }
