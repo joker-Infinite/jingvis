@@ -809,6 +809,9 @@
                 ],
             };
         },
+        mounted() {
+            this.$refs["collapse"].initECharts(this.collapseData);
+        },
         watch: {
             viewChange() {
                 this.$refs['collapse'].refresh(this.collapseData)
