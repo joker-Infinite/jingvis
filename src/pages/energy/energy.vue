@@ -550,6 +550,11 @@
                                     },
                                 ],
                             },
+                            {
+                                id:"a_gd",
+                                collapseTitle:"查看更多",
+                                EChartsBox:[]
+                            },
                         ],
                     },
                     {
@@ -1081,6 +1086,11 @@
                                         ],
                                     },
                                 ],
+                            },
+                            {
+                                id:"b_gd",
+                                collapseTitle:"查看更多",
+                                EChartsBox:[]
                             },
                         ],
                     },
@@ -2633,6 +2643,11 @@
                                     },
                                 ],
                             },
+                            {
+                                id:"c_gd",
+                                collapseTitle:"查看更多",
+                                EChartsBox:[]
+                            },
                         ],
                     },
                     {
@@ -3022,6 +3037,11 @@
                                         ],
                                     },
                                 ],
+                            },
+                            {
+                                id:"profit_gd",
+                                collapseTitle:"查看更多",
+                                EChartsBox:[]
                             },
                         ],
                     },
@@ -3443,6 +3463,7 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
+                                                isPagination:true,
                                                 height: "600px",
                                                 style: {
                                                     width: "100%",
@@ -3911,6 +3932,7 @@
                                             {
                                                 type: "table",
                                                 height: "600px",
+                                                isPagination:true,
                                                 style: {
                                                     width: "100%",
                                                     height: "600px",
@@ -3964,6 +3986,11 @@
                                         ],
                                     },
                                 ],
+                            },
+                            {
+                                id:"rateofreturn_gd",
+                                collapseTitle:"查看更多",
+                                EChartsBox:[]
                             },
                         ],
                     },

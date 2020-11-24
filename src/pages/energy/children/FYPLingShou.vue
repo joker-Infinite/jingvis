@@ -420,6 +420,11 @@
                                     },
                                 ],
                             },
+                            {
+                                id: "revenue_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
+                            },
                         ],
                     },
                     {
@@ -820,6 +825,11 @@
                                         ],
                                     },
                                 ],
+                            },
+                            {
+                                id: "profit_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
                             },
                         ],
                     },
@@ -1335,6 +1345,11 @@
                                     },
                                 ],
                             },
+                            {
+                                id: "piling_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
+                            },
                         ],
                     },
                     {
@@ -1523,6 +1538,7 @@
                                             {
                                                 type: 'table',
                                                 height:'550px',
+                                                isPagination:true,
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
@@ -1547,6 +1563,11 @@
                                         ],
                                     },
                                 ],
+                            },
+                            {
+                                id: "car_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
                             },
                         ],
                     },

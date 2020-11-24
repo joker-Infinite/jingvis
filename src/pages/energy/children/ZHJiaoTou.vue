@@ -420,6 +420,11 @@
                                     },
                                 ],
                             },
+                            {
+                                id: "revenue_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
+                            },
                         ],
                     },
                     {
@@ -820,6 +825,11 @@
                                         ],
                                     },
                                 ],
+                            },
+                            {
+                                id: "profit_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
                             },
                         ],
                     },
@@ -1335,6 +1345,11 @@
                                     },
                                 ],
                             },
+                            {
+                                id: "piling_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
+                            },
                         ],
                     },
                     {
@@ -1519,6 +1534,11 @@
                                         ],
                                     },
                                 ],
+                            },
+                            {
+                                id: "map_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
                             },
                         ],
                     },
@@ -1916,6 +1936,8 @@
                                                     width: "49.5%",
                                                     height: "500px",
                                                 },
+                                                isPagination:true,
+                                                height:'600px',
                                                 border:true,
                                                 columns:[
                                                     {prop:'A',label:'批发商'},
@@ -1935,6 +1957,11 @@
                                         ],
                                     },
                                 ],
+                            },
+                            {
+                                id: "Collection_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
                             },
                         ],
                     },

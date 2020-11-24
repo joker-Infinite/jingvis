@@ -932,6 +932,11 @@ export default {
                                 },
                             ],
                         },
+                        {
+                            id:"revenue_gd",
+                            collapseTitle:"查看更多",
+                            EChartsBox:[]
+                        },
                     ],
                 },
                 {
@@ -1844,6 +1849,11 @@ export default {
                                     ],
                                 },
                             ],
+                        },
+                        {
+                            id:"profit_gd",
+                            collapseTitle:"查看更多",
+                            EChartsBox:[]
                         },
                     ],
                 },
@@ -3503,6 +3513,11 @@ export default {
                                 },
                             ],
                         },
+                        {
+                            id:"cost_gd",
+                            collapseTitle:"查看更多",
+                            EChartsBox:[]
+                        },
                     ],
                 },
                 {
@@ -4119,6 +4134,8 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
+                                            height:'500px',
+                                            isPagination:true,
                                             style: {
                                                 width: "100%",
                                                 height: "400px",
@@ -4497,9 +4514,11 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
+                                            height:'500px',
+                                            isPagination:true,
                                             style: {
                                                 width: "100%",
-                                                height: "400px",
+                                                // height: "400px",
                                                 background: "#fff",
                                             },
                                             columns: [
@@ -4579,6 +4598,11 @@ export default {
                                     ],
                                 },
                             ],
+                        },
+                        {
+                            id:"construction_gd",
+                            collapseTitle:"查看更多",
+                            EChartsBox:[]
                         },
                     ],
                 },
@@ -5479,6 +5503,11 @@ export default {
                                     ],
                                 },
                             ],
+                        },
+                        {
+                            id:"rateofreturn_gd",
+                            collapseTitle:"查看更多",
+                            EChartsBox:[]
                         },
                     ],
                 },

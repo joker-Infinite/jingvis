@@ -747,6 +747,8 @@
                                             {
                                                 type: 'table',
                                                 /*ECharts的属性*/
+                                                isPagination:true,
+                                                height: "500px",
                                                 style: {
                                                     width: "100%",
                                                     height: "400px",
