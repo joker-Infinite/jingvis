@@ -243,7 +243,7 @@
             this.scrollChange();
             this.collapseData.forEach((i) => {
                 i.collapseItem.forEach((m, cx) => {
-                    if (m.id) {
+                    if (m.EChartsBox.length !== 0) {
                         this.activeName.push(i.id + cx);
                         this.activeName_.push(i.id + cx);
                         this.EChartsData_.push({
@@ -285,7 +285,7 @@
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: space-around;
-        
+
         .collapse {
             width: 85%;
             height: 100%;
@@ -354,7 +354,7 @@
                     }
 
                     .query {
-                        
+
                         position: absolute;
                         width: 90%;
                         padding: 0 5%;
