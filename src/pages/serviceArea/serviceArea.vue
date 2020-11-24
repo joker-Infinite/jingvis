@@ -28,9 +28,10 @@ export default {
                         {
                             id: "revenue_2020",
                             collapseTitle: "2020年营收",
+                            allQuery:true,
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -203,7 +204,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收2",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -344,7 +345,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收3",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -482,9 +483,10 @@ export default {
                         {
                             id: "revenue_2019",
                             collapseTitle: "2019年营收",
+                            allQuery:true,
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -510,9 +512,9 @@ export default {
                                                     formatter: function (val) {
                                                         return (
                                                             val[0].name +
-                                                            ":" +
-                                                            val[0].value +
-                                                            "元"
+                                                            ":" +"<br />" +
+                                                            val[0].value/10000 +
+                                                            "万元"
                                                         );
                                                     },
                                                 },
@@ -561,8 +563,9 @@ export default {
                                                 yAxis: [
                                                     {
                                                         axisLabel: {
-                                                            formatter:
-                                                                "{value}",
+                                                            formatter:function(val){
+                                                                return val / 10000
+                                                            },
                                                             color: "#999",
                                                             textStyle: {
                                                                 fontSize: 12,
@@ -656,7 +659,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收2",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -715,7 +718,7 @@ export default {
                                                                     return colorList[
                                                                         params
                                                                             .dataIndex
-                                                                    ];
+                                                                        ];
                                                                 },
                                                             },
                                                         },
@@ -782,8 +785,8 @@ export default {
                                                                     data.push({
                                                                         name:
                                                                             title[
-                                                                            index
-                                                                            ],
+                                                                                index
+                                                                                ],
                                                                         value: element,
                                                                     });
                                                                 }
@@ -797,7 +800,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收3",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -854,7 +857,7 @@ export default {
                                                                     return colorList[
                                                                         params
                                                                             .dataIndex
-                                                                    ];
+                                                                        ];
                                                                 },
                                                             },
                                                         },
@@ -948,9 +951,10 @@ export default {
                         {
                             id: "profit_2020",
                             collapseTitle: "2020年利润",
+                            allQuery:true,
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1122,7 +1126,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收2",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -1262,7 +1266,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收3",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -1400,9 +1404,10 @@ export default {
                         {
                             id: "profit_2019",
                             collapseTitle: "2019年利润",
+                            allQuery:true,
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1574,7 +1579,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收2",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -1633,7 +1638,7 @@ export default {
                                                                     return colorList[
                                                                         params
                                                                             .dataIndex
-                                                                    ];
+                                                                        ];
                                                                 },
                                                             },
                                                         },
@@ -1685,14 +1690,13 @@ export default {
                                                                 "便利店",
                                                                 "加油",
                                                             ];
-                                                            let datas = [
+                                                            [
                                                                 1.45,
                                                                 2.93,
                                                                 3.15,
-                                                                40,
+                                                                4,
                                                                 5,
-                                                            ];
-                                                            datas.forEach(
+                                                            ].forEach(
                                                                 (
                                                                     element,
                                                                     index
@@ -1700,8 +1704,8 @@ export default {
                                                                     data.push({
                                                                         name:
                                                                             title[
-                                                                            index
-                                                                            ],
+                                                                                index
+                                                                                ],
                                                                         value: element,
                                                                     });
                                                                 }
@@ -1715,7 +1719,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收3",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -1772,7 +1776,7 @@ export default {
                                                                     return colorList[
                                                                         params
                                                                             .dataIndex
-                                                                    ];
+                                                                        ];
                                                                 },
                                                             },
                                                         },
@@ -2040,7 +2044,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收2",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -2181,7 +2185,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收3",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -2865,7 +2869,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收2",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",
@@ -3006,7 +3010,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "营收3",
+                                    title: "",
                                     time: false,
                                     select: false,
                                     timeValue: "",

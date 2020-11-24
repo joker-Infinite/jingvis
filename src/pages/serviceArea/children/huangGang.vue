@@ -10,7 +10,7 @@
     import MyCollapseBase from "../../../components/common/myCollapseBase";
 
     export default {
-        name: "serviceArea",
+        name: "huangGang",
         components: {MyCollapseBase},
         props: {
             viewChange: {
@@ -132,7 +132,7 @@
                                 collapseTitle: "2020年营收",
                                 EChartsBox: [
                                     {
-                                        title: "实际成本",
+                                        title: "",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -287,7 +287,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收2",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -399,7 +399,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收3",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -524,7 +524,7 @@
                                 collapseTitle: "2019年营收",
                                 EChartsBox: [
                                     {
-                                        title: "实际成本",
+                                        title: "",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -679,7 +679,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收2",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -791,7 +791,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收3",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -929,7 +929,7 @@
                                 collapseTitle: "2020年利润",
                                 EChartsBox: [
                                     {
-                                        title: "实际成本",
+                                        title: "",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -1084,7 +1084,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收2",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -1197,7 +1197,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收3",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -1322,7 +1322,7 @@
                                 collapseTitle: "2019年利润",
                                 EChartsBox: [
                                     {
-                                        title: "实际成本",
+                                        title: "",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -1477,7 +1477,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收2",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -1589,7 +1589,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收3",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -1882,7 +1882,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收2",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -1994,7 +1994,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收3",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -2574,7 +2574,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收2",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -2686,7 +2686,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收3",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -3342,23 +3342,6 @@
                                                                 },
                                                             },
                                                         },
-                                                        {
-                                                            xAxisIndex: 1,
-                                                            type: "line",
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: "#b37eeb",
-                                                                },
-                                                            },
-                                                            data: (function () {
-                                                                let data = [65, 55, 60, 45, 42, 15];
-                                                                let datas = [];
-                                                                data.forEach((element, index) => {
-                                                                    datas.push([35 + index * 100, element]);
-                                                                });
-                                                                return datas;
-                                                            })(),
-                                                        },
                                                     ],
                                                 },
                                             },
@@ -3380,6 +3363,316 @@
                                 EChartsBox: [
                                     {
                                         title: "品牌分类",
+                                        time: false,
+                                        timeValue: "",
+                                        style: {
+                                            width: "100%",
+                                            height: "450px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "49%",
+                                                    height: "400px",
+                                                },
+                                                option: {
+                                                    title: {
+                                                        text: "总营业额(万元)",
+                                                        top: "40%",
+                                                        left: "center",
+                                                        // x: 'center',
+                                                        // y: 'center',
+                                                        textStyle: {
+                                                            fontSize: 18,
+                                                        },
+                                                        subtext: "85000",
+                                                        subtextStyle: {
+                                                            fontSize: 45,
+                                                            color: "#1edf57",
+                                                        },
+                                                    },
+                                                    grid: {
+                                                        top: "20%",
+                                                        right: "40",
+                                                        left: "60",
+                                                        bottom: "40", //图表尺寸大小
+                                                    },
+                                                    legend: {
+                                                        orient: "horizontal",
+                                                        bottom: 10,
+                                                    },
+                                                    tooltip: {
+                                                        trigger: "item",
+                                                    },
+                                                    series: [
+                                                        {
+                                                            type: "pie",
+                                                            center: ["50%", "50%"],
+                                                            radius: ["44%", "55%"],
+                                                            clockwise: true,
+                                                            avoidLabelOverlap: true,
+                                                            hoverOffset: 15,
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#fd866a",
+                                                                            "#9e87ff",
+                                                                            "#73acff",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
+                                                            label: {
+                                                                show: true,
+                                                                position: "outer",
+                                                                width: 0,
+                                                                height: 0,
+                                                                lineHeight: 0,
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
+                                                                borderRadius: 2,
+                                                                distanceToLabelLine: 0,
+                                                                normal: {
+                                                                    formatter(v) {
+                                                                        let text = v.name + "\n" + v.percent + "%";
+                                                                        return text;
+                                                                    },
+                                                                    textStyle: {
+                                                                        fontSize: 15,
+                                                                    },
+                                                                },
+                                                            },
+                                                            labelLine: {
+                                                                normal: {
+                                                                    length: 30,
+                                                                    length2: 30,
+                                                                    lineStyle: {
+                                                                        width: 1,
+                                                                    },
+                                                                },
+                                                            },
+                                                            data: [
+                                                                {
+                                                                    name: "传统",
+                                                                    value: 1.45,
+                                                                },
+                                                                {
+                                                                    name: "品牌",
+                                                                    value: 2.93,
+                                                                },
+                                                                {
+                                                                    name: "特色",
+                                                                    value: 3.15,
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                            {
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "49%",
+                                                    height: "400px",
+                                                },
+                                                option: {
+                                                    legend: {
+                                                        orient: "horizontal",
+                                                        bottom: 10,
+                                                    },
+                                                    tooltip: {
+                                                        formatter: "{b}:{c}: ({d}%)",
+                                                    },
+
+                                                    series: [
+                                                        {
+                                                            name: "整体分类",
+                                                            type: "pie",
+                                                            radius: [0, "30%"],
+                                                            label: {
+                                                                position: "inner",
+                                                            },
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    borderColor: "#fff",
+                                                                    borderWidth: 2,
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#73acff",
+                                                                            "#fd866a",
+                                                                            "#9e87ff",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
+
+                                                            selectedMode: "single",
+                                                            data: [
+                                                                {
+                                                                    value: 875,
+                                                                    name: "特色",
+                                                                },
+                                                                {
+                                                                    value: 1239,
+                                                                    name: "传统",
+                                                                },
+                                                                {
+                                                                    value: 1239,
+                                                                    name: "品牌",
+                                                                },
+                                                            ],
+                                                        },
+                                                        {
+                                                            name: "招标方式",
+                                                            type: "pie",
+                                                            radius: ["40%", "55%"],
+
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#73acff",
+                                                                            "#fd866a",
+                                                                            "#9e87ff",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
+                                                            labelLine: {
+                                                                normal: {
+                                                                    length: 30,
+                                                                    length2: 30,
+                                                                    lineStyle: {
+                                                                        width: 1,
+                                                                    },
+                                                                },
+                                                            },
+                                                            label: {
+                                                                show: true,
+                                                                position: "outer",
+                                                                width: 0,
+                                                                height: 0,
+                                                                lineHeight: 0,
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
+                                                                borderRadius: 2,
+                                                                distanceToLabelLine: 0,
+                                                                normal: {
+                                                                    formatter(v) {
+                                                                        let text = v.name + "\n" + v.percent + "%";
+                                                                        return text;
+                                                                    },
+                                                                    textStyle: {
+                                                                        fontSize: 15,
+                                                                    },
+                                                                },
+                                                            },
+
+                                                            data: [
+                                                                {
+                                                                    value: 875,
+                                                                    name: "特色",
+                                                                    type: "特色",
+                                                                },
+                                                                {
+                                                                    value: 1239,
+                                                                    name: "传统",
+                                                                    type: "传统",
+                                                                },
+                                                                {
+                                                                    value: 1239,
+                                                                    name: "品牌",
+                                                                    type: "品牌",
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        title: "table列表",
+                                        timeValue: "",
+                                        selectValue: "",
+                                        style: {
+                                            width: "100%",
+                                            height: "400px",
+                                            borderRadius: "10px",
+                                            background: "white",
+                                            marginBottom: "10px",
+                                            marginTop: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                type: "table",
+                                                height: '500px',
+                                                isPagination: true,
+                                                style: {
+                                                    width: "100%",
+                                                    height: "400px",
+                                                    background: "#fff",
+                                                },
+                                                columns: [
+                                                    {prop: "A", label: "业态结构"},
+                                                    {prop: "B", label: "所在服务区个数"},
+                                                    {prop: "C", label: "经营场所个数"},
+                                                    {prop: "D", label: "占地面积(平方米)"},
+                                                    {prop: "E", label: "订单数"},
+                                                    {prop: "F", label: "收入(元)"},
+                                                    {prop: "G", label: "客单价(元)"},
+                                                    {prop: "H", label: "坪效(元)"},
+                                                    {prop: "I", label: "利润(元)"},
+                                                ],
+                                                tableData: [
+                                                    {
+                                                        A: "一线品牌",
+                                                        B: "8%",
+                                                        C: "8%",
+                                                        D: "8%",
+                                                        E: "8%",
+                                                        F: "110000",
+                                                        G: "110000",
+                                                        H: "110000",
+                                                        I: "110000",
+                                                    },
+                                                    {
+                                                        A: "本地特色",
+                                                        B: "8%",
+                                                        C: "8%",
+                                                        D: "8%",
+                                                        E: "8%",
+                                                        F: "120000",
+                                                        G: "110000",
+                                                        H: "110000",
+                                                        I: "110000",
+                                                    },
+                                                    {
+                                                        A: "传统产业",
+                                                        B: "8%",
+                                                        C: "8%",
+                                                        D: "8%",
+                                                        E: "8%",
+                                                        F: "130000",
+                                                        G: "110000",
+                                                        H: "110000",
+                                                        I: "110000",
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        title: "业态分类",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -4004,6 +4297,316 @@
                                             },
                                         ],
                                     },
+                                    {
+                                        title: "业态分类",
+                                        time: false,
+                                        timeValue: "",
+                                        style: {
+                                            width: "100%",
+                                            height: "450px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "49%",
+                                                    height: "400px",
+                                                },
+                                                option: {
+                                                    title: {
+                                                        text: "总营业额(万元)",
+                                                        top: "40%",
+                                                        left: "center",
+                                                        // x: 'center',
+                                                        // y: 'center',
+                                                        textStyle: {
+                                                            fontSize: 18,
+                                                        },
+                                                        subtext: "85000",
+                                                        subtextStyle: {
+                                                            fontSize: 45,
+                                                            color: "#1edf57",
+                                                        },
+                                                    },
+                                                    grid: {
+                                                        top: "20%",
+                                                        right: "40",
+                                                        left: "60",
+                                                        bottom: "40", //图表尺寸大小
+                                                    },
+                                                    legend: {
+                                                        orient: "horizontal",
+                                                        bottom: 10,
+                                                    },
+                                                    tooltip: {
+                                                        trigger: "item",
+                                                    },
+                                                    series: [
+                                                        {
+                                                            type: "pie",
+                                                            center: ["50%", "50%"],
+                                                            radius: ["44%", "55%"],
+                                                            clockwise: true,
+                                                            avoidLabelOverlap: true,
+                                                            hoverOffset: 15,
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#fd866a",
+                                                                            "#9e87ff",
+                                                                            "#73acff",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
+                                                            label: {
+                                                                show: true,
+                                                                position: "outer",
+                                                                width: 0,
+                                                                height: 0,
+                                                                lineHeight: 0,
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
+                                                                borderRadius: 2,
+                                                                distanceToLabelLine: 0,
+                                                                normal: {
+                                                                    formatter(v) {
+                                                                        let text = v.name + "\n" + v.percent + "%";
+                                                                        return text;
+                                                                    },
+                                                                    textStyle: {
+                                                                        fontSize: 15,
+                                                                    },
+                                                                },
+                                                            },
+                                                            labelLine: {
+                                                                normal: {
+                                                                    length: 30,
+                                                                    length2: 30,
+                                                                    lineStyle: {
+                                                                        width: 1,
+                                                                    },
+                                                                },
+                                                            },
+                                                            data: [
+                                                                {
+                                                                    name: "传统",
+                                                                    value: 1.45,
+                                                                },
+                                                                {
+                                                                    name: "品牌",
+                                                                    value: 2.93,
+                                                                },
+                                                                {
+                                                                    name: "特色",
+                                                                    value: 3.15,
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                            {
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "49%",
+                                                    height: "400px",
+                                                },
+                                                option: {
+                                                    legend: {
+                                                        orient: "horizontal",
+                                                        bottom: 10,
+                                                    },
+                                                    tooltip: {
+                                                        formatter: "{b}:{c}: ({d}%)",
+                                                    },
+
+                                                    series: [
+                                                        {
+                                                            name: "整体分类",
+                                                            type: "pie",
+                                                            radius: [0, "30%"],
+                                                            label: {
+                                                                position: "inner",
+                                                            },
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    borderColor: "#fff",
+                                                                    borderWidth: 2,
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#73acff",
+                                                                            "#fd866a",
+                                                                            "#9e87ff",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
+
+                                                            selectedMode: "single",
+                                                            data: [
+                                                                {
+                                                                    value: 875,
+                                                                    name: "特色",
+                                                                },
+                                                                {
+                                                                    value: 1239,
+                                                                    name: "传统",
+                                                                },
+                                                                {
+                                                                    value: 1239,
+                                                                    name: "品牌",
+                                                                },
+                                                            ],
+                                                        },
+                                                        {
+                                                            name: "招标方式",
+                                                            type: "pie",
+                                                            radius: ["40%", "55%"],
+
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#73acff",
+                                                                            "#fd866a",
+                                                                            "#9e87ff",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
+                                                            labelLine: {
+                                                                normal: {
+                                                                    length: 30,
+                                                                    length2: 30,
+                                                                    lineStyle: {
+                                                                        width: 1,
+                                                                    },
+                                                                },
+                                                            },
+                                                            label: {
+                                                                show: true,
+                                                                position: "outer",
+                                                                width: 0,
+                                                                height: 0,
+                                                                lineHeight: 0,
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
+                                                                borderRadius: 2,
+                                                                distanceToLabelLine: 0,
+                                                                normal: {
+                                                                    formatter(v) {
+                                                                        let text = v.name + "\n" + v.percent + "%";
+                                                                        return text;
+                                                                    },
+                                                                    textStyle: {
+                                                                        fontSize: 15,
+                                                                    },
+                                                                },
+                                                            },
+
+                                                            data: [
+                                                                {
+                                                                    value: 875,
+                                                                    name: "特色",
+                                                                    type: "特色",
+                                                                },
+                                                                {
+                                                                    value: 1239,
+                                                                    name: "传统",
+                                                                    type: "传统",
+                                                                },
+                                                                {
+                                                                    value: 1239,
+                                                                    name: "品牌",
+                                                                    type: "品牌",
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        title: "table列表",
+                                        timeValue: "",
+                                        selectValue: "",
+                                        style: {
+                                            width: "100%",
+                                            height: "400px",
+                                            borderRadius: "10px",
+                                            background: "white",
+                                            marginBottom: "10px",
+                                            marginTop: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                type: "table",
+                                                height: '500px',
+                                                isPagination: true,
+                                                style: {
+                                                    width: "100%",
+                                                    height: "400px",
+                                                    background: "#fff",
+                                                },
+                                                columns: [
+                                                    {prop: "A", label: "业态结构"},
+                                                    {prop: "B", label: "所在服务区个数"},
+                                                    {prop: "C", label: "经营场所个数"},
+                                                    {prop: "D", label: "占地面积(平方米)"},
+                                                    {prop: "E", label: "订单数"},
+                                                    {prop: "F", label: "收入(元)"},
+                                                    {prop: "G", label: "客单价(元)"},
+                                                    {prop: "H", label: "坪效(元)"},
+                                                    {prop: "I", label: "利润(元)"},
+                                                ],
+                                                tableData: [
+                                                    {
+                                                        A: "一线品牌",
+                                                        B: "8%",
+                                                        C: "8%",
+                                                        D: "8%",
+                                                        E: "8%",
+                                                        F: "110000",
+                                                        G: "110000",
+                                                        H: "110000",
+                                                        I: "110000",
+                                                    },
+                                                    {
+                                                        A: "本地特色",
+                                                        B: "8%",
+                                                        C: "8%",
+                                                        D: "8%",
+                                                        E: "8%",
+                                                        F: "120000",
+                                                        G: "110000",
+                                                        H: "110000",
+                                                        I: "110000",
+                                                    },
+                                                    {
+                                                        A: "传统产业",
+                                                        B: "8%",
+                                                        C: "8%",
+                                                        D: "8%",
+                                                        E: "8%",
+                                                        F: "130000",
+                                                        G: "110000",
+                                                        H: "110000",
+                                                        I: "110000",
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
                                 ],
                             },
                             {
@@ -4250,36 +4853,6 @@
                                                                     borderWidth: 0,
                                                                 },
                                                             },
-                                                        },
-                                                        {
-                                                            xAxisIndex: 1,
-                                                            type: "line",
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: "#b37eeb",
-                                                                },
-                                                            },
-                                                            data: (function () {
-                                                                let data = [
-                                                                    62,
-                                                                    80,
-                                                                    80,
-                                                                    62,
-                                                                    60,
-                                                                    55,
-                                                                    45,
-                                                                    30,
-                                                                    15,
-                                                                    106,
-                                                                    55,
-                                                                    45,
-                                                                ];
-                                                                let datas = [];
-                                                                data.forEach((element, index) => {
-                                                                    datas.push([35 + index * 100, element]);
-                                                                });
-                                                                return datas;
-                                                            })(),
                                                         },
                                                     ],
                                                 },
@@ -4659,36 +5232,6 @@
                                                                     borderWidth: 0,
                                                                 },
                                                             },
-                                                        },
-                                                        {
-                                                            xAxisIndex: 1,
-                                                            type: "line",
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: "#b37eeb",
-                                                                },
-                                                            },
-                                                            data: (function () {
-                                                                let data = [
-                                                                    62,
-                                                                    80,
-                                                                    80,
-                                                                    62,
-                                                                    60,
-                                                                    55,
-                                                                    45,
-                                                                    30,
-                                                                    15,
-                                                                    106,
-                                                                    55,
-                                                                    45,
-                                                                ];
-                                                                let datas = [];
-                                                                data.forEach((element, index) => {
-                                                                    datas.push([35 + index * 100, element]);
-                                                                });
-                                                                return datas;
-                                                            })(),
                                                         },
                                                     ],
                                                 },
