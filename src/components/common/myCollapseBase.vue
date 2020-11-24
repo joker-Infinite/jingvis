@@ -11,6 +11,10 @@
                             {{ cit.collapseTitle }}
                         </template>
                         <div class="ECharts" style="width: 100%;min-height: 100px;">
+                            <div v-if="cit.EChartsBox.length ===0"
+                                 style="width: 100%;height: 100px;background: white;border-radius: 10px">
+                                更多内容>>>
+                            </div>
                             <div class="allQuery" v-if="false">
                                 <div>
                                     <el-input></el-input>
@@ -69,7 +73,8 @@
                                                   :columns="wit.columns"
                                                   :height="wit.height ? wit.height : '300px'"
                                                   :multiple="false"
-                                                  :border="wit.border?wit.border:false"
+                                                  :border="wit.border?wit.border:true"
+                                                  :showIndex="wit.showIndex?wit.showIndex:false"
                                                   :data="wit.tableData"
                                                   :is-pagination="wit.isPagination"
                                                   v-if="wit.type === 'table'">
