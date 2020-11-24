@@ -169,13 +169,16 @@
                     this.$router.push("/serviceArea/serviceArea");
                 }
                 if (v === "3") {
-                    this.$router.push("/energy/energy");
+
                 }
                 if (v === "4") {
+                    this.$router.push("/energy/energy");
+                }
+                if (v === "6") {
                     this.$router.push("/media/media");
                 }
                 if (v === "5") {
-                    this.$router.push("/business/business");
+                    this.$router.push("/energy/piFa");
                 }
                 if (v === "2-0") {
                     this.$router.push("/serviceArea/serviceArea");
