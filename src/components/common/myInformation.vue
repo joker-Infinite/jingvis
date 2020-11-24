@@ -12,7 +12,7 @@
       </span>
     <span class="excel" @click="operations('excel')">
       <el-tooltip class="item" effect="dark" content="导出Excel" placement="left">
-        <i class="el-icon-upload2"></i>
+        <i class="el-icon-download"></i>
       </el-tooltip>
       </span>
   </div>
@@ -31,6 +31,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.el-icon-s-marketing,.el-icon-s-grid,.el-icon-download{
+  color: #38A0FF;
+}
 .inform {
   position: absolute;
   z-index: 10000;
@@ -43,15 +46,16 @@ export default {
     display: inline-block;
     margin-right: 20px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
     // font-size:30px;
     width: 30px;
     height: 30px;
     line-height: 30px;
     border-radius: 100px;
     text-align: center;
-    background: pink;
+    // background: #38A0FF;
     margin: 5px 0;
+    border: 1px solid #38A0FF;
   }
 }
 </style>
