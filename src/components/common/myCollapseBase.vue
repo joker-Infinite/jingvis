@@ -1,11 +1,10 @@
 <template>
     <div class="container">
         <div class="collapse" id="collapse">
-            <div
-                    v-for="(item, index) in collapseData"
-                    :key="index"
-                    :id="item.id"
-                    class="box_">
+            <div v-for="(item, index) in collapseData"
+                 :key="index"
+                 :id="item.id"
+                 class="box_">
                 <el-collapse v-model="activeName">
                     <el-collapse-item
                             v-for="(cit, cix) in item.collapseItem"
@@ -17,9 +16,11 @@
                         </template>
                         <div class="ECharts"
                              style="width: 100%; min-height: 100px">
-                            <div class="allQuery" v-if="false">
+                            <div v-if="cit.EChartsBox.length === 0"
+                                 style="width: 100%;height: 100px;background: white;border-radius: 10px"></div>
+                            <div class="allQuery" v-if="cit.allQuery">
                                 <div>
-                                    <el-input></el-input>
+                                    <el-input placeholder="请输入内容"></el-input>
                                     <el-select></el-select>
                                     <el-date-picker
                                             type="monthrange"
@@ -28,9 +29,9 @@
                                             end-placeholder="结束月份">
                                     </el-date-picker>
                                     <el-button type="primary">搜索</el-button>
-                                    <el-button type="primary">搜索</el-button>
-                                    <el-button type="primary">搜索</el-button>
-                                    <el-button type="primary">搜索</el-button>
+                                    <!-- <el-button type="primary">搜索</el-button>
+                                     <el-button type="primary">搜索</el-button>
+                                     <el-button type="primary">搜索</el-button>-->
                                 </div>
                             </div>
                             <div v-for="(sit, six) in cit.EChartsBox"
@@ -39,6 +40,8 @@
                                 <div class="Title">{{ sit.title }}</div>
                                 <div class="query"
                                      v-if="sit.time || sit.select">
+                                    <el-select v-model="sit.selectValue"
+                                               v-if="sit.select"></el-select>
                                     <el-date-picker
                                             v-if="sit.time"
                                             v-model="sit.timeValue"
@@ -47,10 +50,6 @@
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-select
-                                            v-model="sit.selectValue"
-                                            v-if="sit.select"
-                                    ></el-select>
                                     <el-button
                                             type="primary"
                                             v-if="sit.time || sit.select">搜索
@@ -80,8 +79,7 @@
                                                 :border=" wit.border ? wit.border : false"
                                                 :data="wit.tableData"
                                                 :is-pagination="wit.isPagination"
-                                                v-if="wit.type === 'table'"
-                                        >
+                                                v-if="wit.type === 'table'">
                                         </my-table>
                                         <my-map v-if="wit.type === 'map'"
                                                 :vid="cit.id + '-' + six + '-' + wix"></my-map>
@@ -163,26 +161,11 @@
                             if (data.EChartsBox) {
                                 data.EChartsBox.forEach((fi, fx) => {
                                     fi.EChartsItem.forEach((si, sx) => {
-                                        let id =
-                                            this.EChartsData_[this.time_].id +
-                                            "-" +
-                                            fx +
-                                            "-" +
-                                            sx;
-                                        if (
-                                            si.type !== "table" &&
-                                            si.type !== "map" &&
-                                            si.type !== "box"
-                                        ) {
-                                            this.$echarts
-                                                .init(document.getElementById(id))
-                                                .dispose();
+                                        let id = this.EChartsData_[this.time_].id + "-" + fx + "-" + sx;
+                                        if (si.type !== "table" && si.type !== "map" && si.type !== "box") {
+                                            this.$echarts.init(document.getElementById(id)).dispose();
                                             this.$nextTick((_) => {
-                                                this.$echarts
-                                                    .init(
-                                                        document.getElementById(id)
-                                                    )
-                                                    .setOption(si.option);
+                                                this.$echarts.init(document.getElementById(id)).setOption(si.option);
                                             });
                                         }
                                     });
@@ -204,9 +187,7 @@
                     timeID = setInterval(() => {
                         if (this.time !== this.EChartsData.length) {
                             let item = this.EChartsData[this.time];
-                            this.$echarts
-                                .init(document.getElementById(item.id))
-                                .setOption(item.option);
+                            this.$echarts.init(document.getElementById(item.id)).setOption(item.option);
                             this.time++;
                             resolve();
                         }
@@ -245,10 +226,7 @@
             navBar(v) {
                 for (let i = 0; i < this.navData.length; i++) {
                     if (i < this.navData.length - 1) {
-                        if (
-                            v > this.navData[i].height &&
-                            v < this.navData[i + 1].height
-                        ) {
+                        if (v > this.navData[i].height && v < this.navData[i + 1].height) {
                             this.isActive = i;
                             break;
                         }
@@ -334,7 +312,7 @@
             this.scrollChange();
             this.collapseData.forEach((i) => {
                 i.collapseItem.forEach((m, cx) => {
-                    if (m.id) {
+                    if (m.EChartsBox.length !== 0) {
                         this.activeName.push(i.id + cx);
                         this.activeName_.push(i.id + cx);
                         this.EChartsData_.push({
@@ -342,15 +320,11 @@
                             EChartsBox: m.EChartsBox,
                         });
                     }
-                    if (m.EChartsBox) {
+                    if (m.EChartsBox !== 0) {
                         m.EChartsBox.forEach((kt, ki) => {
                             kt.EChartsItem.forEach((mt, mx) => {
                                 this.$nextTick((_) => {
-                                    if (
-                                        mt.type !== "map" &&
-                                        mt.type !== "table" &&
-                                        mt.type !== "box"
-                                    ) {
+                                    if (mt.type !== "map" && mt.type !== "table" && mt.type !== "box") {
                                         this.EChartsData.push({
                                             id: m.id + "-" + ki + "-" + mx,
                                             option: mt.option,
@@ -406,6 +380,7 @@
                         padding: 0 20px;
                         display: flex;
                         align-items: center;
+                        justify-content: flex-end;
                         // flex-direction: column;
                         border-radius: 10px;
                     }
@@ -451,11 +426,10 @@
                     .query {
                         position: absolute;
                         width: 90%;
-                        padding: 0 5%;
                         height: 60px;
                         z-index: 999;
-                        left: 0;
                         top: 50px;
+                        right: 20px;
                         display: flex;
                         flex-direction: row;
                         justify-content: flex-end;
@@ -465,7 +439,7 @@
                         margin: 10px 20px 0 0;
                     }
 
-                    .query /deep/ .el-input__inner {
+                    .query /deep/ .el-select {
                         margin: 10px 20px 0 0;
                     }
 
