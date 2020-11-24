@@ -576,7 +576,6 @@ export default {
     width: 70%;
     height: 100%;
     float: left;
-    background: #ecf4f6;
 
     .head_tabs {
       width: 100%;
@@ -737,7 +736,6 @@ export default {
     width: 100%;
     height: 78%;
     /*float: right;*/
-    background: #ecf4f6;
     overflow-y: scroll;
     position: relative;
 
@@ -888,7 +886,6 @@ export default {
     bottom: 0;
     width: 100%;
     height: 22%;
-    background: #ecf4f6;
     overflow: hidden;
 
     .selectCon {
