@@ -51,7 +51,7 @@
 <script>
 import Operations from "../../../components/common/operations";
 import ShowECharts from "../../../components/common/showECharts";
-
+import clone from "../../../../public/api/clone"
 export default {
     name: "HomeTopRight",
     components: { ShowECharts, Operations },
@@ -238,7 +238,7 @@ export default {
                 document.getElementById("HomeTopRight_bottom_left")
             );
             this.resizeData.push(HomeTopRight_bottom_left);
-            let option = (this.BD = {
+            let option = ( {
                 barWidth: 20,
                 title: {
                     text: "{a|     营收前五及后五}",
@@ -337,11 +337,7 @@ export default {
                         data: [0.09, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1],
                         markLine: {
                             data: [
-                                {
-                                    type: "average",
-                                    name: "平均值",
-                                    xAxis: 0.5, //设置平均值所在位置
-                                },
+                                
                             ],
                             symbol: ["none", "none"],
                             position: "insideTopCenter",
@@ -372,6 +368,12 @@ export default {
                     },
                 ],
             });
+            this.BD=clone(option)
+            this.BD.series[0].markLine.data=[{
+                                    type: "average",
+                                    name: "平均值",
+                                    xAxis: 0.5, //设置平均值所在位置
+                                }],
             HomeTopRight_bottom_left.setOption(option);
         },
         initECharts_bottom_right() {
@@ -379,7 +381,7 @@ export default {
                 document.getElementById("HomeTopRight_bottom_right")
             );
             this.resizeData.push(HomeTopRight_bottom_right);
-            let option = (this.CD = {
+            let option = ( {
                 barWidth: 20,
                 title: {
                     text: "{a|     千人营收前五及后五}",
@@ -475,12 +477,11 @@ export default {
                         data: [0.09, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1],
                         markLine: {
                             data: [
-                                {
-                                    show: true,
-                                    type: "average",
-                                    name: "平均值",
-                                    xAxis: 0.5, //设置平均值所在位置
-                                },
+                                // {
+                                //     type: "average",
+                                //     name: "平均值",
+                                //     xAxis: 0.5, //设置平均值所在位置
+                                // },
                             ],
                             symbol: ["none", "none"],
                             position: "insideTopCenter",
@@ -511,6 +512,12 @@ export default {
                     },
                 ],
             });
+            this.CD = clone(option)
+            this.CD.series[0].markLine.data=[{
+                                    type: "average",
+                                    name: "平均值",
+                                    xAxis: 0.5, //设置平均值所在位置
+                                }],
             HomeTopRight_bottom_right.setOption(option);
         },
         isResize() {
