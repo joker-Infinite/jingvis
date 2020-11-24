@@ -32,10 +32,18 @@
                                         end-placeholder="结束月份"
                                     >
                                     </el-date-picker>
-                                    <el-button type="primary">搜索 </el-button>
-                                    <el-button type="primary">搜索 </el-button>
-                                    <el-button type="primary">搜索 </el-button>
-                                    <el-button type="primary">搜索 </el-button>
+                                    <el-button type="primary"
+                                    >搜索
+                                    </el-button>
+                                    <!--  <el-button type="primary"
+                                      >搜索
+                                      </el-button>
+                                      <el-button type="primary"
+                                      >搜索
+                                      </el-button>
+                                      <el-button type="primary"
+                                      >搜索
+                                      </el-button>-->
                                 </div>
                             </div>
                             <div
@@ -44,10 +52,11 @@
                                 :style="sit.style"
                             >
                                 <div class="Title">{{ sit.title }}</div>
-                                <div
-                                    class="query"
-                                    v-if="sit.time || sit.select"
-                                >
+                                <div class="query" v-if="sit.time||sit.select">
+                                    <el-select
+                                            v-model="sit.selectValue"
+                                            v-if="sit.select"
+                                    ></el-select>
                                     <el-date-picker
                                         v-if="sit.time"
                                         v-model="sit.timeValue"
@@ -57,69 +66,25 @@
                                         end-placeholder="结束月份"
                                     >
                                     </el-date-picker>
-                                    <el-select
-                                        v-model="sit.selectValue"
-                                        v-if="sit.select"
-                                    ></el-select>
-                                    <el-button
-                                        type="primary"
-                                        v-if="sit.time || sit.select"
-                                        >搜索
+                                    <el-button type="primary" v-if="sit.time || sit.select"
+                                    >搜索
                                     </el-button>
                                 </div>
-
-                                <div
-                                    v-for="(wit, wix) in sit.EChartsItem"
-                                    :key="wix"
-                                    style="
-                                        margin-bottom: 100px;
-                                        position: relative;
-                                    "
-                                    :style="wit.style"
-                                    class="echarts"
-                                    @mouseover="mouseover(wit, wix, sit.title)"
-                                >
-                                    <my-information
-                                        @isData="isData"
-                                        v-if="!wit.type"
-                                        class="information"
-                                    ></my-information>
-                                    <div
-                                        v-if="!wit.type"
-                                        style="width: 100%; height: 100%"
-                                        :id="cit.id + '-' + six + '-' + wix"
-                                    ></div>
-                                    <div
-                                        style="
-                                            width: 100%;
-                                            height: 100%;
-                                            margin-top: 60px;
-                                        "
-                                        v-if="!!wit.type && wit.type !== 'box'"
-                                    >
-                                        <my-table
-                                            @selectionChange="
-                                                (row) => {
-                                                    $emit(
-                                                        'selectionChange',
-                                                        row
-                                                    );
-                                                }
-                                            "
-                                            :columns="wit.columns"
-                                            :height="
-                                                wit.height
-                                                    ? wit.height
-                                                    : '300px'
-                                            "
-                                            :multiple="false"
-                                            :border="
-                                                wit.border ? wit.border : false
-                                            "
-                                            :data="wit.tableData"
-                                            :is-pagination="wit.isPagination"
-                                            v-if="wit.type === 'table'"
-                                        >
+                                <div v-for="(wit, wix) in sit.EChartsItem"
+                                     :key="wix"
+                                     :style="wit.style"
+                                     class="echarts"
+                                     :id="cit.id + '-' + six + '-' + wix">
+                                    <div style="width: 100%;height: 100%" v-if="!!wit.type&&wit.type!=='box'">
+                                        <my-table @selectionChange="row=>{$emit('selectionChange',row)}"
+                                                  :columns="wit.columns"
+                                                  :height="wit.height ? wit.height : '300px'"
+                                                  :multiple="false"
+                                                  :border="wit.border?wit.border:true"
+                                                  :showIndex="wit.showIndex?wit.showIndex:false"
+                                                  :data="wit.tableData"
+                                                  :is-pagination="wit.isPagination"
+                                                  v-if="wit.type === 'table'">
                                         </my-table>
                                         <my-map
                                             v-if="wit.type === 'map'"
@@ -506,16 +471,41 @@ export default {
                     top: 50px;
                     display: flex;
                     flex-direction: row;
-                    justify-content: flex-end;
-                }
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    position: relative;
+
+                    .Title {
+                        width: 100%;
+                        height: 45px;
+                        background: white;
+                        line-height: 45px;
+                        text-indent: 10px;
+                        font-size: 18px;
+                        font-weight: 600;
+                        border-bottom: 5px solid #f3f7ff;
+                    }
+
+                    .query {
+                        position: absolute;
+                        width: 90%;
+                        padding: 0 5%;
+                        height: 60px;
+                        z-index: 999;
+                        left: 0;
+                        top: 50px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                    }
 
                 .query /deep/ .el-date-editor {
                     margin: 10px 20px 0 0;
                 }
 
-                .query /deep/ .el-input__inner {
-                    margin: 10px 20px 0 0;
-                }
+                    .query /deep/ .el-select {
+                        margin: 10px 20px 0 0;
+                    }
 
                 .query /deep/ .el-button {
                     margin: 10px 20px;
@@ -632,5 +622,6 @@ export default {
     .echarts:hover.echarts > .information {
         display: block;
     }
+}
 }
 </style>

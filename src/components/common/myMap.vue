@@ -71,7 +71,7 @@
                 windows: [],
                 window: "",
                 events: {},
-                mapStyle: "amap://styles/8cb6df918ee512eae9c9198c38a40c91",
+                mapStyle: "amap://styles/f1f4181c84a35130099dfd661f061466",
                 i: 0,
                 timeClear: "",
                 timeInformation: [

@@ -33,7 +33,7 @@
                                 collapseTitle: "2020年营收",
                                 EChartsBox: [
                                     {
-                                        title: "实际成本",
+                                        title: "",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -151,44 +151,13 @@
                                                                 },
                                                             },
                                                         },
-                                                        {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
-                                                            type: "line",
-                                                            name: "折线图",
-                                                            // symbol: 'none',
-                                                            lineStyle: {
-                                                                color: "#fea2a2",
-                                                                width: 2,
-                                                                shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                                                                shadowBlur: 10,
-                                                                shadowOffsetY: 10,
-                                                            },
-                                                            areaStyle: {
-                                                                normal: {
-                                                                    color: "rgba(0,0,0,0)",
-                                                                },
-                                                            },
-                                                        },
                                                     ],
                                                 },
                                             },
                                         ],
                                     },
                                     {
-                                        title: "营收2",
+                                        title: "各个公司营收占比",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -278,11 +247,11 @@
                                                             data: (function () {
                                                                 let data = [];
                                                                 let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
+                                                                    "A公司",
+                                                                    "B公司",
+                                                                    "C公司",
+                                                                    "D公司",
+                                                                    "E公司",
                                                                 ];
                                                                 let datas = [1.45, 2.93, 3.15, 4, 5];
                                                                 datas.forEach((element, index) => {
@@ -300,7 +269,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收3",
+                                        title: "营收类型占比",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -388,27 +357,27 @@
                                                             },
                                                             data: [
                                                                 {
-                                                                    name: "宜昌",
+                                                                    name: "E92",
                                                                     value: 1.45,
                                                                 },
                                                                 {
-                                                                    name: "恩施",
+                                                                    name: "E95",
                                                                     value: 2.93,
                                                                 },
                                                                 {
-                                                                    name: "孝感",
+                                                                    name: "92",
                                                                     value: 3.15,
                                                                 },
                                                                 {
-                                                                    name: "咸宁",
+                                                                    name: "95",
                                                                     value: 4.78,
                                                                 },
                                                                 {
-                                                                    name: "十堰",
+                                                                    name: "98",
                                                                     value: 5.93,
                                                                 },
                                                                 {
-                                                                    name: "黄冈",
+                                                                    name: "0",
                                                                     value: 5.73,
                                                                 },
                                                             ],
@@ -438,7 +407,7 @@
                                 collapseTitle: "2020年利润",
                                 EChartsBox: [
                                     {
-                                        title: "实际成本",
+                                        title: "",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -556,44 +525,13 @@
                                                                 },
                                                             },
                                                         },
-                                                        {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
-                                                            type: "line",
-                                                            name: "折线图",
-                                                            // symbol: 'none',
-                                                            lineStyle: {
-                                                                color: "#fea2a2",
-                                                                width: 2,
-                                                                shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                                                                shadowBlur: 10,
-                                                                shadowOffsetY: 10,
-                                                            },
-                                                            areaStyle: {
-                                                                normal: {
-                                                                    color: "rgba(0,0,0,0)",
-                                                                },
-                                                            },
-                                                        },
                                                     ],
                                                 },
                                             },
                                         ],
                                     },
                                     {
-                                        title: "营收2",
+                                        title: "各个公司利润占比",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -683,20 +621,19 @@
                                                             data: (function () {
                                                                 let data = [];
                                                                 let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
+                                                                    "A公司",
+                                                                    "B公司",
+                                                                    "C公司",
+                                                                    "D公司",
+                                                                    "E公司",
                                                                 ];
-                                                                [1.45, 2.93, 3.15, 4, 5].forEach(
-                                                                    (element, index) => {
-                                                                        data.push({
-                                                                            name: title[index],
-                                                                            value: element,
-                                                                        });
-                                                                    }
-                                                                );
+                                                                let datas = [1.45, 2.93, 3.15, 4, 5];
+                                                                datas.forEach((element, index) => {
+                                                                    data.push({
+                                                                        name: title[index],
+                                                                        value: element,
+                                                                    });
+                                                                });
                                                                 return data;
                                                             })(),
                                                         },
@@ -706,7 +643,7 @@
                                         ],
                                     },
                                     {
-                                        title: "营收3",
+                                        title: "利润类型占比",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -794,27 +731,27 @@
                                                             },
                                                             data: [
                                                                 {
-                                                                    name: "宜昌",
+                                                                    name: "E92",
                                                                     value: 1.45,
                                                                 },
                                                                 {
-                                                                    name: "恩施",
+                                                                    name: "E95",
                                                                     value: 2.93,
                                                                 },
                                                                 {
-                                                                    name: "孝感",
+                                                                    name: "92",
                                                                     value: 3.15,
                                                                 },
                                                                 {
-                                                                    name: "咸宁",
+                                                                    name: "95",
                                                                     value: 4.78,
                                                                 },
                                                                 {
-                                                                    name: "十堰",
+                                                                    name: "98",
                                                                     value: 5.93,
                                                                 },
                                                                 {
-                                                                    name: "黄冈",
+                                                                    name: "0",
                                                                     value: 5.73,
                                                                 },
                                                             ],
