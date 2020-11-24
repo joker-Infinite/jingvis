@@ -2165,7 +2165,7 @@
                                                 },
                                                 option: {
                                                     title: {
-                                                        text: "公司成本种类预算成本",
+                                                        text: "",
                                                         top: 20,
                                                         left: 20,
                                                     },
@@ -2863,7 +2863,7 @@
                                                 },
                                                 option: {
                                                     title: {
-                                                        text: "公司成本种类预算成本",
+                                                        text: "",
                                                         top: 20,
                                                         left: 20,
                                                     },
