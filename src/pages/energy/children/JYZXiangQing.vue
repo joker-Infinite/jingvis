@@ -38,7 +38,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "500px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -49,7 +49,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "500px",
                                                 },
                                                 option: {},
                                             },

@@ -15,11 +15,10 @@
                                  style="width: 100%;height: 100px;background: white;border-radius: 10px">
                                 更多内容>>>
                             </div>
-                            <div class="allQuery" v-if="false">
+                            <div class="allQuery" v-if="cit.allQuery">
                                 <div>
-                                    <el-input></el-input>
-                                    <el-select
-                                    ></el-select>
+                                    <el-input placeholder="请输入内容"></el-input>
+                                    <el-select></el-select>
                                     <el-date-picker
                                             type="monthrange"
                                             range-separator="至"
@@ -29,15 +28,15 @@
                                     <el-button type="primary"
                                     >搜索
                                     </el-button>
-                                    <el-button type="primary"
-                                    >搜索
-                                    </el-button>
-                                    <el-button type="primary"
-                                    >搜索
-                                    </el-button>
-                                    <el-button type="primary"
-                                    >搜索
-                                    </el-button>
+                                    <!--  <el-button type="primary"
+                                      >搜索
+                                      </el-button>
+                                      <el-button type="primary"
+                                      >搜索
+                                      </el-button>
+                                      <el-button type="primary"
+                                      >搜索
+                                      </el-button>-->
                                 </div>
                             </div>
                             <div v-for="(sit, six) in cit.EChartsBox"
@@ -45,6 +44,10 @@
                                  :style="sit.style">
                                 <div class="Title">{{ sit.title }}</div>
                                 <div class="query" v-if="sit.time||sit.select">
+                                    <el-select
+                                            v-model="sit.selectValue"
+                                            v-if="sit.select"
+                                    ></el-select>
                                     <el-date-picker
                                             v-if="sit.time"
                                             v-model="sit.timeValue"
@@ -54,17 +57,12 @@
                                             end-placeholder="结束月份"
                                     >
                                     </el-date-picker>
-                                    <el-select
-                                            v-model="sit.selectValue"
-                                            v-if="sit.select"
-                                    ></el-select>
                                     <el-button type="primary" v-if="sit.time || sit.select"
                                     >搜索
                                     </el-button>
                                 </div>
                                 <div v-for="(wit, wix) in sit.EChartsItem"
                                      :key="wix"
-                                     style="margin-bottom:100px;"
                                      :style="wit.style"
                                      class="echarts"
                                      :id="cit.id + '-' + six + '-' + wix">
@@ -316,6 +314,7 @@
                         padding: 0 20px;
                         display: flex;
                         align-items: center;
+                        justify-content: flex-end;
                         // flex-direction: column;
                         border-radius: 10px;
                     }
@@ -359,7 +358,6 @@
                     }
 
                     .query {
-
                         position: absolute;
                         width: 90%;
                         padding: 0 5%;
@@ -376,7 +374,7 @@
                         margin: 10px 20px 0 0;
                     }
 
-                    .query /deep/ .el-input__inner {
+                    .query /deep/ .el-select {
                         margin: 10px 20px 0 0;
                     }
 

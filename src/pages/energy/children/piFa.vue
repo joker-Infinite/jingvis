@@ -31,7 +31,7 @@
                                 collapseTitle: "2020年营收",
                                 EChartsBox: [
                                     {
-                                        title: "营收",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -112,7 +112,7 @@
                                         ],
                                     },
                                     {
-                                        title: "各个公司营收占比",
+                                        title: "",
                                         time: true,
                                         select: false,
                                         timeValue: "",
@@ -219,12 +219,12 @@
                                                         left: "center",
                                                         top: "bottom",
                                                         data: [
-                                                            "过票",
-                                                            "油品批发",
-                                                            "分销",
-                                                            "油品零售",
-                                                            "非油品零售",
-                                                            "其他",
+                                                            "E92",
+                                                            "E95",
+                                                            "92",
+                                                            "95",
+                                                            "98",
+                                                            "0",
                                                         ],
                                                     },
 
@@ -251,32 +251,32 @@
                                                             data: [
                                                                 {
                                                                     value: 335,
-                                                                    name: "过票",
+                                                                    name: "E92",
                                                                     itemStyle: {color: "#3AA1FF"},
                                                                 },
                                                                 {
                                                                     value: 310,
-                                                                    name: "油品批发",
+                                                                    name: "E95",
                                                                     itemStyle: {color: "#59D4D4"},
                                                                 },
                                                                 {
                                                                     value: 234,
-                                                                    name: "分销",
+                                                                    name: "92",
                                                                     itemStyle: {color: "#4ECB73"},
                                                                 },
                                                                 {
                                                                     value: 135,
-                                                                    name: "油品零售",
+                                                                    name: "95",
                                                                     itemStyle: {color: "#F8D33D"},
                                                                 },
                                                                 {
                                                                     value: 1548,
-                                                                    name: "非油品零售",
+                                                                    name: "98",
                                                                     itemStyle: {color: "#F2637B"},
                                                                 },
                                                                 {
                                                                     value: 1548,
-                                                                    name: "其他",
+                                                                    name: "0",
                                                                     itemStyle: {color: "#975FE5"},
                                                                 },
                                                             ],
@@ -288,6 +288,7 @@
                                     },
                                 ],
                             },
+                            {id: '', collapseTitle: "查看更多", EChartsBox: []}
                         ],
                     },
                     {
@@ -301,7 +302,7 @@
                                 collapseTitle: "2020年利润",
                                 EChartsBox: [
                                     {
-                                        title: "营收",
+                                        title: "",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -382,7 +383,7 @@
                                         ],
                                     },
                                     {
-                                        title: "各个公司营收占比",
+                                        title: "",
                                         time: true,
                                         select: false,
                                         timeValue: "",
@@ -489,12 +490,12 @@
                                                         left: "center",
                                                         top: "bottom",
                                                         data: [
-                                                            "过票",
-                                                            "油品批发",
-                                                            "分销",
-                                                            "油品零售",
-                                                            "非油品零售",
-                                                            "其他",
+                                                            "E92",
+                                                            "E95",
+                                                            "92",
+                                                            "95",
+                                                            "98",
+                                                            "0",
                                                         ],
                                                     },
 
@@ -521,32 +522,32 @@
                                                             data: [
                                                                 {
                                                                     value: 335,
-                                                                    name: "过票",
+                                                                    name: "E92",
                                                                     itemStyle: {color: "#3AA1FF"},
                                                                 },
                                                                 {
                                                                     value: 310,
-                                                                    name: "油品批发",
+                                                                    name: "E95",
                                                                     itemStyle: {color: "#59D4D4"},
                                                                 },
                                                                 {
                                                                     value: 234,
-                                                                    name: "分销",
+                                                                    name: "92",
                                                                     itemStyle: {color: "#4ECB73"},
                                                                 },
                                                                 {
                                                                     value: 135,
-                                                                    name: "油品零售",
+                                                                    name: "95",
                                                                     itemStyle: {color: "#F8D33D"},
                                                                 },
                                                                 {
                                                                     value: 1548,
-                                                                    name: "非油品零售",
+                                                                    name: "98",
                                                                     itemStyle: {color: "#F2637B"},
                                                                 },
                                                                 {
                                                                     value: 1548,
-                                                                    name: "其他",
+                                                                    name: "0",
                                                                     itemStyle: {color: "#975FE5"},
                                                                 },
                                                             ],
@@ -558,6 +559,7 @@
                                     },
                                 ],
                             },
+                            {id: '', collapseTitle: "查看更多", EChartsBox: []}
                         ],
                     },
                     {
@@ -601,11 +603,9 @@
                                                     },
                                                     legend: {
                                                         data: [
-                                                            "邮件营销",
-                                                            "联盟广告",
-                                                            "视频广告",
-                                                            "直接访问",
-                                                            "搜索引擎",
+                                                            "国际油价",
+                                                            "采购成本",
+                                                            "批发价格",
                                                         ],
                                                         top: "bottom",
                                                     },
@@ -633,131 +633,22 @@
                                                     },
                                                     series: [
                                                         {
-                                                            name: "邮件营销",
+                                                            name: "国际油价",
                                                             type: "line",
                                                             stack: "总量",
                                                             data: [120, 132, 101, 134, 90, 230, 210],
                                                         },
                                                         {
-                                                            name: "联盟广告",
+                                                            name: "采购成本",
                                                             type: "line",
                                                             stack: "总量",
                                                             data: [220, 182, 191, 234, 290, 330, 310],
                                                         },
                                                         {
-                                                            name: "视频广告",
+                                                            name: "批发价格",
                                                             type: "line",
                                                             stack: "总量",
                                                             data: [150, 232, 201, 154, 190, 330, 410],
-                                                        },
-                                                        {
-                                                            name: "直接访问",
-                                                            type: "line",
-                                                            stack: "总量",
-                                                            data: [320, 332, 301, 334, 390, 330, 320],
-                                                        },
-                                                        {
-                                                            name: "搜索引擎",
-                                                            type: "line",
-                                                            stack: "总量",
-                                                            data: [820, 932, 901, 934, 1290, 1330, 1320],
-                                                        },
-                                                    ],
-                                                },
-                                            },
-                                        ],
-                                    },
-                                    {
-                                        title: "毛利润，人工、管理、其他成本",
-                                        time: false,
-                                        select: false,
-                                        timeValue: "",
-                                        selectValue: "",
-                                        /*包裹ECharts的父级元素的属性*/
-                                        style: {
-                                            width: "39.5%",
-                                            height: "450px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            marginBottom: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                    },
-                                                    legend: {
-                                                        data: [
-                                                            "邮件营销",
-                                                            "联盟广告",
-                                                            "视频广告",
-                                                            "直接访问",
-                                                            "搜索引擎",
-                                                        ],
-                                                        top: "bottom",
-                                                    },
-                                                    grid: {
-                                                        left: "3%",
-                                                        right: "4%",
-                                                        bottom: "7%",
-                                                        containLabel: true,
-                                                    },
-                                                    xAxis: {
-                                                        type: "category",
-                                                        boundaryGap: false,
-                                                        data: [
-                                                            "周一",
-                                                            "周二",
-                                                            "周三",
-                                                            "周四",
-                                                            "周五",
-                                                            "周六",
-                                                            "周日",
-                                                        ],
-                                                    },
-                                                    yAxis: {
-                                                        type: "value",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            name: "邮件营销",
-                                                            type: "line",
-                                                            stack: "总量",
-                                                            data: [120, 132, 101, 134, 90, 230, 210],
-                                                        },
-                                                        {
-                                                            name: "联盟广告",
-                                                            type: "line",
-                                                            stack: "总量",
-                                                            data: [220, 182, 191, 234, 290, 330, 310],
-                                                        },
-                                                        {
-                                                            name: "视频广告",
-                                                            type: "line",
-                                                            stack: "总量",
-                                                            data: [150, 232, 201, 154, 190, 330, 410],
-                                                        },
-                                                        {
-                                                            name: "直接访问",
-                                                            type: "line",
-                                                            stack: "总量",
-                                                            data: [320, 332, 301, 334, 390, 330, 320],
-                                                        },
-                                                        {
-                                                            name: "搜索引擎",
-                                                            type: "line",
-                                                            stack: "总量",
-                                                            data: [820, 932, 901, 934, 1290, 1330, 1320],
                                                         },
                                                     ],
                                                 },
@@ -791,6 +682,96 @@
                                                         text: "",
                                                     },
                                                     tooltip: {
+                                                        trigger: "axis",
+                                                    },
+                                                    legend: {
+                                                        data: [
+                                                            "毛利润",
+                                                            "人工",
+                                                            "管理",
+                                                            "其他成本",
+                                                        ],
+                                                        top: "bottom",
+                                                    },
+                                                    grid: {
+                                                        left: "3%",
+                                                        right: "4%",
+                                                        bottom: "7%",
+                                                        containLabel: true,
+                                                    },
+                                                    xAxis: {
+                                                        type: "category",
+                                                        boundaryGap: false,
+                                                        data: [
+                                                            "周一",
+                                                            "周二",
+                                                            "周三",
+                                                            "周四",
+                                                            "周五",
+                                                            "周六",
+                                                            "周日",
+                                                        ],
+                                                    },
+                                                    yAxis: {
+                                                        type: "value",
+                                                    },
+                                                    series: [
+                                                        {
+                                                            name: "毛利润",
+                                                            type: "line",
+                                                            stack: "总量",
+                                                            data: [120, 132, 101, 134, 90, 230, 210],
+                                                        },
+                                                        {
+                                                            name: "人工",
+                                                            type: "line",
+                                                            stack: "总量",
+                                                            data: [220, 182, 191, 234, 290, 330, 310],
+                                                        },
+                                                        {
+                                                            name: "管理",
+                                                            type: "line",
+                                                            stack: "总量",
+                                                            data: [150, 232, 201, 154, 190, 330, 410],
+                                                        },
+                                                        {
+                                                            name: "其他成本",
+                                                            type: "line",
+                                                            stack: "总量",
+                                                            data: [320, 332, 301, 334, 390, 330, 320],
+                                                        }
+                                                    ],
+                                                },
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        title: "毛利润，人工、管理、其他成本",
+                                        time: false,
+                                        select: false,
+                                        timeValue: "",
+                                        selectValue: "",
+                                        /*包裹ECharts的父级元素的属性*/
+                                        style: {
+                                            width: "39.5%",
+                                            height: "450px",
+                                            borderRadius: "10px",
+                                            background: "white",
+                                            marginBottom: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "100%",
+                                                    height: "400px",
+                                                },
+                                                option: {
+                                                    title: {
+                                                        text: "",
+                                                    },
+                                                    tooltip: {
                                                         trigger: "item",
                                                         formatter: "{b} : {c}",
                                                         axisPointer: {
@@ -801,7 +782,7 @@
                                                     legend: {
                                                         left: "center",
                                                         top: "bottom",
-                                                        data: ["A公司", "B公司", "C公司", "D公司", "E公司"],
+                                                        data: ["人工成本", "管理成本", "其他成本"],
                                                     },
                                                     series: [
                                                         {
@@ -826,28 +807,18 @@
                                                             data: [
                                                                 {
                                                                     value: 335,
-                                                                    name: "A公司",
+                                                                    name: "人工成本",
                                                                     itemStyle: {color: "#3AA1FF"},
                                                                 },
                                                                 {
                                                                     value: 310,
-                                                                    name: "B公司",
+                                                                    name: "管理成本",
                                                                     itemStyle: {color: "#59D4D4"},
                                                                 },
                                                                 {
                                                                     value: 234,
-                                                                    name: "C公司",
+                                                                    name: "其他成本",
                                                                     itemStyle: {color: "#4ECB73"},
-                                                                },
-                                                                {
-                                                                    value: 135,
-                                                                    name: "D公司",
-                                                                    itemStyle: {color: "#F8D33D"},
-                                                                },
-                                                                {
-                                                                    value: 1548,
-                                                                    name: "E公司",
-                                                                    itemStyle: {color: "#F2637B"},
                                                                 },
                                                             ],
                                                         },
@@ -858,6 +829,7 @@
                                     },
                                 ],
                             },
+                            {id: '', collapseTitle: "查看更多", EChartsBox: []}
                         ],
                     },
                     {
@@ -901,11 +873,10 @@
                                                     },
                                                     legend: {
                                                         data: [
-                                                            "邮件营销",
-                                                            "联盟广告",
-                                                            "视频广告",
-                                                            "直接访问",
-                                                            "搜索引擎",
+                                                            "总量",
+                                                            "a公司",
+                                                            "b公司",
+                                                            "c公司",
                                                         ],
                                                         top: "bottom",
                                                     },
@@ -933,34 +904,28 @@
                                                     },
                                                     series: [
                                                         {
-                                                            name: "邮件营销",
+                                                            name: "总量",
                                                             type: "line",
                                                             stack: "总量",
                                                             data: [120, 132, 101, 134, 90, 230, 210],
                                                         },
                                                         {
-                                                            name: "联盟广告",
+                                                            name: "a公司",
                                                             type: "line",
                                                             stack: "总量",
                                                             data: [220, 182, 191, 234, 290, 330, 310],
                                                         },
                                                         {
-                                                            name: "视频广告",
+                                                            name: "b公司",
                                                             type: "line",
                                                             stack: "总量",
                                                             data: [150, 232, 201, 154, 190, 330, 410],
                                                         },
                                                         {
-                                                            name: "直接访问",
+                                                            name: "c公司",
                                                             type: "line",
                                                             stack: "总量",
                                                             data: [320, 332, 301, 334, 390, 330, 320],
-                                                        },
-                                                        {
-                                                            name: "搜索引擎",
-                                                            type: "line",
-                                                            stack: "总量",
-                                                            data: [820, 932, 901, 934, 1290, 1330, 1320],
                                                         },
                                                     ],
                                                 },
@@ -1168,33 +1133,81 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                type:'table',
-                                                border:true,
-                                                isPagination:true,
+                                                type: 'table',
+                                                border: true,
+                                                isPagination: true,
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
                                                     height: "350px",
                                                 },
-                                                height:'500px',
-                                                columns:[
-                                                    {prop:'a',label:'批发商'},
-                                                    {prop:'b',label:'总体占比'},
-                                                    {prop:'c',label:'毛利'},
-                                                    {prop:'d',label:'92'},
-                                                    {prop:'e',label:'95'},
-                                                    {prop:'f',label:'98'},
-                                                    {prop:'g',label:'0'},
-                                                    {prop:'h',label:'总量（吨）'},
-                                                    {prop:'i',label:'欠款'},
-                                                    {prop:'j',label:'回款'},
-                                                    {prop:'k',label:'信用评估指数'},
+                                                height: '500px',
+                                                columns: [
+                                                    {prop: 'a', label: '批发商'},
+                                                    {prop: 'b', label: '总体占比'},
+                                                    {prop: 'c', label: '毛利'},
+                                                    {prop: 'd', label: '92'},
+                                                    {prop: 'e', label: '95'},
+                                                    {prop: 'f', label: '98'},
+                                                    {prop: 'g', label: '0'},
+                                                    {prop: 'h', label: '总量（吨）'},
+                                                    {prop: 'i', label: '欠款'},
+                                                    {prop: 'j', label: '回款'},
+                                                    {prop: 'k', label: '信用评估指数'},
                                                 ],
-                                                tableData:[
-                                                    {a:'批发商1',b:'20%',c:'11',d:'2',e:'2',f:'2',g:'2',h:'2',i:'2',j:'2',k:'2'},
-                                                    {a:'批发商2',b:'20%',c:'11',d:'2',e:'2',f:'2',g:'2',h:'2',i:'2',j:'2',k:'2'},
-                                                    {a:'批发商3',b:'20%',c:'11',d:'2',e:'2',f:'2',g:'2',h:'2',i:'2',j:'2',k:'2'},
-                                                    {a:'批发商4',b:'20%',c:'11',d:'2',e:'2',f:'2',g:'2',h:'2',i:'2',j:'2',k:'2'},
+                                                tableData: [
+                                                    {
+                                                        a: '批发商1',
+                                                        b: '20%',
+                                                        c: '11',
+                                                        d: '2',
+                                                        e: '2',
+                                                        f: '2',
+                                                        g: '2',
+                                                        h: '2',
+                                                        i: '2',
+                                                        j: '2',
+                                                        k: '2'
+                                                    },
+                                                    {
+                                                        a: '批发商2',
+                                                        b: '20%',
+                                                        c: '11',
+                                                        d: '2',
+                                                        e: '2',
+                                                        f: '2',
+                                                        g: '2',
+                                                        h: '2',
+                                                        i: '2',
+                                                        j: '2',
+                                                        k: '2'
+                                                    },
+                                                    {
+                                                        a: '批发商3',
+                                                        b: '20%',
+                                                        c: '11',
+                                                        d: '2',
+                                                        e: '2',
+                                                        f: '2',
+                                                        g: '2',
+                                                        h: '2',
+                                                        i: '2',
+                                                        j: '2',
+                                                        k: '2'
+                                                    },
+                                                    {
+                                                        a: '批发商4',
+                                                        b: '20%',
+                                                        c: '11',
+                                                        d: '2',
+                                                        e: '2',
+                                                        f: '2',
+                                                        g: '2',
+                                                        h: '2',
+                                                        i: '2',
+                                                        j: '2',
+                                                        k: '2'
+                                                    },
                                                 ],
                                                 option: {},
                                             },
@@ -1202,6 +1215,7 @@
                                     },
                                 ],
                             },
+                            {id: '', collapseTitle: "查看更多", EChartsBox: []}
                         ],
                     },
                     {
@@ -1213,6 +1227,7 @@
                             {
                                 id: "e_2020",
                                 collapseTitle: "油库状态",
+                                allQuery:true,
                                 EChartsBox: [
                                     {
                                         title: "油库 库存",
@@ -1535,6 +1550,7 @@
                                     },
                                 ],
                             },
+                            {id: '', collapseTitle: "查看更多", EChartsBox: []}
                         ],
                     },
                 ],
