@@ -52,7 +52,7 @@
                                     </el-date-picker>
                                     <el-button type="primary" v-if="sit.time || sit.select">搜索</el-button>
                                 </div>
-                                
+
                                 <div v-for="(wit, wix) in sit.EChartsItem"
                                      :key="wix"
                                      style=" margin-bottom: 100px;position: relative;"
@@ -61,12 +61,14 @@
                                      @mouseover="mouseover(wit, wix, sit.title,(cit.id + '++' + six + '++' + wix),(cit.id + '-' + six + '-' + wix))">
                                     <my-information
                                             @isData="isData"
-                                            v-if="wit.type !=='box' || !wit.type "
+                                            v-if="wit.type !=='box' && !wit.type "
                                             class="information"
                                     ></my-information>
-                                    <div :style="{marginTop : sit.time || sit.select ? '60px' :''}"
-                                     style="width: 100%; height: 100%;overflow: auto;"
-                                     :id="cit.id + '++' + six + '++' + wix"></div>
+                                    <div v-if="!wit.type " :style="{marginTop : sit.time || sit.select ? '60px' :''}"
+                                         style="width: 100%; height: 100%;overflow: auto;"
+                                         :id="cit.id + '-' + six + '-' + wix"></div>
+                                    <div v-if="!wit.type" style="width: 100%; height: 100%;overflow: auto;"
+                                         :id="cit.id + '++' + six + '++' + wix"></div>
                                     <div style=" width: 100%; height: 100%; margin-top: 60px;"
                                          v-if="!!wit.type && wit.type !== 'box'">
                                         <my-table
@@ -119,6 +121,7 @@
     import MyInformation from "./myInformation";
     import {outExe} from "../../../public/api/excel";
     import clone from "../../../public/api/clone"
+
     export default {
         name: "myCollapseBase",
         components: {MyMap, MyTable, MyInformation},
@@ -143,8 +146,8 @@
                 optionData: [],
                 optionTitle: "",
                 optionType: "",
-                optionId:'',
-                optionIid:''
+                optionId: '',
+                optionIid: ''
             };
         },
         methods: {
@@ -155,7 +158,7 @@
                     timeID = setInterval((_) => {
                         if (this.time_ > -1 && this.time_ !== this.EChartsData_.length) {
                             let data = this.EChartsData_[this.time_];
-                            if (data.EChartsBox&&data.EChartsBox.length !== 0) {
+                            if (data.EChartsBox && data.EChartsBox.length !== 0) {
                                 data.EChartsBox.forEach((fi, fx) => {
                                     fi.EChartsItem.forEach((si, sx) => {
                                         let id = this.EChartsData_[this.time_].id + "-" + fx + "-" + sx;
@@ -332,26 +335,26 @@
                     datas.xAxis.forEach((element, index) => {
                         table += `<tr>
                             <td>${element}</td>`
-                            switch (datas.series.length) {
-                                case 7:
-                                    table += `<td>${datas.series[4][0][index]}</td>`
-                                case 6:
-                                    table += `<td>${datas.series[4][0][index]}</td>`
-                                case 5:
-                                    table += `<td>${datas.series[4][0][index]}</td>`
-                                case 4:
-                                    table += `<td>${datas.series[3][0][index]}</td>`
-                                case 3:
-                                    table += `<td>${datas.series[2][0][index]}</td>`
-                                case 2:
-                                    table += `<td>${datas.series[1][0][index]}</td>`
-                                case 1:
-                                    table += `<td>${datas.series[0][0][index]}</td>`    
-                                default:
-                                    break;
-                            }
-                            
-                            table+=`</tr>`
+                        switch (datas.series.length) {
+                            case 7:
+                                table += `<td>${datas.series[4][0][index]}</td>`
+                            case 6:
+                                table += `<td>${datas.series[4][0][index]}</td>`
+                            case 5:
+                                table += `<td>${datas.series[4][0][index]}</td>`
+                            case 4:
+                                table += `<td>${datas.series[3][0][index]}</td>`
+                            case 3:
+                                table += `<td>${datas.series[2][0][index]}</td>`
+                            case 2:
+                                table += `<td>${datas.series[1][0][index]}</td>`
+                            case 1:
+                                table += `<td>${datas.series[0][0][index]}</td>`
+                            default:
+                                break;
+                        }
+
+                        table += `</tr>`
                     });
 
                     table += '</table>'
@@ -368,7 +371,7 @@
             this.scrollChange();
             this.collapseData.forEach((i) => {
                 i.collapseItem.forEach((m, cx) => {
-                    if (m.EChartsBox&&m.EChartsBox.length !== 0) {
+                    if (m.EChartsBox && m.EChartsBox.length !== 0) {
                         this.activeName.push(i.id + cx);
                         this.activeName_.push(i.id + cx);
                         this.EChartsData_.push({
@@ -376,7 +379,7 @@
                             EChartsBox: m.EChartsBox,
                         });
                     }
-                    if (m.EChartsBox&&m.EChartsBox.length !== 0) {
+                    if (m.EChartsBox && m.EChartsBox.length !== 0) {
                         m.EChartsBox.forEach((kt, ki) => {
                             kt.EChartsItem.forEach((mt, mx) => {
                                 this.$nextTick((_) => {
