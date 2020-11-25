@@ -63,6 +63,7 @@
                 options: {},
                 resizeData: [],
                 financeTypeId: "",
+                finance: []
             };
         },
         methods: {
@@ -104,9 +105,11 @@
                 this.select = v;
                 if (v === "A") {
                     this.initECharts_bottom(this.option_A);
+                    this.initBottomEnd('A');
                     return;
                 }
                 this.initECharts_bottom(this.option_B);
+                this.initBottomEnd('B');
             },
             mouseHover(v) {
                 switch (v) {
@@ -140,7 +143,7 @@
                     options.title.y = "-3%";
                     options.title.textStyle.rich.a.fontSize = 25;
                     options.barWidth = 30;
-                        (options.title.padding = [50, 50, 50, 50]);
+                    (options.title.padding = [50, 50, 50, 50]);
                     this.$emit("showOne", options);
                 } else {
                     option.title.textStyle.rich.a.fontSize = 25;
@@ -227,7 +230,7 @@
                     );
                 });
             },
-            initBottomEnd() {
+            initBottomEnd(v) {
                 let HomeBottomG = this.$echarts.init(
                     document.getElementById("HomeBottomG")
                 );
@@ -312,7 +315,7 @@
                             },
                             label: {
                                 show: true,
-                                formatter: "{b}" + '%',
+                                formatter: "{b}",
                             },
                             data: [0.6, 0.7, 8, 0.9, 1],
                             markLine: {
@@ -346,7 +349,14 @@
                         },
                     ],
                 };
-                this.$axios('/api/index/wan_cheng_lv', {params: {financeTypeId: this.financeTypeId}}).then((res) => {
+                let financeTypeId = '';
+                if (v === 'A') {
+                    financeTypeId = this.finance[1].financeTypeId;
+                }
+                if (v === 'B') {
+                    financeTypeId = this.finance[0].financeTypeId;
+                }
+                this.$axios('/api/index/wan_cheng_lv', {params: {financeTypeId: financeTypeId}}).then((res) => {
                     let datas = res.data.data
                     datas.sort(function (a, b) {
                         return a.xBxis - b.xBxisb
@@ -611,8 +621,9 @@
                 ],
             };
             this.$axios.get("/api/index/finance_type_list").then((res) => {
+                this.finance = res.data.data;
                 this.financeTypeId = res.data.data[1].financeTypeId;
-                this.initBottomEnd();
+                this.initBottomEnd('A');
             });
             this.initECharts_bottom(this.option_A);
 
