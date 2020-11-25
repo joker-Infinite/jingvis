@@ -20,8 +20,8 @@
                                  style="width: 100%;height: 100px;background: white;border-radius: 10px"></div>
                             <div class="allQuery" v-if="cit.allQuery">
                                 <div>
-                                    <el-input placeholder="请输入内容"></el-input>
-                                    <el-select></el-select>
+                                    <el-input placeholder="请输入内容" value=" "></el-input>
+                                    <el-select value=" "></el-select>
                                     <el-date-picker
                                             type="monthrange"
                                             range-separator="至"
@@ -64,12 +64,13 @@
                                             v-if="wit.type !=='box' && !wit.type "
                                             class="information"
                                     ></my-information>
-                                    <div v-if="!wit.type " :style="{marginTop : sit.time || sit.select ? '60px' :''}"
+                                    <div v-if="!wit.type "
                                          style="width: 100%; height: 100%;overflow: auto;"
                                          :id="cit.id + '-' + six + '-' + wix"></div>
                                     <div v-if="!wit.type" style="width: 100%; height: 100%;overflow: auto;"
                                          :id="cit.id + '++' + six + '++' + wix"></div>
-                                    <div style=" width: 100%; height: 100%; margin-top: 60px;"
+                                    <div style=" width: 100%; height: 100%;"
+                                         :style="{marginTop : sit.time || sit.select ? '60px' :''}"
                                          v-if="!!wit.type && wit.type !== 'box'">
                                         <my-table
                                                 @selectionChange="(row) => {$emit('selectionChange',row);}"
