@@ -112,7 +112,6 @@
         methods: {
             mouseOver(v) {
                 console.log('v');
-                console.log(v);
             },
             menuOC() {
                 this.menuStatus++;

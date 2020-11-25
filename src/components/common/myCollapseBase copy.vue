@@ -1,10 +1,11 @@
 <template>
     <div class="container">
         <div class="collapse" id="collapse">
-            <div v-for="(item, index) in collapseData"
-                 :key="index"
-                 :id="item.id"
-                 class="box_">
+            <div
+                    v-for="(item, index) in collapseData"
+                    :key="index"
+                    :id="item.id"
+                    class="box_">
                 <el-collapse v-model="activeName">
                     <el-collapse-item
                             v-for="(cit, cix) in item.collapseItem"
@@ -16,11 +17,9 @@
                         </template>
                         <div class="ECharts"
                              style="width: 100%; min-height: 100px">
-                            <div v-if="cit.EChartsBox.length === 0"
-                                 style="width: 100%;height: 100px;background: white;border-radius: 10px"></div>
-                            <div class="allQuery" v-if="cit.allQuery">
+                            <div class="allQuery" v-if="false">
                                 <div>
-                                    <el-input placeholder="请输入内容"></el-input>
+                                    <el-input></el-input>
                                     <el-select></el-select>
                                     <el-date-picker
                                             type="monthrange"
@@ -29,9 +28,9 @@
                                             end-placeholder="结束月份">
                                     </el-date-picker>
                                     <el-button type="primary">搜索</el-button>
-                                    <!-- <el-button type="primary">搜索</el-button>
-                                     <el-button type="primary">搜索</el-button>
-                                     <el-button type="primary">搜索</el-button>-->
+                                    <el-button type="primary">搜索</el-button>
+                                    <el-button type="primary">搜索</el-button>
+                                    <el-button type="primary">搜索</el-button>
                                 </div>
                             </div>
                             <div v-for="(sit, six) in cit.EChartsBox"
@@ -40,8 +39,6 @@
                                 <div class="Title">{{ sit.title }}</div>
                                 <div class="query"
                                      v-if="sit.time || sit.select">
-                                    <el-select v-model="sit.selectValue"
-                                               v-if="sit.select"></el-select>
                                     <el-date-picker
                                             v-if="sit.time"
                                             v-model="sit.timeValue"
@@ -50,23 +47,29 @@
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button type="primary" v-if="sit.time || sit.select">搜索</el-button>
+                                    <el-select
+                                            v-model="sit.selectValue"
+                                            v-if="sit.select"
+                                    ></el-select>
+                                    <el-button
+                                            type="primary"
+                                            v-if="sit.time || sit.select">搜索
+                                    </el-button>
                                 </div>
-                                
                                 <div v-for="(wit, wix) in sit.EChartsItem"
                                      :key="wix"
                                      style=" margin-bottom: 100px;position: relative;"
                                      :style="wit.style"
                                      class="echarts"
-                                     @mouseover="mouseover(wit, wix, sit.title,(cit.id + '++' + six + '++' + wix),(cit.id + '-' + six + '-' + wix))">
+                                     @mouseover="mouseover(wit, wix, sit.title)">
                                     <my-information
                                             @isData="isData"
-                                            v-if="wit.type !=='box' || !wit.type "
+                                            v-if="!wit.type"
                                             class="information"
                                     ></my-information>
-                                    <div :style="{marginTop : sit.time || sit.select ? '60px' :''}"
-                                     style="width: 100%; height: 100%;overflow: auto;"
-                                     :id="cit.id + '++' + six + '++' + wix"></div>
+                                    <div v-if="!wit.type"
+                                         style="width: 100%; height: 100%"
+                                         :id="cit.id + '-' + six + '-' + wix"></div>
                                     <div style=" width: 100%; height: 100%; margin-top: 60px;"
                                          v-if="!!wit.type && wit.type !== 'box'">
                                         <my-table
@@ -77,7 +80,8 @@
                                                 :border=" wit.border ? wit.border : false"
                                                 :data="wit.tableData"
                                                 :is-pagination="wit.isPagination"
-                                                v-if="wit.type === 'table'">
+                                                v-if="wit.type === 'table'"
+                                        >
                                         </my-table>
                                         <my-map v-if="wit.type === 'map'"
                                                 :vid="cit.id + '-' + six + '-' + wix"></my-map>
@@ -118,7 +122,7 @@
     import MyMap from "./myMap";
     import MyInformation from "./myInformation";
     import {outExe} from "../../../public/api/excel";
-    import clone from "../../../public/api/clone"
+
     export default {
         name: "myCollapseBase",
         components: {MyMap, MyTable, MyInformation},
@@ -143,8 +147,6 @@
                 optionData: [],
                 optionTitle: "",
                 optionType: "",
-                optionId:'',
-                optionIid:''
             };
         },
         methods: {
@@ -153,16 +155,34 @@
                 this.time_ = -1;
                 await new Promise((resolve) => {
                     timeID = setInterval((_) => {
-                        if (this.time_ > -1 && this.time_ !== this.EChartsData_.length) {
+                        if (
+                            this.time_ > -1 &&
+                            this.time_ !== this.EChartsData_.length
+                        ) {
                             let data = this.EChartsData_[this.time_];
-                            if (data.EChartsBox&&data.EChartsBox.length !== 0) {
+                            if (data.EChartsBox) {
                                 data.EChartsBox.forEach((fi, fx) => {
                                     fi.EChartsItem.forEach((si, sx) => {
-                                        let id = this.EChartsData_[this.time_].id + "-" + fx + "-" + sx;
-                                        if (si.type !== "table" && si.type !== "map" && si.type !== "box") {
-                                            this.$echarts.init(document.getElementById(id)).dispose();
+                                        let id =
+                                            this.EChartsData_[this.time_].id +
+                                            "-" +
+                                            fx +
+                                            "-" +
+                                            sx;
+                                        if (
+                                            si.type !== "table" &&
+                                            si.type !== "map" &&
+                                            si.type !== "box"
+                                        ) {
+                                            this.$echarts
+                                                .init(document.getElementById(id))
+                                                .dispose();
                                             this.$nextTick((_) => {
-                                                this.$echarts.init(document.getElementById(id)).setOption(si.option);
+                                                this.$echarts
+                                                    .init(
+                                                        document.getElementById(id)
+                                                    )
+                                                    .setOption(si.option);
                                             });
                                         }
                                     });
@@ -184,7 +204,9 @@
                     timeID = setInterval(() => {
                         if (this.time !== this.EChartsData.length) {
                             let item = this.EChartsData[this.time];
-                            this.$echarts.init(document.getElementById(item.id)).setOption(item.option);
+                            this.$echarts
+                                .init(document.getElementById(item.id))
+                                .setOption(item.option);
                             this.time++;
                             resolve();
                         }
@@ -223,7 +245,10 @@
             navBar(v) {
                 for (let i = 0; i < this.navData.length; i++) {
                     if (i < this.navData.length - 1) {
-                        if (v > this.navData[i].height && v < this.navData[i + 1].height) {
+                        if (
+                            v > this.navData[i].height &&
+                            v < this.navData[i + 1].height
+                        ) {
                             this.isActive = i;
                             break;
                         }
@@ -249,126 +274,67 @@
                 }
                 this.sumClick++;
             },
-            mouseover(wit, wix, title, id, ids) {
-                this.optionIid = ids
-                this.optionId = id;
+            mouseover(wit, wix, title) {
                 this.optionTitle = title;
                 this.optionData = wit;
-                // console.log(wit,wix)
-            },
-            /**
-             * 导出以及table的数据
-             */
-            isExcelData() {
-                let datas = {};
-                let xAxis = [];
-                let series = [];
-                let bool = true;
-                let optionData = clone(this.optionData)
-                optionData.option.series.forEach((element, index) => {
-                    series.push([]);
-                    // 饼图
-                    if (optionData.option.series[0].type === "pie") {
-                        let list = [];
-                        optionData.option.series[index].data.forEach(
-                            (element) => {
-                                list.push(element.value);
-                            }
-                        );
-                        series[index].push(list);
-                        // datas.series = [this.optionData.option.series[0].data];
-                        if (optionData.option.legend.data) {
-                            datas.xAxis = optionData.option.legend.data;
-                        } else {
-                            let x = []
-                            optionData.option.series[0].data.forEach(element => {
-                                x.push(element.name)
-                            });
-                            datas.xAxis = x;
-                        }
-                        // 折线图
-                    } else if (optionData.option.series[0].type === "line") {
-                        series[index].push(optionData.option.series[index].data);
-                        series[index][0].unshift(optionData.option.legend.data[index]);
-                        datas.xAxis = optionData.option.xAxis.data;
-                        if (bool) {
-                            bool = false;
-                            datas.xAxis.unshift(" ");
-                        }
-                        // 柱状图
-                    } else {
-                        series[index].push(optionData.option.series[index].data);
-                        if (!(optionData.option.xAxis[0])) {
-                            if (optionData.option.yAxis.data) {
-                                datas.xAxis = optionData.option.yAxis.data;
-                            } else {
-                                datas.xAxis = optionData.option.xAxis.data;
-                            }
-                        } else {
-                            datas.xAxis = optionData.option.xAxis[0].data;
-                        }
-                    }
-                });
-                datas.name = this.optionTitle;
-                datas.series = series;
-                return datas
             },
             /**
              * 导入导出excel
              */
             isData(val) {
-                let datas = this.isExcelData()
                 // 图标
                 if (val === "focus") {
-                    document.getElementById(this.optionIid).style.display = 'block'
                 }
                 // 列表
                 if (val === "datas") {
-                    document.getElementById(this.optionIid).style.display = 'none';
-                    let table = `<table style="text-align:center;vertical-align:middle;" cellPadding="0" cellSpacing="0" border=1 width="90%">`
-                    table += `<tr>
-                        <th colspan=${datas.series.length + 1}>${datas.name}</th>
-                    </tr>`
-                    datas.xAxis.forEach((element, index) => {
-                        table += `<tr>
-                            <td>${element}</td>`
-                            switch (datas.series.length) {
-                                case 7:
-                                    table += `<td>${datas.series[4][0][index]}</td>`
-                                case 6:
-                                    table += `<td>${datas.series[4][0][index]}</td>`
-                                case 5:
-                                    table += `<td>${datas.series[4][0][index]}</td>`
-                                case 4:
-                                    table += `<td>${datas.series[3][0][index]}</td>`
-                                case 3:
-                                    table += `<td>${datas.series[2][0][index]}</td>`
-                                case 2:
-                                    table += `<td>${datas.series[1][0][index]}</td>`
-                                case 1:
-                                    table += `<td>${datas.series[0][0][index]}</td>`    
-                                default:
-                                    break;
-                            }
-                            
-                            table+=`</tr>`
-                    });
-
-                    table += '</table>'
-                    document.getElementById(this.optionId).innerHTML = table
                 }
                 //导出excel
                 if (val === "excel") {
-                    outExe(this.isExcelData())
-                }
+                    let datas = {};
+                    let xAxis = [];
+                    let series = [];
+                    let bool = true;
+                    this.optionData.option.series.forEach((element, index) => {
+                        series.push([])
+                        if (element.type === "pie") {
+                            let list = [];
+                            this.optionData.option.series[index].data.forEach(element => {
+                                list.push(element.value)
+                            });
+                            series[index].push(list)
+                            // datas.series = [this.optionData.option.series[0].data];
+                            if(!!this.optionData.option.legend.data){
+                                datas.xAxis = this.optionData.option.legend.data;
+                            }else{
 
+                            }
+
+                        } else if (element.type === "line") {
+                            series[index].push(this.optionData.option.series[index].data)
+                            series[index][0].unshift(this.optionData.option.legend.data[index])
+                            // datas.series = [this.optionData.option.series[0].data];
+                            datas.xAxis = this.optionData.option.xAxis.data;
+                            if (bool) {
+                                bool = false;
+                                datas.xAxis.unshift(' ')
+                            }
+                        } else {
+                            series[index].push(this.optionData.option.series[index].data)
+                            // datas.series = [this.optionData.option.series[0].data];
+                            datas.xAxis = this.optionData.option.xAxis.data;
+                        }
+                    });
+                    datas.name = this.optionTitle;
+                    datas.series = series;
+                    outExe(datas)
+                }
             },
         },
         mounted() {
             this.scrollChange();
             this.collapseData.forEach((i) => {
                 i.collapseItem.forEach((m, cx) => {
-                    if (m.EChartsBox&&m.EChartsBox.length !== 0) {
+                    if (m.id) {
                         this.activeName.push(i.id + cx);
                         this.activeName_.push(i.id + cx);
                         this.EChartsData_.push({
@@ -376,11 +342,15 @@
                             EChartsBox: m.EChartsBox,
                         });
                     }
-                    if (m.EChartsBox&&m.EChartsBox.length !== 0) {
+                    if (m.EChartsBox) {
                         m.EChartsBox.forEach((kt, ki) => {
                             kt.EChartsItem.forEach((mt, mx) => {
                                 this.$nextTick((_) => {
-                                    if (mt.type !== "map" && mt.type !== "table" && mt.type !== "box") {
+                                    if (
+                                        mt.type !== "map" &&
+                                        mt.type !== "table" &&
+                                        mt.type !== "box"
+                                    ) {
                                         this.EChartsData.push({
                                             id: m.id + "-" + ki + "-" + mx,
                                             option: mt.option,
@@ -436,7 +406,6 @@
                         padding: 0 20px;
                         display: flex;
                         align-items: center;
-                        justify-content: flex-end;
                         // flex-direction: column;
                         border-radius: 10px;
                     }
@@ -482,10 +451,11 @@
                     .query {
                         position: absolute;
                         width: 90%;
+                        padding: 0 5%;
                         height: 60px;
                         z-index: 999;
+                        left: 0;
                         top: 50px;
-                        right: 20px;
                         display: flex;
                         flex-direction: row;
                         justify-content: flex-end;
@@ -495,7 +465,7 @@
                         margin: 10px 20px 0 0;
                     }
 
-                    .query /deep/ .el-select {
+                    .query /deep/ .el-input__inner {
                         margin: 10px 20px 0 0;
                     }
 

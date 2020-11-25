@@ -179,6 +179,7 @@ export default {
             let datas = "";
             this.$axios.get("/api/jt_finance/plate_list").then((res) => {
                 datas = res.data.data;
+                console.log(datas,555)
                 this.isAxios(
                     "/api/index/liudabankuai",
                     this.financeTypeId,
@@ -224,8 +225,8 @@ export default {
                     "ED",
                     HomeBottomE
                 );
-                this.isAxios("/api/index/liudabankuai", this.financeTypeId, datas[6].plateId,
-                    datas[6].plateName,
+                this.isAxios("/api/index/liudabankuai", this.financeTypeId, datas[5].plateId,
+                    datas[5].plateName,
                     option,
                     "FD",
                     HomeBottomF
@@ -258,6 +259,7 @@ export default {
                 },
                 tooltip: {
                     trigger: "axis",
+                    formatter: "{b}"+"{c}"+'%',
                     axisPointer: {
                         // 坐标轴指示器，坐标轴触发有效
                         type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
@@ -316,9 +318,9 @@ export default {
                         },
                         label: {
                             show: true,
-                            formatter: "{b}",
+                            formatter: "{b}"+'%',
                         },
-                        data: [0.6, 0.7, 0.8, 0.9, 1],
+                        data: [0.6, 0.7, 8, 0.9, 100],
                         markLine: {
                             data: [
 
@@ -352,8 +354,24 @@ export default {
                     },
                 ],
             };
+            console.log(this.financeTypeId,9999)
+            this.$axios('/api/index/wan_cheng_lv',{params:{financeTypeId:this.financeTypeId}}).then((res)=>{
+                let datas=res.data.data
+                datas.sort(function(a, b){return a.xBxis - b.xBxisb});
+                let xBxis = []; 
+                let yAxis = []; 
+                datas.forEach((element) => {
+                    xBxis.push(element.xBxis)
+                    yAxis.push(element.yAxis)
+                });
+
+                option.yAxis.data=yAxis
+                option.series[0].data=xBxis
+                HomeBottomG.setOption(option);
+            })
+
             this.options = option;
-            HomeBottomG.setOption(option);
+            
         },
         isResize() {
             this.resizeData.forEach((element) => {
@@ -584,11 +602,12 @@ export default {
                 },
             ],
         };
-        // this.$axios.get("/api/index/finance_type_list").then((res) => {
-        //   this.financeTypeId = res.data.data[0].financeTypeId;
-        // });
+        this.$axios.get("/api/index/finance_type_list").then((res) => {
+          this.financeTypeId = res.data.data[1].financeTypeId;
+          this.initBottomEnd();
+        });
         this.initECharts_bottom(this.option_A);
-        this.initBottomEnd();
+        
     },
 };
 </script>

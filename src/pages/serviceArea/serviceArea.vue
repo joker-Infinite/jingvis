@@ -3887,18 +3887,17 @@
                                                 },
                                                 option: {
                                                     title: {
-                                                        text: "总营业额(万元)",
-                                                        top: "40%",
+                                                        text: "总营业额",
+                                                        top: "43%",
                                                         left: "center",
-                                                        // x: 'center',
-                                                        // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
-                                                        subtext: "85000",
+                                                        subtext: "85000万元",
                                                         subtextStyle: {
-                                                            fontSize: 45,
-                                                            color: "#1edf57",
+                                                            fontSize: 25,
+                                                            color: "#F98B2F",
+                                                            "fontWeight": "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -3910,6 +3909,7 @@
                                                     legend: {
                                                         orient: "horizontal",
                                                         bottom: 10,
+                                                        icon: "circle",
                                                     },
                                                     tooltip: {
                                                         trigger: "item",
@@ -3918,12 +3918,18 @@
                                                         {
                                                             type: "pie",
                                                             center: ["50%", "50%"],
-                                                            radius: ["44%", "55%"],
+                                                            radius: ["35%", "55%"],
                                                             clockwise: true,
                                                             avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
+                                                            hoverOffset: 15, 
                                                             itemStyle: {
                                                                 normal: {
+                                                                    borderWidth: 0,
+                                                                    borderColor: 'rgba(255,255,255,0)',
+                                                                    shadowBlur: 20,
+                                                                    shadowColor: 'rgba(57,39,132,0.3)', 
+                                                                    shadowOffsetX: -5,
+                                                                    shadowOffsetY: -5,
                                                                     color: function (
                                                                         params
                                                                     ) {
@@ -3938,6 +3944,10 @@
                                                                             ];
                                                                     },
                                                                 },
+                                                                emphasis: {
+                                                                    borderWidth: 10,             
+                                                                    
+                                                                },
                                                             },
                                                             label: {
                                                                 show: true,
@@ -3945,36 +3955,40 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                backgroundColor:"auto",
+                                                                padding: [0 , -100, 25, -100],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
-                                                                        return text;
+                                                                        return (
+                                                                        '{name|' + v.name + '}\n{value|' +
+                                                                        v.percent + '}'
+                                                                    );
                                                                     },
                                                                     textStyle: {
                                                                         fontSize: 15,
                                                                     },
+                                                                    rich: {
+                                                                    name: {
+                                                                        fontSize: 14,
+                                                                        padding: [0, 10, 0, 4],
+                                                                       
+                                                                    },
+                                                                    value: {
+                                                                        fontSize: 18,
+                                                                        fontWeight: 'bold',
+                                                                
+                                                                    }
+                                                                }
                                                                 },
                                                             },
                                                             labelLine: {
                                                                 normal: {
-                                                                    length: 30,
-                                                                    length2: 30,
+                                                                    length: 35,
+                                                                    length2: 35,
                                                                     lineStyle: {
-                                                                        width: 1,
+                                                                        width: 1.5,
                                                                     },
                                                                 },
                                                             },
@@ -3993,6 +4007,7 @@
                                                                 },
                                                             ],
                                                         },
+                                                        
                                                     ],
                                                 },
                                             },

@@ -1,17 +1,22 @@
 
 
 function outExe(tableDatas) {
-  console.log(tableDatas)
   require.ensure([], () => {
     const { export_json_to_excel } = require("../../src/vendor/Export2Excel");
     var tHeader = [tableDatas.name];
-    var filterVal = ['es','ee','eee','eeeh','eeehjh']
+    var filterVal = ['es','ee','eee','eeeh','eeehjh','we','tr','tt']
     let table = [];
     tableDatas.series[0][0].forEach((val, index) => {
       let wen = {};
       wen['es'] = tableDatas.xAxis[index];
       wen['ee'] = tableDatas.series[0][0][index];
       switch (tableDatas.series.length) {
+        case 8:
+          wen['tt'] = tableDatas.series[3][0][index];
+        case 7:
+        wen['tr'] = tableDatas.series[3][0][index];
+        case 6:
+        wen['we'] = tableDatas.series[3][0][index];
         case 5:
           wen['eeehjh'] = tableDatas.series[3][0][index];
         case 4:
@@ -21,16 +26,8 @@ function outExe(tableDatas) {
         default:
           break;
       }      
-      // 
-      // 
-      // 
       table.push(wen);
-      console.log(wen)
     });
-    // tableDatas[0].forEach((val, inx) => {
-    // 	console.log(wen, 44444444444444444444444444444444444444)
-    // 	table.push(wen)
-    // });
     
     var list = table;
     var data = formatJson(filterVal, list);
