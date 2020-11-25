@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="visible" width="90%" class="big">
+  <el-dialog :visible.sync="visible" width="90%" class="big" :modal="false">
     <div style="width: 100%;height: 900px">
       <div class="amap-page-container">
         <div class="Real-timeInformation">
@@ -54,11 +54,10 @@
 </template>
 
 <script>
-import CenterMap from "../map/centerMap";
 
 export default {
   name: "showMap",
-  components: { CenterMap },
+  components: {},
   data() {
     return {
       visible: false,

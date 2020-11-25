@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%; height: 100%; font-size: 50px">
+    <div style="width: 100%; height: 100%;">
         <my-collapse-base ref="collapse" :collapseData="collapseData"></my-collapse-base>
     </div>
 </template>
@@ -143,17 +143,17 @@
                                                         {
                                                             type: "bar",
                                                             data: [
-                                                                40,
-                                                                80,
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             barWidth: "16px",
@@ -172,17 +172,17 @@
                                                         },
                                                         {
                                                             data: [
-                                                                40,
-                                                                80,
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             type: "line",
@@ -603,17 +603,17 @@
                                                         {
                                                             type: "bar",
                                                             data: [
-                                                                40,
-                                                                80,
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             barWidth: "16px",
@@ -1075,17 +1075,17 @@
                                                         {
                                                             type: "bar",
                                                             data: [
-                                                                40,
-                                                                80,
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             barWidth: "16px",
@@ -1533,17 +1533,17 @@
                                                         {
                                                             type: "bar",
                                                             data: [
-                                                                40,
-                                                                80,
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             barWidth: "16px",
@@ -1890,6 +1890,12 @@
                             {
                                 id: "cost_2020",
                                 collapseTitle: "2020年成本",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "实际成本",
@@ -1997,18 +2003,18 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                40,
-                                                                80,
+                                                            data:[
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             barWidth: "16px",
@@ -2026,18 +2032,18 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                40,
-                                                                80,
+                                                            data:[
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             type: "line",
@@ -2715,6 +2721,12 @@
                             {
                                 id: "cost_2019",
                                 collapseTitle: "2019年成本",
+                                allQuery: true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true
+                                },
                                 EChartsBox: [
                                     {
                                         title: "实际成本",
@@ -2823,17 +2835,17 @@
                                                         {
                                                             type: "bar",
                                                             data: [
-                                                                40,
-                                                                80,
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             barWidth: "16px",
@@ -3921,13 +3933,13 @@
                                                             radius: ["35%", "55%"],
                                                             clockwise: true,
                                                             avoidLabelOverlap: true,
-                                                            hoverOffset: 15, 
+                                                            hoverOffset: 15,
                                                             itemStyle: {
                                                                 normal: {
                                                                     borderWidth: 0,
                                                                     borderColor: 'rgba(255,255,255,0)',
                                                                     shadowBlur: 20,
-                                                                    shadowColor: 'rgba(57,39,132,0.3)', 
+                                                                    shadowColor: 'rgba(57,39,132,0.3)',
                                                                     shadowOffsetX: -5,
                                                                     shadowOffsetY: -5,
                                                                     color: function (
@@ -3945,8 +3957,8 @@
                                                                     },
                                                                 },
                                                                 emphasis: {
-                                                                    borderWidth: 10,             
-                                                                    
+                                                                    borderWidth: 10,
+
                                                                 },
                                                             },
                                                             label: {
@@ -3955,32 +3967,32 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:"auto",
-                                                                padding: [0 , -100, 25, -100],
+                                                                backgroundColor: "auto",
+                                                                padding: [0, -100, 25, -100],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
                                                                         return (
-                                                                        '{name|' + v.name + '}\n{value|' +
-                                                                        v.percent + '}'
-                                                                    );
+                                                                            '{name|' + v.name + '}\n{value|' +
+                                                                            v.percent + '}'
+                                                                        );
                                                                     },
                                                                     textStyle: {
                                                                         fontSize: 15,
                                                                     },
                                                                     rich: {
-                                                                    name: {
-                                                                        fontSize: 14,
-                                                                        padding: [0, 10, 0, 4],
-                                                                       
-                                                                    },
-                                                                    value: {
-                                                                        fontSize: 18,
-                                                                        fontWeight: 'bold',
-                                                                
+                                                                        name: {
+                                                                            fontSize: 14,
+                                                                            padding: [0, 10, 0, 4],
+
+                                                                        },
+                                                                        value: {
+                                                                            fontSize: 18,
+                                                                            fontWeight: 'bold',
+
+                                                                        }
                                                                     }
-                                                                }
                                                                 },
                                                             },
                                                             labelLine: {
@@ -4007,7 +4019,7 @@
                                                                 },
                                                             ],
                                                         },
-                                                        
+
                                                     ],
                                                 },
                                             },
@@ -4175,7 +4187,7 @@
                                                 type: "table",
                                                 height: '500px',
                                                 isPagination: true,
-                                                border:true,
+                                                border: true,
                                                 style: {
                                                     width: "100%",
                                                     height: "400px",
@@ -4550,7 +4562,7 @@
                                                 type: "table",
                                                 height: '500px',
                                                 isPagination: true,
-                                                border:true,
+                                                border: true,
                                                 style: {
                                                     width: "100%",
                                                     height: "400px",
@@ -6316,11 +6328,12 @@
                         .then((res) => {
                             let xBxis = [];
                             let yAxis = [];
-                            res.data.data.forEach((element) => {
-                                xBxis.push(element.xBxis);
-                                yAxis.push(element.yAxis);
-                            });
-
+                            if (res.data.data) {
+                                res.data.data.forEach((element) => {
+                                    xBxis.push(element.xBxis);
+                                    yAxis.push(element.yAxis);
+                                });
+                            }
                             resolve({xBxis: xBxis, yAxis: yAxis});
                         });
                 });

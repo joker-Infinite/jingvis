@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%;height: 100%;font-size: 50px">
+    <div style="width: 100%;height: 100%;">
         <my-collapse-base :collapseData="collapseData" ref="collapse"></my-collapse-base>
     </div>
 </template>

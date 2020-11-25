@@ -2,6 +2,7 @@
     <div class="container">
         <div class="nav" id="nav">
             <el-menu
+                    :unique-opened="true"
                     :collapse="menuStatus % 2 === 0"
                     :default-active="key"
                     class="el-menu-vertical-demo"
@@ -10,8 +11,7 @@
                     @close="close">
                 <div class="oc" id="oc" style="text-align: right">
                     <i :class=" menuStatus % 2 === 0 ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
-                       @click="menuOC"
-                    ></i>
+                       @click="menuOC"></i>
                 </div>
                 <el-menu-item index="1">
                     <i class="el-icon-menu"></i>
@@ -43,6 +43,15 @@
             </el-menu>
         </div>
         <div class="con" id="con_">
+            <!--<div class="history">
+                <el-tag :closable="tagData.length !==1"
+                        v-for="it in tagData"
+                        :class="{'is-active':key === it.index}"
+                        @click="tagClick(it)"
+                        @close="tagClose(it)">
+                    {{it.content}}
+                </el-tag>
+            </div>-->
             <router-view :viewChange="menuStatus % 2 === 0"></router-view>
         </div>
     </div>
@@ -104,14 +113,58 @@
                         imgActive: require("../assets/Home/5.png"),
                     }
                 ],
+                tagData: [],
                 key: "",
                 menuStatus: 1,
-                isActive: '2-0'
+                isActive: '2-0',
             };
         },
         methods: {
-            mouseOver(v) {
-                console.log('v');
+            tagClick(v) {
+                this.isActive = v.index.charAt(0);
+                this.key = v.index;
+                this.$router.push(v.path);
+                this.setCookie(v.index);
+            },
+            tagClose(v) {
+                this.tagData.splice(this.tagData.indexOf(v), 1);
+            },
+            setTag(v) {
+                if (v.length === 1 && v != '4' && v != '4-0') {
+                    v = v + '-0';
+                }
+                let arr = v.split('-');
+                let obj = {};
+                let indexs = '';
+                this.tagData.forEach(i => {
+                    indexs += i.index + ',';
+                });
+                this.submenu.forEach(i => {
+                    if (i.id == arr[0] && !arr[1] && indexs.indexOf(v) === -1) {
+                        obj = {
+                            content: i.label,
+                            path: this.$route.path,
+                            index: v
+                        };
+                        this.tagData.push(obj);
+                    }
+                    if (i.id == arr[0] && arr[1] && indexs.indexOf(v) === -1) {
+                        obj = {
+                            content: i.menuItem[arr[1]],
+                            path: this.$route.path,
+                            index: v
+                        };
+                        this.tagData.push(obj);
+                    }
+                    if (i.id == arr[0] && arr[1] && arr[2] && indexs.indexOf(v) === -1) {
+                        obj = {
+                            content: '加油站详情',
+                            path: this.$route.path,
+                            index: v
+                        };
+                        this.tagData.push(obj);
+                    }
+                })
             },
             menuOC() {
                 this.menuStatus++;
@@ -142,22 +195,33 @@
              * @param n 节点组件本身
              * */
             select(k, n, m) {
+                this.key = k;
                 this.clickMenu(k);
             },
             /**
              * 菜单父节点事件
              * */
             close(k) {
-                this.key = k + "-0";
+                if (k == 4 || k == '4-0') {
+                    this.key = k;
+                } else {
+                    this.key = k + "-0";
+                }
                 this.clickMenu(k);
             },
             open(k) {
-                this.key = k + "-0";
+                if (k == 4 || k == '4-0') {
+                    this.key = k;
+                } else {
+                    this.key = k + "-0";
+                }
                 this.clickMenu(k);
             },
             clickMenu(v) {
-                console.log(v)
+                this.setCookie(v);
+                this.setTag(v);
                 this.isActive = v.charAt(0);
+
                 if (v === "1") {
                     let routeData = this.$router.resolve({
                         path: "/homeKanBan".replace("#", "")
@@ -224,7 +288,26 @@
                 if (v === "5-2") {
                     this.$router.push("/energy/FYPLingShou");
                 }
-            }
+            },
+            getCookie() {
+                let cookie = document.cookie;
+                let arr = [];
+                if (cookie) {
+                    arr = cookie.split('=');
+                    this.key = arr[1];
+                    this.clickMenu(arr[1]);
+                }
+            },
+            setCookie(v) {
+                let open = v;
+                if (open.length === 1 && open != 1 && open != 4) {
+                    open = open + '-0';
+                }
+                document.cookie = 'menu=' + open;
+            },
+        },
+        mounted() {
+            this.getCookie();
         }
     };
 </script>
@@ -283,7 +366,40 @@
             width: 90%;
             height: 100%;
             background: #f3f7ff;
-            transition: linear 0.3s;
+
+            .history {
+                z-index: 1111;
+                width: 85%;
+                margin-left: 1.3%;
+                height: 40px;
+                background: #f3f7ff;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                overflow-x: scroll;
+            }
+
+            .history::-webkit-scrollbar {
+                display: none;
+            }
+
+            .history /deep/ .el-tag {
+                margin: 4px;
+                border-radius: 0;
+                cursor: pointer;
+                min-width: 75px;
+                text-align: center;
+            }
+
+            .is-active {
+                background: #737aef;
+                color: white;
+                border: 1px solid #737aef;
+            }
+
+            .is-active /deep/ .el-tag__close {
+                color: white;
+            }
         }
     }
 </style>

@@ -18,11 +18,12 @@
                              style="width: 100%; min-height: 100px">
                             <div v-if="cit.EChartsBox.length === 0"
                                  style="width: 100%;height: 100px;background: white;border-radius: 10px"></div>
-                            <div class="allQuery" v-if="cit.allQuery">
+                            <div class="allQuery" v-if="cit.allQuery&&cit.allQueryData">
                                 <div>
-                                    <el-input placeholder="请输入内容" value=" "></el-input>
-                                    <el-select value=" "></el-select>
+                                    <el-input v-if="cit.allQueryData.input" placeholder="请输入内容" value=" "></el-input>
+                                    <el-select  v-if="cit.allQueryData.select" value=" "></el-select>
                                     <el-date-picker
+                                            v-if="cit.allQueryData.time"
                                             type="monthrange"
                                             range-separator="至"
                                             start-placeholder="开始月份"
@@ -410,6 +411,7 @@
     .container {
         width: 100%;
         height: 100%;
+        position: relative;
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;

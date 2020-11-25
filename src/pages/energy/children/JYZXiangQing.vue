@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%;height: 100%;font-size: 50px">
+    <div style="width: 100%;height: 100%;">
         <my-collapse-base
                 ref="collapse"
                 :collapseData="collapseData"
@@ -171,17 +171,17 @@
                                                         {
                                                             type: "bar",
                                                             data: [
-                                                                40,
-                                                                80,
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             barWidth: "16px",
@@ -410,17 +410,17 @@
                                                         {
                                                             type: "bar",
                                                             data: [
-                                                                40,
-                                                                80,
+                                                                586,
+                                                                560,
                                                                 500,
-                                                                36,
-                                                                30,
-                                                                35,
+                                                                365,
+                                                                256,
+                                                                362,
                                                                 400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
+                                                                265,
+                                                                333,
+                                                                352,
+                                                                254,
                                                                 360,
                                                             ],
                                                             barWidth: "16px",
