@@ -323,16 +323,16 @@
                                     // barBorderRadius: 30, //设置柱状图为圆角
                                     color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
                                         {
-                                            offset: 0,
-                                            color: "rgba(45,111,243,1)",
+                                            offset: 0.3,
+                                            color: "#4760ff",
                                         },
                                         {
-                                            offset: 0.5,
-                                            color: "rgba(134,85,161,1)",
+                                            offset: 0.6,
+                                            color: "#0dccff",
                                         },
                                         {
                                             offset: 1,
-                                            color: "rgba(247,52,57,1)",
+                                            color: "#36a6f9",
                                         },
                                     ]),
                                 },
@@ -472,12 +472,16 @@
                                     color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
                                         {
                                             offset: 0,
-                                            color: "rgba(45,111,243,1)",
+                                            color: "#4760ff",
+                                        },
+                                        {
+                                            offset: 0.5,
+                                            color: "#0dccff",
                                         },
                                         {
                                             offset: 1,
-                                            color: "rgba(245,184,14,1)",
-                                        },
+                                            color: "#36a6f9",
+                                        }
                                     ]),
                                 },
                             },
