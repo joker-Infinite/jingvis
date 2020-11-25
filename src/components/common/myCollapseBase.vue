@@ -50,31 +50,25 @@
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button
-                                            type="primary"
-                                            v-if="sit.time || sit.select">搜索
-                                    </el-button>
+                                    <el-button type="primary" v-if="sit.time || sit.select">搜索</el-button>
                                 </div>
-                                
                                 <div v-for="(wit, wix) in sit.EChartsItem"
                                      :key="wix"
                                      style=" margin-bottom: 100px;position: relative;"
                                      :style="wit.style"
                                      class="echarts"
-                                     @mouseover="mouseover(wit, wix, sit.title,(cit.id + '++' + six + '++' + wix),(cit.id + '-' + six + '-' + wix))">
+                                     @mouseover="mouseover(wit, wix, sit.title,(cit.id + '-' + six + '-' + wix),(cit.id + '-' + six + '-' + wix))">
                                     <my-information
                                             @isData="isData"
                                             v-if="wit.type !=='box' || !wit.type "
                                             class="information"
                                     ></my-information>
-                                    <div v-if="!wit.type"
-                                         style="width: 100%; height: 100%"
-                                         :id="cit.id + '-' + six + '-' + wix"></div>
                                     <div :style="{marginTop : sit.time || sit.select ? '60px' :''}"
-                                     style="width: 100%; height: 100%;overflow: auto;" 
-                                     :id="cit.id + '++' + six + '++' + wix"></div>
+                                         style="width: 100%; height: 100%;overflow: auto;"
+                                         v-if="!wit.type"
+                                         :id="cit.id + '-' + six + '-' + wix"></div>
                                     <div style=" width: 100%; height: 100%; margin-top: 60px;"
-                                         v-if="!!wit.type && wit.type !== 'box'">
+                                         v-if="wit.type === 'map'||wit.type === 'table'||wit.type === 'box'">
                                         <my-table
                                                 @selectionChange="(row) => {$emit('selectionChange',row);}"
                                                 :columns="wit.columns"
@@ -125,6 +119,7 @@
     import MyInformation from "./myInformation";
     import {outExe} from "../../../public/api/excel";
     import clone from "../../../public/api/clone"
+
     export default {
         name: "myCollapseBase",
         components: {MyMap, MyTable, MyInformation},
@@ -149,8 +144,8 @@
                 optionData: [],
                 optionTitle: "",
                 optionType: "",
-                optionId:'',
-                optionIid:''
+                optionId: '',
+                optionIid: ''
             };
         },
         methods: {
@@ -159,12 +154,9 @@
                 this.time_ = -1;
                 await new Promise((resolve) => {
                     timeID = setInterval((_) => {
-                        if (
-                            this.time_ > -1 &&
-                            this.time_ !== this.EChartsData_.length
-                        ) {
+                        if (this.time_ > -1 && this.time_ !== this.EChartsData_.length) {
                             let data = this.EChartsData_[this.time_];
-                            if (data.EChartsBox) {
+                            if (data.EChartsBox&&data.EChartsBox.length !== 0) {
                                 data.EChartsBox.forEach((fi, fx) => {
                                     fi.EChartsItem.forEach((si, sx) => {
                                         let id = this.EChartsData_[this.time_].id + "-" + fx + "-" + sx;
@@ -258,7 +250,7 @@
                 }
                 this.sumClick++;
             },
-            mouseover(wit, wix, title , id , ids) {
+            mouseover(wit, wix, title, id, ids) {
                 this.optionIid = ids
                 this.optionId = id;
                 this.optionTitle = title;
@@ -268,7 +260,7 @@
             /**
              * 导出以及table的数据
              */
-            isExcelData(){
+            isExcelData() {
                 let datas = {};
                 let xAxis = [];
                 let series = [];
@@ -286,9 +278,9 @@
                         );
                         series[index].push(list);
                         // datas.series = [this.optionData.option.series[0].data];
-                        if(optionData.option.legend.data){
+                        if (optionData.option.legend.data) {
                             datas.xAxis = optionData.option.legend.data;
-                        }else{
+                        } else {
                             let x = []
                             optionData.option.series[0].data.forEach(element => {
                                 x.push(element.name)
@@ -307,13 +299,13 @@
                         // 柱状图
                     } else {
                         series[index].push(optionData.option.series[index].data);
-                        if(!(optionData.option.xAxis[0])){
-                            if(optionData.option.yAxis.data){
+                        if (!(optionData.option.xAxis[0])) {
+                            if (optionData.option.yAxis.data) {
                                 datas.xAxis = optionData.option.yAxis.data;
-                            }else{
-                            datas.xAxis = optionData.option.xAxis.data;
+                            } else {
+                                datas.xAxis = optionData.option.xAxis.data;
                             }
-                        }else{
+                        } else {
                             datas.xAxis = optionData.option.xAxis[0].data;
                         }
                     }
@@ -329,38 +321,38 @@
                 let datas = this.isExcelData()
                 // 图标
                 if (val === "focus") {
-                    document.getElementById(this.optionIid).style.display='block'
+                    document.getElementById(this.optionIid).style.display = 'block'
                 }
                 // 列表
                 if (val === "datas") {
-                    document.getElementById(this.optionIid).style.display='none';
+                    document.getElementById(this.optionIid).style.display = 'none';
                     let table = `<table style="text-align:center;vertical-align:middle;" cellPadding="0" cellSpacing="0" border=1 width="90%">`
                     table += `<tr>
-                        <th colspan=${datas.series.length+1}>${datas.name}</th>
+                        <th colspan=${datas.series.length + 1}>${datas.name}</th>
                     </tr>`
-                    datas.xAxis.forEach((element,index) => {
-                        table+=`<tr>
+                    datas.xAxis.forEach((element, index) => {
+                        table += `<tr>
                             <td>${element}</td>`
-                            switch (datas.series.length) {
-                                case 5:
-                                    table += `<td>${datas.series[4][0][index]}</td>`
-                                case 4:
-                                    table += `<td>${datas.series[3][0][index]}</td>`
-                                case 3:
-                                    table += `<td>${datas.series[2][0][index]}</td>`
-                                case 2:
-                                    table += `<td>${datas.series[1][0][index]}</td>`
-                                case 1:
-                                    table += `<td>${datas.series[0][0][index]}</td>`    
-                                default:
-                                    break;
-                            }
-                            
-                            table+=`</tr>`
+                        switch (datas.series.length) {
+                            case 5:
+                                table += `<td>${datas.series[4][0][index]}</td>`
+                            case 4:
+                                table += `<td>${datas.series[3][0][index]}</td>`
+                            case 3:
+                                table += `<td>${datas.series[2][0][index]}</td>`
+                            case 2:
+                                table += `<td>${datas.series[1][0][index]}</td>`
+                            case 1:
+                                table += `<td>${datas.series[0][0][index]}</td>`
+                            default:
+                                break;
+                        }
+
+                        table += `</tr>`
                     });
-                        
+
                     table += '</table>'
-                    document.getElementById(this.optionId).innerHTML=table
+                    document.getElementById(this.optionId).innerHTML = table
                 }
                 //导出excel
                 if (val === "excel") {
@@ -373,7 +365,7 @@
             this.scrollChange();
             this.collapseData.forEach((i) => {
                 i.collapseItem.forEach((m, cx) => {
-                    if (m.EChartsBox.length !== 0) {
+                    if (m.EChartsBox&&m.EChartsBox.length !== 0) {
                         this.activeName.push(i.id + cx);
                         this.activeName_.push(i.id + cx);
                         this.EChartsData_.push({
@@ -381,7 +373,7 @@
                             EChartsBox: m.EChartsBox,
                         });
                     }
-                    if (m.EChartsBox !== 0) {
+                    if (m.EChartsBox&&m.EChartsBox.length !== 0) {
                         m.EChartsBox.forEach((kt, ki) => {
                             kt.EChartsItem.forEach((mt, mx) => {
                                 this.$nextTick((_) => {
