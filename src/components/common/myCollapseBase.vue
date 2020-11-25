@@ -23,13 +23,14 @@
                                     <el-input v-if="cit.allQueryData.input" placeholder="请输入内容" value=" "></el-input>
                                     <el-select  v-if="cit.allQueryData.select" value=" "></el-select>
                                     <el-date-picker
+                                            value=" "
                                             v-if="cit.allQueryData.time"
                                             type="monthrange"
                                             range-separator="至"
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button type="primary">搜索</el-button>
+                                    <el-button icon="el-icon-search" type="primary">搜索</el-button>
                                     <!-- <el-button type="primary">搜索</el-button>
                                      <el-button type="primary">搜索</el-button>
                                      <el-button type="primary">搜索</el-button>-->
@@ -51,7 +52,7 @@
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button type="primary" v-if="sit.time || sit.select">搜索</el-button>
+                                    <el-button icon="el-icon-search" type="primary" v-if="sit.time || sit.select">搜索</el-button>
                                 </div>
 
                                 <div v-for="(wit, wix) in sit.EChartsItem"
@@ -78,7 +79,7 @@
                                                 :columns="wit.columns"
                                                 :height="wit.height? wit.height:'300px'"
                                                 :multiple="false"
-                                                :border=" wit.border ? wit.border : false"
+                                                :border=" wit.border ? wit.border : true"
                                                 :data="wit.tableData"
                                                 :is-pagination="wit.isPagination"
                                                 v-if="wit.type === 'table'">
@@ -538,7 +539,7 @@
             > .el-collapse-item
             > div
             > .el-collapse-item__header {
-                background: #737aef;
+                background: #1d7dca;
                 border-radius: 10px;
                 font-size: 16px;
                 height: 48px;
@@ -588,7 +589,7 @@
                 border-radius: 10px;
 
                 .active {
-                    background: #737aef;
+                    background: #1d7dca;
                     margin-left: -8%;
                     margin-right: 8%;
                     color: white;

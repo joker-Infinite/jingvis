@@ -26,19 +26,18 @@
                     </template>
                     <el-menu-item
                             v-for="(cItem, cIndex) in item.menuItem"
-                            :index="item.id + '-' + cIndex"
-                            v-if="item.id !== '4'">
+                            :index="item.id + '-' + cIndex">
                         {{ cItem }}
                     </el-menu-item>
-                    <el-submenu index="4-0" v-if="item.id === '4'">
-                        <template slot="title">
-                            中化交投
-                        </template>
-                        <el-menu-item index="4-0-0">加油站详情页</el-menu-item>
-                    </el-submenu>
-                    <el-menu-item index="4-1" v-if="item.id === '4'">石化能源
-                    </el-menu-item>
-                    <el-menu-item index="4-2" v-if="item.id === '4'">新能源</el-menu-item>
+                    <!--  <el-submenu index="4-0" v-if="item.id === '4'">
+                          <template slot="title">
+                              中化交投
+                          </template>
+                          <el-menu-item index="4-0-0">加油站详情页</el-menu-item>
+                      </el-submenu>
+                      <el-menu-item index="4-1" v-if="item.id === '4'">石化能源
+                      </el-menu-item>
+                      <el-menu-item index="4-2" v-if="item.id === '4'">新能源</el-menu-item>-->
                 </el-submenu>
             </el-menu>
         </div>
@@ -76,21 +75,34 @@
                             "十堰分公司",
                             "恩施分公司",
                             "咸宁分公司",
-                        ]
+                        ],
+                        menuItemUrl: [
+                            '/serviceArea/serviceArea',
+                            '/serviceArea/huangGang',
+                            '/serviceArea/yiChang',
+                            '/serviceArea/xiaoGan',
+                            '/serviceArea/shiYan',
+                            '/serviceArea/enShi',
+                            '/serviceArea/xianNing',]
                     },
                     {
                         id: "3",
                         label: "服务区业务",
                         img: require("../assets/Home/10.png"),
                         imgActive: require("../assets/Home/3.png"),
-                        menuItem: ["消费意愿", "服务区业态", "服务区对比"]
+                        menuItem: ["消费意愿", "服务区业态", "服务区对比"],
+                        menuItemUrl: [
+                            '',
+                            '/serviceArea/FWQYeTai',
+                            '/comparison/comparison'
+                        ]
                     },
                     {
                         id: "4",
                         label: "能源公司",
                         img: require("../assets/Home/8.png"),
                         imgActive: require("../assets/Home/9.png"),
-                        menuItem: ["中化交投", "石化能源", "新能源"]
+                        menuItem: ['数据总览', "中化交投", "石化能源", "新能源"]
                     },
                     {
                         id: "5",
@@ -130,7 +142,9 @@
                 this.tagData.splice(this.tagData.indexOf(v), 1);
             },
             setTag(v) {
-                if (v.length === 1 && v != '4' && v != '4-0') {
+                console.log(this.$route.path)
+                console.log(v)
+                if (v.length === 1) {
                     v = v + '-0';
                 }
                 let arr = v.split('-');
@@ -140,25 +154,9 @@
                     indexs += i.index + ',';
                 });
                 this.submenu.forEach(i => {
-                    if (i.id == arr[0] && !arr[1] && indexs.indexOf(v) === -1) {
-                        obj = {
-                            content: i.label,
-                            path: this.$route.path,
-                            index: v
-                        };
-                        this.tagData.push(obj);
-                    }
                     if (i.id == arr[0] && arr[1] && indexs.indexOf(v) === -1) {
                         obj = {
                             content: i.menuItem[arr[1]],
-                            path: this.$route.path,
-                            index: v
-                        };
-                        this.tagData.push(obj);
-                    }
-                    if (i.id == arr[0] && arr[1] && arr[2] && indexs.indexOf(v) === -1) {
-                        obj = {
-                            content: '加油站详情',
                             path: this.$route.path,
                             index: v
                         };
@@ -202,26 +200,17 @@
              * 菜单父节点事件
              * */
             close(k) {
-                if (k == 4 || k == '4-0') {
-                    this.key = k;
-                } else {
-                    this.key = k + "-0";
-                }
+                this.key = k + "-0";
                 this.clickMenu(k);
             },
             open(k) {
-                if (k == 4 || k == '4-0') {
-                    this.key = k;
-                } else {
-                    this.key = k + "-0";
-                }
+
+                this.key = k + "-0";
                 this.clickMenu(k);
             },
             clickMenu(v) {
                 this.setCookie(v);
-                this.setTag(v);
                 this.isActive = v.charAt(0);
-
                 if (v === "1") {
                     let routeData = this.$router.resolve({
                         path: "/homeKanBan".replace("#", "")
@@ -235,6 +224,9 @@
 
                 }
                 if (v === "4") {
+                    this.$router.push("/energy/energy");
+                }
+                if (v === "4-0") {
                     this.$router.push("/energy/energy");
                 }
                 if (v === "6") {
@@ -273,12 +265,12 @@
                 if (v === "3-2") {
                     this.$router.push("/comparison/comparison");
                 }
-                if (v === "4-0") {
+                if (v === "4-1") {
                     this.$router.push("/energy/ZHJiaoTou");
                 }
-                if (v === "4-0-0") {
+                /*if (v === "4-0-0") {
                     this.$router.push("/energy/JYZXiangQing");
-                }
+                }*/
                 if (v === "5-0") {
                     this.$router.push("/energy/piFa");
                 }
@@ -288,6 +280,7 @@
                 if (v === "5-2") {
                     this.$router.push("/energy/FYPLingShou");
                 }
+                this.setTag(v);
             },
             getCookie() {
                 let cookie = document.cookie;
@@ -340,7 +333,7 @@
             }
 
             .addTo {
-                background: #737aef !important;
+                background: #1d7dca !important;
             }
 
             .addTo > .el-submenu__title > span {
@@ -364,6 +357,7 @@
 
         .con {
             width: 90%;
+            /*height: calc(100% - 40px);*/
             height: 100%;
             background: #f3f7ff;
 
@@ -392,9 +386,9 @@
             }
 
             .is-active {
-                background: #737aef;
+                background: #1d7dca;
                 color: white;
-                border: 1px solid #737aef;
+                border: 1px solid #1d7dca;
             }
 
             .is-active /deep/ .el-tag__close {

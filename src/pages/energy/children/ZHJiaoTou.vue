@@ -3,6 +3,7 @@
         <my-collapse-base
                 ref="collapse"
                 :collapseData="collapseData"
+                @selectionChange="selectionChange"
         ></my-collapse-base>
     </div>
 </template>
@@ -32,10 +33,10 @@
                                 id: "revenue_2020",
                                 collapseTitle: "2020年营收",
                                 allQuery: true,
-                                allQueryData:{
-                                    input:false,
-                                    select:false,
-                                    time:true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true,
                                 },
                                 EChartsBox: [
                                     {
@@ -412,10 +413,10 @@
                                 id: "profit_2020",
                                 collapseTitle: "2020年利润",
                                 allQuery: true,
-                                allQueryData:{
-                                    input:false,
-                                    select:false,
-                                    time:true,
+                                allQueryData: {
+                                    input: false,
+                                    select: false,
+                                    time: true,
                                 },
                                 EChartsBox: [
                                     {
@@ -1157,8 +1158,8 @@
                                                         {
                                                             data: [120, 200, 150, 80, 70, 110, 130],
                                                             type: 'bar',
-                                                            itemStyle:{
-                                                                color:'#76c15c'
+                                                            itemStyle: {
+                                                                color: '#76c15c'
                                                             }
                                                         },
                                                         {
@@ -1191,7 +1192,7 @@
                                                     width: "100%",
                                                     height: "400px",
                                                 },
-                                                option:  {
+                                                option: {
                                                     title: {
                                                         text: "",
                                                     },
@@ -1404,196 +1405,6 @@
                         ],
                     },
                     {
-                        id: "gas",
-                        name: "加油站",
-                        icon: require("../../../assets/business/icon_2-1.png"),
-                        iconActive: require("../../../assets/business/icon_2-2.png"),
-                        collapseItem: [
-                            {
-                                id: "gas_2020",
-                                collapseTitle: "2020年加油站分布",
-                                EChartsBox: [
-                                    {
-                                        title: "展示加油站",
-                                        time: false,
-                                        timeValue: "",
-                                        style: {
-                                            width: "100%",
-                                            height: "600px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                            marginBottom: '10px',
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                type: 'map',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "600px",
-                                                },
-                                                option: {},
-                                            },
-                                        ],
-                                    },
-                                    {
-                                        title: "加油站个数",
-                                        time: false,
-                                        select: false,
-                                        timeValue: "",
-                                        selectValue: "",
-                                        style: {
-                                            width: "100%",
-                                            height: "450px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "59.5%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: '',
-                                                        top: 20,
-                                                        left: '5%'
-                                                    },
-                                                    color: '#3AA1FF',
-                                                    barWidth: 20,
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-                                                    },
-                                                    yAxis: {
-                                                        type: 'value'
-                                                    },
-                                                    tooltip: {
-                                                        trigger: 'item',
-                                                        borderColor: 'rgba(255,255,255,.3)',
-                                                        backgroundColor: 'rgba(13,5,30,.6)',
-                                                        borderWidth: 1,
-                                                        padding: 5,
-                                                    },
-                                                    series: [{
-                                                        data: [120, 200, 150, 80, 70, 110, 130],
-                                                        type: 'bar',
-                                                    }]
-                                                },
-                                            },
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "39.5%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#1fcaa8",
-                                                                            "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
-                                                                            "#2e65fd",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                [1.45, 2.93, 3.15, 4, 5].forEach(
-                                                                    (element, index) => {
-                                                                        data.push({
-                                                                            name: title[index],
-                                                                            value: element,
-                                                                        });
-                                                                    }
-                                                                );
-                                                                return data;
-                                                            })(),
-                                                        },
-                                                    ],
-                                                },
-                                            },
-                                        ],
-                                    },
-                                ],
-                            },
-                            {
-                                id: "map_gd",
-                                collapseTitle: "查看更多",
-                                EChartsBox: []
-                            },
-                        ],
-                    },
-                    {
                         id: "Collection",
                         name: "回款率",
                         icon: require("../../../assets/business/icon_2-1.png"),
@@ -1602,7 +1413,7 @@
                             {
                                 id: "Collection_2020",
                                 collapseTitle: "2020年回款率",
-                                allQuery:true,
+                                allQuery: true,
                                 EChartsBox: [
                                     {
                                         title: "中化交投的现金流",
@@ -2017,11 +1828,249 @@
                             },
                         ],
                     },
+                    {
+                        id: "gas",
+                        name: "加油站分布",
+                        icon: require("../../../assets/business/icon_2-1.png"),
+                        iconActive: require("../../../assets/business/icon_2-2.png"),
+                        collapseItem: [
+                            {
+                                id: "gas_2020",
+                                collapseTitle: "2020年加油站分布",
+                                EChartsBox: [
+                                    {
+                                        title: "展示加油站",
+                                        time: false,
+                                        timeValue: "",
+                                        style: {
+                                            width: "100%",
+                                            height: "600px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                            marginBottom: '10px',
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                type: 'map',
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "100%",
+                                                    height: "600px",
+                                                },
+                                                option: {},
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        title: "加油站个数",
+                                        time: false,
+                                        select: false,
+                                        timeValue: "",
+                                        selectValue: "",
+                                        style: {
+                                            width: "100%",
+                                            height: "450px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                            marginBottom: '10px'
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "59.5%",
+                                                    height: "400px",
+                                                },
+                                                option: {
+                                                    title: {
+                                                        text: '',
+                                                        top: 20,
+                                                        left: '5%'
+                                                    },
+                                                    color: '#3AA1FF',
+                                                    barWidth: 20,
+                                                    xAxis: {
+                                                        type: 'category',
+                                                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                                                    },
+                                                    yAxis: {
+                                                        type: 'value'
+                                                    },
+                                                    tooltip: {
+                                                        trigger: 'item',
+                                                        borderColor: 'rgba(255,255,255,.3)',
+                                                        backgroundColor: 'rgba(13,5,30,.6)',
+                                                        borderWidth: 1,
+                                                        padding: 5,
+                                                    },
+                                                    series: [{
+                                                        data: [120, 200, 150, 80, 70, 110, 130],
+                                                        type: 'bar',
+                                                    }]
+                                                },
+                                            },
+                                            {
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "39.5%",
+                                                    height: "400px",
+                                                },
+                                                option: {
+                                                    title: {
+                                                        text: "",
+                                                    },
+                                                    grid: {
+                                                        top: "20%",
+                                                        right: "40",
+                                                        left: "60",
+                                                        bottom: "40", //图表尺寸大小
+                                                    },
+                                                    legend: {
+                                                        orient: "horizontal",
+                                                        bottom: 10,
+                                                    },
+                                                    tooltip: {
+                                                        trigger: "item",
+                                                    },
+                                                    series: [
+                                                        {
+                                                            type: "pie",
+                                                            center: ["50%", "50%"],
+                                                            radius: ["25%", "40%"],
+                                                            clockwise: true,
+                                                            avoidLabelOverlap: true,
+                                                            hoverOffset: 15,
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: function (params) {
+                                                                        let colorList = [
+                                                                            "#1fcaa8",
+                                                                            "#15b3e2",
+                                                                            "#f69f41",
+                                                                            "#f2535f",
+                                                                            "#2e65fd",
+                                                                        ];
+                                                                        return colorList[params.dataIndex];
+                                                                    },
+                                                                },
+                                                            },
+                                                            label: {
+                                                                show: true,
+                                                                position: "outer",
+                                                                width: 0,
+                                                                height: 0,
+                                                                lineHeight: 0,
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
+                                                                borderRadius: 2,
+                                                                distanceToLabelLine: 0,
+                                                                normal: {
+                                                                    formatter(v) {
+                                                                        let text = v.name + "\n" + v.percent + "%";
+                                                                        return text;
+                                                                    },
+                                                                    textStyle: {
+                                                                        fontSize: 12,
+                                                                    },
+                                                                },
+                                                            },
+                                                            labelLine: {
+                                                                normal: {
+                                                                    length: 30,
+                                                                    length2: 25,
+                                                                    lineStyle: {
+                                                                        width: 1,
+                                                                    },
+                                                                },
+                                                            },
+                                                            data: (function () {
+                                                                let data = [];
+                                                                let title = [
+                                                                    "特产",
+                                                                    "小吃",
+                                                                    "餐饮",
+                                                                    "便利店",
+                                                                    "加油",
+                                                                ];
+                                                                [1.45, 2.93, 3.15, 4, 5].forEach(
+                                                                    (element, index) => {
+                                                                        data.push({
+                                                                            name: title[index],
+                                                                            value: element,
+                                                                        });
+                                                                    }
+                                                                );
+                                                                return data;
+                                                            })(),
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        title: "加油站",
+                                        time: false,
+                                        select: false,
+                                        timeValue: "",
+                                        selectValue: "",
+                                        style: {
+                                            width: "100%",
+                                            height: "450px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                type: 'table',
+                                                height: '550px',
+                                                isPagination: true,
+                                                columns: [
+                                                    {prop: 'a', label: '加油站名称'},
+                                                    {prop: 'b', label: 'E92'},
+                                                    {prop: 'c', label: 'E95'},
+                                                    {prop: 'd', label: '92'},
+                                                    {prop: 'e', label: '95'},
+                                                    {prop: 'f', label: '98'},
+                                                    {prop: 'g', label: '0'},
+                                                ],
+                                                tableData: [
+                                                    {a: 'xx加油站', b: '22', c: '32', d: '12', e: '32', f: '43', g: '12'},
+                                                    {a: 'xx加油站', b: '22', c: '32', d: '12', e: '32', f: '43', g: '12'},
+                                                    {a: 'xx加油站', b: '22', c: '32', d: '12', e: '32', f: '43', g: '12'},
+                                                    {a: 'xx加油站', b: '22', c: '32', d: '12', e: '32', f: '43', g: '12'},
+                                                ],
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "100%",
+                                                    height: "450px",
+                                                },
+                                                option: {},
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                id: "map_gd",
+                                collapseTitle: "查看更多",
+                                EChartsBox: []
+                            },
+                        ],
+                    },
                 ],
             };
         },
         mounted() {
             this.$refs["collapse"].initECharts(this.collapseData);
+        },
+        methods: {
+            selectionChange() {
+                this.$router.push("/energy/JYZXiangQing");
+            }
         },
         watch: {
             viewChange() {
