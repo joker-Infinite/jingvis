@@ -2003,7 +2003,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data:[
+                                                            data: [
                                                                 586,
                                                                 560,
                                                                 500,
@@ -2032,7 +2032,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data:[
+                                                            data: [
                                                                 586,
                                                                 560,
                                                                 500,
@@ -6317,82 +6317,39 @@
         },
         methods: {
             isAxios(url, time, plateId, financeTypeId) {
-                return new Promise((resolve) => {
-                    this.$axios.get(url, {
-                        params: {
-                            financeTypeId: financeTypeId,
-                            nianfen: time,
-                            plateId: plateId,
-                        },
-                    })
-                        .then((res) => {
-                            let xBxis = [];
-                            let yAxis = [];
-                            if (res.data.data) {
-                                res.data.data.forEach((element) => {
-                                    xBxis.push(element.xBxis);
-                                    yAxis.push(element.yAxis);
-                                });
-                            }
-                            resolve({xBxis: xBxis, yAxis: yAxis});
+                this.$axios.get(url, {
+                    params: {
+                        financeTypeId: financeTypeId,
+                        nianfen: time,
+                    },
+                }).then((res) => {
+                    let xBxis = [];
+                    let yAxis = [];
+                    if (res.data.data) {
+                        res.data.data.forEach((element) => {
+                            xBxis.push(element.xBxis);
+                            yAxis.push(element.yAxis);
                         });
+                    }
+                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[0].data = [];
+                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[1].data = [];
+                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = [];
+                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[0].data = yAxis;
+                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[1].data = yAxis;
+                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = xBxis;
                 });
             },
-            getSomething(n) {
-            },
-            async requestSomething(id, res) {
+            async requestSomething(id, res, serviceData) {
                 // 这时something会等到异步请求的结果回来后才进行赋值，同时不会执行之后的代码
-                const something = await this.isAxios(
-                    "/api/jtService/list_fuwuquzongyingshou",
-                    "2020",
-                    id[0].plateId,
-                    res[0].financeTypeId
-                );
-                // id.data.data[0].plateId,res.data.data[0].financeTypeId
-                this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[0].data =
-                    something.yAxis;
-                this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[1].data =
-                    something.yAxis;
-                this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data =
-                    something.xBxis;
+                await this.isAxios("/api/jtService/list_service_finance", "2019", '', serviceData[1].financeTypeId);
                 this.$nextTick(_ => {
                     this.$refs["collapse"].initECharts(this.collapseData);
                 })
-
             },
         },
         async mounted() {
-            const [res, data] = await Promise.all([this.$axios.get("/api/jt_finance/finance_type_list"), this.$axios.get("/api/jt_finance/plate_list", {params: {mohu: "服务区板块"},})]);
-            this.requestSomething(res.data.data, data.data.data)
-            // await this.$axios.get("/api/jt_finance/finance_type_list").then((res) => {
-            //   await  this.$axios.get("/api/jt_finance/plate_list", { params: { mohu: "服务区板块" }, }).then((id) => {
-            //         console.log(456465)
-            //        await this.requestSomething(id.data.data, res.data.data);
-            //         this.$refs["collapse"].initECharts(this.collapseData);
-            //     });
-            // });
-            // expected output: 'calling1','resolved','calling2'
-            // isAxios(url, nianfen, id, i, is) {
-            //   this.$axios
-            //     .get("/api/jtService/list_fuwuquzongyingshou", {
-            //       // params: {
-            //       //   financeTypeId: res.data.data[0].financeTypeId,
-            //       //   nianfen: "2020",
-            //       //   plateId: id.data.data[0].plateId,
-            //       // },
-            //     })
-            //     .then((res) => {
-            //       // console.log(res.data.data)
-            //       let xBxis = [];
-            //       let yAxis = [];
-            //       res.data.data.forEach((element) => {
-            //         xBxis.push(element.xBxis);
-            //         yAxis.push(element.yAxis);
-            //         // this.collapseData[0].collapseItem[0].EChartsItem[0].option.xAxis[0].data=[5,5,5,]
-            //       });
-            //       this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = xBxis;
-            //     });
-            // },
+            const [res, data, serviceData] = await Promise.all([this.$axios.get("/api/jt_finance/finance_type_list"), this.$axios.get("/api/jt_finance/plate_list", {params: {mohu: "服务区板块"},}), this.$axios.get("/api/sundry/finance_type_list")]);
+            this.requestSomething(res.data.data, data.data.data, serviceData.data.data);
         },
         watch: {
             viewChange() {

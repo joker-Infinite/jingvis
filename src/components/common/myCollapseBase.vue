@@ -21,7 +21,7 @@
                             <div class="allQuery" v-if="cit.allQuery&&cit.allQueryData">
                                 <div>
                                     <el-input v-if="cit.allQueryData.input" placeholder="请输入内容" value=" "></el-input>
-                                    <el-select  v-if="cit.allQueryData.select" value=" "></el-select>
+                                    <el-select v-if="cit.allQueryData.select" value=" "></el-select>
                                     <el-date-picker
                                             value=" "
                                             v-if="cit.allQueryData.time"
@@ -31,9 +31,6 @@
                                             end-placeholder="结束月份">
                                     </el-date-picker>
                                     <el-button icon="el-icon-search" type="primary">搜索</el-button>
-                                    <!-- <el-button type="primary">搜索</el-button>
-                                     <el-button type="primary">搜索</el-button>
-                                     <el-button type="primary">搜索</el-button>-->
                                 </div>
                             </div>
                             <div v-for="(sit, six) in cit.EChartsBox"
@@ -52,9 +49,9 @@
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button icon="el-icon-search" type="primary" v-if="sit.time || sit.select">搜索</el-button>
+                                    <el-button icon="el-icon-search" type="primary" v-if="sit.time || sit.select">搜索
+                                    </el-button>
                                 </div>
-
                                 <div v-for="(wit, wix) in sit.EChartsItem"
                                      :key="wix"
                                      style=" margin-bottom: 100px;position: relative;"
@@ -66,6 +63,8 @@
                                             v-if="wit.type !=='box' && !wit.type "
                                             class="information"
                                     ></my-information>
+                                   <!-- <div class="null">暂无数据
+                                    </div>-->
                                     <div v-if="!wit.type "
                                          style="width: 100%; height: 100%;overflow: auto;"
                                          :id="cit.id + '-' + six + '-' + wix"></div>
@@ -398,7 +397,7 @@
                     }
                 });
             });
-            this.initECharts(this.collapseData);
+            // this.initECharts(this.collapseData);
         },
         beforeDestroy() {
             this.timeID.forEach((i) => {
@@ -615,6 +614,18 @@
 
         .echarts {
             position: relative;
+
+            .null {
+                z-index: 999;
+                width: 60px;
+                height: 20px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+            }
         }
 
         .information {
