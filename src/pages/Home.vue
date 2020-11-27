@@ -51,7 +51,7 @@
                     {{it.content}}
                 </el-tag>
             </div>-->
-            <router-view :viewChange="menuStatus % 2 === 0"></router-view>
+            <router-view :viewChange="menuStatus % 2 === 0" @clickTable="clickTable"></router-view>
         </div>
     </div>
 </template>
@@ -129,7 +129,8 @@
                 key: "",
                 menuStatus: 1,
                 isActive: '2-0',
-            };
+                openData: ''
+            }
         },
         methods: {
             tagClick(v) {
@@ -141,9 +142,17 @@
             tagClose(v) {
                 this.tagData.splice(this.tagData.indexOf(v), 1);
             },
+            clickTable(v) {
+                let i = '';
+                if (v) {
+                    i = this.openData + '-d';
+                }
+                if (!v) {
+                    i = this.openData;
+                }
+                document.cookie = 'menu=' + i;
+            },
             setTag(v) {
-                console.log(this.$route.path)
-                console.log(v)
                 if (v.length === 1) {
                     v = v + '-0';
                 }
@@ -204,7 +213,6 @@
                 this.clickMenu(k);
             },
             open(k) {
-
                 this.key = k + "-0";
                 this.clickMenu(k);
             },
@@ -285,17 +293,28 @@
             getCookie() {
                 let cookie = document.cookie;
                 let arr = [];
+                let arr_ = [];
                 if (cookie) {
                     arr = cookie.split('=');
                     this.key = arr[1];
-                    this.clickMenu(arr[1]);
+                    arr_ = arr[1].split('-');
+                    if (arr_.length === 2) {
+                        this.clickMenu(arr_[0] + '-' + arr_[1]);
+                    }
+                    if (arr_.length === 3) {
+                        this.key = arr_[0] + '-' + arr_[1];
+                        let i = this.openData ? this.openData : this.key + '-d';
+                        document.cookie = 'menu=' + i;
+                        this.$router.push("/details/details");
+                    }
                 }
             },
             setCookie(v) {
                 let open = v;
-                if (open.length === 1 && open != 1 && open != 4) {
+                if (open.length === 1 && open != 1) {
                     open = open + '-0';
                 }
+                this.openData = open;
                 document.cookie = 'menu=' + open;
             },
         },

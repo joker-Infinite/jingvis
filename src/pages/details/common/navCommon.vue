@@ -177,9 +177,11 @@
                             </el-tabs>
                         </div>
                         <div v-if="it.content === '经营信息'">
-
+                            经营信息
                         </div>
-                        <div v-if="it.content === '合同信息'"></div>
+                        <div v-if="it.content === '合同信息'">
+                            合同信息
+                        </div>
                         <el-form
                                 class="common"
                                 :model="formSpecialty"

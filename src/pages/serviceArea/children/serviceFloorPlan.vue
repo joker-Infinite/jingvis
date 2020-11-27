@@ -2,7 +2,7 @@
     <div class="imgBox">
         <img src="../../../assets/service.jpg" class="img"/>
         <div class="smallBox" v-for="i in box" :style="i.style" @click="click(i)">
-            <el-tooltip class="item" effect="dark" :content="i.name+' : '+i.details" placement="top-start">
+            <el-tooltip class="item" effect="dark" :content="i.name+' : '+i.remark" placement="top-start">
                 <div style="width: 100%;height: 100%"></div>
             </el-tooltip>
         </div>
@@ -17,7 +17,7 @@
                 box: [
                     {
                         name: '办公区',
-                        details: '为工作人员提供舒适的办公地点',
+                        remark: '为工作人员提供舒适的办公地点',
                         style: {
                             width: '50px',
                             height: '25px',
@@ -27,7 +27,7 @@
                     },
                     {
                         name: '加油区',
-                        details: '提供柴油、汽油（E95、E98、95……）',
+                        remark: '提供柴油、汽油（E95、E98、95……）',
                         style: {
                             width: '50px',
                             height: '25px',
@@ -37,7 +37,7 @@
                     },
                     {
                         name: '小圆满餐厅',
-                        details: '口味独特、菜品丰富',
+                        remark: '口味独特、菜品丰富',
                         style: {
                             width: '92px',
                             height: '63px',
@@ -48,7 +48,7 @@
                     {
                         // name: '隆盛牛肉面',
                         name: '牛肉面',
-                        details: '面中之王',
+                        remark: '面中之王',
                         style: {
                             width: '56px',
                             height: '34px',
@@ -59,7 +59,7 @@
                     },
                     {
                         name: '大厅',
-                        details: '咨询问题、提供休息处……',
+                        remark: '咨询问题、提供休息处……',
                         style: {
                             width: '110px',
                             height: '60px',
@@ -69,7 +69,7 @@
                     },
                     {
                         name: '楚天舒便利店',
-                        details: '便宜实惠、物美价廉……',
+                        remark: '便宜实惠、物美价廉……',
                         style: {
                             width: '43px',
                             height: '67px',
@@ -79,7 +79,7 @@
                     },
                     {
                         name: '驿路相伴小吃',
-                        details: '特色小吃、品种丰富……',
+                        remark: '特色小吃、品种丰富……',
                         style: {
                             width: '43px',
                             height: '67px',
@@ -89,7 +89,7 @@
                     },
                     {
                         name: '男厕',
-                        details: '男厕所',
+                        remark: '男厕所',
                         style: {
                             width: '58px',
                             height: '95px',
@@ -99,7 +99,7 @@
                     },
                     {
                         name: '女厕',
-                        details: '女厕所',
+                        remark: '女厕所',
                         style: {
                             width: '57px',
                             height: '95px',
@@ -109,7 +109,7 @@
                     },
                     {
                         name: '伟鸿汽修',
-                        details: '处理及维修汽车故障……',
+                        remark: '处理及维修汽车故障……',
                         style: {
                             width: '48px',
                             height: '58px',
@@ -119,7 +119,7 @@
                     },
                     {
                         name: '猫屎咖啡',
-                        details: '累了困了喝咖啡，猫屎咖啡你值得拥有……',
+                        remark: '累了困了喝咖啡，猫屎咖啡你值得拥有……',
                         style: {
                             width: '48px',
                             height: '48px',
