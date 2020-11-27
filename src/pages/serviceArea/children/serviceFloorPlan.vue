@@ -1,7 +1,7 @@
 <template>
     <div class="imgBox">
         <img src="../../../assets/service.jpg" class="img"/>
-        <div class="smallBox" v-for="i in box" :style="i.style" @mouseover="hoverShow(i)">
+        <div class="smallBox" v-for="i in box" :style="i.style" @click="click(i)">
             <el-tooltip class="item" effect="dark" :content="i.name+' : '+i.details" placement="top-start">
                 <div style="width: 100%;height: 100%"></div>
             </el-tooltip>
@@ -131,7 +131,7 @@
             }
         },
         methods: {
-            hoverShow(v) {
+            click(v) {
                 console.log(v.name);
             }
         }

@@ -4,36 +4,28 @@
             <el-collapse-item
                     :name="ix"
                     :id="'box' + ix"
-                    class="box"
+                    :class="{'box':true,'noMargin':ix ===0}"
                     v-for="(it, ix) in tabData"
-                    :key="ix"
-            >
+                    :key="ix">
                 <template slot="title">
-          <span
-                  style="font-weight:bold;font-size:14px;color:#fff;margin-left:20px"
-          ></span>
-                    <i
-                            :class="{
-              'header-icon': true,
-              'el-icon-open': ix === 0,
-              'el-icon-info': ix === 1,
-              'el-icon-data-line': ix === 2,
-              'el-icon-tickets': ix === 3,
-              'el-icon-tableware': ix === 4,
-              'el-icon-view': ix === 5,
-            }"
-                    ></i>
+                    <span style="font-weight:bold;font-size:14px;color:#fff;margin-left:20px"></span>
+                    <i :class="{
+                      'header-icon': true,
+                      'el-icon-open': ix === 0,
+                      'el-icon-info': ix === 1,
+                      'el-icon-data-line': ix === 2,
+                      'el-icon-tickets': ix === 3,
+                      'el-icon-tableware': ix === 4,
+                      'el-icon-view': ix === 5}"></i>
                     <span style="display: inline-block;width: 5px"></span>
                     {{ it.content }}
                 </template>
                 <div class="content_l">
                     <div class="form_box">
-                        <el-form
-                                class="baseForm"
-                                :model="formStatus"
-                                label-width="110px"
-                                v-if="it.content === '服务区状态'"
-                        >
+                        <el-form class="baseForm"
+                                 :model="formStatus"
+                                 label-width="110px"
+                                 v-if="it.content === '服务区状态'">
                             <el-col :span="24">
                                 <el-form-item label="服务区状态：">
                                     <el-radio-group v-model="formStatus.service">
@@ -48,8 +40,7 @@
                                 <el-form-item label="加油站状态：">
                                     <el-checkbox-group
                                             v-model="formStatus.gas"
-                                            @change="gasType(formStatus.gas)"
-                                    >
+                                            @change="gasType(formStatus.gas)">
                                         <el-checkbox
                                                 :value="1"
                                                 label="正常"
@@ -64,16 +55,14 @@
                                                 :value="3"
                                                 label="汽油"
                                                 class="checkbox_select"
-                                                :disabled="closed"
-                                        >
+                                                :disabled="closed">
                                             <template slot="default">
                                                 汽油
                                                 <el-select
                                                         v-model="formStatus.gasoline"
                                                         :class="{ disabled: gasolineDisabled }"
                                                         :disabled="gasolineDisabled"
-                                                        multiple
-                                                >
+                                                        multiple>
                                                     <el-option :value="1" :label="92"></el-option>
                                                     <el-option :value="2" :label="95"></el-option>
                                                     <el-option :value="3" :label="98"></el-option>
@@ -107,6 +96,45 @@
                                     @tab-click="tabsClick"
                                     type="card">
                                 <el-tab-pane label="东区" name="first">
+                                    <el-form class="baseForm"
+                                             :model="formBasis"
+                                             label-width="125px"
+                                             style="width: 62%;float:left">
+                                        <el-col :span="12" v-for="item in baseData">
+                                            <el-form-item :label="item.label + '：'">
+                                                {{ item.value }}
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-form>
+                                    <div class="content_r">
+                                        <div class="img_box">
+                                            <img-common
+                                                    v-for="i in 4"
+                                                    :img-data="it.imgData"
+                                            ></img-common>
+                                        </div>
+                                    </div>
+                                </el-tab-pane>
+                                <el-tab-pane label="西区" name="second">
+                                    <el-form class="baseForm"
+                                             :model="formBasis"
+                                             label-width="125px"
+                                             style="width: 62%;float:left">
+                                        <el-col :span="12" v-for="item in baseData">
+                                            <el-form-item :label="item.label + '：'">
+                                                {{ item.value }}
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-form>
+                                    <div class="content_r">
+                                        <div class="img_box">
+                                            <img-common
+                                                    v-for="i in 4"
+                                                    :img-data="it.imgData"></img-common>
+                                        </div>
+                                    </div>
+                                </el-tab-pane>
+                                <el-tab-pane label="南区" name="third">
                                     <el-form
                                             class="baseForm"
                                             :model="formBasis"
@@ -127,57 +155,12 @@
                                         </div>
                                     </div>
                                 </el-tab-pane>
-                                <el-tab-pane label="西区" name="second">
-                                    <el-form
-                                            class="baseForm"
-                                            :model="formBasis"
-                                            label-width="125px"
-                                            style="width: 62%;float:left"
-                                    >
-                                        <el-col :span="12" v-for="item in baseData">
-                                            <el-form-item :label="item.label + '：'">
-                                                {{ item.value }}
-                                            </el-form-item>
-                                        </el-col>
-                                    </el-form>
-                                    <div class="content_r">
-                                        <div class="img_box">
-                                            <img-common
-                                                    v-for="i in 4"
-                                                    :img-data="it.imgData"
-                                            ></img-common>
-                                        </div>
-                                    </div>
-                                </el-tab-pane>
-                                <el-tab-pane label="南区" name="third">
-                                    <el-form
-                                            class="baseForm"
-                                            :model="formBasis"
-                                            label-width="125px"
-                                            style="width: 62%;float:left"
-                                    >
-                                        <el-col :span="12" v-for="item in baseData">
-                                            <el-form-item :label="item.label + '：'">
-                                                {{ item.value }}
-                                            </el-form-item>
-                                        </el-col>
-                                    </el-form>
-                                    <div class="content_r">
-                                        <div class="img_box">
-                                            <img-common
-                                                    v-for="i in 4"
-                                                    :img-data="it.imgData"
-                                            ></img-common>
-                                        </div>
-                                    </div>
-                                </el-tab-pane>
                                 <el-tab-pane label="北区" name="fourth">
                                     <el-form
                                             class="baseForm"
                                             :model="formBasis"
                                             label-width="125px"
-                                            style="width: 62%;float:left"
-                                    >
+                                            style="width: 62%;float:left">
                                         <el-col :span="12" v-for="item in baseData">
                                             <el-form-item :label="item.label + '：'">
                                                 {{ item.value }}
@@ -186,21 +169,22 @@
                                     </el-form>
                                     <div class="content_r">
                                         <div class="img_box">
-                                            <img-common
-                                                    v-for="i in 4"
-                                                    :img-data="it.imgData"
-                                            ></img-common>
+                                            <img-common v-for="i in 4"
+                                                        :img-data="it.imgData"></img-common>
                                         </div>
                                     </div>
                                 </el-tab-pane>
                             </el-tabs>
                         </div>
+                        <div v-if="it.content === '经营信息'">
+
+                        </div>
+                        <div v-if="it.content === '合同信息'"></div>
                         <el-form
                                 class="common"
                                 :model="formSpecialty"
                                 label-width="110px"
-                                v-if="it.content === '特产信息'"
-                        >
+                                v-if="it.content === '特产信息'">
                             <el-col :span="12">
                                 <el-form-item label="名称：">
                                     <el-input v-model="formSpecialty.name"></el-input>
@@ -526,7 +510,7 @@
             font-size: 14px;
 
             .content_l {
-                min-height: 500px;
+                min-height: 300px;
                 width: 100%;
                 float: left;
 
@@ -614,7 +598,7 @@
                     > .el-tabs__nav-scroll
                     > .el-tabs__nav
                     > .is-active {
-                        background: #409eff;
+                        background: #1d7dca;
                         color: white;
                         font-size: 18px;
                         font-weight: 700;
@@ -673,7 +657,7 @@
         }
 
         .left /deep/ .el-collapse-item > div > .el-collapse-item__header {
-            background: #737aef;
+            background: #1d7dca;
             border-radius: 10px;
             font-size: 16px;
             height: 48px;
@@ -718,7 +702,7 @@
                 .active {
                     // color: #409eff;
                     // border-left: 5px solid #409eff;
-                    background: #737aef;
+                    background: #1d7dca;
                     margin-left: -8%;
                     margin-right: 8%;
                     color: white;
@@ -742,5 +726,13 @@
 
     .nav /deep/ .el-collapse {
         /*box-shadow: 0 0 1px 0 rgba(0, 0, 0, .5);*/
+    }
+
+    .nav /deep/ .el-collapse > .noMargin > div > .el-collapse-item__header {
+        margin-top: 0 !important;
+    }
+
+    .nav /deep/ .el-collapse > .noMargin {
+        margin-top: 0 !important;
     }
 </style>
