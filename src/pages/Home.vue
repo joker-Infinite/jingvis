@@ -307,6 +307,7 @@
                         document.cookie = 'menu=' + i;
                         this.$router.push("/details/details");
                     }
+                    this.isActive = this.key.charAt(0);
                 }
             },
             setCookie(v) {

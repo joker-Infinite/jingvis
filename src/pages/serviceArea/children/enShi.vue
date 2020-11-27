@@ -5429,7 +5429,7 @@
         methods: {
             selectionChange(val) {
                 this.$router.push("/details/details");
-                // console.log(val);
+                this.$emit('clickTable', true);
             },
         },
         mounted() {
