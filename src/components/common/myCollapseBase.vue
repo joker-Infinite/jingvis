@@ -331,37 +331,39 @@
                 // 列表
                 if (val === "datas") {
                     document.getElementById(this.optionIid).style.display = 'none';
-                    let table = `<table style="text-align:center;vertical-align:middle;" cellPadding="0" cellSpacing="0" border=1 width="90%">`
-                    table += `<tr>
+                    if (datas.series[0][0].length !== 0) {
+                        let table = `<table style="text-align:center;vertical-align:middle;" cellPadding="0" cellSpacing="0" border=1 width="90%">`
+                        table += `<tr>
                         <th colspan=${datas.series.length + 1}>${datas.name}</th>
                     </tr>`
-                    datas.xAxis.forEach((element, index) => {
-                        table += `<tr>
+                        datas.xAxis.forEach((element, index) => {
+                            table += `<tr>
                             <td>${element}</td>`
-                        switch (datas.series.length) {
-                            case 7:
-                                table += `<td>${datas.series[4][0][index]}</td>`
-                            case 6:
-                                table += `<td>${datas.series[4][0][index]}</td>`
-                            case 5:
-                                table += `<td>${datas.series[4][0][index]}</td>`
-                            case 4:
-                                table += `<td>${datas.series[3][0][index]}</td>`
-                            case 3:
-                                table += `<td>${datas.series[2][0][index]}</td>`
-                            case 2:
-                                table += `<td>${datas.series[1][0][index]}</td>`
-                            case 1:
-                                table += `<td>${datas.series[0][0][index]}</td>`
-                            default:
-                                break;
-                        }
+                            switch (datas.series.length) {
+                                case 7:
+                                    table += `<td>${datas.series[4][0][index]}</td>`
+                                case 6:
+                                    table += `<td>${datas.series[4][0][index]}</td>`
+                                case 5:
+                                    table += `<td>${datas.series[4][0][index]}</td>`
+                                case 4:
+                                    table += `<td>${datas.series[3][0][index]}</td>`
+                                case 3:
+                                    table += `<td>${datas.series[2][0][index]}</td>`
+                                case 2:
+                                    table += `<td>${datas.series[1][0][index]}</td>`
+                                case 1:
+                                    table += `<td>${datas.series[0][0][index]}</td>`
+                                default:
+                                    break;
+                            }
 
-                        table += `</tr>`
-                    });
+                            table += `</tr>`
+                        });
 
-                    table += '</table>'
-                    document.getElementById(this.optionId).innerHTML = table
+                        table += '</table>'
+                        document.getElementById(this.optionId).innerHTML = table
+                    }
                 }
                 //导出excel
                 if (val === "excel") {
