@@ -8,7 +8,7 @@
 import NavCommon from "./common/navCommon";
 
 export default {
-  name: "three",
+  name: "details",
   data() {
     return {
       tabData: [

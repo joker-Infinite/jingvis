@@ -63,8 +63,9 @@
                                             v-if="wit.type !=='box' && !wit.type "
                                             class="information"
                                     ></my-information>
-                                   <!-- <div class="null">暂无数据
-                                    </div>-->
+                                    <div class="null" v-if="!wit.type&&wit.option.series[0].data.length===0">
+                                        暂无数据
+                                    </div>
                                     <div v-if="!wit.type "
                                          style="width: 100%; height: 100%;overflow: auto;"
                                          :id="cit.id + '-' + six + '-' + wix"></div>
@@ -617,8 +618,10 @@
 
             .null {
                 z-index: 999;
-                width: 60px;
+                width: 100px;
                 height: 20px;
+                font-size: 20px;
+                font-weight: 700;
                 position: absolute;
                 top: 0;
                 left: 0;

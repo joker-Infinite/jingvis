@@ -142,20 +142,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                586,
-                                                                560,
-                                                                500,
-                                                                365,
-                                                                256,
-                                                                362,
-                                                                400,
-                                                                265,
-                                                                333,
-                                                                352,
-                                                                254,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -171,20 +158,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                586,
-                                                                560,
-                                                                500,
-                                                                365,
-                                                                256,
-                                                                362,
-                                                                400,
-                                                                265,
-                                                                333,
-                                                                352,
-                                                                254,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -6341,15 +6315,18 @@
             },
             async requestSomething(id, res, serviceData) {
                 // 这时something会等到异步请求的结果回来后才进行赋值，同时不会执行之后的代码
-                await this.isAxios("/api/jtService/list_service_finance", "2019", '', serviceData[1].financeTypeId);
+                // await this.isAxios("/api/jtService/list_service_finance", "2019", '', serviceData[1].financeTypeId);
                 this.$nextTick(_ => {
                     this.$refs["collapse"].initECharts(this.collapseData);
                 })
             },
         },
         async mounted() {
-            const [res, data, serviceData] = await Promise.all([this.$axios.get("/api/jt_finance/finance_type_list"), this.$axios.get("/api/jt_finance/plate_list", {params: {mohu: "服务区板块"},}), this.$axios.get("/api/sundry/finance_type_list")]);
-            this.requestSomething(res.data.data, data.data.data, serviceData.data.data);
+            // const [res, data, serviceData] = await Promise.all([this.$axios.get("/api/jt_finance/finance_type_list"), this.$axios.get("/api/jt_finance/plate_list", {params: {mohu: "服务区板块"},}), this.$axios.get("/api/sundry/finance_type_list")]);
+            // this.requestSomething(res.data.data, data.data.data, serviceData.data.data);
+            this.$nextTick(_ => {
+                this.$refs["collapse"].initECharts(this.collapseData);
+            })
         },
         watch: {
             viewChange() {
