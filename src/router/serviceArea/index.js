@@ -42,4 +42,9 @@ export default [
         name: 'FWQYeTai',
         component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/FWQYeTai.vue'),
     },
+    {
+        path: 'details',
+        name: 'details',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/details/details.vue'),
+    },
 ]

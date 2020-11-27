@@ -5428,7 +5428,7 @@
         },
         methods: {
             selectionChange(val) {
-                this.$router.push("/details/details");
+                this.$router.push("/serviceArea/details");
                 // console.log(val);
             },
         },
