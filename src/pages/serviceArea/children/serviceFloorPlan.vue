@@ -1,17 +1,20 @@
 <template>
     <div class="imgBox">
         <img src="../../../assets/service.jpg" class="img"/>
-        <div class="smallBox" v-for="i in box" :style="i.style" @click="click(i)">
+        <div class="smallBox" v-for="i in box" :style="i.style" @click="$refs['more'].openDialog(i)">
             <el-tooltip class="item" effect="dark" :content="i.name+' : '+i.remark" placement="top-start">
                 <div style="width: 100%;height: 100%"></div>
             </el-tooltip>
         </div>
+        <more-information ref="more"></more-information>
     </div>
 </template>
 
 <script>
+    import MoreInformation from "../../details/common/moreInformation";
     export default {
         name: "serviceFloorPlan",
+        components: {MoreInformation},
         data() {
             return {
                 box: [

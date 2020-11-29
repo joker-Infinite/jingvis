@@ -176,11 +176,15 @@
                                 </el-tab-pane>
                             </el-tabs>
                         </div>
-                        <div v-if="it.content === '经营信息'">
-                            经营信息
+                        <div class="businessInformation" v-if="it.content === '经营信息'">
+                            <div style="width: 40%;height: 400px;" id="fff"></div>
+                            <div style="width: 29.5%;height: 400px;" id="sss"></div>
+                            <div style="width: 29.5%;height: 400px;" id="ttt"></div>
                         </div>
                         <div v-if="it.content === '合同信息'">
-                            合同信息
+                            <my-table :isDetails="true" height="700px" :isPagination="true" :multiple="false"
+                                      :columns="columns" :data="tableData"
+                                      @selectionChange="selectionChange"></my-table>
                         </div>
                         <el-form
                                 class="common"
@@ -282,7 +286,7 @@
                             </el-col>
                         </el-form>
                     </div>
-                    <div id="ECharts" v-if="it.content === '服务区状态'"></div>
+                    <div id="LD" v-if="it.content === '服务区状态'"></div>
                 </div>
             </el-collapse-item>
         </el-collapse>
@@ -299,18 +303,34 @@
                 </p>
             </div>
         </div>
+        <contract-information ref="contract"></contract-information>
     </div>
 </template>
 
 <script>
     import ImgCommon from "./imgCommon";
     import ServiceFloorPlan from "../../serviceArea/children/serviceFloorPlan";
+    import MyTable from "../../../components/common/myTable";
+    import ContractInformation from "./contractInformation";
 
     export default {
         name: "navCommon",
-        components: {ServiceFloorPlan, ImgCommon},
+        components: {ContractInformation, MyTable, ServiceFloorPlan, ImgCommon},
         data() {
             return {
+                columns: [
+                    {prop: 'a', label: '商家'},
+                    {prop: 'b', label: '面积'},
+                    {prop: 'c', label: '租金'},
+                    {prop: 'd', label: '合同签署日期'},
+                    {prop: 'e', label: '合同生效日期'},
+                    {prop: 'f', label: '合同结束日期'},
+                    {prop: 'g', label: '描述'},
+                ],
+                tableData: [
+                    {a: 'XX麻辣烫', b: '15平方米', c: '5000', d: '2019-1-1', e: '2019-1-1', f: '2029-1-1', g: 'XXXXXXXXXX'},
+                    {a: 'XX小吃', b: '15平方米', c: '5000', d: '2019-1-1', e: '2019-1-1', f: '2029-1-1', g: 'XXXXXXXXXX'},
+                ],
                 activeNameTabs: "first",
                 closed: false,
                 normal: false,
@@ -391,6 +411,9 @@
             };
         },
         methods: {
+            selectionChange(v) {
+                this.$refs['contract'].openDialog(v);
+            },
             /***全部收起来 */
             collapseAll() {
                 if (this.activeName.length !== 0) {
@@ -459,53 +482,375 @@
                     }
                 }
             },
+            async initECharts() {
+                await new Promise(resolve => {
+                    setInterval(() => {
+                        resolve();
+                    }, 500)
+                });
+
+                let ECharts = this.$echarts.init(document.getElementById('LD'));
+                let fff = this.$echarts.init(document.getElementById('fff'));
+                let sss = this.$echarts.init(document.getElementById('sss'));
+                let ttt = this.$echarts.init(document.getElementById('ttt'));
+                let option = {
+                    radar: {
+                        name: {
+                            textStyle: {
+                                color: '#fff',
+                                backgroundColor: '#999',
+                                borderRadius: 3,
+                                padding: [3, 5]
+                            }
+                        },
+                        indicator: [
+                            {name: 'XX', max: 6500},
+                            {name: 'XX', max: 16000},
+                            {name: 'XX', max: 30000},
+                            {name: 'XX', max: 38000},
+                            {name: 'XX', max: 52000},
+                            {name: 'XX', max: 25000}
+                        ]
+                    },
+                    series: [{
+                        name: 'XX',
+                        type: 'radar',
+                        data: [
+                            {
+                                value: [4300, 10000, 28000, 35000, 50000, 19000],
+                                name: 'XX'
+                            }
+                        ]
+                    }]
+                };
+                let option_f = {
+                    title: {
+                        text: "",
+                    },
+                    tooltip: {
+                        trigger: "axis",
+                        formatter: function (val) {
+                            return val[0].name + ":" + val[0].value + "元";
+                        },
+                    },
+                    grid: {
+                        top: "20%",
+                        right: "40",
+                        left: "60",
+                        bottom: "40", //图表尺寸大小
+                    },
+                    xAxis: [
+                        {
+                            type: "category",
+                            color: "#59588D",
+                            data: [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12",
+                            ],
+                            axisLabel: {
+                                margin: 10,
+                                color: "#999",
+                                textStyle: {
+                                    fontSize: 12,
+                                },
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: "rgba(107,107,107,0.37)",
+                                },
+                            },
+                            axisTick: {
+                                show: false,
+                            },
+                        },
+                    ],
+                    yAxis: [
+                        {
+                            axisLabel: {
+                                formatter: "{value}",
+                                color: "#999",
+                                textStyle: {
+                                    fontSize: 12,
+                                },
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: "rgba(107,107,107,0.37)",
+                                },
+                            },
+                            axisTick: {
+                                show: false,
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: "rgba(131,101,101,0.2)",
+                                    type: "dashed",
+                                },
+                            },
+                        },
+                    ],
+                    series: [
+                        {
+                            type: "bar",
+                            data: [
+                                40,
+                                80,
+                                500,
+                                36,
+                                30,
+                                35,
+                                400,
+                                60,
+                                40,
+                                80,
+                                50,
+                                360,
+                            ],
+                            barWidth: "16px",
+                            itemStyle: {
+                                normal: {
+                                    color: "#38A0FF",
+                                    barBorderRadius: [30, 30, 30, 30],
+                                },
+                            },
+                        },
+                        {
+                            data: [
+                                40,
+                                80,
+                                500,
+                                36,
+                                30,
+                                35,
+                                400,
+                                60,
+                                40,
+                                80,
+                                50,
+                                360,
+                            ],
+                            type: "line",
+                            name: "折线图",
+                            // symbol: 'none',
+                            lineStyle: {
+                                color: "#fea2a2",
+                                width: 2,
+                                shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
+                                shadowBlur: 10,
+                                shadowOffsetY: 10,
+                            },
+                            areaStyle: {
+                                normal: {
+                                    color: "rgba(0,0,0,0)",
+                                },
+                            },
+                        },
+                    ],
+                };
+                let option_s = {
+                    title: {
+                        text: "",
+                    },
+                    grid: {
+                        top: "20%",
+                        right: "40",
+                        left: "60",
+                        bottom: "40", //图表尺寸大小
+                    },
+                    legend: {
+                        orient: "horizontal",
+                        bottom: 10,
+                    },
+                    tooltip: {
+                        trigger: "item",
+                    },
+                    series: [
+                        {
+                            type: "pie",
+                            center: ["50%", "50%"],
+                            radius: ["25%", "40%"],
+                            clockwise: true,
+                            avoidLabelOverlap: true,
+                            hoverOffset: 15,
+                            itemStyle: {
+                                normal: {
+                                    color: function (params) {
+                                        let colorList = [
+                                            "#1fcaa8",
+                                            "#15b3e2",
+                                            "#f69f41",
+                                            "#f2535f",
+                                            "#2e65fd",
+                                        ];
+                                        return colorList[params.dataIndex];
+                                    },
+                                },
+                            },
+                            label: {
+                                show: true,
+                                position: "outer",
+                                width: 0,
+                                height: 0,
+                                lineHeight: 0,
+                                backgroundColor: "auto",
+                                padding: [2, -2, 2, -2],
+                                borderRadius: 2,
+                                distanceToLabelLine: 0,
+                                normal: {
+                                    formatter(v) {
+                                        let text = v.name + "\n" + v.percent + "%";
+                                        return text;
+                                    },
+                                    textStyle: {
+                                        fontSize: 12,
+                                    },
+                                },
+                            },
+                            labelLine: {
+                                normal: {
+                                    length: 30,
+                                    length2: 25,
+                                    lineStyle: {
+                                        width: 1,
+                                    },
+                                },
+                            },
+                            data: (function () {
+                                let data = [];
+                                let title = [
+                                    "特产",
+                                    "小吃",
+                                    "餐饮",
+                                    "便利店",
+                                    "加油",
+                                ];
+                                let datas = [1.45, 2.93, 3.15, 4, 5];
+                                datas.forEach((element, index) => {
+                                    data.push({
+                                        name: title[index],
+                                        value: element,
+                                    });
+                                });
+                                return data;
+                            })(),
+                        },
+                    ],
+                };
+                let option_t = {
+                    title: {
+                        text: "",
+                    },
+                    tooltip: {
+                        trigger: "item",
+                    },
+
+                    legend: {
+                        orient: "horizontal",
+                        bottom: 10,
+                    },
+
+                    series: [
+                        {
+                            type: "pie",
+                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
+                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
+                            center: ["48%", "50%"],
+                            radius: ["30%", "38%"],
+                            clockwise: true,
+                            hoverOffset: 20,
+                            itemStyle: {
+                                normal: {
+                                    color: function (params) {
+                                        let colorList = [
+                                            "#76c15c",
+                                            "#15b3e2",
+                                            "#2e65fd",
+                                            "#1fcaa8",
+                                            "#ee6565",
+                                            "#fec02a",
+                                        ];
+                                        return colorList[params.dataIndex];
+                                    },
+                                },
+                            },
+                            label: {
+                                show: true,
+                                position: "outer",
+                                width: 0,
+                                height: 0,
+                                lineHeight: 0,
+                                backgroundColor: "auto",
+                                padding: [2, -2, 2, -2],
+                                borderRadius: 2,
+                                distanceToLabelLine: 0,
+                                normal: {
+                                    formatter(v) {
+                                        let text = v.name + "\n" + v.percent + "%";
+                                        return text;
+                                    },
+                                    textStyle: {
+                                        fontSize: 12,
+                                    },
+                                },
+                            },
+
+                            labelLine: {
+                                normal: {
+                                    length: 30,
+                                    length2: 10,
+                                    lineStyle: {
+                                        width: 1,
+                                    },
+                                },
+                            },
+                            data: [
+                                {
+                                    name: "宜昌",
+                                    value: 1.45,
+                                },
+                                {
+                                    name: "恩施",
+                                    value: 2.93,
+                                },
+                                {
+                                    name: "孝感",
+                                    value: 3.15,
+                                },
+                                {
+                                    name: "咸宁",
+                                    value: 4.78,
+                                },
+                                {
+                                    name: "十堰",
+                                    value: 5.93,
+                                },
+                                {
+                                    name: "黄冈",
+                                    value: 5.73,
+                                },
+                            ],
+                        },
+                    ],
+                };
+                ECharts.setOption(option);
+                fff.setOption(option_f);
+                sss.setOption(option_s);
+                ttt.setOption(option_t);
+            }
         },
         mounted() {
             this.scrollChange();
-            let option = {
-                title: {
-                    text: '基础雷达图'
-                },
-                tooltip: {},
-                legend: {
-                    data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
-                },
-                radar: {
-                    // shape: 'circle',
-                    name: {
-                        textStyle: {
-                            color: '#fff',
-                            backgroundColor: '#999',
-                            borderRadius: 3,
-                            padding: [3, 5]
-                        }
-                    },
-                    indicator: [
-                        { name: '销售（sales）', max: 6500},
-                        { name: '管理（Administration）', max: 16000},
-                        { name: '信息技术（Information Techology）', max: 30000},
-                        { name: '客服（Customer Support）', max: 38000},
-                        { name: '研发（Development）', max: 52000},
-                        { name: '市场（Marketing）', max: 25000}
-                    ]
-                },
-                series: [{
-                    name: '预算 vs 开销（Budget vs spending）',
-                    type: 'radar',
-                    // areaStyle: {normal: {}},
-                    data: [
-                        {
-                            value: [4300, 10000, 28000, 35000, 50000, 19000],
-                            name: '预算分配（Allocated Budget）'
-                        },
-                        {
-                            value: [5000, 14000, 28000, 31000, 42000, 21000],
-                            name: '实际开销（Actual Spending）'
-                        }
-                    ]
-                }]
-            };
-            this.$echarts.init(document.getElementById('ECharts')).setOption(option);
+            this.initECharts();
         },
     };
 </script>
@@ -662,9 +1007,18 @@
                         font-size: 18px;
                         font-weight: 700;
                     }
+
+                    .businessInformation {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: nowrap;
+                        justify-content: space-around;
+                    }
                 }
 
-                #ECharts {
+                #LD {
                     position: absolute;
                     width: 290px;
                     height: 290px;
