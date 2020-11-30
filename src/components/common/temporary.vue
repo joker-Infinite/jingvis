@@ -1,19 +1,20 @@
 <template>
     <div class="con">
         <div class="view">
-            <el-menu class="el-menu-vertical-demo">
-                <el-submenu v-for="(fi,fx) in menu" :key="fx" :index="fi.sort+''" :class="{'del':fi.menuName=='首页'}">
+            <el-menu default-active="1-0" class="el-menu-vertical-demo">
+                <el-submenu v-for="(fi,fx) in menu" :key="fx" :index="fx+''" :class="{'del':fi.menuName=='首页'}">
                     <template slot="title">
                         {{fi.menuName}}
                     </template>
-                    <el-menu-item v-if="fi.child.length>0" v-for="(si,sx) in fi.child" :index="fi+'-'+si">
+                    <el-menu-item v-if="fi.child.length>0" v-for="(si,sx) in fi.child" :index="fx+'-'+sx">
                         {{si.menuName}}
                     </el-menu-item>
                 </el-submenu>
             </el-menu>
         </div>
         <div class="option">
-            <el-input type="textarea" resize="none" rows="50" v-model="JSON.stringify(menu)"></el-input>
+            <el-input contenteditable="true" type="textarea" resize="none" rows="50"
+                      v-model="JSON.stringify(menu)"></el-input>
         </div>
     </div>
 </template>
