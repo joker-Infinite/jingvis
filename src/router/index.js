@@ -51,6 +51,10 @@ const routes = [
         path: '/homeKanBan',
         component: () => import(/* webpackChunkName: "frame" */'../pages/homeKanBan/homeKanBan')
     },
+    {
+        path: '/temporary',
+        component: () => import(/* webpackChunkName: "frame" */'../../src/components/common/temporary')
+    },
 ];
 
 const router = new VueRouter({

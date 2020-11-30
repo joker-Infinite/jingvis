@@ -67,9 +67,9 @@
                                         暂无数据
                                     </div>
                                     <div v-if="!wit.type "
-                                         style="width: 100%; height: 100%;overflow: auto;"
+                                         style="width: 100%; height: 100%;overflow: hidden;"
                                          :id="cit.id + '-' + six + '-' + wix"></div>
-                                    <div v-if="!wit.type" style="width: 100%; height: 100%;overflow: auto;"
+                                    <div v-if="!wit.type" style="width: 100%; height: 100%;overflow: hidden;"
                                          :id="cit.id + '++' + six + '++' + wix"></div>
                                     <div style=" width: 100%; height: 100%;"
                                          :style="{marginTop : sit.time || sit.select ? '60px' :''}"

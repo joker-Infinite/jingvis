@@ -226,11 +226,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -278,38 +282,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                let datas = [
-                                                                    1.45,
-                                                                    2.93,
-                                                                    3.15,
-                                                                    4,
-                                                                    5,
-                                                                ];
-                                                                datas.forEach(
-                                                                    (
-                                                                        element,
-                                                                        index
-                                                                    ) => {
-                                                                        data.push({
-                                                                            name:
-                                                                                title[
-                                                                                    index
-                                                                                    ],
-                                                                            value: element,
-                                                                        });
-                                                                    }
-                                                                );
-                                                                return data;
-                                                            })(),
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -370,6 +343,9 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -628,11 +604,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -680,38 +660,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                let datas = [
-                                                                    1.45,
-                                                                    2.93,
-                                                                    3.15,
-                                                                    4,
-                                                                    5,
-                                                                ];
-                                                                datas.forEach(
-                                                                    (
-                                                                        element,
-                                                                        index
-                                                                    ) => {
-                                                                        data.push({
-                                                                            name:
-                                                                                title[
-                                                                                    index
-                                                                                    ],
-                                                                            value: element,
-                                                                        });
-                                                                    }
-                                                                );
-                                                                return data;
-                                                            })(),
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -762,9 +711,7 @@
                                                             hoverOffset: 20,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (params) {
                                                                         let colorList = [
                                                                             "#76c15c",
                                                                             "#15b3e2",
@@ -772,11 +719,11 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[params.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -1043,11 +990,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -1095,37 +1046,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                [
-                                                                    1.45,
-                                                                    2.93,
-                                                                    3.15,
-                                                                    4,
-                                                                    5,
-                                                                ].forEach(
-                                                                    (
-                                                                        element,
-                                                                        index
-                                                                    ) => {
-                                                                        data.push({
-                                                                            name:
-                                                                                title[
-                                                                                    index
-                                                                                    ],
-                                                                            value: element,
-                                                                        });
-                                                                    }
-                                                                );
-                                                                return data;
-                                                            })(),
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -1186,6 +1107,9 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -1444,11 +1368,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -1496,37 +1424,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                [
-                                                                    1.45,
-                                                                    2.93,
-                                                                    3.15,
-                                                                    4,
-                                                                    5,
-                                                                ].forEach(
-                                                                    (
-                                                                        element,
-                                                                        index
-                                                                    ) => {
-                                                                        data.push({
-                                                                            name:
-                                                                                title[
-                                                                                    index
-                                                                                    ],
-                                                                            value: element,
-                                                                        });
-                                                                    }
-                                                                );
-                                                                return data;
-                                                            })(),
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -1587,6 +1485,9 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -6086,12 +5987,17 @@
                                             });
                                         }
                                         if (sIndex == 1) {
+                                            data.xYListFrom2.forEach((i, ix) => {
+                                                sItem.EChartsItem[0].option.series[0].data.push({
+                                                    name: i.xBxis,
+                                                    value: i.yAxis
+                                                });
+                                            })
                                         }
                                         if (sIndex == 2) {
-                                            console.log( sItem)
                                             data.xYListFrom3.forEach((i, ix) => {
                                                 sItem.EChartsItem[0].option.series[0].data.push({
-                                                    name: i.yAxis,
+                                                    name: i.xBxis,
                                                     value: i.yAxis
                                                 });
                                             })
