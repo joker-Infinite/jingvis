@@ -27,6 +27,7 @@
                         collapseItem: [
                             {
                                 id: "revenue_2020",
+                                year: 2020,
                                 collapseTitle: "2020年营收",
                                 allQuery: true,
                                 allQueryData: {
@@ -69,29 +70,21 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
+                                                    dataZoom: [{
+                                                        type: 'inside'
+                                                    }, {
+                                                        type: 'slider'
+                                                    }],
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -425,32 +418,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -461,6 +429,7 @@
                             },
                             {
                                 id: "revenue_2019",
+                                year: 2019,
                                 collapseTitle: "2019年营收",
                                 allQuery: true,
                                 allQueryData: {
@@ -503,29 +472,21 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
+                                                    dataZoom: [{
+                                                        type: 'inside'
+                                                    }, {
+                                                        type: 'slider'
+                                                    }],
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -576,20 +537,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                586,
-                                                                560,
-                                                                500,
-                                                                365,
-                                                                256,
-                                                                362,
-                                                                400,
-                                                                265,
-                                                                333,
-                                                                352,
-                                                                254,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -605,20 +553,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -885,32 +820,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -934,6 +844,7 @@
                         collapseItem: [
                             {
                                 id: "profit_2020",
+                                year: 2020,
                                 collapseTitle: "2020年利润",
                                 allQuery: true,
                                 allQueryData: {
@@ -976,29 +887,21 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
+                                                    dataZoom: [{
+                                                        type: 'inside'
+                                                    }, {
+                                                        type: 'slider'
+                                                    }],
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -1020,8 +923,9 @@
                                                     yAxis: [
                                                         {
                                                             axisLabel: {
-                                                                formatter:
-                                                                    "{value}",
+                                                                formatter: function (val) {
+                                                                    return val / 10000
+                                                                },
                                                                 color: "#999",
                                                                 textStyle: {
                                                                     fontSize: 12,
@@ -1048,20 +952,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                586,
-                                                                560,
-                                                                500,
-                                                                365,
-                                                                256,
-                                                                362,
-                                                                400,
-                                                                265,
-                                                                333,
-                                                                352,
-                                                                254,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -1077,20 +968,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -1356,32 +1234,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -1392,6 +1245,7 @@
                             },
                             {
                                 id: "profit_2019",
+                                year: 2019,
                                 collapseTitle: "2019年利润",
                                 allQuery: true,
                                 allQueryData: {
@@ -1434,29 +1288,21 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
+                                                    dataZoom: [{
+                                                        type: 'inside'
+                                                    }, {
+                                                        type: 'slider'
+                                                    }],
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -1478,8 +1324,9 @@
                                                     yAxis: [
                                                         {
                                                             axisLabel: {
-                                                                formatter:
-                                                                    "{value}",
+                                                                formatter: function (val) {
+                                                                    return val / 10000
+                                                                },
                                                                 color: "#999",
                                                                 textStyle: {
                                                                     fontSize: 12,
@@ -1506,20 +1353,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                586,
-                                                                560,
-                                                                500,
-                                                                365,
-                                                                256,
-                                                                362,
-                                                                400,
-                                                                265,
-                                                                333,
-                                                                352,
-                                                                254,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -1535,20 +1369,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -1814,32 +1635,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -1863,6 +1659,7 @@
                         collapseItem: [
                             {
                                 id: "cost_2020",
+                                year: 2020,
                                 collapseTitle: "2020年成本",
                                 allQuery: true,
                                 allQueryData: {
@@ -1905,29 +1702,16 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -1977,20 +1761,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                586,
-                                                                560,
-                                                                500,
-                                                                365,
-                                                                256,
-                                                                362,
-                                                                400,
-                                                                265,
-                                                                333,
-                                                                352,
-                                                                254,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -2006,20 +1777,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                586,
-                                                                560,
-                                                                500,
-                                                                365,
-                                                                256,
-                                                                362,
-                                                                400,
-                                                                265,
-                                                                333,
-                                                                352,
-                                                                254,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -2694,6 +2452,7 @@
                             },
                             {
                                 id: "cost_2019",
+                                year: 2019,
                                 collapseTitle: "2019年成本",
                                 allQuery: true,
                                 allQueryData: {
@@ -3851,6 +3610,7 @@
                         collapseItem: [
                             {
                                 id: "construction_2020",
+                                year: 2020,
                                 collapseTitle: "2020年业态结构",
                                 EChartsBox: [
                                     {
@@ -4622,6 +4382,7 @@
                             },
                             {
                                 id: "construction_2019",
+                                year: 2019,
                                 collapseTitle: "2019年业态结构",
                                 EChartsBox: [
                                     {
@@ -5389,6 +5150,7 @@
                         collapseItem: [
                             {
                                 id: "rateofreturn_2020",
+                                year: 2020,
                                 collapseTitle: "2020回款率",
                                 EChartsBox: [
                                     {
@@ -5835,6 +5597,7 @@
                             },
                             {
                                 id: "rateofreturn_2019",
+                                year: 2019,
                                 collapseTitle: "2019回款率",
                                 EChartsBox: [
                                     {
@@ -6290,43 +6053,72 @@
             };
         },
         methods: {
-            isAxios(url, time, plateId, financeTypeId) {
-                this.$axios.get(url, {
-                    params: {
-                        financeTypeId: financeTypeId,
-                        nianfen: time,
-                    },
-                }).then((res) => {
-                    let xBxis = [];
-                    let yAxis = [];
-                    if (res.data.data) {
-                        res.data.data.forEach((element) => {
-                            xBxis.push(element.xBxis);
-                            yAxis.push(element.yAxis);
-                        });
+            async obtainData(name, year) {
+                let data = [];
+                let id = '';
+                const res = await this.$axios.get("/api/sundry/finance_type_list");
+                for (let i = 0; i < res.data.data.length; i++) {
+                    if (res.data.data[i].financeName == name) {
+                        id = res.data.data[i].financeTypeId;
+                        break;
                     }
-                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[0].data = [];
-                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[1].data = [];
-                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = [];
-                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[0].data = yAxis;
-                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[1].data = yAxis;
-                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis[0].data = xBxis;
-                });
-            },
-            async requestSomething(id, res, serviceData) {
-                // 这时something会等到异步请求的结果回来后才进行赋值，同时不会执行之后的代码
-                // await this.isAxios("/api/jtService/list_service_finance", "2019", '', serviceData[1].financeTypeId);
-                this.$nextTick(_ => {
-                    this.$refs["collapse"].initECharts(this.collapseData);
+                }
+                await this.$axios.get('/api/jtService/list_service_finance', {
+                    params: {
+                        financeTypeId: id,
+                        nianfen: year
+                    }
+                }).then(v => {
+                    data = v.data.data;
+                    let x = [];
+                    let y = [];
+
+                    this.collapseData.forEach((item, index) => {
+                        if (item.name == name) {
+                            item.collapseItem.forEach((cItem, cIndex) => {
+                                if (cItem.year == year) {
+                                    cItem.EChartsBox.forEach((sItem, sIndex) => {
+                                        if (sIndex == 0) {
+                                            data.xYListFrom1.forEach((i, ix) => {
+                                                sItem.EChartsItem[0].option.series[0].data.push(i.yAxis);
+                                                sItem.EChartsItem[0].option.series[1].data.push(i.yAxis);
+                                                sItem.EChartsItem[0].option.xAxis[0].data.push(i.xBxis);
+                                            });
+                                        }
+                                        if (sIndex == 1) {
+                                        }
+                                        if (sIndex == 2) {
+                                            console.log( sItem)
+                                            data.xYListFrom3.forEach((i, ix) => {
+                                                sItem.EChartsItem[0].option.series[0].data.push({
+                                                    name: i.yAxis,
+                                                    value: i.yAxis
+                                                });
+                                            })
+                                            // sItem.EChartsItem[2].option.series[0].data.push(i.yAxis);
+                                        }
+                                    });
+                                }
+                            })
+                        }
+                    })
                 })
-            },
+            }
         },
         async mounted() {
-            // const [res, data, serviceData] = await Promise.all([this.$axios.get("/api/jt_finance/finance_type_list"), this.$axios.get("/api/jt_finance/plate_list", {params: {mohu: "服务区板块"},}), this.$axios.get("/api/sundry/finance_type_list")]);
-            // this.requestSomething(res.data.data, data.data.data, serviceData.data.data);
-            this.$nextTick(_ => {
-                this.$refs["collapse"].initECharts(this.collapseData);
+            await new Promise(resolve => {
+                setInterval(_ => {
+                    this.$refs["collapse"].initECharts(this.collapseData);
+                    resolve();
+                }, 200)
+
             })
+        },
+        async created() {
+            await this.obtainData('营收', '2019');
+            await this.obtainData('营收', '2020');
+            await this.obtainData('利润', '2019');
+            await this.obtainData('利润', '2020');
         },
         watch: {
             viewChange() {

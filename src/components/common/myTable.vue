@@ -111,7 +111,7 @@
         },
         methods: {
             details(row) {
-              this.$emit("selectionChange", row.row);
+                this.$emit("selectionChange", row.row);
             },
             singleChoice(v) {
                 this.$emit("selectionChange", v);

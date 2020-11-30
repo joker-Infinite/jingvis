@@ -279,14 +279,16 @@
                                             :rows="6"
                                             show-word-limit
                                             :maxlength="500"
-                                            v-model="formFeatures.remark"
-                                    >
+                                            v-model="formFeatures.remark">
                                     </el-input>
                                 </el-form-item>
                             </el-col>
                         </el-form>
                     </div>
-                    <div id="LD" v-if="it.content === '服务区状态'"></div>
+                    <div class="LDB" v-if="it.content === '服务区状态'">
+                        <div class="title">商业活跃度:</div>
+                        <div id="LD"></div>
+                    </div>
                 </div>
             </el-collapse-item>
         </el-collapse>
@@ -294,11 +296,10 @@
 
             <div class="navBar">
                 <p @click="collapseAll">{{activeName.length !== 0 ? "全部收起" : "全部展开"}}</p>
-                <p
-                        v-for="(it, ix) in tabData"
-                        @click="goto(ix)"
-                        :class="{ active: isActive === ix }"
-                        :key="ix">
+                <p v-for="(it, ix) in tabData"
+                   @click="goto(ix)"
+                   :class="{ active: isActive === ix }"
+                   :key="ix">
                     <i :class="tabData_icon[ix]"></i> {{ it.content }}
                 </p>
             </div>
@@ -677,8 +678,8 @@
                     series: [
                         {
                             type: "pie",
-                            center: ["50%", "50%"],
-                            radius: ["25%", "40%"],
+                            center: ["48%", "50%"],
+                            radius: ["30%", "38%"],
                             clockwise: true,
                             avoidLabelOverlap: true,
                             hoverOffset: 15,
@@ -815,28 +816,20 @@
                             },
                             data: [
                                 {
-                                    name: "宜昌",
+                                    name: "水费",
                                     value: 1.45,
                                 },
                                 {
-                                    name: "恩施",
+                                    name: "电费",
                                     value: 2.93,
                                 },
                                 {
-                                    name: "孝感",
+                                    name: "房租",
                                     value: 3.15,
                                 },
                                 {
-                                    name: "咸宁",
-                                    value: 4.78,
-                                },
-                                {
-                                    name: "十堰",
-                                    value: 5.93,
-                                },
-                                {
-                                    name: "黄冈",
-                                    value: 5.73,
+                                    name: "提成",
+                                    value: 2,
                                 },
                             ],
                         },
@@ -1018,12 +1011,23 @@
                     }
                 }
 
-                #LD {
+                .LDB {
                     position: absolute;
-                    width: 290px;
-                    height: 290px;
                     right: 10px;
                     top: 10px;
+
+                    .title {
+                        position: absolute;
+                        left: -50px;
+                        top: 0;
+                        font-weight: 700;
+                        font-size: 20px;
+                    }
+
+                    #LD {
+                        width: 290px;
+                        height: 290px;
+                    }
                 }
 
                 .form_box > .baseForm /deep/ .el-col > .el-form-item {

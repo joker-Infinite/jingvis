@@ -332,13 +332,13 @@
                 if (val === "datas") {
                     document.getElementById(this.optionIid).style.display = 'none';
                     if (datas.series[0][0].length !== 0) {
-                        let table = `<table style="text-align:center;vertical-align:middle;" cellPadding="0" cellSpacing="0" border=1 width="90%">`
+                        let table = `<table style="text-align:center;vertical-align:middle;margin:20px auto 0" cellPadding="0" cellSpacing="0" border=1 width="90%">`
                         table += `<tr>
                         <th colspan=${datas.series.length + 1}>${datas.name}</th>
                     </tr>`
                         datas.xAxis.forEach((element, index) => {
                             table += `<tr>
-                            <td>${element}</td>`
+                            <td style="line-height: 2">${element}</td>`
                             switch (datas.series.length) {
                                 case 7:
                                     table += `<td>${datas.series[4][0][index]}</td>`
