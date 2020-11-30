@@ -4,7 +4,7 @@
             <el-menu
                     :unique-opened="true"
                     :collapse="menuStatus % 2 === 0"
-                    :default-active="key"
+                    :default-active="key "
                     class="el-menu-vertical-demo"
                     @select="select"
                     @open="open"
