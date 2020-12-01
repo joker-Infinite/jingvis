@@ -137,7 +137,7 @@
 
                     });
                     windows.push({
-                        position: item.position,
+                        position: item.position.split(','),
                         isCustom: true,
                         offset: [115, 55], // 窗体偏移
                         showShadow: false,

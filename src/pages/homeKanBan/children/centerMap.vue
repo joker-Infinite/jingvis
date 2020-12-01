@@ -23,8 +23,9 @@
                     :position="marker.position"
                     :icon="marker.icon"/>
             <el-amap-info-window
+                    v-if="window"
                     :position="window.position"
-                    :visible="true"
+                    :visible="window.visible"
                     :content="window.content"
                     :offset="window.offset"
                     :close-when-click-map="true"
@@ -120,7 +121,6 @@
                                 that.$nextTick(() => {
                                     that.window.visible = true;
                                 });
-                                console.log( that.window)
                             }
                         },
                         icon: new AMap.Icon({
@@ -158,6 +158,14 @@
                     position: [114.286298, 30.5855]
                 });
             }
+           this. windows.push({
+                position: [114.286298, 30.5855],
+                isCustom: true,
+                offset: [115, 55], // 窗体偏移
+                showShadow: false,
+                visible: false, // 初始是否显示
+                address: '22'
+            });
         }
     };
 </script>
