@@ -97,7 +97,7 @@
                     con.style.marginTop = "0px;";
                 }
             },
-            async point() {
+            point() {
                 const markers = [];
                 const windows = [];
                 const that = this;
@@ -113,7 +113,7 @@
                         icon = require('../../assets/Thrid.png')
                     }
                     if (index > 2) {
-                        icon='https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b'
+                        icon = 'https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b'
                     }
                     markers.push({
                         position: item.position.split(','),
@@ -145,7 +145,6 @@
                         address: item.address
                     });
                 });
-
                 //  加点
                 this.markers = markers;
                 // 加弹窗
@@ -153,7 +152,7 @@
             }
         },
         mounted() {
-            this.timeClear = setInterval(this.check, 3000);
+            // this.timeClear = setInterval(this.check, 3000);
         },
         async created() {
             const res = await this.$axios.get('/api/index/list_jtService');

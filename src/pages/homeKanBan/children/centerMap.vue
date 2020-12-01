@@ -23,14 +23,13 @@
                     :position="marker.position"
                     :icon="marker.icon"/>
             <el-amap-info-window
-                    v-if="window"
                     :position="window.position"
-                    :visible="window.visible"
+                    :visible="true"
                     :content="window.content"
                     :offset="window.offset"
                     :close-when-click-map="true"
                     :is-custom="true">
-                <div id="info-window">
+                <div id="info-windows">
                     <p style="line-height: 30px;text-align: center">
                         {{ window.address }}
                     </p>
@@ -54,7 +53,12 @@
                 zoom: 8,
                 center: [114.286298, 30.5855],
                 expandZoomRange: true,
-                markers: [],
+                markers: [
+                    {
+                        icon: '',
+                        position: [114.286298, 30.5855]
+                    },
+                ],
                 windows: [],
                 window: "",
                 events: {},
@@ -86,11 +90,11 @@
                     con.style.marginTop = "0px;";
                 }
             },
-            async point() {
-                const markers = [];
-                const windows = [];
-                const that = this;
-                this.markersData.forEach((item, index) => {
+            point(data) {
+                let markers = [];
+                let windows = [];
+                let that = this;
+                data.forEach((item, index) => {
                     let icon = require('../../../assets/First.png');
                     if (index === 0) {
                         icon = require('../../../assets/First.png')
@@ -105,7 +109,7 @@
                         icon = 'https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b'
                     }
                     markers.push({
-                        position: item.position.split(','),
+                        position: [item.longitude, item.latitude],
                         events: {
                             click() {
                                 // 方法：鼠标移动到点标记上，显示相应窗体
@@ -116,6 +120,7 @@
                                 that.$nextTick(() => {
                                     that.window.visible = true;
                                 });
+                                console.log( that.window)
                             }
                         },
                         icon: new AMap.Icon({
@@ -125,36 +130,34 @@
                         })
                     });
                     windows.push({
-                        position: item.position,
+                        position: [item.longitude, item.latitude],
                         isCustom: true,
                         offset: [115, 55], // 窗体偏移
                         showShadow: false,
                         visible: false, // 初始是否显示
-                        address: item.address
+                        address: item.serviceName
                     });
                 });
                 //  加点
-                this.markers = [...markers];
+                this.markers = markers;
                 // 加弹窗
-                this.windows = [...windows];
+                this.windows = windows;
             }
         },
         mounted() {
-            // this.timeClear = setInterval(this.check, 3000);
+            this.$axios.get('/api/index/list_jtService').then(res => {
+
+                this.point(res.data.data);
+            })
+
         },
         created() {
-            this.$axios.get('/api/index/list_jtService').then(res => {
-                res.data.data.forEach(i => {
-                    if (i < 3) {
-                        this.markersData.push({
-                            position: i.longitude + ',' + i.latitude,
-                            address: i.serviceName,
-                            money: i.shouyi
-                        })
-                    }
+            for (let i = 0; i < 100; i++) {
+                this.markers.push({
+                    icon: '',
+                    position: [114.286298, 30.5855]
                 });
-                this.point();
-            })
+            }
         }
     };
 </script>
@@ -212,7 +215,7 @@
         }
     }
 
-    #info-window {
+    #info-windows {
         width: 211px;
         height: 146px;
         margin-left: 30px;
