@@ -35,8 +35,6 @@
                                         title: "table列表",
                                         time: true,
                                         select: true,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -129,6 +127,7 @@
                         collapseItem: [
                             {
                                 id: "revenue_2020",
+                                year: 2020,
                                 collapseTitle: "2020年营收",
                                 allQuery: true,
                                 allQueryData: {
@@ -166,29 +165,21 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
+                                                    dataZoom: [{
+                                                        type: 'inside'
+                                                    }, {
+                                                        type: 'slider'
+                                                    }],
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -234,20 +225,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -257,20 +235,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -296,10 +261,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -341,11 +304,15 @@
                                                                 normal: {
                                                                     color: function (params) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[params.dataIndex];
                                                                     },
@@ -380,24 +347,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                let datas = [1.45, 2.93, 3.15, 4, 5];
-                                                                datas.forEach((element, index) => {
-                                                                    data.push({
-                                                                        name: title[index],
-                                                                        value: element,
-                                                                    });
-                                                                });
-                                                                return data;
-                                                            })(),
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -408,10 +358,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -456,6 +404,9 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[params.dataIndex];
                                                                     },
@@ -491,32 +442,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -528,6 +454,7 @@
                             {
                                 id: "revenue_2019",
                                 collapseTitle: "2019年营收",
+                                year: 2019,
                                 allQuery: true,
                                 allQueryData: {
                                     input: false,
@@ -564,29 +491,21 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
+                                                    dataZoom: [{
+                                                        type: 'inside'
+                                                    }, {
+                                                        type: 'slider'
+                                                    }],
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -632,20 +551,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -655,20 +561,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -694,10 +587,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -739,11 +630,15 @@
                                                                 normal: {
                                                                     color: function (params) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[params.dataIndex];
                                                                     },
@@ -778,24 +673,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                let datas = [1.45, 2.93, 3.15, 4, 5];
-                                                                datas.forEach((element, index) => {
-                                                                    data.push({
-                                                                        name: title[index],
-                                                                        value: element,
-                                                                    });
-                                                                });
-                                                                return data;
-                                                            })(),
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -806,10 +684,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -854,6 +730,9 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[params.dataIndex];
                                                                     },
@@ -889,32 +768,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -975,29 +829,21 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
+                                                    dataZoom: [{
+                                                        type: 'inside'
+                                                    }, {
+                                                        type: 'slider'
+                                                    }],
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -1043,20 +889,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -1066,20 +899,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -1105,10 +925,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1150,11 +968,15 @@
                                                                 normal: {
                                                                     color: function (params) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[params.dataIndex];
                                                                     },
@@ -1189,25 +1011,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                [1.45, 2.93, 3.15, 4, 5].forEach(
-                                                                    (element, index) => {
-                                                                        data.push({
-                                                                            name: title[index],
-                                                                            value: element,
-                                                                        });
-                                                                    }
-                                                                );
-                                                                return data;
-                                                            })(),
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -1218,10 +1022,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1266,6 +1068,9 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[params.dataIndex];
                                                                     },
@@ -1301,32 +1106,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -1374,29 +1154,21 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        top: "20%",
+                                                        top: "50",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "60", //图表尺寸大小
                                                     },
+                                                    dataZoom: [{
+                                                        type: 'inside'
+                                                    }, {
+                                                        type: 'slider'
+                                                    }],
                                                     xAxis: [
                                                         {
                                                             type: "category",
                                                             color: "#59588D",
-                                                            data: [
-                                                                "1",
-                                                                "2",
-                                                                "3",
-                                                                "4",
-                                                                "5",
-                                                                "6",
-                                                                "7",
-                                                                "8",
-                                                                "9",
-                                                                "10",
-                                                                "11",
-                                                                "12",
-                                                            ],
+                                                            data: [],
                                                             axisLabel: {
                                                                 margin: 10,
                                                                 color: "#999",
@@ -1442,20 +1214,7 @@
                                                     series: [
                                                         {
                                                             type: "bar",
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
@@ -1465,20 +1224,7 @@
                                                             },
                                                         },
                                                         {
-                                                            data: [
-                                                                40,
-                                                                80,
-                                                                500,
-                                                                36,
-                                                                30,
-                                                                35,
-                                                                400,
-                                                                60,
-                                                                40,
-                                                                80,
-                                                                50,
-                                                                360,
-                                                            ],
+                                                            data: [],
                                                             type: "line",
                                                             name: "折线图",
                                                             // symbol: 'none',
@@ -1504,10 +1250,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1549,11 +1293,15 @@
                                                                 normal: {
                                                                     color: function (params) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[params.dataIndex];
                                                                     },
@@ -1588,24 +1336,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                let datas = [1.45, 2.93, 3.15, 40, 5];
-                                                                datas.forEach((element, index) => {
-                                                                    data.push({
-                                                                        name: title[index],
-                                                                        value: element,
-                                                                    });
-                                                                });
-                                                                return data;
-                                                            })(),
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -1616,10 +1347,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1664,6 +1393,9 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[params.dataIndex];
                                                                     },
@@ -1699,32 +1431,7 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
+                                                            data: [],
                                                         },
                                                     ],
                                                 },
@@ -1915,10 +1622,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -2027,10 +1732,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -2146,15 +1849,13 @@
                                         title: "公司成本种类预算成本",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "50%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
-                                            marginTop: "10px",
+                                            marginTop: "5px",
                                         },
                                         EChartsItem: [
                                             {
@@ -2289,15 +1990,13 @@
                                         title: "总公司成本",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "49%",
+                                            width: "49.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
-                                            marginTop: "10px",
+                                            marginTop: "5px",
                                         },
                                         EChartsItem: [
                                             {
@@ -2613,10 +2312,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -2725,10 +2422,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -2844,15 +2539,13 @@
                                         title: "公司成本种类预算成本",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "50%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
-                                            marginTop: "10px",
+                                            marginTop: "5px",
                                         },
                                         EChartsItem: [
                                             {
@@ -2987,15 +2680,13 @@
                                         title: "总公司成本",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "49%",
+                                            width: "49.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
-                                            marginTop: "10px",
+                                            marginTop: "5px",
                                         },
                                         EChartsItem: [
                                             {
@@ -3412,7 +3103,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -3514,7 +3205,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -3637,15 +3328,13 @@
                                     },
                                     {
                                         title: "table列表",
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "100%",
                                             height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
-                                            marginBottom: "10px",
-                                            marginTop: "10px",
+                                            marginBottom: "5px",
+                                            marginTop: "5px",
                                             overflow: "hidden",
                                         },
                                         EChartsItem: [
@@ -3722,7 +3411,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -3824,7 +3513,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -3947,15 +3636,13 @@
                                     },
                                     {
                                         title: "table列表",
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "100%",
                                             height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
-                                            marginBottom: "10px",
-                                            marginTop: "10px",
+                                            marginBottom: "5px",
+                                            marginTop: "5px",
                                             overflow: "hidden",
                                         },
                                         EChartsItem: [
@@ -4038,7 +3725,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4140,7 +3827,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4263,15 +3950,13 @@
                                     },
                                     {
                                         title: "table列表",
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "100%",
                                             height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
-                                            marginBottom: "10px",
-                                            marginTop: "10px",
+                                            marginBottom: "5px",
+                                            marginTop: "5px",
                                             overflow: "hidden",
                                         },
                                         EChartsItem: [
@@ -4348,7 +4033,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4450,7 +4135,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4573,15 +4258,13 @@
                                     },
                                     {
                                         title: "table列表",
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "100%",
                                             height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
-                                            marginBottom: "10px",
-                                            marginTop: "10px",
+                                            marginBottom: "5px",
+                                            marginTop: "5px",
                                             overflow: "hidden",
                                         },
                                         EChartsItem: [
@@ -4899,8 +4582,6 @@
                                         title: "店面收入完成百分比",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "49.5%",
                                             height: "450px",
@@ -5278,8 +4959,6 @@
                                         title: "店面收入完成百分比",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "49.5%",
                                             height: "450px",
@@ -5435,6 +5114,10 @@
         mounted() {
             this.$refs["collapse"].initECharts(this.collapseData);
         },
+        created() {
+            this.$axios.get("/api/sundry/finance_type_list", {params: {mohu: '黄冈'}}).then(res => {
+            })
+        },
         watch: {
             viewChange() {
                 this.$refs['collapse'].refresh(this.collapseData)
@@ -5442,5 +5125,3 @@
         }
     };
 </script>
-
-<style scoped></style>

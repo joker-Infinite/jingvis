@@ -20,17 +20,22 @@
                                  style="width: 100%;height: 100px;background: white;border-radius: 10px"></div>
                             <div class="allQuery" v-if="cit.allQuery&&cit.allQueryData">
                                 <div>
-                                    <el-input v-if="cit.allQueryData.input" placeholder="请输入内容" value=" "></el-input>
-                                    <el-select v-if="cit.allQueryData.select" value=" "></el-select>
+                                    <el-input v-if="cit.allQueryData.input" placeholder="请输入内容"
+                                              v-model="allQuery.inputValue"></el-input>
+                                    <el-select v-if="cit.allQueryData.select"
+                                               v-model="allQuery.selectValue"></el-select>
                                     <el-date-picker
-                                            value=" "
+                                            v-model="allQuery.timeValue"
                                             v-if="cit.allQueryData.time"
                                             type="monthrange"
+                                            value-format="yyyy-MM"
                                             range-separator="至"
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button icon="el-icon-search" type="primary">搜索</el-button>
+                                    <el-button icon="el-icon-search" type="primary"
+                                               @click="$emit('searchQuery',cit.EChartsBox,allQuery)">搜索
+                                    </el-button>
                                 </div>
                             </div>
                             <div v-for="(sit, six) in cit.EChartsBox"
@@ -39,17 +44,19 @@
                                 <div class="Title">{{ sit.title }}</div>
                                 <div class="query"
                                      v-if="sit.time || sit.select">
-                                    <el-select v-model="sit.selectValue"
+                                    <el-select v-model="query.selectValue"
                                                v-if="sit.select"></el-select>
                                     <el-date-picker
                                             v-if="sit.time"
-                                            v-model="sit.timeValue"
+                                            v-model="query.timeValue"
                                             type="monthrange"
+                                            value-format="yyyy-MM"
                                             range-separator="至"
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button icon="el-icon-search" type="primary" v-if="sit.time || sit.select">搜索
+                                    <el-button icon="el-icon-search" type="primary" v-if="sit.time || sit.select"
+                                               @click="$emit('searchQuery',cit.EChartsBox,query)">搜索
                                     </el-button>
                                 </div>
                                 <div v-for="(wit, wix) in sit.EChartsItem"
@@ -150,7 +157,17 @@
                 optionTitle: "",
                 optionType: "",
                 optionId: '',
-                optionIid: ''
+                optionIid: '',
+                allQuery: {
+                    inputValue: '',
+                    selectValue: '',
+                    timeValue: ''
+                },
+                query: {
+                    inputValue: '',
+                    selectValue: '',
+                    timeValue: ''
+                }
             };
         },
         methods: {
@@ -439,9 +456,9 @@
 
                     .allQuery {
                         width: 100%;
-                        height: 60px;
+                        height: 50px;
                         background: #fff;
-                        margin-bottom: 10px;
+                        margin-bottom: 5px;
                         padding: 0 20px;
                         display: flex;
                         align-items: center;
@@ -451,16 +468,16 @@
                     }
 
                     .allQuery /deep/ .el-date-editor {
-                        margin: 10px 20px 0 0;
+                        margin: 5px 20px 0 0;
                     }
 
                     .allQuery /deep/ .el-input {
-                        margin: 10px 20px 10px 10px;
+                        margin: 5px 20px 5px 10px;
                         width: 200px;
                     }
 
                     .allQuery /deep/ .el-button {
-                        margin: 10px 20px;
+                        margin: 5px 20px;
                     }
 
                     .allQuery /deep/ .el-select {
@@ -479,9 +496,9 @@
 
                     .Title {
                         width: 100%;
-                        height: 45px;
+                        height: 40px;
                         background: white;
-                        line-height: 45px;
+                        line-height: 40px;
                         text-indent: 10px;
                         font-size: 18px;
                         font-weight: 600;

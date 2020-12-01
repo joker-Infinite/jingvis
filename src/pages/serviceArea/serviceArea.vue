@@ -1,15 +1,17 @@
 <template>
     <div style="width: 100%; height: 100%;">
-        <my-collapse-base ref="collapse" :collapseData="collapseData"></my-collapse-base>
+        <my-collapse-base ref="collapse" :collapseData="collapseData" @searchQuery="searchQuery"></my-collapse-base>
     </div>
 </template>
 
 <script>
     import MyCollapseBase from "../../components/common/myCollapseBase";
+    import common from "../../components/js/common";
 
     export default {
         name: "serviceArea",
         components: {MyCollapseBase},
+        mixins: [common],
         props: {
             viewChange: {
                 type: Boolean,
@@ -71,7 +73,7 @@
                                                     },
                                                     grid: {
                                                         top: "50",
-                                                        right: "40",
+                                                        right: "60",
                                                         left: "60",
                                                         bottom: "60", //图表尺寸大小
                                                     },
@@ -131,6 +133,28 @@
                                                                 },
                                                             },
                                                         },
+                                                        {
+                                                            type: 'value',
+                                                            min: '',//最小坐标
+                                                            max: '',//最大坐标
+                                                            axisLabel: {
+                                                                fontSize: 14,
+                                                                color: "#999",
+                                                                formatter: '{value} %'
+                                                            },
+                                                            axisLine: {
+                                                                lineStyle: {
+                                                                    color:
+                                                                        "rgba(107,107,107,0.37)",
+                                                                },
+                                                            },
+                                                            splitLine: {
+                                                                show: false//是否显示分隔线。
+                                                            },
+                                                            axisTick: {
+                                                                show: false,
+                                                            },
+                                                        }
                                                     ],
                                                     series: [
                                                         {
@@ -154,6 +178,7 @@
                                                             data: [],
                                                             type: "line",
                                                             name: "折线图",
+                                                            yAxisIndex: 1,
                                                             // symbol: 'none',
                                                             lineStyle: {
                                                                 color: "#fea2a2",
@@ -162,6 +187,25 @@
                                                                     "rgba(0, 0, 0, 0.3)", //设置折线阴影
                                                                 shadowBlur: 10,
                                                                 shadowOffsetY: 10,
+                                                            },
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                                        offset: 0,
+                                                                        color: 'rgb(255, 204, 102)'
+                                                                    }, {
+                                                                        offset: 1,
+                                                                        color: 'rgb(255, 153, 51)'
+                                                                    }]),
+                                                                    label: {
+                                                                        show: true,
+                                                                        position: 'top',
+                                                                        textStyle: {
+                                                                            fontSize: '16',
+                                                                            color: 'rgb(255, 156, 54)',
+                                                                        }
+                                                                    }
+                                                                },
                                                             },
                                                             areaStyle: {
                                                                 normal: {
@@ -179,10 +223,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -293,10 +335,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -449,7 +489,7 @@
                                                     },
                                                     grid: {
                                                         top: "50",
-                                                        right: "40",
+                                                        right: "60",
                                                         left: "60",
                                                         bottom: "60", //图表尺寸大小
                                                     },
@@ -509,6 +549,28 @@
                                                                 },
                                                             },
                                                         },
+                                                        {
+                                                            type: 'value',
+                                                            min: '',//最小坐标
+                                                            max: '',//最大坐标
+                                                            axisLabel: {
+                                                                fontSize: 14,
+                                                                color: "#999",
+                                                                formatter: '{value} %'
+                                                            },
+                                                            axisLine: {
+                                                                lineStyle: {
+                                                                    color:
+                                                                        "rgba(107,107,107,0.37)",
+                                                                },
+                                                            },
+                                                            splitLine: {
+                                                                show: false//是否显示分隔线。
+                                                            },
+                                                            axisTick: {
+                                                                show: false,
+                                                            },
+                                                        }
                                                     ],
                                                     series: [
                                                         {
@@ -532,6 +594,7 @@
                                                             data: [],
                                                             type: "line",
                                                             name: "折线图",
+                                                            yAxisIndex: 1,
                                                             // symbol: 'none',
                                                             lineStyle: {
                                                                 color: "#fea2a2",
@@ -540,6 +603,25 @@
                                                                     "rgba(0, 0, 0, 0.3)", //设置折线阴影
                                                                 shadowBlur: 10,
                                                                 shadowOffsetY: 10,
+                                                            },
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                                        offset: 0,
+                                                                        color: 'rgb(255, 204, 102)'
+                                                                    }, {
+                                                                        offset: 1,
+                                                                        color: 'rgb(255, 153, 51)'
+                                                                    }]),
+                                                                    label: {
+                                                                        show: true,
+                                                                        position: 'top',
+                                                                        textStyle: {
+                                                                            fontSize: '16',
+                                                                            color: 'rgb(255, 156, 54)',
+                                                                        }
+                                                                    }
+                                                                },
                                                             },
                                                             areaStyle: {
                                                                 normal: {
@@ -557,10 +639,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -671,10 +751,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -827,15 +905,15 @@
                                                         formatter: function (val) {
                                                             return (
                                                                 val[0].name +
-                                                                ":" +
-                                                                val[0].value +
-                                                                "元"
+                                                                ":" + "<br />" +
+                                                                val[0].value / 10000 +
+                                                                "万元"
                                                             );
                                                         },
                                                     },
                                                     grid: {
                                                         top: "50",
-                                                        right: "40",
+                                                        right: "60",
                                                         left: "60",
                                                         bottom: "60", //图表尺寸大小
                                                     },
@@ -895,6 +973,28 @@
                                                                 },
                                                             },
                                                         },
+                                                        {
+                                                            type: 'value',
+                                                            min: '',//最小坐标
+                                                            max: '',//最大坐标
+                                                            axisLabel: {
+                                                                fontSize: 14,
+                                                                color: "#999",
+                                                                formatter: '{value} %'
+                                                            },
+                                                            axisLine: {
+                                                                lineStyle: {
+                                                                    color:
+                                                                        "rgba(107,107,107,0.37)",
+                                                                },
+                                                            },
+                                                            splitLine: {
+                                                                show: false//是否显示分隔线。
+                                                            },
+                                                            axisTick: {
+                                                                show: false,
+                                                            },
+                                                        }
                                                     ],
                                                     series: [
                                                         {
@@ -918,6 +1018,7 @@
                                                             data: [],
                                                             type: "line",
                                                             name: "折线图",
+                                                            yAxisIndex: 1,
                                                             // symbol: 'none',
                                                             lineStyle: {
                                                                 color: "#fea2a2",
@@ -926,6 +1027,25 @@
                                                                     "rgba(0, 0, 0, 0.3)", //设置折线阴影
                                                                 shadowBlur: 10,
                                                                 shadowOffsetY: 10,
+                                                            },
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                                        offset: 0,
+                                                                        color: 'rgb(255, 204, 102)'
+                                                                    }, {
+                                                                        offset: 1,
+                                                                        color: 'rgb(255, 153, 51)'
+                                                                    }]),
+                                                                    label: {
+                                                                        show: true,
+                                                                        position: 'top',
+                                                                        textStyle: {
+                                                                            fontSize: '16',
+                                                                            color: 'rgb(255, 156, 54)',
+                                                                        }
+                                                                    }
+                                                                },
                                                             },
                                                             areaStyle: {
                                                                 normal: {
@@ -943,10 +1063,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1057,10 +1175,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1205,15 +1321,15 @@
                                                         formatter: function (val) {
                                                             return (
                                                                 val[0].name +
-                                                                ":" +
-                                                                val[0].value +
-                                                                "元"
+                                                                ":" + "<br />" +
+                                                                val[0].value / 10000 +
+                                                                "万元"
                                                             );
                                                         },
                                                     },
                                                     grid: {
                                                         top: "50",
-                                                        right: "40",
+                                                        right: "60",
                                                         left: "60",
                                                         bottom: "60", //图表尺寸大小
                                                     },
@@ -1273,6 +1389,28 @@
                                                                 },
                                                             },
                                                         },
+                                                        {
+                                                            type: 'value',
+                                                            min: '',//最小坐标
+                                                            max: '',//最大坐标
+                                                            axisLabel: {
+                                                                fontSize: 14,
+                                                                color: "#999",
+                                                                formatter: '{value} %'
+                                                            },
+                                                            axisLine: {
+                                                                lineStyle: {
+                                                                    color:
+                                                                        "rgba(107,107,107,0.37)",
+                                                                },
+                                                            },
+                                                            splitLine: {
+                                                                show: false//是否显示分隔线。
+                                                            },
+                                                            axisTick: {
+                                                                show: false,
+                                                            },
+                                                        }
                                                     ],
                                                     series: [
                                                         {
@@ -1296,6 +1434,7 @@
                                                             data: [],
                                                             type: "line",
                                                             name: "折线图",
+                                                            yAxisIndex: 1,
                                                             // symbol: 'none',
                                                             lineStyle: {
                                                                 color: "#fea2a2",
@@ -1304,6 +1443,25 @@
                                                                     "rgba(0, 0, 0, 0.3)", //设置折线阴影
                                                                 shadowBlur: 10,
                                                                 shadowOffsetY: 10,
+                                                            },
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                                        offset: 0,
+                                                                        color: 'rgb(255, 204, 102)'
+                                                                    }, {
+                                                                        offset: 1,
+                                                                        color: 'rgb(255, 153, 51)'
+                                                                    }]),
+                                                                    label: {
+                                                                        show: true,
+                                                                        position: 'top',
+                                                                        textStyle: {
+                                                                            fontSize: '16',
+                                                                            color: 'rgb(255, 156, 54)',
+                                                                        }
+                                                                    }
+                                                                },
                                                             },
                                                             areaStyle: {
                                                                 normal: {
@@ -1321,10 +1479,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1435,10 +1591,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1706,10 +1860,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1847,10 +1999,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -1981,15 +2131,13 @@
                                         title: "公司成本种类预算成本",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "50%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
-                                            marginTop: "10px",
+                                            marginTop: "5px",
                                         },
                                         EChartsItem: [
                                             {
@@ -2196,15 +2344,13 @@
                                         title: "总公司成本",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "49%",
+                                            width: "49.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
-                                            marginTop: "10px",
+                                            marginTop: "5px",
                                         },
                                         EChartsItem: [
                                             {
@@ -2538,10 +2684,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -2679,10 +2823,8 @@
                                         title: "",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "29%",
+                                            width: "29.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -2813,15 +2955,13 @@
                                         title: "公司成本种类预算成本",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "50%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
-                                            marginTop: "10px",
+                                            marginTop: "5px",
                                         },
                                         EChartsItem: [
                                             {
@@ -3028,15 +3168,13 @@
                                         title: "总公司成本",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
-                                            width: "49%",
+                                            width: "49.5%",
                                             height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
-                                            marginTop: "10px",
+                                            marginTop: "5px",
                                         },
                                         EChartsItem: [
                                             {
@@ -3529,7 +3667,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -3661,7 +3799,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -3806,15 +3944,13 @@
                                     },
                                     {
                                         title: "table列表",
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "100%",
                                             height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
-                                            marginBottom: "10px",
-                                            marginTop: "10px",
+                                            marginBottom: "5px",
+                                            marginTop: "5px",
                                             overflow: "hidden",
                                         },
                                         EChartsItem: [
@@ -3919,7 +4055,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4036,7 +4172,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4181,14 +4317,12 @@
                                     },
                                     {
                                         title: "table列表",
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "100%",
                                             height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
-                                            marginBottom: "10px",
+                                            marginBottom: "5px",
                                             marginTop: "10px",
                                             overflow: "hidden",
                                         },
@@ -4301,7 +4435,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4418,7 +4552,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4563,14 +4697,12 @@
                                     },
                                     {
                                         title: "table列表",
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "100%",
                                             height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
-                                            marginBottom: "10px",
+                                            marginBottom: "5px",
                                             marginTop: "10px",
                                             overflow: "hidden",
                                         },
@@ -4675,7 +4807,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4792,7 +4924,7 @@
                                             {
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "49%",
+                                                    width: "49.5%",
                                                     height: "400px",
                                                 },
                                                 option: {
@@ -4937,14 +5069,12 @@
                                     },
                                     {
                                         title: "table列表",
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "100%",
                                             height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
-                                            marginBottom: "10px",
+                                            marginBottom: "5px",
                                             marginTop: "10px",
                                             overflow: "hidden",
                                         },
@@ -5343,8 +5473,6 @@
                                         title: "店面收入完成百分比",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "49.5%",
                                             height: "450px",
@@ -5790,8 +5918,6 @@
                                         title: "店面收入完成百分比",
                                         time: false,
                                         select: false,
-                                        timeValue: "",
-                                        selectValue: "",
                                         style: {
                                             width: "49.5%",
                                             height: "450px",
@@ -5954,6 +6080,10 @@
             };
         },
         methods: {
+            searchQuery(d, q) {
+                console.log(d)
+                console.log(q)
+            },
             async obtainData(name, year) {
                 let data = [];
                 let id = '';
@@ -5971,9 +6101,7 @@
                     }
                 }).then(v => {
                     data = v.data.data;
-                    let x = [];
-                    let y = [];
-
+                    let mm = [];
                     this.collapseData.forEach((item, index) => {
                         if (item.name == name) {
                             item.collapseItem.forEach((cItem, cIndex) => {
@@ -5982,9 +6110,13 @@
                                         if (sIndex == 0) {
                                             data.xYListFrom1.forEach((i, ix) => {
                                                 sItem.EChartsItem[0].option.series[0].data.push(i.yAxis);
-                                                sItem.EChartsItem[0].option.series[1].data.push(i.yAxis);
+                                                mm.push(i.yAxis);
                                                 sItem.EChartsItem[0].option.xAxis[0].data.push(i.xBxis);
                                             });
+                                            let arr = this.YoYIncrease(mm);
+                                            sItem.EChartsItem[0].option.yAxis[1].min = parseInt(Math.min(...arr) - 5);
+                                            sItem.EChartsItem[0].option.yAxis[1].max = parseInt(Math.max(...arr) + 5);
+                                            sItem.EChartsItem[0].option.series[1].data.push(...arr);
                                         }
                                         if (sIndex == 1) {
                                             data.xYListFrom2.forEach((i, ix) => {
@@ -6001,7 +6133,6 @@
                                                     value: i.yAxis
                                                 });
                                             })
-                                            // sItem.EChartsItem[2].option.series[0].data.push(i.yAxis);
                                         }
                                     });
                                 }
@@ -6009,16 +6140,15 @@
                         }
                     })
                 })
-            }
+            },
         },
         async mounted() {
             await new Promise(resolve => {
                 setInterval(_ => {
-                    this.$refs["collapse"].initECharts(this.collapseData);
                     resolve();
-                }, 200)
-
-            })
+                }, 200);
+            });
+            this.$refs["collapse"].initECharts(this.collapseData);
         },
         async created() {
             await this.obtainData('营收', '2019');
@@ -6030,8 +6160,6 @@
             viewChange() {
                 this.$refs["collapse"].refresh(this.collapseData);
             },
-        },
+        }
     };
 </script>
-
-<style scoped></style>
