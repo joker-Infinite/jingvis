@@ -6113,10 +6113,12 @@
                                                 mm.push(i.yAxis);
                                                 sItem.EChartsItem[0].option.xAxis[0].data.push(i.xBxis);
                                             });
-                                            let arr = this.YoYIncrease(mm);
-                                            sItem.EChartsItem[0].option.yAxis[1].min = parseInt(Math.min(...arr) - 5);
-                                            sItem.EChartsItem[0].option.yAxis[1].max = parseInt(Math.max(...arr) + 5);
-                                            sItem.EChartsItem[0].option.series[1].data.push(...arr);
+                                            if (mm.length !== 0) {
+                                                let arr = this.YoYIncrease(mm);
+                                                sItem.EChartsItem[0].option.yAxis[1].min = parseInt(Math.min(...arr) - 5);
+                                                sItem.EChartsItem[0].option.yAxis[1].max = parseInt(Math.max(...arr) + 5);
+                                                sItem.EChartsItem[0].option.series[1].data.push(...arr);
+                                            }
                                         }
                                         if (sIndex == 1) {
                                             data.xYListFrom2.forEach((i, ix) => {

@@ -319,7 +319,7 @@
                             datas.xAxis.unshift(" ");
                         }
                         // 柱状图
-                    } else {
+                    } else if (optionData.option.series[0].type === "bar")  {
                         series[index].push(optionData.option.series[index].data);
                         if (!(optionData.option.xAxis[0])) {
                             if (optionData.option.yAxis.data) {
@@ -340,6 +340,7 @@
              * 导入导出excel
              */
             isData(val) {
+                debugger
                 let datas = this.isExcelData()
                 // 图标
                 if (val === "focus") {
@@ -417,7 +418,6 @@
                     }
                 });
             });
-            // this.initECharts(this.collapseData);
         },
         beforeDestroy() {
             this.timeID.forEach((i) => {

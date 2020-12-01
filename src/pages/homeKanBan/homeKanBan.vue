@@ -41,8 +41,8 @@
             showOne(v) {
                 this.$refs["showECharts"].openDialog(v);
             },
-            showMap() {
-                this.$refs['showMap'].openDialog();
+            showMap(v) {
+                this.$refs['showMap'].openDialog(v);
             }
         },
         components: {ShowMap, ShowECharts, HomeBottom, HomeTopRight, CenterMap, HomeTopLeft},

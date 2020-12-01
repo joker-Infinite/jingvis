@@ -102,21 +102,34 @@
                         label: "能源公司",
                         img: require("../assets/Home/8.png"),
                         imgActive: require("../assets/Home/9.png"),
-                        menuItem: ['数据总览', "中化交投", "石化能源", "新能源"]
+                        menuItem: ['数据总览', "中化交投", "石化能源", "新能源"],
+                        menuItemUrl: [
+                            '/energy/energy',
+                            '/energy/ZHJiaoTou',
+                            '/comparison/comparison'
+                        ]
                     },
                     {
                         id: "5",
                         label: "能源业务",
                         img: require("../assets/Home/6.png"),
                         imgActive: require("../assets/Home/7.png"),
-                        menuItem: ["批发", "油品零售", "非油品零售", "直分销", "大宗采购"]
+                        menuItem: ["批发", "油品零售", "非油品零售", "直分销", "大宗采购"],
+                        menuItemUrl: [
+                            '/energy/piFa',
+                            '/energy/YPLingShou',
+                            '/energy/FYPLingShou'
+                        ]
                     },
                     {
                         id: "6",
                         label: "传媒指标",
                         img: require("../assets/Home/4.png"),
                         imgActive: require("../assets/Home/5.png"),
-                        menuItem: ["广告详情"]
+                        menuItem: ["广告详情"],
+                        menuItemUrl: [
+                            '/media/media',
+                        ]
                     },
                     {
                         id: "7",
@@ -307,6 +320,9 @@
                         document.cookie = 'menu=' + i;
                         this.$router.push("/details/details");
                     }
+                    this.isActive = this.key.charAt(0);
+                } else {
+                    this.key = '2-0';
                     this.isActive = this.key.charAt(0);
                 }
             },
