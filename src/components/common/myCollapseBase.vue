@@ -463,7 +463,7 @@
         justify-content: space-around;
 
         .collapse {
-            width: 85%;
+            width: 90%;
             height: 100%;
             overflow-y: scroll;
             scroll-behavior: smooth;
@@ -618,7 +618,7 @@
         }
 
         .navigation {
-            width: 10%;
+            width: 8%;
             height: 100%;
             display: flex;
             flex-wrap: nowrap;
@@ -644,7 +644,7 @@
 
             .navBar > p {
                 // cursor: pointer;
-                font-size: 16px;
+                font-size: 15px;
                 padding: 10% 0;
                 margin: 5% 0;
                 margin-left: 25%;
@@ -652,6 +652,7 @@
                 border-radius: 10px;
 
                 .img {
+                    width: 20px;
                     vertical-align: -6px;
                 }
             }

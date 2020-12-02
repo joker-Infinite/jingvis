@@ -21,11 +21,13 @@
                         </div>-->
             <div class="bottom_left" @mouseover="mouseHover('BD')">
                 <div class="select_type">
-                    <el-radio class="checkboxItem" @change="changeRadioBD(1)" v-model="selectBD" :label="1">加油站
+                    <el-radio class="checkboxItem" @change="changeRadioBD(1)" v-model="selectBD" :label="1">服务区
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioBD(2)" v-model="selectBD" :label="2">合作收入
+                    <el-radio class="checkboxItem" @change="changeRadioBD(2)" v-model="selectBD" :label="2">自营油站
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioBD(3)" v-model="selectBD" :label="3">自营商店
+                    <el-radio class="checkboxItem" @change="changeRadioBD(3)" v-model="selectBD" :label="3">自营超市
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioBD(4)" v-model="selectBD" :label="4">服务区招商
                     </el-radio>
                 </div>
                 <operations class="operations" @showOne="showOne"></operations>
@@ -33,11 +35,13 @@
             </div>
             <div class="bottom_right" @mouseover="mouseHover('CD')">
                 <div class="select_type">
-                    <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">加油站
+                    <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">服务区
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">合作收入
+                    <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">自营油站
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">自营商店
+                    <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">自营超市
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(4)" v-model="selectCD" :label="4">服务区招商
                     </el-radio>
                 </div>
                 <operations class="operations" @showOne="showOne"></operations>
@@ -102,7 +106,7 @@
                 this.resizeData.push(HomeTopRight_top);
                 let option = (this.AD = {
                     title: {
-                        text: "{a|     省份访问TOP10}",
+                        text: "{a|     消费转化}",
                         show: true,
                         x: "center",
                         textStyle: {
@@ -248,7 +252,7 @@
                 let option = ({
                     barWidth: 20,
                     title: {
-                        text: "{a|     营收前五及后五}",
+                        text: "{a|     经营排行}",
                         y: "6",
                         show: true,
                         textStyle: {
@@ -395,7 +399,7 @@
                 let option = ({
                     barWidth: 20,
                     title: {
-                        text: "{a|     千人营收前五及后五}",
+                        text: "{a|     千车转换率排行}",
                         // x:"center",
                         y: "6",
                         show: true,
@@ -509,7 +513,7 @@
                                         label: {
                                             show: true,
                                             position: "middle",
-                                            formatter: "数据平均 : "+average,
+                                            formatter: "数据平均 : " + average,
                                         },
                                     },
                                 },
@@ -605,20 +609,28 @@
                 background-size: 100% 100%;
 
                 .select_type {
-                    width: 100%;
+                    width: 90%;
                     position: absolute;
                     top: 15%;
-                    left: 2%;
+                    left: 5%;
                     z-index: 999;
                     font-size: 12px !important;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
 
                     .checkboxItem {
+                        width: 50%;
                         color: white;
                     }
 
                     .el-radio__label {
-                        // margin-right: em;
+                        margin-right: 0;
                     }
+                }
+
+                .select_type /deep/ .el-radio {
+                    margin-right: 0;
                 }
 
                 #HomeTopRight_bottom_left {
@@ -642,15 +654,28 @@
                 background-size: 100% 100%;
 
                 .select_type {
-                    width: 100%;
+                    width: 90%;
                     position: absolute;
                     top: 15%;
-                    left: 2%;
+                    left: 5%;
                     z-index: 999;
+                    font-size: 12px !important;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
 
                     .checkboxItem {
+                        width: 50%;
                         color: white;
                     }
+
+                    .el-radio__label {
+                        margin-right: 0;
+                    }
+                }
+
+                .select_type /deep/ .el-radio {
+                    margin-right: 0;
                 }
 
                 #HomeTopRight_bottom_right {

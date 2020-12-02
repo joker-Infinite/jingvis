@@ -13,7 +13,7 @@
                         <HomeTopRight ref="homeTopRight"></HomeTopRight>
                     </div>
                 </div>
-                <div style="height: 2%;width: 100%"></div>
+                <div style="height: 1%;width: 100%"></div>
                 <div class="H_bottom">
                     <home-bottom ref="homebottom" @showOne="showOne"></home-bottom>
                 </div>
@@ -38,8 +38,8 @@
             return {};
         },
         methods: {
-            showOne(v) {
-                this.$refs["showECharts"].openDialog(v);
+            showOne(v,type) {
+                this.$refs["showECharts"].openDialog(v,type);
             },
             showMap(v) {
                 this.$refs['showMap'].openDialog(v);
@@ -104,7 +104,7 @@
                 }
 
                 .H_bottom {
-                    height: 20%;
+                    height: 23%;
                     width: 100%;
                 }
             }
