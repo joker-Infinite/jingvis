@@ -9,30 +9,60 @@
             </div>
         </div>
         <div class="item HomeBottomA" @mouseover="mouseHover('AD')">
+            <div class="MMA">
+                平均：{{showTarget(this.AD,'average')}}<br>
+                最高：{{showTarget(this.AD,'max')}}
+                最低：{{showTarget(this.AD,'min')}}
+            </div>
             <operations class="operations" @showOne="showOne"></operations>
             <div id="HomeBottomAData"></div>
             <div class="ei" id="HomeBottomA"></div>
         </div>
         <div class="item HomeBottomB" @mouseover="mouseHover('BD')">
+            <div class="MMA">
+                平均：{{showTarget(this.BD,'average')}}<br>
+                最高：{{showTarget(this.BD,'max')}}
+                最低：{{showTarget(this.BD,'min')}}
+            </div>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="ei" id="HomeBottomB"></div>
         </div>
         <div class="item HomeBottomC" @mouseover="mouseHover('CD')">
+            <div class="MMA">
+                平均：{{showTarget(this.CD,'average')}}<br>
+                最高：{{showTarget(this.CD,'max')}}
+                最低：{{showTarget(this.CD,'min')}}
+            </div>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="ei" id="HomeBottomC"></div>
         </div>
         <div class="item HomeBottomD" @mouseover="mouseHover('DD')">
+            <div class="MMA">
+                平均：{{showTarget(this.DD,'average')}}<br>
+                最高：{{showTarget(this.DD,'max')}}
+                最低：{{showTarget(this.DD,'min')}}
+            </div>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="ei" id="HomeBottomD"></div>
         </div>
         <div class="item HomeBottomE" @mouseover="mouseHover('ED')">
+            <div class="MMA">
+                平均：{{showTarget(this.ED,'average')}}<br>
+                最高：{{showTarget(this.ED,'max')}}
+                最低：{{showTarget(this.ED,'min')}}
+            </div>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="ei" id="HomeBottomE"></div>
         </div>
-        <div class="item HomeBottomF" @mouseover="mouseHover('FD')">
+        <!--<div class="item HomeBottomF" @mouseover="mouseHover('FD')">
+            <div class="MMA">
+                平均：{{showTarget(this.FD,'average')}}<br>
+                最高：{{showTarget(this.FD,'max')}}
+                最低：{{showTarget(this.FD,'min')}}
+            </div>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="ei" id="HomeBottomF"></div>
-        </div>
+        </div>-->
         <div class="item HomeBottomG" @mouseover="mouseHover('GD')">
             <operations class="operations" @showOne="showOne(1)"></operations>
             <div class="ei" id="HomeBottomG"></div>
@@ -67,39 +97,75 @@
             };
         },
         methods: {
+            showTarget(v, type) {
+                let obj = {
+                    min: '',
+                    max: '',
+                    average: ''
+                };
+                let mun = [];
+                let num = 0;
+                if (v && v.series) {
+                    let d = v.series[0].data;
+                    d.forEach(i => {
+                        mun.push(i.value);
+                        num += Number(i.value);
+                    });
+                    obj.max = Math.max(...mun);
+                    obj.min = Math.min(...mun);
+                    obj.average = num / d.length;
+                    if (this.select === 'A') {
+                        obj.max = (obj.max / 100000000).toFixed(2);
+                        obj.min = (obj.min / 100000000).toFixed(2);
+                        obj.average = (obj.average / 100000000).toFixed(2);
+                    }
+                    if (this.select === 'B') {
+                        obj.max = (obj.max / 1000000).toFixed(2);
+                        obj.min = (obj.min / 1000000).toFixed(2);
+                        obj.average = (obj.average / 1000000).toFixed(2);
+                    }
+                    if (type === 'max') {
+                        return obj.max;
+                    }
+                    if (type === 'min') {
+                        return obj.min;
+                    }
+                    if (type === 'average') {
+                        return obj.average;
+                    }
+                }
+            },
             // 请求axios
             isAxios(url, financeTypeId, plateId, title, option, v, HomeBottom) {
                 HomeBottom.setOption(option);
-                this.$axios.get(url, {params: {financeTypeId: this.financeTypeId, plateId: plateId},})
-                    .then((res) => {
-                        let optionss = clone(option);
-                        optionss.title.text = `{a|     ${title}}`;
-                        let xBxis = [];
-                        let yAxis = [];
-                        res.data.data.forEach((element) => {
-                            xBxis.push(element.xBxis);
-                            let Yaxis = {
-                                value: element.yAxis,
-                                itemStyle: {
-                                    normal: {
-                                        // barBorderRadius: [30, 30, 0, 0], //设置柱状图为圆角
-                                        position: "inside",
-                                        color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                            {offset: 0, color: "rgb(166,72,255,1)"},
-                                            {offset: 0.5, color: "rgb(44,30,255,1)"},
-                                            {offset: 1, color: "rgb(70,70,255,0)"},
-                                        ]),
-                                    },
+                this.$axios.get(url, {params: {financeTypeId: this.financeTypeId, plateId: plateId},}).then((res) => {
+                    let optionss = clone(option);
+                    optionss.title.text = `{a|     ${title}}`;
+                    let xBxis = [];
+                    let yAxis = [];
+                    res.data.data.forEach((element) => {
+                        xBxis.push(element.xBxis);
+                        let Yaxis = {
+                            value: element.yAxis,
+                            itemStyle: {
+                                normal: {
+                                    position: "inside",
+                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                        {offset: 0, color: "rgb(166,72,255,1)"},
+                                        {offset: 0.5, color: "rgb(44,30,255,1)"},
+                                        {offset: 1, color: "rgb(70,70,255,0)"},
+                                    ]),
                                 },
-                            };
-                            yAxis.push(Yaxis);
-                        });
-
-                        optionss.xAxis[0].data = xBxis;
-                        optionss.series[0].data = yAxis;
-                        this[v] = optionss;
-                        HomeBottom.setOption(optionss);
+                            },
+                        };
+                        yAxis.push(Yaxis);
                     });
+
+                    optionss.xAxis[0].data = xBxis;
+                    optionss.series[0].data = yAxis;
+                    this[v] = optionss;
+                    HomeBottom.setOption(optionss);
+                });
             },
             selectOption(v) {
                 this.select = v;
@@ -152,7 +218,7 @@
                     option.title.x = "center";
                     option.title.y = "-3%";
                     option.title.padding = [50, 50, 50, 50];
-                    this.$emit("showOne", option);
+                    this.$emit("showOne", option, 'MMA');
                 }
             },
             initECharts_bottom(option) {
@@ -171,9 +237,9 @@
                 let HomeBottomE = this.$echarts.init(
                     document.getElementById("HomeBottomE")
                 );
-                let HomeBottomF = this.$echarts.init(
-                    document.getElementById("HomeBottomF")
-                );
+                /* let HomeBottomF = this.$echarts.init(
+                     document.getElementById("HomeBottomF")
+                 );*/
                 let datas = "";
                 this.$axios.get("/api/jt_finance/plate_list").then((res) => {
                     datas = res.data.data;
@@ -181,7 +247,7 @@
                         "/api/index/liudabankuai",
                         this.financeTypeId,
                         datas[0].plateId,
-                        datas[0].plateName,
+                        '实业公司',
                         option,
                         "AD",
                         HomeBottomA
@@ -216,18 +282,18 @@
                     this.isAxios(
                         "/api/index/liudabankuai",
                         this.financeTypeId,
-                        datas[2].plateId,
-                        datas[2].plateName,
+                        datas[0].plateId,
+                        datas[0].plateName,
                         option,
                         "ED",
                         HomeBottomE
                     );
-                    this.isAxios("/api/index/liudabankuai", this.financeTypeId, datas[5].plateId,
+                    /*this.isAxios("/api/index/liudabankuai", this.financeTypeId, datas[5].plateId,
                         datas[5].plateName,
                         option,
                         "FD",
                         HomeBottomF
-                    );
+                    );*/
                 });
             },
             initBottomEnd(v) {
@@ -238,7 +304,7 @@
                     barWidth: 10,
                     title: {
                         x: "center",
-                        y: "-5",
+                        y: '',
                         text: "{a|     收益率}",
                         show: true,
                         textStyle: {
@@ -408,10 +474,10 @@
                     bottom: "20%",
                 },
                 title: {
-                    text: "{a|     完成百分比}",
+                    text: "{a|     }",
                     show: true,
-                    x: "20%",
-                    y: -5,
+                    x: "center",
+                    y: '',
                     textStyle: {
                         fontFamily: "幼圆",
                         lineHeight: 25,
@@ -425,7 +491,6 @@
                         },
                     },
                 },
-
                 tooltip: {
                     trigger: "axis",
                     axisPointer: {
@@ -433,20 +498,10 @@
                         lineStyle: {
                             color: "red",
                             width: 1,
-                            // shadowBlur:5,
-                            // opacity:1
                         },
                     },
                     formatter: function (list) {
-                        return (
-                            "营收" +
-                            ":" +
-                            "<br/>" +
-                            list[0].axisValue +
-                            "<br/>" +
-                            list[0].value / 10000 +
-                            "万元"
-                        );
+                        return ("营收" + ":" + "<br/>" + list[0].axisValue + "<br/>" + (list[0].value / 100000000).toFixed(2) + "亿元");
                     },
                 },
                 color: ["red", "#a549ff"],
@@ -470,7 +525,7 @@
                 ],
                 yAxis: [
                     {
-                        name: "万元",
+                        name: "亿",
                         axisLine: {
                             show: false,
                             lineStyle: {
@@ -478,12 +533,9 @@
                             },
                         },
                         type: "value",
-                        // min: 0,
-                        // max: 100,
-                        // interval: 50,
                         axisLabel: {
                             formatter: function (val) {
-                                return val / 10000;
+                                return val / 100000000;
                             },
                             textStyle: {
                                 color: "#FFF",
@@ -504,7 +556,7 @@
                 series: [
                     {
                         name: "营收",
-                        type: "bar",
+                        type: "line",
                         data: [],
                     },
                 ],
@@ -519,10 +571,10 @@
                     bottom: "20%",
                 },
                 title: {
-                    text: "{a|     完成百分比}",
+                    text: "{a|     }",
                     show: true,
-                    x: "20%",
-                    y: -5,
+                    x: "center",
+                    y: '',
                     textStyle: {
                         fontFamily: "幼圆",
                         lineHeight: 25,
@@ -549,15 +601,7 @@
                         },
                     },
                     formatter: function (list) {
-                        return (
-                            "营收" +
-                            ":" +
-                            "<br/>" +
-                            list[0].axisValue +
-                            "<br/>" +
-                            list[0].value / 10000 +
-                            "万元"
-                        );
+                        return ("利润" + ":" + "<br/>" + list[0].axisValue + "<br/>" + (list[0].value / 1000000).toFixed(2) + "百万");
                     },
                 },
                 color: ["red", "#a549ff"],
@@ -581,7 +625,7 @@
                 ],
                 yAxis: [
                     {
-                        name: "万元",
+                        name: "百万",
                         axisLine: {
                             show: false,
                             lineStyle: {
@@ -589,19 +633,15 @@
                             },
                         },
                         type: "value",
-                        // min: 0,
-                        // max: 100,
-                        // interval: 50,
                         axisLabel: {
                             formatter: function (val) {
-                                return val / 10000;
+                                return val / 1000000;
                             },
                             textStyle: {
                                 color: "#FFF",
                             },
                         },
                         axisTick: {
-                            //坐标轴刻度
                             show: false,
                         },
                         splitLine: {
@@ -612,13 +652,11 @@
                         },
                     },
                 ],
-                series: [
-                    {
-                        name: "营收",
-                        type: "bar",
-                        data: [],
-                    },
-                ],
+                series: [{
+                    name: "营收",
+                    type: "line",
+                    data: [],
+                }],
             };
             this.$axios.get("/api/index/finance_type_list").then((res) => {
                 this.finance = res.data.data;
@@ -645,7 +683,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-between;
 
             .btn {
                 width: 100%;
@@ -673,7 +711,7 @@
         }
 
         .item {
-            width: 13%;
+            width: 16%;
             height: 100%;
             border: 1px solid #38d;
             box-shadow: 0 0 20px #38d inset;
@@ -684,6 +722,16 @@
             .ei {
                 width: 100%;
                 height: 100%;
+            }
+
+            .MMA {
+                width: 55%;
+                position: absolute;
+                top: 14%;
+                right: 0;
+                text-align: left;
+                font-size: 12px;
+                color: white;
             }
         }
 

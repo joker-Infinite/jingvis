@@ -43,16 +43,17 @@
                                     timeValue: "",
                                     style: {
                                         width: "40%",
-                                        height: "450px",
+                                        height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
                                     },
-                                    EChartsItem: [{
+                                    EChartsItem: [
+                                        {
                                         /*ECharts的属性*/
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                         },
                                         option: {
                                             title: {
@@ -214,7 +215,8 @@
                                                 },
                                             ],
                                         },
-                                    }],
+                                    }
+                                    ],
                                 },
                                 {
                                     title: "",
@@ -222,7 +224,7 @@
                                     select: false,
                                     style: {
                                         width: "29.5%",
-                                        height: "450px",
+                                        height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -231,7 +233,7 @@
                                         /*ECharts的属性*/
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                         },
                                         option: {
                                             title: {text: "",},
@@ -311,7 +313,7 @@
                                     select: false,
                                     style: {
                                         width: "29.5%",
-                                        height: "450px",
+                                        height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -320,7 +322,7 @@
                                         /*ECharts的属性*/
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                         },
                                         option: {
                                             title: {text: ""},
@@ -409,7 +411,7 @@
                                     timeValue: "",
                                     style: {
                                         width: "40%",
-                                        height: "450px",
+                                        height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -417,7 +419,7 @@
                                     EChartsItem: [{
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                         },
                                         option: {
                                             title: {text: ""},
@@ -552,7 +554,7 @@
                                     select: false,
                                     style: {
                                         width: "29.5%",
-                                        height: "450px",
+                                        height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -560,7 +562,7 @@
                                     EChartsItem: [{
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                         },
                                         option: {
                                             title: {
@@ -574,7 +576,7 @@
                                             },
                                             legend: {
                                                 orient: "horizontal",
-                                                bottom: 10,
+                                                bottom: 5,
                                             },
                                             tooltip: {
                                                 trigger: "item",
@@ -626,8 +628,6 @@
                                                 },
                                                 labelLine: {
                                                     normal: {
-                                                        length: 20,
-                                                        length2: 25,
                                                         lineStyle: {
                                                             width: 1,
                                                         },
@@ -644,7 +644,7 @@
                                     select: false,
                                     style: {
                                         width: "29.5%",
-                                        height: "450px",
+                                        height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -652,7 +652,7 @@
                                     EChartsItem: [{
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                         },
                                         option: {
                                             title: {
@@ -714,8 +714,6 @@
                                                 },
                                                 labelLine: {
                                                     normal: {
-                                                        length: 30,
-                                                        length2: 10,
                                                         lineStyle: {
                                                             width: 1,
                                                         },

@@ -34,7 +34,7 @@
                                             end-placeholder="结束月份">
                                     </el-date-picker>
                                     <el-button icon="el-icon-search" type="primary"
-                                               @click="$emit('searchQuery',cit.EChartsBox,allQuery)">搜索
+                                               @click="$emit('searchQuery',cit,cit.EChartsBox,allQuery)">搜索
                                     </el-button>
                                 </div>
                             </div>

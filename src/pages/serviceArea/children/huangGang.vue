@@ -1,7 +1,7 @@
 <template>
     <div style="width: 100%;height: 100%;">
         <my-collapse-base ref="collapse" @selectionChange="selectionChange"
-                          :collapseData="collapseData"></my-collapse-base>
+                          @searchQuery="searchQuery" :collapseData="collapseData"></my-collapse-base>
     </div>
     <!-- 55555 -->
 </template>
@@ -5109,6 +5109,9 @@
             selectionChange(val) {
                 this.$emit('clickTable', true);
                 this.$router.push("/details/details");
+            },
+            searchQuery() {
+
             },
         },
         mounted() {

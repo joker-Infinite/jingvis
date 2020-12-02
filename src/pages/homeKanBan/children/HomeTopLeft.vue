@@ -87,7 +87,6 @@
                         trigger: "axis",
                         formatter: function (list) {
                             return list[0].name + '月' + ":" + '<br>' + '金额:' + (sum * list[0].value / 100 / 10000).toFixed(3) + '万元' + '<br>' + "占比:" + list[0].value.toFixed(2) + '%';
-
                         },
                         axisPointer: {
                             lineStyle: {
@@ -136,8 +135,8 @@
                             axisLabel: {
                                 //文字换行
                                 formatter: function (val) {
-                                    let data = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '11', '12']
-                                    return data[parseInt(val) - 1] + '\n' + '月'
+                                    let data = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                                    return data[parseInt(val) - 1] + '月'
                                 }
                                 // formatter: function (v) {
                                 //     return v.split("").join("\n");
@@ -308,8 +307,8 @@
                             axisLabel: {
                                 //文字换行
                                 formatter: function (val) {
-                                    let data = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '11', '12']
-                                    return data[parseInt(val) - 1] + '\n' + '月'
+                                    let data = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                                    return data[parseInt(val) - 1] + '月'
                                 }
                             }
                         }
