@@ -20,847 +20,721 @@
         },
         data() {
             return {
-                collapseData: [
-                    {
-                        id: "revenue",
-                        name: "营收",
-                        icon: require("../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "revenue_2020",
-                                year: 2020,
-                                collapseTitle: "2020年营收",
-                                allQuery: true,
-                                allQueryData: {
-                                    input: false,
-                                    select: false,
-                                    time: true
-                                },
-                                EChartsBox: [
-                                    {
-                                        title: "",
-                                        time: false,
-                                        timeValue: "",
+                collapseData: [{
+                    id: "revenue",
+                    name: "营收",
+                    icon: require("../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "revenue_2020",
+                            year: 2020,
+                            collapseTitle: "2020年营收",
+                            allQuery: true,
+                            allQueryData: {
+                                input: false,
+                                select: false,
+                                time: true
+                            },
+                            EChartsBox: [
+                                {
+                                    title: "",
+                                    time: false,
+                                    timeValue: "",
+                                    style: {
+                                        width: "40%",
+                                        height: "450px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [{
+                                        /*ECharts的属性*/
                                         style: {
-                                            width: "40%",
-                                            height: "450px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
+                                            width: "100%",
+                                            height: "400px",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
+                                        option: {
+                                            title: {
+                                                text: "",
+                                            },
+                                            tooltip: {
+                                                trigger: "axis",
+                                                formatter: function (val) {
+                                                    return (
+                                                        val[0].name +
+                                                        ":" + "<br />" +
+                                                        val[0].value / 10000 +
+                                                        "万元"
+                                                    );
                                                 },
-                                                option: {
-                                                    title: {
-                                                        text: "",
+                                            },
+                                            grid: {
+                                                top: "50",
+                                                right: "60",
+                                                left: "60",
+                                                bottom: "60", //图表尺寸大小
+                                            },
+                                            dataZoom: [{
+                                                type: 'inside'
+                                            }, {
+                                                type: 'slider'
+                                            }],
+                                            xAxis: [
+                                                {
+                                                    type: "category",
+                                                    color: "#59588D",
+                                                    data: [],
+                                                    axisLabel: {
+                                                        margin: 10,
+                                                        color: "#999",
+                                                        textStyle: {
+                                                            fontSize: 12,
+                                                        },
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
+                                                    axisLine: {
+                                                        lineStyle: {
+                                                            color:
+                                                                "rgba(107,107,107,0.37)",
+                                                        },
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                },
+                                            ],
+                                            yAxis: [
+                                                {
+                                                    axisLabel: {
                                                         formatter: function (val) {
-                                                            return (
-                                                                val[0].name +
-                                                                ":" + "<br />" +
-                                                                val[0].value / 10000 +
-                                                                "万元"
-                                                            );
+                                                            return val / 10000
+                                                        },
+                                                        color: "#999",
+                                                        textStyle: {
+                                                            fontSize: 12,
                                                         },
                                                     },
-                                                    grid: {
-                                                        top: "50",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "60", //图表尺寸大小
+                                                    axisLine: {
+                                                        lineStyle: {
+                                                            color:
+                                                                "rgba(107,107,107,0.37)",
+                                                        },
                                                     },
-                                                    dataZoom: [{
-                                                        type: 'inside'
-                                                    }, {
-                                                        type: 'slider'
-                                                    }],
-                                                    xAxis: [
-                                                        {
-                                                            type: "category",
-                                                            color: "#59588D",
-                                                            data: [],
-                                                            axisLabel: {
-                                                                margin: 10,
-                                                                color: "#999",
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                    splitLine: {
+                                                        lineStyle: {
+                                                            color:
+                                                                "rgba(131,101,101,0.2)",
+                                                            type: "dashed",
                                                         },
-                                                    ],
-                                                    yAxis: [
-                                                        {
-                                                            axisLabel: {
-                                                                formatter: function (val) {
-                                                                    return val / 10000
-                                                                },
-                                                                color: "#999",
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                            splitLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(131,101,101,0.2)",
-                                                                    type: "dashed",
-                                                                },
-                                                            },
-                                                        },
-                                                        {
-                                                            type: 'value',
-                                                            min: '',//最小坐标
-                                                            max: '',//最大坐标
-                                                            axisLabel: {
-                                                                fontSize: 14,
-                                                                color: "#999",
-                                                                formatter: '{value} %'
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            splitLine: {
-                                                                show: false//是否显示分隔线。
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                        }
-                                                    ],
-                                                    series: [
-                                                        {
-                                                            type: "bar",
-                                                            data: [],
-                                                            barWidth: "16px",
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color:
-                                                                        "#38A0FF",
-                                                                    barBorderRadius: [
-                                                                        30,
-                                                                        30,
-                                                                        30,
-                                                                        30,
-                                                                    ],
-                                                                },
-                                                            },
-                                                        },
-                                                        {
-                                                            data: [],
-                                                            type: "line",
-                                                            name: "折线图",
-                                                            yAxisIndex: 1,
-                                                            // symbol: 'none',
-                                                            lineStyle: {
-                                                                color: "#fea2a2",
-                                                                width: 2,
-                                                                shadowColor:
-                                                                    "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                                                                shadowBlur: 10,
-                                                                shadowOffsetY: 10,
-                                                            },
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                                                        offset: 0,
-                                                                        color: 'rgb(255, 204, 102)'
-                                                                    }, {
-                                                                        offset: 1,
-                                                                        color: 'rgb(255, 153, 51)'
-                                                                    }]),
-                                                                    label: {
-                                                                        show: true,
-                                                                        position: 'top',
-                                                                        textStyle: {
-                                                                            fontSize: '16',
-                                                                            color: 'rgb(255, 156, 54)',
-                                                                        }
-                                                                    }
-                                                                },
-                                                            },
-                                                            areaStyle: {
-                                                                normal: {
-                                                                    color:
-                                                                        "rgba(0,0,0,0)",
-                                                                },
-                                                            },
-                                                        },
-                                                    ],
+                                                    },
                                                 },
-                                            },
-                                        ],
-                                    },
-                                    {
-                                        title: "",
-                                        time: false,
-                                        select: false,
-                                        style: {
-                                            width: "29.5%",
-                                            height: "450px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
+                                                {
+                                                    type: 'value',
+                                                    min: '',//最小坐标
+                                                    max: '',//最大坐标
+                                                    axisLabel: {
+                                                        fontSize: 14,
+                                                        color: "#999",
+                                                        formatter: '{value} %'
+                                                    },
+                                                    axisLine: {
+                                                        lineStyle: {
+                                                            color:
+                                                                "rgba(107,107,107,0.37)",
+                                                        },
+                                                    },
+                                                    splitLine: {
+                                                        show: false//是否显示分隔线。
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                }
+                                            ],
+                                            series: [
+                                                {
+                                                    type: "bar",
+                                                    data: [],
+                                                    barWidth: "16px",
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color:
+                                                                "#38A0FF",
+                                                            barBorderRadius: [
+                                                                30,
+                                                                30,
+                                                                30,
+                                                                30,
+                                                            ],
+                                                        },
+                                                    },
                                                 },
-                                                option: {
-                                                    title: {
-                                                        text: "",
+                                                {
+                                                    data: [],
+                                                    type: "line",
+                                                    name: "折线图",
+                                                    yAxisIndex: 1,
+                                                    // symbol: 'none',
+                                                    lineStyle: {
+                                                        color: "#fea2a2",
+                                                        width: 2,
+                                                        shadowColor:
+                                                            "rgba(0, 0, 0, 0.3)", //设置折线阴影
+                                                        shadowBlur: 10,
+                                                        shadowOffsetY: 10,
                                                     },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
-                                                                    },
-                                                                },
-                                                            },
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                                offset: 0,
+                                                                color: 'rgb(255, 204, 102)'
+                                                            }, {
+                                                                offset: 1,
+                                                                color: 'rgb(255, 153, 51)'
+                                                            }]),
                                                             label: {
                                                                 show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
+                                                                position: 'top',
+                                                                textStyle: {
+                                                                    fontSize: '16',
+                                                                    color: 'rgb(255, 156, 54)',
+                                                                }
+                                                            }
                                                         },
-                                                    ],
+                                                    },
+                                                    areaStyle: {
+                                                        normal: {
+                                                            color:
+                                                                "rgba(0,0,0,0)",
+                                                        },
+                                                    },
                                                 },
-                                            },
-                                        ],
-                                    },
-                                    {
-                                        title: "",
-                                        time: false,
-                                        select: false,
-                                        style: {
-                                            width: "29.5%",
-                                            height: "450px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
+                                            ],
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                            center: ["48%", "50%"],
-                                                            radius: ["30%", "38%"],
-                                                            clockwise: true,
-                                                            hoverOffset: 20,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 10,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
-                                            },
-                                        ],
-                                    },
-                                ],
-                            },
-                            {
-                                id: "revenue_2019",
-                                year: 2019,
-                                collapseTitle: "2019年营收",
-                                allQuery: true,
-                                allQueryData: {
-                                    input: false,
-                                    select: false,
-                                    time: true
+                                    }],
                                 },
-                                EChartsBox: [
-                                    {
-                                        title: "",
-                                        time: false,
-                                        timeValue: "",
+                                {
+                                    title: "",
+                                    time: false,
+                                    select: false,
+                                    style: {
+                                        width: "29.5%",
+                                        height: "450px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [{
+                                        /*ECharts的属性*/
                                         style: {
-                                            width: "40%",
-                                            height: "450px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
+                                            width: "100%",
+                                            height: "400px",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
+                                        option: {
+                                            title: {text: "",},
+                                            grid: {
+                                                top: "20%",
+                                                right: "40",
+                                                left: "60",
+                                                bottom: "40", //图表尺寸大小
+                                            },
+                                            legend: {
+                                                orient: "horizontal",
+                                                bottom: 10,
+                                            },
+                                            tooltip: {trigger: "item",},
+                                            series: [{
+                                                type: "pie",
+                                                center: ["50%", "50%"],
+                                                radius: ["25%", "40%"],
+                                                clockwise: true,
+                                                avoidLabelOverlap: true,
+                                                hoverOffset: 15,
+                                                itemStyle: {
+                                                    normal: {
+                                                        color: function (v) {
+                                                            let colorList = [
+                                                                "#76c15c",
+                                                                "#15b3e2",
+                                                                "#2e65fd",
+                                                                "#1fcaa8",
+                                                                "#ee6565",
+                                                                "#fec02a",
+                                                                "#fe3922",
+                                                                "#52fe36",
+                                                                "#fe3afc",
+                                                            ];
+                                                            return colorList[v.dataIndex];
+                                                        },
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
+                                                },
+                                                label: {
+                                                    show: true,
+                                                    position: "outer",
+                                                    width: 0,
+                                                    height: 0,
+                                                    lineHeight: 0,
+                                                    backgroundColor: "auto",
+                                                    padding: [2, -2, 2, -2,],
+                                                    borderRadius: 2,
+                                                    distanceToLabelLine: 0,
+                                                    normal: {
+                                                        formatter(v) {
+                                                            let text = v.name + "\n" + v.percent + "%";
+                                                            return text;
+                                                        },
+                                                        textStyle: {
+                                                            fontSize: 16,
+                                                        },
+                                                    },
+                                                },
+                                                labelLine: {
+                                                    normal: {
+                                                        length: 30,
+                                                        length2: 25,
+                                                        lineStyle: {
+                                                            width: 1,
+                                                        },
+                                                    },
+                                                },
+                                                data: [],
+                                            }],
+                                        },
+                                    }],
+                                },
+                                {
+                                    title: "",
+                                    time: false,
+                                    select: false,
+                                    style: {
+                                        width: "29.5%",
+                                        height: "450px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [{
+                                        /*ECharts的属性*/
+                                        style: {
+                                            width: "100%",
+                                            height: "400px",
+                                        },
+                                        option: {
+                                            title: {text: ""},
+                                            tooltip: {trigger: "item"},
+
+                                            legend: {
+                                                orient: "horizontal",
+                                                bottom: 10,
+                                            },
+                                            series: [{
+                                                type: "pie",
+                                                minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
+                                                avoidLabelOverlap: true, //是否启用防止标签重叠策略
+                                                center: ["48%", "50%"],
+                                                radius: ["30%", "38%"],
+                                                clockwise: true,
+                                                hoverOffset: 20,
+                                                itemStyle: {
+                                                    normal: {
+                                                        color: function (v) {
+                                                            let colorList = [
+                                                                "#76c15c",
+                                                                "#15b3e2",
+                                                                "#2e65fd",
+                                                                "#1fcaa8",
+                                                                "#ee6565",
+                                                                "#fec02a",
+                                                                "#fe3922",
+                                                                "#52fe36",
+                                                                "#fe3afc",
+                                                            ];
+                                                            return colorList[v.dataIndex];
+                                                        },
+                                                    },
+                                                },
+                                                label: {
+                                                    show: true,
+                                                    position: "outer",
+                                                    width: 0,
+                                                    height: 0,
+                                                    lineHeight: 0,
+                                                    backgroundColor: "auto",
+                                                    padding: [2, -2, 2, -2,],
+                                                    borderRadius: 2,
+                                                    distanceToLabelLine: 0,
+                                                    normal: {
+                                                        formatter(v) {
+                                                            let text = v.name + "\n" + v.percent + "%";
+                                                            return text;
+                                                        },
+                                                        textStyle: {
+                                                            fontSize: 16,
+                                                        },
+                                                    },
+                                                },
+                                                labelLine: {
+                                                    normal: {
+                                                        length: 30,
+                                                        length2: 10,
+                                                        lineStyle: {
+                                                            width: 1,
+                                                        },
+                                                    },
+                                                },
+                                                data: [],
+                                            }],
+                                        },
+                                    }],
+                                },
+                            ]
+                        },
+                        {
+                            id: "revenue_2019",
+                            year: 2019,
+                            collapseTitle: "2019年营收",
+                            allQuery: true,
+                            allQueryData: {
+                                input: false,
+                                select: false,
+                                time: true
+                            },
+                            EChartsBox: [
+                                {
+                                    title: "",
+                                    time: false,
+                                    timeValue: "",
+                                    style: {
+                                        width: "40%",
+                                        height: "450px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [{
+                                        style: {
+                                            width: "100%",
+                                            height: "400px",
+                                        },
+                                        option: {
+                                            title: {text: ""},
+                                            tooltip: {
+                                                trigger: "axis",
+                                                formatter: function (val) {
+                                                    return (val[0].name + ":" + "<br />" + val[0].value / 10000 + "万元");
+                                                },
+                                            },
+                                            grid: {
+                                                top: "50",
+                                                right: "60",
+                                                left: "60",
+                                                bottom: "60",
+                                            },
+                                            dataZoom: [
+                                                {type: 'inside'},
+                                                {type: 'slider'}
+                                            ],
+                                            xAxis: [{
+                                                type: "category",
+                                                color: "#59588D",
+                                                data: [],
+                                                axisLabel: {
+                                                    margin: 10,
+                                                    color: "#999",
+                                                    textStyle: {fontSize: 12},
+                                                },
+                                                axisLine: {
+                                                    lineStyle: {color: "rgba(107,107,107,0.37)",},
+                                                },
+                                                axisTick: {show: false},
+                                            }],
+                                            yAxis: [
+                                                {
+                                                    axisLabel: {
                                                         formatter: function (val) {
-                                                            return (
-                                                                val[0].name +
-                                                                ":" + "<br />" +
-                                                                val[0].value / 10000 +
-                                                                "万元"
-                                                            );
+                                                            return val / 10000
+                                                        },
+                                                        color: "#999",
+                                                        textStyle: {fontSize: 12},
+                                                    },
+                                                    axisLine: {
+                                                        lineStyle: {
+                                                            color:
+                                                                "rgba(107,107,107,0.37)",
                                                         },
                                                     },
-                                                    grid: {
-                                                        top: "50",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "60", //图表尺寸大小
+                                                    axisTick: {show: false,},
+                                                    splitLine: {
+                                                        lineStyle: {
+                                                            color: "rgba(131,101,101,0.2)",
+                                                            type: "dashed",
+                                                        },
                                                     },
-                                                    dataZoom: [{
-                                                        type: 'inside'
-                                                    }, {
-                                                        type: 'slider'
-                                                    }],
-                                                    xAxis: [
-                                                        {
-                                                            type: "category",
-                                                            color: "#59588D",
-                                                            data: [],
-                                                            axisLabel: {
-                                                                margin: 10,
-                                                                color: "#999",
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                        },
-                                                    ],
-                                                    yAxis: [
-                                                        {
-                                                            axisLabel: {
-                                                                formatter: function (val) {
-                                                                    return val / 10000
-                                                                },
-                                                                color: "#999",
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                            splitLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(131,101,101,0.2)",
-                                                                    type: "dashed",
-                                                                },
-                                                            },
-                                                        },
-                                                        {
-                                                            type: 'value',
-                                                            min: '',//最小坐标
-                                                            max: '',//最大坐标
-                                                            axisLabel: {
-                                                                fontSize: 14,
-                                                                color: "#999",
-                                                                formatter: '{value} %'
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            splitLine: {
-                                                                show: false//是否显示分隔线。
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                        }
-                                                    ],
-                                                    series: [
-                                                        {
-                                                            type: "bar",
-                                                            data: [],
-                                                            barWidth: "16px",
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color:
-                                                                        "#38A0FF",
-                                                                    barBorderRadius: [
-                                                                        30,
-                                                                        30,
-                                                                        30,
-                                                                        30,
-                                                                    ],
-                                                                },
-                                                            },
-                                                        },
-                                                        {
-                                                            data: [],
-                                                            type: "line",
-                                                            name: "折线图",
-                                                            yAxisIndex: 1,
-                                                            // symbol: 'none',
-                                                            lineStyle: {
-                                                                color: "#fea2a2",
-                                                                width: 2,
-                                                                shadowColor:
-                                                                    "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                                                                shadowBlur: 10,
-                                                                shadowOffsetY: 10,
-                                                            },
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                                                        offset: 0,
-                                                                        color: 'rgb(255, 204, 102)'
-                                                                    }, {
-                                                                        offset: 1,
-                                                                        color: 'rgb(255, 153, 51)'
-                                                                    }]),
-                                                                    label: {
-                                                                        show: true,
-                                                                        position: 'top',
-                                                                        textStyle: {
-                                                                            fontSize: '16',
-                                                                            color: 'rgb(255, 156, 54)',
-                                                                        }
-                                                                    }
-                                                                },
-                                                            },
-                                                            areaStyle: {
-                                                                normal: {
-                                                                    color:
-                                                                        "rgba(0,0,0,0)",
-                                                                },
-                                                            },
-                                                        },
-                                                    ],
                                                 },
-                                            },
-                                        ],
-                                    },
-                                    {
-                                        title: "",
-                                        time: false,
-                                        select: false,
-                                        style: {
-                                            width: "29.5%",
-                                            height: "450px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
+                                                {
+                                                    type: 'value',
+                                                    min: '',//最小坐标
+                                                    max: '',//最大坐标
+                                                    axisLabel: {
+                                                        fontSize: 14,
+                                                        color: "#999",
+                                                        formatter: '{value} %'
+                                                    },
+                                                    axisLine: {
+                                                        lineStyle: {color: "rgba(107,107,107,0.37)"},
+                                                    },
+                                                    splitLine: {show: false},
+                                                    axisTick: {show: false},
+                                                }
+                                            ],
+                                            series: [
+                                                {
+                                                    type: "bar",
+                                                    data: [],
+                                                    barWidth: "16px",
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: "#38A0FF",
+                                                            barBorderRadius: [30, 30, 30, 30],
+                                                        },
+                                                    },
                                                 },
-                                                option: {
-                                                    title: {
-                                                        text: "",
+                                                {
+                                                    data: [],
+                                                    type: "line",
+                                                    name: "折线图",
+                                                    yAxisIndex: 1,
+                                                    lineStyle: {
+                                                        color: "#fea2a2",
+                                                        width: 2,
+                                                        shadowColor: "rgba(0, 0, 0, 0.3)",
+                                                        shadowBlur: 10,
+                                                        shadowOffsetY: 10,
                                                     },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
-                                                                    },
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                                                {
+                                                                    offset: 0,
+                                                                    color: 'rgb(255, 204, 102)'
                                                                 },
-                                                            },
+                                                                {
+                                                                    offset: 1,
+                                                                    color: 'rgb(255, 153, 51)'
+                                                                }
+                                                            ]),
                                                             label: {
                                                                 show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
+                                                                position: 'top',
+                                                                textStyle: {
+                                                                    fontSize: '16',
+                                                                    color: 'rgb(255, 156, 54)',
+                                                                }
+                                                            }
                                                         },
-                                                    ],
+                                                    },
+                                                    areaStyle: {
+                                                        normal: {
+                                                            color: "rgba(0,0,0,0)",
+                                                        },
+                                                    },
                                                 },
-                                            },
-                                        ],
-                                    },
-                                    {
-                                        title: "",
-                                        time: false,
-                                        select: false,
-                                        style: {
-                                            width: "29.5%",
-                                            height: "450px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
+                                            ],
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                            center: ["48%", "50%"],
-                                                            radius: ["30%", "38%"],
-                                                            clockwise: true,
-                                                            hoverOffset: 20,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 10,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
-                                            },
-                                        ],
+                                    }],
+                                },
+                                {
+                                    title: "",
+                                    time: false,
+                                    select: false,
+                                    style: {
+                                        width: "29.5%",
+                                        height: "450px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
                                     },
-                                ],
-                            },
-                            {
-                                id: "revenue_gd",
-                                collapseTitle: "查看更多",
-                                EChartsBox: []
-                            },
-                        ],
-                    },
+                                    EChartsItem: [{
+                                        style: {
+                                            width: "100%",
+                                            height: "400px",
+                                        },
+                                        option: {
+                                            title: {
+                                                text: "",
+                                            },
+                                            grid: {
+                                                top: "20%",
+                                                right: "40",
+                                                left: "60",
+                                                bottom: "40",
+                                            },
+                                            legend: {
+                                                orient: "horizontal",
+                                                bottom: 10,
+                                            },
+                                            tooltip: {
+                                                trigger: "item",
+                                            },
+                                            series: [{
+                                                type: "pie",
+                                                center: ["50%", "50%"],
+                                                radius: ["25%", "40%"],
+                                                clockwise: true,
+                                                avoidLabelOverlap: true,
+                                                hoverOffset: 15,
+                                                itemStyle: {
+                                                    normal: {
+                                                        color: function (v) {
+                                                            let colorList = [
+                                                                "#76c15c",
+                                                                "#15b3e2",
+                                                                "#2e65fd",
+                                                                "#1fcaa8",
+                                                                "#ee6565",
+                                                                "#fec02a",
+                                                                "#fe3922",
+                                                                "#52fe36",
+                                                                "#fe3afc",
+                                                            ];
+                                                            return colorList[v.dataIndex];
+                                                        },
+                                                    },
+                                                },
+                                                label: {
+                                                    show: true,
+                                                    position: "outer",
+                                                    width: 0,
+                                                    height: 0,
+                                                    lineHeight: 0,
+                                                    backgroundColor: "auto",
+                                                    padding: [2, -2, 2, -2,],
+                                                    borderRadius: 2,
+                                                    distanceToLabelLine: 0,
+                                                    normal: {
+                                                        formatter(v) {
+                                                            let text = v.name + "\n" + v.percent + "%";
+                                                            return text;
+                                                        },
+                                                        textStyle: {
+                                                            fontSize: 16,
+                                                        },
+                                                    },
+                                                },
+                                                labelLine: {
+                                                    normal: {
+                                                        length: 20,
+                                                        length2: 25,
+                                                        lineStyle: {
+                                                            width: 1,
+                                                        },
+                                                    },
+                                                },
+                                                data: [],
+                                            }],
+                                        },
+                                    }],
+                                },
+                                {
+                                    title: "",
+                                    time: false,
+                                    select: false,
+                                    style: {
+                                        width: "29.5%",
+                                        height: "450px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [{
+                                        style: {
+                                            width: "100%",
+                                            height: "400px",
+                                        },
+                                        option: {
+                                            title: {
+                                                text: "",
+                                            },
+                                            tooltip: {
+                                                trigger: "item",
+                                            },
+
+                                            legend: {
+                                                orient: "horizontal",
+                                                bottom: 10,
+                                            },
+                                            series: [{
+                                                type: "pie",
+                                                avoidLabelOverlap: true,
+                                                center: ["48%", "50%"],
+                                                radius: ["30%", "38%"],
+                                                clockwise: true,
+                                                hoverOffset: 20,
+                                                itemStyle: {
+                                                    normal: {
+                                                        color: function (v) {
+                                                            let colorList = [
+                                                                "#76c15c",
+                                                                "#15b3e2",
+                                                                "#2e65fd",
+                                                                "#1fcaa8",
+                                                                "#ee6565",
+                                                                "#fec02a",
+                                                                "#fe3922",
+                                                                "#52fe36",
+                                                                "#fe3afc",
+                                                            ];
+                                                            return colorList[v.dataIndex];
+                                                        },
+                                                    },
+                                                },
+                                                label: {
+                                                    show: true,
+                                                    position: "outer",
+                                                    width: 0,
+                                                    height: 0,
+                                                    lineHeight: 0,
+                                                    backgroundColor:
+                                                        "auto",
+                                                    padding: [2, -2, 2, -2,],
+                                                    borderRadius: 2,
+                                                    distanceToLabelLine: 0,
+                                                    normal: {
+                                                        formatter(v) {
+                                                            let text = v.name + "\n" + v.percent + "%";
+                                                            return text;
+                                                        },
+                                                        textStyle: {
+                                                            fontSize: 16,
+                                                        },
+                                                    },
+                                                },
+                                                labelLine: {
+                                                    normal: {
+                                                        length: 30,
+                                                        length2: 10,
+                                                        lineStyle: {
+                                                            width: 1,
+                                                        },
+                                                    },
+                                                },
+                                                data: [],
+                                            }],
+                                        },
+                                    }],
+                                },
+                            ],
+                        },
+                        {
+                            id: "revenue_gd",
+                            collapseTitle: "查看更多",
+                            EChartsBox: []
+                        },
+                    ],
+                },
                     {
                         id: "profit",
                         name: "利润",
@@ -1104,9 +978,7 @@
                                                             hoverOffset: 15,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (v) {
                                                                         let colorList = [
                                                                             "#76c15c",
                                                                             "#15b3e2",
@@ -1118,10 +990,7 @@
                                                                             "#52fe36",
                                                                             "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[v.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -1133,25 +1002,16 @@
                                                                 lineHeight: 0,
                                                                 backgroundColor:
                                                                     "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                padding: [2, -2, 2, -2,],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
+                                                                        let text = v.name + "\n" + v.percent + "%";
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -1213,9 +1073,7 @@
                                                             hoverOffset: 20,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (v) {
                                                                         let colorList = [
                                                                             "#76c15c",
                                                                             "#15b3e2",
@@ -1227,10 +1085,7 @@
                                                                             "#52fe36",
                                                                             "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[v.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -1240,31 +1095,20 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
+                                                                        let text = v.name + "\n" + v.percent + "%";
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
-
                                                             labelLine: {
                                                                 normal: {
                                                                     length: 30,
@@ -1488,7 +1332,6 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
                                                     height: "400px",
@@ -1501,7 +1344,7 @@
                                                         top: "20%",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "40",
                                                     },
                                                     legend: {
                                                         orient: "horizontal",
@@ -1520,9 +1363,7 @@
                                                             hoverOffset: 15,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (v) {
                                                                         let colorList = [
                                                                             "#76c15c",
                                                                             "#15b3e2",
@@ -1534,10 +1375,7 @@
                                                                             "#52fe36",
                                                                             "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[v.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -1547,27 +1385,17 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2,],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
+                                                                        let text = v.name + "\n" + v.percent + "%";
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -1629,9 +1457,7 @@
                                                             hoverOffset: 20,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (v) {
                                                                         let colorList = [
                                                                             "#76c15c",
                                                                             "#15b3e2",
@@ -1643,10 +1469,7 @@
                                                                             "#52fe36",
                                                                             "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[v.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -1656,31 +1479,20 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2,],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
+                                                                        let text = v.name + "\n" + v.percent + "%";
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
-
                                                             labelLine: {
                                                                 normal: {
                                                                     length: 30,
@@ -1869,7 +1681,6 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
                                                     height: "400px",
@@ -1882,7 +1693,7 @@
                                                         top: "20%",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "40",
                                                     },
                                                     legend: {
                                                         orient: "horizontal",
@@ -1901,20 +1712,19 @@
                                                             hoverOffset: 15,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (v) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[v.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -1924,27 +1734,17 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2,],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
+                                                                        let text = v.name + "\n" + v.percent + "%";
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -2008,7 +1808,6 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
                                                     height: "400px",
@@ -2029,17 +1828,15 @@
                                                     series: [
                                                         {
                                                             type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
+                                                            minAngle: 5,
+                                                            avoidLabelOverlap: true,
                                                             center: ["48%", "50%"],
                                                             radius: ["30%", "38%"],
                                                             clockwise: true,
                                                             hoverOffset: 20,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (v) {
                                                                         let colorList = [
                                                                             "#76c15c",
                                                                             "#15b3e2",
@@ -2047,11 +1844,11 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[v.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -2061,27 +1858,17 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2,],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
+                                                                        let text = v.name + "\n" + v.percent + "%";
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -2533,12 +2320,7 @@
                                                     tooltip: {
                                                         trigger: "axis",
                                                         formatter: function (val) {
-                                                            return (
-                                                                val[0].name +
-                                                                ":" +
-                                                                val[0].value +
-                                                                "元"
-                                                            );
+                                                            return (val[0].name + ":" + val[0].value + "元");
                                                         },
                                                     },
                                                     grid: {
@@ -2693,7 +2475,6 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
                                                     height: "400px",
@@ -2706,7 +2487,7 @@
                                                         top: "20%",
                                                         right: "40",
                                                         left: "60",
-                                                        bottom: "40", //图表尺寸大小
+                                                        bottom: "40",
                                                     },
                                                     legend: {
                                                         orient: "horizontal",
@@ -2725,20 +2506,19 @@
                                                             hoverOffset: 15,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (v) {
                                                                         let colorList = [
-                                                                            "#1fcaa8",
+                                                                            "#76c15c",
                                                                             "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
                                                                             "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[v.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -2748,27 +2528,17 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
+                                                                        let text = v.name + "\n" + v.percent + "%";
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -2861,9 +2631,7 @@
                                                             hoverOffset: 20,
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: function (
-                                                                        params
-                                                                    ) {
+                                                                    color: function (v) {
                                                                         let colorList = [
                                                                             "#76c15c",
                                                                             "#15b3e2",
@@ -2871,11 +2639,11 @@
                                                                             "#1fcaa8",
                                                                             "#ee6565",
                                                                             "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
-                                                                        return colorList[
-                                                                            params
-                                                                                .dataIndex
-                                                                            ];
+                                                                        return colorList[v.dataIndex];
                                                                     },
                                                                 },
                                                             },
@@ -2885,27 +2653,17 @@
                                                                 width: 0,
                                                                 height: 0,
                                                                 lineHeight: 0,
-                                                                backgroundColor:
-                                                                    "auto",
-                                                                padding: [
-                                                                    2,
-                                                                    -2,
-                                                                    2,
-                                                                    -2,
-                                                                ],
+                                                                backgroundColor: "auto",
+                                                                padding: [2, -2, 2, -2],
                                                                 borderRadius: 2,
                                                                 distanceToLabelLine: 0,
                                                                 normal: {
                                                                     formatter(v) {
-                                                                        let text =
-                                                                            v.name +
-                                                                            "\n" +
-                                                                            v.percent +
-                                                                            "%";
+                                                                        let text = v.name + "\n" + v.percent + "%";
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -3694,7 +3452,6 @@
                                                     legend: {
                                                         orient: "horizontal",
                                                         bottom: 10,
-                                                        icon: "circle",
                                                     },
                                                     tooltip: {
                                                         trigger: "item",
@@ -3719,9 +3476,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#fd866a",
-                                                                            "#9e87ff",
-                                                                            "#73acff",
+                                                                            "#76c15c",
+                                                                            "#15b3e2",
+                                                                            "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -3752,7 +3515,7 @@
                                                                         );
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 15,
+                                                                        fontSize: 16,
                                                                     },
                                                                     rich: {
                                                                         name: {
@@ -3761,8 +3524,7 @@
 
                                                                         },
                                                                         value: {
-                                                                            fontSize: 18,
-                                                                            fontWeight: 'bold',
+                                                                            fontSize: 16,
 
                                                                         }
                                                                     }
@@ -3819,6 +3581,9 @@
                                                             radius: [0, "30%"],
                                                             label: {
                                                                 position: "inner",
+                                                                textStyle: {
+                                                                    fontSize: 16
+                                                                }
                                                             },
                                                             itemStyle: {
                                                                 normal: {
@@ -3829,9 +3594,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#73acff",
-                                                                            "#fd866a",
-                                                                            "#9e87ff",
+                                                                            "#76c15c",
+                                                                            "#15b3e2",
+                                                                            "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -3840,7 +3611,6 @@
                                                                     },
                                                                 },
                                                             },
-
                                                             selectedMode: "single",
                                                             data: [
                                                                 {
@@ -3868,9 +3638,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#73acff",
-                                                                            "#fd866a",
-                                                                            "#9e87ff",
+                                                                            "#76c15c",
+                                                                            "#15b3e2",
+                                                                            "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -3914,7 +3690,7 @@
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 15,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -4101,9 +3877,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#fd866a",
-                                                                            "#9e87ff",
-                                                                            "#73acff",
+                                                                            "#76c15c",
+                                                                            "#15b3e2",
+                                                                            "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -4138,7 +3920,7 @@
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 15,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -4202,9 +3984,15 @@
                                                                         params
                                                                     ) {
                                                                         let colorList = [
-                                                                            "#73acff",
-                                                                            "#fd866a",
-                                                                            "#9e87ff",
+                                                                            "#76c15c",
+                                                                            "#15b3e2",
+                                                                            "#2e65fd",
+                                                                            "#1fcaa8",
+                                                                            "#ee6565",
+                                                                            "#fec02a",
+                                                                            "#fe3922",
+                                                                            "#52fe36",
+                                                                            "#fe3afc",
                                                                         ];
                                                                         return colorList[
                                                                             params
@@ -5569,7 +5357,7 @@
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
@@ -6014,7 +5802,7 @@
                                                                         return text;
                                                                     },
                                                                     textStyle: {
-                                                                        fontSize: 12,
+                                                                        fontSize: 16,
                                                                     },
                                                                 },
                                                             },
