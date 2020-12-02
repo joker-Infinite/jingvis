@@ -28,7 +28,7 @@ export default {
   height: 30px;
   position: absolute;
   display: none;
-  z-index: 9;
+  z-index: 900;
   top: 0;
   right: 0;
 

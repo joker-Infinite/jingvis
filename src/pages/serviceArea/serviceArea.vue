@@ -1,6 +1,10 @@
 <template>
     <div style="width: 100%; height: 100%;">
-        <my-collapse-base ref="collapse" :collapseData="collapseData" @searchQuery="searchQuery"></my-collapse-base>
+        <my-collapse-base 
+            ref="collapse" 
+            :collapseData="collapseData" 
+            @searchQuery="searchQuery">
+        </my-collapse-base>
     </div>
 </template>
 
@@ -6074,19 +6078,36 @@
                                 collapseTitle: "查看更多",
                                 EChartsBox: []
                             },
+                           
                         ],
                     },
                 ],
+                 arrData:[],
+                 ValueData:{
+                    inputValue: '',
+                    selectValue: '',
+                    timeValue: ['',''],
+                },
             };
+            
         },
         methods: {
-            searchQuery(d, q) {
-                console.log(d)
-                console.log(q)
+             async searchQuery(id, collapse , year ,name) {
+                this.ValueData = collapse;
+                id.EChartsBox.forEach((element,index) => {
+                    element.EChartsItem.forEach((element,sindex) => {
+                        this.arrData.push({
+                            id:id.id+'-'+index+'-'+sindex,
+                            option:element.option
+                        })
+                    });
+                });
+                await this.obtainData(name, year);
             },
             async obtainData(name, year) {
                 let data = [];
                 let id = '';
+                this.ValueData.timeValue === null && (this.ValueData.timeValue = ['','']);
                 const res = await this.$axios.get("/api/sundry/finance_type_list");
                 for (let i = 0; i < res.data.data.length; i++) {
                     if (res.data.data[i].financeName == name) {
@@ -6097,7 +6118,9 @@
                 await this.$axios.get('/api/jtService/list_service_finance', {
                     params: {
                         financeTypeId: id,
-                        nianfen: year
+                        nianfen: year,
+                        endTime:this.ValueData.timeValue[1],
+                        stateTime:this.ValueData.timeValue[0]
                     }
                 }).then(v => {
                     data = v.data.data;
@@ -6108,6 +6131,8 @@
                                 if (cItem.year == year) {
                                     cItem.EChartsBox.forEach((sItem, sIndex) => {
                                         if (sIndex == 0) {
+                                            sItem.EChartsItem[0].option.series[0].data = [];
+                                            sItem.EChartsItem[0].option.xAxis[0].data = [];
                                             data.xYListFrom1.forEach((i, ix) => {
                                                 sItem.EChartsItem[0].option.series[0].data.push(i.yAxis);
                                                 mm.push(i.yAxis);
@@ -6121,6 +6146,7 @@
                                             }
                                         }
                                         if (sIndex == 1) {
+                                            sItem.EChartsItem[0].option.series[0].data=[];
                                             data.xYListFrom2.forEach((i, ix) => {
                                                 sItem.EChartsItem[0].option.series[0].data.push({
                                                     name: i.xBxis,
@@ -6129,6 +6155,7 @@
                                             })
                                         }
                                         if (sIndex == 2) {
+                                            sItem.EChartsItem[0].option.series[0].data=[]
                                             data.xYListFrom3.forEach((i, ix) => {
                                                 sItem.EChartsItem[0].option.series[0].data.push({
                                                     name: i.xBxis,
@@ -6141,6 +6168,7 @@
                             })
                         }
                     })
+                    this.$refs['collapse'].searchClick(this.arrData)
                 })
             },
         },

@@ -12,7 +12,7 @@
                             :key="cix"
                             :class="{ noMargin: cix === 0 }">
                         <template slot="title">
-                            {{ cit.collapseTitle }}
+                            {{ cit.collapseTitle }}  
                         </template>
                         <div class="ECharts"
                              style="width: 100%; min-height: 100px">
@@ -34,7 +34,7 @@
                                             end-placeholder="结束月份">
                                     </el-date-picker>
                                     <el-button icon="el-icon-search" type="primary"
-                                               @click="$emit('searchQuery',cit.EChartsBox,allQuery)">搜索
+                                               @click="refreshClick(cit,allQuery,cit.year,item.name,cit)">搜索
                                     </el-button>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                             end-placeholder="结束月份">
                                     </el-date-picker>
                                     <el-button icon="el-icon-search" type="primary" v-if="sit.time || sit.select"
-                                               @click="$emit('searchQuery',cit.EChartsBox,query)">搜索
+                                               @click="refreshClick(cit,query,cit.year,item.name,sit)">搜索
                                     </el-button>
                                 </div>
                                 <div v-for="(wit, wix) in sit.EChartsItem"
@@ -70,7 +70,7 @@
                                             v-if="wit.type !=='box' && !wit.type "
                                             class="information"
                                     ></my-information>
-                                    <div class="null" v-if="!wit.type&&wit.option.series[0].data.length===0">
+                                    <div class="null" v-if="!wit.type && wit.option.series[0].data.length ==0" >
                                         暂无数据
                                     </div>
                                     <div v-if="!wit.type "
@@ -82,6 +82,8 @@
                                          :style="{marginTop : sit.time || sit.select ? '60px' :''}"
                                          v-if="!!wit.type && wit.type !== 'box'">
                                         <my-table
+                                                :totalCount="totalCount"
+                                                @ClickTotal="ClickTotal"
                                                 @selectionChange="(row) => {$emit('selectionChange',row);}"
                                                 :columns="wit.columns"
                                                 :height="wit.height? wit.height:'300px'"
@@ -140,6 +142,10 @@
                 type: Array,
                 default: [],
             },
+            totalCount:{
+                type:Number,
+                default: 0,
+            }
         },
         data() {
             return {
@@ -167,18 +173,34 @@
                     inputValue: '',
                     selectValue: '',
                     timeValue: ''
-                }
+                },
+                canSearch:true,
+                NoDataTmie:1000
             };
         },
         methods: {
+            searchClick(arr){
+                arr.forEach(i=>{
+                    this.$echarts.init(document.getElementById(i.id)).dispose();
+                    this.$nextTick((_) => {
+                        this.$echarts.init(document.getElementById(i.id)).setOption(i.option);
+                    });
+                })
+            },
+            // 按钮的节流
+            refreshClick(EChartsBox,query,year,name,collapseItem){
+                this.$emit('searchQuery',EChartsBox,query,year,name)             
+            },
             async refresh() {
                 let timeID = "";
                 this.time_ = -1;
+                let number = 1000;
                 await new Promise((resolve) => {
                     timeID = setInterval((_) => {
                         if (this.time_ > -1 && this.time_ !== this.EChartsData_.length) {
                             let data = this.EChartsData_[this.time_];
-                            if (data.EChartsBox && data.EChartsBox.length !== 0) {
+                            console.log(data)
+                            if (!!data && data.EChartsBox && data.EChartsBox.length !== 0) {
                                 data.EChartsBox.forEach((fi, fx) => {
                                     fi.EChartsItem.forEach((si, sx) => {
                                         let id = this.EChartsData_[this.time_].id + "-" + fx + "-" + sx;
@@ -389,6 +411,9 @@
                 }
 
             },
+            ClickTotal(value){
+                this.$emit('ClickTotal',value)
+            }
         },
         mounted() {
             this.scrollChange();

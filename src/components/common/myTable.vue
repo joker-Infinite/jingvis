@@ -55,10 +55,10 @@
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="currentPage1"
-                :page-sizes="[20, 50, 100]"
-                :page-size="20"
+                :page-sizes="[5, 15, 20,30]"
+                :page-size="5"
                 layout="total, sizes, prev, pager, next, jumper"
-                :total="100"
+                :total="totalCount"
         >
         </el-pagination>
     </div>
@@ -68,6 +68,10 @@
     export default {
         name: "myTable",
         props: {
+            totalCount:{
+                type:Number,
+                default:0
+            },
             data: {
                 type: Array,
                 default: []
@@ -106,7 +110,11 @@
                 currentPage1: 1,
                 currentPage2: 2,
                 currentPage3: 3,
-                currentPage4: 4
+                currentPage4: 4,
+                ClickTotal:{
+                    pageSize:5,
+                    pageNum:0
+                }
             };
         },
         methods: {
@@ -120,10 +128,14 @@
                 this.$emit("selectionChange", v);
             },
             handleSizeChange(val) {
-                console.log(`每页 ${val} 条`);
+                this.ClickTotal.pageSize = val;
+                this.$emit('ClickTotal',this.ClickTotal)
+                console.log(`每页 ${val} 条`,this.ClickTotal);
             },
             handleCurrentChange(val) {
-                console.log(`当前页: ${val}`);
+                this.ClickTotal.pageNum = val;
+                this.$emit('ClickTotal',this.ClickTotal)
+                console.log(`当前页: ${val}`,this.ClickTotal);
             }
         }
     };

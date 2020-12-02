@@ -1,17 +1,24 @@
 <template>
     <div style="width: 100%;height: 100%;">
-        <my-collapse-base ref="collapse" @selectionChange="selectionChange"
-                          :collapseData="collapseData"></my-collapse-base>
+        <my-collapse-base  
+            ref="collapse"
+            @selectionChange="selectionChange"
+            @searchQuery="searchQuery"
+            @ClickTotal="ClickTotal"
+            :totalCount="totalCount"
+            :collapseData="collapseData">
+        </my-collapse-base>
     </div>
     <!-- 55555 -->
 </template>
 
 <script>
     import MyCollapseBase from "../../../components/common/myCollapseBase";
-
+    import common from "../../../components/js/common";
     export default {
         name: "huangGang",
         components: {MyCollapseBase},
+        mixins: [common],
         props: {
             viewChange: {
                 type: Boolean,
@@ -54,7 +61,7 @@
                                                 },
                                                 isPagination: true,
                                                 columns: [
-                                                    {prop: "A", label: "服务区名称"},
+                                                    {prop: "serviceName", label: "服务区名称"},
                                                     {prop: "B", label: "高速名称"},
                                                     {
                                                         prop: "C",
@@ -64,7 +71,7 @@
                                                             {prop: "mincart", label: "小车"},
                                                         ],
                                                     },
-                                                    {prop: "E", label: "收益(元)"},
+                                                    {prop: "shouyi", label: "收益(元)"},
                                                     {prop: "G", label: "利润(元)"},
                                                     {prop: "H", label: "坪效(元)"},
                                                     {prop: "I", label: "面积(m)"},
@@ -80,38 +87,7 @@
                                                         ],
                                                     },
                                                 ],
-                                                tableData: [
-                                                    {
-                                                        A: "批发商a",
-                                                        B: "8%",
-                                                        G: "8%",
-                                                        D: "8%",
-                                                        E: "8%",
-                                                        I: '3000',
-                                                        H: "110000",
-                                                        maxcart: '8%',
-                                                        mincart: '8%',
-                                                        refuel: '55',
-                                                        snack: '65',
-                                                        convenience: '99',
-                                                        catering: '85'
-                                                    },
-                                                    {
-                                                        A: "批发商b",
-                                                        B: "8%",
-                                                        G: "8%",
-                                                        D: "8%",
-                                                        E: "8%",
-                                                        I: '3000',
-                                                        H: "110000",
-                                                        maxcart: '8%',
-                                                        mincart: '8%',
-                                                        refuel: '55',
-                                                        snack: '65',
-                                                        convenience: '99',
-                                                        catering: '85'
-                                                    },
-                                                ],
+                                                tableData: [],
                                             },
                                         ],
                                     },
@@ -487,12 +463,17 @@
                                                     tooltip: {
                                                         trigger: "axis",
                                                         formatter: function (val) {
-                                                            return val[0].name + ":" + val[0].value + "元";
+                                                            return (
+                                                                val[0].name +
+                                                                ":" + "<br />" +
+                                                                val[0].value / 10000 +
+                                                                "万元"
+                                                            );
                                                         },
                                                     },
                                                     grid: {
                                                         top: "50",
-                                                        right: "40",
+                                                        right: "60",
                                                         left: "60",
                                                         bottom: "60", //图表尺寸大小
                                                     },
@@ -515,7 +496,8 @@
                                                             },
                                                             axisLine: {
                                                                 lineStyle: {
-                                                                    color: "rgba(107,107,107,0.37)",
+                                                                    color:
+                                                                        "rgba(107,107,107,0.37)",
                                                                 },
                                                             },
                                                             axisTick: {
@@ -526,7 +508,9 @@
                                                     yAxis: [
                                                         {
                                                             axisLabel: {
-                                                                formatter: "{value}",
+                                                                formatter: function (val) {
+                                                                    return val / 10000
+                                                                },
                                                                 color: "#999",
                                                                 textStyle: {
                                                                     fontSize: 12,
@@ -534,7 +518,8 @@
                                                             },
                                                             axisLine: {
                                                                 lineStyle: {
-                                                                    color: "rgba(107,107,107,0.37)",
+                                                                    color:
+                                                                        "rgba(107,107,107,0.37)",
                                                                 },
                                                             },
                                                             axisTick: {
@@ -542,11 +527,34 @@
                                                             },
                                                             splitLine: {
                                                                 lineStyle: {
-                                                                    color: "rgba(131,101,101,0.2)",
+                                                                    color:
+                                                                        "rgba(131,101,101,0.2)",
                                                                     type: "dashed",
                                                                 },
                                                             },
                                                         },
+                                                        {
+                                                            type: 'value',
+                                                            min: '',//最小坐标
+                                                            max: '',//最大坐标
+                                                            axisLabel: {
+                                                                fontSize: 14,
+                                                                color: "#999",
+                                                                formatter: '{value} %'
+                                                            },
+                                                            axisLine: {
+                                                                lineStyle: {
+                                                                    color:
+                                                                        "rgba(107,107,107,0.37)",
+                                                                },
+                                                            },
+                                                            splitLine: {
+                                                                show: false//是否显示分隔线。
+                                                            },
+                                                            axisTick: {
+                                                                show: false,
+                                                            },
+                                                        }
                                                     ],
                                                     series: [
                                                         {
@@ -555,8 +563,14 @@
                                                             barWidth: "16px",
                                                             itemStyle: {
                                                                 normal: {
-                                                                    color: "#38A0FF",
-                                                                    barBorderRadius: [30, 30, 30, 30],
+                                                                    color:
+                                                                        "#38A0FF",
+                                                                    barBorderRadius: [
+                                                                        30,
+                                                                        30,
+                                                                        30,
+                                                                        30,
+                                                                    ],
                                                                 },
                                                             },
                                                         },
@@ -564,17 +578,39 @@
                                                             data: [],
                                                             type: "line",
                                                             name: "折线图",
+                                                            yAxisIndex: 1,
                                                             // symbol: 'none',
                                                             lineStyle: {
                                                                 color: "#fea2a2",
                                                                 width: 2,
-                                                                shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
+                                                                shadowColor:
+                                                                    "rgba(0, 0, 0, 0.3)", //设置折线阴影
                                                                 shadowBlur: 10,
                                                                 shadowOffsetY: 10,
                                                             },
+                                                            itemStyle: {
+                                                                normal: {
+                                                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                                        offset: 0,
+                                                                        color: 'rgb(255, 204, 102)'
+                                                                    }, {
+                                                                        offset: 1,
+                                                                        color: 'rgb(255, 153, 51)'
+                                                                    }]),
+                                                                    label: {
+                                                                        show: true,
+                                                                        position: 'top',
+                                                                        textStyle: {
+                                                                            fontSize: '16',
+                                                                            color: 'rgb(255, 156, 54)',
+                                                                        }
+                                                                    }
+                                                                },
+                                                            },
                                                             areaStyle: {
                                                                 normal: {
-                                                                    color: "rgba(0,0,0,0)",
+                                                                    color:
+                                                                        "rgba(0,0,0,0)",
                                                                 },
                                                             },
                                                         },
@@ -5103,20 +5139,139 @@
                         ],
                     },
                 ],
+                ValueData:{
+                    inputValue: '',
+                    selectValue: '',
+                    timeValue: ['',''],
+                },
+                totalCount:0,
+                arrData:[]
             };
         },
         methods: {
+            // 传入过来的页数跟每页的数量
+            ClickTotal(value){
+                this.TableDatas(value.pageNum-1,value.pageSize)
+            },
             selectionChange(val) {
                 this.$emit('clickTable', true);
                 this.$router.push("/details/details");
             },
+            async searchQuery(id, collapse , year ,name) {
+                this.ValueData = collapse;
+                id.EChartsBox.forEach((element,index) => {
+                    element.EChartsItem.forEach((element,sindex) => {
+                        this.arrData.push({
+                            id:id.id+'-'+index+'-'+sindex,
+                            option:element.option
+                        })
+                    });
+                });
+                
+                await this.obtainData(name, year);
+            },
+            async obtainData(name, year) {
+                let data = [];
+                this.ValueData.timeValue === null && (this.ValueData.timeValue = ['','']);
+                await this.$axios.get("/api/jtService/list_service_finance",{params: 
+                {   
+                    serverCompanyId: 'cc809ba275f17437088741db4ef76d499' ,
+                    nianfen:year,
+                    financeTypeId:'ft5f972ebdfb2f4277811ffcb32866d150',
+                    endTime:this.ValueData.timeValue[1],
+                    stateTime:this.ValueData.timeValue[0]
+                }}).then(v=>{
+                    data = v.data.data;
+                    let mm = [];
+                    this.collapseData.forEach((item, index) => {
+                        if (item.name == name) {
+                            item.collapseItem.forEach((cItem, cIndex) => {
+                                if (cItem.year == year) {
+                                    cItem.EChartsBox.forEach((sItem, sIndex) => {
+                                        if (sIndex == 0) {
+                                            sItem.EChartsItem[0].option.series[0].data = [];
+                                            sItem.EChartsItem[0].option.xAxis[0].data = [];
+                                            data.xYListFrom1.forEach((i, ix) => {
+                                                sItem.EChartsItem[0].option.series[0].data.push(i.yAxis);
+                                                mm.push(i.yAxis);
+                                                sItem.EChartsItem[0].option.xAxis[0].data.push(i.xBxis);
+                                            });
+                                            if (mm.length !== 0) {
+                                                let arr = this.YoYIncrease(mm);
+                                                sItem.EChartsItem[0].option.yAxis[1].min = parseInt(Math.min(...arr) - 5);
+                                                sItem.EChartsItem[0].option.yAxis[1].max = parseInt(Math.max(...arr) + 5);
+                                                sItem.EChartsItem[0].option.series[1].data.push(...arr);
+                                            }
+                                        }
+                                        if (sIndex == 1) {
+                                            sItem.EChartsItem[0].option.series[0].data=[];
+                                            data.xYListFrom2.forEach((i, ix) => {
+                                                sItem.EChartsItem[0].option.series[0].data.push({
+                                                    name: i.xBxis,
+                                                    value: i.yAxis
+                                                });
+                                            })
+                                        }
+                                        if (sIndex == 2) {
+                                            sItem.EChartsItem[0].option.series[0].data=[]
+                                            data.xYListFrom3.forEach((i, ix) => {
+                                                sItem.EChartsItem[0].option.series[0].data.push({
+                                                    name: i.xBxis,
+                                                    value: i.yAxis
+                                                });
+                                            })
+                                        }
+                                        
+                                    });
+                                }
+                            })
+                        }
+                    })
+                    this.$refs['collapse'].searchClick(this.arrData)
+                })
+            },
+            async TableDatas(pageNum,pageSize){
+                this.$axios.get('/api/jtService/list_service',{params:
+                    {
+                        serverCompanyId:'cc809ba275f17437088741db4ef76d499',
+                        pageNum:pageNum,
+                        pageSize:pageSize
+                    }}).then(res=>{
+                        this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData=[]
+                        res.data.data.data.forEach(element => {
+                            let elementData = {
+                                serviceName: element.serviceName,
+                                B: "0",
+                                G: "0",
+                                shouyi: "0",
+                                E: "0",
+                                I: '0',
+                                H: "0",
+                                maxcart: '0',
+                                mincart: '0',
+                                refuel: '0',
+                                snack: '0',
+                                convenience: '0',
+                                catering: '0',
+                                shouyi:element.shouyi
+                            }
+                            this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData.push(elementData)
+                        });
+                            this.totalCount = res.data.data.totalCount;
+                    })
+            }
         },
-        mounted() {
+        async mounted() {
+            await new Promise(resolve => {
+                setInterval(_ => {
+                    resolve();
+                }, 200);
+            });
+            await this.TableDatas(0,5);
             this.$refs["collapse"].initECharts(this.collapseData);
         },
-        created() {
-            this.$axios.get("/api/sundry/finance_type_list", {params: {mohu: '黄冈'}}).then(res => {
-            })
+        async created() {
+            await this.obtainData('营收', '2019');
         },
         watch: {
             viewChange() {
