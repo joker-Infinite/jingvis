@@ -587,6 +587,16 @@
             this.initECharts_top();
             this.initECharts_center();
             this.initECharts_bottom();
+            setInterval(_ => {
+                this.$echarts.init(document.getElementById('HomeTopLeft_top')).dispose();
+                this.$echarts.init(document.getElementById('HomeTopLeft_bottom')).dispose();
+                this.$echarts.init(document.getElementById('HomeTopLeft_center')).dispose();
+                this.$nextTick(_ => {
+                    this.initECharts_bottom();
+                    this.initECharts_center();
+                    this.initECharts_top();
+                })
+            }, 10000)
         }
     };
 </script>

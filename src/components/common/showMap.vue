@@ -148,7 +148,7 @@
             }
         },
         mounted() {
-            // this.timeClear = setInterval(this.check, 3000);
+            this.timeClear = setInterval(this.check, 3000);
         },
         async created() {
             const res = await this.$axios.get('/api/index/list_jtService');

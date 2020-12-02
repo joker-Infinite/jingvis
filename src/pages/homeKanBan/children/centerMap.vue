@@ -146,7 +146,7 @@
             this.$axios.get('/api/index/list_jtService').then(res => {
                 this.point(res.data.data);
             })
-
+            this.timeClear = setInterval(this.check, 3000);
         },
     };
 </script>
