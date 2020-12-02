@@ -32,18 +32,13 @@
                             :content="window.content"
                             :offset="window.offset"
                             :close-when-click-map="true"
-                            :is-custom="true"
-                    >
+                            :is-custom="true">
                         <div id="info-window">
                             <p style="line-height: 30px;text-align: center">
                                 {{ window.address }}
                             </p>
-                            <p
-                                    style="text-align: center;font-size: 20px;font-weight: 700;"
-                                    v-for="i in 3"
-                                    :key="i"
-                            >
-                                {{ i }}+XXXXXXXXXXX
+                            <p style="text-align: center;font-size: 20px;font-weight: 700;color: black">
+                                收益： {{window.money}}
                             </p>
                         </div>
                     </el-amap-info-window>
@@ -142,7 +137,8 @@
                         offset: [115, 55], // 窗体偏移
                         showShadow: false,
                         visible: false, // 初始是否显示
-                        address: item.address
+                        address: item.address,
+                        money: item.money
                     });
                 });
                 //  加点
@@ -247,9 +243,9 @@
         height: 146px;
         margin-left: 30px;
         background: rgba(255, 255, 255, 0.6);
-
         position: relative;
         overflow: hidden;
+        border-radius: 10px;
 
         .detail {
             width: 100%;
@@ -261,7 +257,6 @@
             font-size: 12px;
             line-height: 24px;
             text-align: center;
-
             cursor: pointer;
         }
     }

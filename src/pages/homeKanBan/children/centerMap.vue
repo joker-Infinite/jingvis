@@ -9,6 +9,7 @@
             </div>
         </div>
         <el-amap
+                v-if="markers[0]"
                 vid="djisoa"
                 :center="center"
                 :zoom="zoom"
@@ -34,8 +35,8 @@
                     <p style="line-height: 30px;text-align: center">
                         {{ window.address }}
                     </p>
-                    <p style="text-align: center;font-size: 20px;font-weight: 700;" v-for="i in 3" :key="i">
-                        {{ i }}+XXXXXXXXXXX
+                    <p style="text-align: center;font-size: 20px;font-weight: 700;color: black">
+                        收益： {{window.money}}
                     </p>
                 </div>
             </el-amap-info-window>
@@ -54,12 +55,7 @@
                 zoom: 8,
                 center: [114.286298, 30.5855],
                 expandZoomRange: true,
-                markers: [
-                    {
-                        icon: '',
-                        position: [114.286298, 30.5855]
-                    },
-                ],
+                markers: [],
                 windows: [],
                 window: "",
                 events: {},
@@ -94,6 +90,7 @@
             point(data) {
                 let markers = [];
                 let windows = [];
+                this.window = '';
                 let that = this;
                 data.forEach((item, index) => {
                     let icon = require('../../../assets/First.png');
@@ -125,8 +122,8 @@
                         },
                         icon: new AMap.Icon({
                             image: icon,
-                            size: new AMap.Size(52, 52),
-                            imageSize: new AMap.Size(30, 40)
+                            size: new AMap.Size(30, 30),
+                            imageSize: new AMap.Size(25, 30)
                         })
                     });
                     windows.push({
@@ -135,7 +132,8 @@
                         offset: [115, 55], // 窗体偏移
                         showShadow: false,
                         visible: false, // 初始是否显示
-                        address: item.serviceName
+                        address: item.serviceName,
+                        money: item.shouyi
                     });
                 });
                 //  加点
@@ -146,27 +144,10 @@
         },
         mounted() {
             this.$axios.get('/api/index/list_jtService').then(res => {
-
                 this.point(res.data.data);
             })
 
         },
-        created() {
-            for (let i = 0; i < 100; i++) {
-                this.markers.push({
-                    icon: '',
-                    position: [114.286298, 30.5855]
-                });
-            }
-           this. windows.push({
-                position: [114.286298, 30.5855],
-                isCustom: true,
-                offset: [115, 55], // 窗体偏移
-                showShadow: false,
-                visible: false, // 初始是否显示
-                address: '22'
-            });
-        }
     };
 </script>
 
@@ -228,9 +209,10 @@
         height: 146px;
         margin-left: 30px;
         background: rgba(255, 255, 255, 0.6);
-
+        z-index: 99999;
         position: relative;
         overflow: hidden;
+        border-radius: 10px;
 
         .detail {
             width: 100%;
@@ -242,7 +224,6 @@
             font-size: 12px;
             line-height: 24px;
             text-align: center;
-
             cursor: pointer;
         }
     }
