@@ -9,53 +9,51 @@
             </div>
         </div>
         <div class="item HomeBottomA" @mouseover="mouseHover('AD')">
-            <div class="MMA" v-if="!AD && AD.series[0].data.length===0">
-                <!-- v-if="AD.series[0].data.length===0" -->
-                <!-- {{AD.series[0].data}} -->
-                <!-- 平均：{{showTarget(this.AD,'average')}}<br> -->
+          <!--  <div class="MMA" v-if="!AD && AD.series[0].data.length===0">
+                平均：{{showTarget(this.AD,'average')}}<br>
                 最高：{{showTarget(this.AD,'max')}}
                 最低：{{showTarget(this.AD,'min')}}
-            </div>
+            </div>-->
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomAData"></div>
             <div class="ei" id="HomeBottomA"></div>
         </div>
         <div class="item HomeBottomB" @mouseover="mouseHover('BD')">
-            <div class="MMA">
-                <!-- 平均：{{showTarget(this.BD,'average')}}<br> -->
+           <!-- <div class="MMA">
+                平均：{{showTarget(this.BD,'average')}}<br>
                 最高：{{showTarget(this.BD,'max')}}
                 最低：{{showTarget(this.BD,'min')}}
-            </div>
+            </div>-->
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomBData"></div>
             <div class="ei" id="HomeBottomB"></div>
         </div>
         <div class="item HomeBottomC" @mouseover="mouseHover('CD')">
-            <div class="MMA">
-                <!-- 平均：{{showTarget(this.CD,'average')}}<br> -->
+           <!-- <div class="MMA">
+                平均：{{showTarget(this.CD,'average')}}<br>
                 最高：{{showTarget(this.CD,'max')}}
                 最低：{{showTarget(this.CD,'min')}}
-            </div>
+            </div>-->
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomCData"></div>
             <div class="ei" id="HomeBottomC"></div>
         </div>
         <div class="item HomeBottomD" @mouseover="mouseHover('DD')">
-            <div class="MMA">
-                <!-- 平均：{{showTarget(this.DD,'average')}}<br> -->
+          <!--  <div class="MMA">
+                平均：{{showTarget(this.DD,'average')}}<br>
                 最高：{{showTarget(this.DD,'max')}}
                 最低：{{showTarget(this.DD,'min')}}
-            </div>
+            </div>-->
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomDData"></div>
             <div class="ei" id="HomeBottomD"></div>
         </div>
         <div class="item HomeBottomE" @mouseover="mouseHover('ED')">
-            <div class="MMA">
-                <!-- 平均：{{showTarget(this.ED,'average')}}<br> -->
+           <!-- <div class="MMA">
+                平均：{{showTarget(this.ED,'average')}}<br>
                 最高：{{showTarget(this.ED,'max')}}
                 最低：{{showTarget(this.ED,'min')}}
-            </div>
+            </div>-->
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomEData"></div>
             <div class="ei" id="HomeBottomE"></div>
@@ -105,14 +103,14 @@
         },
         methods: {
             // 暂无数据啥的
-            isNoData(is,id,option){
-                if (is.length===0) {
+            isNoData(is, id, option) {
+                if (is.length === 0) {
                     option.grid.show = false;
                     option.yAxis[0].show = false;
                     option.xAxis[0].show = false;
-                    document.getElementById(id._zr.dom.id+'Data').innerHTML = "暂无数据";
+                    document.getElementById(id._zr.dom.id + 'Data').innerHTML = "暂无数据";
                 } else {
-                    document.getElementById(id._zr.dom.id+'Data').innerHTML = "";
+                    document.getElementById(id._zr.dom.id + 'Data').innerHTML = "";
                 }
                 this.$echarts.init(document.getElementById(id._zr.dom.id)).setOption(option);
             },
@@ -158,14 +156,19 @@
             isAxios(url, financeTypeId, plateId, title, option, v, HomeBottom) {
                 let optionss = clone(option);
                 // HomeBottom.setOption(option);
-                if(title === '实业公司'){
+                if (title === '实业公司') {
                     optionss.title.text = `{a|     ${title}}`;
                     this[v] = optionss;
-                    
-                    this.isNoData([],HomeBottom,optionss)
+
+                    this.isNoData([], HomeBottom, optionss)
                     HomeBottom.setOption(optionss);
-                }else{  
-                    this.$axios.get(url, {params: {financeTypeId: this.financeTypeId, plateId: plateId},}).then((res) => {
+                } else {
+                    this.$axios.get(url, {
+                        params: {
+                            financeTypeId: this.financeTypeId,
+                            plateId: plateId
+                        },
+                    }).then((res) => {
                         optionss.title.text = `{a|     ${title}}`;
                         let xBxis = [];
                         let yAxis = [];
@@ -186,17 +189,16 @@
                             };
                             yAxis.push(Yaxis);
                         });
-    
-                        optionss.xAxis[0].data = xBxis;
+                        xBxis.forEach(i => {
+                            optionss.xAxis[0].data.push(parseInt(i.split('-')[1]))
+                        });
+                        optionss.xAxis[0].data=[1,'','',4,'','',7,'','',10];
                         optionss.series[0].data = yAxis;
                         this[v] = optionss;
                         HomeBottom.setOption(optionss);
-                        this.isNoData(res.data.data,HomeBottom,optionss)
+                        this.isNoData(res.data.data, HomeBottom, optionss)
                     });
                 }
-            },
-            AxiosList(){
-                
             },
             selectOption(v) {
                 this.select = v;
@@ -236,21 +238,18 @@
                 let option = clone(this.option);
                 let options = clone(this.options);
                 // if(!!option.grid.borderWidth){
-                
+
                 // }
                 if (is === 1) {
                     options.title.x = "center";
-                    options.title.y = "-3%";
                     options.title.textStyle.rich.a.fontSize = 25;
                     options.barWidth = 30;
-                    (options.title.padding = [50, 50, 50, 50]);
+                    options.title.padding = [50, 50, 50, 50];
                     this.$emit("showOne", options);
                 } else {
                     option.title.textStyle.rich.a.fontSize = 25;
                     option.barWidth = 30;
-                    option.xAxis[0].axisLabel.rotate = 40;
                     option.title.x = "center";
-                    option.title.y = "-3%";
                     option.title.padding = [50, 50, 50, 50];
                     this.$emit("showOne", option, 'MMA');
                 }
@@ -358,8 +357,7 @@
                         trigger: "axis",
                         formatter: "{b}" + "{c}" + '%',
                         axisPointer: {
-                            // 坐标轴指示器，坐标轴触发有效
-                            type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
+                            type: "shadow",
                         },
                     },
                     grid: {
@@ -391,7 +389,7 @@
                         axisLabel: {show: false},
                         axisTick: {show: false},
                         splitLine: {show: false},
-                        data: ["a公司", "b公司", "c公司", "d公司", "e公司"],
+                        data: [],
                     },
                     series: [
                         {
@@ -415,9 +413,11 @@
                             },
                             label: {
                                 show: true,
-                                formatter: "{b}",
+                                position: 'insideLeft',
+                                color: '#fff',
+                                formatter: '{b}'
                             },
-                            data: [0.6, 0.7, 8, 0.9, 1],
+                            data: [],
                             markLine: {
                                 data: [],
                                 symbol: ["none", "none"],
@@ -431,7 +431,7 @@
                                         label: {
                                             show: false,
                                             position: "middle",
-                                            formatter: "数据平均 : 100",
+                                            formatter: "数据平均 :",
                                         },
                                     },
                                 },
@@ -459,13 +459,19 @@
                 this.$axios('/api/index/wan_cheng_lv', {params: {financeTypeId: financeTypeId}}).then((res) => {
                     let datas = res.data.data
                     datas.sort(function (a, b) {
-                        return a.xBxis - b.xBxisb
+                        return a.xBxis - b.xBxis
+                    });
+                    datas.unshift({
+                        xBxis: 0,
+                        yAxis: '实业公司',
                     });
                     let xBxis = [];
                     let yAxis = [];
-                    datas.forEach((element) => {
-                        xBxis.push(element.xBxis)
-                        yAxis.push(element.yAxis)
+                    datas.forEach(i => {
+                        if (i.yAxis != '小龙虾公司' && i.yAxis != '新致公司') {
+                            xBxis.push(i.xBxis)
+                            yAxis.push(i.yAxis)
+                        }
                     });
                     option.yAxis.data = yAxis;
                     option.series[0].data = xBxis;
@@ -501,10 +507,10 @@
                 barWidth: 10,
                 grid: {
                     show: true,
-                    top: "33%",
-                    left: "18%",
-                    right: "8%",
-                    bottom: "20%",
+                    top: "35",
+                    left: "12%",
+                    right: "5%",
+                    bottom: "30",
                 },
                 title: {
                     text: "{a|     }",
@@ -534,13 +540,13 @@
                         },
                     },
                     formatter: function (list) {
-                        return ("营收" + ":" + "<br/>" + list[0].axisValue + "<br/>" + (list[0].value / 100000000).toFixed(2) + "亿元");
+                        return (list[0].value / 100000000).toFixed(2)
                     },
                 },
                 color: ["red", "#a549ff"],
                 xAxis: [
                     {
-                        show:true,
+                        show: true,
                         type: "category",
                         data: [],
                         axisPointer: {
@@ -559,7 +565,7 @@
                 ],
                 yAxis: [
                     {
-                        show:true,
+                        show: true,
                         name: "亿",
                         axisLine: {
                             show: false,
@@ -586,6 +592,7 @@
                                 color: "#001e6c",
                             },
                         },
+                        splitNumber: 1
                     },
                 ],
                 series: [
@@ -600,10 +607,10 @@
                 barWidth: 10,
                 grid: {
                     show: true,
-                    top: "33%",
-                    left: "18%",
-                    right: "8%",
-                    bottom: "20%",
+                    top: "35",
+                    left: "12%",
+                    right: "5%",
+                    bottom: "30",
                 },
                 title: {
                     text: "{a|     }",
@@ -623,7 +630,6 @@
                         },
                     },
                 },
-
                 tooltip: {
                     trigger: "axis",
                     axisPointer: {
@@ -631,12 +637,10 @@
                         lineStyle: {
                             color: "red",
                             width: 1,
-                            // shadowBlur:5,
-                            // opacity:1
                         },
                     },
                     formatter: function (list) {
-                        return ("利润" + ":" + "<br/>" + list[0].axisValue + "<br/>" + (list[0].value / 1000000).toFixed(2) + "百万");
+                        return (list[0].value / 1000000).toFixed(2)
                     },
                 },
                 color: ["red", "#a549ff"],
@@ -685,6 +689,7 @@
                                 color: "#001e6c",
                             },
                         },
+                        splitNumber: 1
                     },
                 ],
                 series: [{
@@ -757,7 +762,7 @@
             .ei {
                 width: 100%;
                 height: 100%;
-                
+
 
             }
 
@@ -799,7 +804,8 @@
         .HomeBottomG:hover .operations {
             display: block;
         }
-        .DataEi{
+
+        .DataEi {
             color: #fff;
             position: absolute;
             top: 0;

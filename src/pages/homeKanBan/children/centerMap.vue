@@ -59,6 +59,8 @@
                 windows: [],
                 window: "",
                 events: {},
+                //amap://styles/1111cca74c703c3218b102779351f6eb 深色
+                //amap://styles/f1f4181c84a35130099dfd661f061466 浅色
                 mapStyle: "amap://styles/8cb6df918ee512eae9c9198c38a40c91",
                 i: 0,
                 timeClear: "",

@@ -32,24 +32,36 @@
                     </el-radio>
                 </div>
                 <operations class="operations" @showOne="showOne"></operations>
+                <div class="operation">
+                    <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">营收
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">利润
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">客单价
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(4)" v-model="selectCD" :label="4">订单数
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(5)" v-model="selectCD" :label="5">消费转化率
+                    </el-radio>
+                </div>
                 <div id="HomeTopRight_bottom_left"></div>
                 <div class="DataEi" id="HomeTopRight_bottom_leftData"></div>
             </div>
-            <div class="bottom_right" @mouseover="mouseHover('CD')">
-                <div class="select_type">
-                    <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">服务区
-                    </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">自营油站
-                    </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">自营超市
-                    </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(4)" v-model="selectCD" :label="4">服务区招商
-                    </el-radio>
-                </div>
-                <operations class="operations" @showOne="showOne"></operations>
-                <div id="HomeTopRight_bottom_right"></div>
-                <div class="DataEi" id="HomeTopRight_bottom_rightData"></div>
-            </div>
+            <!-- <div class="bottom_right" @mouseover="mouseHover('CD')">
+                 <div class="select_type">
+                     <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">服务区
+                     </el-radio>
+                     <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">自营油站
+                     </el-radio>
+                     <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">自营超市
+                     </el-radio>
+                     <el-radio class="checkboxItem" @change="changeRadioCD(4)" v-model="selectCD" :label="4">服务区招商
+                     </el-radio>
+                 </div>
+                 <operations class="operations" @showOne="showOne"></operations>
+                 <div id="HomeTopRight_bottom_right"></div>
+                 <div class="DataEi" id="HomeTopRight_bottom_rightData"></div>
+             </div>-->
         </div>
         <show-e-charts ref="showECharts"></show-e-charts>
     </div>
@@ -78,14 +90,14 @@
             mouseHover(v) {
                 this.option = this[v];
             },
-            isNoData(is,id,option){
-                if (is.length===0) {
-                    document.getElementById(id+'Data').innerHTML ="暂无数据";
+            isNoData(is, id, option) {
+                if (is.length === 0) {
+                    document.getElementById(id + 'Data').innerHTML = "暂无数据";
                     option.xAxis[0].show = false;
                     option.yAxis[0].show = false;
                     this.$echarts.init(document.getElementById(id)).setOption(option);
                 } else {
-                    document.getElementById(id+'Data').innerHTML = "";
+                    document.getElementById(id + 'Data').innerHTML = "";
                     this.$echarts.init(document.getElementById(id)).setOption(option);
                 }
             },
@@ -250,7 +262,6 @@
                         },
                     },
                 });
-                this.isNoData([],'HomeTopRight_top',option)
                 HomeTopRight_top.setOption(option);
             },
             initECharts_bottom_left() {
@@ -258,7 +269,7 @@
                     document.getElementById("HomeTopRight_bottom_left")
                 );
                 this.resizeData.push(HomeTopRight_bottom_left);
-                let data = [0.09, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1];
+                let data = [0.4, 0.6, 0.7, 0.8, 0.9, 1];
                 let average = 0;
                 data.forEach(i => {
                     average = average += i;
@@ -326,10 +337,6 @@
                             "d公司",
                             "e公司",
                             "f公司",
-                            "g公司",
-                            "h公司",
-                            "i公司",
-                            "j公司",
                         ],
                     },
                     series: [
@@ -398,162 +405,162 @@
                 //     name: "平均值",
                 //     xAxis: average, //设置平均值所在位置
                 // }],
-                    HomeTopRight_bottom_left.setOption(option);
+                HomeTopRight_bottom_left.setOption(option);
             },
-            initECharts_bottom_right() {
-                let HomeTopRight_bottom_right = this.$echarts.init(
-                    document.getElementById("HomeTopRight_bottom_right")
-                );
-                this.resizeData.push(HomeTopRight_bottom_right);
-                let data = [0.09, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1];
-                let average = 0;
-                data.forEach(i => {
-                    average += i;
-                })
-                average = average / data.length;
-                let option = ({
-                    barWidth: 20,
-                    title: {
-                        text: "{a|     千车转换率排行}",
-                        // x:"center",
-                        y: "6",
-                        show: true,
-                        textStyle: {
-                            fontFamily: "幼圆",
-                            lineHeight: 30,
-                            rich: {
-                                a: {
-                                    color: "#FFF",
-                                    fontSize: "15",
-                                    height: 15,
-                                    width: 15,
-                                },
-                            },
-                        },
-                    },
-                    tooltip: {
-                        trigger: "axis",
-                        axisPointer: {
-                            // 坐标轴指示器，坐标轴触发有效
-                            type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
-                        },
-                    },
-                    grid: {
-                        top: "25%",
-                        bottom: 30,
-                    },
-                    xAxis: {
-                        type: "value",
-                        position: "bottom",
-                        axisTick: {
-                            //坐标轴刻度
-                            show: false,
-                        },
-                        axisLabel: {
-                            textStyle: {
-                                color: "#FFF",
-                            },
-                        },
-                        splitLine: {show: false},
-                        axisLine: {
-                            lineStyle: {
-                                color: "#FFF",
-                            },
-                        },
-                    },
-                    yAxis: {
-                        type: "category",
-                        axisLine: {show: false},
-                        axisLabel: {show: false},
-                        axisTick: {show: false},
-                        splitLine: {show: false},
-                        data: [
-                            "a公司",
-                            "b公司",
-                            "c公司",
-                            "d公司",
-                            "e公司",
-                            "f公司",
-                            "g公司",
-                            "h公司",
-                            "i公司",
-                            "j公司",
-                        ],
-                    },
-                    series: [
-                        {
-                            name: "收入",
-                            type: "bar",
-                            stack: "总量",
-                            itemStyle: {
-                                normal: {
-                                    // barBorderRadius: 30, //设置柱状图为圆角
-                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                                        {
-                                            offset: 0,
-                                            color: "#4760ff",
-                                        },
-                                        {
-                                            offset: 0.5,
-                                            color: "#0dccff",
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "#36a6f9",
-                                        }
-                                    ]),
-                                },
-                            },
-                            label: {
-                                show: true,
-                                formatter: "{b}",
-                            },
-                            data: data,
-                            markLine: {
-                                data: [
-                                    // {
-                                    //     type: "average",
-                                    //     name: "平均值",
-                                    //     xAxis: 0.5, //设置平均值所在位置
-                                    // },
-                                ],
-                                symbol: ["none", "none"],
-                                position: "insideTopCenter",
-                                itemStyle: {
-                                    normal: {
-                                        lineStyle: {
-                                            type: "dotted",
-                                            color: "white",
-                                        },
-                                        label: {
-                                            show: true,
-                                            position: "middle",
-                                            formatter: "数据平均 : " + average,
-                                        },
-                                    },
-                                },
-                                large: true,
-                                effect: {
-                                    show: false,
-                                    loop: true,
-                                    period: 0,
-                                    scaleSize: 2,
-                                    color: null,
-                                    shadowColor: null,
-                                    shadowBlur: null,
-                                },
-                            },
-                        },
-                    ],
-                });
-                this.CD = clone(option)
-                // this.CD.series[0].markLine.data = [{
-                //     type: "average",
-                //     name: "平均值",
-                //     xAxis: average, //设置平均值所在位置
-                // }],
-                HomeTopRight_bottom_right.setOption(option);
-            },
+            /* initECharts_bottom_right() {
+                 let HomeTopRight_bottom_right = this.$echarts.init(
+                     document.getElementById("HomeTopRight_bottom_right")
+                 );
+                 this.resizeData.push(HomeTopRight_bottom_right);
+                 let data = [0.09, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1];
+                 let average = 0;
+                 data.forEach(i => {
+                     average += i;
+                 })
+                 average = average / data.length;
+                 let option = ({
+                     barWidth: 20,
+                     title: {
+                         text: "{a|     千车转换率排行}",
+                         // x:"center",
+                         y: "6",
+                         show: true,
+                         textStyle: {
+                             fontFamily: "幼圆",
+                             lineHeight: 30,
+                             rich: {
+                                 a: {
+                                     color: "#FFF",
+                                     fontSize: "15",
+                                     height: 15,
+                                     width: 15,
+                                 },
+                             },
+                         },
+                     },
+                     tooltip: {
+                         trigger: "axis",
+                         axisPointer: {
+                             // 坐标轴指示器，坐标轴触发有效
+                             type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
+                         },
+                     },
+                     grid: {
+                         top: "25%",
+                         bottom: 30,
+                     },
+                     xAxis: {
+                         type: "value",
+                         position: "bottom",
+                         axisTick: {
+                             //坐标轴刻度
+                             show: false,
+                         },
+                         axisLabel: {
+                             textStyle: {
+                                 color: "#FFF",
+                             },
+                         },
+                         splitLine: {show: false},
+                         axisLine: {
+                             lineStyle: {
+                                 color: "#FFF",
+                             },
+                         },
+                     },
+                     yAxis: {
+                         type: "category",
+                         axisLine: {show: false},
+                         axisLabel: {show: false},
+                         axisTick: {show: false},
+                         splitLine: {show: false},
+                         data: [
+                             "a公司",
+                             "b公司",
+                             "c公司",
+                             "d公司",
+                             "e公司",
+                             "f公司",
+                             "g公司",
+                             "h公司",
+                             "i公司",
+                             "j公司",
+                         ],
+                     },
+                     series: [
+                         {
+                             name: "收入",
+                             type: "bar",
+                             stack: "总量",
+                             itemStyle: {
+                                 normal: {
+                                     // barBorderRadius: 30, //设置柱状图为圆角
+                                     color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                                         {
+                                             offset: 0,
+                                             color: "#4760ff",
+                                         },
+                                         {
+                                             offset: 0.5,
+                                             color: "#0dccff",
+                                         },
+                                         {
+                                             offset: 1,
+                                             color: "#36a6f9",
+                                         }
+                                     ]),
+                                 },
+                             },
+                             label: {
+                                 show: true,
+                                 formatter: "{b}",
+                             },
+                             data: data,
+                             markLine: {
+                                 data: [
+                                     // {
+                                     //     type: "average",
+                                     //     name: "平均值",
+                                     //     xAxis: 0.5, //设置平均值所在位置
+                                     // },
+                                 ],
+                                 symbol: ["none", "none"],
+                                 position: "insideTopCenter",
+                                 itemStyle: {
+                                     normal: {
+                                         lineStyle: {
+                                             type: "dotted",
+                                             color: "white",
+                                         },
+                                         label: {
+                                             show: true,
+                                             position: "middle",
+                                             formatter: "数据平均 : " + average,
+                                         },
+                                     },
+                                 },
+                                 large: true,
+                                 effect: {
+                                     show: false,
+                                     loop: true,
+                                     period: 0,
+                                     scaleSize: 2,
+                                     color: null,
+                                     shadowColor: null,
+                                     shadowBlur: null,
+                                 },
+                             },
+                         },
+                     ],
+                 });
+                 this.CD = clone(option)
+                 // this.CD.series[0].markLine.data = [{
+                 //     type: "average",
+                 //     name: "平均值",
+                 //     xAxis: average, //设置平均值所在位置
+                 // }],
+                 HomeTopRight_bottom_right.setOption(option);
+             },*/
             isResize() {
                 this.resizeData.forEach((element) => {
                     element.resize();
@@ -564,18 +571,19 @@
             this.initECharts_top();
             // this.initECharts_bottom();
             this.initECharts_bottom_left();
-            this.initECharts_bottom_right();
+            // this.initECharts_bottom_right();
         },
     };
 </script>
 
 <style scoped lang="less">
-    .DataEi{
+    .DataEi {
         background: red;
         position: absolute;
         top: 0;
         margin: 0;
     }
+
     .content /deep/ .el-radio {
         padding: 0;
         margin: 0;
@@ -620,7 +628,7 @@
             margin-top: 2.5%;
 
             .bottom_left {
-                width: 48%;
+                width: 100%;
                 height: 100%;
                 float: left;
                 border: 1px solid #38d;
@@ -641,7 +649,7 @@
                     flex-wrap: wrap;
 
                     .checkboxItem {
-                        width: 50%;
+                        width: 25%;
                         color: white;
                     }
 
@@ -655,8 +663,20 @@
                 }
 
                 #HomeTopRight_bottom_left {
-                    width: 100%;
+                    width: 70%;
                     height: 100%;
+                }
+
+                .operation {
+                    width: 22%;
+                    float: right;
+                    padding: 145px 0 0;
+                }
+
+                .operation /deep/ .el-radio {
+                    color: white;
+                    padding: 5px 10px;
+                    width: 100%;
                 }
             }
 

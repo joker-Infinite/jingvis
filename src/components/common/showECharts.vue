@@ -17,10 +17,13 @@
                 <el-button size="small">搜索</el-button>
             </div>
             <div class="bigShow" v-if="visible">
-                <div class="MMA" v-if="type" >
-                    平均：{{showTarget(this.option,'average')}}<span style="display: inline-block;margin: 0 5px"></span>
-                    最高：{{showTarget(this.option,'max')}}<span style="display: inline-block;margin: 0 5px"></span>
-                    最低：{{showTarget(this.option,'min')}}
+                <div class="MMA" v-if="type">
+                    平均：{{obj.average}}<br>
+                    最高：{{obj.max}}<br>
+                    最低：{{obj.min}}
+                </div>
+                <div class="MMA_" v-if="type">
+                    {{msg}}
                 </div>
                 <div id="commonECharts_data"></div>
                 <div id="commonECharts"></div>
@@ -57,6 +60,7 @@
 
 <script>
     import clone from '../../../public/api/clone'
+
     export default {
         name: "showECharts",
         // props: {
@@ -76,12 +80,18 @@
                 selectBD: 1,
                 pickerOptions: {},
                 type: false,
-                option: {}
+                option: {},
+                msg: '',
+                obj: {
+                    min: '',
+                    max: '',
+                    average: ''
+                }
             };
         },
         methods: {
-            showTarget(v, type) {
-                let obj = {
+            showTarget(v) {
+                this.obj = {
                     min: '',
                     max: '',
                     average: ''
@@ -94,31 +104,20 @@
                         mun.push(i.value);
                         num += Number(i.value);
                     });
-                    obj.max = Math.max(...mun);
-                    obj.min = Math.min(...mun);
-                    obj.average = num / d.length;
+                    this.obj.max = Math.max(...mun);
+                    this.obj.min = Math.min(...mun);
+                    this.obj.average = num / d.length;
                     if (v.yAxis[0] && v.yAxis[0].name && v.yAxis[0].name == '亿') {
-                        obj.max = (obj.max / 100000000).toFixed(2);
-                        obj.min = (obj.min / 100000000).toFixed(2);
-                        obj.average = (obj.average / 100000000).toFixed(2);
+                        this.obj.max = (this.obj.max / 100000000).toFixed(2);
+                        this.obj.min = (this.obj.min / 100000000).toFixed(2);
+                        this.obj.average = (this.obj.average / 100000000).toFixed(2);
                     }
                     if (v.yAxis[0] && v.yAxis[0].name && v.yAxis[0].name == '百万') {
-                        obj.max = (obj.max / 1000000).toFixed(2);
-                        obj.min = (obj.min / 1000000).toFixed(2);
-                        obj.average = (obj.average / 1000000).toFixed(2);
-                    }
-                    if (type === 'max') {
-                        return obj.max;
-                    }
-                    if (type === 'min') {
-                        return obj.min;
-                    }
-                    if (type === 'average') {
-                        return obj.average;
+                        this.obj.max = (this.obj.max / 1000000).toFixed(2);
+                        this.obj.min = (this.obj.min / 1000000).toFixed(2);
+                        this.obj.average = (this.obj.average / 1000000).toFixed(2);
                     }
                 }
-            },
-            changeRadioBD(v) {
             },
             openDialog(v, t) {
                 v = clone(v)
@@ -130,33 +129,41 @@
                 if (t === 'MMA') {
                     this.type = true;
                     this.option = v;
+                    v.xAxis[0].data.forEach((it, ix) => {
+                        this.option.xAxis[0].data[ix] = ix + 1;
+                    });
+                    if (this.option.yAxis[0].name == '亿') {
+                        this.msg = '营收（亿）';
+                    }
+                    if (this.option.yAxis[0].name == '百万') {
+                        this.msg = '利润（百万）';
+                    }
+                    this.showTarget(this.option);
+                    this.option.yAxis[0].name = ''
                 }
                 if (Array.isArray(v) === true) {
                     this.visible_ = true;
                     this.$nextTick((_) => {
-                       
                         this.inntECharts_(v);
                         this.isShow = false;
                     });
                 } else {
                     this.visible = true;
-                    
-                    this.$nextTick(()=>{
-                        if(v.series[0] && v.series[0].data.length===0){
-                            if(v.grid){
+                    this.$nextTick(() => {
+                        if (v.series[0] && v.series[0].data.length === 0) {
+                            if (v.grid) {
                                 v.grid.show = false
                             }
                             v.xAxis[0].show = false;
                             v.yAxis[0].show = false;
                             this.type = false
-                        document.getElementById('commonECharts_data').innerHTML='暂无数据'
+                            document.getElementById('commonECharts_data').innerHTML = '暂无数据'
                         }
                         this.initECharts(v);
                     })
                 }
             },
             initECharts(option) {
-                
                 document.getElementById("commonECharts").removeAttribute("_echarts_instance_");
                 this.$nextTick((_) => {
                     let commonECharts = this.$echarts.init(
@@ -283,18 +290,28 @@
             bottom: 0;
             right: 0;
             left: 0;
-            margin:auto;
+            margin: auto;
             font-size: 2em;
             color: #fff;
         }
 
         .MMA {
-            width: 45%;
+            width: 18%;
             position: absolute;
-            top: 15%;
+            top: 2%;
             right: 0;
             text-align: left;
             font-size: 16px;
+            color: white;
+        }
+
+        .MMA_ {
+            width: 18%;
+            position: absolute;
+            top: 9%;
+            left: 8%;
+            text-align: left;
+            font-size: 20px;
             color: white;
         }
 

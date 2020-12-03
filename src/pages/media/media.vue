@@ -1786,7 +1786,7 @@
                                         style: {
                                             cursor: "pointer",
                                             width: "100%",
-                                            height: "600px",
+                                            height: "400px",
                                             borderRadius: "10px",
                                             background: "white",
                                             overflow: "hidden",
@@ -1794,7 +1794,7 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: "600px",
+                                                height: "500px",
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
@@ -1851,7 +1851,7 @@
                                         select: true,
                                         style: {
                                             width: "100%",
-                                            height: "950px",
+                                            height: "550px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1861,7 +1861,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "900px",
+                                                    height: "500px",
                                                 },
                                                 option: {
                                                     xAxis: {
