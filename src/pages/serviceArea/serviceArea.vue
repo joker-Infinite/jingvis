@@ -3438,9 +3438,9 @@
                                                         textStyle: {
                                                             fontSize: 16,
                                                         },
-                                                        subtext: "85000万元",
+                                                        subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 25,
+                                                            fontSize: 20,
                                                             color: "#F98B2F",
                                                             "fontWeight": "bolder"
                                                         },
@@ -3734,7 +3734,7 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 border: true,
                                                 style: {
@@ -3844,12 +3844,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            "fontWeight": "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -4119,7 +4120,7 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 border: true,
                                                 style: {
@@ -4236,12 +4237,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            "fontWeight": "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -4499,7 +4501,7 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 style: {
                                                     width: "100%",
@@ -4608,12 +4610,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            "fontWeight": "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -4871,7 +4874,7 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 style: {
                                                     width: "100%",
@@ -5741,7 +5744,7 @@
                                                         left: "60",
                                                         bottom: "40", //图表尺寸大小
                                                     },
-                                                    legend: {
+                                                        legend: {
                                                         orient: "horizontal",
                                                         bottom: 10,
                                                     },
