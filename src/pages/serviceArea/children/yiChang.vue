@@ -5067,7 +5067,7 @@
                             })
                         }
                     })
-                    this.$refs['collapse'].searchClick(this.arrData)
+                    // this.$refs['collapse'].searchClick(this.arrData)
                 })
             },
             async TableDatas(pageNum, pageSize) {

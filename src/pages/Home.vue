@@ -4,7 +4,8 @@
             <el-menu
                     :unique-opened="true"
                     :collapse="menuStatus % 2 === 0"
-                    :default-active="key "
+                    :default-active="key"
+                    router
                     class="el-menu-vertical-demo"
                     @select="select"
                     @open="open"
@@ -13,12 +14,14 @@
                     <i :class=" menuStatus % 2 === 0 ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
                        @click="menuOC"></i>
                 </div>
-                <el-menu-item index="1">
+                
+                <el-menu-item index=''>
                     <i class="el-icon-menu"></i>
                     <span slot="title">首页</span>
                 </el-menu-item>
                 <el-submenu v-for="(item,index) in submenu" :index="item.id"
-                            :class="{'addTo':isActive==item.id}">
+                            :class="{'addTo':isActive==item.id}"
+                            :key="index">
                     <template slot="title">
                         <img :src="isActive==item.id?item.imgActive:item.img"
                              style="width: 20px;height: 20px;margin-right: 5px"/>
@@ -26,7 +29,8 @@
                     </template>
                     <el-menu-item
                             v-for="(cItem, cIndex) in item.menuItem"
-                            :index="item.id + '-' + cIndex">
+                            :index="item.menuItemUrl[cIndex]"
+                            :key="cIndex">
                         {{ cItem }}
                     </el-menu-item>
                     <!--  <el-submenu index="4-0" v-if="item.id === '4'">
@@ -64,39 +68,50 @@
                 submenu: [
                     {
                         id: "2",
-                        label: "服务区公司",
+                        label: "服务区事业部",
                         img: require("../assets/Home/2.png"),
                         imgActive: require("../assets/Home/1.png"),
                         menuItem: [
-                            "数据总览",
-                            "黄冈分公司",
-                            "宜昌分公司",
-                            "孝感分公司",
-                            "十堰分公司",
-                            "恩施分公司",
-                            "咸宁分公司",
+                            "服务区比对",
+                            "服务区营收",
+                            "服务区利润",
+                            "服务区成本",
+                            "预算控制",
+                            "基础信息",
+                            "业态结构",
+                            "应收管理",
+                            "供应商",
+                            "用户评价",
+                            "服务区片区",
+                            "服务区线路",
                         ],
                         menuItemUrl: [
-                            '/serviceArea/serviceArea',
-                            '/serviceArea/huangGang',
-                            '/serviceArea/yiChang',
-                            '/serviceArea/xiaoGan',
+                            '/serviceArea/comparison',
+                            '/serviceArea/profit',
+                            '/serviceArea/revenue',
+                            '/serviceArea/costing',
                             '/serviceArea/shiYan',
                             '/serviceArea/enShi',
-                            '/serviceArea/xianNing',]
+                            '/serviceArea/construction',
+                            '/serviceArea/xianNing',
+                            '/serviceArea/xianNing',
+                            '/serviceArea/xianNing',
+                            '/serviceArea/xianNing',
+                            '/serviceArea/xianNing',
+                            ]
                     },
-                    {
-                        id: "3",
-                        label: "服务区业务",
-                        img: require("../assets/Home/10.png"),
-                        imgActive: require("../assets/Home/3.png"),
-                        menuItem: ["消费意愿", "服务区业态", "服务区对比"],
-                        menuItemUrl: [
-                            '',
-                            '/serviceArea/FWQYeTai',
-                            '/comparison/comparison'
-                        ]
-                    },
+                    // {
+                    //     id: "3",
+                    //     label: "服务区业务",
+                    //     img: require("../assets/Home/10.png"),
+                    //     imgActive: require("../assets/Home/3.png"),
+                    //     menuItem: ["消费意愿", "服务区业态", "服务区对比"],
+                    //     menuItemUrl: [
+                    //         '',
+                    //         '/serviceArea/FWQYeTai',
+                    //         '/comparison/comparison'
+                    //     ]
+                    // },
                     {
                         id: "4",
                         label: "能源公司",
@@ -106,6 +121,7 @@
                         menuItemUrl: [
                             '/energy/energy',
                             '/energy/ZHJiaoTou',
+                            '/comparison/comparison',
                             '/comparison/comparison'
                         ]
                     },
@@ -118,7 +134,9 @@
                         menuItemUrl: [
                             '/energy/piFa',
                             '/energy/YPLingShou',
-                            '/energy/FYPLingShou'
+                            '/energy/FYPLingShou',
+                            '/energy/FYPLingShou',
+                            '/energy/FYPLingShou',
                         ]
                     },
                     {
@@ -139,19 +157,19 @@
                     }
                 ],
                 tagData: [],
-                key: "",
+                key: "/serviceArea/profit",
                 menuStatus: 1,
                 isActive: '2-0',
                 openData: ''
             }
         },
         methods: {
-            tagClick(v) {
-                this.isActive = v.index.charAt(0);
-                this.key = v.index;
-                this.$router.push(v.path);
-                this.setCookie(v.index);
-            },
+            // tagClick(v) {
+            //     this.isActive = v.index.charAt(0);
+            //     this.key = v.index;
+            //     this.$router.push(v.path);
+            //     this.setCookie(v.index);
+            // },
             tagClose(v) {
                 this.tagData.splice(this.tagData.indexOf(v), 1);
             },
@@ -215,6 +233,7 @@
              * @param n 节点组件本身
              * */
             select(k, n, m) {
+
                 this.key = k;
                 this.clickMenu(k);
             },
@@ -223,83 +242,20 @@
              * */
             close(k) {
                 this.key = k + "-0";
-                this.clickMenu(k);
+                // this.clickMenu(k);
             },
             open(k) {
                 this.key = k + "-0";
-                this.clickMenu(k);
+                // this.clickMenu(k);
             },
             clickMenu(v) {
                 this.setCookie(v);
                 this.isActive = v.charAt(0);
-                if (v === "1") {
+                if (v === "") {
                     let routeData = this.$router.resolve({
                         path: "/homeKanBan".replace("#", "")
                     });
                     window.open(routeData.href, "_blank");
-                }
-                if (v === "2") {
-                    this.$router.push("/serviceArea/serviceArea");
-                }
-                if (v === "3") {
-
-                }
-                if (v === "4") {
-                    this.$router.push("/energy/energy");
-                }
-                if (v === "4-0") {
-                    this.$router.push("/energy/energy");
-                }
-                if (v === "6") {
-                    this.$router.push("/media/media");
-                }
-                if (v === "6-0") {
-                    this.$router.push("/media/media");
-                }
-                if (v === "5") {
-                    this.$router.push("/energy/piFa");
-                }
-                if (v === "2-0") {
-                    this.$router.push("/serviceArea/serviceArea");
-                }
-                if (v === "2-1") {
-                    this.$router.push("/serviceArea/huangGang");
-                }
-                if (v === "2-2") {
-                    this.$router.push("/serviceArea/yiChang");
-                }
-                if (v === "2-3") {
-                    this.$router.push("/serviceArea/xiaoGan");
-                }
-                if (v === "2-4") {
-                    this.$router.push("/serviceArea/shiYan");
-                }
-                if (v === "2-5") {
-                    this.$router.push("/serviceArea/enShi");
-                }
-                if (v === "2-6") {
-                    this.$router.push("/serviceArea/xianNing");
-                }
-                if (v === "3-1") {
-                    this.$router.push("/serviceArea/FWQYeTai");
-                }
-                if (v === "3-2") {
-                    this.$router.push("/comparison/comparison");
-                }
-                if (v === "4-1") {
-                    this.$router.push("/energy/ZHJiaoTou");
-                }
-                /*if (v === "4-0-0") {
-                    this.$router.push("/energy/JYZXiangQing");
-                }*/
-                if (v === "5-0") {
-                    this.$router.push("/energy/piFa");
-                }
-                if (v === "5-1") {
-                    this.$router.push("/energy/YPLingShou");
-                }
-                if (v === "5-2") {
-                    this.$router.push("/energy/FYPLingShou");
                 }
                 this.setTag(v);
             },
@@ -307,9 +263,10 @@
                 let cookie = document.cookie;
                 let arr = [];
                 let arr_ = [];
+                console.log(cookie,55555)
                 if (cookie) {
                     arr = cookie.split('=');
-                    this.key = arr[1];
+                    this.key = arr[2];
                     arr_ = arr[1].split('-');
                     if (arr_.length === 2) {
                         this.clickMenu(arr_[0] + '-' + arr_[1]);
@@ -351,7 +308,7 @@
         justify-content: left;
 
         .nav {
-            min-width: 150px;
+            min-width: 200px;
             height: 100%;
             overflow-y: scroll;
             transition: linear 0.3s;

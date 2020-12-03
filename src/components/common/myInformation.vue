@@ -1,17 +1,17 @@
 <template>
   <div class="inform">
     <span class="focus" @click="operations('focus')">
-      <el-tooltip class="item" effect="dark" content="图表" placement="left">
+      <el-tooltip class="item" effect="dark" content="图表" placement="top">
         <i class="el-icon-s-marketing"></i>
       </el-tooltip>
     </span>
     <span class="datas" @click="operations('datas')">
-      <el-tooltip class="item" effect="dark" content="列表" placement="left">
+      <el-tooltip class="item" effect="dark" content="列表" placement="top">
         <i class="el-icon-s-grid"></i>
       </el-tooltip>
       </span>
     <span class="excel" @click="operations('excel')">
-      <el-tooltip class="item" effect="dark" content="导出Excel" placement="left">
+      <el-tooltip class="item" effect="dark" content="导出Excel" placement="top">
         <i class="el-icon-download"></i>
       </el-tooltip>
       </span>
@@ -37,11 +37,11 @@ export default {
 .inform {
   position: absolute;
   z-index: 10000;
-  width: 20px;
-  top: 60px;
-  right: 15px;
+  top: 0;
+  left: 10px;
+  width: 120px;
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   span {
     display: inline-block;
     margin-right: 20px;
@@ -56,6 +56,9 @@ export default {
     // background: #38A0FF;
     margin: 5px 0;
     border: 1px solid #38A0FF;
+  }
+  span+span{
+    margin-left: 10px;
   }
 }
 </style>

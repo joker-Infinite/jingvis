@@ -1,36 +1,13 @@
 <template>
     <div class="container">
         <div class="left">
-            <div style="width: 10%;height: 100%;float: left;background: #1d7dca">
-                <div class="customizeBtn">
-                    <el-button @click="customizeTemplate"
-                    ><i class="el-icon-document-add"></i> 自定义模板
-                    </el-button
-                    >
-                </div>
-                <div class="navBox">
-                    <div>
-            <span
-                    :class="{ navItem: true, active: navIndex === i }"
-                    @click="navClick(i)"
-                    v-for="i in 10"
-            >
-              {{ i }}-{{ i }}
-            </span>
-                    </div>
-                </div>
-            </div>
-            <div style="width: 90%;height: 100%;float: right">
+             <div style="width: 80%;height: 100%;">
                 <div class="head_tabs" style="height:10%">
                     <div class="tabs">
-                        <div
-                                @click="tabClick(item.value)"
-                                :class="{
-                tabs_item: true,
-                borderBottom: tabIndex === item.value
-              }"
+                        <div  @click="tabClick(item.value)"
+                                :class="{tabs_item: true,borderBottom: tabIndex === item.value}"
                                 v-for="(item, index) in tabsData"
-                        >
+                                :key="index" >
                             <span>{{ item.name }}</span>
                             <div
                                     class="del el-icon-error"
@@ -64,10 +41,28 @@
                     </el-table>
                 </div>
             </div>
+            <div style="width: 10%;height: 100%;background: #1d7dca">
+                <div class="customizeBtn">
+                    <el-button @click="customizeTemplate"
+                    ><i class="el-icon-document-add"></i> 自定义模板
+                    </el-button
+                    >
+                </div>
+                <div class="navBox">
+                    <div>
+            <span :class="{ navItem: true, active: navIndex === i }"
+                    @click="navClick(i)"
+                    v-for="i in 10"
+                    :key='i'>
+              {{ i }}-{{ i }}
+            </span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style=" width: 20%;height: 100%;float: left; position: relative">
-            <div class="right">
-                <div class="box" v-for="(it, ix) in columns" v-if="ix !== 0">
+        <div style=" width: 20%;height: 100%; position: relative">
+            <div class="right"  >
+                <div class="box" v-for="(it, ix) in columns"  :key="ix">
                     <div class="title">
                         <el-select v-model="it.value">
                             <el-option
@@ -99,10 +94,10 @@
                             <span>服务区：</span>
                             <el-select v-model="it.service">
                                 <el-option
-                                        v-for="(it, ix) in serviceData"
+                                        v-for="(it, indexs) in serviceData"
                                         :label="it.label"
                                         :value="it.value"
-                                        :key="ix"
+                                        :key="indexs"
                                 ></el-option>
                             </el-select>
                         </div>
@@ -121,16 +116,16 @@
                             <span>业态：</span>
                             <el-select v-model="it.format">
                                 <el-option
-                                        v-for="(it, ix) in business"
-                                        :label="it.label"
-                                        :value="it.value"
+                                        v-for="(itx, ix) in business"
+                                        :label="itx.label"
+                                        :value="itx.value"
                                         :key="ix"
                                 ></el-option>
                             </el-select>
                         </div>
                     </div>
                     <div class="btnGroup small">
-                        <i class="el-icon-close" @click="del(ix)"></i>
+                        <i class="el-icon-close" @click="del(it,ix)"></i>
                     </div>
                 </div>
             </div>
@@ -496,15 +491,16 @@
             tabClick(i) {
                 if (this.prevent) {
                     this.tabIndex = this.tabsData[0].value;
-                    this.columns = ["columns_" + this.tabsData[0].value];
+                    this.columns = this["columns_" + this.tabsData[0].value];
                 }
                 if (!this.prevent) {
                     this.tabIndex = i;
-                    this.columns = ["columns_" + i];
+                    this.columns = this["columns_" + i];
                 }
                 this.prevent = false;
             },
-            del(v) {
+            del(item,v) {
+                console.log(item,v,this.tabsData[this.tabIndex])
                 let newData = [];
                 let data = JSON.parse(JSON.stringify(this.columns));
                 this.columns = [];
@@ -514,6 +510,8 @@
                     }
                 });
                 this.columns = newData;
+                this["columns_" + this.tabIndex] = newData;
+                console.log(this["columns_" + this.tabIndex],"columns_" + this.tabIndex)
             },
             newAdd() {
                 let obj = {
@@ -570,13 +568,17 @@
 
 <style scoped lang="less">
     .container {
-        width: 1900px;
+        width: 105%;
         height: 930px;
+        display: flex;
+        flex-direction:row-reverse;
+        flex-wrap: nowrap;
+        justify-content:space-between;
 
         .left {
-            width: 70%;
+            width: 80%;
             height: 100%;
-            float: left;
+            display: flex;
 
             .head_tabs {
                 width: 100%;
@@ -590,7 +592,6 @@
                     flex-direction: row;
                     flex-wrap: nowrap;
                     justify-content: flex-start;
-                    /*border: 1px solid #DCDFE6;*/
                     align-items: center;
 
                     .tabs_item {
@@ -736,12 +737,11 @@
         .right {
             width: 100%;
             height: 78%;
-            /*float: right;*/
             overflow-y: scroll;
             position: relative;
 
             .box {
-                width: 95%;
+                width: 94%;
                 height: 215px;
                 background: #fff;
                 position: relative;
@@ -762,7 +762,7 @@
                     }
 
                     .label > span {
-                        width: 15%;
+                        width: 20%;
                         display: inline-block;
                     }
 

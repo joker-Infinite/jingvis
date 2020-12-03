@@ -7,6 +7,36 @@ export default [
         name: 'serviceArea',
         component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/serviceArea.vue'),
     },
+    // 利润
+    {
+        path: 'revenue',
+        name: 'revenue',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/revenue.vue'),
+    },
+    // 营收
+    {
+        path: 'profit',
+        name: 'profit',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/profit.vue'),
+    },
+    //成本
+    {
+        path: 'costing',
+        name: 'costing',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/costing.vue'),
+    },
+    //业态结构
+    {
+        path: 'construction',
+        name: 'construction',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/construction.vue'),
+    },
+    //服务区对比
+    {
+        path: 'comparison',
+        name: 'comparison',
+        component: () => import(/* webpackChunkName: "comparison" */ '@/pages/comparison/test.vue'),
+    },
     {
         path: 'huangGang',
         name: 'huangGang',

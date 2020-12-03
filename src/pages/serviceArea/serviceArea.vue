@@ -24,7 +24,8 @@
         },
         data() {
             return {
-                collapseData: [{
+                collapseData: [
+                    {
                     id: "revenue",
                     name: "营收",
                     icon: require("../../assets/business/icon_1-1.png"),
@@ -136,28 +137,28 @@
                                                         },
                                                     },
                                                 },
-                                                {
-                                                    type: 'value',
-                                                    min: '',//最小坐标
-                                                    max: '',//最大坐标
-                                                    axisLabel: {
-                                                        fontSize: 14,
-                                                        color: "#999",
-                                                        formatter: '{value} %'
-                                                    },
-                                                    axisLine: {
-                                                        lineStyle: {
-                                                            color:
-                                                                "rgba(107,107,107,0.37)",
-                                                        },
-                                                    },
-                                                    splitLine: {
-                                                        show: false//是否显示分隔线。
-                                                    },
-                                                    axisTick: {
-                                                        show: false,
-                                                    },
-                                                }
+                                                // {
+                                                //     type: 'value',
+                                                //     min: '',//最小坐标
+                                                //     max: '',//最大坐标
+                                                //     axisLabel: {
+                                                //         fontSize: 14,
+                                                //         color: "#999",
+                                                //         formatter: '{value} %'
+                                                //     },
+                                                //     axisLine: {
+                                                //         lineStyle: {
+                                                //             color:
+                                                //                 "rgba(107,107,107,0.37)",
+                                                //         },
+                                                //     },
+                                                //     splitLine: {
+                                                //         show: false//是否显示分隔线。
+                                                //     },
+                                                //     axisTick: {
+                                                //         show: false,
+                                                //     },
+                                                // }
                                             ],
                                             series: [
                                                 {
@@ -177,46 +178,46 @@
                                                         },
                                                     },
                                                 },
-                                                {
-                                                    data: [],
-                                                    type: "line",
-                                                    name: "折线图",
-                                                    yAxisIndex: 1,
-                                                    // symbol: 'none',
-                                                    lineStyle: {
-                                                        color: "#fea2a2",
-                                                        width: 2,
-                                                        shadowColor:
-                                                            "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                                                        shadowBlur: 10,
-                                                        shadowOffsetY: 10,
-                                                    },
-                                                    itemStyle: {
-                                                        normal: {
-                                                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                                                offset: 0,
-                                                                color: 'rgb(255, 204, 102)'
-                                                            }, {
-                                                                offset: 1,
-                                                                color: 'rgb(255, 153, 51)'
-                                                            }]),
-                                                            label: {
-                                                                show: true,
-                                                                position: 'top',
-                                                                textStyle: {
-                                                                    fontSize: '16',
-                                                                    color: 'rgb(255, 156, 54)',
-                                                                }
-                                                            }
-                                                        },
-                                                    },
-                                                    areaStyle: {
-                                                        normal: {
-                                                            color:
-                                                                "rgba(0,0,0,0)",
-                                                        },
-                                                    },
-                                                },
+                                                // {
+                                                //     data: [],
+                                                //     type: "line",
+                                                //     name: "折线图",
+                                                //     yAxisIndex: 1,
+                                                //     // symbol: 'none',
+                                                //     lineStyle: {
+                                                //         color: "#fea2a2",
+                                                //         width: 2,
+                                                //         shadowColor:
+                                                //             "rgba(0, 0, 0, 0.3)", //设置折线阴影
+                                                //         shadowBlur: 10,
+                                                //         shadowOffsetY: 10,
+                                                //     },
+                                                //     itemStyle: {
+                                                //         normal: {
+                                                //             color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                //                 offset: 0,
+                                                //                 color: 'rgb(255, 204, 102)'
+                                                //             }, {
+                                                //                 offset: 1,
+                                                //                 color: 'rgb(255, 153, 51)'
+                                                //             }]),
+                                                //             label: {
+                                                //                 show: true,
+                                                //                 position: 'top',
+                                                //                 textStyle: {
+                                                //                     fontSize: '16',
+                                                //                     color: 'rgb(255, 156, 54)',
+                                                //                 }
+                                                //             }
+                                                //         },
+                                                //     },
+                                                //     areaStyle: {
+                                                //         normal: {
+                                                //             color:
+                                                //                 "rgba(0,0,0,0)",
+                                                //         },
+                                                //     },
+                                                // },
                                             ],
                                         },
                                     }
@@ -480,21 +481,21 @@
                                                         },
                                                     },
                                                 },
-                                                {
-                                                    type: 'value',
-                                                    min: '',//最小坐标
-                                                    max: '',//最大坐标
-                                                    axisLabel: {
-                                                        fontSize: 14,
-                                                        color: "#999",
-                                                        formatter: '{value} %'
-                                                    },
-                                                    axisLine: {
-                                                        lineStyle: {color: "rgba(107,107,107,0.37)"},
-                                                    },
-                                                    splitLine: {show: false},
-                                                    axisTick: {show: false},
-                                                }
+                                                // {
+                                                //     type: 'value',
+                                                //     min: '',//最小坐标
+                                                //     max: '',//最大坐标
+                                                //     axisLabel: {
+                                                //         fontSize: 14,
+                                                //         color: "#999",
+                                                //         formatter: '{value} %'
+                                                //     },
+                                                //     axisLine: {
+                                                //         lineStyle: {color: "rgba(107,107,107,0.37)"},
+                                                //     },
+                                                //     splitLine: {show: false},
+                                                //     axisTick: {show: false},
+                                                // }
                                             ],
                                             series: [
                                                 {
@@ -508,46 +509,46 @@
                                                         },
                                                     },
                                                 },
-                                                {
-                                                    data: [],
-                                                    type: "line",
-                                                    name: "折线图",
-                                                    yAxisIndex: 1,
-                                                    lineStyle: {
-                                                        color: "#fea2a2",
-                                                        width: 2,
-                                                        shadowColor: "rgba(0, 0, 0, 0.3)",
-                                                        shadowBlur: 10,
-                                                        shadowOffsetY: 10,
-                                                    },
-                                                    itemStyle: {
-                                                        normal: {
-                                                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                                                {
-                                                                    offset: 0,
-                                                                    color: 'rgb(255, 204, 102)'
-                                                                },
-                                                                {
-                                                                    offset: 1,
-                                                                    color: 'rgb(255, 153, 51)'
-                                                                }
-                                                            ]),
-                                                            label: {
-                                                                show: true,
-                                                                position: 'top',
-                                                                textStyle: {
-                                                                    fontSize: '16',
-                                                                    color: 'rgb(255, 156, 54)',
-                                                                }
-                                                            }
-                                                        },
-                                                    },
-                                                    areaStyle: {
-                                                        normal: {
-                                                            color: "rgba(0,0,0,0)",
-                                                        },
-                                                    },
-                                                },
+                                                // {
+                                                //     data: [],
+                                                //     type: "line",
+                                                //     name: "折线图",
+                                                //     yAxisIndex: 1,
+                                                //     lineStyle: {
+                                                //         color: "#fea2a2",
+                                                //         width: 2,
+                                                //         shadowColor: "rgba(0, 0, 0, 0.3)",
+                                                //         shadowBlur: 10,
+                                                //         shadowOffsetY: 10,
+                                                //     },
+                                                //     itemStyle: {
+                                                //         normal: {
+                                                //             color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                                //                 {
+                                                //                     offset: 0,
+                                                //                     color: 'rgb(255, 204, 102)'
+                                                //                 },
+                                                //                 {
+                                                //                     offset: 1,
+                                                //                     color: 'rgb(255, 153, 51)'
+                                                //                 }
+                                                //             ]),
+                                                //             label: {
+                                                //                 show: true,
+                                                //                 position: 'top',
+                                                //                 textStyle: {
+                                                //                     fontSize: '16',
+                                                //                     color: 'rgb(255, 156, 54)',
+                                                //                 }
+                                                //             }
+                                                //         },
+                                                //     },
+                                                //     areaStyle: {
+                                                //         normal: {
+                                                //             color: "rgba(0,0,0,0)",
+                                                //         },
+                                                //     },
+                                                // },
                                             ],
                                         },
                                     }],
@@ -5928,12 +5929,12 @@
                                                 mm.push(i.yAxis);
                                                 sItem.EChartsItem[0].option.xAxis[0].data.push(i.xBxis);
                                             });
-                                            if (mm.length !== 0) {
-                                                let arr = this.YoYIncrease(mm);
-                                                sItem.EChartsItem[0].option.yAxis[1].min = parseInt(Math.min(...arr) - 5);
-                                                sItem.EChartsItem[0].option.yAxis[1].max = parseInt(Math.max(...arr) + 5);
-                                                sItem.EChartsItem[0].option.series[1].data.push(...arr);
-                                            }
+                                            // if (mm.length !== 0) {
+                                            //     let arr = this.YoYIncrease(mm);
+                                            //     // sItem.EChartsItem[0].option.yAxis[1].min = parseInt(Math.min(...arr) - 5);
+                                            //     // sItem.EChartsItem[0].option.yAxis[1].max = parseInt(Math.max(...arr) + 5);
+                                            //     sItem.EChartsItem[0].option.series[1].data.push(...arr);
+                                            // }
                                         }
                                         if (sIndex == 1) {
                                             sItem.EChartsItem[0].option.series[0].data=[];

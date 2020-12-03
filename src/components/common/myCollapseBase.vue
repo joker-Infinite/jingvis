@@ -107,7 +107,7 @@
                 </el-collapse>
             </div>
         </div>
-        <div class="navigation">
+        <!-- <div class="navigation">
             <div class="navBar">
                 <p></p>
                 <p style="cursor: pointer" @click="collapseAll">
@@ -122,7 +122,7 @@
                 </p>
                 <p></p>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -463,7 +463,7 @@
         justify-content: space-around;
 
         .collapse {
-            width: 90%;
+            width: 98%;
             height: 100%;
             overflow-y: scroll;
             scroll-behavior: smooth;

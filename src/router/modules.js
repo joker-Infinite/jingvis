@@ -6,7 +6,6 @@ import business from "./business/index";
 import energy from "./energy/index";
 import media from "./media/index";
 import details from "./details/index"
-import comparison from './comparison/index'
 
 export default {
     serviceArea: serviceArea,
@@ -14,5 +13,4 @@ export default {
     energy: energy,
     media: media,
     details: details,
-    comparison:comparison
 }
