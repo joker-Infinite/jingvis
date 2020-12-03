@@ -4243,7 +4243,7 @@
                                                         subtextStyle: {
                                                             fontSize: 20,
                                                             color: "#1edf57",
-                                                            "fontWeight": "bolder"
+                                                            fontWeight: "bolder"
                                                         },
                                                     },
                                                     grid: {
