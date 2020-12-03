@@ -416,6 +416,7 @@
             }
         },
         mounted() {
+            // this.refresh()
             this.scrollChange();
             this.collapseData.forEach((i) => {
                 i.collapseItem.forEach((m, cx) => {

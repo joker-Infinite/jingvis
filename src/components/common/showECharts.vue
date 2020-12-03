@@ -17,7 +17,7 @@
                 <el-button size="small">搜索</el-button>
             </div>
             <div class="bigShow" v-if="visible">
-                <div class="MMA" v-if="type">
+                <div class="MMA" v-if="type" >
                     平均：{{showTarget(this.option,'average')}}<span style="display: inline-block;margin: 0 5px"></span>
                     最高：{{showTarget(this.option,'max')}}<span style="display: inline-block;margin: 0 5px"></span>
                     最低：{{showTarget(this.option,'min')}}
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+    import clone from '../../../public/api/clone'
     export default {
         name: "showECharts",
         // props: {
@@ -80,7 +81,6 @@
         },
         methods: {
             showTarget(v, type) {
-                console.log(v);
                 let obj = {
                     min: '',
                     max: '',
@@ -121,6 +121,7 @@
             changeRadioBD(v) {
             },
             openDialog(v, t) {
+                v = clone(v)
                 if (t === "time") {
                     this.timeSelect = true;
                 } else {
@@ -133,17 +134,29 @@
                 if (Array.isArray(v) === true) {
                     this.visible_ = true;
                     this.$nextTick((_) => {
+                       
                         this.inntECharts_(v);
                         this.isShow = false;
                     });
                 } else {
                     this.visible = true;
-                    this.$nextTick((_) => {
+                    
+                    this.$nextTick(()=>{
+                        if(v.series[0] && v.series[0].data.length===0){
+                            if(v.grid){
+                                v.grid.show = false
+                            }
+                            v.xAxis[0].show = false;
+                            v.yAxis[0].show = false;
+                            this.type = false
+                        document.getElementById('commonECharts_data').innerHTML='暂无数据'
+                        }
                         this.initECharts(v);
-                    });
+                    })
                 }
             },
             initECharts(option) {
+                
                 document.getElementById("commonECharts").removeAttribute("_echarts_instance_");
                 this.$nextTick((_) => {
                     let commonECharts = this.$echarts.init(
@@ -182,14 +195,6 @@
 </script>
 
 <style scoped lang="less">
-    #commonECharts_data {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        font-size: 1.5em;
-        color: #fff;
-    }
-
     .select_type {
         width: 100%;
         position: absolute;
@@ -270,8 +275,21 @@
         background: url("../../assets/detail_background.jpg") no-repeat;
         background-size: 100% 100%;
 
+        #commonECharts_data {
+            width: 115px;
+            height: 35px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin:auto;
+            font-size: 2em;
+            color: #fff;
+        }
+
         .MMA {
-            width: 40%;
+            width: 45%;
             position: absolute;
             top: 15%;
             right: 0;

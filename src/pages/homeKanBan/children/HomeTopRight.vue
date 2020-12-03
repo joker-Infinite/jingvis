@@ -3,6 +3,7 @@
         <div class="top" @mouseover="mouseHover('AD')">
             <operations class="operations" time="time" @showOne="showOne(1)"></operations>
             <div id="HomeTopRight_top"></div>
+            <div class="DataEi" id="HomeTopRight_topData"></div>
         </div>
         <div style="width: 100%;height: 2%"></div>
         <div class="bottom">
@@ -32,6 +33,7 @@
                 </div>
                 <operations class="operations" @showOne="showOne"></operations>
                 <div id="HomeTopRight_bottom_left"></div>
+                <div class="DataEi" id="HomeTopRight_bottom_leftData"></div>
             </div>
             <div class="bottom_right" @mouseover="mouseHover('CD')">
                 <div class="select_type">
@@ -46,6 +48,7 @@
                 </div>
                 <operations class="operations" @showOne="showOne"></operations>
                 <div id="HomeTopRight_bottom_right"></div>
+                <div class="DataEi" id="HomeTopRight_bottom_rightData"></div>
             </div>
         </div>
         <show-e-charts ref="showECharts"></show-e-charts>
@@ -74,6 +77,17 @@
         methods: {
             mouseHover(v) {
                 this.option = this[v];
+            },
+            isNoData(is,id,option){
+                if (is.length===0) {
+                    document.getElementById(id+'Data').innerHTML ="暂无数据";
+                    option.xAxis[0].show = false;
+                    option.yAxis[0].show = false;
+                    this.$echarts.init(document.getElementById(id)).setOption(option);
+                } else {
+                    document.getElementById(id+'Data').innerHTML = "";
+                    this.$echarts.init(document.getElementById(id)).setOption(option);
+                }
             },
             showOne(is) {
                 if (is === 1) {
@@ -236,6 +250,7 @@
                         },
                     },
                 });
+                this.isNoData([],'HomeTopRight_top',option)
                 HomeTopRight_top.setOption(option);
             },
             initECharts_bottom_left() {
@@ -378,11 +393,11 @@
                     ],
                 });
                 this.BD = clone(option)
-                this.BD.series[0].markLine.data = [{
-                    type: "average",
-                    name: "平均值",
-                    xAxis: average, //设置平均值所在位置
-                }],
+                // this.BD.series[0].markLine.data = [{
+                //     type: "average",
+                //     name: "平均值",
+                //     xAxis: average, //设置平均值所在位置
+                // }],
                     HomeTopRight_bottom_left.setOption(option);
             },
             initECharts_bottom_right() {
@@ -532,12 +547,12 @@
                     ],
                 });
                 this.CD = clone(option)
-                this.CD.series[0].markLine.data = [{
-                    type: "average",
-                    name: "平均值",
-                    xAxis: average, //设置平均值所在位置
-                }],
-                    HomeTopRight_bottom_right.setOption(option);
+                // this.CD.series[0].markLine.data = [{
+                //     type: "average",
+                //     name: "平均值",
+                //     xAxis: average, //设置平均值所在位置
+                // }],
+                HomeTopRight_bottom_right.setOption(option);
             },
             isResize() {
                 this.resizeData.forEach((element) => {
@@ -555,6 +570,12 @@
 </script>
 
 <style scoped lang="less">
+    .DataEi{
+        background: red;
+        position: absolute;
+        top: 0;
+        margin: 0;
+    }
     .content /deep/ .el-radio {
         padding: 0;
         margin: 0;

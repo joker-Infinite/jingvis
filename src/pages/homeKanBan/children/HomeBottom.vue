@@ -9,49 +9,55 @@
             </div>
         </div>
         <div class="item HomeBottomA" @mouseover="mouseHover('AD')">
-            <div class="MMA">
-                平均：{{showTarget(this.AD,'average')}}<br>
+            <div class="MMA" v-if="!AD && AD.series[0].data.length===0">
+                <!-- v-if="AD.series[0].data.length===0" -->
+                <!-- {{AD.series[0].data}} -->
+                <!-- 平均：{{showTarget(this.AD,'average')}}<br> -->
                 最高：{{showTarget(this.AD,'max')}}
                 最低：{{showTarget(this.AD,'min')}}
             </div>
             <operations class="operations" @showOne="showOne"></operations>
-            <div id="HomeBottomAData"></div>
+            <div class="DataEi" id="HomeBottomAData"></div>
             <div class="ei" id="HomeBottomA"></div>
         </div>
         <div class="item HomeBottomB" @mouseover="mouseHover('BD')">
             <div class="MMA">
-                平均：{{showTarget(this.BD,'average')}}<br>
+                <!-- 平均：{{showTarget(this.BD,'average')}}<br> -->
                 最高：{{showTarget(this.BD,'max')}}
                 最低：{{showTarget(this.BD,'min')}}
             </div>
             <operations class="operations" @showOne="showOne"></operations>
+            <div class="DataEi" id="HomeBottomBData"></div>
             <div class="ei" id="HomeBottomB"></div>
         </div>
         <div class="item HomeBottomC" @mouseover="mouseHover('CD')">
             <div class="MMA">
-                平均：{{showTarget(this.CD,'average')}}<br>
+                <!-- 平均：{{showTarget(this.CD,'average')}}<br> -->
                 最高：{{showTarget(this.CD,'max')}}
                 最低：{{showTarget(this.CD,'min')}}
             </div>
             <operations class="operations" @showOne="showOne"></operations>
+            <div class="DataEi" id="HomeBottomCData"></div>
             <div class="ei" id="HomeBottomC"></div>
         </div>
         <div class="item HomeBottomD" @mouseover="mouseHover('DD')">
             <div class="MMA">
-                平均：{{showTarget(this.DD,'average')}}<br>
+                <!-- 平均：{{showTarget(this.DD,'average')}}<br> -->
                 最高：{{showTarget(this.DD,'max')}}
                 最低：{{showTarget(this.DD,'min')}}
             </div>
             <operations class="operations" @showOne="showOne"></operations>
+            <div class="DataEi" id="HomeBottomDData"></div>
             <div class="ei" id="HomeBottomD"></div>
         </div>
         <div class="item HomeBottomE" @mouseover="mouseHover('ED')">
             <div class="MMA">
-                平均：{{showTarget(this.ED,'average')}}<br>
+                <!-- 平均：{{showTarget(this.ED,'average')}}<br> -->
                 最高：{{showTarget(this.ED,'max')}}
                 最低：{{showTarget(this.ED,'min')}}
             </div>
             <operations class="operations" @showOne="showOne"></operations>
+            <div class="DataEi" id="HomeBottomEData"></div>
             <div class="ei" id="HomeBottomE"></div>
         </div>
         <!--<div class="item HomeBottomF" @mouseover="mouseHover('FD')">
@@ -65,6 +71,7 @@
         </div>-->
         <div class="item HomeBottomG" @mouseover="mouseHover('GD')">
             <operations class="operations" @showOne="showOne(1)"></operations>
+            <div class="DataEi" id="HomeBottomGData"></div>
             <div class="ei" id="HomeBottomG"></div>
         </div>
     </div>
@@ -97,6 +104,18 @@
             };
         },
         methods: {
+            // 暂无数据啥的
+            isNoData(is,id,option){
+                if (is.length===0) {
+                    option.grid.show = false;
+                    option.yAxis[0].show = false;
+                    option.xAxis[0].show = false;
+                    document.getElementById(id._zr.dom.id+'Data').innerHTML = "暂无数据";
+                } else {
+                    document.getElementById(id._zr.dom.id+'Data').innerHTML = "";
+                }
+                this.$echarts.init(document.getElementById(id._zr.dom.id)).setOption(option);
+            },
             showTarget(v, type) {
                 let obj = {
                     min: '',
@@ -137,35 +156,47 @@
             },
             // 请求axios
             isAxios(url, financeTypeId, plateId, title, option, v, HomeBottom) {
-                HomeBottom.setOption(option);
-                this.$axios.get(url, {params: {financeTypeId: this.financeTypeId, plateId: plateId},}).then((res) => {
-                    let optionss = clone(option);
+                let optionss = clone(option);
+                // HomeBottom.setOption(option);
+                if(title === '实业公司'){
                     optionss.title.text = `{a|     ${title}}`;
-                    let xBxis = [];
-                    let yAxis = [];
-                    res.data.data.forEach((element) => {
-                        xBxis.push(element.xBxis);
-                        let Yaxis = {
-                            value: element.yAxis,
-                            itemStyle: {
-                                normal: {
-                                    position: "inside",
-                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                        {offset: 0, color: "rgb(166,72,255,1)"},
-                                        {offset: 0.5, color: "rgb(44,30,255,1)"},
-                                        {offset: 1, color: "rgb(70,70,255,0)"},
-                                    ]),
-                                },
-                            },
-                        };
-                        yAxis.push(Yaxis);
-                    });
-
-                    optionss.xAxis[0].data = xBxis;
-                    optionss.series[0].data = yAxis;
                     this[v] = optionss;
+                    
+                    this.isNoData([],HomeBottom,optionss)
                     HomeBottom.setOption(optionss);
-                });
+                }else{  
+                    this.$axios.get(url, {params: {financeTypeId: this.financeTypeId, plateId: plateId},}).then((res) => {
+                        optionss.title.text = `{a|     ${title}}`;
+                        let xBxis = [];
+                        let yAxis = [];
+                        res.data.data.forEach((element) => {
+                            xBxis.push(element.xBxis);
+                            let Yaxis = {
+                                value: element.yAxis,
+                                itemStyle: {
+                                    normal: {
+                                        position: "inside",
+                                        color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                            {offset: 0, color: "rgb(166,72,255,1)"},
+                                            {offset: 0.5, color: "rgb(44,30,255,1)"},
+                                            {offset: 1, color: "rgb(70,70,255,0)"},
+                                        ]),
+                                    },
+                                },
+                            };
+                            yAxis.push(Yaxis);
+                        });
+    
+                        optionss.xAxis[0].data = xBxis;
+                        optionss.series[0].data = yAxis;
+                        this[v] = optionss;
+                        HomeBottom.setOption(optionss);
+                        this.isNoData(res.data.data,HomeBottom,optionss)
+                    });
+                }
+            },
+            AxiosList(){
+                
             },
             selectOption(v) {
                 this.select = v;
@@ -204,6 +235,9 @@
             showOne(is) {
                 let option = clone(this.option);
                 let options = clone(this.options);
+                // if(!!option.grid.borderWidth){
+                
+                // }
                 if (is === 1) {
                     options.title.x = "center";
                     options.title.y = "-3%";
@@ -246,7 +280,7 @@
                     this.isAxios(
                         "/api/index/liudabankuai",
                         this.financeTypeId,
-                        datas[0].plateId,
+                        '123',
                         '实业公司',
                         option,
                         "AD",
@@ -433,7 +467,6 @@
                         xBxis.push(element.xBxis)
                         yAxis.push(element.yAxis)
                     });
-
                     option.yAxis.data = yAxis;
                     option.series[0].data = xBxis;
                     this.options = clone(option);
@@ -442,16 +475,16 @@
                         average += Number(i);
                     })
                     average = parseInt(average / this.options.series[0].data.length);
-                    this.options.series[0].markLine.data = [{
-                        type: "average",
-                        name: "平均值",
-                        xAxis: average, //设置平均值所在位置
-                    }]
-                    this.options.series[0].markLine.itemStyle.normal.label = {
-                        show: true,
-                        position: "middle",
-                        formatter: "数据平均 : " + average
-                    }
+                    // this.options.series[0].markLine.data = [{
+                    //     type: "average",
+                    //     name: "平均值",
+                    //     xAxis: average, //设置平均值所在位置
+                    // }]
+                    // this.options.series[0].markLine.itemStyle.normal.label = {
+                    //     show: true,
+                    //     position: "middle",
+                    //     formatter: "数据平均 : " + average
+                    // }
                     HomeBottomG.setOption(option);
                 })
 
@@ -477,10 +510,10 @@
                     text: "{a|     }",
                     show: true,
                     x: "center",
-                    y: '',
+                    y: '-1%',
                     textStyle: {
                         fontFamily: "幼圆",
-                        lineHeight: 25,
+                        lineHeight: 20,
                         rich: {
                             a: {
                                 color: "#FFF",
@@ -507,6 +540,7 @@
                 color: ["red", "#a549ff"],
                 xAxis: [
                     {
+                        show:true,
                         type: "category",
                         data: [],
                         axisPointer: {
@@ -525,6 +559,7 @@
                 ],
                 yAxis: [
                     {
+                        show:true,
                         name: "亿",
                         axisLine: {
                             show: false,
@@ -574,7 +609,7 @@
                     text: "{a|     }",
                     show: true,
                     x: "center",
-                    y: '',
+                    y: '-2.2%',
                     textStyle: {
                         fontFamily: "幼圆",
                         lineHeight: 25,
@@ -722,6 +757,8 @@
             .ei {
                 width: 100%;
                 height: 100%;
+                
+
             }
 
             .MMA {
@@ -761,6 +798,19 @@
 
         .HomeBottomG:hover .operations {
             display: block;
+        }
+        .DataEi{
+            color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 80px;
+            height: 20px;
+            font-weight: 700;
+            font-size: 20px;
         }
     }
 </style>

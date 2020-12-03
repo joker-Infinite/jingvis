@@ -5909,6 +5909,7 @@
                         stateTime:this.ValueData.timeValue[0]
                     }
                 }).then(v => {
+                    console.log(v)
                     data = v.data.data;
                     let mm = [];
                     this.collapseData.forEach((item, index) => {
@@ -5954,7 +5955,9 @@
                             })
                         }
                     })
-                    this.$refs['collapse'].searchClick(this.arrData)
+                    // this.$nextTick(_=>{
+                    //     this.$refs['collapse'].searchClick(this.arrData)
+                    // })
                 })
             },
         },
@@ -5962,7 +5965,7 @@
             await new Promise(resolve => {
                 setInterval(_ => {
                     resolve();
-                }, 200);
+                }, 500);
             });
             this.$refs["collapse"].initECharts(this.collapseData);
         },

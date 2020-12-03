@@ -4,12 +4,7 @@
 
 function clone(obj) {
   if (typeof obj !== "object" || obj == null) {
-    if (typeof obj === "function") {
-      // let fun = new obj
       return obj;
-    } else {
-      return obj;
-    }
   }
   var newobj = Array.isArray(obj) ? [] : {};
   for (var k in obj) {

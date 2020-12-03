@@ -40,12 +40,23 @@
             mouseHover(v) {
                 this.option = this[v];
             },
+            isNoData(is,id,ids,option){
+                console.log(is,id,ids)
+                if (is.length===0) {
+                    document.getElementById(id).innerHTML ="暂无数据";
+                    option.xAxis[0].show = false;
+                    option.yAxis[0].show = false;
+                    this.$echarts.init(document.getElementById(ids)).setOption(option);
+                } else {
+                    document.getElementById(id).innerHTML = "";
+                    this.$echarts.init(document.getElementById(ids)).setOption(option);
+                }
+            },
             showOne(is) {
                 if (this.option.yAxis[0].data) {
                     this.option.yAxis[0].data.forEach((element, index) => {
                         this.option.yAxis[0].data[index] = this.company[index]
                     });
-
                 }
                 // 修改柱状图的粗细
                 this.option.barWidth = 30;
@@ -222,18 +233,12 @@
                         option.series[0].data.push((element.yAxis / 100) / sum * 100)
                     });
                     HomeTopLeft_top.setOption(option);
+                    this.isNoData(res.data.data,'initECharts_top_data','HomeTopLeft_top',option)
                 })
-                HomeTopLeft_top.on("legendselectchanged", function (param) {
-                    if (!param.selected.金额) {
-                        document.getElementById("initECharts_top_data").innerHTML =
-                            "暂无数据";
-                    } else {
-                        document.getElementById("initECharts_top_data").innerHTML = "";
-                    }
-                });
 
 
             },
+           
             initECharts_center() {
                 let HomeTopLeft_center = this.$echarts.init(
                     document.getElementById("HomeTopLeft_center")
@@ -390,15 +395,8 @@
 
                     });
                     HomeTopLeft_center.setOption(option);
+                    this.isNoData(res.data.data,'HomeTopLeft_center_data','HomeTopLeft_center',option)
                 })
-                HomeTopLeft_center.on("legendselectchanged", function (param) {
-                    if (!param.selected.金额) {
-                        document.getElementById("HomeTopLeft_center_data").innerHTML =
-                            "暂无数据";
-                    } else {
-                        document.getElementById("HomeTopLeft_center_data").innerHTML = "";
-                    }
-                });
 
 
             },
@@ -433,7 +431,7 @@
                             }
                         }
                     },
-
+                    
                     legend: {
                         data: ["c", "d"],
                         icon: "circle",
@@ -486,7 +484,7 @@
                             },
                             splitLine: {
                                 show: false
-                            }
+                            },
                         }
                     ],
                     grid: {
@@ -578,7 +576,7 @@
                     };
                     this.CD.series[0].markLine.itemStyle.normal.label.formatter = "数据平均 : " + sum / res.data.data.length
                     HomeTopLeft_bottom.setOption(option);
-
+                    this.isNoData(res.data.data,'initECharts_bottom_data','HomeTopLeft_bottom',option)
                 })
             }
         },
@@ -586,16 +584,16 @@
             this.initECharts_top();
             this.initECharts_center();
             this.initECharts_bottom();
-            setInterval(_ => {
-                this.$echarts.init(document.getElementById('HomeTopLeft_top')).dispose();
-                this.$echarts.init(document.getElementById('HomeTopLeft_bottom')).dispose();
-                this.$echarts.init(document.getElementById('HomeTopLeft_center')).dispose();
-                this.$nextTick(_ => {
-                    this.initECharts_bottom();
-                    this.initECharts_center();
-                    this.initECharts_top();
-                })
-            }, 10000)
+            // setInterval(_ => {
+            //     this.$echarts.init(document.getElementById('HomeTopLeft_top')).dispose();
+            //     this.$echarts.init(document.getElementById('HomeTopLeft_bottom')).dispose();
+            //     this.$echarts.init(document.getElementById('HomeTopLeft_center')).dispose();
+            //     this.$nextTick(_ => {
+            //         this.initECharts_bottom();
+            //         this.initECharts_center();
+            //         this.initECharts_top();
+            //     })
+            // }, 10000)
         }
     };
 </script>
@@ -605,10 +603,15 @@
     #initECharts_top_data,
     #initECharts_bottom_data {
         position: absolute;
-        top: 40%;
-        left: 35%;
-        font-size: 1.5em;
+        width: 80px;
+        height: 20px;
         color: #fff;
+        font-size: 20px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
     }
 
     .content {

@@ -5181,6 +5181,7 @@
                     endTime:this.ValueData.timeValue[1],
                     stateTime:this.ValueData.timeValue[0]
                 }}).then(v=>{
+                    console.log(v)
                     data = v.data.data;
                     let mm = [];
                     this.collapseData.forEach((item, index) => {
@@ -5227,7 +5228,9 @@
                             })
                         }
                     })
-                    this.$refs['collapse'].searchClick(this.arrData)
+                    // this.$nextTick(_=>{
+                    //     this.$refs['collapse'].searchClick(this.arrData)
+                    // })
                 })
             },
             async TableDatas(pageNum,pageSize){
