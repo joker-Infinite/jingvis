@@ -9,7 +9,6 @@
             :collapseData="collapseData">
         </my-collapse-base>
     </div>
-    <!-- 55555 -->
 </template>
 
 <script>
@@ -118,7 +117,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -128,7 +127,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -239,96 +238,89 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 5,
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    center: ["50%", "50%"],
+                                                    radius: ["25%", "40%"],
+                                                    clockwise: true,
+                                                    avoidLabelOverlap: true,
+                                                    hoverOffset: 15,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor: "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                     {
                                         title: "",
@@ -336,94 +328,85 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                            center: ["48%", "50%"],
-                                                            radius: ["30%", "38%"],
-                                                            clockwise: true,
-                                                            hoverOffset: 20,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 10,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 10,
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    avoidLabelOverlap: true,
+                                                    center: ["48%", "50%"],
+                                                    radius: ["30%", "38%"],
+                                                    clockwise: true,
+                                                    hoverOffset: 20,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor:
+                                                            "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                 ],
                             },
@@ -444,7 +427,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -454,7 +437,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -625,96 +608,89 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 5,
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    center: ["50%", "50%"],
+                                                    radius: ["25%", "40%"],
+                                                    clockwise: true,
+                                                    avoidLabelOverlap: true,
+                                                    hoverOffset: 15,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor: "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                     {
                                         title: "",
@@ -722,94 +698,85 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                            center: ["48%", "50%"],
-                                                            radius: ["30%", "38%"],
-                                                            clockwise: true,
-                                                            hoverOffset: 20,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 10,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 10,
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    avoidLabelOverlap: true,
+                                                    center: ["48%", "50%"],
+                                                    radius: ["30%", "38%"],
+                                                    clockwise: true,
+                                                    hoverOffset: 20,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor:
+                                                            "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                 ],
                             },
@@ -842,7 +809,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -852,7 +819,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -963,96 +930,89 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 5,
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    center: ["50%", "50%"],
+                                                    radius: ["25%", "40%"],
+                                                    clockwise: true,
+                                                    avoidLabelOverlap: true,
+                                                    hoverOffset: 15,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor: "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                     {
                                         title: "",
@@ -1060,94 +1020,85 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                            center: ["48%", "50%"],
-                                                            radius: ["30%", "38%"],
-                                                            clockwise: true,
-                                                            hoverOffset: 20,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 10,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 10,
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    avoidLabelOverlap: true,
+                                                    center: ["48%", "50%"],
+                                                    radius: ["30%", "38%"],
+                                                    clockwise: true,
+                                                    hoverOffset: 20,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor:
+                                                            "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                 ],
                             },
@@ -1167,7 +1118,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1177,7 +1128,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1288,96 +1239,89 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 5,
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    center: ["50%", "50%"],
+                                                    radius: ["25%", "40%"],
+                                                    clockwise: true,
+                                                    avoidLabelOverlap: true,
+                                                    hoverOffset: 15,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor: "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                     {
                                         title: "",
@@ -1385,94 +1329,85 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                            center: ["48%", "50%"],
-                                                            radius: ["30%", "38%"],
-                                                            clockwise: true,
-                                                            hoverOffset: 20,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 10,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 10,
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    avoidLabelOverlap: true,
+                                                    center: ["48%", "50%"],
+                                                    radius: ["30%", "38%"],
+                                                    clockwise: true,
+                                                    hoverOffset: 20,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor:
+                                                            "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                 ],
                             },
@@ -1505,7 +1440,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1515,7 +1450,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1660,109 +1595,89 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#1fcaa8",
-                                                                            "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
-                                                                            "#2e65fd",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                let datas = [1.45, 2.93, 3.15, 4, 5];
-                                                                datas.forEach((element, index) => {
-                                                                    data.push({
-                                                                        name: title[index],
-                                                                        value: element,
-                                                                    });
-                                                                });
-                                                                return data;
-                                                            })(),
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 5,
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    center: ["50%", "50%"],
+                                                    radius: ["25%", "40%"],
+                                                    clockwise: true,
+                                                    avoidLabelOverlap: true,
+                                                    hoverOffset: 15,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor: "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                     {
                                         title: "",
@@ -1770,116 +1685,85 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                            center: ["48%", "50%"],
-                                                            radius: ["30%", "38%"],
-                                                            clockwise: true,
-                                                            hoverOffset: 20,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 10,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 10,
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    avoidLabelOverlap: true,
+                                                    center: ["48%", "50%"],
+                                                    radius: ["30%", "38%"],
+                                                    clockwise: true,
+                                                    hoverOffset: 20,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor:
+                                                            "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                     {
                                         title: "公司成本种类预算成本",
@@ -1887,7 +1771,7 @@
                                         select: false,
                                         style: {
                                             width: "50%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1898,7 +1782,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2028,7 +1912,7 @@
                                         select: false,
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2039,19 +1923,19 @@
                                                 type: "box",
                                                 style: {
                                                     width: "30%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     position: "relative",
                                                     style: {
                                                         content: "2000万",
-                                                        width: "90%",
+                                                        width: "75%",
                                                         color: "#fff",
-                                                        height: "150px",
+                                                        height: "100px",
                                                         background: "#38d",
                                                         position: "absolute",
                                                         top: "100px",
                                                         left: "10%",
                                                         borderRadius: "10px",
-                                                        lineHeight: "150px",
+                                                        lineHeight: "100px",
                                                         fontWeight: 700,
                                                         textAlign: "center",
                                                         fontSize: "30px",
@@ -2064,19 +1948,19 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "30%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     position: "relative",
                                                     style: {
                                                         content: "9999万",
-                                                        width: "90%",
+                                                        width: "75%",
                                                         color: "#fff",
-                                                        height: "150px",
+                                                        height: "100px",
                                                         background: "#81dd9d",
                                                         position: "absolute",
                                                         top: "150px",
                                                         left: "10%",
                                                         borderRadius: "10px",
-                                                        lineHeight: "150px",
+                                                        lineHeight: "100px",
                                                         fontWeight: 700,
                                                         textAlign: "center",
                                                         fontSize: "30px",
@@ -2088,7 +1972,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "40%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2195,7 +2079,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2205,7 +2089,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2350,109 +2234,89 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    grid: {
-                                                        top: "20%",
-                                                        right: "40",
-                                                        left: "60",
-                                                        bottom: "40", //图表尺寸大小
-                                                    },
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            center: ["50%", "50%"],
-                                                            radius: ["25%", "40%"],
-                                                            clockwise: true,
-                                                            avoidLabelOverlap: true,
-                                                            hoverOffset: 15,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#1fcaa8",
-                                                                            "#15b3e2",
-                                                                            "#f69f41",
-                                                                            "#f2535f",
-                                                                            "#2e65fd",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 25,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: (function () {
-                                                                let data = [];
-                                                                let title = [
-                                                                    "特产",
-                                                                    "小吃",
-                                                                    "餐饮",
-                                                                    "便利店",
-                                                                    "加油",
-                                                                ];
-                                                                let datas = [1.45, 2.93, 3.15, 4, 5];
-                                                                datas.forEach((element, index) => {
-                                                                    data.push({
-                                                                        name: title[index],
-                                                                        value: element,
-                                                                    });
-                                                                });
-                                                                return data;
-                                                            })(),
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 5,
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    center: ["50%", "50%"],
+                                                    radius: ["25%", "40%"],
+                                                    clockwise: true,
+                                                    avoidLabelOverlap: true,
+                                                    hoverOffset: 15,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor: "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                     {
                                         title: "",
@@ -2460,116 +2324,85 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "400px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "item",
-                                                    },
-
-                                                    legend: {
-                                                        orient: "horizontal",
-                                                        bottom: 10,
-                                                    },
-
-                                                    series: [
-                                                        {
-                                                            type: "pie",
-                                                            minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
-                                                            avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                            center: ["48%", "50%"],
-                                                            radius: ["30%", "38%"],
-                                                            clockwise: true,
-                                                            hoverOffset: 20,
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (params) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                        ];
-                                                                        return colorList[params.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            label: {
-                                                                show: true,
-                                                                position: "outer",
-                                                                width: 0,
-                                                                height: 0,
-                                                                lineHeight: 0,
-                                                                backgroundColor: "auto",
-                                                                padding: [2, -2, 2, -2],
-                                                                borderRadius: 2,
-                                                                distanceToLabelLine: 0,
-                                                                normal: {
-                                                                    formatter(v) {
-                                                                        let text = v.name + "\n" + v.percent + "%";
-                                                                        return text;
-                                                                    },
-                                                                    textStyle: {
-                                                                        fontSize: 12,
-                                                                    },
-                                                                },
-                                                            },
-
-                                                            labelLine: {
-                                                                normal: {
-                                                                    length: 30,
-                                                                    length2: 10,
-                                                                    lineStyle: {
-                                                                        width: 1,
-                                                                    },
-                                                                },
-                                                            },
-                                                            data: [
-                                                                {
-                                                                    name: "宜昌",
-                                                                    value: 1.45,
-                                                                },
-                                                                {
-                                                                    name: "恩施",
-                                                                    value: 2.93,
-                                                                },
-                                                                {
-                                                                    name: "孝感",
-                                                                    value: 3.15,
-                                                                },
-                                                                {
-                                                                    name: "咸宁",
-                                                                    value: 4.78,
-                                                                },
-                                                                {
-                                                                    name: "十堰",
-                                                                    value: 5.93,
-                                                                },
-                                                                {
-                                                                    name: "黄冈",
-                                                                    value: 5.73,
-                                                                },
-                                                            ],
-                                                        },
-                                                    ],
-                                                },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 10,
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    avoidLabelOverlap: true,
+                                                    center: ["48%", "50%"],
+                                                    radius: ["30%", "38%"],
+                                                    clockwise: true,
+                                                    hoverOffset: 20,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor:
+                                                            "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [],
+                                                }],
+                                            },
+                                        }],
                                     },
                                     {
                                         title: "公司成本种类预算成本",
@@ -2577,7 +2410,7 @@
                                         select: false,
                                         style: {
                                             width: "50%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2588,7 +2421,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2718,7 +2551,7 @@
                                         select: false,
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2729,19 +2562,19 @@
                                                 type: "box",
                                                 style: {
                                                     width: "30%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     position: "relative",
                                                     style: {
                                                         content: "2000万",
-                                                        width: "90%",
+                                                        width: "75%",
                                                         color: "#fff",
-                                                        height: "150px",
+                                                        height: "100px",
                                                         background: "#38d",
                                                         position: "absolute",
                                                         top: "100px",
                                                         left: "10%",
                                                         borderRadius: "10px",
-                                                        lineHeight: "150px",
+                                                        lineHeight: "100px",
                                                         fontWeight: 700,
                                                         textAlign: "center",
                                                         fontSize: "30px",
@@ -2754,19 +2587,19 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "30%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     position: "relative",
                                                     style: {
                                                         content: "9999万",
-                                                        width: "90%",
+                                                        width: "75%",
                                                         color: "#fff",
-                                                        height: "150px",
+                                                        height: "100px",
                                                         background: "#81dd9d",
                                                         position: "absolute",
                                                         top: "150px",
                                                         left: "10%",
                                                         borderRadius: "10px",
-                                                        lineHeight: "150px",
+                                                        lineHeight: "100px",
                                                         fontWeight: 700,
                                                         textAlign: "center",
                                                         fontSize: "30px",
@@ -2778,7 +2611,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "40%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2892,7 +2725,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2902,7 +2735,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     tooltip: {
@@ -2948,8 +2781,8 @@
                                                         },
                                                     },
                                                     grid: {
-                                                        left: "10%",
-                                                        right: "10%",
+                                                        left: "50",
+                                                        right: "50",
                                                         bottom: "5%",
                                                         top: "10%",
                                                         //	padding:'0 0 10 0',
@@ -3130,7 +2963,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -3140,7 +2973,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -3150,12 +2983,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            fontWeight: "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -3242,7 +3076,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     legend: {
@@ -3366,7 +3200,7 @@
                                         title: "table列表",
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                             borderRadius: "10px",
                                             background: "white",
                                             marginBottom: "5px",
@@ -3376,11 +3210,11 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     background: "#fff",
                                                 },
                                                 columns: [
@@ -3438,7 +3272,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -3448,7 +3282,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -3458,12 +3292,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            fontWeight: "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -3550,7 +3385,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     legend: {
@@ -3674,7 +3509,7 @@
                                         title: "table列表",
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                             borderRadius: "10px",
                                             background: "white",
                                             marginBottom: "5px",
@@ -3684,11 +3519,11 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     background: "#fff",
                                                 },
                                                 columns: [
@@ -3752,7 +3587,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -3762,7 +3597,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -3772,12 +3607,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            fontWeight: "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -3864,7 +3700,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     legend: {
@@ -3988,7 +3824,7 @@
                                         title: "table列表",
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                             borderRadius: "10px",
                                             background: "white",
                                             marginBottom: "5px",
@@ -3998,11 +3834,11 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     background: "#fff",
                                                 },
                                                 columns: [
@@ -4060,7 +3896,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -4070,7 +3906,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -4080,12 +3916,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            fontWeight: "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -4172,7 +4009,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     legend: {
@@ -4296,7 +4133,7 @@
                                         title: "table列表",
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                             borderRadius: "10px",
                                             background: "white",
                                             marginBottom: "5px",
@@ -4306,11 +4143,11 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     background: "#fff",
                                                 },
                                                 columns: [
@@ -4387,7 +4224,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -4397,7 +4234,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -4620,7 +4457,7 @@
                                         select: false,
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -4630,7 +4467,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: [
@@ -4641,7 +4478,7 @@
                                                             x: "center",
                                                             y: "center",
                                                             textStyle: {
-                                                                fontSize: 20,
+                                                                fontSize: 16,
                                                             },
                                                         },
                                                     ],
@@ -4764,7 +4601,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -4774,7 +4611,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -4997,7 +4834,7 @@
                                         select: false,
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -5007,7 +4844,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: [
@@ -5018,7 +4855,7 @@
                                                             x: "center",
                                                             y: "center",
                                                             textStyle: {
-                                                                fontSize: 20,
+                                                                fontSize: 16,
                                                             },
                                                         },
                                                     ],

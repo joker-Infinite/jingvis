@@ -760,7 +760,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -770,7 +770,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -778,7 +778,7 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "axis",
-                                                        formatter: function (val) {
+                                                            formatter: function (val) {
                                                             return (
                                                                 val[0].name +
                                                                 ":" + "<br />" +
@@ -941,7 +941,7 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -951,7 +951,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1039,7 +1039,7 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1049,7 +1049,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1146,7 +1146,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1156,7 +1156,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1327,7 +1327,7 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1336,7 +1336,7 @@
                                             {
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1423,7 +1423,7 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1433,7 +1433,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1543,7 +1543,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1553,7 +1553,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1676,7 +1676,7 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1685,7 +1685,7 @@
                                             {
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1803,7 +1803,7 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1812,7 +1812,7 @@
                                             {
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -1922,7 +1922,7 @@
                                         select: false,
                                         style: {
                                             width: "50%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -1933,7 +1933,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2135,7 +2135,7 @@
                                         select: false,
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2146,19 +2146,19 @@
                                                 type: "box",
                                                 style: {
                                                     width: "30%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     position: "relative",
                                                     style: {
                                                         content: "2000万",
-                                                        width: "90%",
+                                                        width: "75%",
                                                         color: "#fff",
-                                                        height: "150px",
+                                                        height: "100px",
                                                         background: "#38d",
                                                         position: "absolute",
                                                         top: "100px",
                                                         left: "10%",
                                                         borderRadius: "10px",
-                                                        lineHeight: "150px",
+                                                        lineHeight: "100px",
                                                         fontWeight: 700,
                                                         textAlign: "center",
                                                         fontSize: "30px",
@@ -2171,19 +2171,19 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "30%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     position: "relative",
                                                     style: {
                                                         content: "9999万",
-                                                        width: "90%",
+                                                        width: "75%",
                                                         color: "#fff",
-                                                        height: "150px",
+                                                        height: "100px",
                                                         background: "#81dd9d",
                                                         position: "absolute",
                                                         top: "150px",
                                                         left: "10%",
                                                         borderRadius: "10px",
-                                                        lineHeight: "150px",
+                                                        lineHeight: "100px",
                                                         fontWeight: 700,
                                                         textAlign: "center",
                                                         fontSize: "30px",
@@ -2195,7 +2195,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "40%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2303,7 +2303,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "40%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2313,7 +2313,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2470,7 +2470,7 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2479,7 +2479,7 @@
                                             {
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2597,7 +2597,7 @@
                                         select: false,
                                         style: {
                                             width: "29.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2607,7 +2607,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2717,7 +2717,7 @@
                                         select: false,
                                         style: {
                                             width: "50%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2728,7 +2728,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -2930,7 +2930,7 @@
                                         select: false,
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -2941,19 +2941,19 @@
                                                 type: "box",
                                                 style: {
                                                     width: "30%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     position: "relative",
                                                     style: {
                                                         content: "2000万",
-                                                        width: "90%",
+                                                        width: "75%",
                                                         color: "#fff",
-                                                        height: "150px",
+                                                        height: "100px",
                                                         background: "#38d",
                                                         position: "absolute",
                                                         top: "100px",
                                                         left: "10%",
                                                         borderRadius: "10px",
-                                                        lineHeight: "150px",
+                                                        lineHeight: "100px",
                                                         fontWeight: 700,
                                                         textAlign: "center",
                                                         fontSize: "30px",
@@ -2966,19 +2966,19 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "30%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     position: "relative",
                                                     style: {
                                                         content: "9999万",
-                                                        width: "90%",
+                                                        width: "75%",
                                                         color: "#fff",
-                                                        height: "150px",
+                                                        height: "100px",
                                                         background: "#81dd9d",
                                                         position: "absolute",
                                                         top: "150px",
                                                         left: "10%",
                                                         borderRadius: "10px",
-                                                        lineHeight: "150px",
+                                                        lineHeight: "100px",
                                                         fontWeight: 700,
                                                         textAlign: "center",
                                                         fontSize: "30px",
@@ -2990,7 +2990,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "40%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -3104,7 +3104,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -3114,7 +3114,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     tooltip: {
@@ -3418,7 +3418,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -3428,7 +3428,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -3438,9 +3438,9 @@
                                                         textStyle: {
                                                             fontSize: 16,
                                                         },
-                                                        subtext: "85000万元",
+                                                        subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 25,
+                                                            fontSize: 20,
                                                             color: "#F98B2F",
                                                             "fontWeight": "bolder"
                                                         },
@@ -3564,7 +3564,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     legend: {
@@ -3724,7 +3724,7 @@
                                         title: "table列表",
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                             borderRadius: "10px",
                                             background: "white",
                                             marginBottom: "5px",
@@ -3734,12 +3734,12 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 border: true,
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     background: "#fff",
                                                 },
                                                 columns: [
@@ -3824,7 +3824,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -3834,7 +3834,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -3844,12 +3844,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            "fontWeight": "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -3957,7 +3958,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     legend: {
@@ -4109,7 +4110,7 @@
                                         title: "table列表",
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                             borderRadius: "10px",
                                             background: "white",
                                             marginBottom: "5px",
@@ -4119,12 +4120,12 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 border: true,
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                     background: "#fff",
                                                 },
                                                 columns: [
@@ -4216,7 +4217,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -4226,7 +4227,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -4236,12 +4237,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            fontWeight: "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -4343,7 +4345,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     legend: {
@@ -4489,7 +4491,7 @@
                                         title: "table列表",
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                             borderRadius: "10px",
                                             background: "white",
                                             marginBottom: "5px",
@@ -4499,11 +4501,11 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 style: {
                                                     width: "100%",
-                                                    // height: "400px",
+                                                    // height: "300px",
                                                     background: "#fff",
                                                 },
                                                 columns: [
@@ -4588,7 +4590,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "100%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -4598,7 +4600,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -4608,12 +4610,13 @@
                                                         // x: 'center',
                                                         // y: 'center',
                                                         textStyle: {
-                                                            fontSize: 18,
+                                                            fontSize: 16,
                                                         },
                                                         subtext: "85000",
                                                         subtextStyle: {
-                                                            fontSize: 45,
+                                                            fontSize: 20,
                                                             color: "#1edf57",
+                                                            "fontWeight": "bolder"
                                                         },
                                                     },
                                                     grid: {
@@ -4715,7 +4718,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "49.5%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     legend: {
@@ -4861,7 +4864,7 @@
                                         title: "table列表",
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "300px",
                                             borderRadius: "10px",
                                             background: "white",
                                             marginBottom: "5px",
@@ -4871,11 +4874,11 @@
                                         EChartsItem: [
                                             {
                                                 type: "table",
-                                                height: '500px',
+                                                height: '400px',
                                                 isPagination: true,
                                                 style: {
                                                     width: "100%",
-                                                    // height: "400px",
+                                                    // height: "300px",
                                                     background: "#fff",
                                                 },
                                                 columns: [
@@ -4980,7 +4983,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -4990,7 +4993,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -5265,7 +5268,7 @@
                                         select: false,
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -5275,7 +5278,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: [
@@ -5286,7 +5289,7 @@
                                                             x: "center",
                                                             y: "center",
                                                             textStyle: {
-                                                                fontSize: 20,
+                                                                fontSize: 16,
                                                             },
                                                         },
                                                     ],
@@ -5425,7 +5428,7 @@
                                         timeValue: "",
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -5435,7 +5438,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: {
@@ -5710,7 +5713,7 @@
                                         select: false,
                                         style: {
                                             width: "49.5%",
-                                            height: "450px",
+                                            height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -5720,7 +5723,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "400px",
+                                                    height: "300px",
                                                 },
                                                 option: {
                                                     title: [
@@ -5731,7 +5734,7 @@
                                                             x: "center",
                                                             y: "center",
                                                             textStyle: {
-                                                                fontSize: 20,
+                                                                fontSize: 16,
                                                             },
                                                         },
                                                     ],
@@ -5741,7 +5744,7 @@
                                                         left: "60",
                                                         bottom: "40", //图表尺寸大小
                                                     },
-                                                    legend: {
+                                                        legend: {
                                                         orient: "horizontal",
                                                         bottom: 10,
                                                     },
