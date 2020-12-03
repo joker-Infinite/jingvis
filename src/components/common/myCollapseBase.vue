@@ -12,7 +12,7 @@
                             :key="cix"
                             :class="{ noMargin: cix === 0 }">
                         <template slot="title">
-                            {{ cit.collapseTitle }}  
+                            {{ cit.collapseTitle }}
                         </template>
                         <div class="ECharts"
                              style="width: 100%; min-height: 100px">
@@ -70,7 +70,7 @@
                                             v-if="wit.type !=='box' && !wit.type "
                                             class="information"
                                     ></my-information>
-                                    <div class="null" v-if="!wit.type && wit.option.series[0].data.length ==0" >
+                                    <div class="null" v-if="!wit.type && wit.option.series[0].data.length ==0">
                                         暂无数据
                                     </div>
                                     <div v-if="!wit.type "
@@ -113,10 +113,9 @@
                 <p style="cursor: pointer" @click="collapseAll">
                     {{ sumClick % 2 === 0 ? "全部收起" : "全部展开" }}
                 </p>
-                <p style="cursor: pointer"
-                   v-for="(it, ix) in collapseData"
+                <p v-for="(it, ix) in collapseData"
                    @click="goto(it.id)"
-                   :class="{ active: isActive == ix }"
+                   :class="{ active: isActive == ix,'navItem':true }"
                    :key="ix">
                     <img class="img" :src="isActive == ix ? it.iconActive : it.icon"/>
                     {{ it.name }}
@@ -142,8 +141,8 @@
                 type: Array,
                 default: [],
             },
-            totalCount:{
-                type:Number,
+            totalCount: {
+                type: Number,
                 default: 0,
             }
         },
@@ -174,13 +173,13 @@
                     selectValue: '',
                     timeValue: ''
                 },
-                canSearch:true,
-                NoDataTmie:1000
+                canSearch: true,
+                NoDataTmie: 1000
             };
         },
         methods: {
-            searchClick(arr){
-                arr.forEach(i=>{
+            searchClick(arr) {
+                arr.forEach(i => {
                     this.$echarts.init(document.getElementById(i.id)).dispose();
                     this.$nextTick((_) => {
                         this.$echarts.init(document.getElementById(i.id)).setOption(i.option);
@@ -188,8 +187,8 @@
                 })
             },
             // 按钮的节流
-            refreshClick(EChartsBox,query,year,name,collapseItem){
-                this.$emit('searchQuery',EChartsBox,query,year,name)             
+            refreshClick(EChartsBox, query, year, name, collapseItem) {
+                this.$emit('searchQuery', EChartsBox, query, year, name)
             },
             async refresh() {
                 let timeID = "";
@@ -341,7 +340,7 @@
                             datas.xAxis.unshift(" ");
                         }
                         // 柱状图
-                    } else if (optionData.option.series[0].type === "bar")  {
+                    } else if (optionData.option.series[0].type === "bar") {
                         series[index].push(optionData.option.series[index].data);
                         if (!(optionData.option.xAxis[0])) {
                             if (optionData.option.yAxis.data) {
@@ -411,8 +410,8 @@
                 }
 
             },
-            ClickTotal(value){
-                this.$emit('ClickTotal',value)
+            ClickTotal(value) {
+                this.$emit('ClickTotal', value)
             }
         },
         mounted() {
@@ -632,12 +631,19 @@
                 background: #fff;
                 border-radius: 10px;
 
+                .navItem {
+                    cursor: pointer;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
                 .active {
                     background: #1d7dca;
                     margin-left: -8%;
                     margin-right: 8%;
                     color: white;
-                    padding-left: 40px;
+                    padding-left: 20px;
                     box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.3);
                 }
             }
@@ -647,7 +653,7 @@
                 font-size: 15px;
                 padding: 10% 0;
                 margin: 5% 0;
-                margin-left: 25%;
+                margin-left: 20%;
                 transition: linear 0.3s;
                 border-radius: 10px;
 
