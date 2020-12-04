@@ -27,7 +27,7 @@ export default {
                     iconActive: require("../../../assets/business/icon_1-2.png"),
                     collapseItem: [
                         {
-                            id: "revenue_2020",
+                             id: "revenue_2020",
                             year: 2020,
                             collapseTitle: "2020年营收",
                             allQuery: true,
@@ -38,7 +38,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "",
+                                    title: "2019年月营收",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -63,7 +63,7 @@ export default {
                                                     trigger: "axis",
                                                     formatter: function (val) {
                                                         return (
-                                                            val[0].name +
+                                                            val[0].name + '月' + 
                                                             ":" + "<br />" +
                                                             val[0].value / 10000 +
                                                             "万元"
@@ -219,7 +219,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "",
+                                    title: "2019年营收业态占比/片区占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -259,6 +259,11 @@ export default {
                                                     hoverOffset: 15,
                                                     itemStyle: {
                                                         normal: {
+                                                            // 设置扇形的阴影
+                                                            shadowBlur: 30,
+                                                            shadowColor: 'rgba(0,0,0,0.3)', 
+                                                            shadowOffsetX: -5,
+                                                            shadowOffsetY: 5,
                                                             color: function (v) {
                                                                 let colorList = [
                                                                     "#76c15c",
@@ -287,7 +292,8 @@ export default {
                                                         distanceToLabelLine: 0,
                                                         normal: {
                                                             formatter(v) {
-                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                // let text = v.name + "\n" + v.percent + "%";
+                                                                let text = v.percent + "%";
                                                                 return text;
                                                             },
                                                             textStyle: {
@@ -333,6 +339,11 @@ export default {
                                                     hoverOffset: 20,
                                                     itemStyle: {
                                                         normal: {
+                                                            // 设置扇形的阴影
+                                                            shadowBlur: 30,
+                                                            shadowColor: 'rgba(0,0,0,0.3)', 
+                                                            shadowOffsetX: -5,
+                                                            shadowOffsetY: 5,
                                                             color: function (v) {
                                                                 let colorList = [
                                                                     "#76c15c",
@@ -361,7 +372,8 @@ export default {
                                                         distanceToLabelLine: 0,
                                                         normal: {
                                                             formatter(v) {
-                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                // let text = v.name + "\n" + v.percent + "%";
+                                                                let text = v.percent + "%";
                                                                 return text;
                                                             },
                                                             textStyle: {
@@ -399,7 +411,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "",
+                                    title: "2019年月营收",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -424,7 +436,7 @@ export default {
                                                     trigger: "axis",
                                                     formatter: function (val) {
                                                         return (
-                                                            val[0].name +
+                                                            val[0].name + '月' + 
                                                             ":" + "<br />" +
                                                             val[0].value / 10000 +
                                                             "万元"
@@ -580,7 +592,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "",
+                                    title: "2019年营收业态占比/片区占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -620,6 +632,11 @@ export default {
                                                     hoverOffset: 15,
                                                     itemStyle: {
                                                         normal: {
+                                                            // 设置扇形的阴影
+                                                            shadowBlur: 30,
+                                                            shadowColor: 'rgba(0,0,0,0.3)', 
+                                                            shadowOffsetX: -5,
+                                                            shadowOffsetY: 5,
                                                             color: function (v) {
                                                                 let colorList = [
                                                                     "#76c15c",
@@ -649,6 +666,7 @@ export default {
                                                         normal: {
                                                             formatter(v) {
                                                                 let text = v.name + "\n" + v.percent + "%";
+                                                                // let text = v.percent + "%";
                                                                 return text;
                                                             },
                                                             textStyle: {
@@ -694,6 +712,11 @@ export default {
                                                     hoverOffset: 20,
                                                     itemStyle: {
                                                         normal: {
+                                                            // 设置扇形的阴影
+                                                            shadowBlur: 30,
+                                                            shadowColor: 'rgba(0,0,0,0.3)', 
+                                                            shadowOffsetX: -5,
+                                                            shadowOffsetY: 5,
                                                             color: function (v) {
                                                                 let colorList = [
                                                                     "#76c15c",
@@ -723,6 +746,7 @@ export default {
                                                         normal: {
                                                             formatter(v) {
                                                                 let text = v.name + "\n" + v.percent + "%";
+                                                                // let text = v.percent + "%";
                                                                 return text;
                                                             },
                                                             textStyle: {
@@ -809,7 +833,7 @@ export default {
                                         data.xYListFrom1.forEach((i, ix) => {
                                             sItem.EChartsItem[0].option.series[0].data.push(i.yAxis);
                                             mm.push(i.yAxis);
-                                            sItem.EChartsItem[0].option.xAxis[0].data.push(i.xBxis);
+                                            sItem.EChartsItem[0].option.xAxis[0].data.push(i.xBxis.split('-')[1]);
                                         });
                                         // if (mm.length !== 0) {
                                         //     let arr = this.YoYIncrease(mm);
@@ -839,9 +863,9 @@ export default {
                         })
                     }
                 })
-                // this.$nextTick(_ => {
-                //     this.$refs['collapse'].searchClick(this.arrData)
-                // })
+                this.$nextTick(_ => {
+                    this.$refs['collapse'].searchClick(this.arrData)
+                })
             })
         },
     },

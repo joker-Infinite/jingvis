@@ -38,7 +38,7 @@
                                     </el-button>
                                 </div>
                             </div>
-                            <div v-for="(sit, six) in cit.EChartsBox"
+                            <div  v-for="(sit, six) in cit.EChartsBox"
                                  :key="six"
                                  :style="sit.style">
                                 <div class="Title">{{ sit.title }}</div>
@@ -67,17 +67,28 @@
                                      @mouseover="mouseover(wit, wix, sit.title,(cit.id + '++' + six + '++' + wix),(cit.id + '-' + six + '-' + wix))">
                                     <my-information
                                             @isData="isData"
-                                            v-if="wit.type !=='box' && !wit.type "
+                                            v-if="(wit.type !=='box' && !wit.type && wit.option.series && wit.option.series[0].data.length !==0 && wit.option.series[0].data[0].name!=='占比')"
                                             class="information"
                                     ></my-information>
+                                    <div class="MaxMinAverage"
+                                         v-if="(wit.option && wit.option.series && 
+                                         wit.option.series[0].data.length !==0 && 
+                                         wit.option.series[0].type !=='pie' &&
+                                         wit.option.series[0].data[0].name!=='占比')">
+                                         <div>平均：{{showTarget(wit.option,'average') + '万元'}}</div>
+                                         <div>最高：{{showTarget(wit.option,'max') + '万元'}}</div>
+                                         <div>最低：{{showTarget(wit.option,'min') + '万元'}}</div>
+                                    </div>
                                     <div class="null" v-if="!wit.type && wit.option.series[0].data.length ==0">
                                         暂无数据
                                     </div>
-                                    <div v-if="!wit.type "
+                                    <div v-if="!wit.type"
                                          style="width: 100%; height: 100%;overflow: hidden;"
                                          :id="cit.id + '-' + six + '-' + wix"></div>
-                                    <div v-if="!wit.type" style="width: 100%; height: 100%;overflow: hidden;"
+                                    <!-- 转换表格开始 -->
+                                    <div v-if="!wit.type" style="width: 100%; height: 100%;overflow: auto;"
                                          :id="cit.id + '++' + six + '++' + wix"></div>
+                                    <!-- 转换表格结束 -->
                                     <div style=" width: 100%; height: 100%;"
                                          :style="{marginTop : sit.time || sit.select ? '60px' :''}"
                                          v-if="!!wit.type && wit.type !== 'box'">
@@ -178,6 +189,40 @@
             };
         },
         methods: {
+            // 计算平均值最小值最大值
+            showTarget(v, type) {
+                let obj = {
+                    min: '',
+                    max: '',
+                    average: ''
+                };
+                let mun = [];
+                let num = 0;
+                if (v && v.series) {
+                    let d = v.series[0].data;
+                    d.forEach(i => {
+                        if(!!i.value){
+                            mun.push(i.value);
+                            num += Number(i.value);
+                        }else{
+                            mun.push(i);
+                            num += Number(i);
+                        }
+                    });
+                    obj.max = Math.max(...mun);
+                    obj.min = Math.min(...mun);
+                    obj.average = parseInt(num / d.length  / 10000)
+                    if (type === 'max') {
+                        return parseInt(obj.max / 10000);
+                    }
+                    if (type === 'min') {
+                        return parseInt(obj.min / 10000);
+                    }
+                    if (type === 'average') {
+                        return obj.average;
+                    }
+                }
+            },
             searchClick(arr) {
                 arr.forEach(i => {
                     this.$echarts.init(document.getElementById(i.id)).dispose();
@@ -206,7 +251,9 @@
                                         if (si.type !== "table" && si.type !== "map" && si.type !== "box") {
                                             this.$echarts.init(document.getElementById(id)).dispose();
                                             this.$nextTick((_) => {
-                                                this.$echarts.init(document.getElementById(id)).setOption(si.option);
+                                                if(si.option.series[0].data.length!==0){
+                                                    this.$echarts.init(document.getElementById(id)).setOption(si.option);
+                                                }
                                             });
                                         }
                                     });
@@ -228,7 +275,9 @@
                     timeID = setInterval(() => {
                         if (this.time !== this.EChartsData.length) {
                             let item = this.EChartsData[this.time];
-                            this.$echarts.init(document.getElementById(item.id)).setOption(item.option);
+                            if(item.option.series[0].data.length!==0){
+                                this.$echarts.init(document.getElementById(item.id)).setOption(item.option);
+                            }
                             this.time++;
                             resolve();
                         }
@@ -453,6 +502,7 @@
 </script>
 
 <style scoped lang="less">
+
     .container {
         width: 100%;
         height: 100%;
@@ -528,6 +578,7 @@
                         font-size: 18px;
                         font-weight: 600;
                         border-bottom: 5px solid #f3f7ff;
+                        text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
                     }
 
                     .query {
@@ -667,6 +718,22 @@
 
         .echarts {
             position: relative;
+            
+            
+            .MaxMinAverage{
+                position: absolute;
+                display: flex;
+                flex-direction: column-reverse;
+                top: -40px;
+                right: 10px;
+                background: #fff;
+                padding: 5px;
+                box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                div{
+                    font-weight: 700;
+                }
+            }
 
             .null {
                 z-index: 999;
