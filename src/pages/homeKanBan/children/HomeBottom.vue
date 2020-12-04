@@ -9,51 +9,61 @@
             </div>
         </div>
         <div class="item HomeBottomA" @mouseover="mouseHover('AD')">
-          <!--  <div class="MMA" v-if="!AD && AD.series[0].data.length===0">
-                平均：{{showTarget(this.AD,'average')}}<br>
-                最高：{{showTarget(this.AD,'max')}}
-                最低：{{showTarget(this.AD,'min')}}
-            </div>-->
+            <!--  <div class="MMA" v-if="!AD && AD.series[0].data.length===0">
+                  平均：{{showTarget(this.AD,'average')}}<br>
+                  最高：{{showTarget(this.AD,'max')}}
+                  最低：{{showTarget(this.AD,'min')}}
+              </div>-->
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomAData"></div>
             <div class="ei" id="HomeBottomA"></div>
         </div>
         <div class="item HomeBottomB" @mouseover="mouseHover('BD')">
-           <!-- <div class="MMA">
-                平均：{{showTarget(this.BD,'average')}}<br>
-                最高：{{showTarget(this.BD,'max')}}
-                最低：{{showTarget(this.BD,'min')}}
-            </div>-->
+            <!-- <div class="MMA">
+                 平均：{{showTarget(this.BD,'average')}}<br>
+                 最高：{{showTarget(this.BD,'max')}}
+                 最低：{{showTarget(this.BD,'min')}}
+             </div>-->
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomBData"></div>
             <div class="ei" id="HomeBottomB"></div>
         </div>
         <div class="item HomeBottomC" @mouseover="mouseHover('CD')">
-           <!-- <div class="MMA">
-                平均：{{showTarget(this.CD,'average')}}<br>
-                最高：{{showTarget(this.CD,'max')}}
-                最低：{{showTarget(this.CD,'min')}}
-            </div>-->
+            <!-- <div class="MMA">
+                 平均：{{showTarget(this.CD,'average')}}<br>
+                 最高：{{showTarget(this.CD,'max')}}
+                 最低：{{showTarget(this.CD,'min')}}
+             </div>-->
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomCData"></div>
             <div class="ei" id="HomeBottomC"></div>
         </div>
         <div class="item HomeBottomD" @mouseover="mouseHover('DD')">
-          <!--  <div class="MMA">
-                平均：{{showTarget(this.DD,'average')}}<br>
-                最高：{{showTarget(this.DD,'max')}}
-                最低：{{showTarget(this.DD,'min')}}
-            </div>-->
+            <!--  <div class="MMA">
+                  平均：{{showTarget(this.DD,'average')}}<br>
+                  最高：{{showTarget(this.DD,'max')}}
+                  最低：{{showTarget(this.DD,'min')}}
+              </div>-->
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomDData"></div>
             <div class="ei" id="HomeBottomD"></div>
         </div>
         <div class="item HomeBottomE" @mouseover="mouseHover('ED')">
-           <!-- <div class="MMA">
-                平均：{{showTarget(this.ED,'average')}}<br>
-                最高：{{showTarget(this.ED,'max')}}
-                最低：{{showTarget(this.ED,'min')}}
-            </div>-->
+            <!-- <div class="MMA">
+                 平均：{{showTarget(this.ED,'average')}}<br>
+                 最高：{{showTarget(this.ED,'max')}}
+                 最低：{{showTarget(this.ED,'min')}}
+             </div>-->
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne"></operations>
             <div class="DataEi" id="HomeBottomEData"></div>
             <div class="ei" id="HomeBottomE"></div>
@@ -68,6 +78,8 @@
             <div class="ei" id="HomeBottomF"></div>
         </div>-->
         <div class="item HomeBottomG" @mouseover="mouseHover('GD')">
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne(1)"></operations>
             <div class="DataEi" id="HomeBottomGData"></div>
             <div class="ei" id="HomeBottomG"></div>
@@ -78,10 +90,18 @@
 <script>
     import Operations from "../../../components/common/operations";
     import clone from "../../../../public/api/clone";
+    import Border from "./border";
+    import BorderPlanB from "./borderPlanB";
 
     export default {
         name: "HomeBottom",
-        components: {Operations},
+        components: {BorderPlanB, Border, Operations},
+        props: {
+            backdrop: {
+                type: Number,
+                default: 0
+            }
+        },
         data() {
             return {
                 AD: {},
@@ -192,7 +212,7 @@
                         xBxis.forEach(i => {
                             optionss.xAxis[0].data.push(parseInt(i.split('-')[1]))
                         });
-                        optionss.xAxis[0].data=[1,'','',4,'','',7,'','',10];
+                        optionss.xAxis[0].data = [1, '', '', 4, '', '', 7, '', '', 10];
                         optionss.series[0].data = yAxis;
                         this[v] = optionss;
                         HomeBottom.setOption(optionss);
@@ -706,6 +726,34 @@
             this.initECharts_bottom(this.option_A);
 
         },
+        watch: {
+            backdrop: {
+                handler: function (nv, ov) {
+                    let data = document.getElementsByClassName('item');
+                    let style = [
+                        {
+                            border: '1px solid #4cbcf4',
+                            boxShadow: ' 0 0 50px #4cbcf4 inset'
+                        },
+                        {
+                            border: '1px solid #081e3e',
+                            boxShadow: ' 0 0 20px #0354bb inset',
+                            background: 'rgba(8,30,62,.6)'
+                        },
+                        {
+                            border: 'none',
+                            boxShadow: 'none',
+                            background: '#FFF',
+                            borderRadius: '10px'
+                        },
+                    ];
+                    for (let i = 0; i < data.length; i++) {
+                        Object.assign(data[i].style, style[nv])
+                    }
+                },
+                deep: true
+            }
+        }
     };
 </script>
 
@@ -750,13 +798,17 @@
             }
         }
 
+        /*
+          border: 1px solid #4cbcf4;
+                    box-shadow: 0 0 50px #4cbcf4 inset;
+        */
+
         .item {
             width: 16%;
             height: 100%;
-            border: 1px solid #38d;
-            box-shadow: 0 0 20px #38d inset;
             position: relative;
-            background: url("../../../assets/frame2.png") no-repeat;
+            border: 1px solid #4cbcf4;
+            box-shadow: 0 0 50px #4cbcf4 inset;
             background-size: 100% 120%;
 
             .ei {

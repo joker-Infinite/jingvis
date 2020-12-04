@@ -15,7 +15,7 @@
                 :zoom="zoom"
                 class="amap-demo"
                 :events="events"
-                :map-style="mapStyle"
+                :map-style="mapStyleArr[backdrop]"
                 pitch-enable="false">
             <el-amap-marker
                     v-for="(marker, index) in markers"
@@ -48,6 +48,12 @@
     export default {
         name: "centerMap",
         components: {},
+        props: {
+            backdrop: {
+                type: Number,
+                default: 1
+            }
+        },
         data() {
             return {
                 amaps: false,
@@ -59,8 +65,13 @@
                 windows: [],
                 window: "",
                 events: {},
+                mapStyleArr: [
+                    'amap://styles/8cb6df918ee512eae9c9198c38a40c91',
+                    'amap://styles/1111cca74c703c3218b102779351f6eb',
+                    'amap://styles/f1f4181c84a35130099dfd661f061466',
+                ],
                 //amap://styles/1111cca74c703c3218b102779351f6eb 深色
-                //amap://styles/f1f4181c84a35130099dfd661f061466 浅色
+                //'amap://styles/f1f4181c84a35130099dfd661f061466',
                 mapStyle: "amap://styles/8cb6df918ee512eae9c9198c38a40c91",
                 i: 0,
                 timeClear: "",

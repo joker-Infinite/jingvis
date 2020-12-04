@@ -15,7 +15,7 @@
                         :zoom="zoom"
                         class="amap-demo"
                         :events="events"
-                        :map-style="mapStyle"
+                        :map-style="mapStyleArr[backdrop]"
                         pitch-enable="false"
                 >
                     <el-amap-marker
@@ -53,6 +53,12 @@
     export default {
         name: "showMap",
         components: {},
+        props: {
+            backdrop: {
+                type: Number,
+                default: 0
+            }
+        },
         data() {
             return {
                 visible: false,
@@ -64,7 +70,11 @@
                 windows: [],
                 window: "",
                 events: {},
-                mapStyle: "amap://styles/8cb6df918ee512eae9c9198c38a40c91",
+                mapStyleArr: [
+                    'amap://styles/8cb6df918ee512eae9c9198c38a40c91',
+                    'amap://styles/1111cca74c703c3218b102779351f6eb',
+                    'amap://styles/f1f4181c84a35130099dfd661f061466',
+                ],
                 i: 0,
                 timeClear: "",
                 timeInformation: [
@@ -82,6 +92,9 @@
             },
             check() {
                 let con = document.getElementById("cons");
+                if (!con) {
+                    return
+                }
                 if (this.i < this.timeInformation.length - 1) {
                     this.i++;
                     con.style.marginTop = -30 * this.i + "px";
