@@ -1,6 +1,8 @@
 <template>
     <div class="content">
-        <div class="top" @mouseover="mouseHover('AD')">
+        <div class="top hhttf" @mouseover="mouseHover('AD')">
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" time="time" @showOne="showOne(1)"></operations>
             <div id="HomeTopRight_top"></div>
             <div class="DataEi" id="HomeTopRight_topData"></div>
@@ -20,7 +22,9 @@
                         <div class="item">
                             <div id="HomeTopRight_bottomID"></div>
                         </div>-->
-            <div class="bottom_left" @mouseover="mouseHover('BD')">
+            <div class="bottom_left hhttf" @mouseover="mouseHover('BD')">
+                <border v-if="backdrop==0"></border>
+                <border-plan-b v-if="backdrop==1"></border-plan-b>
                 <div class="select_type">
                     <el-radio class="checkboxItem" @change="changeRadioBD(1)" v-model="selectBD" :label="1">服务区
                     </el-radio>
@@ -71,10 +75,18 @@
     import Operations from "../../../components/common/operations";
     import ShowECharts from "../../../components/common/showECharts";
     import clone from "../../../../public/api/clone"
+    import Border from "./border";
+    import BorderPlanB from "./borderPlanB";
 
     export default {
         name: "HomeTopRight",
-        components: {ShowECharts, Operations},
+        props: {
+            backdrop: {
+                type: Number,
+                default: 0
+            }
+        },
+        components: {BorderPlanB, Border, ShowECharts, Operations},
         data() {
             return {
                 selectBD: 1,
@@ -573,12 +585,39 @@
             this.initECharts_bottom_left();
             // this.initECharts_bottom_right();
         },
+        watch: {
+            backdrop: {
+                handler: function (nv, ov) {
+                    let data = document.getElementsByClassName('hhttf');
+                    let style = [
+                        {
+                            border: '1px solid #4cbcf4',
+                            boxShadow: ' 0 0 50px #4cbcf4 inset'
+                        },
+                        {
+                            border: '1px solid #081e3e',
+                            boxShadow: ' 0 0 20px #0354bb inset',
+                            background:'rgba(8,30,62,.6)'
+                        },
+                        {
+                            border: 'none',
+                            boxShadow: 'none',
+                            background: '#FFF',
+                            borderRadius:'10px'
+                        },
+                    ];
+                    for (let i = 0; i < data.length; i++) {
+                        Object.assign(data[i].style, style[nv])
+                    }
+                },
+                deep:true
+            }
+        }
     };
 </script>
 
 <style scoped lang="less">
     .DataEi {
-        background: red;
         position: absolute;
         top: 0;
         margin: 0;
@@ -606,10 +645,10 @@
         .top {
             width: 100%;
             height: 38%;
-            border: 1px solid #38d;
-            box-shadow: 0 0 20px #38d inset;
             position: relative;
-            background: url("../../../assets/frame2.png") no-repeat;
+            border: 1px solid #4cbcf4;
+            box-shadow: 0 0 50px #4cbcf4 inset;
+            /*background: url("../../../assets/kuang_07.png") no-repeat;*/
             background-size: 100% 100%;
 
             #HomeTopRight_top {
@@ -631,10 +670,10 @@
                 width: 100%;
                 height: 100%;
                 float: left;
-                border: 1px solid #38d;
-                box-shadow: 0 0 20px #38d inset;
                 position: relative;
-                background: url("../../../assets/frame2.png") no-repeat;
+                border: 1px solid #4cbcf4;
+                box-shadow: 0 0 50px #4cbcf4 inset;
+                /*background: url("../../../assets/kuang_10.png") no-repeat;*/
                 background-size: 100% 100%;
 
                 .select_type {
@@ -691,7 +730,7 @@
                 box-shadow: 0 0 20px #38d inset;
                 float: right;
                 position: relative;
-                background: url("../../../assets/frame2.png") no-repeat;
+                /*background: url("../../../assets/frame2.png") no-repeat;*/
                 background-size: 100% 100%;
 
                 .select_type {

@@ -1,16 +1,22 @@
 <template>
     <div class="content">
-        <div class="top" @mouseover="mouseHover('AD')">
+        <div class="top tcb" @mouseover="mouseHover('AD')">
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne"></operations>
             <div id="initECharts_top_data"></div>
             <div id="HomeTopLeft_top"></div>
         </div>
-        <div class="center" @mouseover="mouseHover('BD')">
+        <div class="center tcb" @mouseover="mouseHover('BD')">
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne"></operations>
             <div id="HomeTopLeft_center_data"></div>
             <div id="HomeTopLeft_center"></div>
         </div>
-        <div class="bottom" @mouseover="mouseHover('CD')">
+        <div class="bottom tcb" @mouseover="mouseHover('CD')">
+            <border v-if="backdrop==0"></border>
+            <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" @showOne="showOne"></operations>
             <div id="initECharts_bottom_data"></div>
             <div id="HomeTopLeft_bottom"></div>
@@ -23,10 +29,18 @@
     import Operations from "../../../components/common/operations";
     import ShowECharts from "../../../components/common/showECharts";
     import clone from "../../../../public/api/clone"
+    import Border from "./border";
+    import BorderPlanB from "./borderPlanB";
 
     export default {
         name: "HomeTopLeft",
-        components: {ShowECharts, Operations},
+        props: {
+            backdrop: {
+                type: Number,
+                default: 0
+            }
+        },
+        components: {BorderPlanB, Border, ShowECharts, Operations},
         data() {
             return {
                 AD: {},
@@ -40,10 +54,10 @@
             mouseHover(v) {
                 this.option = this[v];
             },
-            isNoData(is,id,ids,option){
-                console.log(is,id,ids)
-                if (is.length===0) {
-                    document.getElementById(id).innerHTML ="暂无数据";
+            isNoData(is, id, ids, option) {
+                console.log(is, id, ids)
+                if (is.length === 0) {
+                    document.getElementById(id).innerHTML = "暂无数据";
                     option.xAxis[0].show = false;
                     option.yAxis[0].show = false;
                     this.$echarts.init(document.getElementById(ids)).setOption(option);
@@ -233,12 +247,12 @@
                         option.series[0].data.push((element.yAxis / 100) / sum * 100)
                     });
                     HomeTopLeft_top.setOption(option);
-                    this.isNoData(res.data.data,'initECharts_top_data','HomeTopLeft_top',option)
+                    this.isNoData(res.data.data, 'initECharts_top_data', 'HomeTopLeft_top', option)
                 })
 
 
             },
-           
+
             initECharts_center() {
                 let HomeTopLeft_center = this.$echarts.init(
                     document.getElementById("HomeTopLeft_center")
@@ -395,7 +409,7 @@
 
                     });
                     HomeTopLeft_center.setOption(option);
-                    this.isNoData(res.data.data,'HomeTopLeft_center_data','HomeTopLeft_center',option)
+                    this.isNoData(res.data.data, 'HomeTopLeft_center_data', 'HomeTopLeft_center', option)
                 })
 
 
@@ -431,7 +445,7 @@
                             }
                         }
                     },
-                    
+
                     legend: {
                         data: ["c", "d"],
                         icon: "circle",
@@ -576,7 +590,7 @@
                     };
                     this.CD.series[0].markLine.itemStyle.normal.label.formatter = "数据平均 : " + sum / res.data.data.length
                     HomeTopLeft_bottom.setOption(option);
-                    this.isNoData(res.data.data,'initECharts_bottom_data','HomeTopLeft_bottom',option)
+                    this.isNoData(res.data.data, 'initECharts_bottom_data', 'HomeTopLeft_bottom', option)
                 })
             }
         },
@@ -594,6 +608,34 @@
             //         this.initECharts_top();
             //     })
             // }, 10000)
+        },
+        watch: {
+            backdrop: {
+                handler: function (nv, ov) {
+                    let data = document.getElementsByClassName('tcb');
+                    let style = [
+                        {
+                            border: '1px solid #4cbcf4',
+                            boxShadow: ' 0 0 50px #4cbcf4 inset'
+                        },
+                        {
+                            border: '1px solid #081e3e',
+                            boxShadow: ' 0 0 20px #0354bb inset',
+                            background:'rgba(8,30,62,.2)'
+                        },
+                        {
+                            border: 'none',
+                            boxShadow: 'none',
+                            background: '#FFF',
+                            borderRadius:'10px'
+                        },
+                    ];
+                    for (let i = 0; i < data.length; i++) {
+                        Object.assign(data[i].style, style[nv])
+                    }
+                },
+                deep:true
+            }
         }
     };
 </script>
@@ -625,10 +667,10 @@
         .top {
             width: 100%;
             height: 30%;
-            border: 1px solid #38d;
-            box-shadow: 0 0 20px #38d inset;
+            border: 1px solid #4cbcf4;
+            box-shadow: 0 0 20px #4cbcf4 inset;
             position: relative;
-            background: url("../../../assets/frame1.png") no-repeat;
+            /*background: url("../../../assets/small.png") no-repeat;*/
             background-size: 100% 100%;
 
             #HomeTopLeft_top {
@@ -641,10 +683,10 @@
             width: 100%;
             height: 30%;
             margin-top: 5%;
-            border: 1px solid #38d;
-            box-shadow: 0 0 20px #38d inset;
+            border: 1px solid #4cbcf4;
+            box-shadow: 0 0 50px #4cbcf4 inset;
             position: relative;
-            background: url("../../../assets/frame1.png") no-repeat;
+            /*background: url("../../../assets/small.png") no-repeat;*/
             background-size: 100% 100%;
 
             #HomeTopLeft_center {
@@ -657,10 +699,10 @@
             width: 100%;
             height: 30%;
             margin-top: 5%;
-            border: 1px solid #38d;
-            box-shadow: 0 0 20px #38d inset;
+            border: 1px solid #4cbcf4;
+            box-shadow: 0 0 50px #4cbcf4 inset;
             position: relative;
-            background: url("../../../assets/frame1.png") no-repeat;
+            /*background: url("../../../assets/small.png") no-repeat;*/
             background-size: 100% 100%;
 
             #HomeTopLeft_bottom {
