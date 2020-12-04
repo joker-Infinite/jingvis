@@ -113,7 +113,7 @@
                     {
                         background: "url('" + require('../../assets/bage.png') + "') no-repeat"
                     }, {
-                        background: "url('" + require('../../assets/bgi.png') + "') no-repeat"
+                        background: "url('" + require('../../assets/bgi.jpg') + "') no-repeat"
                     }, {
                         background: "url('" + require('../../assets/bage3.png') + "') no-repeat"
                     }

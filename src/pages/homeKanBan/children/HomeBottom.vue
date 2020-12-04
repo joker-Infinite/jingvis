@@ -736,9 +736,9 @@
                             boxShadow: ' 0 0 50px #4cbcf4 inset'
                         },
                         {
-                            border: '1px solid #081e3e',
+                            border: '1px solid #051021',
                             boxShadow: ' 0 0 20px #0354bb inset',
-                            background: 'rgba(8,30,62,.6)'
+                            background: 'rgba(6,17,36,.6)'
                         },
                         {
                             border: 'none',
