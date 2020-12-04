@@ -84,12 +84,12 @@
             script2.src = "https://apip.weatherdt.com/simple/static/js/weather-simple-common.js?v=2.0"
             document.body.appendChild(script)
             document.body.appendChild(script2)
-            setTimeout(() => {
+            let item = setInterval(() => {
                 document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.position = 'fixed'
-                document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.right = '280px'
-                document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '50px'
+                document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.right = '350px'
+                document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '120px'
                 document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.zIndex = '100000'
-            }, 1000);
+            }, 100);
         },
         methods: {
             switchStyle(v) {
@@ -152,7 +152,7 @@
         .more {
             /*width: 30%;*/
             height: 31px;
-            right: 160px;
+            right: 260px;
             position: absolute;
             top: 90px;
         }
@@ -217,16 +217,14 @@
 .body  /deep/  .s-sticker {
     width: 100px !important;
     position: fixed !important;
-    top: 0 !important;
-    right: 120px !important;
+    right: 180px !important;
+    top: 80px !important;
     z-index: 10000;
     height: 50px !important;
 }
-
 .isfixed {
     position: fixed !important;
-    top: 0 !important;
+    top: 500px !important;
     right: 100px !important;
-    background: red;
 }
 </style>
