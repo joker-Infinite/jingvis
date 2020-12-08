@@ -65,7 +65,7 @@
                         setTimeout(() => {
                             let cluster;
                             AMap.plugin(["AMap.MarkerClusterer"], function () {
-                                cluster = new AMap.MarkerClusterer(o,self.markerRefs,
+                                cluster = new AMap.MarkerClusterer(o, self.markerRefs,
                                     {
                                         gridSize: 80,
                                         renderCluserMarker:
@@ -75,7 +75,7 @@
                             });
                         }, 100);
                     },
-            },
+                },
                 mapStyleArr: [
                     'amap://styles/8cb6df918ee512eae9c9198c38a40c91',
                     'amap://styles/1111cca74c703c3218b102779351f6eb',
@@ -97,30 +97,30 @@
         },
         methods: {
             _renderCluserMarker(context) {
-            const count = this.markers.length;
-            let factor = Math.pow(context.count / count, 1 / 18);
-            let div = document.createElement("div");
-            let Hue = 180 - factor * 180;
-            let bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
-            let fontColor = "hsla(" + Hue + ",100%,20%,1)";
-            let borderColor = "hsla(" + Hue + ",100%,40%,1)";
-            let shadowColor = "hsla(" + Hue + ",100%,50%,1)";
-            div.style.backgroundColor = bgColor;
-            let size = Math.round(
-                30 + Math.pow(context.count / count, 1 / 5) * 20
-            );
-            div.style.width = div.style.height = size + "px";
-            // div.style.border = "solid 1px " + borderColor;
-            div.style.borderRadius = size / 2 + "px";
-            div.style.boxShadow = "0 0 1px " + shadowColor;
-            div.innerHTML = context.count;
-            div.style.lineHeight = size + "px";
-            div.style.color = fontColor;
-            div.style.fontSize = "14px";
-            div.style.textAlign = "center";
-            context.marker.setOffset(new AMap.Pixel(-size / 1, -size / 5));
-            context.marker.setContent(div);
-        },
+                const count = this.markers.length;
+                let factor = Math.pow(context.count / count, 1 / 18);
+                let div = document.createElement("div");
+                let Hue = 180 - factor * 180;
+                let bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
+                let fontColor = "hsla(" + Hue + ",100%,20%,1)";
+                let borderColor = "hsla(" + Hue + ",100%,40%,1)";
+                let shadowColor = "hsla(" + Hue + ",100%,50%,1)";
+                div.style.backgroundColor = bgColor;
+                let size = Math.round(
+                    30 + Math.pow(context.count / count, 1 / 5) * 20
+                );
+                div.style.width = div.style.height = size + "px";
+                // div.style.border = "solid 1px " + borderColor;
+                div.style.borderRadius = size / 2 + "px";
+                div.style.boxShadow = "0 0 1px " + shadowColor;
+                div.innerHTML = context.count;
+                div.style.lineHeight = size + "px";
+                div.style.color = fontColor;
+                div.style.fontSize = "14px";
+                div.style.textAlign = "center";
+                context.marker.setOffset(new AMap.Pixel(-size / 1, -size / 5));
+                context.marker.setContent(div);
+            },
             enlargeMap() {
                 this.$emit("showMap", this.markersData);
             },
@@ -137,8 +137,7 @@
                 }
             },
             point(data) {
-                let markers = [];
-                let windows = [];
+                console.log(data)
                 this.window = '';
                 let that = this;
                 data.forEach((item, index) => {
@@ -152,8 +151,11 @@
                     if (index === 2) {
                         icon = require('../../../assets/Thrid.png')
                     }
-                    if (index > 2) {
+                    if (index > 2 && !item.gas) {
                         icon = 'https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b'
+                    }
+                    if (item.gas && item.gas == 'gas') {
+                        icon = require('../../../assets/gas.png')
                     }
                     this.markers.push({
                         position: [item.longitude, item.latitude],
@@ -171,7 +173,7 @@
                                     that.window.visible = true;
                                 });
                             },
-                            
+
                         },
                         icon: new AMap.Icon({
                             image: icon,
@@ -196,18 +198,19 @@
             }
         },
         mounted() {
+            let position = [];
             this.$axios.get('/api/index/list_jtService').then(res => {
-                this.point(res.data.data.servicefrom);
-                let stationfrom=[]
-                res.data.data.stationfrom.forEach(element => {
-                    if(element.latitude != 1){
-                        stationfrom.push(element)
-                    } 
+                position = res.data.data.servicefrom;
+                res.data.data.stationfrom.forEach(i => {
+                    if (i.latitude != 1) {
+                        i.gas = 'gas';
+                        position.push(i)
+                    }
                 });
-                this.point(stationfrom)
+                this.point(position)
             })
             this.timeClear = setInterval(this.check, 3000);
-            
+
         },
     };
 </script>

@@ -267,7 +267,7 @@
                     options.title.textStyle.rich.a.fontSize = 25;
                     options.barWidth = 30;
                     options.title.padding = [50, 50, 50, 50];
-                    this.$emit("showOne", options);
+                    this.$emit("showOne", options,this.select);
                 } else {
                     option.title.textStyle.rich.a.fontSize = 25;
                     option.barWidth = 30;
@@ -482,10 +482,6 @@
                     let datas = res.data.data
                     datas.sort(function (a, b) {
                         return a.xBxis - b.xBxis
-                    });
-                    datas.unshift({
-                        xBxis: 0,
-                        yAxis: '实业公司',
                     });
                     let xBxis = [];
                     let yAxis = [];

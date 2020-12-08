@@ -21,7 +21,7 @@
             <div id="initECharts_bottom_data"></div>
             <div id="HomeTopLeft_bottom"></div>
         </div>
-        <show-e-charts ref="showECharts"></show-e-charts>
+        <show-e-charts ref="showECharts" :backdrop="backdrop"></show-e-charts>
     </div>
 </template>
 
@@ -66,11 +66,12 @@
                 }
             },
             showOne(is) {
+              /*  console.log(this.option.yAxis.data)
                 if (this.option.yAxis[0].data) {
                     this.option.yAxis[0].data.forEach((element, index) => {
                         this.option.yAxis[0].data[index] = this.company[index]
                     });
-                }
+                }*/
                 // 修改柱状图的粗细
                 this.option.barWidth = 30;
                 // 修改title中文字的大小
