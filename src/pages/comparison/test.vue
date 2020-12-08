@@ -2,57 +2,7 @@
     <div class="container">
         <div class="left">
             <div style="width: 80%;height: 100%;">
-                
-                <!-- <div class="head_tabs" style="height:10%">
-                    <div class="tabs">
-                        <div  @click="tabClick(item.value)"
-                                :class="{tabs_item: true,borderBottom: tabIndex === item.value}"
-                                v-for="(item, index) in tabsData"
-                                :key="index" >
-                            <span>{{ item.name }}</span>
-                            <div
-                                    class="del el-icon-error"
-                                    v-if="tabsData.length !== 1"
-                                    @click="delTabs(item.value)"
-                            ></div>
-                        </div>
-                        <div
-                                class="tabsAdd el-icon-circle-plus-outline"
-                                v-if="tabsData.length !== 4"
-                                @click="addTabs"
-                        ></div>
-                    </div>
-                </div> -->
-                <div style="width: 100%;height: 100% ;overflow: auto;">
-                    <table cellspacing="0" cellpadding="0" style="border:1px solid #000000;width: 96%;text-align:center;height:100%;margin: 0 2%;border-radius: 10px; box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);">
-                        <tr>
-                            <!-- <th style="text-align:left;padding-left:20px"></th> -->
-                            <th v-for="(it, ix) in columns" :key="ix" 
-                            :style="{'text-align':ix == 0 && 'left','padding-left':ix == 0 && '20px'}">
-                                {{!it.label ? '服务区名称' : it.label}} 
-                            </th>
-                        </tr>
-                        <tr  v-for="(item,index) in tableDatad" 
-                        :style="{
-                            background:item[0]=='基础信息' || item[0]=='经营对比' || item[0] == '业态对比' ? '#1D7DCA':'',
-                            'font-weight':item[0]=='基础信息' || item[0]=='经营对比' || item[0] == '业态对比' ? '700':''
-                            }"
-                         :key="index">
-                            <td v-for="(itemText,inx) in item" :key="inx" :style="{'text-align':inx==0?'left':'',paddingLeft:inx==0?'20px':''}">{{itemText}}</td>
-                        </tr>
-                    </table>
-                    <!-- <el-table :data="columns" ref="table" border height="100%"
-                        style="width: 96%;margin: 0 2%;border-radius: 10px; box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);">
-                        <el-table-column
-                                align="center"
-                                v-for="(it, ix) in columns"
-                                :key="ix"
-                                :prop="it.code"
-                                :label="it.label"
-                                :width="it.width"
-                        ></el-table-column>
-                    </el-table> -->
-                </div>
+                <compared-test ref="comtest"></compared-test>
             </div>
             <div style="width:10%;height: 100%;background: #1D7DCA">
                 <div class="customizeBtn">
@@ -145,7 +95,7 @@
                         </tr>
                         <tr :style="{height : it.label ? '30px' : ''}" v-for="(it, ix) in columns" :key="ix">
                             <td v-if="it.label">{{it.label}}</td>
-                            <td style="cursor:pointer" @click="detail(ix)" v-if="it.label">删除</td>
+                            <td style="cursor:pointer" @click="detail(ix,it)" v-if="it.label">删除</td>
                         </tr>
                     </table>
                 </div>
@@ -202,10 +152,10 @@
 
 <script>
 import CustomizeTemplate from "./Dialog/customizeTemplate";
-
+import ComparedTest from "./ComparedTest"
 export default {
     name: "test",
-    components: { CustomizeTemplate },
+    components: { CustomizeTemplate,ComparedTest },
     data() {
         return {
             indexx:0,
@@ -493,7 +443,8 @@ export default {
         };
     },
     methods: {
-        detail(index){
+        detail(index,item){
+            this.$refs.comtest.details(item.service)
             this.columns.splice(index,1)
             this.tableDatad.forEach((element,i) => {
                 this.tableDatad[i].splice(index,1)
@@ -556,6 +507,7 @@ export default {
                 });
                 return
             }
+            console.log(this.selectData.service)
             if(this.selectData.service==''){
                 this.$message({
                     message: '服务区不能为空哦',
@@ -563,6 +515,7 @@ export default {
                 });
                 return
             }
+            this.$refs.comtest.add(this.selectData.service)
             let obj = {
                 code: "serviceArea_5",
                 label: "XT服务区",
@@ -572,24 +525,6 @@ export default {
                 business: this.selectData.business,
                 format: this.selectData.format
             };
-            let datas=[
-                ['','','','','','','','','','','','','','','','73748','63958','328772','158'],
-                ['','','','','','','','','','','','','','','','84698','380946','395583',''],
-                ['','','','','','','','','','','','','','','','50905','63958','266243',''],
-                ['','','','','','','','','','','','','','','','118091','971062','1012035',''],
-            ]
-            this.tableDatad.forEach((element,index) => {
-                if(this.tableDatad[index].length<=4){
-                    if(this.tableDatad[index][0]=='基础信息' || this.tableDatad[index][0]=='经营对比' || this.tableDatad[index][0]=='业态对比'){
-                        this.tableDatad[index].push(this.serviceData[this.selectData.service-1].label)
-                    }else{
-                        datas[0].forEach((element,index) => {
-                        });
-                        this.tableDatad[index].push(datas[this.selectData.service-1][index])
-                    }
-                }
-            });
-        
             this.serviceData.forEach((it, ix) => {
                 if (ix === this.selectData.service - 1) {
                     obj.label = it.label;
