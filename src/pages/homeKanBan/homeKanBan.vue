@@ -5,13 +5,20 @@
             <div class="con" id="theme">
                 <div class="H_top">
                     <div class="H_top_left">
-                        <HomeTopLeft :backdrop="backdrop"></HomeTopLeft>
+                        <HomeTopLeft :selectValue="selectValue" :backdrop="backdrop"></HomeTopLeft>
+                    </div>
+                    <div class="Real-timeInformation">
+                        <div id="con">
+                            <p v-for="i in timeInformation" :key="i">
+                                <img  src="../../assets/announcement.png">{{ i }}
+                            </p>
+                        </div>
                     </div>
                     <div class="H_top_center">
                         <center-map :backdrop="backdrop" @showMap="showMap"></center-map>
                     </div>
                     <div class="H_top_right">
-                        <HomeTopRight :backdrop="backdrop" ref="homeTopRight"></HomeTopRight>
+                        <HomeTopRight :selectValue="selectValue" :backdrop="backdrop" ref="homeTopRight"></HomeTopRight>
                     </div>
                 </div>
                 <div style="height: 1%;width: 100%"></div>
@@ -20,7 +27,7 @@
                 </div>
             </div>
             <div class="more">
-                <el-select v-model="selectValue" @change="switchStyle(selectValue)">
+                <el-select popper-class="DATAselect" v-model="selectValue" @change="switchStyle(selectValue)">
                     <el-option label="默认" :value="0"></el-option>
                     <el-option label="靛青" :value="1"></el-option>
                     <!--                    <el-option label="洁白" :value="2"></el-option>-->
@@ -48,10 +55,21 @@
             return {
                 backdrop: 0,
                 selectValue: 0,
-                times: ''
+                times: '',
+                timeInformation: [
+                    "凌晨二时 石家庄 XXX服务区因为XXX 已临时关闭 预计XXX开放 11111111",
+                    "凌晨三时 武汉 XXX服务区因为XXX 已临时关闭 预计XXX开放 22222222",
+                    "凌晨二时 襄阳 XXX服务区因为XXX 已临时关闭 预计XXX开放 3333333",
+                    "凌晨四时 随州 XXX服务区因为XXX 已临时关闭 预计XXX开放 44444444",
+                    "凌晨五时 驻马店 XXX服务区因为XXX 已临时关闭 预计XXX开放 55555555"
+                ],
+                screenHeight:'',
+                screenWidth:''
             };
         },
         mounted() {
+            this.screenHeight = window.screen.height + 'px';
+            this.screenWidth = window.screen.width + 'px';
             let this_ = this;
             this_.times = time()
             setInterval(function () {
@@ -85,10 +103,13 @@
             document.body.appendChild(script)
             document.body.appendChild(script2)
             let item = setInterval(() => {
-                document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.position = 'fixed'
-                document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.right = '350px'
-                document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '120px'
-                document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.zIndex = '100000'
+                if(document.getElementsByClassName("s-sticker")[0]){
+                    document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.position = 'fixed'
+                    document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.right = '18%'
+                    document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '11%'
+                    document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.zIndex = '100000'
+                    clearInterval(item)
+                }
             }, 100);
         },
         methods: {
@@ -113,7 +134,7 @@
                     {
                         background: "url('" + require('../../assets/bage.png') + "') no-repeat"
                     }, {
-                        background: "url('" + require('../../assets/bgi.png') + "') no-repeat"
+                        background: "url('" + require('../../assets/bgi.jpg') + "') no-repeat"
                     }, {
                         background: "url('" + require('../../assets/bage3.png') + "') no-repeat"
                     }
@@ -124,7 +145,7 @@
                 Object.assign(body_a.style, bac[v]);
             },
             showOne(v, type) {
-                this.$refs["showECharts"].openDialog(v, type);
+                this.$refs["showECharts"].openDialog(v, type , this.selectValue);
             },
             showMap(v) {
                 this.$refs['showMap'].openDialog(v);
@@ -134,13 +155,12 @@
     };
 </script>
 
-<style scoped lang="less"> 
+<style lang="less"> 
 .body {
     width: 100%;
     height: 100%;
     background: url('../../assets/bage.png') no-repeat;
     background-size: cover;
-
     .container {
         width: 100%;
         height: 100%;
@@ -148,15 +168,21 @@
         background-size: 100%;
         overflow: hidden;
         position: relative;
-
+        
         .more {
             /*width: 30%;*/
             height: 31px;
-            right: 260px;
+            right: 13.5%;
+            top: 8.2%;
             position: absolute;
-            top: 90px;
-        }
 
+        }
+        .more /deep/ .el-input__inner{
+            background: transparent;
+            color: #fff;
+            border-color: #0681D5;
+            box-shadow:inset 1px 1px 7px rgba(1,192,249,0.5);
+        }
         .more > span {
             color: white;
         }
@@ -189,6 +215,39 @@
                 flex-direction: row;
                 justify-content: space-between;
 
+                .Real-timeInformation {
+                    width: 48%;
+                    height: 30px;
+                    line-height: 30px;
+                    background: rgba(34, 188, 255, 0.2);
+                    border: 1px solid #0681d5;
+                    position: absolute;
+                    z-index: 99;
+                    overflow: hidden;
+                    border-radius: 10em;
+                    top: 8.5%;
+                    left: 20%;
+                    box-sizing: border-box;
+
+                    #con {
+                        width: 100%;
+                        height: 100%;
+                        color: red;
+                        transition: linear 0.3s;
+                        
+                    }
+
+                    #con > p {
+                        text-indent: 10px;
+                        display: flex;
+                        align-items: center;
+                        img{
+                            width: 2%;
+                            margin-left: 1%;
+                        }
+                    }
+                }
+
                 .H_top_left {
                     width: 15%;
                     height: 100%;
@@ -215,16 +274,15 @@
 }
 
 .body  /deep/  .s-sticker {
+    // position: absolute !important;
     width: 100px !important;
     position: fixed !important;
-    right: 180px !important;
-    top: 80px !important;
-    z-index: 10000;
+    right: 0 !important;
+    margin-right: 9%;
+    margin-top: 3.5%;
+    // top: 7.1% !important;
+    z-index: 1000;
     height: 50px !important;
 }
-.isfixed {
-    position: fixed !important;
-    top: 500px !important;
-    right: 100px !important;
-}
+
 </style>

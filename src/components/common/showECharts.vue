@@ -16,7 +16,7 @@
                 </el-date-picker>
                 <el-button size="small">搜索</el-button>
             </div>
-            <div class="bigShow" v-if="visible">
+            <div class="bigShow" :style="isSelect" v-if="visible">
                 <div class="MMA" v-if="type">
                     平均：{{obj.average}}<br>
                     最高：{{obj.max}}<br>
@@ -86,7 +86,8 @@
                     min: '',
                     max: '',
                     average: ''
-                }
+                },
+                isSelect:{}
             };
         },
         methods: {
@@ -119,7 +120,18 @@
                     }
                 }
             },
-            openDialog(v, t) {
+            openDialog(v, t ,selectValue) {
+                if(selectValue===0){
+                    this.isSelect = {
+                        background: `url(${require("../../assets/kuang-_03.png")})` + 'no-repeat',
+                        'background-size': '100% 100%'
+                    }
+                }else{
+                    this.isSelect = {
+                        background: `url(${require("../../assets/bgg.png")})` + 'no-repeat',
+                        'background-size': '100% 100%'
+                    }
+                }
                 v = clone(v)
                 if (t === "time") {
                     this.timeSelect = true;
@@ -279,8 +291,8 @@
         box-shadow: 0 0 10px #38d inset;
         position: relative;
         // background: #10448a;
-        background: url("../../assets/detail_background.jpg") no-repeat;
-        background-size: 100% 100%;
+        // background: url("../../assets/detail_background.jpg") no-repeat;
+        
 
         #commonECharts_data {
             width: 115px;

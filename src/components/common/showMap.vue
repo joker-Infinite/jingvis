@@ -165,7 +165,7 @@
         },
         async created() {
             const res = await this.$axios.get('/api/index/list_jtService');
-            res.data.data.forEach(i => {
+            res.data.data.servicefrom.forEach(i => {
                 this.markersData.push({
                     position: i.longitude + ',' + i.latitude,
                     address: i.serviceName,

@@ -1,13 +1,6 @@
 <template>
     <div class="amap-page-container">
         <div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
-        <div class="Real-timeInformation">
-            <div id="con">
-                <p v-for="i in timeInformation" :key="i">
-                    {{ i }}
-                </p>
-            </div>
-        </div>
         <el-amap
                 v-if="markers[0]"
                 vid="djisoa"
@@ -45,6 +38,7 @@
 </template>
 
 <script>
+
     export default {
         name: "centerMap",
         components: {},
@@ -55,16 +49,33 @@
             }
         },
         data() {
+            let self = this
             return {
                 amaps: false,
                 markersData: [],
+                markerRefs: [],
                 zoom: 8,
                 center: [114.286298, 30.5855],
                 expandZoomRange: true,
                 markers: [],
                 windows: [],
                 window: "",
-                events: {},
+                events: {
+                    init(o) {
+                        setTimeout(() => {
+                            let cluster;
+                            AMap.plugin(["AMap.MarkerClusterer"], function () {
+                                cluster = new AMap.MarkerClusterer(o,self.markerRefs,
+                                    {
+                                        gridSize: 80,
+                                        renderCluserMarker:
+                                        self._renderCluserMarker,
+                                    }
+                                );
+                            });
+                        }, 100);
+                    },
+            },
                 mapStyleArr: [
                     'amap://styles/8cb6df918ee512eae9c9198c38a40c91',
                     'amap://styles/1111cca74c703c3218b102779351f6eb',
@@ -85,6 +96,31 @@
             };
         },
         methods: {
+            _renderCluserMarker(context) {
+            const count = this.markers.length;
+            let factor = Math.pow(context.count / count, 1 / 18);
+            let div = document.createElement("div");
+            let Hue = 180 - factor * 180;
+            let bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
+            let fontColor = "hsla(" + Hue + ",100%,20%,1)";
+            let borderColor = "hsla(" + Hue + ",100%,40%,1)";
+            let shadowColor = "hsla(" + Hue + ",100%,50%,1)";
+            div.style.backgroundColor = bgColor;
+            let size = Math.round(
+                30 + Math.pow(context.count / count, 1 / 5) * 20
+            );
+            div.style.width = div.style.height = size + "px";
+            // div.style.border = "solid 1px " + borderColor;
+            div.style.borderRadius = size / 2 + "px";
+            div.style.boxShadow = "0 0 1px " + shadowColor;
+            div.innerHTML = context.count;
+            div.style.lineHeight = size + "px";
+            div.style.color = fontColor;
+            div.style.fontSize = "14px";
+            div.style.textAlign = "center";
+            context.marker.setOffset(new AMap.Pixel(-size / 1, -size / 5));
+            context.marker.setContent(div);
+        },
             enlargeMap() {
                 this.$emit("showMap", this.markersData);
             },
@@ -119,9 +155,12 @@
                     if (index > 2) {
                         icon = 'https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b'
                     }
-                    markers.push({
+                    this.markers.push({
                         position: [item.longitude, item.latitude],
                         events: {
+                            init(o) {
+                                that.markerRefs.push(o);
+                            },
                             click() {
                                 // 方法：鼠标移动到点标记上，显示相应窗体
                                 that.windows.forEach(window => {
@@ -131,7 +170,8 @@
                                 that.$nextTick(() => {
                                     that.window.visible = true;
                                 });
-                            }
+                            },
+                            
                         },
                         icon: new AMap.Icon({
                             image: icon,
@@ -139,7 +179,7 @@
                             imageSize: new AMap.Size(25, 30)
                         })
                     });
-                    windows.push({
+                    this.windows.push({
                         position: [item.longitude, item.latitude],
                         isCustom: true,
                         offset: [115, 55], // 窗体偏移
@@ -150,16 +190,24 @@
                     });
                 });
                 //  加点
-                this.markers = markers;
+                // this.markers = markers;
                 // 加弹窗
-                this.windows = windows;
+                // this.windows = windows;
             }
         },
         mounted() {
             this.$axios.get('/api/index/list_jtService').then(res => {
-                this.point(res.data.data);
+                this.point(res.data.data.servicefrom);
+                let stationfrom=[]
+                res.data.data.stationfrom.forEach(element => {
+                    if(element.latitude != 1){
+                        stationfrom.push(element)
+                    } 
+                });
+                this.point(stationfrom)
             })
             this.timeClear = setInterval(this.check, 3000);
+            
         },
     };
 </script>
@@ -189,31 +237,6 @@
             line-height: 30px;
             cursor: pointer;
             color: white;
-        }
-
-        .Real-timeInformation {
-            width: 100%;
-            height: 30px;
-            line-height: 30px;
-            background: rgba(34, 188, 255, 0.2);
-            border: 1px solid #0681d5;
-            position: absolute;
-            z-index: 99;
-            overflow: hidden;
-            border-radius: 10em;
-            margin-top: 0.5em;
-            box-sizing: border-box;
-
-            #con {
-                width: 100%;
-                height: 100%;
-                color: red;
-                transition: linear 0.3s;
-            }
-
-            #con > p {
-                text-indent: 10px;
-            }
         }
     }
 

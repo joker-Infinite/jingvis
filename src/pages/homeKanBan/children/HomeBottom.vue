@@ -175,50 +175,52 @@
             // 请求axios
             isAxios(url, financeTypeId, plateId, title, option, v, HomeBottom) {
                 let optionss = clone(option);
+                let params
                 // HomeBottom.setOption(option);
-                if (title === '实业公司') {
-                    optionss.title.text = `{a|     ${title}}`;
-                    this[v] = optionss;
-
-                    this.isNoData([], HomeBottom, optionss)
-                    HomeBottom.setOption(optionss);
-                } else {
-                    this.$axios.get(url, {
-                        params: {
+                if(title == '实业公司'){
+                    params = {
+                        financeTypeId: this.financeTypeId,
+                        plateId: 123
+                    }
+                }else{
+                    params = {
                             financeTypeId: this.financeTypeId,
                             plateId: plateId
-                        },
-                    }).then((res) => {
-                        optionss.title.text = `{a|     ${title}}`;
-                        let xBxis = [];
-                        let yAxis = [];
-                        res.data.data.forEach((element) => {
-                            xBxis.push(element.xBxis);
-                            let Yaxis = {
-                                value: element.yAxis,
-                                itemStyle: {
-                                    normal: {
-                                        position: "inside",
-                                        color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                            {offset: 0, color: "rgb(166,72,255,1)"},
-                                            {offset: 0.5, color: "rgb(44,30,255,1)"},
-                                            {offset: 1, color: "rgb(70,70,255,0)"},
-                                        ]),
-                                    },
-                                },
-                            };
-                            yAxis.push(Yaxis);
-                        });
-                        xBxis.forEach(i => {
-                            optionss.xAxis[0].data.push(parseInt(i.split('-')[1]))
-                        });
-                        optionss.xAxis[0].data = [1, '', '', 4, '', '', 7, '', '', 10];
-                        optionss.series[0].data = yAxis;
-                        this[v] = optionss;
-                        HomeBottom.setOption(optionss);
-                        this.isNoData(res.data.data, HomeBottom, optionss)
-                    });
+                        }
                 }
+                this.$axios.get(url, {
+                    params: params,
+                }).then((res) => {
+                    console.log(res)
+                    optionss.title.text = `{a|     ${title}}`;
+                    let xBxis = [];
+                    let yAxis = [];
+                    res.data.data.forEach((element) => {
+                        xBxis.push(element.xBxis);
+                        let Yaxis = {
+                            value: element.yAxis,
+                            itemStyle: {
+                                normal: {
+                                    position: "inside",
+                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                        {offset: 0, color: "rgb(166,72,255,1)"},
+                                        {offset: 0.5, color: "rgb(44,30,255,1)"},
+                                        {offset: 1, color: "rgb(70,70,255,0)"},
+                                    ]),
+                                },
+                            },
+                        };
+                        yAxis.push(Yaxis);
+                    });
+                    xBxis.forEach(i => {
+                        optionss.xAxis[0].data.push(parseInt(i.split('-')[1]))
+                    });
+                    optionss.xAxis[0].data = [1, '', '', 4, '', '', 7, '', '', 10];
+                    optionss.series[0].data = yAxis;
+                    this[v] = optionss;
+                    HomeBottom.setOption(optionss);
+                    this.isNoData(res.data.data, HomeBottom, optionss)
+                });
             },
             selectOption(v) {
                 this.select = v;
@@ -299,7 +301,7 @@
                     this.isAxios(
                         "/api/index/liudabankuai",
                         this.financeTypeId,
-                        '123',
+                        '',
                         '实业公司',
                         option,
                         "AD",
@@ -804,7 +806,7 @@
         */
 
         .item {
-            width: 16%;
+            width: 15.5%;
             height: 100%;
             position: relative;
             border: 1px solid #4cbcf4;
@@ -814,8 +816,6 @@
             .ei {
                 width: 100%;
                 height: 100%;
-
-
             }
 
             .MMA {

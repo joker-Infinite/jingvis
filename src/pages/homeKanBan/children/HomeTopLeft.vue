@@ -31,7 +31,6 @@
     import clone from "../../../../public/api/clone"
     import Border from "./border";
     import BorderPlanB from "./borderPlanB";
-
     export default {
         name: "HomeTopLeft",
         props: {
@@ -90,169 +89,137 @@
                 let HomeTopLeft_top = this.$echarts.init(
                     document.getElementById("HomeTopLeft_top")
                 );
-                let option = (this.AD = {
-                    // 标题
+                 let option = (this.AD = {
+                    barWidth: 10,
                     title: {
                         x: "center",
-                        text: "{a|     现金流量}",
+                        y: '',
+                        text: "{a|     执行率}",
+                        show: true,
                         textStyle: {
                             fontFamily: "幼圆",
+                            lineHeight: 25,
                             rich: {
-                                align: "center",
                                 a: {
                                     color: "#FFF",
-                                    fontSize: "16",
-                                    height: 20,
-                                    width: "100%"
-                                }
-                            }
-                        }
+                                    fontSize: "15",
+                                    height: 15,
+                                    width: 15,
+                                },
+                            },
+                        },
                     },
                     tooltip: {
                         trigger: "axis",
-                        formatter: function (list) {
-                            return list[0].name + '月' + ":" + '<br>' + '金额:' + (sum * list[0].value / 100 / 10000).toFixed(3) + '万元' + '<br>' + "占比:" + list[0].value.toFixed(2) + '%';
-                        },
+                        formatter: "{b}" + "{c}" + '%',
                         axisPointer: {
-                            lineStyle: {
-                                color: {
-                                    type: "linear",
-                                    x: 0,
-                                    y: 0,
-                                    x2: 0,
-                                    y2: 1,
-                                    colorStops: [
-                                        {
-                                            offset: 0,
-                                            color: "rgba(255, 191, 41,1)"
-                                        },
-                                        {
-                                            offset: 0.5,
-                                            color: "rgba(255, 255, 255,1)"
-                                        },
-                                        {
-                                            offset: 1,
-                                            color: "rgba(0, 255, 233,0)"
-                                        }
-                                    ],
-                                    global: false
-                                }
-                            }
-                        }
-                    },
-                    barWidth: 10, //设置柱状图的粗细
-                    xAxis: [
-                        {
-                            type: "category",
-                            data: [],
-
-                            axisLine: {
-                                //坐标轴轴线
-                                // show: true,
-                                lineStyle: {
-                                    color: "#6691ff"
-                                }
-                            },
-                            axisTick: {
-                                //坐标轴刻度
-                                show: false
-                            },
-                            axisLabel: {
-                                //文字换行
-                                formatter: function (val) {
-                                    let data = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-                                    return data[parseInt(val) - 1] + '月'
-                                }
-                                // formatter: function (v) {
-                                //     return v.split("").join("\n");
-                                // }
-                            }
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: "value",
-                            show: true,
-                            // min: 0,
-                            // max: 100,
-                            axisLabel: {
-                                formatter: function (val) {
-                                    return val + '%'
-                                }
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: "#6691ff"
-                                }
-                            },
-                            name: "%",
-                            nameTextStyle: {
-                                fontSize: "12px"
-                            },
-                            axisTick: {
-                                //坐标轴刻度
-                                show: false
-                            },
-                            splitLine: {
-                                show: false
-                            },
-
+                            type: "shadow",
                         },
-                    ],
+                    },
                     grid: {
-                        width: "auto",
-                        // height: "55%",
-                        left: '15%',
-                        top: "30%",
-                        bottom: "20%"
+                        top: "15%",
+                        bottom: 30,
+                    },
+                    xAxis: {
+                        type: "value",
+                        position: "bottom",
+                        axisTick: {
+                            //坐标轴刻度
+                            show: false,
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: "#FFF",
+                            },
+                        },
+                        splitLine: {show: false},
+                        axisLine: {
+                            lineStyle: {
+                                color: "#FFF",
+                            },
+                        },
+                    },
+                    yAxis: {
+                        type: "category",
+                        axisLine: {show: false},
+                        axisLabel: {show: false},
+                        axisTick: {show: false},
+                        splitLine: {show: false},
+                        data: [],
                     },
                     series: [
                         {
-                            name: "金额",
-                            type: "line",
-                            // yAxisIndex: 1,
+                            name: "收入",
+                            type: "bar",
+                            stack: "总量",
                             itemStyle: {
                                 normal: {
-                                    areaStyle: {
-                                        color: new this.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                                            {
-                                                offset: 0,
-                                                color: "rgba(255,191,41,0)"
-                                            },
-                                            {
-                                                offset: 1,
-                                                color: "rgba(255,191,41,1)"
-                                            }
-                                        ])
-                                    }
-                                }
+                                    barBorderRadius: 30, //设置柱状图为圆角
+                                    color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                                        {
+                                            offset: 0,
+                                            color: "rgba(192,42,84,1)",
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: "rgba(127,69,224,1)",
+                                        },
+                                    ]),
+                                },
+                            },
+                            label: {
+                                show: true,
+                                position: 'insideLeft',
+                                color: '#fff',
+                                formatter: '{b}'
                             },
                             data: [],
-                            color: "#ffbf29"
-                        }
-                    ]
+                            markLine: {
+                                data: [],
+                                symbol: ["none", "none"],
+                                position: "insideTopCenter",
+                                itemStyle: {
+                                    normal: {
+                                        lineStyle: {
+                                            type: "dotted",
+                                            color: "white",
+                                        },
+                                        label: {
+                                            show: false,
+                                            position: "middle",
+                                            formatter: "数据平均 :",
+                                        },
+                                    },
+                                },
+                                large: true,
+                                effect: {
+                                    show: false,
+                                    loop: true,
+                                    period: 0,
+                                    scaleSize: 2,
+                                    color: null,
+                                    shadowColor: null,
+                                    shadowBlur: null,
+                                },
+                            },
+                        },
+                    ],
                 });
                 var sum = 0;
-                this.$axios.get('/api/index/list_jtfinance_groupnian').then((res) => {
+                this.$axios.get('/api/index/rate_list',{params:{type:'ys'}}).then(res=>{
+                    let rateCount = [];
+                    let xBxis = [];
+                    console.log(option.series[0].data,res.data.data)
                     res.data.data.forEach(element => {
-                        sum += element.yAxis / 100
+                        rateCount.unshift(element.rateCount)
+                        xBxis.unshift(element.plateName)
                     });
-                    res.data.data.forEach(element => {
-                        option.xAxis[0].data.push({
-                            value: element.xBxis,
-                            textStyle: {
-                                fontSize: "12px"
-                            }
-                        });
-                        option.series[0].data.push((element.yAxis / 100) / sum * 100)
-                    });
+                    option.series[0].data = rateCount;
+                    option.yAxis.data = xBxis
                     HomeTopLeft_top.setOption(option);
                     this.isNoData(res.data.data, 'initECharts_top_data', 'HomeTopLeft_top', option)
                 })
-
-
             },
-
             initECharts_center() {
                 let HomeTopLeft_center = this.$echarts.init(
                     document.getElementById("HomeTopLeft_center")
@@ -277,7 +244,6 @@
                         trigger: "axis",
                         formatter: function (list) {
                             return list[0].name + '月' + ":" + '<br>' + '金额:' + money[list[0].dataIndex] + '元' + '<br>' + "占比:" + list[0].value + '%';
-
                         },
                         axisPointer: {
                             lineStyle: {
@@ -310,7 +276,6 @@
                     xAxis: [
                         {
                             type: "category",
-
                             data: [],
                             axisLine: {
                                 //坐标轴轴线
@@ -335,7 +300,6 @@
                     yAxis: [
                         {
                             type: "value",
-
                             axisLine: {
                                 lineStyle: {
                                     color: "#6691ff"
@@ -358,7 +322,6 @@
                                 show: false
                             }
                         },
-
                     ],
                     grid: {
                         width: "auto",
@@ -406,13 +369,10 @@
                         });
                         option.series[0].data.push(((element.yAxis) / sum * 100).toFixed(2))
                         money.push(element.yAxis)
-
                     });
                     HomeTopLeft_center.setOption(option);
                     this.isNoData(res.data.data, 'HomeTopLeft_center_data', 'HomeTopLeft_center', option)
                 })
-
-
             },
             initECharts_bottom() {
                 let HomeTopLeft_bottom = this.$echarts.init(
@@ -445,7 +405,6 @@
                             }
                         }
                     },
-
                     legend: {
                         data: ["c", "d"],
                         icon: "circle",
@@ -508,7 +467,6 @@
                     },
                     series: [
                         {
-
                             // data: [120, 200, 150, 80, 70],
                             data: [],
                             type: "bar",
@@ -517,7 +475,6 @@
                             // backgroundStyle: {
                             //     color: "rgba(255,255,255,0.2)"
                             // },
-
                             barCategoryGap: "100%",
                             markLine: {
                                 data: [],
@@ -619,9 +576,9 @@
                             boxShadow: ' 0 0 50px #4cbcf4 inset'
                         },
                         {
-                            border: '1px solid #081e3e',
+                            border: '1px solid #051021',
                             boxShadow: ' 0 0 20px #0354bb inset',
-                            background:'rgba(8,30,62,.2)'
+                            background: 'rgba(6,17,36,.6)'
                         },
                         {
                             border: 'none',
@@ -655,7 +612,6 @@
         bottom: 0;
         margin: auto;
     }
-
     .content {
         height: 100%;
         width: 100%;
@@ -663,7 +619,6 @@
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: space-between;
-
         .top {
             width: 100%;
             height: 30%;
@@ -672,13 +627,11 @@
             position: relative;
             /*background: url("../../../assets/small.png") no-repeat;*/
             background-size: 100% 100%;
-
             #HomeTopLeft_top {
                 width: 100%;
                 height: 100%;
             }
         }
-
         .center {
             width: 100%;
             height: 30%;
@@ -688,13 +641,11 @@
             position: relative;
             /*background: url("../../../assets/small.png") no-repeat;*/
             background-size: 100% 100%;
-
             #HomeTopLeft_center {
                 width: 100%;
                 height: 100%;
             }
         }
-
         .bottom {
             width: 100%;
             height: 30%;
@@ -704,21 +655,17 @@
             position: relative;
             /*background: url("../../../assets/small.png") no-repeat;*/
             background-size: 100% 100%;
-
             #HomeTopLeft_bottom {
                 width: 100%;
                 height: 100%;
             }
         }
-
         .top:hover .operations {
             display: block;
         }
-
         .center:hover .operations {
             display: block;
         }
-
         .bottom:hover .operations {
             display: block;
         }

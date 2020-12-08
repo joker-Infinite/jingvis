@@ -38,7 +38,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "2019年月营收",
+                                    title: "2020年月营收",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -219,7 +219,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年营收业态占比/片区占比",
+                                    title: "2020年营收业态占比/片区占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -868,6 +868,16 @@ export default {
                 })
             })
         },
+        obtainAxios(name, year){
+            this.$axios.get('/api/sundry/fuwuqucaiwu',{params:{nianfen:year,type:name}}).then(res=>{
+                let xBxis = [];
+                let yAxis = [];
+                console.log(res.data.data)
+                res.data.data.forEach(element => {
+                    
+                });
+            })
+        }
     },
     async mounted() {
         await new Promise(resolve => {
@@ -879,7 +889,7 @@ export default {
     },
     async created() {
         await this.obtainData('营收', '2019');
-        await this.obtainData('营收', '2020');
+        await this.obtainAxios('ys', '2020');
         await this.obtainData('利润', '2019');
         await this.obtainData('利润', '2020');
     },

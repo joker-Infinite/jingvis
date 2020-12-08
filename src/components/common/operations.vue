@@ -2,7 +2,7 @@
   <div class="more_setting">
     <span class="focus" @click="operations('focus')"></span>
     <span class="export" @click="operations('export')"></span>
-    <span class="more" @click="operations('more')"></span>
+    <span class="moree" @click="operations('more')"></span>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 
 <style scoped lang="less">
 .more_setting {
-  width: 78px;
+  width: 79px;
   height: 30px;
   position: absolute;
   display: none;
@@ -52,12 +52,12 @@ export default {
     background-size: 100%;
   }
 
-  .more {
+  .moree {
     background: url("../../assets/more.png") no-repeat;
     background-size: 100%;
   }
 
-  .more:hover {
+  .moree:hover {
     background: url("../../assets/more_.png") no-repeat;
     background-size: 100%;
   }

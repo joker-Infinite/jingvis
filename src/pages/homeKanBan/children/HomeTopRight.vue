@@ -84,6 +84,10 @@
             backdrop: {
                 type: Number,
                 default: 0
+            },
+             selectValue: {
+                type: Number,
+                default: 0
             }
         },
         components: {BorderPlanB, Border, ShowECharts, Operations},
@@ -128,14 +132,14 @@
                     this.option.grid.top = "20%";
                     this.$refs["showECharts"].timeSelect = false;
                     this.$refs["showECharts"].isShow = true;
-                    this.$refs["showECharts"].openDialog(this.option);
+                    this.$refs["showECharts"].openDialog(this.option , '' , this.selectValue);
                 }
             },
             changeRadioBD(v) {
-                console.log(v);
+                this.initECharts_top()
             },
             changeRadioCD(v) {
-                console.log(v);
+                this.initECharts_top()
             },
             initECharts_top() {
                 let HomeTopRight_top = this.$echarts.init(
@@ -176,54 +180,25 @@
                         },
                         data: [
                             {
-                                name: "a",
+                                name: "车型",
                             },
                             {
-                                name: "b",
+                                name: "大形车",
                             },
                             {
-                                name: "a1",
-                            },
-                            {
-                                name: "a2",
-                            },
-                            {
-                                name: "b1",
-                            },
-                            {
-                                name: "c",
+                                name: "小形车",
                             },
                         ],
                         links: [
                             {
-                                source: "a",
-                                target: "a1",
+                                source: "车型",
+                                target: "大形车",
                                 value: 5,
                             },
                             {
-                                source: "a",
-                                target: "a2",
-                                value: 3,
-                            },
-                            {
-                                source: "b",
-                                target: "b1",
-                                value: 8,
-                            },
-                            {
-                                source: "a",
-                                target: "b1",
-                                value: 3,
-                            },
-                            {
-                                source: "b1",
-                                target: "a1",
-                                value: 1,
-                            },
-                            {
-                                source: "b1",
-                                target: "c",
-                                value: 2,
+                                source: "车型",
+                                target: "小形车",
+                                value: 5,
                             },
                         ],
                         focusNodeAdjacency: true,
@@ -274,19 +249,77 @@
                         },
                     },
                 });
-                HomeTopRight_top.setOption(option);
+                this.$axios.get('/api/jtService/station_order_money').then((res)=>{
+                    let name = [];
+                    let links = [];
+                    res.data.forEach(element => {
+                        name.push({name:element.sizeCar})
+                        links.push({
+                                source: '车型',
+                                target: element.sizeCar,
+                                value: parseInt(element.sumJvCount),
+                            },)
+                        element.moneyVoList.forEach(item => {
+                            name.push({name:item.goodsType})
+                            links.push({
+                                source: element.sizeCar,
+                                target: item.goodsType,
+                                value: parseInt(item.count),
+                            },)
+                        });
+                    });
+                    name.push({name:'车型'})
+                    option.series.data = name;
+                    option.series.links = links;
+                    HomeTopRight_top.setOption(option);
+                })
+                
+            },
+            isAxiosw(echarts,option){
+                let params = {companyType:'service',orderType:'营收',size:6}
+                switch (this.selectBD) {
+                    case 1:
+                        params.companyType='service'
+                        break;
+                    case 2:
+                        params.companyType='station'
+                        break;
+                    default:
+                        break;
+                }
+                switch (this.selectCD) {
+                    case 1:
+                        params.orderType='营收'
+                        break;
+                    case 2:
+                        params.orderType='利润'
+                        break;
+                    case 4:
+                        params.orderType='orderCount'
+                        break;
+                    default:
+                        break;
+                }
+
+                this.$axios.get('/api/jtService/order',{params:params}).then(res=>{
+                    let yAxis = [];
+                    let xAxis = [];
+                    res.data.forEach(element => {
+                        yAxis.unshift(element.serviceName)
+                        xAxis.unshift(element.sumMoney)
+                    });
+                    option.yAxis.data = yAxis;
+                    option.series[0].data = xAxis
+                    echarts.setOption(option);
+                })
             },
             initECharts_bottom_left() {
                 let HomeTopRight_bottom_left = this.$echarts.init(
                     document.getElementById("HomeTopRight_bottom_left")
                 );
                 this.resizeData.push(HomeTopRight_bottom_left);
-                let data = [0.4, 0.6, 0.7, 0.8, 0.9, 1];
                 let average = 0;
-                data.forEach(i => {
-                    average = average += i;
-                });
-                average = average / data.length;
+
                 let option = ({
                     barWidth: 20,
                     title: {
@@ -315,7 +348,7 @@
                     },
                     grid: {
                         top: "25%",
-                        bottom: 30,
+                        bottom: 80,
                     },
                     xAxis: {
                         type: "value",
@@ -335,6 +368,10 @@
                                 color: "#FFF",
                             },
                         },
+                        axisLabel: {
+                            interval:20,
+                            rotate:45, //代表逆时针旋转45度
+                        }
                     },
                     yAxis: {
                         type: "category",
@@ -379,7 +416,7 @@
                                 show: true,
                                 formatter: "{b}",
                             },
-                            data: data,
+                            data: [],
                             markLine: {
                                 data: [],
                                 symbol: ["none", "none"],
@@ -393,7 +430,7 @@
                                         label: {
                                             show: true,
                                             position: "middle",
-                                            formatter: "数据平均 :" + average,
+                                            formatter: "数据平均 :" ,
                                         },
                                     },
                                 },
@@ -417,7 +454,8 @@
                 //     name: "平均值",
                 //     xAxis: average, //设置平均值所在位置
                 // }],
-                HomeTopRight_bottom_left.setOption(option);
+                this.isAxiosw(HomeTopRight_bottom_left,option)
+                
             },
             /* initECharts_bottom_right() {
                  let HomeTopRight_bottom_right = this.$echarts.init(
@@ -709,7 +747,7 @@
                 .operation {
                     width: 22%;
                     float: right;
-                    padding: 145px 0 0;
+                    padding: 35% 0 0;
                 }
 
                 .operation /deep/ .el-radio {
