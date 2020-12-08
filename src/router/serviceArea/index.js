@@ -71,5 +71,10 @@ export default [
         path: 'FWQYeTai',
         name: 'FWQYeTai',
         component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/serviceArea/children/FWQYeTai.vue'),
+    },
+    {
+        path: 'ComparedTest',
+        name: 'ComparedTest',
+        component: () => import(/* webpackChunkName: "serviceArea" */ '@/pages/comparison/ComparedTest.vue'),
     }
 ]

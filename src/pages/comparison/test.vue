@@ -228,7 +228,7 @@
                     {label: "利润", value: "profit"},
                     {label: "利率", value: "interestRate"},
                     {label: "收入", value: "income"},
-                    {label: "人流量", value: "humanTraffic"}
+                    {label: "人流量", value: "humanTraffic"},
                 ],
                 columns: [],
                 columns_1: [

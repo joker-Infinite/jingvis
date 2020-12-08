@@ -45,17 +45,18 @@
 <style lang="less" scoped>
     .login {
         width: 100%;
-        height: 1000px;
+        height: 100%;
         background: #2950ab;
-        position: relative;
+        position: fixed;
         .register {
             width: 1000px;
             height: 500px;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-left: -500px;
-            margin-top: -250px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
             display: flex;
             overflow: hidden;
             border-radius: 10px;
