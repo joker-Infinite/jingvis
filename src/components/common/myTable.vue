@@ -6,9 +6,10 @@
                 style="width: 100%"
                 :border="border"
                 highlight-current-row
+                :row-class-name="tableRowClassName"
+                :header-cell-style="headerCellStyle"
                 @current-change="singleChoice"
-                @selection-change="multipleChoice"
-        >
+                @selection-change="multipleChoice">
             <el-table-column
                     v-if="multiple"
                     align="center"
@@ -68,9 +69,9 @@
     export default {
         name: "myTable",
         props: {
-            totalCount:{
-                type:Number,
-                default:0
+            totalCount: {
+                type: Number,
+                default: 0
             },
             data: {
                 type: Array,
@@ -103,7 +104,9 @@
             isDetails: {
                 type: Boolean,
                 default: false
-            }
+            },
+            headerCellStyle: Object,
+            rowStyleData: Object
         },
         data() {
             return {
@@ -111,10 +114,11 @@
                 currentPage2: 2,
                 currentPage3: 3,
                 currentPage4: 4,
-                ClickTotal:{
-                    pageSize:5,
-                    pageNum:0
-                }
+                ClickTotal: {
+                    pageSize: 5,
+                    pageNum: 0
+                },
+                obj: {}
             };
         },
         methods: {
@@ -129,16 +133,19 @@
             },
             handleSizeChange(val) {
                 this.ClickTotal.pageSize = val;
-                this.$emit('ClickTotal',this.ClickTotal)
-                console.log(`每页 ${val} 条`,this.ClickTotal);
+                this.$emit('ClickTotal', this.ClickTotal)
+                console.log(`每页 ${val} 条`, this.ClickTotal);
             },
             handleCurrentChange(val) {
                 this.ClickTotal.pageNum = val;
-                this.$emit('ClickTotal',this.ClickTotal)
-                console.log(`当前页: ${val}`,this.ClickTotal);
+                this.$emit('ClickTotal', this.ClickTotal)
+                console.log(`当前页: ${val}`, this.ClickTotal);
+            },
+            tableRowClassName({row, rowIndex}) {
+                return 'row'+rowIndex;
             }
         }
-    };
+    }
 </script>
 
 <style scoped lang="less">
