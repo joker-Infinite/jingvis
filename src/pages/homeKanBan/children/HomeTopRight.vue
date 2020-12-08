@@ -24,15 +24,15 @@
                 </div>
                 <operations class="operations" @showOne="showOne"></operations>
                 <div class="operation">
-                    <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">营收
+                    <el-radio class="checkboxItem" @change="changeRadioCD(1,'营收')" v-model="selectCD" :label="1">营收
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">利润
+                    <el-radio class="checkboxItem" @change="changeRadioCD(2,'利润')" v-model="selectCD" :label="2">利润
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">客单价
+                    <el-radio class="checkboxItem" @change="changeRadioCD(3,'客单价')" v-model="selectCD" :label="3">客单价
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(4)" v-model="selectCD" :label="4">订单数
+                    <el-radio class="checkboxItem" @change="changeRadioCD(4,'订单数')" v-model="selectCD" :label="4">订单数
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(5)" v-model="selectCD" :label="5">转化率
+                    <el-radio class="checkboxItem" @change="changeRadioCD(5,'转化率')" v-model="selectCD" :label="5">转化率
                     </el-radio>
                 </div>
                 <div id="HomeTopRight_bottom_left"></div>
@@ -108,10 +108,11 @@
                 }
             },
             changeRadioBD(v) {
+                this.selectCD = 1;
                 this.initECharts_bottom_left()
             },
-            changeRadioCD(v) {
-                this.initECharts_bottom_left()
+            changeRadioCD(v, m) {
+                this.initECharts_bottom_left(m)
             },
             initECharts_top() {
                 let HomeTopRight_top = this.$echarts.init(
@@ -280,7 +281,7 @@
                     echarts.setOption(option);
                 })
             },
-            initECharts_bottom_left() {
+            initECharts_bottom_left(m) {
                 let HomeTopRight_bottom_left = this.$echarts.init(
                     document.getElementById("HomeTopRight_bottom_left")
                 );
@@ -348,7 +349,7 @@
                     },
                     series: [
                         {
-                            name: "收入",
+                            name: !m ? '收入' : m == '营收' ? '收入' : m,
                             type: "bar",
                             stack: "总量",
                             itemStyle: {
@@ -408,168 +409,8 @@
                     ],
                 });
                 this.BD = clone(option)
-                // this.BD.series[0].markLine.data = [{
-                //     type: "average",
-                //     name: "平均值",
-                //     xAxis: average, //设置平均值所在位置
-                // }],
                 this.isAxiosw(HomeTopRight_bottom_left, option)
-
             },
-            /* initECharts_bottom_right() {
-                 let HomeTopRight_bottom_right = this.$echarts.init(
-                     document.getElementById("HomeTopRight_bottom_right")
-                 );
-                 this.resizeData.push(HomeTopRight_bottom_right);
-                 let data = [0.09, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1];
-                 let average = 0;
-                 data.forEach(i => {
-                     average += i;
-                 })
-                 average = average / data.length;
-                 let option = ({
-                     barWidth: 20,
-                     title: {
-                         text: "{a|     千车转换率排行}",
-                         // x:"center",
-                         y: "6",
-                         show: true,
-                         textStyle: {
-                             fontFamily: "幼圆",
-                             lineHeight: 30,
-                             rich: {
-                                 a: {
-                                     color: "#FFF",
-                                     fontSize: "15",
-                                     height: 15,
-                                     width: 15,
-                                 },
-                             },
-                         },
-                     },
-                     tooltip: {
-                         trigger: "axis",
-                         axisPointer: {
-                             // 坐标轴指示器，坐标轴触发有效
-                             type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
-                         },
-                     },
-                     grid: {
-                         top: "25%",
-                         bottom: 30,
-                     },
-                     xAxis: {
-                         type: "value",
-                         position: "bottom",
-                         axisTick: {
-                             //坐标轴刻度
-                             show: false,
-                         },
-                         axisLabel: {
-                             textStyle: {
-                                 color: "#FFF",
-                             },
-                         },
-                         splitLine: {show: false},
-                         axisLine: {
-                             lineStyle: {
-                                 color: "#FFF",
-                             },
-                         },
-                     },
-                     yAxis: {
-                         type: "category",
-                         axisLine: {show: false},
-                         axisLabel: {show: false},
-                         axisTick: {show: false},
-                         splitLine: {show: false},
-                         data: [
-                             "a公司",
-                             "b公司",
-                             "c公司",
-                             "d公司",
-                             "e公司",
-                             "f公司",
-                             "g公司",
-                             "h公司",
-                             "i公司",
-                             "j公司",
-                         ],
-                     },
-                     series: [
-                         {
-                             name: "收入",
-                             type: "bar",
-                             stack: "总量",
-                             itemStyle: {
-                                 normal: {
-                                     // barBorderRadius: 30, //设置柱状图为圆角
-                                     color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                                         {
-                                             offset: 0,
-                                             color: "#4760ff",
-                                         },
-                                         {
-                                             offset: 0.5,
-                                             color: "#0dccff",
-                                         },
-                                         {
-                                             offset: 1,
-                                             color: "#36a6f9",
-                                         }
-                                     ]),
-                                 },
-                             },
-                             label: {
-                                 show: true,
-                                 formatter: "{b}",
-                             },
-                             data: data,
-                             markLine: {
-                                 data: [
-                                     // {
-                                     //     type: "average",
-                                     //     name: "平均值",
-                                     //     xAxis: 0.5, //设置平均值所在位置
-                                     // },
-                                 ],
-                                 symbol: ["none", "none"],
-                                 position: "insideTopCenter",
-                                 itemStyle: {
-                                     normal: {
-                                         lineStyle: {
-                                             type: "dotted",
-                                             color: "white",
-                                         },
-                                         label: {
-                                             show: true,
-                                             position: "middle",
-                                             formatter: "数据平均 : " + average,
-                                         },
-                                     },
-                                 },
-                                 large: true,
-                                 effect: {
-                                     show: false,
-                                     loop: true,
-                                     period: 0,
-                                     scaleSize: 2,
-                                     color: null,
-                                     shadowColor: null,
-                                     shadowBlur: null,
-                                 },
-                             },
-                         },
-                     ],
-                 });
-                 this.CD = clone(option)
-                 // this.CD.series[0].markLine.data = [{
-                 //     type: "average",
-                 //     name: "平均值",
-                 //     xAxis: average, //设置平均值所在位置
-                 // }],
-                 HomeTopRight_bottom_right.setOption(option);
-             },*/
             isResize() {
                 this.resizeData.forEach((element) => {
                     element.resize();
