@@ -1,10 +1,12 @@
 <template>
-    <div style="width: 100%;height:100%;">
-        <my-table height="1100px"
+    <div class="table_c">
+        <!-- <el-button @click="add">添加</el-button> -->
+        <my-table height="100%"
                   :showIndex="false"
                   :multiple="false"
                   :columns="columns"
-                  :border="true"
+                  :headerCellStyle="{background:'#1d7dca',color:'#FFF',border:'none'}"
+                  :border="false"
                   :data="tabData"></my-table>
     </div>
 </template>
@@ -16,6 +18,13 @@
         name: "ComparedTest",
         data() {
             return {
+                rowStyleData: {
+                    rowIndex: 0,
+                    style: {
+                        background: "yellow",
+                        color: 'red'
+                    }
+                },
                 columns: [
                     {prop: 'name', label: '服务区名称', width: '120px'},
                 ],
@@ -208,6 +217,17 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    .table_c {
+        width: 100%;
+        height: 100%;
+        background: #3388dd;
+    }
 
+    /*.table_c > .table /deep/ .el-table > .el-table__body-wrapper > .el-table__body >tbody> .row0 {
+        background-color: #1d7dca !important;
+        color: #FFF;
+        border-right:  #1d7dca;
+        font-weight: bold;
+    }*/
 </style>
