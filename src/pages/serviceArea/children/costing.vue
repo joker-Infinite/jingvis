@@ -38,7 +38,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "2020年实际成本",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -63,9 +63,9 @@ export default {
                                                     trigger: "axis",
                                                     formatter: function (val) {
                                                         return (
-                                                            val[0].name +
-                                                            ":" +
-                                                            val[0].value +
+                                                            val[0].name + '月' +
+                                                            ":" + '<br>' +
+                                                            val[0].value/10000 +
                                                             "元"
                                                         );
                                                     },
@@ -102,8 +102,9 @@ export default {
                                                 yAxis: [
                                                     {
                                                         axisLabel: {
-                                                            formatter:
-                                                                "{value}",
+                                                            formatter:function(value){
+                                                                return value / 10000
+                                                            },
                                                             color: "#999",
                                                             textStyle: {
                                                                 fontSize: 12,
@@ -171,7 +172,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "业态占比",
+                                    title: "2020年业态占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -270,11 +271,7 @@ export default {
                                                                 "加油",
                                                             ];
                                                             let datas = [
-                                                                1.45,
-                                                                2.93,
-                                                                3.15,
-                                                                4,
-                                                                5,
+                                                               
                                                             ];
                                                             datas.forEach((element, index) => {
                                                                 data.push({
@@ -291,7 +288,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "片区占比",
+                                    title: "2020年片区占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -379,30 +376,7 @@ export default {
                                                             },
                                                         },
                                                         data: [
-                                                            {
-                                                                name: "宜昌",
-                                                                value: 1.45,
-                                                            },
-                                                            {
-                                                                name: "恩施",
-                                                                value: 2.93,
-                                                            },
-                                                            {
-                                                                name: "孝感",
-                                                                value: 3.15,
-                                                            },
-                                                            {
-                                                                name: "咸宁",
-                                                                value: 4.78,
-                                                            },
-                                                            {
-                                                                name: "十堰",
-                                                                value: 5.93,
-                                                            },
-                                                            {
-                                                                name: "黄冈",
-                                                                value: 5.73,
-                                                            },
+                                                            
                                                         ],
                                                     },
                                                 ],
@@ -411,7 +385,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "公司成本种类预算成本",
+                                    title: "2020年公司成本种类预算成本",
                                     time: false,
                                     select: false,
                                     style: {
@@ -442,12 +416,12 @@ export default {
                                                             val[0].name +
                                                             ":" +
                                                             val[0].value +
-                                                            "元" +
+                                                            "万元" +
                                                             "<br>" +
                                                             val[1].value +
-                                                            "元" +
+                                                            "万元" +
                                                             "<br>" +
-                                                            "实际占比:" +
+                                                            "执行率:" +
                                                             val[2].value +
                                                             "%"
                                                         );
@@ -477,13 +451,11 @@ export default {
                                                 yAxis: {
                                                     type: "category",
                                                     data: [
-                                                        "北京",
-                                                        "上海",
-                                                        "天津",
-                                                        "深圳",
-                                                        "456",
-                                                        "7889",
-                                                        "99789",
+                                                        "办公费",
+                                                        "交通",
+                                                        "误餐费",
+                                                        "业务招待费",
+                                                        "差旅费",
                                                     ],
                                                     splitLine: {
                                                         show: false,
@@ -515,7 +487,7 @@ export default {
                                                         },
                                                         label: {
                                                             normal: {
-                                                                show: true,
+                                                                show: false,
                                                                 color: "#fff",
                                                                 position:
                                                                     "insideRight",
@@ -523,13 +495,12 @@ export default {
                                                         },
                                                         z: 10,
                                                         data: [
-                                                            320,
-                                                            302,
-                                                            301,
-                                                            543,
-                                                            320,
-                                                            302,
-                                                            301,
+                                                            
+                                                            0.00,
+                                                            3.41,
+                                                            8.16,
+                                                            52.36,
+                                                            86.64,
                                                         ],
                                                     },
                                                     {
@@ -556,7 +527,7 @@ export default {
                                                         },
                                                         label: {
                                                             normal: {
-                                                                show: true,
+                                                                show: false,
                                                                 color: "#000",
                                                                 position:
                                                                     "insideRight",
@@ -564,13 +535,12 @@ export default {
                                                         },
                                                         z: 5,
                                                         data: [
-                                                            90,
-                                                            230,
-                                                            210,
-                                                            432,
-                                                            320,
-                                                            302,
-                                                            301,
+                                                            
+                                                            0.00,
+                                                            2.17,
+                                                            1.05,
+                                                            28.26,
+                                                            60.99,
                                                         ],
                                                     },
                                                     {
@@ -609,13 +579,12 @@ export default {
                                                         },
                                                         z: 5,
                                                         data: [
-                                                            10,
-                                                            10,
-                                                            10,
-                                                            100,
-                                                            10,
-                                                            10,
-                                                            10,
+                                                            
+                                                            '0',
+                                                            '63.78',
+                                                            '12.90',
+                                                            '53.97',
+                                                            '70.40',
                                                         ],
                                                     },
                                                 ],
@@ -624,7 +593,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "总公司成本",
+                                    title: "2020年实际预算成本",
                                     time: false,
                                     select: false,
                                     style: {
@@ -643,7 +612,7 @@ export default {
                                                 height: "300px",
                                                 position: "relative",
                                                 style: {
-                                                    content: "2000万",
+                                                    content: "实际:暂无数据",
                                                     width: "75%",
                                                     color: "#fff",
                                                     height: "100px",
@@ -655,7 +624,7 @@ export default {
                                                     lineHeight: "100px",
                                                     fontWeight: 700,
                                                     textAlign: "center",
-                                                    fontSize: "30px",
+                                                    fontSize: "20px",
                                                 },
                                             },
                                             option: {},
@@ -668,7 +637,7 @@ export default {
                                                 height: "300px",
                                                 position: "relative",
                                                 style: {
-                                                    content: "9999万",
+                                                    content: "预算:暂无数据",
                                                     width: "75%",
                                                     color: "#fff",
                                                     height: "100px",
@@ -680,7 +649,7 @@ export default {
                                                     lineHeight: "100px",
                                                     fontWeight: 700,
                                                     textAlign: "center",
-                                                    fontSize: "30px",
+                                                    fontSize: "20px",
                                                 },
                                             },
                                             option: {},
@@ -792,7 +761,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "实际成本",
+                                    title: "2019年实际成本",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -817,9 +786,9 @@ export default {
                                                     trigger: "axis",
                                                     formatter: function (val) {
                                                         return (
-                                                            val[0].name +
-                                                            ":" +
-                                                            val[0].value +
+                                                            val[0].name + '月' +
+                                                            ":" + '<br>' +
+                                                            val[0].value/10000 +
                                                             "元"
                                                         );
                                                     },
@@ -856,8 +825,9 @@ export default {
                                                 yAxis: [
                                                     {
                                                         axisLabel: {
-                                                            formatter:
-                                                                "{value}",
+                                                            formatter:function (params) {
+                                                                return params / 10000
+                                                            },
                                                             color: "#999",
                                                             textStyle: {
                                                                 fontSize: 12,
@@ -925,7 +895,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "业态占比",
+                                    title: "2019年业态占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1024,11 +994,7 @@ export default {
                                                                 "加油",
                                                             ];
                                                             let datas = [
-                                                                1.45,
-                                                                2.93,
-                                                                3.15,
-                                                                4,
-                                                                5,
+                                                              
                                                             ];
                                                             datas.forEach((element, index) => {
                                                                 data.push({
@@ -1045,7 +1011,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "片区占比",
+                                    title: "2019年片区占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1133,30 +1099,7 @@ export default {
                                                             },
                                                         },
                                                         data: [
-                                                            {
-                                                                name: "宜昌",
-                                                                value: 1.45,
-                                                            },
-                                                            {
-                                                                name: "恩施",
-                                                                value: 2.93,
-                                                            },
-                                                            {
-                                                                name: "孝感",
-                                                                value: 3.15,
-                                                            },
-                                                            {
-                                                                name: "咸宁",
-                                                                value: 4.78,
-                                                            },
-                                                            {
-                                                                name: "十堰",
-                                                                value: 5.93,
-                                                            },
-                                                            {
-                                                                name: "黄冈",
-                                                                value: 5.73,
-                                                            },
+                                                           
                                                         ],
                                                     },
                                                 ],
@@ -1165,7 +1108,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "公司成本种类预算成本",
+                                    title: "2019年公司成本种类预算成本",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1277,13 +1220,7 @@ export default {
                                                         },
                                                         z: 10,
                                                         data: [
-                                                            320,
-                                                            302,
-                                                            301,
-                                                            543,
-                                                            320,
-                                                            302,
-                                                            301,
+                                                          
                                                         ],
                                                     },
                                                     {
@@ -1318,13 +1255,7 @@ export default {
                                                         },
                                                         z: 5,
                                                         data: [
-                                                            90,
-                                                            230,
-                                                            210,
-                                                            432,
-                                                            320,
-                                                            302,
-                                                            301,
+                                                           
                                                         ],
                                                     },
                                                     {
@@ -1363,13 +1294,7 @@ export default {
                                                         },
                                                         z: 5,
                                                         data: [
-                                                            10,
-                                                            10,
-                                                            10,
-                                                            100,
-                                                            10,
-                                                            10,
-                                                            10,
+                                                           
                                                         ],
                                                     },
                                                 ],
@@ -1378,7 +1303,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "总公司成本",
+                                    title: "2019年实际预算成本",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1397,7 +1322,7 @@ export default {
                                                 height: "300px",
                                                 position: "relative",
                                                 style: {
-                                                    content: "2000万",
+                                                    content: "实际:暂无数据",
                                                     width: "75%",
                                                     color: "#fff",
                                                     height: "100px",
@@ -1409,7 +1334,7 @@ export default {
                                                     lineHeight: "100px",
                                                     fontWeight: 700,
                                                     textAlign: "center",
-                                                    fontSize: "30px",
+                                                    fontSize: "20px",
                                                 },
                                             },
                                             option: {},
@@ -1422,7 +1347,7 @@ export default {
                                                 height: "300px",
                                                 position: "relative",
                                                 style: {
-                                                    content: "9999万",
+                                                    content: "预算:暂无数据",
                                                     width: "75%",
                                                     color: "#fff",
                                                     height: "100px",
@@ -1434,7 +1359,7 @@ export default {
                                                     lineHeight: "100px",
                                                     fontWeight: 700,
                                                     textAlign: "center",
-                                                    fontSize: "30px",
+                                                    fontSize: "20px",
                                                 },
                                             },
                                             option: {},
@@ -1630,6 +1555,62 @@ export default {
                 // })
             })
         },
+        async obtainAxios(name, year,years){
+             let data = [];
+            let id = '';
+            await this.$axios.get('/api/sundry/fuwuqucaiwu', 
+                {params:{nianfen:year,type:years}}
+            ).then(v => {
+                data = v.data.data;
+                let mm = [];
+                this.collapseData.forEach((item, index) => {
+                    if (item.name == name) {
+                        item.collapseItem.forEach((cItem, cIndex) => {
+                            if (cItem.year == year) {
+                                cItem.EChartsBox.forEach((sItem, sIndex) => {
+                                    if (sIndex == 0) {
+                                        sItem.EChartsItem[0].option.series[0].data = [];
+                                        sItem.EChartsItem[0].option.xAxis[0].data = [];
+                                        let yAxis = [];
+                                        let xBxis = [];
+                                        data.forEach(element => {
+                                            xBxis.push(element.xBxis.split('-')[1]);
+                                            yAxis.push(element.yAxis*10000)
+                                        });
+                                        sItem.EChartsItem[0].option.series[0].data = yAxis;
+                                        sItem.EChartsItem[0].option.xAxis[0].data = xBxis;
+                                    }
+                                    // if (sIndex == 1) {
+                                    //     sItem.EChartsItem[0].option.series[0].data = [];
+                                    //     data.xYListFrom2.forEach((i, ix) => {
+                                    //         sItem.EChartsItem[0].option.series[0].data.push({
+                                    //             name: i.xBxis,
+                                    //             value: i.yAxis
+                                    //         });
+                                    //     })
+                                    //     sItem.EChartsItem[1].option.series[0].data = []
+                                    //     data.xYListFrom3.forEach((i, ix) => {
+                                    //         sItem.EChartsItem[1].option.series[0].data.push({
+                                    //             name: i.xBxis,
+                                    //             value: i.yAxis
+                                    //         });
+                                    //     })
+                                    // }
+                                });
+                            }
+                        })
+                    }
+                })
+                
+            })
+            // this.$axios.get('/api/sundry/fuwuqucaiwu',{params:{nianfen:year,type:name}}).then(res=>{
+            //     let xBxis = [];
+            //     let yAxis = [];
+            //     res.data.data.forEach(element => {
+                    
+            //     });
+            // })
+        }
     },
     async mounted() {
         await new Promise(resolve => {
@@ -1644,6 +1625,8 @@ export default {
         // await this.obtainData('营收', '2020');
         // await this.obtainData('利润', '2019');
         // await this.obtainData('利润', '2020');
+        await this.obtainAxios('成本', '2020','cb');
+        await this.obtainAxios('成本', '2019','cb');
     },
     watch: {
         viewChange() {

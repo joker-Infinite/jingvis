@@ -37,6 +37,18 @@ export default [
         name: 'comparison',
         component: () => import(/* webpackChunkName: "comparison" */ '@/pages/comparison/test.vue'),
     },
+    //回款率
+    {
+        path: 'rateOfReturn',
+        name: 'rateOfReturn',
+        component: () => import(/* webpackChunkName: "rateOfReturn" */ '@/pages/serviceArea/children/rateOfReturn.vue'),
+    },
+    //基础信息
+    {
+        path: 'basicInformations',
+        name: 'basicInformations',
+        component: () => import(/* webpackChunkName: "basicInformation" */ '@/pages/serviceArea/children/basicInformations.vue'),
+    },
     {
         path: 'huangGang',
         name: 'huangGang',

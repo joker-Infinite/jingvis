@@ -38,7 +38,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "",
+                                    title: "2020年利润",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -63,7 +63,7 @@ export default {
                                                     trigger: "axis",
                                                     formatter: function (val) {
                                                         return (
-                                                            val[0].name +
+                                                            val[0].name + '月' +
                                                             ":" + "<br />" +
                                                             val[0].value / 10000 +
                                                             "万元"
@@ -219,7 +219,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "",
+                                    title: "2020年利润业态占比/片区占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -399,7 +399,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "",
+                                    title: "2019年利润",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -424,7 +424,7 @@ export default {
                                                     trigger: "axis",
                                                     formatter: function (val) {
                                                         return (
-                                                            val[0].name +
+                                                            val[0].name + '月' + 
                                                             ":" + "<br />" +
                                                             val[0].value / 10000 +
                                                             "万元"
@@ -580,7 +580,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "",
+                                    title: "2019年利润业态占比/片区占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -844,6 +844,62 @@ export default {
                 // })
             })
         },
+        async obtainAxios(name, year,years){
+             let data = [];
+            let id = '';
+            await this.$axios.get('/api/sundry/fuwuqucaiwu', 
+                {params:{nianfen:year,type:years}}
+            ).then(v => {
+                data = v.data.data;
+                let mm = [];
+                this.collapseData.forEach((item, index) => {
+                    if (item.name == name) {
+                        item.collapseItem.forEach((cItem, cIndex) => {
+                            if (cItem.year == year) {
+                                cItem.EChartsBox.forEach((sItem, sIndex) => {
+                                    if (sIndex == 0) {
+                                        sItem.EChartsItem[0].option.series[0].data = [];
+                                        sItem.EChartsItem[0].option.xAxis[0].data = [];
+                                        let yAxis = [];
+                                        let xBxis = [];
+                                        data.forEach(element => {
+                                            xBxis.push(element.xBxis.split('-')[1]);
+                                            yAxis.push(element.yAxis*10000)
+                                        });
+                                        sItem.EChartsItem[0].option.series[0].data = yAxis;
+                                        sItem.EChartsItem[0].option.xAxis[0].data = xBxis;
+                                    }
+                                    // if (sIndex == 1) {
+                                    //     sItem.EChartsItem[0].option.series[0].data = [];
+                                    //     data.xYListFrom2.forEach((i, ix) => {
+                                    //         sItem.EChartsItem[0].option.series[0].data.push({
+                                    //             name: i.xBxis,
+                                    //             value: i.yAxis
+                                    //         });
+                                    //     })
+                                    //     sItem.EChartsItem[1].option.series[0].data = []
+                                    //     data.xYListFrom3.forEach((i, ix) => {
+                                    //         sItem.EChartsItem[1].option.series[0].data.push({
+                                    //             name: i.xBxis,
+                                    //             value: i.yAxis
+                                    //         });
+                                    //     })
+                                    // }
+                                });
+                            }
+                        })
+                    }
+                })
+                
+            })
+            // this.$axios.get('/api/sundry/fuwuqucaiwu',{params:{nianfen:year,type:name}}).then(res=>{
+            //     let xBxis = [];
+            //     let yAxis = [];
+            //     res.data.data.forEach(element => {
+                    
+            //     });
+            // })
+        }
     },
     async mounted() {
         await new Promise(resolve => {
@@ -858,6 +914,8 @@ export default {
         // await this.obtainData('营收', '2020');
         // await this.obtainData('利润', '2019');
         // await this.obtainData('利润', '2020');
+        await this.obtainAxios('利润', '2020','lr');
+        await this.obtainAxios('利润', '2019','lr');
     },
     watch: {
         viewChange() {

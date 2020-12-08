@@ -1842,11 +1842,11 @@
                         collapseItem: [
                             {
                                 id: "flow_2020",
-                                collapseTitle: "高数车流量",
+                                collapseTitle: "高速车流量",
 
                                 EChartsBox: [
                                     {
-                                        title: "高数车流量",
+                                        title: "高速车流量",
                                         time: false,
                                         select: true,
                                         style: {

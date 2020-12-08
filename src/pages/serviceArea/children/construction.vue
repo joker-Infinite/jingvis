@@ -32,11 +32,11 @@ export default {
                             collapseTitle: "2020年业态结构",
                             EChartsBox: [
                                 {
-                                    title: "品牌分类",
-                                    time: true,
+                                    title: "2020年品牌店面收入占比",
+                                    time: false,
                                     timeValue: "",
                                     style: {
-                                        width: "100%",
+                                        width: "50%",
                                         height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
@@ -46,18 +46,18 @@ export default {
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "49.5%",
+                                                width: "100%",
                                                 height: "300px",
                                             },
                                             option: {
                                                 title: {
-                                                    text: "总营业额",
+                                                    text: "",
                                                     top: "43%",
                                                     left: "55%",
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "85000",
+                                                    subtext: "暂无数据",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
@@ -165,15 +165,15 @@ export default {
                                                         },
                                                         data: [
                                                             {
-                                                                name: "传统",
+                                                                name: "一线品牌",
                                                                 value: 1.45,
                                                             },
                                                             {
-                                                                name: "品牌",
+                                                                name: "二线品牌",
                                                                 value: 2.93,
                                                             },
                                                             {
-                                                                name: "特色",
+                                                                name: "无品牌",
                                                                 value: 3.15,
                                                             },
                                                         ],
@@ -346,10 +346,190 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "table列表",
+                                    title: "2020年品牌经营面积占比",
+                                    time: false,
+                                    timeValue: "",
+                                    style: {
+                                        width: "49.5%",
+                                        height: "350px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                title:{
+                                                    text:"暂无数据",
+                                                    top:'50%',
+                                                    left:'45%'
+                                                },
+                                                legend: {
+                                                    orient: "vertical",
+                                                    top: 'center',
+                                                    left:10,
+                                                    itemGap:25
+                                                },
+                                                tooltip: {
+                                                    formatter:
+                                                        "{b}:{c}: ({d}%)",
+                                                },
+
+                                                series: [
+                                                    // {
+                                                    //     name: "整体分类",
+                                                    //     type: "pie",
+                                                    //     radius: [0, "30%"],
+                                                    //     center: ["50%", "55%"],
+                                                    //     label: {
+                                                    //         position: "inner",
+                                                    //         textStyle: {
+                                                    //             fontSize: 16
+                                                    //         }
+                                                    //     },
+                                                    //     itemStyle: {
+                                                    //         normal: {
+                                                    //             borderColor:
+                                                    //                 "#fff",
+                                                    //             borderWidth: 2,
+                                                    //             color: function (
+                                                    //                 params
+                                                    //             ) {
+                                                    //                 let colorList = [
+                                                    //                     "#76c15c",
+                                                    //                     "#15b3e2",
+                                                    //                     "#2e65fd",
+                                                    //                     "#1fcaa8",
+                                                    //                     "#ee6565",
+                                                    //                     "#fec02a",
+                                                    //                     "#fe3922",
+                                                    //                     "#52fe36",
+                                                    //                     "#fe3afc",
+                                                    //                 ];
+                                                    //                 return colorList[
+                                                    //                     params
+                                                    //                         .dataIndex
+                                                    //                 ];
+                                                    //             },
+                                                    //         },
+                                                    //     },
+                                                    //     selectedMode: "single",
+                                                    //     data: [
+                                                    //         {
+                                                    //             value: 875,
+                                                    //             name: "一线品牌",
+                                                    //         },
+                                                    //         {
+                                                    //             value: 1239,
+                                                    //             name: "二线品牌",
+                                                    //         },
+                                                    //         {
+                                                    //             value: 1239,
+                                                    //             name: "无品牌",
+                                                    //         },
+                                                    //     ],
+                                                    // },
+                                                    {
+                                                        name: "招标方式",
+                                                        type: "pie",
+                                                        center: ["50%", "55%"],
+                                                        radius: ["40%", "55%"],
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color: function (
+                                                                    params
+                                                                ) {
+                                                                    let colorList = [
+                                                                        "#76c15c",
+                                                                        "#15b3e2",
+                                                                        "#2e65fd",
+                                                                        "#1fcaa8",
+                                                                        "#ee6565",
+                                                                        "#fec02a",
+                                                                        "#fe3922",
+                                                                        "#52fe36",
+                                                                        "#fe3afc",
+                                                                    ];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
+                                                                },
+                                                            },
+                                                        },
+                                                        labelLine: {
+                                                            normal: {
+                                                                length: 30,
+                                                                length2: 30,
+                                                                lineStyle: {
+                                                                    width: 1,
+                                                                },
+                                                            },
+                                                        },
+                                                        label: {
+                                                            show: true,
+                                                            position: "outer",
+                                                            width: 0,
+                                                            height: 0,
+                                                            lineHeight: 0,
+                                                            backgroundColor:
+                                                                "auto",
+                                                            padding: [
+                                                                2,
+                                                                -2,
+                                                                2,
+                                                                -2,
+                                                            ],
+                                                            borderRadius: 2,
+                                                            distanceToLabelLine: 0,
+                                                            normal: {
+                                                                formatter(v) {
+                                                                    let text =
+                                                                        v.name +
+                                                                        "\n" +
+                                                                        v.percent +
+                                                                        "%";
+                                                                    return text;
+                                                                },
+                                                                textStyle: {
+                                                                    fontSize: 16,
+                                                                },
+                                                            },
+                                                        },
+
+                                                        data: [
+                                                            {
+                                                                value: 875,
+                                                                name: "一线品牌",
+                                                                type: "一线品牌",
+                                                            },
+                                                            {
+                                                                value: 1239,
+                                                                name: "二线品牌",
+                                                                type: "二线品牌",
+                                                            },
+                                                            {
+                                                                value: 1239,
+                                                                name: "无品牌",
+                                                                type: "无品牌",
+                                                            },
+                                                        ],
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: "2020年品牌列表",
                                     style: {
                                         width: "100%",
-                                        height: "450px",
+                                        height: "310px",
                                         borderRadius: "10px",
                                         background: "white",
                                         marginBottom: "5px",
@@ -359,8 +539,8 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
-                                            height: '550px',
-                                            isPagination: true,
+                                            height: '430px',
+                                            isPagination: false,
                                             border: true,
                                             style: {
                                                 width: "100%",
@@ -408,47 +588,47 @@ export default {
                                             tableData: [
                                                 {
                                                     A: "一线品牌",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "110000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                                 {
-                                                    A: "本地特色",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "120000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "二线品牌",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                                 {
-                                                    A: "传统产业",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "130000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "无品牌",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                             ],
                                         },
                                     ],
                                 },
                                 {
-                                    title: "业态分类",
-                                    time: true,
+                                    title: "2020业态分类店面收入占比",
+                                    time: false,
                                     timeValue: "",
                                     style: {
-                                        width: "100%",
+                                        width: "50%",
                                         height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
@@ -458,18 +638,18 @@ export default {
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "49.5%",
+                                                width: "100%",
                                                 height: "300px",
                                             },
                                             option: {
                                                 title: {
-                                                    text: "总营业额",
+                                                    text: "",
                                                     top: "43%",
                                                     left: "55%",
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "85000",
+                                                    subtext: "暂无数据",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
@@ -577,15 +757,19 @@ export default {
                                                         },
                                                         data: [
                                                             {
-                                                                name: "传统",
+                                                                name: "便利店",
                                                                 value: 1.45,
                                                             },
                                                             {
-                                                                name: "品牌",
+                                                                name: "特产",
                                                                 value: 2.93,
                                                             },
                                                             {
-                                                                name: "特色",
+                                                                name: "小吃",
+                                                                value: 3.15,
+                                                            },
+                                                            {
+                                                                name: "餐饮",
                                                                 value: 3.15,
                                                             },
                                                         ],
@@ -594,13 +778,33 @@ export default {
                                                 ],
                                             },
                                         },
+                                        
+                                    ],
+                                },
+                                 {
+                                    title: "2020业态分类经营面积占比",
+                                    time: false,
+                                    timeValue: "",
+                                    style: {
+                                        width: "49.5%",
+                                        height: "350px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "49.5%",
+                                                width: "100%",
                                                 height: "300px",
                                             },
                                             option: {
+                                                title:{
+                                                    text:'暂无数据',
+                                                    left:'45%',
+                                                    top:'50%'
+                                                },
                                                 legend: {
                                                     orient: "vertical",
                                                     top: 'center',
@@ -613,59 +817,59 @@ export default {
                                                 },
 
                                                 series: [
-                                                    {
-                                                        name: "整体分类",
-                                                        type: "pie",
-                                                        radius: [0, "30%"],
-                                                        center: ["50%", "55%"],
-                                                        label: {
-                                                            position: "inner",
-                                                            textStyle: {
-                                                                fontSize: 16
-                                                            }
-                                                        },
-                                                        itemStyle: {
-                                                            normal: {
-                                                                borderColor:
-                                                                    "#fff",
-                                                                borderWidth: 2,
-                                                                color: function (
-                                                                    params
-                                                                ) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[
-                                                                        params
-                                                                            .dataIndex
-                                                                    ];
-                                                                },
-                                                            },
-                                                        },
-                                                        selectedMode: "single",
-                                                        data: [
-                                                            {
-                                                                value: 875,
-                                                                name: "特色",
-                                                            },
-                                                            {
-                                                                value: 1239,
-                                                                name: "传统",
-                                                            },
-                                                            {
-                                                                value: 1239,
-                                                                name: "品牌",
-                                                            },
-                                                        ],
-                                                    },
+                                                    // {
+                                                    //     name: "整体分类",
+                                                    //     type: "pie",
+                                                    //     radius: [0, "30%"],
+                                                    //     center: ["50%", "55%"],
+                                                    //     label: {
+                                                    //         position: "inner",
+                                                    //         textStyle: {
+                                                    //             fontSize: 16
+                                                    //         }
+                                                    //     },
+                                                    //     itemStyle: {
+                                                    //         normal: {
+                                                    //             borderColor:
+                                                    //                 "#fff",
+                                                    //             borderWidth: 2,
+                                                    //             color: function (
+                                                    //                 params
+                                                    //             ) {
+                                                    //                 let colorList = [
+                                                    //                     "#76c15c",
+                                                    //                     "#15b3e2",
+                                                    //                     "#2e65fd",
+                                                    //                     "#1fcaa8",
+                                                    //                     "#ee6565",
+                                                    //                     "#fec02a",
+                                                    //                     "#fe3922",
+                                                    //                     "#52fe36",
+                                                    //                     "#fe3afc",
+                                                    //                 ];
+                                                    //                 return colorList[
+                                                    //                     params
+                                                    //                         .dataIndex
+                                                    //                 ];
+                                                    //             },
+                                                    //         },
+                                                    //     },
+                                                    //     selectedMode: "single",
+                                                    //     data: [
+                                                    //         {
+                                                    //             value: 875,
+                                                    //             name: "特色",
+                                                    //         },
+                                                    //         {
+                                                    //             value: 1239,
+                                                    //             name: "传统",
+                                                    //         },
+                                                    //         {
+                                                    //             value: 1239,
+                                                    //             name: "品牌",
+                                                    //         },
+                                                    //     ],
+                                                    // },
                                                     {
                                                         name: "招标方式",
                                                         type: "pie",
@@ -737,18 +941,23 @@ export default {
                                                         data: [
                                                             {
                                                                 value: 875,
-                                                                name: "特色",
-                                                                type: "特色",
+                                                                name: "便利店",
+                                                                type: "便利店",
                                                             },
                                                             {
                                                                 value: 1239,
-                                                                name: "传统",
-                                                                type: "传统",
+                                                                name: "餐饮",
+                                                                type: "餐饮",
                                                             },
                                                             {
                                                                 value: 1239,
-                                                                name: "品牌",
-                                                                type: "品牌",
+                                                                name: "特产",
+                                                                type: "特产",
+                                                            },
+                                                            {
+                                                                value: 1239,
+                                                                name: "小吃",
+                                                                type: "小吃",
                                                             },
                                                         ],
                                                     },
@@ -758,10 +967,10 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "table列表",
+                                    title: "2020年业态列表",
                                     style: {
                                         width: "100%",
-                                        height: "450px",
+                                        height: "330px",
                                         borderRadius: "10px",
                                         background: "white",
                                         marginBottom: "5px",
@@ -772,11 +981,11 @@ export default {
                                         {
                                             type: "table",
                                             height: '550px',
-                                            isPagination: true,
+                                            isPagination: false,
                                             border: true,
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "250px",
                                                 background: "#fff",
                                             },
                                             columns: [
@@ -819,37 +1028,48 @@ export default {
                                             ],
                                             tableData: [
                                                 {
-                                                    A: "一线品牌",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "110000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "餐饮",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                                 {
-                                                    A: "本地特色",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "120000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "小吃",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                                 {
-                                                    A: "传统产业",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "130000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "便利店",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
+                                                },
+                                                {
+                                                    A: "特产",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                             ],
                                         },
@@ -857,17 +1077,17 @@ export default {
                                 },
                             ],
                         },
-                        {
-                          id: "construction_2019",
+                         {
+                            id: "construction_2019",
                             year: 2019,
                             collapseTitle: "2019年业态结构",
                             EChartsBox: [
                                 {
-                                    title: "品牌分类",
-                                    time: true,
+                                    title: "2019年品牌店面收入占比",
+                                    time: false,
                                     timeValue: "",
                                     style: {
-                                        width: "100%",
+                                        width: "50%",
                                         height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
@@ -877,18 +1097,18 @@ export default {
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "49.5%",
+                                                width: "100%",
                                                 height: "300px",
                                             },
                                             option: {
                                                 title: {
-                                                    text: "总营业额",
+                                                    text: "",
                                                     top: "43%",
                                                     left: "55%",
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "85000",
+                                                    subtext: "暂无数据",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
@@ -996,15 +1216,15 @@ export default {
                                                         },
                                                         data: [
                                                             {
-                                                                name: "传统",
+                                                                name: "一线品牌",
                                                                 value: 1.45,
                                                             },
                                                             {
-                                                                name: "品牌",
+                                                                name: "二线品牌",
                                                                 value: 2.93,
                                                             },
                                                             {
-                                                                name: "特色",
+                                                                name: "无品牌",
                                                                 value: 3.15,
                                                             },
                                                         ],
@@ -1177,10 +1397,190 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "table列表",
+                                    title: "2019年品牌经营面积占比",
+                                    time: false,
+                                    timeValue: "",
+                                    style: {
+                                        width: "49.5%",
+                                        height: "350px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                title:{
+                                                    text:"暂无数据",
+                                                    top:'50%',
+                                                    left:'45%'
+                                                },
+                                                legend: {
+                                                    orient: "vertical",
+                                                    top: 'center',
+                                                    left:10,
+                                                    itemGap:25
+                                                },
+                                                tooltip: {
+                                                    formatter:
+                                                        "{b}:{c}: ({d}%)",
+                                                },
+
+                                                series: [
+                                                    // {
+                                                    //     name: "整体分类",
+                                                    //     type: "pie",
+                                                    //     radius: [0, "30%"],
+                                                    //     center: ["50%", "55%"],
+                                                    //     label: {
+                                                    //         position: "inner",
+                                                    //         textStyle: {
+                                                    //             fontSize: 16
+                                                    //         }
+                                                    //     },
+                                                    //     itemStyle: {
+                                                    //         normal: {
+                                                    //             borderColor:
+                                                    //                 "#fff",
+                                                    //             borderWidth: 2,
+                                                    //             color: function (
+                                                    //                 params
+                                                    //             ) {
+                                                    //                 let colorList = [
+                                                    //                     "#76c15c",
+                                                    //                     "#15b3e2",
+                                                    //                     "#2e65fd",
+                                                    //                     "#1fcaa8",
+                                                    //                     "#ee6565",
+                                                    //                     "#fec02a",
+                                                    //                     "#fe3922",
+                                                    //                     "#52fe36",
+                                                    //                     "#fe3afc",
+                                                    //                 ];
+                                                    //                 return colorList[
+                                                    //                     params
+                                                    //                         .dataIndex
+                                                    //                 ];
+                                                    //             },
+                                                    //         },
+                                                    //     },
+                                                    //     selectedMode: "single",
+                                                    //     data: [
+                                                    //         {
+                                                    //             value: 875,
+                                                    //             name: "一线品牌",
+                                                    //         },
+                                                    //         {
+                                                    //             value: 1239,
+                                                    //             name: "二线品牌",
+                                                    //         },
+                                                    //         {
+                                                    //             value: 1239,
+                                                    //             name: "无品牌",
+                                                    //         },
+                                                    //     ],
+                                                    // },
+                                                    {
+                                                        name: "招标方式",
+                                                        type: "pie",
+                                                        center: ["50%", "55%"],
+                                                        radius: ["40%", "55%"],
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color: function (
+                                                                    params
+                                                                ) {
+                                                                    let colorList = [
+                                                                        "#76c15c",
+                                                                        "#15b3e2",
+                                                                        "#2e65fd",
+                                                                        "#1fcaa8",
+                                                                        "#ee6565",
+                                                                        "#fec02a",
+                                                                        "#fe3922",
+                                                                        "#52fe36",
+                                                                        "#fe3afc",
+                                                                    ];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
+                                                                },
+                                                            },
+                                                        },
+                                                        labelLine: {
+                                                            normal: {
+                                                                length: 30,
+                                                                length2: 30,
+                                                                lineStyle: {
+                                                                    width: 1,
+                                                                },
+                                                            },
+                                                        },
+                                                        label: {
+                                                            show: true,
+                                                            position: "outer",
+                                                            width: 0,
+                                                            height: 0,
+                                                            lineHeight: 0,
+                                                            backgroundColor:
+                                                                "auto",
+                                                            padding: [
+                                                                2,
+                                                                -2,
+                                                                2,
+                                                                -2,
+                                                            ],
+                                                            borderRadius: 2,
+                                                            distanceToLabelLine: 0,
+                                                            normal: {
+                                                                formatter(v) {
+                                                                    let text =
+                                                                        v.name +
+                                                                        "\n" +
+                                                                        v.percent +
+                                                                        "%";
+                                                                    return text;
+                                                                },
+                                                                textStyle: {
+                                                                    fontSize: 16,
+                                                                },
+                                                            },
+                                                        },
+
+                                                        data: [
+                                                            {
+                                                                value: 875,
+                                                                name: "一线品牌",
+                                                                type: "一线品牌",
+                                                            },
+                                                            {
+                                                                value: 1239,
+                                                                name: "二线品牌",
+                                                                type: "二线品牌",
+                                                            },
+                                                            {
+                                                                value: 1239,
+                                                                name: "无品牌",
+                                                                type: "无品牌",
+                                                            },
+                                                        ],
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: "2019年品牌列表",
                                     style: {
                                         width: "100%",
-                                        height: "450px",
+                                        height: "310px",
                                         borderRadius: "10px",
                                         background: "white",
                                         marginBottom: "5px",
@@ -1190,8 +1590,8 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
-                                            height: '550px',
-                                            isPagination: true,
+                                            height: '430px',
+                                            isPagination: false,
                                             border: true,
                                             style: {
                                                 width: "100%",
@@ -1239,47 +1639,47 @@ export default {
                                             tableData: [
                                                 {
                                                     A: "一线品牌",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "110000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                                 {
-                                                    A: "本地特色",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "120000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "二线品牌",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                                 {
-                                                    A: "传统产业",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "130000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "无品牌",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                             ],
                                         },
                                     ],
                                 },
                                 {
-                                    title: "业态分类",
-                                    time: true,
+                                    title: "2019业态分类店面收入占比",
+                                    time: false,
                                     timeValue: "",
                                     style: {
-                                        width: "100%",
+                                        width: "50%",
                                         height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
@@ -1289,18 +1689,18 @@ export default {
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "49.5%",
+                                                width: "100%",
                                                 height: "300px",
                                             },
                                             option: {
                                                 title: {
-                                                    text: "总营业额",
+                                                    text: "",
                                                     top: "43%",
                                                     left: "55%",
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "85000",
+                                                    subtext: "暂无数据",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
@@ -1408,15 +1808,19 @@ export default {
                                                         },
                                                         data: [
                                                             {
-                                                                name: "传统",
+                                                                name: "便利店",
                                                                 value: 1.45,
                                                             },
                                                             {
-                                                                name: "品牌",
+                                                                name: "特产",
                                                                 value: 2.93,
                                                             },
                                                             {
-                                                                name: "特色",
+                                                                name: "小吃",
+                                                                value: 3.15,
+                                                            },
+                                                            {
+                                                                name: "餐饮",
                                                                 value: 3.15,
                                                             },
                                                         ],
@@ -1425,13 +1829,33 @@ export default {
                                                 ],
                                             },
                                         },
+                                        
+                                    ],
+                                },
+                                 {
+                                    title: "2019业态分类经营面积占比",
+                                    time: false,
+                                    timeValue: "",
+                                    style: {
+                                        width: "49.5%",
+                                        height: "350px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "49.5%",
+                                                width: "100%",
                                                 height: "300px",
                                             },
                                             option: {
+                                                title:{
+                                                    text:'暂无数据',
+                                                    left:'45%',
+                                                    top:'50%'
+                                                },
                                                 legend: {
                                                     orient: "vertical",
                                                     top: 'center',
@@ -1444,59 +1868,59 @@ export default {
                                                 },
 
                                                 series: [
-                                                    {
-                                                        name: "整体分类",
-                                                        type: "pie",
-                                                        radius: [0, "30%"],
-                                                        center: ["50%", "55%"],
-                                                        label: {
-                                                            position: "inner",
-                                                            textStyle: {
-                                                                fontSize: 16
-                                                            }
-                                                        },
-                                                        itemStyle: {
-                                                            normal: {
-                                                                borderColor:
-                                                                    "#fff",
-                                                                borderWidth: 2,
-                                                                color: function (
-                                                                    params
-                                                                ) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[
-                                                                        params
-                                                                            .dataIndex
-                                                                    ];
-                                                                },
-                                                            },
-                                                        },
-                                                        selectedMode: "single",
-                                                        data: [
-                                                            {
-                                                                value: 875,
-                                                                name: "特色",
-                                                            },
-                                                            {
-                                                                value: 1239,
-                                                                name: "传统",
-                                                            },
-                                                            {
-                                                                value: 1239,
-                                                                name: "品牌",
-                                                            },
-                                                        ],
-                                                    },
+                                                    // {
+                                                    //     name: "整体分类",
+                                                    //     type: "pie",
+                                                    //     radius: [0, "30%"],
+                                                    //     center: ["50%", "55%"],
+                                                    //     label: {
+                                                    //         position: "inner",
+                                                    //         textStyle: {
+                                                    //             fontSize: 16
+                                                    //         }
+                                                    //     },
+                                                    //     itemStyle: {
+                                                    //         normal: {
+                                                    //             borderColor:
+                                                    //                 "#fff",
+                                                    //             borderWidth: 2,
+                                                    //             color: function (
+                                                    //                 params
+                                                    //             ) {
+                                                    //                 let colorList = [
+                                                    //                     "#76c15c",
+                                                    //                     "#15b3e2",
+                                                    //                     "#2e65fd",
+                                                    //                     "#1fcaa8",
+                                                    //                     "#ee6565",
+                                                    //                     "#fec02a",
+                                                    //                     "#fe3922",
+                                                    //                     "#52fe36",
+                                                    //                     "#fe3afc",
+                                                    //                 ];
+                                                    //                 return colorList[
+                                                    //                     params
+                                                    //                         .dataIndex
+                                                    //                 ];
+                                                    //             },
+                                                    //         },
+                                                    //     },
+                                                    //     selectedMode: "single",
+                                                    //     data: [
+                                                    //         {
+                                                    //             value: 875,
+                                                    //             name: "特色",
+                                                    //         },
+                                                    //         {
+                                                    //             value: 1239,
+                                                    //             name: "传统",
+                                                    //         },
+                                                    //         {
+                                                    //             value: 1239,
+                                                    //             name: "品牌",
+                                                    //         },
+                                                    //     ],
+                                                    // },
                                                     {
                                                         name: "招标方式",
                                                         type: "pie",
@@ -1568,18 +1992,23 @@ export default {
                                                         data: [
                                                             {
                                                                 value: 875,
-                                                                name: "特色",
-                                                                type: "特色",
+                                                                name: "便利店",
+                                                                type: "便利店",
                                                             },
                                                             {
                                                                 value: 1239,
-                                                                name: "传统",
-                                                                type: "传统",
+                                                                name: "餐饮",
+                                                                type: "餐饮",
                                                             },
                                                             {
                                                                 value: 1239,
-                                                                name: "品牌",
-                                                                type: "品牌",
+                                                                name: "特产",
+                                                                type: "特产",
+                                                            },
+                                                            {
+                                                                value: 1239,
+                                                                name: "小吃",
+                                                                type: "小吃",
                                                             },
                                                         ],
                                                     },
@@ -1589,10 +2018,10 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "table列表",
+                                    title: "2019年业态列表",
                                     style: {
                                         width: "100%",
-                                        height: "450px",
+                                        height: "330px",
                                         borderRadius: "10px",
                                         background: "white",
                                         marginBottom: "5px",
@@ -1603,11 +2032,11 @@ export default {
                                         {
                                             type: "table",
                                             height: '550px',
-                                            isPagination: true,
+                                            isPagination: false,
                                             border: true,
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "250px",
                                                 background: "#fff",
                                             },
                                             columns: [
@@ -1650,37 +2079,48 @@ export default {
                                             ],
                                             tableData: [
                                                 {
-                                                    A: "一线品牌",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "110000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "餐饮",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                                 {
-                                                    A: "本地特色",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "120000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "小吃",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                                 {
-                                                    A: "传统产业",
-                                                    B: "8%",
-                                                    C: "8%",
-                                                    D: "8%",
-                                                    E: "8%",
-                                                    F: "130000",
-                                                    G: "110000",
-                                                    H: "110000",
-                                                    I: "110000",
+                                                    A: "便利店",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
+                                                },
+                                                {
+                                                    A: "特产",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    E: "/",
+                                                    F: "/",
+                                                    G: "/",
+                                                    H: "/",
+                                                    I: "/",
                                                 },
                                             ],
                                         },

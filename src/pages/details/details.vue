@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="getBack" @click="getBack"></div>
     <nav-common ref="navCommon"></nav-common>
   </div>
 </template>
@@ -22,7 +23,12 @@ export default {
     };
   },
   components: { NavCommon },
-  methods: {},
+  methods: {
+    getBack(){
+
+      this.$router.push('/serviceArea/basicInformations')
+    }
+  },
   mounted() {
     this.$refs["navCommon"].refresh(this.tabData);
   },
@@ -36,5 +42,14 @@ export default {
   margin: auto;
   background: #f3f7ff;
   position: relative;
+}
+.getBack{
+  position: relative;
+  // background: url('../../assets/return.png') no-repeat;
+  // background-size: 100% 100%;
+  width: 60px;
+  height: 40px;
+  z-index: 1000;
+  cursor: pointer;
 }
 </style>

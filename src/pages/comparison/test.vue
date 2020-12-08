@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="left">
-            <div style="width: 80%;height: 100%;">
+            <div style="width: 80%;height: 100%;overflow-y:scroll">
                 <compared-test ref="comtest"></compared-test>
             </div>
             <div style="width:10%;height: 100%;background: #1D7DCA">
@@ -161,43 +161,12 @@ export default {
             indexx:0,
             tableDatad:[
                 ['基础信息'],
-                ['负责人'],
-                ['联系方式'],
-                ['经营面积'],
-                ['运行开始时间'],
-                ['停车位数量'],
-                ['大车个数'],
-                ['小车个数'],
-                ['男蹲位'],
-                ['女蹲位'],
-                ['业态数量'],
-                ['厕所等级'],
-                ['厕所改造时间'],
-                ['充电桩数量'],
-                ['充电桩分布'],
-                ['小便器阀数量'],
-                ['面盆龙头个数'],
-                ['便民休闲座椅'],
-                ['保安人数'],
-                ['保洁人数'],
-                ['经营单位人数'],
-                ['加油员配置'],
-                ['加油机数量'],
                 ['经营对比'],
-                ['成本'],
-                ['利润'],
-                ['营收'],
-                ['车流量'],
-                ['现金流'],
                 ['业态对比'],
-                ['一线品牌'],
-                ['超市'],
-                ['小吃'],
-                ['餐饮'],
-                ['其他服务'],
+                ['品牌分布'],
             ],
             prevent: false,
-            navIndex: 1,
+            navIndex: 0,
             tabIndex: 1,
             service: "",
             isIndeterminate: false,
@@ -474,6 +443,7 @@ export default {
             this.$refs["customizeTemplate"].openDialog();
         },
         navClick(i) {
+             document.querySelector('.row20').scrollIntoView(true);
             this.navIndex = i;
         },
         tabClick(i) {

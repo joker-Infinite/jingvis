@@ -3,7 +3,7 @@
         <el-table
                 :data="data"
                 :height="parseInt(height) - 200 + 'px'"
-                style="width: 100%"
+                style="width: 100%;"
                 :border="border"
                 highlight-current-row
                 :row-class-name="tableRowClassName"
@@ -27,6 +27,7 @@
             </el-table-column>
             <el-table-column
                     v-for="(item, index) in columns"
+                    :key="index"
                     :prop="item.prop"
                     :label="item.label"
                     :align="item.align ? item.align : 'center'"

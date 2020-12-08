@@ -136,16 +136,17 @@
                 }
             },
             changeRadioBD(v) {
-                this.initECharts_top()
+                this.initECharts_bottom_left()
             },
             changeRadioCD(v) {
-                this.initECharts_top()
+                this.initECharts_bottom_left()
             },
             initECharts_top() {
                 let HomeTopRight_top = this.$echarts.init(
                     document.getElementById("HomeTopRight_top")
                 );
                 this.resizeData.push(HomeTopRight_top);
+                console.log('0000')
                 let option = (this.AD = {
                     title: {
                         text: "{a|     消费转化}",
@@ -300,7 +301,6 @@
                     default:
                         break;
                 }
-
                 this.$axios.get('/api/jtService/order',{params:params}).then(res=>{
                     let yAxis = [];
                     let xAxis = [];

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="collapse" id="collapse">
+        <div class="collapse" id="collapse" :style="{width:navBarShow?'90%':'98%'}">
             <div v-for="(item, index) in collapseData"
                  :key="index"
                  :id="item.id"
@@ -43,7 +43,8 @@
                                  :style="sit.style">
                                 <div class="Title">{{ sit.title }}</div>
                                 <div class="query"
-                                     v-if="sit.time || sit.select">
+                                     v-if="sit.time || sit.select || sit.input">
+                                     <el-input v-model="query.inputValue" v-if="sit.input" placeholder="请输入内容"></el-input>
                                     <el-select v-model="query.selectValue"
                                                v-if="sit.select"></el-select>
                                     <el-date-picker
@@ -118,7 +119,7 @@
                 </el-collapse>
             </div>
         </div>
-        <!-- <div class="navigation">
+        <div class="navigation" v-if="navBarShow">
             <div class="navBar">
                 <p></p>
                 <p style="cursor: pointer" @click="collapseAll">
@@ -133,7 +134,7 @@
                 </p>
                 <p></p>
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -148,6 +149,10 @@
         name: "myCollapseBase",
         components: {MyMap, MyTable, MyInformation},
         props: {
+            navBarShow:{
+                type: Boolean,
+                default: false,
+            },
             collapseData: {
                 type: Array,
                 default: [],
@@ -596,7 +601,10 @@
                     .query /deep/ .el-date-editor {
                         margin: 10px 20px 0 0;
                     }
-
+                    .query /deep/ .el-input {
+                        margin: 10px 20px 0 0;
+                        width: 180px;
+                    }
                     .query /deep/ .el-select {
                         margin: 10px 20px 0 0;
                     }
