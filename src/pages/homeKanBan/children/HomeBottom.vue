@@ -177,16 +177,16 @@
                 let optionss = clone(option);
                 let params
                 // HomeBottom.setOption(option);
-                if(title == '实业公司'){
+                if (title == '实业公司') {
                     params = {
                         financeTypeId: this.financeTypeId,
                         plateId: 123
                     }
-                }else{
+                } else {
                     params = {
-                            financeTypeId: this.financeTypeId,
-                            plateId: plateId
-                        }
+                        financeTypeId: this.financeTypeId,
+                        plateId: plateId
+                    }
                 }
                 this.$axios.get(url, {
                     params: params,
@@ -267,7 +267,7 @@
                     options.title.textStyle.rich.a.fontSize = 25;
                     options.barWidth = 30;
                     options.title.padding = [50, 50, 50, 50];
-                    this.$emit("showOne", options,this.select);
+                    this.$emit("showOne", options, this.select);
                 } else {
                     option.title.textStyle.rich.a.fontSize = 25;
                     option.barWidth = 30;
@@ -296,6 +296,7 @@
                      document.getElementById("HomeBottomF")
                  );*/
                 let datas = "";
+                console.log(this.financeTypeId)
                 this.$axios.get("/api/jt_finance/plate_list").then((res) => {
                     datas = res.data.data;
                     this.isAxios(
@@ -473,10 +474,10 @@
                 };
                 let financeTypeId = '';
                 if (v === 'A') {
-                    financeTypeId = this.finance[1].financeTypeId;
+                    this.financeTypeId = financeTypeId = this.finance[1].financeTypeId;
                 }
                 if (v === 'B') {
-                    financeTypeId = this.finance[0].financeTypeId;
+                    this.financeTypeId = financeTypeId = this.finance[0].financeTypeId;
                 }
                 this.$axios('/api/index/wan_cheng_lv', {params: {financeTypeId: financeTypeId}}).then((res) => {
                     let datas = res.data.data

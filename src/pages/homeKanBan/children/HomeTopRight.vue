@@ -267,17 +267,15 @@
                     default:
                         break;
                 }
-
                 this.$axios.get('/api/jtService/order', {params: params}).then(res => {
                     let yAxis = [];
                     let xAxis = [];
                     res.data.forEach(element => {
-                        yAxis.unshift(element.serviceName)
+                        yAxis.unshift(element.serviceName);
                         xAxis.unshift(element.sumMoney)
                     });
                     option.yAxis.data = yAxis;
-                    option.series[0].data = xAxis
-                    console.log(option)
+                    option.series[0].data = xAxis;
                     this.BD = option;
                     echarts.setOption(option);
                 })
@@ -375,6 +373,7 @@
                             label: {
                                 show: true,
                                 formatter: "{b}",
+                                position: 'insideLeft',
                             },
                             data: [],
                             markLine: {
@@ -388,7 +387,7 @@
                                             color: "white",
                                         },
                                         label: {
-                                            show: true,
+                                            show: false,
                                             position: "middle",
                                             formatter: "数据平均 :",
                                         },
