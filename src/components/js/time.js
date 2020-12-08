@@ -35,7 +35,7 @@ function dealWithTime (data) {
       default:
         break
     }
-    formatDateTime = Y + '年' + M + '月' + D + '日 ' + H + ':' + Min + ':' + S + ' 星期' + W
+    formatDateTime = Y + ' 年 ' + M + ' 月 ' + D + ' 日 ' + H + ':' + Min + ':' + S + ' 星期' + W
     return formatDateTime
 }
 

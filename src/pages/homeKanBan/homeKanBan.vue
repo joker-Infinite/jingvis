@@ -10,7 +10,7 @@
                     <div class="Real-timeInformation">
                         <div id="con">
                             <p v-for="i in timeInformation" :key="i">
-                                <img  src="../../assets/announcement.png">{{ i }}
+                                <img src="../../assets/announcement.png">{{ i }}
                             </p>
                         </div>
                     </div>
@@ -26,15 +26,17 @@
                     <home-bottom :backdrop="backdrop" ref="homebottom" @showOne="showOne"></home-bottom>
                 </div>
             </div>
-            <div class="more">
+            <div class="Switch">
                 <el-select popper-class="DATAselect" v-model="selectValue" @change="switchStyle(selectValue)">
                     <el-option label="默认" :value="0"></el-option>
                     <el-option label="靛青" :value="1"></el-option>
                 </el-select>
+            </div>
+            <div class="more">
                 <span style="padding: 0 10px">{{ times }}</span>
             </div>
         </div>
-        <show-e-charts ref="showECharts"></show-e-charts>
+        <show-e-charts ref="showECharts" :backdrop="backdrop"></show-e-charts>
         <show-map :backdrop="backdrop" ref="showMap"></show-map>
     </div>
 </template>
@@ -62,8 +64,8 @@
                     "凌晨四时 随州 XXX服务区因为XXX 已临时关闭 预计XXX开放 44444444",
                     "凌晨五时 驻马店 XXX服务区因为XXX 已临时关闭 预计XXX开放 55555555"
                 ],
-                screenHeight:'',
-                screenWidth:''
+                screenHeight: '',
+                screenWidth: ''
             };
         },
         mounted() {
@@ -102,7 +104,7 @@
             document.body.appendChild(script)
             document.body.appendChild(script2)
             let item = setInterval(() => {
-                if(document.getElementsByClassName("s-sticker")[0]){
+                if (document.getElementsByClassName("s-sticker")[0]) {
                     document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.position = 'fixed'
                     document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.right = '18%'
                     document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '11%'
@@ -144,7 +146,7 @@
                 Object.assign(body_a.style, bac[v]);
             },
             showOne(v, type) {
-                this.$refs["showECharts"].openDialog(v, type , this.selectValue);
+                this.$refs["showECharts"].openDialog(v, type, this.selectValue);
             },
             showMap(v) {
                 this.$refs['showMap'].openDialog(v);
@@ -160,6 +162,7 @@
     height: 100%;
     background: url('../../assets/bage.png') no-repeat;
     background-size: cover;
+
     .container {
         width: 100%;
         height: 100%;
@@ -167,7 +170,14 @@
         background-size: 100%;
         overflow: hidden;
         position: relative;
-        
+
+        .Switch {
+            height: 31px;
+            right: 6%;
+            top: 1%;
+            position: absolute;
+        }
+
         .more {
             /*width: 30%;*/
             height: 31px;
@@ -176,28 +186,30 @@
             position: absolute;
 
         }
-        .more /deep/ .el-input__inner{
+
+        .Switch /deep/ .el-input__inner {
             background: transparent;
             color: #fff;
             border-color: #0681D5;
-            box-shadow:inset 1px 1px 7px rgba(1,192,249,0.5);
+            box-shadow: inset 1px 1px 7px rgba(1, 192, 249, 0.5);
         }
+
         .more > span {
             color: white;
         }
 
-        .more /deep/ .el-select > .el-input {
+        .Switch /deep/ .el-select > .el-input {
             width: 70px;
         }
 
-        .more /deep/ .el-select > .el-input > .el-input__inner {
+        .Switch /deep/ .el-select > .el-input > .el-input__inner {
             padding: 2px 5px;
             text-align: center;
             height: 30px;
             line-height: 30px;
         }
 
-        .more /deep/ .el-select > .el-input > .el-input__suffix {
+        .Switch /deep/ .el-select > .el-input > .el-input__suffix {
             display: none;
         }
 
@@ -233,14 +245,15 @@
                         height: 100%;
                         color: red;
                         transition: linear 0.3s;
-                        
+
                     }
 
                     #con > p {
                         text-indent: 10px;
                         display: flex;
                         align-items: center;
-                        img{
+
+                        img {
                             width: 2%;
                             margin-left: 1%;
                         }

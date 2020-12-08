@@ -11,25 +11,38 @@
                         range-separator="至"
                         start-placeholder="开始日期"
                         end-placeholder="结束日期"
-                        :picker-options="pickerOptions"
-                >
+                        :picker-options="pickerOptions">
                 </el-date-picker>
                 <el-button size="small">搜索</el-button>
             </div>
-            <div class="bigShow" :style="isSelect" v-if="visible">
+            <div class="bigShow" id="bigShow" v-if="visible">
+                <border v-if="backdrop===0"></border>
+                <border-plan-b v-if="backdrop===1"></border-plan-b>
                 <div class="MMA" v-if="type">
                     平均：{{obj.average}}<br>
                     最高：{{obj.max}}<br>
                     最低：{{obj.min}}
                 </div>
-                <div class="MMA_" v-if="type">
+                <div class="MMA_">
                     {{msg}}
                 </div>
                 <div id="commonECharts_data"></div>
-                <div id="commonECharts"></div>
-                <div class="block_l"></div>
+                <div id="commonECharts" :style="{width:isShow?'85%':'100%',float:'left'}"></div>
+                <!--<div class="block_l"></div>
                 <div class="block_r"></div>
-                <div class="block_b"></div>
+                <div class="block_b"></div>-->
+                <div class="operation">
+                    <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">营收
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">利润
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">客单价
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(4)" v-model="selectCD" :label="4">订单数
+                    </el-radio>
+                    <el-radio class="checkboxItem" @change="changeRadioCD(5)" v-model="selectCD" :label="5">转化率
+                    </el-radio>
+                </div>
             </div>
             <div class="select_type" v-if="isShow">
                 <el-radio class="checkboxItem" @change="changeRadioBD(1)" v-model="selectBD" :label="1">服务区
@@ -60,15 +73,18 @@
 
 <script>
     import clone from '../../../public/api/clone'
+    import Border from "../../pages/homeKanBan/children/border";
+    import BorderPlanB from "../../pages/homeKanBan/children/borderPlanB";
 
     export default {
         name: "showECharts",
-        // props: {
-        //   timeSelect: {
-        //     type: Boolean,
-        //     default: false
-        //   }
-        // },
+        components: {BorderPlanB, Border},
+        props: {
+            backdrop: {
+                type: Number,
+                default: 0
+            }
+        },
         data() {
             return {
                 timeSelect: false,
@@ -78,6 +94,7 @@
                 visible_: false,
                 isShow: false,
                 selectBD: 1,
+                selectCD: 1,
                 pickerOptions: {},
                 type: false,
                 option: {},
@@ -87,10 +104,11 @@
                     max: '',
                     average: ''
                 },
-                isSelect:{}
             };
         },
         methods: {
+            changeRadioCD(){},
+            changeRadioBD(){},
             showTarget(v) {
                 this.obj = {
                     min: '',
@@ -120,20 +138,12 @@
                     }
                 }
             },
-            openDialog(v, t ,selectValue) {
-                if(selectValue===0){
-                    this.isSelect = {
-                        background: `url(${require("../../assets/kuang-_03.png")})` + 'no-repeat',
-                        'background-size': '100% 100%'
-                    }
-                }else{
-                    this.isSelect = {
-                        background: `url(${require("../../assets/bgg.png")})` + 'no-repeat',
-                        'background-size': '100% 100%'
-                    }
-                }
+            openDialog(v, t, selectValue) {
+                this.type = false;
+                console.log(v)
                 v = clone(v)
                 if (t === "time") {
+                    v.series.nodeGap = 32;
                     this.timeSelect = true;
                 } else {
                     this.timeSelect = false;
@@ -153,6 +163,12 @@
                     this.showTarget(this.option);
                     this.option.yAxis[0].name = ''
                 }
+                if (t === 'A') {
+                    this.msg = '营收';
+                }
+                if (t === 'B') {
+                    this.msg = '利润';
+                }
                 if (Array.isArray(v) === true) {
                     this.visible_ = true;
                     this.$nextTick((_) => {
@@ -166,10 +182,17 @@
                             if (v.grid) {
                                 v.grid.show = false
                             }
-                            v.xAxis[0].show = false;
-                            v.yAxis[0].show = false;
+                            if (v.xAxis[0] && v.xAxis[0].show) {
+                                v.xAxis[0].show = false;
+                                v.yAxis[0].show = false;
+                            }
                             this.type = false
                             document.getElementById('commonECharts_data').innerHTML = '暂无数据'
+                        }
+                        let bigShow = document.getElementById('bigShow');
+                        if (this.backdrop === 0) {
+                            bigShow.style.background = "url('" + require('../../assets/seb.png') + "') no-repeat";
+                            bigShow.style.backgroundSize = "100% 100%"
                         }
                         this.initECharts(v);
                     })
@@ -209,17 +232,22 @@
                     commonEChartsRight.setOption(option[1]);
                 });
             },
-        },
+        }
     };
 </script>
 
 <style scoped lang="less">
     .select_type {
-        width: 100%;
+        width: 90%;
         position: absolute;
         top: 15%;
-        left: 10%;
+        left: 5%;
         z-index: 999;
+        font-size: 12px !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
 
         .checkboxItem {
             color: white;
@@ -292,7 +320,7 @@
         position: relative;
         // background: #10448a;
         // background: url("../../assets/detail_background.jpg") no-repeat;
-        
+
 
         #commonECharts_data {
             width: 115px;
@@ -333,6 +361,24 @@
             // padding: 20px;
             width: 100%;
             height: 100%;
+        }
+
+        .operation {
+            line-height: 30px;
+            width: 15%;
+            float: right;
+            text-align: center;
+            padding: 30% 0 0;
+        }
+
+        .operation /deep/ .el-radio {
+            color: white;
+            padding: 5px 10px;
+            width: 100%;
+        }
+
+        .operation /deep/ .el-radio > .el-radio__input {
+            display: none;
         }
 
         .block_l {

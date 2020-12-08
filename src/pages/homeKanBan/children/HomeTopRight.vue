@@ -9,19 +9,6 @@
         </div>
         <div style="width: 100%;height: 2%"></div>
         <div class="bottom">
-            <!--<div class="item">
-                            <div id="HomeTopRight_bottomIA"></div>
-                        </div>
-                        <div class="item">
-                            <div id="HomeTopRight_bottomIB"></div>
-                        </div>
-                        <div style="width: 100%;height: 3%"></div>
-                        <div class="item">
-                            <div id="HomeTopRight_bottomIC"></div>
-                        </div>
-                        <div class="item">
-                            <div id="HomeTopRight_bottomID"></div>
-                        </div>-->
             <div class="bottom_left hhttf" @mouseover="mouseHover('BD')">
                 <border v-if="backdrop==0"></border>
                 <border-plan-b v-if="backdrop==1"></border-plan-b>
@@ -45,29 +32,14 @@
                     </el-radio>
                     <el-radio class="checkboxItem" @change="changeRadioCD(4)" v-model="selectCD" :label="4">订单数
                     </el-radio>
-                    <el-radio class="checkboxItem" @change="changeRadioCD(5)" v-model="selectCD" :label="5">消费转化率
+                    <el-radio class="checkboxItem" @change="changeRadioCD(5)" v-model="selectCD" :label="5">转化率
                     </el-radio>
                 </div>
                 <div id="HomeTopRight_bottom_left"></div>
                 <div class="DataEi" id="HomeTopRight_bottom_leftData"></div>
             </div>
-            <!-- <div class="bottom_right" @mouseover="mouseHover('CD')">
-                 <div class="select_type">
-                     <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">服务区
-                     </el-radio>
-                     <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">自营油站
-                     </el-radio>
-                     <el-radio class="checkboxItem" @change="changeRadioCD(3)" v-model="selectCD" :label="3">自营超市
-                     </el-radio>
-                     <el-radio class="checkboxItem" @change="changeRadioCD(4)" v-model="selectCD" :label="4">服务区招商
-                     </el-radio>
-                 </div>
-                 <operations class="operations" @showOne="showOne"></operations>
-                 <div id="HomeTopRight_bottom_right"></div>
-                 <div class="DataEi" id="HomeTopRight_bottom_rightData"></div>
-             </div>-->
         </div>
-        <show-e-charts ref="showECharts"></show-e-charts>
+        <show-e-charts ref="showECharts" :backdrop="backdrop"></show-e-charts>
     </div>
 </template>
 
@@ -85,7 +57,7 @@
                 type: Number,
                 default: 0
             },
-             selectValue: {
+            selectValue: {
                 type: Number,
                 default: 0
             }
@@ -132,7 +104,7 @@
                     this.option.grid.top = "20%";
                     this.$refs["showECharts"].timeSelect = false;
                     this.$refs["showECharts"].isShow = true;
-                    this.$refs["showECharts"].openDialog(this.option , '' , this.selectValue);
+                    this.$refs["showECharts"].openDialog(this.option, '', this.selectValue);
                 }
             },
             changeRadioBD(v) {
@@ -146,7 +118,7 @@
                     document.getElementById("HomeTopRight_top")
                 );
                 this.resizeData.push(HomeTopRight_top);
-                let option = (this.AD = {
+                let option = this.AD = {
                     title: {
                         text: "{a|     消费转化}",
                         show: true,
@@ -164,17 +136,16 @@
                             },
                         },
                     },
-
                     tooltip: {
                         trigger: "item",
                         triggerOn: "mousemove",
                     },
                     series: {
                         type: "sankey",
-                        layout: "none",
-                        right: "10%",
+                        right: "20%",
                         top: "20%",
-                        focusNodeAdjacency: "inEdges",
+                        nodeGap: 12.6,
+                        focusNodeAdjacency: "allEdges",
                         label: {
                             color: "#FFF",
                         },
@@ -201,7 +172,6 @@
                                 value: 5,
                             },
                         ],
-                        focusNodeAdjacency: true,
                         levels: [
                             {
                                 depth: 0,
@@ -226,7 +196,7 @@
                             {
                                 depth: 2,
                                 itemStyle: {
-                                    color: "#eae375",
+                                    color: "#ff9214",
                                 },
                                 lineStyle: {
                                     color: "source",
@@ -243,24 +213,21 @@
                                     opacity: 0.6,
                                 },
                             },
-                        ],
-                        lineStyle: {
-                            curveness: 0.5,
-                        },
+                        ]
                     },
-                });
-                this.$axios.get('/api/jtService/station_order_money').then((res)=>{
+                };
+                this.$axios.get('/api/jtService/station_order_money').then((res) => {
                     let name = [];
                     let links = [];
                     res.data.forEach(element => {
-                        name.push({name:element.sizeCar})
+                        name.push({name: element.sizeCar})
                         links.push({
-                                source: '车型',
-                                target: element.sizeCar,
-                                value: parseInt(element.sumJvCount),
-                            },)
+                            source: '车型',
+                            target: element.sizeCar,
+                            value: parseInt(element.sumJvCount),
+                        },)
                         element.moneyVoList.forEach(item => {
-                            name.push({name:item.goodsType})
+                            name.push({name: item.goodsType})
                             links.push({
                                 source: element.sizeCar,
                                 target: item.goodsType,
@@ -268,40 +235,40 @@
                             },)
                         });
                     });
-                    name.push({name:'车型'})
+                    name.push({name: '车型'})
                     option.series.data = name;
                     option.series.links = links;
                     HomeTopRight_top.setOption(option);
                 })
-                
+
             },
-            isAxiosw(echarts,option){
-                let params = {companyType:'service',orderType:'营收',size:6}
+            isAxiosw(echarts, option) {
+                let params = {companyType: 'service', orderType: '营收', size: 6}
                 switch (this.selectBD) {
                     case 1:
-                        params.companyType='service'
+                        params.companyType = 'service'
                         break;
                     case 2:
-                        params.companyType='station'
+                        params.companyType = 'station'
                         break;
                     default:
                         break;
                 }
                 switch (this.selectCD) {
                     case 1:
-                        params.orderType='营收'
+                        params.orderType = '营收'
                         break;
                     case 2:
-                        params.orderType='利润'
+                        params.orderType = '利润'
                         break;
                     case 4:
-                        params.orderType='orderCount'
+                        params.orderType = 'orderCount'
                         break;
                     default:
                         break;
                 }
 
-                this.$axios.get('/api/jtService/order',{params:params}).then(res=>{
+                this.$axios.get('/api/jtService/order', {params: params}).then(res => {
                     let yAxis = [];
                     let xAxis = [];
                     res.data.forEach(element => {
@@ -310,6 +277,8 @@
                     });
                     option.yAxis.data = yAxis;
                     option.series[0].data = xAxis
+                    console.log(option)
+                    this.BD = option;
                     echarts.setOption(option);
                 })
             },
@@ -358,6 +327,8 @@
                             show: false,
                         },
                         axisLabel: {
+                            interval: 20,
+                            rotate: 45, //代表逆时针旋转45度
                             textStyle: {
                                 color: "#FFF",
                             },
@@ -367,10 +338,6 @@
                             lineStyle: {
                                 color: "#FFF",
                             },
-                        },
-                        axisLabel: {
-                            interval:20,
-                            rotate:45, //代表逆时针旋转45度
                         }
                     },
                     yAxis: {
@@ -379,14 +346,7 @@
                         axisLabel: {show: false},
                         axisTick: {show: false},
                         splitLine: {show: false},
-                        data: [
-                            "a公司",
-                            "b公司",
-                            "c公司",
-                            "d公司",
-                            "e公司",
-                            "f公司",
-                        ],
+                        data: [],
                     },
                     series: [
                         {
@@ -430,7 +390,7 @@
                                         label: {
                                             show: true,
                                             position: "middle",
-                                            formatter: "数据平均 :" ,
+                                            formatter: "数据平均 :",
                                         },
                                     },
                                 },
@@ -454,8 +414,8 @@
                 //     name: "平均值",
                 //     xAxis: average, //设置平均值所在位置
                 // }],
-                this.isAxiosw(HomeTopRight_bottom_left,option)
-                
+                this.isAxiosw(HomeTopRight_bottom_left, option)
+
             },
             /* initECharts_bottom_right() {
                  let HomeTopRight_bottom_right = this.$echarts.init(
@@ -641,14 +601,14 @@
                             border: 'none',
                             boxShadow: 'none',
                             background: '#FFF',
-                            borderRadius:'10px'
+                            borderRadius: '10px'
                         },
                     ];
                     for (let i = 0; i < data.length; i++) {
                         Object.assign(data[i].style, style[nv])
                     }
                 },
-                deep:true
+                deep: true
             }
         }
     };
@@ -740,13 +700,14 @@
                 }
 
                 #HomeTopRight_bottom_left {
-                    width: 70%;
+                    width: 85%;
                     height: 100%;
                 }
 
                 .operation {
-                    width: 22%;
+                    width: 17%;
                     float: right;
+                    text-align: center;
                     padding: 35% 0 0;
                 }
 
@@ -754,6 +715,10 @@
                     color: white;
                     padding: 5px 10px;
                     width: 100%;
+                }
+
+                .operation /deep/ .el-radio > .el-radio__input {
+                    display: none;
                 }
             }
 
