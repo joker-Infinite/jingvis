@@ -30,7 +30,6 @@
                 <el-select popper-class="DATAselect" v-model="selectValue" @change="switchStyle(selectValue)">
                     <el-option label="默认" :value="0"></el-option>
                     <el-option label="靛青" :value="1"></el-option>
-                    <!--                    <el-option label="洁白" :value="2"></el-option>-->
                 </el-select>
                 <span style="padding: 0 10px">{{ times }}</span>
             </div>
