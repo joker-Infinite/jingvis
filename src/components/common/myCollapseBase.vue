@@ -75,6 +75,7 @@
                                          v-if="(wit.option && wit.option.series && 
                                          wit.option.series[0].data.length !==0 && 
                                          wit.option.series[0].type !=='pie' &&
+                                         wit.option.series[0].type !=='line' &&
                                          wit.option.series[0].data[0].name!=='占比')">
                                          <div>平均：{{showTarget(wit.option,'average') + '万元'}}</div>
                                          <div>最高：{{showTarget(wit.option,'max') + '万元'}}</div>

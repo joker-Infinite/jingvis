@@ -24,7 +24,8 @@
 
         </div>
         <my-collapse-base ref="collapse" @ClickTotal="ClickTotal" :collapseData="collapseData"
-            @searchQuery="searchQuery" @selectionChange="selectionChange" :navBarShow="true">
+            @searchQuery="searchQuery" @selectionChange="selectionChange" :navBarShow="true"
+            :totalCount="totalCount">
         </my-collapse-base>
     </div>
 </template>
@@ -3349,11 +3350,10 @@ export default {
                     collapseItem: [
                         {
                             id: "flow_2020",
-                            collapseTitle: "高速车流量",
-
+                            collapseTitle: "2019年高速车流量",
                             EChartsBox: [
                                 {
-                                    title: "高速车流量",
+                                    title: "2019年高速车流量",
                                     time: false,
                                     select: false,
                                     style: {
@@ -3371,28 +3371,29 @@ export default {
                                                 height: "500px",
                                             },
                                             option: {
+                                                 
                                                 xAxis: {
                                                     type: "category",
-                                                    data: [
-                                                        "Mon",
-                                                        "Tue",
-                                                        "Wed",
-                                                        "Thu",
-                                                        "Fri",
-                                                        "Sat",
-                                                        "Sun",
-                                                    ],
+                                                    data: [],
                                                 },
+                                                // legend: {
+                                                //     x: '46%',
+                                                //     top: '11%',
+                                                //     textStyle: {
+                                                //         color: '#90979c',
+                                                //     },
+                                                //     data: ['访问量', '订单量']
+                                                // },
                                                 yAxis: {
                                                     type: "value",
                                                 },
                                                 series: [
                                                     {
-                                                        data: [820, 932, 901, 934, 1290, 1330, 1320],
+                                                        data: [],
                                                         type: "line",
                                                     },
                                                     {
-                                                        data: [80, 92, 90, 93, 190, 130, 120],
+                                                        data: [],
                                                         type: "line",
                                                     },
                                                 ],
@@ -3439,17 +3440,17 @@ export default {
                 label: '恩施中心'
             }],
             company: '',
-            district: ''
+            district: '',
+            totalCount:0
         }
     },
     methods: {
         selectionChange(val) {
-            console.log(555, val)
             this.$emit('clickTable', true);
             this.$router.push("/details/details");
         },
         ClickTotal(value) {
-            this.TableDatas(value.pageNum - 1, value.pageSize)
+            this.TableDatas(value.pageNum, value.pageSize)
         },
         async searchQuery(id, collapse, year, name) {
             this.ValueData = collapse;
@@ -3464,6 +3465,7 @@ export default {
             await this.obtainData(name, year);
         },
         async TableDatas(pageNum, pageSize) {
+            console.log(pageNum, pageSize)
             this.$axios.get('/api/jtService/serve_list', {
                 params:
                 {
@@ -3473,30 +3475,30 @@ export default {
                     pageSize: pageSize
                 }
             }).then(res => {
-                console.log(res)
                 this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = []
-                console.log(res.data.list)
                 res.data.list.forEach(element => {
-                    console.log(element)
                     let elementData = {
-                        serviceName: element.serviceName,
-                        B: "0",
-                        G: "0",
-                        shouyi: "0",
-                        E: "0",
-                        I: element.mianji ? element.mianji : '0',
-                        H: "0",
-                        maxcart: element.carVo[0] ? element.carVo[0].count : '0',
-                        mincart: element.carVo[1] ? element.carVo[1].count : '0',
-                        refuel: '0',
-                        snack: '0',
-                        convenience: '0',
-                        catering: '0',
-                        shouyi: element.shouyi
+                        serviceName: element.serviceName ? element.serviceName : '/',
+                        // 高速名称
+                        B: "/",
+                        // 利润
+                        G: element.lirun ? element.lirun : '/',
+                        // 业态订单数
+                        J: "/",
+                        I: element.mianji ? element.mianji : '暂无数据',
+                        // 坪效
+                        H: element.pingxiao ? element.pingxiao : '/',
+                        maxcart: element.carVo[0] ? element.carVo[0].count : '暂无数据',
+                        mincart: element.carVo[1] ? element.carVo[1].count : '暂无数据',
+                        refuel: element.jiayou ? element.jiayou : '/',
+                        snack: element.xiaochi ? element.xiaochi : '/',
+                        convenience: element.chaoshi ? element.chaoshi : '/',
+                        catering: element.canyin ? element.canyin : '/',
+                        shouyi: element.shouyi? element.shouyi : '/'
                     }
                     this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData.push(elementData)
                 });
-                this.totalCount = res.data.data.totalCount;
+                this.totalCount = res.data.total;
             })
         },
         async obtainData(name, year) {
@@ -3637,8 +3639,24 @@ export default {
         await this.obtainData('营收', '2020');
         await this.obtainData('利润', '2019');
         await this.obtainData('利润', '2020');
+        await this.obtainAxios('营收', '2020', 'ys');
+        await this.obtainAxios('成本', '2020', 'cb');
+        await this.obtainAxios('成本', '2019', 'cb');
         await this.obtainAxios('利润', '2020', 'lr');
         await this.obtainAxios('利润', '2019', 'lr');
+        this.$axios.get('/api/jtService/car_flow').then(res=>{
+            res.data.forEach((element,index) => {
+                let xAxis = [];
+                let yBxis = [];
+                element.flowList.forEach(item => {
+                    xAxis.push(item.time)
+                    yBxis.push(item.count)
+                });
+                this.collapseData[5].collapseItem[0].EChartsBox[0].EChartsItem[0].option.xAxis.data = xAxis;
+                this.collapseData[5].collapseItem[0].EChartsBox[0].EChartsItem[0].option.series[index].data = yBxis;
+
+            });
+        })
     },
     watch: {
         viewChange() {
