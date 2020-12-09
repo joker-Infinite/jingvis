@@ -65,7 +65,7 @@
                 amaps: false,
                 markersData: [],
                 markerRefs: [],
-                zoom: 8,
+                zoom: 5,
                 center: [114.286298, 30.5855],
                 expandZoomRange: true,
                 markers: [],
@@ -78,7 +78,7 @@
                             AMap.plugin(["AMap.MarkerClusterer"], function () {
                                 cluster = new AMap.MarkerClusterer(o, self.markerRefs,
                                     {
-                                        gridSize: 80,
+                                        gridSize: 50,
                                         renderCluserMarker:
                                         self._renderCluserMarker,
                                     }
