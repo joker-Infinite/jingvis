@@ -191,7 +191,6 @@
                 this.$axios.get(url, {
                     params: params,
                 }).then((res) => {
-                    console.log(res)
                     optionss.title.text = `{a|     ${title}}`;
                     let xBxis = [];
                     let yAxis = [];
@@ -296,7 +295,6 @@
                      document.getElementById("HomeBottomF")
                  );*/
                 let datas = "";
-                console.log(this.financeTypeId)
                 this.$axios.get("/api/jt_finance/plate_list").then((res) => {
                     datas = res.data.data;
                     this.isAxios(
@@ -361,7 +359,7 @@
                     title: {
                         x: "center",
                         y: '',
-                        text: "{a|     收益率}",
+                        text: "{a|     完成率}",
                         show: true,
                         textStyle: {
                             fontFamily: "幼圆",

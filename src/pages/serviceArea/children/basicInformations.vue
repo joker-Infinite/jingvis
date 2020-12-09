@@ -3465,7 +3465,6 @@ export default {
             await this.obtainData(name, year);
         },
         async TableDatas(pageNum, pageSize) {
-            console.log(pageNum, pageSize)
             this.$axios.get('/api/jtService/serve_list', {
                 params:
                 {

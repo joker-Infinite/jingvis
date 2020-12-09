@@ -1,6 +1,10 @@
 <template>
     <div class="content">
-        <div class="top hhttf" @mouseover="mouseHover('AD')">
+        <div class="top hhttf" @mouseover="mouseHover('AD')"
+             v-loading="loading_"
+             element-loading-text="拼命加载中……"
+             element-loading-spinner="el-icon-loading"
+             element-loading-background="rgba(0, 0, 0, 0.5)">
             <border v-if="backdrop==0"></border>
             <border-plan-b v-if="backdrop==1"></border-plan-b>
             <operations class="operations" time="time" @showOne="showOne(1)"></operations>
@@ -9,7 +13,11 @@
         </div>
         <div style="width: 100%;height: 2%"></div>
         <div class="bottom">
-            <div class="bottom_left hhttf" @mouseover="mouseHover('BD')">
+            <div class="bottom_left hhttf" @mouseover="mouseHover('BD')"
+                 v-loading="loading"
+                 element-loading-text="拼命加载中……"
+                 element-loading-spinner="el-icon-loading"
+                 element-loading-background="rgba(0, 0, 0, 0.5)">
                 <border v-if="backdrop==0"></border>
                 <border-plan-b v-if="backdrop==1"></border-plan-b>
                 <div class="select_type">
@@ -22,7 +30,7 @@
                     <el-radio class="checkboxItem" @change="changeRadioBD(4)" v-model="selectBD" :label="4">服务区招商
                     </el-radio>
                 </div>
-                <operations class="operations" @showOne="showOne"></operations>
+                <operations class="operations" @showOne="showOne('query')"></operations>
                 <div class="operation">
                     <el-radio class="checkboxItem" @change="changeRadioCD(1,'营收')" v-model="selectCD" :label="1">营收
                     </el-radio>
@@ -56,22 +64,20 @@
             backdrop: {
                 type: Number,
                 default: 0
-            },
-            selectValue: {
-                type: Number,
-                default: 0
             }
         },
         components: {BorderPlanB, Border, ShowECharts, Operations},
         data() {
             return {
-                selectBD: 1,
+                selectBD: 2,
                 selectCD: 1,
                 AD: {},
                 BD: {},
                 CD: {},
                 option: {},
                 resizeData: [],
+                loading: false,
+                loading_: false,
             };
         },
         methods: {
@@ -104,7 +110,10 @@
                     this.option.grid.top = "20%";
                     this.$refs["showECharts"].timeSelect = false;
                     this.$refs["showECharts"].isShow = true;
-                    this.$refs["showECharts"].openDialog(this.option, '', this.selectValue);
+                    this.$refs["showECharts"].openDialog(this.option, is, {
+                        selectBD: this.selectBD,
+                        selectCD: this.selectCD
+                    });
                 }
             },
             changeRadioBD(v) {
@@ -115,6 +124,7 @@
                 this.initECharts_bottom_left(m)
             },
             initECharts_top() {
+                this.loading_ = true;
                 let HomeTopRight_top = this.$echarts.init(
                     document.getElementById("HomeTopRight_top")
                 );
@@ -145,10 +155,11 @@
                         type: "sankey",
                         right: "20%",
                         top: "20%",
-                        nodeGap: 12.6,
+                        nodeGap: 50,
                         focusNodeAdjacency: "allEdges",
                         label: {
                             color: "#FFF",
+                            formatter: '{b}'
                         },
                         data: [
                             {
@@ -220,31 +231,33 @@
                 this.$axios.get('/api/jtService/station_order_money').then((res) => {
                     let name = [];
                     let links = [];
-                    res.data.forEach(element => {
-                        name.push({name: element.sizeCar})
-                        links.push({
-                            source: '车型',
-                            target: element.sizeCar,
-                            value: parseInt(element.sumJvCount),
-                        },)
-                        element.moneyVoList.forEach(item => {
-                            name.push({name: item.goodsType})
+                    name.push({name: '车型'});
+                    res.data.forEach(item => {
+                        item.moneyVoList.forEach(it => {
+                            name.push({name: it.goodsType});
                             links.push({
-                                source: element.sizeCar,
-                                target: item.goodsType,
-                                value: parseInt(item.count),
-                            },)
+                                source: it.goodsType,
+                                target: item.sizeCar,
+                                value: it.count,
+                            })
                         });
+                        links.push({
+                            source: item.sizeCar,
+                            target: '车型',
+                            value: parseInt(item.sumJvCount),
+                        })
+                        name.push({name: item.sizeCar});
                     });
-                    name.push({name: '车型'})
                     option.series.data = name;
                     option.series.links = links;
                     HomeTopRight_top.setOption(option);
+                    this.loading_ = false;
                 })
 
             },
             isAxiosw(echarts, option) {
                 let params = {companyType: 'service', orderType: '营收', size: 6}
+                this.loading = true;
                 switch (this.selectBD) {
                     case 1:
                         params.companyType = 'service'
@@ -273,12 +286,14 @@
                     let xAxis = [];
                     res.data.forEach(element => {
                         yAxis.unshift(element.serviceName);
-                        xAxis.unshift(element.sumMoney)
+                        xAxis.unshift((element.sumMoney / 10000).toFixed(2))
                     });
                     option.yAxis.data = yAxis;
                     option.series[0].data = xAxis;
+                    console.log(xAxis)
                     this.BD = option;
                     echarts.setOption(option);
+                    this.loading = false;
                 })
             },
             initECharts_bottom_left(m) {
@@ -287,7 +302,6 @@
                 );
                 this.resizeData.push(HomeTopRight_bottom_left);
                 let average = 0;
-
                 let option = ({
                     barWidth: 20,
                     title: {
@@ -316,9 +330,10 @@
                     },
                     grid: {
                         top: "25%",
-                        bottom: 80,
+                        bottom: 50,
                     },
                     xAxis: {
+                        name: '万',
                         type: "value",
                         position: "bottom",
                         axisTick: {
@@ -490,7 +505,7 @@
             background-size: 100% 100%;
 
             #HomeTopRight_top {
-                width: 100%;
+                width: 70%;
                 height: 100%;
             }
         }

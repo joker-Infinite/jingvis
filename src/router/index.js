@@ -54,6 +54,9 @@ const routes = [
     {
         path: '/temporary',
         component: () => import(/* webpackChunkName: "frame" */'../../src/components/common/temporary')
+    }, {
+        path: '/centerMapBase',
+        component: () => import(/* webpackChunkName: "frame" */'../../src/pages/homeKanBan/children/centerMapBase')
     },
 ];
 

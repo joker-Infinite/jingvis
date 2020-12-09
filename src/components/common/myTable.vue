@@ -1,15 +1,14 @@
 <template>
     <div class="table">
-        <el-table
-                :data="data"
-                :height="parseInt(height) - 200 + 'px'"
-                style="width: 100%;"
-                :border="border"
-                highlight-current-row
-                :row-class-name="tableRowClassName"
-                :header-cell-style="headerCellStyle"
-                @current-change="singleChoice"
-                @selection-change="multipleChoice">
+        <el-table :data="data"
+                  :height="parseInt(height) - 200 + 'px'"
+                  style="width: 100%;"
+                  :border="border"
+                  highlight-current-row
+                  :row-class-name="tableRowClassName"
+                  :header-cell-style="headerCellStyle"
+                  @current-change="singleChoice"
+                  @selection-change="multipleChoice">
             <el-table-column
                     v-if="multiple"
                     align="center"
@@ -135,15 +134,13 @@
             handleSizeChange(val) {
                 this.ClickTotal.pageSize = val;
                 this.$emit('ClickTotal', this.ClickTotal)
-                console.log(`每页 ${val} 条`, this.ClickTotal);
             },
             handleCurrentChange(val) {
                 this.ClickTotal.pageNum = val;
                 this.$emit('ClickTotal', this.ClickTotal)
-                console.log(`当前页: ${val}`, this.ClickTotal);
             },
             tableRowClassName({row, rowIndex}) {
-                return 'row'+rowIndex;
+                return 'row' + rowIndex;
             }
         }
     }

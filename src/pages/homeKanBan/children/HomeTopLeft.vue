@@ -54,7 +54,6 @@
                 this.option = this[v];
             },
             isNoData(is, id, ids, option) {
-                console.log(is, id, ids)
                 if (is.length === 0) {
                     document.getElementById(id).innerHTML = "暂无数据";
                     option.xAxis[0].show = false;
@@ -210,7 +209,6 @@
                 this.$axios.get('/api/index/rate_list',{params:{type:'ys'}}).then(res=>{
                     let rateCount = [];
                     let xBxis = [];
-                    console.log(option.series[0].data,res.data.data)
                     res.data.data.forEach(element => {
                         rateCount.unshift(element.rateCount)
                         xBxis.unshift(element.plateName)

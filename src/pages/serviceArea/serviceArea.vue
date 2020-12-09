@@ -5913,7 +5913,6 @@
                         stateTime:this.ValueData.timeValue[0]
                     }
                 }).then(v => {
-                    console.log(v)
                     data = v.data.data;
                     let mm = [];
                     this.collapseData.forEach((item, index) => {

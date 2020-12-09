@@ -15,7 +15,13 @@
                 </el-date-picker>
                 <el-button size="small">搜索</el-button>
             </div>
-            <div class="bigShow" id="bigShow" v-if="visible">
+            <div class="bigShow"
+                 id="bigShow"
+                 v-if="visible"
+                 v-loading="loading"
+                 element-loading-text="拼命加载中……"
+                 element-loading-spinner="el-icon-loading"
+                 element-loading-background="rgba(0, 0, 0, 0.5)">
                 <border v-if="backdrop===0"></border>
                 <border-plan-b v-if="backdrop===1"></border-plan-b>
                 <div class="MMA" v-if="type">
@@ -31,7 +37,7 @@
                 <!--<div class="block_l"></div>
                 <div class="block_r"></div>
                 <div class="block_b"></div>-->
-                <div class="operation">
+                <div class="operation" v-if="isShow">
                     <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">营收
                     </el-radio>
                     <el-radio class="checkboxItem" @change="changeRadioCD(2)" v-model="selectCD" :label="2">利润
@@ -87,6 +93,7 @@
         },
         data() {
             return {
+                loading: false,
                 timeSelect: false,
                 time: "",
                 visible: false,
@@ -107,8 +114,13 @@
             };
         },
         methods: {
-            changeRadioCD(){},
-            changeRadioBD(){},
+            changeRadioCD() {
+                this.isAxiosw(this.option);
+            },
+            changeRadioBD() {
+                this.selectCD = 1;
+                this.isAxiosw(this.option)
+            },
             showTarget(v) {
                 this.obj = {
                     min: '',
@@ -138,10 +150,10 @@
                     }
                 }
             },
-            openDialog(v, t, selectValue) {
+            openDialog(v, t, data) {
+                this.option = v;
                 this.type = false;
-                console.log(v)
-                v = clone(v)
+                v = clone(v);
                 if (t === "time") {
                     v.series.nodeGap = 32;
                     this.timeSelect = true;
@@ -150,7 +162,6 @@
                 }
                 if (t === 'MMA') {
                     this.type = true;
-                    this.option = v;
                     v.xAxis[0].data.forEach((it, ix) => {
                         this.option.xAxis[0].data[ix] = ix + 1;
                     });
@@ -169,34 +180,32 @@
                 if (t === 'B') {
                     this.msg = '利润';
                 }
-                if (Array.isArray(v) === true) {
-                    this.visible_ = true;
-                    this.$nextTick((_) => {
-                        this.inntECharts_(v);
-                        this.isShow = false;
-                    });
-                } else {
-                    this.visible = true;
-                    this.$nextTick(() => {
-                        if (v.series[0] && v.series[0].data.length === 0) {
-                            if (v.grid) {
-                                v.grid.show = false
-                            }
-                            if (v.xAxis[0] && v.xAxis[0].show) {
-                                v.xAxis[0].show = false;
-                                v.yAxis[0].show = false;
-                            }
-                            this.type = false
-                            document.getElementById('commonECharts_data').innerHTML = '暂无数据'
+                this.visible = true;
+                this.$nextTick(() => {
+                    if (v.series[0] && v.series[0].data.length === 0) {
+                        if (v.grid) {
+                            v.grid.show = false
                         }
-                        let bigShow = document.getElementById('bigShow');
-                        if (this.backdrop === 0) {
-                            bigShow.style.background = "url('" + require('../../assets/seb.png') + "') no-repeat";
-                            bigShow.style.backgroundSize = "100% 100%"
+                        if (v.xAxis[0] && v.xAxis[0].show) {
+                            v.xAxis[0].show = false;
+                            v.yAxis[0].show = false;
                         }
+                        this.type = false
+                        document.getElementById('commonECharts_data').innerHTML = '暂无数据'
+                    }
+                    let bigShow = document.getElementById('bigShow');
+                    if (this.backdrop === 0) {
+                        bigShow.style.background = "url('" + require('../../assets/seb.png') + "') no-repeat";
+                        bigShow.style.backgroundSize = "100% 100%"
+                    }
+                    if (t === 'query') {
+                        this.selectBD = data.selectBD;
+                        this.selectCD = data.selectCD;
+                        this.isAxiosw(v)
+                    } else {
                         this.initECharts(v);
-                    })
-                }
+                    }
+                })
             },
             initECharts(option) {
                 document.getElementById("commonECharts").removeAttribute("_echarts_instance_");
@@ -214,23 +223,52 @@
                     commonECharts.setOption(option);
                 });
             },
-            inntECharts_(option) {
-                document
-                    .getElementById("commonEChartsLeft")
-                    .removeAttribute("_echarts_instance_");
-                document
-                    .getElementById("commonEChartsRight")
-                    .removeAttribute("_echarts_instance_");
-                this.$nextTick((_) => {
-                    let commonEChartsLeft = this.$echarts.init(
-                        document.getElementById("commonEChartsLeft")
-                    );
-                    let commonEChartsRight = this.$echarts.init(
-                        document.getElementById("commonEChartsRight")
-                    );
-                    commonEChartsLeft.setOption(option[0]);
-                    commonEChartsRight.setOption(option[1]);
-                });
+            isAxiosw(option) {
+                this.loading = true;
+                let echarts = this.$echarts.init(document.getElementById("commonECharts"));
+                let params = {companyType: 'service', orderType: '营收', size: 6}
+                switch (this.selectBD) {
+                    case 1:
+                        params.companyType = 'service'
+                        break;
+                    case 2:
+                        params.companyType = 'station'
+                        break;
+                    default:
+                        break;
+                }
+                switch (this.selectCD) {
+                    case 1:
+                        params.orderType = '营收'
+                        break;
+                    case 2:
+                        params.orderType = '利润'
+                        break;
+                    case 4:
+                        params.orderType = 'orderCount'
+                        break;
+                    default:
+                        break;
+                }
+                this.$axios.get('/api/jtService/order', {params: params}).then(res => {
+                    let yAxis = [];
+                    let xAxis = [];
+                    res.data.forEach(element => {
+                        yAxis.unshift(element.serviceName);
+                        xAxis.unshift((element.sumMoney / 10000).toFixed(2))
+                    });
+                    option.yAxis.data = yAxis;
+                    option.series[0].data = xAxis;
+                    option.grid = {
+                        bottom: "10%",
+                        left: "9%",
+                        right: "4%",
+                        show: option.grid && option.grid.show ? true : false,
+                        top: "20%",
+                    };
+                    echarts.setOption(option);
+                    this.loading = false;
+                })
             },
         }
     };
@@ -255,7 +293,7 @@
     }
 
     .box /deep/ .el-dialog__wrapper > .el-dialog {
-        background: rgba(0, 0, 0, 0.5);
+        background: #030a45;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
     }
 

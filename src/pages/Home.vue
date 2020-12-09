@@ -263,7 +263,6 @@
                 let cookie = document.cookie;
                 let arr = [];
                 let arr_ = [];
-                console.log(cookie,55555)
                 if (cookie) {
                     arr = cookie.split('=');
                     this.key = arr[2];

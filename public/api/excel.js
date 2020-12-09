@@ -31,12 +31,10 @@ function outExe(tableDatas) {
     
     var list = table;
     var data = formatJson(filterVal, list);
-    console.log(tHeader, data, tableDatas.name)
     export_json_to_excel(tHeader, data, tableDatas.name);
   });
 }
 function formatJson(filterVal, jsonData) {
-  console.log(filterVal, jsonData)
   return jsonData.map(v => filterVal.map(j => v[j]));
 }
 

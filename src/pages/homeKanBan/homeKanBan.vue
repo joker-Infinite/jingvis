@@ -5,7 +5,7 @@
             <div class="con" id="theme">
                 <div class="H_top">
                     <div class="H_top_left">
-                        <HomeTopLeft :selectValue="selectValue" :backdrop="backdrop"></HomeTopLeft>
+                        <HomeTopLeft :backdrop="backdrop"></HomeTopLeft>
                     </div>
                     <div class="Real-timeInformation">
                         <div id="con">
@@ -18,7 +18,7 @@
                         <center-map :backdrop="backdrop" @showMap="showMap"></center-map>
                     </div>
                     <div class="H_top_right">
-                        <HomeTopRight :selectValue="selectValue" :backdrop="backdrop" ref="homeTopRight"></HomeTopRight>
+                        <HomeTopRight :backdrop="backdrop" ref="homeTopRight"></HomeTopRight>
                     </div>
                 </div>
                 <div style="height: 1%;width: 100%"></div>
