@@ -373,7 +373,6 @@
                 });
             },
             details(inx){
-                console.log(inx)
                 this.tabData.forEach((i,index) => {
                     delete i['service' + inx]
                 });

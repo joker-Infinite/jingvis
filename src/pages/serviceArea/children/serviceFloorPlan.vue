@@ -135,7 +135,6 @@
         },
         methods: {
             click(v) {
-                console.log(v.name);
             }
         }
     }

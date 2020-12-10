@@ -313,7 +313,6 @@
                     timeID = setInterval((_) => {
                         if (this.time_ > -1 && this.time_ !== this.EChartsData_.length) {
                             let data = this.EChartsData_[this.time_];
-                            console.log(data)
                             if (!!data && data.EChartsBox && data.EChartsBox.length !== 0) {
                                 data.EChartsBox.forEach((fi, fx) => {
                                     fi.EChartsItem.forEach((si, sx) => {

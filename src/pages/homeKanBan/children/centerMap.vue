@@ -1,9 +1,19 @@
 <template>
     <div class="amap-page-container">
+        <div class="query">
+            <el-checkbox-group v-model="checked">
+                <el-checkbox label="服务区"></el-checkbox>
+                <el-checkbox label="卡口"></el-checkbox>
+                <el-checkbox label="收银"></el-checkbox>
+                <el-checkbox label="其他服务区"></el-checkbox>
+                <el-checkbox label="加油站-石化"></el-checkbox>
+                <el-checkbox label="加油站-交投"></el-checkbox>
+            </el-checkbox-group>
+        </div>
         <div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
         <el-amap
                 v-if="markers[0]"
-                vid="djisoa"
+                :vid="vid"
                 :center="center"
                 :zoom="zoom"
                 class="amap-demo"
@@ -38,7 +48,6 @@
 </template>
 
 <script>
-
     export default {
         name: "centerMap",
         components: {},
@@ -51,6 +60,8 @@
         data() {
             let self = this
             return {
+                checked: [],
+                vid: 'kljk',
                 amaps: false,
                 markersData: [],
                 markerRefs: [],
@@ -67,7 +78,7 @@
                             AMap.plugin(["AMap.MarkerClusterer"], function () {
                                 cluster = new AMap.MarkerClusterer(o, self.markerRefs,
                                     {
-                                        gridSize: 80,
+                                        gridSize: 50,
                                         renderCluserMarker:
                                         self._renderCluserMarker,
                                     }
@@ -92,10 +103,28 @@
                     "凌晨二时 襄阳 XXX服务区因为XXX 已临时关闭 预计XXX开放 3333333",
                     "凌晨四时 随州 XXX服务区因为XXX 已临时关闭 预计XXX开放 44444444",
                     "凌晨五时 驻马店 XXX服务区因为XXX 已临时关闭 预计XXX开放 55555555"
-                ]
+                ],
+                marker_: []
             };
         },
         methods: {
+            del() {
+                let position = [];
+                this.markers = [];
+                this.window = [];
+                this.$axios.get('/api/index/list_jtService').then(res => {
+                    position = res.data.data.servicefrom;
+                    res.data.data.stationfrom.forEach(i => {
+                        if (i.latitude != 1) {
+                            i.gas = 'gas';
+                            position.push(i)
+                        }
+                    });
+                    this.vid = 'klkjkl'
+                    this.point(position, 10)
+                })
+
+            },
             _renderCluserMarker(context) {
                 const count = this.markers.length;
                 let factor = Math.pow(context.count / count, 1 / 18);
@@ -136,65 +165,62 @@
                     con.style.marginTop = "0px;";
                 }
             },
-            point(data) {
-                console.log(data)
+            point(data, n) {
                 this.window = '';
                 let that = this;
                 data.forEach((item, index) => {
-                    let icon = require('../../../assets/First.png');
-                    if (index === 0) {
-                        icon = require('../../../assets/First.png')
-                    }
-                    if (index === 1) {
-                        icon = require('../../../assets/Second.png')
-                    }
-                    if (index === 2) {
-                        icon = require('../../../assets/Thrid.png')
-                    }
-                    if (index > 2 && !item.gas) {
-                        icon = 'https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b'
-                    }
-                    if (item.gas && item.gas == 'gas') {
-                        icon = require('../../../assets/gas.png')
-                    }
-                    this.markers.push({
-                        position: [item.longitude, item.latitude],
-                        events: {
-                            init(o) {
-                                that.markerRefs.push(o);
-                            },
-                            click() {
-                                // 方法：鼠标移动到点标记上，显示相应窗体
-                                that.windows.forEach(window => {
-                                    window.visible = false; // 关闭窗体
-                                });
-                                that.window = that.windows[index];
-                                that.$nextTick(() => {
-                                    that.window.visible = true;
-                                });
-                            },
+                    if (index < n) {
+                        let icon = require('../../../assets/First.png');
+                        if (index === 0) {
+                            icon = require('../../../assets/First.png')
+                        }
+                        if (index === 1) {
+                            icon = require('../../../assets/Second.png')
+                        }
+                        if (index === 2) {
+                            icon = require('../../../assets/Thrid.png')
+                        }
+                        if (index > 2 && !item.gas) {
+                            icon = 'https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b'
+                        }
+                        if (item.gas && item.gas == 'gas') {
+                            icon = require('../../../assets/gas.png')
+                        }
+                        this.markers.push({
+                            position: [item.longitude, item.latitude],
+                            events: {
+                                init(o) {
+                                    that.markerRefs.push(o);
+                                },
+                                click() {
+                                    // 方法：鼠标移动到点标记上，显示相应窗体
+                                    that.windows.forEach(window => {
+                                        window.visible = false; // 关闭窗体
+                                    });
+                                    that.window = that.windows[index];
+                                    that.$nextTick(() => {
+                                        that.window.visible = true;
+                                    });
+                                },
 
-                        },
-                        icon: new AMap.Icon({
-                            image: icon,
-                            size: new AMap.Size(30, 30),
-                            imageSize: new AMap.Size(25, 30)
-                        })
-                    });
-                    this.windows.push({
-                        position: [item.longitude, item.latitude],
-                        isCustom: true,
-                        offset: [115, 55], // 窗体偏移
-                        showShadow: false,
-                        visible: false, // 初始是否显示
-                        address: item.serviceName,
-                        money: item.shouyi
-                    });
+                            },
+                            icon: new AMap.Icon({
+                                image: icon,
+                                size: new AMap.Size(30, 30),
+                                imageSize: new AMap.Size(25, 30)
+                            })
+                        });
+                        this.windows.push({
+                            position: [item.longitude, item.latitude],
+                            isCustom: true,
+                            offset: [115, 55], // 窗体偏移
+                            showShadow: false,
+                            visible: false, // 初始是否显示
+                            address: item.serviceName,
+                            money: item.shouyi
+                        });
+                    }
                 });
-                //  加点
-                // this.markers = markers;
-                // 加弹窗
-                // this.windows = windows;
             }
         },
         mounted() {
@@ -207,7 +233,7 @@
                         position.push(i)
                     }
                 });
-                this.point(position)
+                this.point(position, 123)
             })
             this.timeClear = setInterval(this.check, 3000);
 
@@ -225,6 +251,25 @@
         width: 100%;
         height: 100%;
         position: relative;
+
+        .query {
+            width: 100%;
+            height: 30px;
+            position: absolute;
+            top: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 99;
+            color: white;
+            margin: auto;
+        }
+
+        .query /deep/ .el-checkbox-group {
+           padding: 5px 20px;
+        }
+
+        .query /deep/ .el-checkbox-group > .el-checkbox {
+            color: white;
+        }
 
         .enlarge {
             position: absolute;

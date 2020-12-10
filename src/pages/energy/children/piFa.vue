@@ -2889,7 +2889,6 @@
         },
         methods: {
             selectionChange(v) {
-                console.log(v);
             }
         },
         async mounted() {
