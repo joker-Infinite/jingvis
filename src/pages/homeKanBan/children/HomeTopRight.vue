@@ -105,7 +105,7 @@
                 } else {
                     this.option.title.padding = 50;
                     this.option.title.textStyle.rich.a.fontSize = 25;
-                    (this.option.title.x = "center"), (this.option.title.y = "-3%");
+                    this.option.title.y = "-3%";
                     this.option.barWidth = 30;
                     this.option.grid.top = "20%";
                     this.$refs["showECharts"].timeSelect = false;
@@ -290,7 +290,6 @@
                     });
                     option.yAxis.data = yAxis;
                     option.series[0].data = xAxis;
-                    console.log(xAxis)
                     this.BD = option;
                     echarts.setOption(option);
                     this.loading = false;

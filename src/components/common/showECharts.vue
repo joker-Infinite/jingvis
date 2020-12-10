@@ -1,20 +1,6 @@
 <template>
     <div style="width: 100%" class="box">
         <el-dialog :visible.sync="visible" width="80vh" :modal="false">
-            <div class="time" v-if="timeSelect">
-                <span class="text_icon">从</span>
-                <el-date-picker
-                        v-model="time"
-                        type="daterange"
-                        align="right"
-                        unlink-panels
-                        range-separator="至"
-                        start-placeholder="开始日期"
-                        end-placeholder="结束日期"
-                        :picker-options="pickerOptions">
-                </el-date-picker>
-                <el-button size="small">搜索</el-button>
-            </div>
             <div class="bigShow"
                  id="bigShow"
                  v-if="visible"
@@ -24,6 +10,20 @@
                  element-loading-background="rgba(0, 0, 0, 0.5)">
                 <border v-if="backdrop===0"></border>
                 <border-plan-b v-if="backdrop===1"></border-plan-b>
+                <div class="time" v-if="timeSelect">
+                    <span class="text_icon">从</span>
+                    <el-date-picker
+                            v-model="time"
+                            type="daterange"
+                            align="right"
+                            unlink-panels
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            :picker-options="pickerOptions">
+                    </el-date-picker>
+                    <el-button size="small">搜索</el-button>
+                </div>
                 <div class="MMA" v-if="type">
                     平均：{{obj.average}}<br>
                     最高：{{obj.max}}<br>
@@ -33,7 +33,8 @@
                     {{msg}}
                 </div>
                 <div id="commonECharts_data"></div>
-                <div id="commonECharts" :style="{width:isShow?'85%':'100%',float:'left'}"></div>
+                <div id="commonECharts"
+                     :style="{width:isShow?'85%':'100%',float:'left' ,height:timeSelect?'90%':'100%'}"></div>
                 <!--<div class="block_l"></div>
                 <div class="block_r"></div>
                 <div class="block_b"></div>-->
@@ -155,7 +156,7 @@
                 this.type = false;
                 v = clone(v);
                 if (t === "time") {
-                    v.series.nodeGap = 32;
+                    v.series.nodeGap = 29;
                     this.timeSelect = true;
                 } else {
                     this.timeSelect = false;
@@ -315,10 +316,8 @@
 
     .time {
         text-align: center;
-        background: rgb(0 18 53);
         color: white;
         /*border: 3px solid rgb(22, 154, 252);*/
-        box-shadow: 0 0 10px rgb(22, 115, 210) inset;
         border-bottom: none;
 
         .text_icon {
@@ -353,7 +352,7 @@
 
     .bigShow {
         width: 100%;
-        height: 60vh;
+        height: 650px;
         box-shadow: 0 0 10px #38d inset;
         position: relative;
         // background: #10448a;
@@ -398,7 +397,7 @@
             // height: 560px;
             // padding: 20px;
             width: 100%;
-            height: 100%;
+            height: 90%;
         }
 
         .operation {

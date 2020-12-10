@@ -46,7 +46,6 @@
         },
         methods: {
             initMap(position) {
-                console.log(this.backdrop)
                 let map = new AMap.Map('MAP', {
                     center: [114.286298, 30.5855],
                     zoom: 8,

@@ -14,7 +14,7 @@
                     <i :class=" menuStatus % 2 === 0 ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
                        @click="menuOC"></i>
                 </div>
-                
+
                 <el-menu-item index=''>
                     <i class="el-icon-menu"></i>
                     <span slot="title">首页</span>
@@ -98,20 +98,28 @@
                             '/serviceArea/4',
                             // '/serviceArea/5',
                             // '/serviceArea/6',
-                            ]
+                        ]
                     },
-                    // {
-                    //     id: "3",
-                    //     label: "服务区业务",
-                    //     img: require("../assets/Home/10.png"),
-                    //     imgActive: require("../assets/Home/3.png"),
-                    //     menuItem: ["消费意愿", "服务区业态", "服务区对比"],
-                    //     menuItemUrl: [
-                    //         '',
-                    //         '/serviceArea/FWQYeTai',
-                    //         '/comparison/comparison'
-                    //     ]
-                    // },
+                    {
+                        id: "3",
+                        label: "能源事业部",
+                        img: require("../assets/Home/10.png"),
+                        imgActive: require("../assets/Home/3.png"),
+                        menuItem: [">>营收", ">>利润", ">>预算控制", ">>批零差价", ">>零售", ">>批发", ">>应收账款", ">>油源", ">>油库", ">>分公司", ">>线路"],
+                        menuItemUrl: [
+                            "/serviceArea/7",
+                            "/serviceArea/8",
+                            "/serviceArea/9",
+                            "/serviceArea/10",
+                            "/serviceArea/11",
+                            "/serviceArea/12",
+                            "/serviceArea/13",
+                            "/serviceArea/14",
+                            "/serviceArea/15",
+                            "/serviceArea/16",
+                            "/serviceArea/17",
+                        ]
+                    },
                     {
                         id: "4",
                         label: "能源公司",
