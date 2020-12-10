@@ -28,14 +28,13 @@
             return {
                 map: '',
                 marker: [],
-                gas: [],
-                service: [],
                 gasData: [],
                 serviceData: [],
                 mapStyleArr: [
-                    'amap://styles/8cb6df918ee512eae9c9198c38a40c91',
-                    'amap://styles/1111cca74c703c3218b102779351f6eb',
-                    'amap://styles/f1f4181c84a35130099dfd661f061466',
+                    'fresh',
+                    // '8cb6df918ee512eae9c9198c38a40c91',
+                    'darkblue',
+                    'blue',
                 ],
                 i: 0,
                 position: [],
@@ -46,11 +45,12 @@
         },
         methods: {
             initMap(position) {
+                this.marker = [];
                 let map = new AMap.Map('MAP', {
                     center: [114.286298, 30.5855],
                     zoom: 8,
-                    mapStyle: this.mapStyleArr[this.backdrop]
                 });
+                map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop])
                 this.map = map;
                 this.addMarker(map, position)
             },
@@ -81,19 +81,14 @@
                         }),
                         position: [item.longitude, item.latitude],
                     });
-                    if (item.gas && item.gas == 'gas') {
-                        this.gas.push(marker);
-                    } else {
-                        this.service.push(marker);
-                    }
-                    this.marker.push(marker);
+                    this.marker.push(Object.assign(marker, {name: item.name}));
                 });
                 this.marker.forEach((i, x) => {
                     AMap.event.addListener(i, 'click', function () {
                         infoWindow.open(v, i.getPosition());
                     });
                     let content = [];
-                    content.push("<div style='width: 200px;text-align: center'>" + position[x].name + "</div>");
+                    content.push("<div style='width: 200px;text-align: center'>" + i.name + "</div>");
                     content.push("<div style='width: 200px;text-align: center;height: 70px'>内容</div>");
                     let infoWindow = new AMap.InfoWindow({
                         content: content.join(""),

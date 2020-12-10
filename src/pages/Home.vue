@@ -300,7 +300,7 @@
             },
         },
         mounted() {
-            this.getCookie();
+            // this.getCookie();
         }
     };
 </script>
