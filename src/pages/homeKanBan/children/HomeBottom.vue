@@ -440,7 +440,13 @@
                             },
                             data: [],
                             markLine: {
-                                data: [],
+                                data: [
+                                    {
+                                        type: "average",
+                                        name: "目标值",
+                                        xAxis: 91.67, //设置平均值所在位置
+                                    }
+                                ],
                                 symbol: ["none", "none"],
                                 position: "insideTopCenter",
                                 itemStyle: {
@@ -450,9 +456,9 @@
                                             color: "white",
                                         },
                                         label: {
-                                            show: false,
+                                            show: true,
                                             position: "middle",
-                                            formatter: "数据平均 :",
+                                            formatter: "目标值 : " + 91.67
                                         },
                                     },
                                 },
@@ -498,16 +504,16 @@
                         average += Number(i);
                     })
                     average = parseInt(average / this.options.series[0].data.length);
-                    // this.options.series[0].markLine.data = [{
-                    //     type: "average",
-                    //     name: "平均值",
-                    //     xAxis: average, //设置平均值所在位置
-                    // }]
-                    // this.options.series[0].markLine.itemStyle.normal.label = {
-                    //     show: true,
-                    //     position: "middle",
-                    //     formatter: "数据平均 : " + average
-                    // }
+                    this.options.series[0].markLine.data = [{
+                        type: "average",
+                        name: "目标值",
+                        xAxis: 91.67, //设置平均值所在位置
+                    }]
+                    this.options.series[0].markLine.itemStyle.normal.label = {
+                        show: true,
+                        position: "middle",
+                        formatter: "目标值 : " + 91.67
+                    }
                     HomeBottomG.setOption(option);
                 })
 
