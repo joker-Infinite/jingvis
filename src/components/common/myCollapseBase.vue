@@ -76,13 +76,24 @@
                                          wit.option.series[0].data.length !==0 && 
                                          wit.option.series[0].type !=='pie' &&
                                          wit.option.series[0].type !=='line' &&
+                                         !wit.isbar &&
                                          wit.option.series[0].data[0].name!=='占比')">
                                          <div>平均：{{showTarget(wit.option,'average') + '万元'}}</div>
                                          <div>最高：{{showTarget(wit.option,'max') + '万元'}}</div>
                                          <div>最低：{{showTarget(wit.option,'min') + '万元'}}</div>
                                     </div>
+                                    <div class="MaxMinAverage" v-if="wit.isTitle">
+                                        <div>回款：{{showTget(wit.option,'averages') + '%'}}</div>
+                                        <div>最高：{{showTget(wit.option,'max') + '%'}}</div>
+                                        <div>最低：{{showTget(wit.option,'min') + '%'}}</div>
+                                        <div>平均：{{showTget(wit.option,'average') + '%'}}</div>
+                                    </div>
                                     <div class="null" v-if="!wit.type && wit.option.series[0].data.length ==0">
                                         暂无数据
+                                    </div>
+                                    <div v-if="wit.isbar" class="switchover">
+                                        <el-button  size="mini" @click="switchoverClick(1)">供应商</el-button>
+                                        <el-button  size="mini" @click="switchoverClick(2)">业态</el-button>
                                     </div>
                                     <div v-if="!wit.type"
                                          style="width: 100%; height: 100%;overflow: hidden;"
@@ -165,6 +176,7 @@
         },
         data() {
             return {
+                isShowswitchover:1,
                 activeName: [],
                 activeName_: [],
                 sumClick: "",
@@ -195,12 +207,58 @@
             };
         },
         methods: {
+            // 切换供应商跟业态的
+            switchoverClick(i){
+                this.isShowswitchover = i
+            },
+            // 计算百分比
+            showTget(v, type){
+                let obj = {
+                    min: '',
+                    max: '',
+                    average: '',
+                    averages:''
+                };
+                let mun = [];
+                let num = 0;
+                if (v && v.series) {
+                    let d = v.series[0].data;
+                    d.forEach(i => {
+                        if(!!i.value){
+                            mun.push(i.value);
+                            num += Number(i.value);
+                        }else{
+                            mun.push(i);
+                            num += Number(i);
+                        }
+                    });
+                    obj.max = Math.max(...mun);
+                    obj.min = Math.min(...mun);
+                    obj.average = parseInt(num / d.length )
+                    if (type === 'max') {
+                        return parseInt(obj.max );
+                    }
+                    if (type === 'min') {
+                        return parseInt(obj.min );
+                    }
+                    if (type === 'average') {
+                        return obj.average;
+                    }
+                    if(type === 'averages'){
+                        obj.averages = v.series[1].data.reduce((prev,cur,index,arr)=>{
+                            return prev + cur;
+                        },0);
+                        return parseInt(obj.averages / v.series[1].data.length)
+                    }
+                }
+            },
             // 计算平均值最小值最大值
             showTarget(v, type) {
                 let obj = {
                     min: '',
                     max: '',
-                    average: ''
+                    average: '',
+                    averages:''
                 };
                 let mun = [];
                 let num = 0;
@@ -226,6 +284,12 @@
                     }
                     if (type === 'average') {
                         return obj.average;
+                    }
+                    if(type === 'averages'){
+                        obj.averages = v.series[1].data.reduce((prev,cur,index,arr)=>{
+                            return prev + cur;
+                        },0);
+                        return parseInt(obj.averages)
                     }
                 }
             },
@@ -290,7 +354,7 @@
                         if (this.time === this.EChartsData.length) {
                             clearInterval(timeID);
                         }
-                    }, 70);
+                    }, 100);
                     this.timeID.push(timeID);
                 });
             },
@@ -717,7 +781,7 @@
                 margin-left: 20%;
                 transition: linear 0.3s;
                 border-radius: 10px;
-
+                
                 .img {
                     width: 20px;
                     vertical-align: -6px;
@@ -756,6 +820,21 @@
                 right: 0;
                 bottom: 0;
                 margin: auto;
+            }
+            .switchover{
+                z-index: 10;
+                position: absolute;
+                right: 10px;
+                width: 100px;
+                display: flex;
+                justify-content: space-around;
+                top: 10px;
+                display: flex;
+            }
+            .switchover /deep/ .el-button{
+                border: none !important;
+                padding: 0;
+                background: none !important;
             }
         }
 

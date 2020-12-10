@@ -32,7 +32,373 @@ export default {
                                 collapseTitle: "2020回款率",
                                 EChartsBox: [
                                     {
-                                        title: "2020年回款管理",
+                                        title: "2020年回款率",
+                                        time: false,
+                                        timeValue: "",
+                                        style: {
+                                            width: "33%",
+                                            height: "350px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                isTitle:true,
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "100%",
+                                                    height: "300px",
+                                                },
+                                                option: {
+                                                    tooltip: {
+                                                    trigger: 'axis',
+                                                    axisPointer: {
+                                                        lineStyle: {
+                                                            color: {
+                                                                type: 'linear',
+                                                                x: 0,
+                                                                y: 0,
+                                                                x2: 0,
+                                                                y2: 1,
+                                                                colorStops: [{
+                                                                    offset: 0,
+                                                                    color: 'rgba(0, 255, 233,0)'
+                                                                }, {
+                                                                    offset: 0.5,
+                                                                    color: 'rgba(0, 0, 0,1)',
+                                                                }, {
+                                                                    offset: 1,
+                                                                    color: 'rgba(0, 255, 233,0)'
+                                                                }],
+                                                                global: false
+                                                            }
+                                                        },
+                                                    },
+                                                },
+                                                xAxis: {
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    type: "category",
+                                                    data:  ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                                                },
+                                                legend: {
+                                                    data: ['机关欠款率', '服务区欠款率']
+                                                },
+                                                yAxis: {
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    type: "value",
+                                                },
+                                                series: [
+                                                    {
+                                                        name: '服务区欠款率',
+                                                        data:  [22, 18, 19, 23, 29, 33, 31, 20, 15, 19, 33, 41],
+                                                        type: "line",
+                                                    },
+                                                    {
+                                                        name: '机关欠款率',
+                                                        data:  [12, 13, 10, 13, 90, 23, 21, 18, 19, 23, 29, 33],
+                                                        type: "line",
+                                                    },
+                                                ],
+                                                },
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        title: "2020年回款率排行",
+                                        time: false,
+                                        timeValue: "",
+                                        style: {
+                                            width: "33%",
+                                            height: "350px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                /*ECharts的属性*/
+                                                isbar:true,
+                                                style: {
+                                                    width: "100%",
+                                                    height: "300px",
+                                                },
+                                                option: {
+                                                title: {
+                                                    text: "",
+                                                    top: 10,
+                                                    left: 20,
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: function (val) {
+                                                        return (
+                                                            val[0].name +
+                                                            ":" +
+                                                            val[0].value +
+                                                            "万元" +
+                                                            "<br>" +
+                                                            val[1].value +
+                                                            "万元" +
+                                                            "<br>" +
+                                                            "执行率:" +
+                                                            val[2].value +
+                                                            "%"
+                                                        );
+                                                    },
+                                                },
+                                                grid: {
+                                                    left: "3%",
+                                                    right: "4%",
+                                                    bottom: "3%",
+                                                    top:"13%",
+                                                    containLabel: true,
+                                                },
+                                                xAxis: {
+                                                    type: "value",
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                    axisLine: {
+                                                        show: false,
+                                                    },
+                                                    axisLabel: {
+                                                        show: false,
+                                                    },
+                                                },
+                                                yAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "A",
+                                                        "B",
+                                                        "C",
+                                                        "D",
+                                                        "E",
+                                                        "F",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                    axisLine: {
+                                                        show: false,
+                                                    },
+                                                },
+                                                series: [
+                                                    {
+                                                        name: "A门店",
+                                                        type: "bar",
+                                                        stack: "总量",
+                                                        barWidth: 20,
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color:
+                                                                    "#379DFB",
+                                                                barBorderRadius: [
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                ],
+                                                            },
+                                                        },
+                                                        label: {
+                                                            normal: {
+                                                                show: false,
+                                                                color: "#fff",
+                                                                position:
+                                                                    "insideRight",
+                                                            },
+                                                        },
+                                                        z: 10,
+                                                        data: [
+                                                            
+                                                            0.00,
+                                                            2.5,
+                                                            3.41,
+                                                            8.16,
+                                                            52.36,
+                                                            86.64,
+                                                        ],
+                                                    },
+                                                    {
+                                                        name: "B门店",
+                                                        type: "bar",
+                                                        stack: "总量",
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color:
+                                                                    "#dfe5f1",
+                                                                shadowBlur: [
+                                                                    0,
+                                                                    0,
+                                                                    0,
+                                                                    10,
+                                                                ],
+                                                                barBorderRadius: [
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                ],
+                                                            },
+                                                        },
+                                                        label: {
+                                                            normal: {
+                                                                show: false,
+                                                                color: "#000",
+                                                                position:
+                                                                    "insideRight",
+                                                            },
+                                                        },
+                                                        z: 5,
+                                                        data: [
+                                                            
+                                                            0.00,
+                                                            1.11,
+                                                            2.17,
+                                                            1.05,
+                                                            28.26,
+                                                            60.99,
+                                                        ],
+                                                    },
+                                                    {
+                                                        name: "B门店",
+                                                        type: "bar",
+                                                        stack: "总量",
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color:
+                                                                    "rgba(237,125,49, 0)",
+                                                                shadowBlur: [
+                                                                    0,
+                                                                    0,
+                                                                    0,
+                                                                    10,
+                                                                ],
+                                                                barBorderRadius: [
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                ],
+                                                            },
+                                                        },
+                                                        label: {
+                                                            normal: {
+                                                                color: "red",
+                                                                show: true,
+                                                                position: [
+                                                                    10,
+                                                                    5,
+                                                                ],
+                                                                formatter:function(params) {
+                                                                    return params.value + '%'
+                                                                }
+                                                                    
+                                                            },
+                                                        },
+                                                        z: 5,
+                                                        data: [
+                                                            
+                                                            '0',
+                                                            '44.40',
+                                                            '63.78',
+                                                            '12.90',
+                                                            '53.97',
+                                                            '70.40',
+                                                        ],
+                                                    },
+                                                ],
+                                            },
+                                            },
+                                        ],
+                                    },
+                                     {
+                                    title: "2020年欠款超期",
+                                    style: {
+                                        width: "33%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        marginBottom: "5px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            type: "table",
+                                            height: '470px',
+                                            isPagination: false,
+                                            border: true,
+                                            style: {
+                                                width: "100%",
+                                                height: "330px",
+                                                background: "#fff",
+                                            },
+                                            columns: [
+                                                {
+                                                    prop: "A",
+                                                    label: "供应商",
+                                                },
+                                                {
+                                                    prop: "B",
+                                                    label: "还款时间",
+                                                },
+                                                {
+                                                    prop: "C",
+                                                    label: "超期时间",
+                                                },
+                                                {
+                                                    prop: "D",
+                                                    label: "金额",
+                                                },
+                                            ],
+                                            tableData: [
+                                                {
+                                                    A: "A",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    
+                                                },
+                                                {
+                                                    A: "B",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    
+                                                },
+                                                {
+                                                    A: "C",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    
+                                                },
+                                                {
+                                                    A: "D",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                   
+                                                },
+                                               
+                                            ],
+                                        },
+                                    ],
+                                },
+                                   
+                                    {
+                                        title: "2020年预计收款",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -41,6 +407,7 @@ export default {
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
+                                            marginTop:'10px'
                                         },
                                         EChartsItem: [
                                             {
@@ -267,6 +634,7 @@ export default {
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
+                                            marginTop:'10px'
                                         },
                                         EChartsItem: [
                                             {
@@ -419,7 +787,373 @@ export default {
                                 collapseTitle: "2019回款率",
                                 EChartsBox: [
                                     {
-                                        title: "2019年回款管理",
+                                        title: "2019年回款率",
+                                        time: false,
+                                        timeValue: "",
+                                        style: {
+                                            width: "33%",
+                                            height: "350px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                isTitle:true,
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "100%",
+                                                    height: "300px",
+                                                },
+                                                option: {
+                                                    tooltip: {
+                                                    trigger: 'axis',
+                                                    axisPointer: {
+                                                        lineStyle: {
+                                                            color: {
+                                                                type: 'linear',
+                                                                x: 0,
+                                                                y: 0,
+                                                                x2: 0,
+                                                                y2: 1,
+                                                                colorStops: [{
+                                                                    offset: 0,
+                                                                    color: 'rgba(0, 255, 233,0)'
+                                                                }, {
+                                                                    offset: 0.5,
+                                                                    color: 'rgba(0, 0, 0,1)',
+                                                                }, {
+                                                                    offset: 1,
+                                                                    color: 'rgba(0, 255, 233,0)'
+                                                                }],
+                                                                global: false
+                                                            }
+                                                        },
+                                                    },
+                                                },
+                                                xAxis: {
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    type: "category",
+                                                    data:  ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                                                },
+                                                legend: {
+                                                    data: ['机关欠款率', '服务区欠款率']
+                                                },
+                                                yAxis: {
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    type: "value",
+                                                },
+                                                series: [
+                                                    {
+                                                        name: '服务区欠款率',
+                                                        data:  [22, 18, 19, 23, 29, 33, 31, 20, 15, 19, 33, 41],
+                                                        type: "line",
+                                                    },
+                                                    {
+                                                        name: '机关欠款率',
+                                                        data:  [12, 13, 10, 13, 90, 23, 21, 18, 19, 23, 29, 33],
+                                                        type: "line",
+                                                    },
+                                                ],
+                                                },
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        title: "2019年回款率排行",
+                                        time: false,
+                                        timeValue: "",
+                                        style: {
+                                            width: "33%",
+                                            height: "350px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                /*ECharts的属性*/
+                                                isbar:true,
+                                                style: {
+                                                    width: "100%",
+                                                    height: "300px",
+                                                },
+                                                option: {
+                                                title: {
+                                                    text: "",
+                                                    top: 10,
+                                                    left: 20,
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: function (val) {
+                                                        return (
+                                                            val[0].name +
+                                                            ":" +
+                                                            val[0].value +
+                                                            "万元" +
+                                                            "<br>" +
+                                                            val[1].value +
+                                                            "万元" +
+                                                            "<br>" +
+                                                            "执行率:" +
+                                                            val[2].value +
+                                                            "%"
+                                                        );
+                                                    },
+                                                },
+                                                grid: {
+                                                    left: "3%",
+                                                    right: "4%",
+                                                    bottom: "3%",
+                                                    top:"13%",
+                                                    containLabel: true,
+                                                },
+                                                xAxis: {
+                                                    type: "value",
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                    axisLine: {
+                                                        show: false,
+                                                    },
+                                                    axisLabel: {
+                                                        show: false,
+                                                    },
+                                                },
+                                                yAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "A",
+                                                        "B",
+                                                        "C",
+                                                        "D",
+                                                        "E",
+                                                        "F",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                    axisLine: {
+                                                        show: false,
+                                                    },
+                                                },
+                                                series: [
+                                                    {
+                                                        name: "A门店",
+                                                        type: "bar",
+                                                        stack: "总量",
+                                                        barWidth: 20,
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color:
+                                                                    "#379DFB",
+                                                                barBorderRadius: [
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                ],
+                                                            },
+                                                        },
+                                                        label: {
+                                                            normal: {
+                                                                show: false,
+                                                                color: "#fff",
+                                                                position:
+                                                                    "insideRight",
+                                                            },
+                                                        },
+                                                        z: 10,
+                                                        data: [
+                                                            
+                                                            0.00,
+                                                            2.5,
+                                                            3.41,
+                                                            8.16,
+                                                            52.36,
+                                                            86.64,
+                                                        ],
+                                                    },
+                                                    {
+                                                        name: "B门店",
+                                                        type: "bar",
+                                                        stack: "总量",
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color:
+                                                                    "#dfe5f1",
+                                                                shadowBlur: [
+                                                                    0,
+                                                                    0,
+                                                                    0,
+                                                                    10,
+                                                                ],
+                                                                barBorderRadius: [
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                ],
+                                                            },
+                                                        },
+                                                        label: {
+                                                            normal: {
+                                                                show: false,
+                                                                color: "#000",
+                                                                position:
+                                                                    "insideRight",
+                                                            },
+                                                        },
+                                                        z: 5,
+                                                        data: [
+                                                            
+                                                            0.00,
+                                                            1.11,
+                                                            2.17,
+                                                            1.05,
+                                                            28.26,
+                                                            60.99,
+                                                        ],
+                                                    },
+                                                    {
+                                                        name: "B门店",
+                                                        type: "bar",
+                                                        stack: "总量",
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color:
+                                                                    "rgba(237,125,49, 0)",
+                                                                shadowBlur: [
+                                                                    0,
+                                                                    0,
+                                                                    0,
+                                                                    10,
+                                                                ],
+                                                                barBorderRadius: [
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                    5,
+                                                                ],
+                                                            },
+                                                        },
+                                                        label: {
+                                                            normal: {
+                                                                color: "red",
+                                                                show: true,
+                                                                position: [
+                                                                    10,
+                                                                    5,
+                                                                ],
+                                                                formatter:function(params) {
+                                                                    return params.value + '%'
+                                                                }
+                                                                    
+                                                            },
+                                                        },
+                                                        z: 5,
+                                                        data: [
+                                                            
+                                                            '0',
+                                                            '44.40',
+                                                            '63.78',
+                                                            '12.90',
+                                                            '53.97',
+                                                            '70.40',
+                                                        ],
+                                                    },
+                                                ],
+                                            },
+                                            },
+                                        ],
+                                    },
+                                     {
+                                    title: "2019年欠款超期",
+                                    style: {
+                                        width: "33%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        marginBottom: "5px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            type: "table",
+                                            height: '470px',
+                                            isPagination: false,
+                                            border: true,
+                                            style: {
+                                                width: "100%",
+                                                height: "330px",
+                                                background: "#fff",
+                                            },
+                                            columns: [
+                                                {
+                                                    prop: "A",
+                                                    label: "供应商",
+                                                },
+                                                {
+                                                    prop: "B",
+                                                    label: "还款时间",
+                                                },
+                                                {
+                                                    prop: "C",
+                                                    label: "超期时间",
+                                                },
+                                                {
+                                                    prop: "D",
+                                                    label: "金额",
+                                                },
+                                            ],
+                                            tableData: [
+                                                {
+                                                    A: "A",
+                                                     B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    
+                                                },
+                                                {
+                                                    A: "B",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    
+                                                },
+                                                {
+                                                    A: "C",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                    
+                                                },
+                                                {
+                                                    A: "D",
+                                                    B: "/",
+                                                    C: "/",
+                                                    D: "/",
+                                                   
+                                                },
+                                               
+                                            ],
+                                        },
+                                    ],
+                                },
+                                   
+                                    {
+                                        title: "2019年预计收款",
                                         time: false,
                                         timeValue: "",
                                         style: {
@@ -428,6 +1162,7 @@ export default {
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
+                                            marginTop:'10px'
                                         },
                                         EChartsItem: [
                                             {
@@ -654,6 +1389,7 @@ export default {
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
+                                            marginTop:'10px'
                                         },
                                         EChartsItem: [
                                             {

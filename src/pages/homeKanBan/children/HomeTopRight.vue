@@ -150,29 +150,8 @@
                         label: {
                             color: "#FFF",
                         },
-                        data: [
-                            {
-                                name: "车型",
-                            },
-                            {
-                                name: "大形车",
-                            },
-                            {
-                                name: "小形车",
-                            },
-                        ],
-                        links: [
-                            {
-                                source: "车型",
-                                target: "大形车",
-                                value: 5,
-                            },
-                            {
-                                source: "车型",
-                                target: "小形车",
-                                value: 5,
-                            },
-                        ],
+                        data: [],
+                        links: [],
                         levels: [
                             {
                                 depth: 0,

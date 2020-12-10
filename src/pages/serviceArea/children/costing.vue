@@ -385,7 +385,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年公司成本种类预算成本",
+                                    title: "2020年公司种类预算控制",
                                     time: false,
                                     select: false,
                                     style: {
@@ -399,6 +399,7 @@ export default {
                                     EChartsItem: [
                                         {
                                             /*ECharts的属性*/
+                                            isbar:true,
                                             style: {
                                                 width: "100%",
                                                 height: "300px",
@@ -573,8 +574,10 @@ export default {
                                                                     10,
                                                                     5,
                                                                 ],
-                                                                formatter:
-                                                                    "{c}%",
+                                                                formatter:function(params) {
+                                                                    return params.value + '%'
+                                                                }
+                                                                    
                                                             },
                                                         },
                                                         z: 5,
@@ -593,7 +596,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年实际预算成本",
+                                    title: "2020年预算控制",
                                     time: false,
                                     select: false,
                                     style: {
@@ -612,7 +615,7 @@ export default {
                                                 height: "300px",
                                                 position: "relative",
                                                 style: {
-                                                    content: "实际:暂无数据",
+                                                    content: "差旅费实际:86.64万元",
                                                     width: "75%",
                                                     color: "#fff",
                                                     height: "100px",
@@ -637,7 +640,7 @@ export default {
                                                 height: "300px",
                                                 position: "relative",
                                                 style: {
-                                                    content: "预算:暂无数据",
+                                                    content: "差旅费预算:60.99万元",
                                                     width: "75%",
                                                     color: "#fff",
                                                     height: "100px",
@@ -662,7 +665,7 @@ export default {
                                             },
                                             option: {
                                                 title: {
-                                                    text: 66 + "%",
+                                                    text: 70.40 + "%",
                                                     x: "center",
                                                     y: "center",
                                                     textStyle: {
@@ -702,7 +705,7 @@ export default {
                                                         hoverAnimation: false,
                                                         data: [
                                                             {
-                                                                value: 66,
+                                                                value: 70.40,
                                                                 name: "占比",
                                                                 itemStyle: {
                                                                     normal: {
@@ -732,7 +735,7 @@ export default {
                                                             },
                                                             {
                                                                 name: "剩余",
-                                                                value: 100 - 66,
+                                                                value: 100 - 70.40,
                                                                 itemStyle: {
                                                                     normal: {
                                                                         color:
@@ -1108,7 +1111,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年公司成本种类预算成本",
+                                    title: "2019年公司种类预算控制",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1303,7 +1306,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年实际预算成本",
+                                    title: "2019年预算控制",
                                     time: false,
                                     select: false,
                                     style: {

@@ -438,7 +438,7 @@ export default {
                                                         return (
                                                             val[0].name + '月' + 
                                                             ":" + "<br />" +
-                                                            val[0].value / 10000 +
+                                                            (val[0].value / 10000).toFixed(2) +
                                                             "万元"
                                                         );
                                                     },

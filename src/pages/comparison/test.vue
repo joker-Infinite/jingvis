@@ -1,342 +1,131 @@
 <template>
-    <div class="container">
-        <div class="left">
-            <div style="width: 80%;height: 100%;overflow-y:scroll">
-                <compared-test ref="comtest"></compared-test>
+    <div class="test">
+        <!-- 查询开始 -->
+        <div class="labelFlex">
+            <div class="label">
+                <span>时间：</span>
+                <el-date-picker v-model="selectData.time" type="monthrange" align="right"
+                    value-format="yyyy-MM-dd" format="yyyy-MM-dd" unlink-panels range-separator="至"
+                    start-placeholder="开始月份" end-placeholder="结束月份" :picker-options="pickerOptions">
+                </el-date-picker>
             </div>
-            <div style="width:10%;height: 100%;background: #1D7DCA">
-                <div class="customizeBtn">
-                    <!-- <el-button @click="customizeTemplate"><i class="el-icon-document-add"></i> 自定义模板 -->
-                    <!-- </el-button> -->
+            <div class="label">
+                <span>服务区：</span>
+                <el-select v-model="selectData.service">
+                    <el-option v-for="(it, ix) in serviceData" :label="it.label" :value="it.value" :key="ix">
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="label" style="width:30%">
+                <span>请选择模板：</span>
+                <el-select v-model="selectData.service">
+                    <el-option v-for="(it, ix) in serviceDatas" :label="it.label" :value="it.value" :key="ix">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <el-button @click="newAdd">确定</el-button>
+                <el-button @click="conservative()">保存模板</el-button>
+            </div>
+            <div class="detail">
+                <div v-for="(item,index) of NewData" :key="index">
+                    {{item.data}}
+                    <span @click="detailData(index)">删除</span>
                 </div>
-                <div class="navBox">
-                    <div>
-                        <span :class="{ navItem: true, active: navIndex === i }" @click="navClick(i)"
-                            v-for="(item,i) in tableDatad" :key='i'>
-                            {{ item[0] }}
-                        </span>
+            </div>
+        </div>
+        <!-- 查询结束 -->
+        <!-- 信息开始 -->
+        <div class="serviceArea">
+            <div class="serviceAreaLeft" id="scrollId" ref="Box" @scroll="orderScroll">
+                <div class="title">
+                    服务区名称
+                </div>
+                <div class="text">
+                    <el-collapse v-model="activeNames" @change="handleChange">
+                        <el-collapse-item v-for="(item,index) of forTable" :key="index" :title="item.title"
+                            :id="item.id" :name="item.name" :ref="item.id">
+                            <el-table ref="multipleTable" tooltip-effect="dark"
+                                @selection-change="handleSelectionChange" border :data="item.data"
+                                style="width: 100%;">
+                                <el-table-column type="selection" width="55">
+                                </el-table-column>
+                                <el-table-column prop="title1" label="" width="120">
+                                </el-table-column>
+                                <el-table-column prop="date1" :label="tableTr.tableTitle1">
+                                </el-table-column>
+                                <el-table-column prop="date2" :label="tableTr.tableTitle2">
+                                </el-table-column>
+                                <el-table-column prop="date3" :label="tableTr.tableTitle3">
+                                </el-table-column>
+                                <el-table-column prop="date4" :label="tableTr.tableTitle4">
+                                </el-table-column>
+                            </el-table>
+                        </el-collapse-item>
+                        <!-- <el-collapse-item title="经营对比" name="2">
+                            <el-table border :data="tableDatamanage" style="width: 100%">
+                                <el-table-column prop="title1" label="\" width="120">
+                                </el-table-column>
+                                <el-table-column prop="date1" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date2" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date3" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date4" label="请添加">
+                                </el-table-column>
+                            </el-table>
+                        </el-collapse-item>
+                        <el-collapse-item title="业态对比" name="3">
+                            <el-table border :data="tableDatacommercial" style="width: 100%">
+                                <el-table-column prop="title1" label="\" width="120">
+                                </el-table-column>
+                                <el-table-column prop="date1" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date2" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date3" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date4" label="请添加">
+                                </el-table-column>
+                            </el-table>
+                        </el-collapse-item>
+                        <el-collapse-item title="品牌分布" name="4">
+                           <el-table border :data="tableDatabrand" style="width: 100%">
+                                <el-table-column prop="title1" label="\" width="120">
+                                </el-table-column>
+                                <el-table-column prop="date1" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date2" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date3" label="请添加">
+                                </el-table-column>
+                                <el-table-column prop="date4" label="请添加">
+                                </el-table-column>
+                            </el-table>
+                        </el-collapse-item> -->
+                    </el-collapse>
+                </div>
+            </div>
+            <div class="navService">
+                <div class="nav">
+                    <div :class="{isNav:navindex==index}" v-for="(item,index) of forTable" :key="index"
+                        @click="navClick(index,item.id)">
+                        {{item.title}}
                     </div>
                 </div>
             </div>
         </div>
-        <div  class="comparisonList" style="text-align:center; width: 20%;height: 100%; position: relative">
-            <div class="right">
-                <!-- <div class="box" v-for="(it, ix) in columns"  :key="ix">
-                    <div class="title">
-                        <el-select v-model="it.value">
-                            <el-option
-                                    v-for="(item, index) in serviceData"
-                                    :label="item.label"
-                                    :value="item.value"
-                                    :key="index"
-                            ></el-option>
-                        </el-select>
-                    </div>
-                    <div class="selectCon">
-                        <div class="label">
-                            <span>时间：</span>
-                            <el-date-picker
-                                    v-model="it.time"
-                                    type="monthrange"
-                                    align="right"
-                                    value-format="yyyy-MM-dd"
-                                    format="yyyy-MM-dd"
-                                    unlink-panels
-                                    range-separator="至"
-                                    start-placeholder="开始月份"
-                                    end-placeholder="结束月份"
-                                    :picker-options="pickerOptions"
-                            >
-                            </el-date-picker>
-                        </div>
-                        <div class="label">
-                            <span>服务区：</span>
-                            <el-select v-model="it.service">
-                                <el-option
-                                        v-for="(it, indexs) in serviceData"
-                                        :label="it.label"
-                                        :value="it.value"
-                                        :key="indexs"
-                                ></el-option>
-                            </el-select>
-                        </div>
-                        <div class="label">
-                            <span>业务：</span>
-                            <el-select v-model="it.business">
-                                <el-option
-                                        v-for="(it, ix) in business"
-                                        :label="it.label"
-                                        :value="it.value"
-                                        :key="ix"
-                                ></el-option>
-                            </el-select>
-                        </div>
-                        <div class="label">
-                            <span>业态：</span>
-                            <el-select v-model="it.format">
-                                <el-option
-                                        v-for="(itx, ix) in business"
-                                        :label="itx.label"
-                                        :value="itx.value"
-                                        :key="ix"
-                                ></el-option>
-                            </el-select>
-                        </div>
-                    </div>
-                    <div class="btnGroup small">
-                        <i class="el-icon-close" @click="del(it,ix)"></i>
-                    </div>
-                </div> -->
-                <div>
-                    <table style="margin-left:10px; border-radius: 5px;" cellspacing="0" cellpadding="0"  width="100%">
-                        <tr style="background:#1D7DCA;height:30px">
-                            <th>服务区名称</th>
-                            <th>操作</th>
-                        </tr>
-                        <tr :style="{height : it.label ? '30px' : ''}" v-for="(it, ix) in columns" :key="ix">
-                            <td v-if="it.label">{{it.label}}</td>
-                            <td style="cursor:pointer" @click="detail(ix,it)" v-if="it.label">删除</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="box addService">
-                <div class="selectCon">
-                    <div class="label">
-                        <span>时间：</span>
-                        <el-date-picker v-model="selectData.time" type="monthrange" align="right"
-                            value-format="yyyy-MM-dd" format="yyyy-MM-dd" unlink-panels range-separator="至"
-                            start-placeholder="开始月份" end-placeholder="结束月份" :picker-options="pickerOptions">
-                        </el-date-picker>
-                    </div>
-                    <div class="label">
-                        <span>服务区：</span>
-                        <el-select v-model="selectData.service">
-                            <el-option v-for="(it, ix) in serviceData" :label="it.label" :value="it.value"
-                                :key="ix"></el-option>
-                        </el-select>
-                    </div>
-                    <!-- <div class="label">
-                        <span>业务：</span>
-                        <el-select v-model="selectData.business">
-                            <el-option
-                                    v-for="(it, ix) in business"
-                                    :label="it.label"
-                                    :value="it.value"
-                                    :key="ix"
-                            ></el-option>
-                        </el-select>
-                    </div>
-                    <div class="label">
-                        <span>业态：</span>
-                        <el-select v-model="selectData.format">
-                            <el-option
-                                    v-for="(it, ix) in business"
-                                    :label="it.label"
-                                    :value="it.value"
-                                    :key="ix"
-                            ></el-option>
-                        </el-select>
-                    </div> -->
-                </div>
-                <div class="btnGroup">
-                    <el-button size="mini" class="el-icon-check" type="primary" @click="newAdd"></el-button>
-                    <el-button size="mini" class="el-icon-refresh-right" type="info" @click="reset">
-                    </el-button>
-                </div>
-            </div>
-        </div>
-        <customize-template ref="customizeTemplate" @templateEmit="templateEmit"></customize-template>
+        <!-- 信息结束 -->
     </div>
 </template>
-
 <script>
-import CustomizeTemplate from "./Dialog/customizeTemplate";
-import ComparedTest from "./ComparedTest"
 export default {
-    name: "test",
-    components: { CustomizeTemplate,ComparedTest },
+    name: 'test',
     data() {
         return {
-            indexx:0,
-            tableDatad:[
-                ['基础信息'],
-                ['经营对比'],
-                ['业态对比'],
-                ['品牌分布'],
-            ],
-            prevent: false,
-            navIndex: 0,
-            tabIndex: 1,
-            service: "",
-            isIndeterminate: false,
-            checkAll: false,
-            tabsData: [
-                { name: "我的模板一", value: 1 },
-                { name: "我的模板二", value: 2 },
-                { name: "我的模板三", value: 3 }
-            ],
-            checked: [],
-            checkData: [
-                { label: "利润", value: "profit" },
-                { label: "利率", value: "interestRate" },
-                { label: "收入", value: "income" },
-                { label: "人流量", value: "humanTraffic" }
-            ],
-            columns: [
-                { code: "基础信息", value: "profit" },
-            ],
-            columns_1: [
-                { code: "parameter", label: "参数/服务区", width: 200 },
-                {
-                    code: "serviceArea_1",
-                    label: "sss",
-                    value: 1,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                },
-                {
-                    code: "serviceArea_2",
-                    label: "mmm",
-                    value: 2,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                },
-                {
-                    code: "serviceArea_3",
-                    label: "ttt",
-                    value: 3,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                }
-            ],
-            columns_2: [
-                { code: "parameter", label: "参数/服务区", width: 200 },
-                {
-                    code: "serviceArea_1",
-                    label: "rrr",
-                    value: 1,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                },
-                {
-                    code: "serviceArea_2",
-                    label: "uuu",
-                    value: 2,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                },
-                {
-                    code: "serviceArea_3",
-                    label: "iii",
-                    value: 3,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                }
-            ],
-            columns_3: [
-                { code: "parameter", label: "参数/服务区", width: 200 },
-                {
-                    code: "serviceArea_1",
-                    label: "kkk",
-                    value: 1,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                },
-                {
-                    code: "serviceArea_2",
-                    label: "lll",
-                    value: 2,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                },
-                {
-                    code: "serviceArea_3",
-                    label: "aaa",
-                    value: 3,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                }
-            ],
-            columns_4: [
-                { code: "parameter", label: "参数/服务区", width: 200 },
-                {
-                    code: "serviceArea_1",
-                    label: "bbb",
-                    value: 1,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                },
-                {
-                    code: "serviceArea_2",
-                    label: "ddd",
-                    value: 2,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                },
-                {
-                    code: "serviceArea_3",
-                    label: "ccc",
-                    value: 3,
-                    time: "",
-                    service: "",
-                    business: "",
-                    format: ""
-                }
-            ],
-            tableData: [
-                {
-                    parameter: "利润",
-                    serviceArea_1: "50万",
-                    serviceArea_2: "10万",
-                    serviceArea_3: "15万",
-                    serviceArea_4: "15万"
-                },
-                {
-                    parameter: "利率",
-                    serviceArea_1: "5.8",
-                    serviceArea_2: "3.9",
-                    serviceArea_3: "4.2",
-                    serviceArea_4: "4.2"
-                },
-                {
-                    parameter: "收入",
-                    serviceArea_1: "3.3",
-                    serviceArea_2: "9.3",
-                    serviceArea_3: "8.5",
-                    serviceArea_4: "8.5"
-                },
-                {
-                    parameter: "人流量",
-                    serviceArea_1: "5万",
-                    serviceArea_2: "1万",
-                    serviceArea_3: "5000",
-                    serviceArea_4: "5000"
-                }
-            ],
-            tableData_: [],
+            //value
+            navindex: 0,
             selectData: {
                 service: "",
                 business: "",
@@ -365,23 +154,7 @@ export default {
                     serviceId: "45r22s"
                 },
             ],
-            business: [
-                {
-                    label: "加油站",
-                    value: 1,
-                    businessId: "4erw2s"
-                },
-                {
-                    label: "自营商店",
-                    value: 2,
-                    businessId: "4er96s"
-                },
-                {
-                    label: "车辆数",
-                    value: 3,
-                    businessId: "49822s"
-                }
-            ],
+            serviceDatas: [],
             pickerOptions: {
                 shortcuts: [
                     {
@@ -408,547 +181,812 @@ export default {
                         }
                     }
                 ]
-            }
+            },
+            activeNames: ['1', '2', '3'],
+            forTable: [],
+            // 基础信息
+            tableData: [
+                {
+                    title1: '负责人',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '联系方式',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '经营面积',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '占地面积',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '运行开始时间',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '停车位数量',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '大车个数',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '小车个数',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '男蹲位',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '女蹲位',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '业态数量',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '厕所等级',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '厕所改造时间',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '充电桩数量',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '充电桩分布',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '小便器阀数量',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '面盆龙头个数',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '便民休闲座椅',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '保安人数',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '保洁人数',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '经营单位人数',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '加油员配置',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '加油机数量',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+
+
+            ],
+            //经营对比
+            tableDatamanage: [
+                {
+                    title1: '成本',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '利润',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '营收',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '车流量',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '现金流',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '水费',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '电费',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+
+            ],
+            //业态对比
+            tableDatacommercial: [
+                {
+                    title1: '一线品牌',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '超市',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '小吃',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '杂货铺',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '经营面积',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '整体营收',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '餐饮',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '其他服务',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+
+            ],
+            //品牌分类
+            tableDatabrand: [
+                {
+                    title1: 'KFC',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+                {
+                    title1: '猫屎咖啡',
+                    date1: '',
+                    date2: '',
+                    date3: '',
+                    date4: '',
+                },
+            ],
+            //保存数据
+            NewData: [],
+            // 表头内容
+            tableTr: {
+                tableTitle1: '请选择',
+                tableTitle2: '请选择',
+                tableTitle3: '请选择',
+                tableTitle4: '请选择',
+            },
+            // 用来可以删除服务的
+            navData: [],
+            multipleSelection: []
         };
     },
+    mounted() {
+        this.forTable.forEach((item, index) => {
+            this.navData.push({
+                index: index,
+                height: document.getElementById(item.id).offsetTop,
+            });
+        });
+    },
+    created() {
+        this.forTable = [
+            {
+                title: '基础信息',
+                name: '1',
+                data: this.tableData,
+                id: 'table11'
+            },
+            {
+                title: '经营对比',
+                name: '2',
+                data: this.tableDatamanage,
+                id: 'table22'
+            },
+            {
+                title: '业态对比',
+                name: '3',
+                data: this.tableDatacommercial,
+                id: 'table33'
+            },
+            {
+                title: '品牌分类',
+                name: '4',
+                data: this.tableDatabrand,
+                id: 'table44'
+            },
+        ]
+    },
     methods: {
-        detail(index,item){
-            this.$refs.comtest.details(item.service)
-            this.columns.splice(index,1)
-            this.tableDatad.forEach((element,i) => {
-                this.tableDatad[i].splice(index,1)
+
+        toggleSelection(rows) {
+            if (rows) {
+                rows.forEach(row => {
+                    this.$refs.multipleTable.toggleRowSelection(row);
+                });
+            } else {
+                this.$refs.multipleTable.clearSelection();
+            }
+        },
+        conservative() {
+            this.$prompt('请输入模板名', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+            }).then(({ value }) => {
+                if (value.trim() !== '') {
+                    this.serviceDatas.push({
+                        label: value,
+                        value: 1,
+                        serviceId: "451d2s"
+                    })
+                    this.$message({
+                        type: 'success',
+                        message: '保存成功: ' + value
+                    });
+                } else {
+                    this.$message({
+                        type: 'info',
+                        message: '请规范输入'
+                    });
+                }
+
+
+
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '取消输入'
+                });
             });
         },
-        templateEmit(v) {
-            this.tableData_ = v;
+        handleSelectionChange(val) {
+            this.multipleSelection = val;
         },
-        delTabs(v) {
-            this.prevent = true;
-            let data = JSON.parse(JSON.stringify(this.tabsData));
-            this.tabsData = [];
-            data.forEach((it, ix) => {
-                if (it.value !== v) {
-                    this.tabsData.push(it);
+        detailData(indexs) {
+            this.forTable.forEach((element, i) => {
+                element.data.forEach((item, index) => {
+                    item['date' + (indexs + 1)] = ''
+                })
+            })
+            this.tableTr['tableTitle' + (indexs + 1)] = '请选择'
+            this.NewData.splice(indexs, 1)
+        },
+        orderScroll() {
+            this.navData = []
+            this.forTable.forEach((item, index) => {
+                this.navData.push({
+                    index: index,
+                    height: document.getElementById(item.id).offsetTop - 125,
+                });
+            });
+            this.navData.forEach((element, index) => {
+                if (element.height <= this.$refs.Box.scrollTop) {
+                    this.navindex = index;
                 }
             });
-            this.tabIndex = this.tabsData[0].value;
         },
-        addTabs() {
-            this.tabsData.push({
-                name: "我的模板四",
-                value: 4
-            });
+        navClick(index, id) {
+            document.getElementById(id).scrollIntoView(true);
         },
-        customizeTemplate() {
-            this.$refs["customizeTemplate"].openDialog();
-        },
-        navClick(i) {
-             document.querySelector('.row20').scrollIntoView(true);
-            this.navIndex = i;
-        },
-        tabClick(i) {
-            if (this.prevent) {
-                this.tabIndex = this.tabsData[0].value;
-                this.columns = this["columns_" + this.tabsData[0].value];
-            }
-            if (!this.prevent) {
-                this.tabIndex = i;
-                this.columns = this["columns_" + i];
-            }
-            this.prevent = false;
-        },
-        del(item, v) {
-            let newData = [];
-            let data = JSON.parse(JSON.stringify(this.columns));
-            this.columns = [];
-            data.forEach((it, ix) => {
-                if (ix !== v) {
-                    newData.push(it);
-                }
-            });
-            this.columns = newData;
-            this["columns_" + this.tabIndex] = newData;
+        handleChange(val) {
+            console.log(val);
         },
         newAdd() {
-            if(this.tableDatad[0].length >= 5){
+            if (!this.selectData.service) {
                 this.$message({
-                    message: '最多添加4条哦',
+                    showClose: true,
+                    message: '服务区不能为空哦!',
                     type: 'warning'
                 });
                 return
             }
-            console.log(this.selectData.service)
-            if(this.selectData.service==''){
+            if (this.NewData.length == 4) {
                 this.$message({
-                    message: '服务区不能为空哦',
+                    showClose: true,
+                    message: '最多添加4条哦!',
                     type: 'warning'
                 });
                 return
             }
-            this.$refs.comtest.add(this.selectData.service)
-            let obj = {
-                code: "serviceArea_5",
-                label: "XT服务区",
-                value: "",
-                time: this.selectData.time,
-                service: this.selectData.service,
-                business: this.selectData.business,
-                format: this.selectData.format
-            };
-            this.serviceData.forEach((it, ix) => {
-                if (ix === this.selectData.service - 1) {
-                    obj.label = it.label;
-                    obj.value = ix + 1;
+            let arr = [
+                {
+                    1: '中馆驿服务区',
+                    2: '王进',
+                    3: '13972666131',
+                    4: '6784',
+                    5: '64666.99',
+                    6: '2011/4/1',
+                    7: '',
+                    8: '110',
+                    9: '60',
+                    10: '60',
+                    11: '86',
+                    12: '15194378.24',
+                    13: '五星',
+                    14: '2018/8/1',
+                    15: '8',
+                    16: '双侧',
+                    17: '66',
+                    18: '44',
+                    19: '14',
+                    20: '9',
+                    21: '15',
+                    22: '122',
+                    23: '13',
+                    24: '10',
+
+
+                    25: '中馆驿服务区',
+                    26: '',
+                    27: '',
+                    28: '',
+                    29: '',
+                    30: '',
+                    31: '9740.96',
+                    32: '299217.46',
+
+
+
+                    33: '中馆驿服务区',
+                    34: '',
+                    35: '73748',
+                    36: '63958',
+                    37: '',
+                    38: '',
+                    39: '',
+                    40: '328772',
+                    41: '158',
+
+                    42: '中馆驿服务区',
+                    43: '',
+                    44: '',
+                },
+                {
+                    1: '小池服务区',
+                    2: '徐全',
+                    3: '13307225989',
+                    4: '5700',
+                    5: '56666.95',
+                    6: '2013/10/1',
+                    7: '',
+                    8: '60',
+                    9: '120',
+                    10: '56',
+                    11: '72',
+                    12: '11761493.86',
+                    13: '四星',
+                    14: '2018/9/1',
+                    15: '8',
+                    16: '双侧',
+                    17: '50',
+                    18: '24',
+                    19: '16',
+                    20: '9',
+                    21: '14',
+                    22: '92',
+                    23: '15',
+                    24: '8',
+
+
+                    25: '小池服务区',
+                    26: '',
+                    27: '',
+                    28: '',
+                    29: '',
+                    30: '',
+                    31: '10738.7',
+                    32: '65578.51',
+
+                    33: '小池服务区',
+                    34: '',
+                    35: '84698',
+                    36: '380946',
+                    37: '',
+                    38: '',
+                    39: '',
+                    40: '395583',
+                    41: '',
+
+                    42: '中馆驿服务区',
+                    43: '',
+                    44: '',
+                },
+                {
+                    1: '木子店服务区',
+                    2: '邹俊超',
+                    3: '15672652828',
+                    4: '3344',
+                    5: '66667',
+                    6: '2011/4/1',
+                    7: '',
+                    8: '34',
+                    9: '100',
+                    10: '88',
+                    11: '128',
+                    12: '10999071.1',
+                    13: '四星',
+                    14: '2018/1/1',
+                    15: '8',
+                    16: '双侧',
+                    17: '88',
+                    18: '48',
+                    19: '0',
+                    20: '9',
+                    21: '15',
+                    22: '71',
+                    23: '17',
+                    24: '16',
+
+
+
+                    25: '木子店服务区',
+                    26: '',
+                    27: '',
+                    28: '',
+                    29: '',
+                    30: '',
+                    31: '3338',
+                    32: '46281.73',
+
+
+
+                    33: '木子店服务区',
+                    34: '',
+                    35: '50905',
+                    36: '266243',
+                    37: '',
+                    38: '',
+                    39: '',
+                    40: '520720',
+                    41: '',
+
+                    42: '中馆驿服务区',
+                    43: '',
+                    44: '',
+                },
+                {
+                    1: '黄梅服务区',
+                    2: '皮大超',
+                    3: '15102799002',
+                    4: '2000',
+                    5: '53333.6',
+                    6: '2001/1/1',
+                    7: '',
+                    8: '90',
+                    9: '100',
+                    10: '60',
+                    11: '60',
+                    12: '19028356.3',
+                    13: '三星',
+                    14: '2020/1/1',
+                    15: '8',
+                    16: '双侧',
+                    17: '60',
+                    18: '60',
+                    19: '0',
+                    20: '9',
+                    21: '17',
+                    22: '50',
+                    23: '19',
+                    24: '12',
+
+
+                    25: '黄梅服务区',
+                    26: '',
+                    27: '',
+                    28: '',
+                    29: '',
+                    30: '',
+                    31: '19250.66',
+                    32: '284539.4',
+
+
+                    33: '黄梅服务区',
+                    34: '',
+                    35: '118091',
+                    36: '971062',
+                    37: '',
+                    38: '',
+                    39: '',
+                    40: '1012035',
+                    41: '',
+
+                    42: '中馆驿服务区',
+                    43: '',
+                    44: '',
                 }
-            });
-            this.business.forEach((it, ix) => {
-                if (ix === this.selectData.business - 1) {
-                    obj.business = this.selectData.business;
-                }
-            });
-            this.indexx++;
-            this.columns.push(obj);
-            let obj_ = ["2万", "3.3", "6.3", "10万"];
-            this.tableData.forEach((it, ix) => {
-                it.serviceArea_5 = obj_[ix];
-            });
-             
-            this.reset();
-        },
-        reset() {
-            this.selectData = {
-                service: "",
-                business: "",
-                format: "",
-                time: ""
-            };
-        }
-    },
-    mounted() {
-        // this.columns = this.columns_1;
-        this.checkAll = true;
-        this.checkData.forEach(i => {
-            this.checked.push(i.label);
-        });
-        if (this.checkAll) {
-            this.tableData_ = this.tableData;
-        }
-        if (!this.checkAll) {
-            this.tableData_ = [];
-        }
-    }
-};
-</script>
-
-<style scoped lang="less">
-.container {
-    width: 105%;
-    height: 930px;
-    display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-
-    .left {
-        width: 80%;
-        height: 100%;
-        display: flex;
-
-        .head_tabs {
-            width: 100%;
-            overflow: hidden;
-
-            .tabs {
-                width: 96%;
-                margin: 0 2%;
-                height: 100%;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                align-items: center;
-
-                .tabs_item {
-                    margin: 0 10px;
-                    width: 200px;
-                    height: 70%;
-                    text-align: center;
-                    display: flex;
-                    flex-wrap: nowrap;
-                    flex-direction: column;
-                    justify-content: space-around;
-                    cursor: pointer;
-                    position: relative;
-                    border-radius: 5px;
-                    background: #fff;
-                    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-
-                    .del {
-                        position: absolute;
-                        width: 20px;
-                        height: 20px;
-                        display: none;
-                        line-height: 20px;
-                        text-align: center;
-                        top: 2px;
-                        right: 2px;
-                        color: #fff;
+            ]
+            this.NewData.push({ 'index': this.NewData.length, 'data': this.serviceData[this.selectData.service - 1].label })
+            console.log(this.NewData.length, 555)
+            this.tableTr['tableTitle' + this.NewData.length] = arr[this.selectData.service - 1][1]
+            this.forTable.forEach((element, i) => {
+                element.data.forEach((item, index) => {
+                    switch (i) {
+                        case 0:
+                            item['date' + this.NewData.length] = arr[this.selectData.service - 1][index + 2] != '' ?
+                                arr[this.selectData.service - 1][index + 2] :
+                                '/'
+                            break;
+                        case 1:
+                            item['date' + this.NewData.length] = arr[this.selectData.service - 1][index + 26] != '' ?
+                                arr[this.selectData.service - 1][index + 26] :
+                                '/'
+                            break;
+                        case 2:
+                            item['date' + this.NewData.length] = arr[this.selectData.service - 1][index + 34] != '' ?
+                                arr[this.selectData.service - 1][index + 34] :
+                                '/'
+                            break;
+                        default:
+                            item['date' + this.NewData.length] = arr[this.selectData.service - 1][index + 43] != '' ?
+                                arr[this.selectData.service - 1][index + 43] :
+                                '/'
+                            break;
                     }
-                }
 
-                .tabsAdd {
-                    margin-left: 10px;
-                    width: 25px;
-                    height: 25px;
-                    font-size: 25px;
-                    line-height: 25px;
-                    text-align: center;
-                    cursor: pointer;
-                }
+                });
+            });
 
-                .tabsAdd:hover {
-                    color: #1d7dca;
-                }
-
-                .borderBottom {
-                    background: #1d7dca;
-                    color: #fff;
-                }
-
-                .tabs_item:hover {
-                    background: #1d7dca;
-                    color: #fff;
-                }
-
-                .tabs_item:hover .del {
-                    display: block;
-                }
-            }
-        }
-
-        .navBox {
-            width: 100%;
-            height: 90%;
-            padding-top: 10px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            overflow: auto;
-            justify-content: space-around;
-
-            .navItem {
-                display: inline-block;
-                width: 80%;
-                margin: 0 10%;
-                line-height: 2;
-                text-align: center;
-                cursor: pointer;
-            }
-
-            .active {
-                color: white;
-            }
-        }
-
-        .customizeBtn {
-            width: 100%;
-            height: 5%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-        }
-
-        .customizeBtn /deep/ .el-button {
-            height: 30px;
-            width: 80%;
-            margin: 0 auto;
-            font-size: 16px;
-            line-height: 30px;
-            padding: 0 5px;
-            border-radius: 0;
-            background: none;
-            border: none;
-            color: #000;
-        }
-
-        .customizeBtn /deep/ .el-button:hover {
-            color: white;
-            background: none;
-        }
-
-        .head {
-            display: flex;
-            width: 95%;
-            padding: 0 2.5%;
-
-            .selected {
-                width: 70%;
-                height: 100px;
-                background: #efedf2;
-                overflow: scroll;
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: row;
-                justify-content: flex-start;
-
-                .checkAll {
-                    width: 100% !important;
-                    height: 1px !important;
-                }
-            }
-
-            .selected /deep/ .el-checkbox {
-                width: 150px;
-            }
-
-            .selected::-webkit-scrollbar {
-                display: none;
-            }
-
-            .time {
-            }
-        }
-    }
-
-    .right {
-        width: 100%;
-        height: 78%;
-        overflow-y: scroll;
-        position: relative;
-
-        .box {
-            width: 94%;
-            height: 215px;
-            background: #fff;
-            position: relative;
-            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            margin: 5px auto;
-            overflow: hidden;
-
-            .selectCon {
-                width: 90%;
-                margin: auto;
-                padding: 5px 0;
-                font-size: 12px;
-
-                .label {
-                    width: 100%;
-                    line-height: 40px;
-                }
-
-                .label > span {
-                    width: 20%;
-                    display: inline-block;
-                }
-
-                .label /deep/ .el-select {
-                    width: 75%;
-                }
-
-                .label /deep/ .el-select > .el-input {
-                    width: 100%;
-                }
-
-                .label /deep/ .el-select > .el-input > .el-input__inner {
-                    width: 100%;
-                    height: 30px;
-                    line-height: 30px;
-                }
-
-                .label /deep/ .el-select > .el-input > .el-input__suffix {
-                    height: 30px;
-                }
-
-                .label
-                    /deep/
-                    .el-select
-                    > .el-input
-                    > .el-input__suffix
-                    > .el-input__suffix-inner
-                    > .el-select__caret {
-                    height: 30px;
-                    line-height: 30px;
-                }
-
-                .label /deep/ .el-date-editor {
-                    width: 75%;
-                    height: 30px;
-                    line-height: 30px;
-                }
-
-                .label /deep/ .el-date-editor > .el-input__icon {
-                    height: 30px;
-                    line-height: 30px;
-                }
-
-                .label /deep/ .el-date-editor > .el-range-input {
-                    height: 25px;
-                    line-height: 25px;
-                }
-
-                .label /deep/ .el-date-editor > .el-range-separator {
-                    height: 30px;
-                    line-height: 30px;
-                }
-            }
-
-            .title {
-                text-align: center;
-            }
-
-            .title /deep/ .el-select > .el-input {
-                height: 30px;
-                line-height: 30px;
-            }
-
-            .title /deep/ .el-select > .el-input > .el-input__inner {
-                height: 30px;
-                line-height: 30px;
-                border: none;
-                border-bottom: 1px solid #d1d1d1;
-                border-radius: 0;
-                text-align: center;
-            }
-
-            .title
-                /deep/
-                .el-select
-                > .el-input
-                > .el-input__suffix
-                > .el-input__suffix-inner
-                > .el-select__caret {
-                height: 30px;
-                line-height: 30px;
-            }
-
-            .btnGroup {
-                width: 100%;
-                height: 30px;
-                position: absolute;
-                // top: 0;
-                // left: 0;
-                text-align: center;
-            }
-
-            .small {
-                width: 100%;
-                height: 0;
-                font-size: 20px;
-                transition: linear 0.2s;
-            }
-
-            .small > i {
-                width: 20px;
-                height: 20px;
-                background: rgba(77, 77, 77, 0.66);
-                border-radius: 100%;
-                color: white;
-                cursor: pointer;
-            }
-        }
-
-        .box > p {
-            text-align: center;
-        }
-
-        .box:hover .small {
-            height: 25px;
-            line-height: 25px;
-        }
-    }
-
-    .addService {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 15%;
-        overflow: hidden;
-
-        .selectCon {
-            width: 90%;
-            height: 200px;
-            margin: auto;
-            padding: 5px 0;
-
-            .label {
-                width: 100%;
-                line-height: 40px;
-            }
-
-            .label > span {
-                width: 25%;
-                display: inline-block;
-            }
-
-            .label /deep/ .el-select {
-                width: 75%;
-            }
-
-            .label /deep/ .el-select > .el-input {
-                width: 100%;
-            }
-
-            .label /deep/ .el-select > .el-input > .el-input__inner {
-                width: 100%;
-                height: 30px;
-                line-height: 30px;
-            }
-
-            .label /deep/ .el-select > .el-input > .el-input__suffix {
-                height: 30px;
-            }
-
-            .label
-                /deep/
-                .el-select
-                > .el-input
-                > .el-input__suffix
-                > .el-input__suffix-inner
-                > .el-select__caret {
-                height: 30px;
-                line-height: 30px;
-            }
-
-            .label /deep/ .el-date-editor {
-                width: 75%;
-                height: 30px;
-                line-height: 30px;
-            }
-
-            .label /deep/ .el-date-editor > .el-input__icon {
-                height: 30px;
-                line-height: 30px;
-            }
-
-            .label /deep/ .el-date-editor > .el-range-input {
-                height: 25px;
-                line-height: 25px;
-            }
-
-            .label /deep/ .el-date-editor > .el-range-separator {
-                height: 30px;
-                line-height: 30px;
-            }
-        }
-
-        .btnGroup {
-            width: 100%;
-            height: 30px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-        }
+            this.selectData.service = ''
+        },
     }
 }
-
-.right::-webkit-scrollbar {
-    display: none;
-}
-.comparisonList {
+</script>
+<style lang="less" scoped>
+.labelFlex {
     display: flex;
-    flex-direction: column-reverse;
-    
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    align-items: center;
+    .label {
+        width: 20%;
+        span {
+            font-size: 14px;
+        }
+    }
+    .detail {
+        position: fixed;
+        right: 1%;
+        top: 2%;
+        width: 10%;
+        height: 15%;
+        border-radius: 10px;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.1);
+        span {
+            cursor: pointer;
+        }
+    }
+}
+.serviceArea {
+    // width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px 0 10px;
+
+    .serviceAreaLeft {
+        width: 85%;
+        height: 800px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            color: #fff;
+            background: #1579d1;
+        }
+        .text {
+        }
+    }
+
+    .navService {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        .nav {
+            div {
+                background: #1d7dca;
+                margin: 10px;
+                padding: 10px 20px 10px 20px;
+                color: #fff;
+                cursor: pointer;
+            }
+            .isNav {
+                background: #409efe;
+            }
+        }
+    }
+}
+
+.text /deep/ .el-collapse-item__arrow {
+    margin: 0;
+    margin-left: 10px;
+}
+.text /deep/ .el-collapse-item__header {
+    padding-left: 10px;
+}
+.label /deep/ .el-select {
+    width: 75%;
+}
+
+.label /deep/ .el-select > .el-input {
+    width: 100%;
+}
+
+.label /deep/ .el-select > .el-input > .el-input__inner {
+    width: 100%;
+    height: 40px;
+    line-height: 30px;
+}
+
+.label
+    /deep/
+    .el-select
+    > .el-input
+    > .el-input__suffix
+    > .el-input__suffix-inner
+    > .el-select__caret {
+    height: 40px;
+    line-height: 40px;
+}
+
+.label /deep/ .el-date-editor {
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.label /deep/ .el-date-editor > .el-input__icon {
+    height: 30px;
+    line-height: 30px;
+}
+
+.label /deep/ .el-date-editor > .el-range-input {
+    height: 25px;
+    line-height: 25px;
+}
+
+.label /deep/ .el-date-editor > .el-range-separator {
+    height: 30px;
+    line-height: 30px;
 }
 </style>
