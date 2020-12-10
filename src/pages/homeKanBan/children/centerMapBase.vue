@@ -1,11 +1,15 @@
 <template>
     <div class="mapBox">
         <div class="btn">
-            <el-button @click="queryDot('service')">服务区</el-button>
-            <el-button @click="queryDot('gas')">加油站</el-button>
-            <el-button @click="changeT(0)">主题一</el-button>
-            <el-button @click="changeT(1)">主题二</el-button>
-            <el-button @click="changeT(2)">主题三</el-button>
+            <el-checkbox-group v-model="checked" @change="queryDot">
+                <el-checkbox label="服务区"></el-checkbox>
+                <el-checkbox label="卡口"></el-checkbox>
+                <el-checkbox label="收银"></el-checkbox>
+                <el-checkbox label="其他服务区"></el-checkbox>
+                <el-checkbox label="加油站"></el-checkbox>
+                <el-checkbox label="加油站-石化"></el-checkbox>
+                <el-checkbox label="加油站-交投"></el-checkbox>
+            </el-checkbox-group>
         </div>
         <div id="MAP"></div>
     </div>
@@ -14,6 +18,12 @@
 <script>
     export default {
         name: "centerMapBase",
+        props: {
+            backdrop: {
+                type: Number,
+                default: 0
+            }
+        },
         data() {
             return {
                 map: '',
@@ -29,33 +39,23 @@
                 ],
                 i: 0,
                 position: [],
-                type: ''
+                type: '',
+                timeId: '',
+                checked: ['服务区', '加油站']
             }
         },
         methods: {
-            changeT(v) {
-                this.i = v;
-                this.marker = [];
-                if (!this.type) {
-                    this.initMap(this.position)
-                }
-                if (this.type == 'service') {
-                    this.initMap(this.serviceData)
-                }
-                if (this.type == 'gas') {
-                    this.initMap(this.gasData)
-                }
-            },
             initMap(position) {
+                console.log(this.backdrop)
                 let map = new AMap.Map('MAP', {
                     center: [114.286298, 30.5855],
                     zoom: 8,
-                    mapStyle: this.mapStyleArr[this.i]
+                    mapStyle: this.mapStyleArr[this.backdrop]
                 });
                 this.map = map;
                 this.addMarker(map, position)
             },
-            async addMarker(v, position) {
+            addMarker(v, position) {
                 let that = this;
                 position.forEach((item, index) => {
                     let icon = require('../../../assets/First.png');
@@ -89,12 +89,12 @@
                     }
                     this.marker.push(marker);
                 });
-                this.marker.forEach(i => {
+                this.marker.forEach((i, x) => {
                     AMap.event.addListener(i, 'click', function () {
                         infoWindow.open(v, i.getPosition());
                     });
                     let content = [];
-                    content.push("<div style='width: 200px;text-align: center'>详细信息</div>");
+                    content.push("<div style='width: 200px;text-align: center'>" + position[x].name + "</div>");
                     content.push("<div style='width: 200px;text-align: center;height: 70px'>内容</div>");
                     let infoWindow = new AMap.InfoWindow({
                         content: content.join(""),
@@ -105,23 +105,22 @@
                     })
                     i.setMap(v);
                 });
-                await new Promise(resolve => {
-                    setInterval(_ => {
-                        resolve();
-                    }, 500)
-                })
-                setTimeout(_ => {
-                    new AMap.MarkerClusterer(v, this.marker, {
-                        gridSize: 80,
-                        renderClusterMarker: this._renderClusterMarker
-                    });
+                this.timeId = setInterval(_ => {
+                    new AMap.plugin(["AMap.MarkerClusterer"], function () {
+                        new AMap.MarkerClusterer(
+                            v,
+                            that.marker,
+                            {
+                                gridSize: 50,
+                                renderClusterMarker: that._renderClusterMarker
+                            }
+                        )
+                    })
                 }, 100)
-            },
-            closeInfoWindow() {
-                this.map.clearInfoWindow();
             },
             //点聚合
             _renderClusterMarker(context) {
+                clearInterval(this.timeId);
                 let count = this.marker.length;
                 let factor = Math.pow(context.count / count, 1 / 18);
                 let div = document.createElement('div');
@@ -145,19 +144,22 @@
                 context.marker.setContent(div)
             },
             queryDot(v) {
-                this.type = v;
                 let map = new AMap.Map('MAP', {
                     center: [114.286298, 30.5855],
                     zoom: 8,
-                    mapStyle: this.mapStyleArr[this.i]
+                    mapStyle: this.mapStyleArr[this.backdrop]
                 });
                 map.remove(this.marker);
+                this.type = v;
                 this.marker = [];
-                if (v == 'service') {
+                if (v.indexOf('服务区') !== -1 && v.indexOf('加油站') === -1) {
                     this.addMarker(map, this.serviceData)
                 }
-                if (v == 'gas') {
+                if (v.indexOf('加油站') !== -1 && v.indexOf('服务区') === -1) {
                     this.addMarker(map, this.gasData)
+                }
+                if (v.indexOf('加油站') !== -1 && v.indexOf('服务区') !== -1) {
+                    this.addMarker(map, this.position)
                 }
             }
         },
@@ -176,6 +178,22 @@
                 this.position = position;
                 this.initMap(position);
             })
+        },
+        watch: {
+            backdrop: {
+                handler(nv, ov) {
+                    if (!this.type) {
+                        this.initMap(this.position)
+                    }
+                    if (this.type == '服务区') {
+                        this.initMap(this.serviceData)
+                    }
+                    if (this.type == '加油站') {
+                        this.initMap(this.gasData)
+                    }
+                },
+                deep: true
+            }
         }
     }
 </script>
@@ -187,13 +205,22 @@
         position: relative;
 
         .btn {
+            width: 100%;
+            height: 30px;
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background-color: rgba(137, 134, 139, 0.62);
-            z-index: 9999;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 99;
+            color: white;
+            margin: auto;
+        }
+
+        .btn /deep/ .el-checkbox-group {
+            padding: 5px 20px;
+        }
+
+        .btn /deep/ .el-checkbox-group > .el-checkbox {
+            color: white;
         }
 
         #MAP {

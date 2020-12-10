@@ -15,7 +15,8 @@
                         </div>
                     </div>
                     <div class="H_top_center">
-                        <center-map :backdrop="backdrop" @showMap="showMap"></center-map>
+                        <!--                        <center-map :backdrop="backdrop" @showMap="showMap"></center-map>-->
+                        <center-map-base :backdrop="backdrop"></center-map-base>
                     </div>
                     <div class="H_top_right">
                         <HomeTopRight :backdrop="backdrop" ref="homeTopRight"></HomeTopRight>
@@ -49,6 +50,7 @@
     import ShowECharts from "../../components/common/showECharts";
     import ShowMap from "../../components/common/showMap";
     import time from "../../components/js/time"
+    import CenterMapBase from "./children/centerMapBase";
 
     export default {
         name: "homeKanBan",
@@ -152,7 +154,7 @@
                 this.$refs['showMap'].openDialog(v);
             }
         },
-        components: {ShowMap, ShowECharts, HomeBottom, HomeTopRight, CenterMap, HomeTopLeft}
+        components: {CenterMapBase, ShowMap, ShowECharts, HomeBottom, HomeTopRight, CenterMap, HomeTopLeft}
     };
 </script>
 

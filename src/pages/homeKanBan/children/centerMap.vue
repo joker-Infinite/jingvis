@@ -65,7 +65,7 @@
                 amaps: false,
                 markersData: [],
                 markerRefs: [],
-                zoom: 5,
+                zoom: 8,
                 center: [114.286298, 30.5855],
                 expandZoomRange: true,
                 markers: [],
