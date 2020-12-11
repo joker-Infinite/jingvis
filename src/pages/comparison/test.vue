@@ -582,7 +582,6 @@ export default {
             document.getElementById(id).scrollIntoView(true);
         },
         handleChange(val) {
-            console.log(val);
         },
         newAdd() {
             if (!this.selectData.service) {
