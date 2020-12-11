@@ -615,7 +615,7 @@
                                 color: "#001e6c",
                             },
                         },
-                        splitNumber: 1
+                        splitNumber: 2.6
                     },
                 ],
                 series: [
