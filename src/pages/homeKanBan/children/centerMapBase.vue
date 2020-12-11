@@ -118,9 +118,9 @@
                 let factor;
                 let Hue;
                 factor = Math.pow(context.count / count, 1 / 18);
-                Hue = 180 - factor * 80;
-                let bgColor = 'hsla(' + Hue + ',0%,50%,0.7)';
-                let borderColor = 'hsla(' + Hue + ',0%,40%,1)';
+                Hue = 180 - factor * 180;
+                let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+                let borderColor = 'hsla(' + Hue + ',100%,40%,1)';
                 if (this.selectData.indexOf('交投服务区') !== -1 && this.selectData.length === 1) {
                     factor = Math.pow(context.count / count, 1 / 18);
                     Hue = 180 - factor * 230;
@@ -128,10 +128,10 @@
                     borderColor = 'hsla(' + Hue + ',100%,40%,1)';
                 }
                 if (this.selectData.indexOf('其他服务区') !== -1 && this.selectData.length === 1) {
-                    factor = Math.pow(context.count / count, 16 / 18);
-                    Hue = 180 - factor * 50;
-                    bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
-                    borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+                    factor = Math.pow(context.count / count, 1 / 18);
+                    Hue = 180 - factor * 80;
+                    bgColor = 'hsla(' + Hue + ',0%,50%,0.7)';
+                    borderColor = 'hsla(' + Hue + ',0%,40%,1)';
                 }
                 let div = document.createElement('div');
                 let fontColor = 'rgba(255,255,255,1)';
