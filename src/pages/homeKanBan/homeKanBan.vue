@@ -16,7 +16,7 @@
                     </div>
                     <div class="H_top_center">
                         <!--                        <center-map :backdrop="backdrop" @showMap="showMap"></center-map>-->
-                        <center-map-base :backdrop="backdrop"></center-map-base>
+                        <center-map-base @MapBase="MapBase" ref="centerMap" :backdrop="backdrop"></center-map-base>
                     </div>
                     <div class="H_top_right">
                         <HomeTopRight :backdrop="backdrop" ref="homeTopRight"></HomeTopRight>
@@ -38,7 +38,7 @@
             </div>
         </div>
         <show-e-charts ref="showECharts" :backdrop="backdrop"></show-e-charts>
-        <show-map :backdrop="backdrop" ref="showMap"></show-map>
+        <show-map :backdrop="backdrop" ref="showMaps"></show-map>
     </div>
 </template>
 
@@ -146,12 +146,13 @@
                 let body_a = document.getElementById('body_a');
                 Object.assign(theme.style, style[v]);
                 Object.assign(body_a.style, bac[v]);
+                this.$refs['centerMap'].refresh(v);
             },
             showOne(v, type) {
                 this.$refs["showECharts"].openDialog(v, type, this.selectValue);
             },
-            showMap(v) {
-                this.$refs['showMap'].openDialog(v);
+            MapBase(v) {
+                this.$refs['showMaps'].openDialog(v);
             }
         },
         components: {CenterMapBase, ShowMap, ShowECharts, HomeBottom, HomeTopRight, CenterMap, HomeTopLeft}

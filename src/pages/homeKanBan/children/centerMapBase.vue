@@ -2,16 +2,15 @@
     <div class="mapBox">
         <div class="btn">
             <el-checkbox-group v-model="checked" @change="queryDot">
-                <el-checkbox label="服务区"></el-checkbox>
-                <el-checkbox label="卡口"></el-checkbox>
-                <el-checkbox label="收银"></el-checkbox>
+                <el-checkbox label="交投服务区"></el-checkbox>
                 <el-checkbox label="其他服务区"></el-checkbox>
-                <el-checkbox label="加油站"></el-checkbox>
-                <el-checkbox label="加油站-石化"></el-checkbox>
-                <el-checkbox label="加油站-交投"></el-checkbox>
+                <el-checkbox label="中石化"></el-checkbox>
+                <el-checkbox label="中石油"></el-checkbox>
+                <el-checkbox label="交投能源"></el-checkbox>
             </el-checkbox-group>
         </div>
         <div id="MAP"></div>
+        <div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
     </div>
 </template>
 
@@ -26,10 +25,19 @@
         },
         data() {
             return {
+                position: [],
+                //交投能源
+                energy: [],
+                //中石化
+                petrochemical: [],
+                //中石油
+                oil: [],
+                //交投服务区
+                myService: [],
+                //其他服务区
+                otherService: [],
                 map: '',
                 marker: [],
-                gasData: [],
-                serviceData: [],
                 mapStyleArr: [
                     // 'fresh',
                     '8cb6df918ee512eae9c9198c38a40c91',
@@ -37,13 +45,15 @@
                     'blue',
                 ],
                 i: 0,
-                position: [],
-                type: '',
                 timeId: '',
-                checked: ['服务区', '加油站']
+                checked: ['交投服务区', '其他服务区', '中石化', '中石油', '交投能源'],
+                mapData: []
             }
         },
         methods: {
+            enlargeMap() {
+                this.$emit("MapBase", this.mapData);
+            },
             initMap(position) {
                 this.marker = [];
                 let map = new AMap.Map('MAP', {
@@ -57,21 +67,13 @@
             addMarker(v, position) {
                 let that = this;
                 position.forEach((item, index) => {
-                    let icon = require('../../../assets/First.png');
-                    if (index === 0) {
-                        icon = require('../../../assets/First.png')
-                    }
-                    if (index === 1) {
-                        icon = require('../../../assets/Second.png')
-                    }
-                    if (index === 2) {
-                        icon = require('../../../assets/Thrid.png')
-                    }
-                    if (index > 2 && !item.gas) {
-                        icon = 'https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b'
-                    }
-                    if (item.gas && item.gas == 'gas') {
-                        icon = require('../../../assets/gas.png')
+                    let icon;
+                    if (item.type) {
+                        if (item.type === 'ms') icon = require('../../../assets/myService.png');
+                        if (item.type === 'os') icon = require('../../../assets/otherService.png');
+                        if (item.type === '中石化') icon = require('../../../assets/zsh.png');
+                        if (item.type === '中石油') icon = require('../../../assets/zsy.png');
+                        if (item.type === '交投能源') icon = require('../../../assets/jtny.png');
                     }
                     let marker = new AMap.Marker({
                         icon: new AMap.Icon({
@@ -95,7 +97,6 @@
                         offset: new AMap.Pixel(3, -33)
                     });
                     infoWindow.on('close', function () {
-                        // console.log('close')
                     })
                     i.setMap(v);
                 });
@@ -146,49 +147,109 @@
                 map.remove(this.marker);
                 this.type = v;
                 this.marker = [];
-                if (v.indexOf('服务区') !== -1 && v.indexOf('加油站') === -1) {
-                    this.addMarker(map, this.serviceData)
-                }
-                if (v.indexOf('加油站') !== -1 && v.indexOf('服务区') === -1) {
-                    this.addMarker(map, this.gasData)
-                }
-                if (v.indexOf('加油站') !== -1 && v.indexOf('服务区') !== -1) {
-                    this.addMarker(map, this.position)
-                }
+                let position = [];
+                if (v.indexOf('交投服务区') != -1) position.push(...this.myService)
+                if (v.indexOf('其他服务区') != -1) position.push(...this.otherService)
+                if (v.indexOf('中石化') != -1) position.push(...this.petrochemical)
+                if (v.indexOf('中石油') != -1) position.push(...this.oil)
+                if (v.indexOf('交投能源') != -1) position.push(...this.energy)
+                this.initMap(position)
+            },
+            refresh(d) {
+                this.map.remove(this.marker);
+                this.marker = [];
+                let position = [];
+                if (this.checked.indexOf('交投服务区') != -1) position.push(...this.myService)
+                if (this.checked.indexOf('其他服务区') != -1) position.push(...this.otherService)
+                if (this.checked.indexOf('中石化') != -1) position.push(...this.petrochemical)
+                if (this.checked.indexOf('中石油') != -1) position.push(...this.oil)
+                if (this.checked.indexOf('交投能源') != -1) position.push(...this.energy)
+                let map = new AMap.Map('MAP', {
+                    center: [114.286298, 30.5855],
+                    zoom: 8,
+                });
+                map.setMapStyle("amap://styles/" + this.mapStyleArr[d])
+                this.map = map;
+                this.addMarker(map, position)
             }
         },
         mounted() {
             let position = [];
+            //交投能源
+            let energy = [];
+            //中石化
+            let petrochemical = [];
+            //中石油
+            let oil = [];
+            //交投服务区
+            let myService = [];
+            //其他服务区
+            let otherService = [];
             this.$axios.get('/api/index/list_jtService').then(res => {
-                this.serviceData = JSON.parse(JSON.stringify(res.data.data.servicefrom));
-                position = res.data.data.servicefrom;
-                res.data.data.stationfrom.forEach(i => {
-                    if (i.latitude != 1) {
-                        i.gas = 'gas';
-                        position.push(i);
-                        this.gasData.push(i);
+                let data = res.data.data;
+                this.mapData = JSON.parse(JSON.stringify(res.data.data));
+                data.forEach(i => {
+                    if (i.fwqDanwei == "湖北交投实业发展有限公司") {
+                        if (i.fwqJ && i.fwqW) {
+                            myService.push({
+                                longitude: i.fwqJ,
+                                latitude: i.fwqW,
+                                name: i.gisName,
+                                type: 'ms'
+                            });
+                        }
+                    }
+                    if (i.fwqDanwei != "湖北交投实业发展有限公司") {
+                        if (i.fwqJ && i.fwqW) {
+                            otherService.push({
+                                longitude: i.fwqJ,
+                                latitude: i.fwqW,
+                                name: i.gisName,
+                                type: 'os'
+                            });
+                        }
+                    }
+                    if (i.jyzDanwei && i.jyzDanwei.charAt(2) == '化') {
+                        if (i.jyzJ && i.jyzW) {
+                            petrochemical.push({
+                                longitude: i.jyzJ,
+                                latitude: i.jyzW,
+                                name: i.jyzDanwei,
+                                type: '中石化'
+                            })
+                        }
+
+                    }
+                    if (i.jyzDanwei && i.jyzDanwei.charAt(2) == '油') {
+                        if (i.jyzJ && i.jyzW) {
+                            oil.push({
+                                longitude: i.jyzJ,
+                                latitude: i.jyzW,
+                                name: i.jyzDanwei,
+                                type: '中石油'
+                            })
+                        }
+                    }
+                    if (i.jyzDanwei && i.jyzDanwei == '交投能源') {
+                        if (i.jyzJ && i.jyzW) {
+                            energy.push({
+                                longitude: i.jyzJ,
+                                latitude: i.jyzW,
+                                name: i.jyzDanwei,
+                                type: '交投能源'
+                            })
+                        }
                     }
                 });
-                this.position = position;
+                this.myService = myService;
+                this.otherService = otherService;
+                this.petrochemical = petrochemical;
+                this.oil = oil;
+                this.energy = energy;
+                this.position = position = [...myService, ...otherService, ...petrochemical, ...oil, ...energy];
                 this.initMap(position);
             })
         },
-        watch: {
-            backdrop: {
-                handler(nv, ov) {
-                    if (!this.type) {
-                        this.initMap(this.position)
-                    }
-                    if (this.type == '服务区') {
-                        this.initMap(this.serviceData)
-                    }
-                    if (this.type == '加油站') {
-                        this.initMap(this.gasData)
-                    }
-                },
-                deep: true
-            }
-        }
     }
 </script>
 
@@ -220,6 +281,22 @@
         #MAP {
             width: 100%;
             height: 100%;
+        }
+
+        .enlarge {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 30px;
+            height: 30px;
+            background: rgba(0, 0, 0, .5);
+            border: 1px solid white;
+            z-index: 99;
+            font-size: 30px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            color: white;
         }
     }
 </style>
