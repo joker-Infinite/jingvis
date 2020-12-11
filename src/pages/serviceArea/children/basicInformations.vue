@@ -123,8 +123,8 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                serviceName: '大悟服务区',
-                                                unit: '%',
+                                                serviceName: '',
+                                                unit: '个',
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
@@ -748,8 +748,8 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                serviceName: '大悟服务区',
-                                                unit: '%',
+                                                serviceName: '',
+                                                unit: '个',
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",

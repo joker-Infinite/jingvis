@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <div class="collapse" id="collapse" :style="{width:navBarShow?'90%':'98%'}">
+        <!-- :style="{width:navBarShow?'90%':'98%'}" -->
+        <div class="collapse" id="collapse" >
             <div v-for="(item, index) in collapseData"
                  :key="index"
                  :id="item.id"
@@ -80,14 +81,22 @@
                                          !wit.isbar &&
                                          wit.option.series[0].data[0].name!=='占比')">
                                         <div>{{wit.serviceName?wit.serviceName:''}}
-                                            最高：{{showTarget(wit.option,'max',wit.unit)}}
+                                            最高：{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ? 
+                                            parseInt(showTarget(wit.option,'max',wit.unit)) : 
+                                            showTarget(wit.option,'max',wit.unit)}}
                                             {{wit.unit?wit.unit:'万元'}}
                                         </div>
                                         <div>{{wit.serviceName?wit.serviceName:''}}
-                                            最低：{{showTarget(wit.option,'min',wit.unit)}}
+                                            最低：{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ? 
+                                                parseInt(showTarget(wit.option,'min',wit.unit)):
+                                                showTarget(wit.option,'min',wit.unit)
+                                                }}
                                             {{wit.unit?wit.unit:'万元'}}
                                         </div>
-                                        <div style="text-align: right">平均：{{showTarget(wit.option,'average',wit.unit)}}
+                                        <div style="text-align: right">
+                                            平均：{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ?
+                                            parseInt(showTarget(wit.option,'average',wit.unit)):
+                                            showTarget(wit.option,'average',wit.unit)}}
                                             {{wit.unit?wit.unit:'万元'}}
                                         </div>
                                     </div>
@@ -140,7 +149,8 @@
                 </el-collapse>
             </div>
         </div>
-        <div class="navigation" v-if="navBarShow">
+        <!-- <div class="navigation" v-if="navBarShow"> -->
+        <div class="navigation" v-if="false">
             <div class="navBar">
                 <p></p>
                 <p style="cursor: pointer" @click="collapseAll">
