@@ -477,7 +477,6 @@ export default {
                 });
                 return
             }
-            console.log(this.selectData.service)
             if(this.selectData.service==''){
                 this.$message({
                     message: '服务区不能为空哦',

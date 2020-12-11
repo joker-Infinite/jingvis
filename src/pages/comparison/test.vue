@@ -602,7 +602,6 @@ export default {
             document.getElementById(id).scrollIntoView(true);
         },
         handleChange(val) {
-            console.log(val);
         },
         newAdd() {
             if (!this.selectData.service) {
@@ -830,7 +829,6 @@ export default {
                 }
             ]
             this.NewData.push({ 'index': this.NewData.length, 'data': this.serviceData[this.selectData.service - 1].label })
-            console.log(this.NewData.length, 555)
             this.tableTr['tableTitle' + this.NewData.length] = arr[this.selectData.service - 1][1]
             this.forTable.forEach((element, i) => {
                 element.data.forEach((item, index) => {

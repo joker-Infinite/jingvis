@@ -38,13 +38,14 @@
                                     </el-button>
                                 </div>
                             </div>
-                            <div  v-for="(sit, six) in cit.EChartsBox"
+                            <div v-for="(sit, six) in cit.EChartsBox"
                                  :key="six"
                                  :style="sit.style">
                                 <div class="Title">{{ sit.title }}</div>
                                 <div class="query"
                                      v-if="sit.time || sit.select || sit.input">
-                                     <el-input v-model="query.inputValue" v-if="sit.input" placeholder="请输入内容"></el-input>
+                                    <el-input v-model="query.inputValue" v-if="sit.input"
+                                              placeholder="请输入内容"></el-input>
                                     <el-select v-model="query.selectValue"
                                                v-if="sit.select"></el-select>
                                     <el-date-picker
@@ -75,12 +76,20 @@
                                          v-if="(wit.option && wit.option.series && 
                                          wit.option.series[0].data.length !==0 && 
                                          wit.option.series[0].type !=='pie' &&
-                                         wit.option.series[0].type !=='line' &&
+                                         !wit.isTitle&&
                                          !wit.isbar &&
                                          wit.option.series[0].data[0].name!=='占比')">
-                                         <div>平均：{{showTarget(wit.option,'average') + '万元'}}</div>
-                                         <div>最高：{{showTarget(wit.option,'max') + '万元'}}</div>
-                                         <div>最低：{{showTarget(wit.option,'min') + '万元'}}</div>
+                                        <div>{{wit.serviceName?wit.serviceName:''}}
+                                            最高：{{showTarget(wit.option,'max',wit.unit)}}
+                                            {{wit.unit?wit.unit:'万元'}}
+                                        </div>
+                                        <div>{{wit.serviceName?wit.serviceName:''}}
+                                            最低：{{showTarget(wit.option,'min',wit.unit)}}
+                                            {{wit.unit?wit.unit:'万元'}}
+                                        </div>
+                                        <div style="text-align: right">平均：{{showTarget(wit.option,'average',wit.unit)}}
+                                            {{wit.unit?wit.unit:'万元'}}
+                                        </div>
                                     </div>
                                     <div class="MaxMinAverage" v-if="wit.isTitle">
                                         <div>回款：{{showTget(wit.option,'averages') + '%'}}</div>
@@ -92,8 +101,8 @@
                                         暂无数据
                                     </div>
                                     <div v-if="wit.isbar" class="switchover">
-                                        <el-button  size="mini" @click="switchoverClick(1)">供应商</el-button>
-                                        <el-button  size="mini" @click="switchoverClick(2)">业态</el-button>
+                                        <el-button size="mini" @click="switchoverClick(1)">供应商</el-button>
+                                        <el-button size="mini" @click="switchoverClick(2)">业态</el-button>
                                     </div>
                                     <div v-if="!wit.type"
                                          style="width: 100%; height: 100%;overflow: hidden;"
@@ -161,7 +170,7 @@
         name: "myCollapseBase",
         components: {MyMap, MyTable, MyInformation},
         props: {
-            navBarShow:{
+            navBarShow: {
                 type: Boolean,
                 default: false,
             },
@@ -176,7 +185,7 @@
         },
         data() {
             return {
-                isShowswitchover:1,
+                isShowswitchover: 1,
                 activeName: [],
                 activeName_: [],
                 sumClick: "",
@@ -208,87 +217,95 @@
         },
         methods: {
             // 切换供应商跟业态的
-            switchoverClick(i){
+            switchoverClick(i) {
                 this.isShowswitchover = i
             },
             // 计算百分比
-            showTget(v, type){
+            showTget(v, type) {
                 let obj = {
                     min: '',
                     max: '',
                     average: '',
-                    averages:''
+                    averages: ''
                 };
                 let mun = [];
                 let num = 0;
                 if (v && v.series) {
                     let d = v.series[0].data;
                     d.forEach(i => {
-                        if(!!i.value){
+                        if (!!i.value) {
                             mun.push(i.value);
                             num += Number(i.value);
-                        }else{
+                        } else {
                             mun.push(i);
                             num += Number(i);
                         }
                     });
                     obj.max = Math.max(...mun);
                     obj.min = Math.min(...mun);
-                    obj.average = parseInt(num / d.length )
+                    obj.average = parseInt(num / d.length)
                     if (type === 'max') {
-                        return parseInt(obj.max );
+                        return parseInt(obj.max);
                     }
                     if (type === 'min') {
-                        return parseInt(obj.min );
+                        return parseInt(obj.min);
                     }
                     if (type === 'average') {
                         return obj.average;
                     }
-                    if(type === 'averages'){
-                        obj.averages = v.series[1].data.reduce((prev,cur,index,arr)=>{
+                    if (type === 'averages') {
+                        obj.averages = v.series[1].data.reduce((prev, cur, index, arr) => {
                             return prev + cur;
-                        },0);
+                        }, 0);
                         return parseInt(obj.averages / v.series[1].data.length)
                     }
                 }
             },
             // 计算平均值最小值最大值
-            showTarget(v, type) {
+            showTarget(v, type, unit) {
                 let obj = {
                     min: '',
                     max: '',
                     average: '',
-                    averages:''
+                    averages: ''
                 };
                 let mun = [];
                 let num = 0;
+                let divisor = 1;
+                if (unit === '%') {
+                    divisor = 100;
+                } else if (!unit) {
+                    divisor = 10000
+                } else {
+                    divisor = 1;
+                }
                 if (v && v.series) {
                     let d = v.series[0].data;
                     d.forEach(i => {
-                        if(!!i.value){
+                        if (!!i.value) {
                             mun.push(i.value);
                             num += Number(i.value);
-                        }else{
+                        } else {
                             mun.push(i);
                             num += Number(i);
                         }
                     });
                     obj.max = Math.max(...mun);
                     obj.min = Math.min(...mun);
-                    obj.average = parseInt(num / d.length  / 10000)
+                    obj.average = (num / d.length / divisor).toFixed(2);
                     if (type === 'max') {
-                        return parseInt(obj.max / 10000);
+                        return (obj.max / divisor).toFixed(2);
                     }
                     if (type === 'min') {
-                        return parseInt(obj.min / 10000);
+                        return (obj.min / divisor).toFixed(2);
                     }
                     if (type === 'average') {
                         return obj.average;
                     }
-                    if(type === 'averages'){
-                        obj.averages = v.series[1].data.reduce((prev,cur,index,arr)=>{
+                    if (type === 'averages') {
+                        obj.averages = v.series[1].data.reduce((prev, cur, index, arr) => {
                             return prev + cur;
-                        },0);
+                        }, 0);
                         return parseInt(obj.averages)
                     }
                 }
@@ -320,7 +337,7 @@
                                         if (si.type !== "table" && si.type !== "map" && si.type !== "box") {
                                             this.$echarts.init(document.getElementById(id)).dispose();
                                             this.$nextTick((_) => {
-                                                if(si.option.series[0].data.length!==0){
+                                                if (si.option.series[0].data.length !== 0) {
                                                     this.$echarts.init(document.getElementById(id)).setOption(si.option);
                                                 }
                                             });
@@ -344,7 +361,7 @@
                     timeID = setInterval(() => {
                         if (this.time !== this.EChartsData.length) {
                             let item = this.EChartsData[this.time];
-                            if(item.option.series[0].data.length!==0){
+                            if (item.option.series[0].data.length !== 0) {
                                 this.$echarts.init(document.getElementById(item.id)).setOption(item.option);
                             }
                             this.time++;
@@ -665,10 +682,12 @@
                     .query /deep/ .el-date-editor {
                         margin: 10px 20px 0 0;
                     }
+
                     .query /deep/ .el-input {
                         margin: 10px 20px 0 0;
                         width: 180px;
                     }
+
                     .query /deep/ .el-select {
                         margin: 10px 20px 0 0;
                     }
@@ -780,7 +799,7 @@
                 margin-left: 20%;
                 transition: linear 0.3s;
                 border-radius: 10px;
-                
+
                 .img {
                     width: 20px;
                     vertical-align: -6px;
@@ -790,19 +809,20 @@
 
         .echarts {
             position: relative;
-            
-            
-            .MaxMinAverage{
+
+
+            .MaxMinAverage {
                 position: absolute;
                 display: flex;
-                flex-direction: column-reverse;
+                flex-direction: column;
                 top: -40px;
                 right: 10px;
                 background: #fff;
                 padding: 5px;
                 box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
                 border-radius: 10px;
-                div{
+
+                div {
                     font-weight: 700;
                 }
             }
@@ -820,7 +840,8 @@
                 bottom: 0;
                 margin: auto;
             }
-            .switchover{
+
+            .switchover {
                 z-index: 10;
                 position: absolute;
                 right: 10px;
@@ -830,7 +851,8 @@
                 top: 10px;
                 display: flex;
             }
-            .switchover /deep/ .el-button{
+
+            .switchover /deep/ .el-button {
                 border: none !important;
                 padding: 0;
                 background: none !important;
