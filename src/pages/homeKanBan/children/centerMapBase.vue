@@ -47,7 +47,8 @@
                 i: 0,
                 timeId: '',
                 checked: ['交投服务区', '其他服务区', '中石化', '中石油', '交投能源'],
-                mapData: []
+                mapData: [],
+                color: '255,0,0'
             }
         },
         methods: {
@@ -115,15 +116,27 @@
             },
             //点聚合
             _renderClusterMarker(context) {
+                console.log(context)
                 clearInterval(this.timeId);
                 let count = this.marker.length;
                 let factor = Math.pow(context.count / count, 1 / 18);
                 let div = document.createElement('div');
                 let Hue = 180 - factor * 180;
-                let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
-                let fontColor = 'hsla(' + Hue + ',100%,20%,1)';
-                let borderColor = 'hsla(' + Hue + ',100%,40%,1)';
-                let shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
+                let color = '';
+                if (context.count > 0 && context.count <= 50) color = 'rgba(' + this.color + ',.2)'
+                if (context.count > 50 && context.count <= 100) color = 'rgba(' + this.color + ',.3)'
+                if (context.count > 100 && context.count <= 150) color = 'rgba(' + this.color + ',.4)'
+                if (context.count > 150 && context.count <= 200) color = 'rgba(' + this.color + ',.5)'
+                if (context.count > 200 && context.count <= 250) color = 'rgba(' + this.color + ',.6)'
+                if (context.count > 250 && context.count <= 300) color = 'rgba(' + this.color + ',.7)'
+                if (context.count > 300 && context.count <= 350) color = 'rgba(' + this.color + ',.8)'
+                if (context.count > 350 && context.count <= 400) color = 'rgba(' + this.color + ',.9)'
+                if (context.count > 400) color = 'rgba(' + this.color + ',1)'
+                let bgColor = color;
+                // let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+                let fontColor = 'rgba(255,255,255,1)';
+                let borderColor = 'rgba(' + this.color + ',1)';
+                let shadowColor = 'rgba(' + this.color + ',1)';
                 div.style.backgroundColor = bgColor;
                 let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
                 div.style.width = div.style.height = size + 'px';
@@ -139,6 +152,7 @@
                 context.marker.setContent(div)
             },
             queryDot(v) {
+                this.color = '0,0,255'
                 let map = new AMap.Map('MAP', {
                     center: [114.286298, 30.5855],
                     zoom: 8,
