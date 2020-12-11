@@ -18,7 +18,7 @@
             </div>
             <div class="label" style="width:30%">
                 <span>请选择模板：</span>
-                <el-select v-model="selectData.service">
+                <el-select v-model="selectData.services">
                     <el-option v-for="(it, ix) in serviceDatas" :label="it.label" :value="it.value" :key="ix">
                     </el-option>
                 </el-select>
@@ -27,83 +27,49 @@
                 <el-button @click="newAdd">确定</el-button>
                 <el-button @click="conservative()">保存模板</el-button>
             </div>
-            <div class="detail">
+            <!-- <div class="detail">
                 <div v-for="(item,index) of NewData" :key="index">
                     {{item.data}}
                     <span @click="detailData(index)">删除</span>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- 查询结束 -->
         <!-- 信息开始 -->
         <div class="serviceArea">
-            <div class="serviceAreaLeft" id="scrollId" ref="Box" @scroll="orderScroll">
-                <div class="title">
+            <div class="serviceAreaLeft" :style="{'height': screeHeight + 'px'}" id="scrollId" ref="Box" @scroll="orderScroll">
+                <!-- <div class="title">
                     服务区名称
-                </div>
+                </div> -->
                 <div class="text">
                     <el-collapse v-model="activeNames" @change="handleChange">
                         <el-collapse-item v-for="(item,index) of forTable" :key="index" :title="item.title"
                             :id="item.id" :name="item.name" :ref="item.id">
                             <el-table ref="multipleTable" tooltip-effect="dark"
                                 @selection-change="handleSelectionChange" border :data="item.data"
+                                :header-cell-style="{background:'#409EFE',color:'#fff',borderColor:'#409EFE'}"
                                 style="width: 100%;">
                                 <el-table-column type="selection" width="55">
                                 </el-table-column>
                                 <el-table-column prop="title1" label="" width="120">
                                 </el-table-column>
-                                <el-table-column prop="date1" :label="tableTr.tableTitle1">
-                                </el-table-column>
-                                <el-table-column prop="date2" :label="tableTr.tableTitle2">
-                                </el-table-column>
-                                <el-table-column prop="date3" :label="tableTr.tableTitle3">
-                                </el-table-column>
-                                <el-table-column prop="date4" :label="tableTr.tableTitle4">
-                                </el-table-column>
-                            </el-table>
-                        </el-collapse-item>
-                        <!-- <el-collapse-item title="经营对比" name="2">
-                            <el-table border :data="tableDatamanage" style="width: 100%">
-                                <el-table-column prop="title1" label="\" width="120">
-                                </el-table-column>
-                                <el-table-column prop="date1" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date2" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date3" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date4" label="请添加">
+                                <el-table-column
+                                    :prop="'date'+(inx+1)"
+                                    v-for="(items,inx) in 4" :key="inx" 
+                                    :label="'tableTitle'+(inx+1)">
+                                    <template slot="header" slot-scope="scope">
+                                        <div>
+                                            {{tableTr['tableTitle'+(inx+1)]}}
+
+                                            <span v-if="tableTr['tableTitle'+(inx+1)]!='' && item.title=='基础信息'"
+                                                  class="el-icon-delete"
+                                                  style="float: right;line-height:23px"
+                                                  @click="detailData(inx)">删除</span>
+                                            </div>
+                                    </template>
                                 </el-table-column>
                             </el-table>
                         </el-collapse-item>
-                        <el-collapse-item title="业态对比" name="3">
-                            <el-table border :data="tableDatacommercial" style="width: 100%">
-                                <el-table-column prop="title1" label="\" width="120">
-                                </el-table-column>
-                                <el-table-column prop="date1" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date2" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date3" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date4" label="请添加">
-                                </el-table-column>
-                            </el-table>
-                        </el-collapse-item>
-                        <el-collapse-item title="品牌分布" name="4">
-                           <el-table border :data="tableDatabrand" style="width: 100%">
-                                <el-table-column prop="title1" label="\" width="120">
-                                </el-table-column>
-                                <el-table-column prop="date1" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date2" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date3" label="请添加">
-                                </el-table-column>
-                                <el-table-column prop="date4" label="请添加">
-                                </el-table-column>
-                            </el-table>
-                        </el-collapse-item> -->
                     </el-collapse>
                 </div>
             </div>
@@ -124,10 +90,12 @@ export default {
     name: 'test',
     data() {
         return {
+            screeHeight: document.documentElement.clientHeight - 110,
             //value
             navindex: 0,
             selectData: {
                 service: "",
+                services: "",
                 business: "",
                 format: "",
                 time: ""
@@ -481,13 +449,25 @@ export default {
                 },
             ],
             //保存数据
-            NewData: [],
+            NewData: [{
+                index:'',
+                data:''
+            },{
+                index:'',
+                data:''
+            },{
+                index:'',
+                data:''
+            },{
+                index:'',
+                data:''
+            },],
             // 表头内容
             tableTr: {
-                tableTitle1: '请选择',
-                tableTitle2: '请选择',
-                tableTitle3: '请选择',
-                tableTitle4: '请选择',
+                tableTitle1: '',
+                tableTitle2: '',
+                tableTitle3: '',
+                tableTitle4: '',
             },
             // 用来可以删除服务的
             navData: [],
@@ -581,8 +561,8 @@ export default {
                     item['date' + (indexs + 1)] = ''
                 })
             })
-            this.tableTr['tableTitle' + (indexs + 1)] = '请选择'
-            this.NewData.splice(indexs, 1)
+            this.tableTr['tableTitle' + (indexs + 1)] = ''
+            this.NewData[indexs] = {index:'',data:''}
         },
         orderScroll() {
             this.navData = []
@@ -613,14 +593,25 @@ export default {
                 });
                 return
             }
-            if (this.NewData.length == 4) {
-                this.$message({
-                    showClose: true,
-                    message: '最多添加4条哦!',
-                    type: 'warning'
-                });
-                return
-            }
+            let indexData = ''
+            this.NewData.forEach((element,inx) => {
+                if(element.index===''){
+                    if(indexData ===''){
+                        indexData = inx
+                    }else{
+                        return false;
+                    }
+                }
+            });
+            
+            // if (this.NewData.length == 4) {
+            //     this.$message({
+            //         showClose: true,
+            //         message: '最多添加4条哦!',
+            //         type: 'warning'
+            //     });
+            //     return
+            // }
             let arr = [
                 {
                     1: '中馆驿服务区',
@@ -829,29 +820,28 @@ export default {
                     44: '',
                 }
             ]
-            this.NewData.push({ 'index': this.NewData.length, 'data': this.serviceData[this.selectData.service - 1].label })
-            console.log(this.NewData.length, 555)
-            this.tableTr['tableTitle' + this.NewData.length] = arr[this.selectData.service - 1][1]
+            this.NewData[indexData]={ 'index': indexData, 'data': this.serviceData[this.selectData.service - 1].label };
+            this.tableTr['tableTitle' + (indexData+1)] = arr[this.selectData.service - 1][1]
             this.forTable.forEach((element, i) => {
                 element.data.forEach((item, index) => {
                     switch (i) {
                         case 0:
-                            item['date' + this.NewData.length] = arr[this.selectData.service - 1][index + 2] != '' ?
+                            item['date' + (indexData+1)] = arr[this.selectData.service - 1][index + 2] != '' ?
                                 arr[this.selectData.service - 1][index + 2] :
                                 '/'
                             break;
                         case 1:
-                            item['date' + this.NewData.length] = arr[this.selectData.service - 1][index + 26] != '' ?
+                            item['date' + (indexData+1)] = arr[this.selectData.service - 1][index + 26] != '' ?
                                 arr[this.selectData.service - 1][index + 26] :
                                 '/'
                             break;
                         case 2:
-                            item['date' + this.NewData.length] = arr[this.selectData.service - 1][index + 34] != '' ?
+                            item['date' + (indexData+1)] = arr[this.selectData.service - 1][index + 34] != '' ?
                                 arr[this.selectData.service - 1][index + 34] :
                                 '/'
                             break;
                         default:
-                            item['date' + this.NewData.length] = arr[this.selectData.service - 1][index + 43] != '' ?
+                            item['date' + (indexData+1)] = arr[this.selectData.service - 1][index + 43] != '' ?
                                 arr[this.selectData.service - 1][index + 43] :
                                 '/'
                             break;
@@ -859,7 +849,7 @@ export default {
 
                 });
             });
-
+            console.log(this.forTable,indexData,666)
             this.selectData.service = ''
         },
     }
@@ -901,8 +891,8 @@ export default {
     margin: 0 10px 0 10px;
 
     .serviceAreaLeft {
-        width: 85%;
-        height: 800px;
+        width: 90%;
+        // height: 30%;
         overflow: auto;
         scroll-behavior: smooth;
         .title {
@@ -989,4 +979,5 @@ export default {
     height: 30px;
     line-height: 30px;
 }
+
 </style>

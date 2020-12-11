@@ -548,6 +548,7 @@ export default {
     flex-direction: row-reverse;
     flex-wrap: nowrap;
     justify-content: space-between;
+    float: right;
 
     .left {
         width: 80%;
