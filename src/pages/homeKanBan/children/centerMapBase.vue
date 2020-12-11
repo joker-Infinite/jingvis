@@ -114,6 +114,7 @@
             },
             //点聚合
             _renderClusterMarker(context) {
+                let that = this;
                 let count = this.marker.length;
                 let factor;
                 let Hue;
@@ -147,6 +148,9 @@
                 div.style.color = fontColor;
                 div.style.fontSize = '14px';
                 div.style.textAlign = 'center';
+                div.onmousemove = function () {
+                    console.log(that.position[that.marker.indexOf(context.markers[0])])
+                }
                 context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
                 context.marker.setContent(div)
             },
@@ -260,7 +264,7 @@
                 this.oil = oil;
                 this.energy = energy;
                 this.position = position = [...myService, ...otherService, ...petrochemical, ...oil, ...energy];
-                this.initMap(myService, 'myService');
+                this.initMap(position);
             })
         },
     }
