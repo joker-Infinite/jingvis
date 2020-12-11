@@ -179,7 +179,7 @@
                                         ],
                                     },
                                     {
-                                        title: "服务区等级分类",
+                                        title: "服务区等级分类占比",
                                         style: {
                                             cursor: 'pointer',
                                             width: "39.5%",
@@ -196,7 +196,13 @@
                                                     width: "100%",
                                                     height: "300px",
                                                 },
-                                                option: {
+                                                option:{
+                                                    
+                                                    title:{
+                                                        text:'暂无数据',
+                                                        left:'43%',
+                                                        top:'48%'
+                                                    },
                                                     tooltip: {
                                                         trigger: 'item',
                                                         formatter: '{a} <br/>{b}: {c} ({d}%)'
@@ -205,7 +211,7 @@
                                                         orient: 'vertical',
                                                         right: 10,
                                                         top: 'center',
-                                                        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                                                        data: ['Ⅰ类', 'Ⅱ类', 'Ⅲ类', 'Ⅳ类', 'Ⅴ类']
                                                     },
                                                     series: [
                                                         {
@@ -245,12 +251,12 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {value: 335, name: '直接访问'},
-                                                                {value: 310, name: '邮件营销'},
-                                                                {value: 234, name: '联盟广告'},
-                                                                {value: 135, name: '视频广告'},
-                                                                {value: 1548, name: '搜索引擎'}
+                                                            data:[
+                                                                {value: 335, name: 'Ⅰ类'},
+                                                                {value: 310, name: 'Ⅱ类'},
+                                                                {value: 234, name: 'Ⅲ类'},
+                                                                {value: 135, name: 'Ⅳ类'},
+                                                                {value: 1548, name: 'Ⅴ类'}
                                                             ]
                                                         }
                                                     ]
@@ -259,7 +265,7 @@
                                         ],
                                     },
                                     {
-                                        title: "面积增长率",
+                                        title: "服务区面积增长率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -327,7 +333,7 @@
                                         ],
                                     },
                                     {
-                                        title: "经营面积增长率",
+                                        title: "服务区经营面积增长率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -463,7 +469,7 @@
                                         ],
                                     },
                                     {
-                                        title: "订单增长率",
+                                        title: "服务区订单增长率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -531,7 +537,7 @@
                                         ],
                                     },
                                     {
-                                        title: "客单价",
+                                        title: "服务区客单价",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -599,7 +605,7 @@
                                         ],
                                     },
                                     {
-                                        title: "转换率",
+                                        title: "服务区转换率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -804,7 +810,7 @@
                                         ],
                                     },
                                     {
-                                        title: "服务区等级分类",
+                                        title: "服务区等级分类占比",
                                         style: {
                                             cursor: 'pointer',
                                             width: "39.5%",
@@ -822,6 +828,11 @@
                                                     height: "300px",
                                                 },
                                                 option: {
+                                                    title:{
+                                                        text:'暂无数据',
+                                                        left:'43%',
+                                                        top:'48%'
+                                                    },
                                                     tooltip: {
                                                         trigger: 'item',
                                                         formatter: '{a} <br/>{b}: {c} ({d}%)'
@@ -830,7 +841,7 @@
                                                         orient: 'vertical',
                                                         right: 10,
                                                         top: 'center',
-                                                        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                                                        data: ['Ⅰ类', 'Ⅱ类', 'Ⅲ类', 'Ⅳ类', 'Ⅴ类']
                                                     },
                                                     series: [
                                                         {
@@ -870,12 +881,12 @@
                                                                     },
                                                                 },
                                                             },
-                                                            data: [
-                                                                {value: 335, name: '直接访问'},
-                                                                {value: 310, name: '邮件营销'},
-                                                                {value: 234, name: '联盟广告'},
-                                                                {value: 135, name: '视频广告'},
-                                                                {value: 1548, name: '搜索引擎'}
+                                                            data:[
+                                                                {value: 335, name: 'Ⅰ类'},
+                                                                {value: 310, name: 'Ⅱ类'},
+                                                                {value: 234, name: 'Ⅲ类'},
+                                                                {value: 135, name: 'Ⅳ类'},
+                                                                {value: 1548, name: 'Ⅴ类'}
                                                             ]
                                                         }
                                                     ]
@@ -884,7 +895,7 @@
                                         ],
                                     },
                                     {
-                                        title: "面积增长率",
+                                        title: "服务区面积增长率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -952,7 +963,7 @@
                                         ],
                                     },
                                     {
-                                        title: "经营面积增长率",
+                                        title: "服务区经营面积增长率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -1088,7 +1099,7 @@
                                         ],
                                     },
                                     {
-                                        title: "订单增长率",
+                                        title: "服务区订单增长率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -1156,7 +1167,7 @@
                                         ],
                                     },
                                     {
-                                        title: "客单价",
+                                        title: "服务区客单价",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
@@ -1224,7 +1235,7 @@
                                         ],
                                     },
                                     {
-                                        title: "转换率",
+                                        title: "服务区转换率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "49.5%",
