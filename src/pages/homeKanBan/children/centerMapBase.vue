@@ -45,17 +45,17 @@
                     'blue',
                 ],
                 i: 0,
+                timeId: '',
                 checked: ['交投服务区', '其他服务区', '中石化', '中石油', '交投能源'],
                 mapData: [],
                 selectData: ['交投服务区', '其他服务区', '中石化', '中石油', '交投能源'],
-                type: ''
             }
         },
         methods: {
             enlargeMap() {
                 this.$emit("MapBase", this.mapData);
             },
-            initMap(p1, p2, p3, p4, p5) {
+            initMap(position) {
                 this.marker = [];
                 let map = new AMap.Map('MAP', {
                     center: [114.286298, 30.5855],
@@ -63,13 +63,9 @@
                 });
                 map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop])
                 this.map = map;
-                this.addMarker(map, p1, 'p1');
-                this.addMarker(map, p2, 'p2');
-                this.addMarker(map, p3, 'p3');
-                this.addMarker(map, p4, 'p4');
-                this.addMarker(map, p5, 'p5');
+                this.addMarker(map, position)
             },
-            addMarker(v, position, type) {
+            addMarker(v, position) {
                 let that = this;
                 position.forEach((item, index) => {
                     let icon;
@@ -105,98 +101,40 @@
                     })
                     i.setMap(v);
                 });
-                if (type === 'p1') {
-                    new AMap.plugin(["AMap.MarkerClusterer"], function () {
-                        new AMap.MarkerClusterer(
-                            v,
-                            that.marker,
-                            {
-                                gridSize: 50,
-                                renderClusterMarker: that._renderClusterMarker
-                            }
-                        )
-                    })
-                }
-                if (type === 'p2') {
-                    new AMap.plugin(["AMap.MarkerClusterer"], function () {
-                        new AMap.MarkerClusterer(
-                            v,
-                            that.marker,
-                            {
-                                gridSize: 50,
-                                renderClusterMarker: that.renderClusterMarker
-                            }
-                        )
-                    })
-                }
-                if (type === 'p3' || type === 'p4' || type === 'p5') {
-                    new AMap.plugin(["AMap.MarkerClusterer"], function () {
-                        new AMap.MarkerClusterer(
-                            v,
-                            that.marker,
-                            {
-                                gridSize: 50,
-                                renderClusterMarker: that.renderClusterMarkers
-                            }
-                        )
-                    })
-                }
+                new AMap.plugin(["AMap.MarkerClusterer"], function () {
+                    new AMap.MarkerClusterer(
+                        v,
+                        that.marker,
+                        {
+                            gridSize: 50,
+                            renderClusterMarker: that._renderClusterMarker
+                        }
+                    )
+                })
             },
             //点聚合
             _renderClusterMarker(context) {
                 let count = this.marker.length;
-                let factor = Math.pow(context.count / count, 1 / 18);
-                let Hue = 180 - factor * 230;
+                let factor;
+                let Hue;
+                factor = Math.pow(context.count / count, 1 / 18);
+                Hue = 180 - factor * 80;
+                let bgColor = 'hsla(' + Hue + ',0%,50%,0.7)';
+                let borderColor = 'hsla(' + Hue + ',0%,40%,1)';
+                if (this.selectData.indexOf('交投服务区') !== -1 && this.selectData.length === 1) {
+                    factor = Math.pow(context.count / count, 1 / 18);
+                    Hue = 180 - factor * 230;
+                    bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+                    borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+                }
+                if (this.selectData.indexOf('其他服务区') !== -1 && this.selectData.length === 1) {
+                    factor = Math.pow(context.count / count, 16 / 18);
+                    Hue = 180 - factor * 50;
+                    bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+                    borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+                }
                 let div = document.createElement('div');
-                let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
                 let fontColor = 'rgba(255,255,255,1)';
-                let borderColor = 'hsla(' + Hue + ',100%,40%,1)';
-                let shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
-                div.style.backgroundColor = bgColor;
-                let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
-                div.style.width = div.style.height = size + 'px';
-                div.style.border = 'solid 1px ' + borderColor;
-                div.style.borderRadius = size / 2 + 'px';
-                div.style.boxShadow = '0 0 1px ' + shadowColor;
-                div.innerHTML = context.count;
-                div.style.lineHeight = size + 'px';
-                div.style.color = fontColor;
-                div.style.fontSize = '14px';
-                div.style.textAlign = 'center';
-                context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
-                context.marker.setContent(div)
-            },
-            renderClusterMarker(context) {
-                let count = this.marker.length;
-                let factor = Math.pow(context.count / count, 16 / 18);
-                let Hue = 180 - factor * 50;
-                let div = document.createElement('div');
-                let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
-                let fontColor = 'rgba(255,255,255,1)';
-                let borderColor = 'hsla(' + Hue + ',100%,40%,1)';
-                let shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
-                div.style.backgroundColor = bgColor;
-                let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
-                div.style.width = div.style.height = size + 'px';
-                div.style.border = 'solid 1px ' + borderColor;
-                div.style.borderRadius = size / 2 + 'px';
-                div.style.boxShadow = '0 0 1px ' + shadowColor;
-                div.innerHTML = context.count;
-                div.style.lineHeight = size + 'px';
-                div.style.color = fontColor;
-                div.style.fontSize = '14px';
-                div.style.textAlign = 'center';
-                context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
-                context.marker.setContent(div)
-            },
-            renderClusterMarkers(context) {
-                let count = this.marker.length;
-                let factor = Math.pow(context.count / count, 1 / 18);
-                let Hue = 180 - factor * 180;
-                let div = document.createElement('div');
-                let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
-                let fontColor = 'rgba(255,255,255,1)';
-                let borderColor = 'hsla(' + Hue + ',100%,40%,1)';
                 let shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
                 div.style.backgroundColor = bgColor;
                 let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
@@ -322,7 +260,7 @@
                 this.oil = oil;
                 this.energy = energy;
                 this.position = position = [...myService, ...otherService, ...petrochemical, ...oil, ...energy];
-                this.initMap(myService, otherService, petrochemical, oil, energy);
+                this.initMap(myService, 'myService');
             })
         },
     }
