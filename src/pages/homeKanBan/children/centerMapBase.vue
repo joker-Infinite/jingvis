@@ -45,17 +45,17 @@
                     'blue',
                 ],
                 i: 0,
-                timeId: '',
                 checked: ['交投服务区', '其他服务区', '中石化', '中石油', '交投能源'],
                 mapData: [],
-                color: '255,0,0'
+                selectData: ['交投服务区', '其他服务区', '中石化', '中石油', '交投能源'],
+                type: ''
             }
         },
         methods: {
             enlargeMap() {
                 this.$emit("MapBase", this.mapData);
             },
-            initMap(position) {
+            initMap(p1, p2, p3, p4, p5) {
                 this.marker = [];
                 let map = new AMap.Map('MAP', {
                     center: [114.286298, 30.5855],
@@ -63,9 +63,13 @@
                 });
                 map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop])
                 this.map = map;
-                this.addMarker(map, position)
+                this.addMarker(map, p1, 'p1');
+                this.addMarker(map, p2, 'p2');
+                this.addMarker(map, p3, 'p3');
+                this.addMarker(map, p4, 'p4');
+                this.addMarker(map, p5, 'p5');
             },
-            addMarker(v, position) {
+            addMarker(v, position, type) {
                 let that = this;
                 position.forEach((item, index) => {
                     let icon;
@@ -101,7 +105,7 @@
                     })
                     i.setMap(v);
                 });
-                this.timeId = setInterval(_ => {
+                if (type === 'p1') {
                     new AMap.plugin(["AMap.MarkerClusterer"], function () {
                         new AMap.MarkerClusterer(
                             v,
@@ -112,31 +116,88 @@
                             }
                         )
                     })
-                }, 100)
+                }
+                if (type === 'p2') {
+                    new AMap.plugin(["AMap.MarkerClusterer"], function () {
+                        new AMap.MarkerClusterer(
+                            v,
+                            that.marker,
+                            {
+                                gridSize: 50,
+                                renderClusterMarker: that.renderClusterMarker
+                            }
+                        )
+                    })
+                }
+                if (type === 'p3' || type === 'p4' || type === 'p5') {
+                    new AMap.plugin(["AMap.MarkerClusterer"], function () {
+                        new AMap.MarkerClusterer(
+                            v,
+                            that.marker,
+                            {
+                                gridSize: 50,
+                                renderClusterMarker: that.renderClusterMarkers
+                            }
+                        )
+                    })
+                }
             },
             //点聚合
             _renderClusterMarker(context) {
-                console.log(context)
-                clearInterval(this.timeId);
                 let count = this.marker.length;
                 let factor = Math.pow(context.count / count, 1 / 18);
+                let Hue = 180 - factor * 230;
                 let div = document.createElement('div');
-                let Hue = 180 - factor * 180;
-                let color = '';
-                if (context.count > 0 && context.count <= 50) color = 'rgba(' + this.color + ',.2)'
-                if (context.count > 50 && context.count <= 100) color = 'rgba(' + this.color + ',.3)'
-                if (context.count > 100 && context.count <= 150) color = 'rgba(' + this.color + ',.4)'
-                if (context.count > 150 && context.count <= 200) color = 'rgba(' + this.color + ',.5)'
-                if (context.count > 200 && context.count <= 250) color = 'rgba(' + this.color + ',.6)'
-                if (context.count > 250 && context.count <= 300) color = 'rgba(' + this.color + ',.7)'
-                if (context.count > 300 && context.count <= 350) color = 'rgba(' + this.color + ',.8)'
-                if (context.count > 350 && context.count <= 400) color = 'rgba(' + this.color + ',.9)'
-                if (context.count > 400) color = 'rgba(' + this.color + ',1)'
-                let bgColor = color;
-                // let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+                let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
                 let fontColor = 'rgba(255,255,255,1)';
-                let borderColor = 'rgba(' + this.color + ',1)';
-                let shadowColor = 'rgba(' + this.color + ',1)';
+                let borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+                let shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
+                div.style.backgroundColor = bgColor;
+                let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
+                div.style.width = div.style.height = size + 'px';
+                div.style.border = 'solid 1px ' + borderColor;
+                div.style.borderRadius = size / 2 + 'px';
+                div.style.boxShadow = '0 0 1px ' + shadowColor;
+                div.innerHTML = context.count;
+                div.style.lineHeight = size + 'px';
+                div.style.color = fontColor;
+                div.style.fontSize = '14px';
+                div.style.textAlign = 'center';
+                context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
+                context.marker.setContent(div)
+            },
+            renderClusterMarker(context) {
+                let count = this.marker.length;
+                let factor = Math.pow(context.count / count, 16 / 18);
+                let Hue = 180 - factor * 50;
+                let div = document.createElement('div');
+                let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+                let fontColor = 'rgba(255,255,255,1)';
+                let borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+                let shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
+                div.style.backgroundColor = bgColor;
+                let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
+                div.style.width = div.style.height = size + 'px';
+                div.style.border = 'solid 1px ' + borderColor;
+                div.style.borderRadius = size / 2 + 'px';
+                div.style.boxShadow = '0 0 1px ' + shadowColor;
+                div.innerHTML = context.count;
+                div.style.lineHeight = size + 'px';
+                div.style.color = fontColor;
+                div.style.fontSize = '14px';
+                div.style.textAlign = 'center';
+                context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
+                context.marker.setContent(div)
+            },
+            renderClusterMarkers(context) {
+                let count = this.marker.length;
+                let factor = Math.pow(context.count / count, 1 / 18);
+                let Hue = 180 - factor * 180;
+                let div = document.createElement('div');
+                let bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+                let fontColor = 'rgba(255,255,255,1)';
+                let borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+                let shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
                 div.style.backgroundColor = bgColor;
                 let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
                 div.style.width = div.style.height = size + 'px';
@@ -152,7 +213,7 @@
                 context.marker.setContent(div)
             },
             queryDot(v) {
-                this.color = '0,0,255'
+                this.selectData = v;
                 let map = new AMap.Map('MAP', {
                     center: [114.286298, 30.5855],
                     zoom: 8,
@@ -261,7 +322,7 @@
                 this.oil = oil;
                 this.energy = energy;
                 this.position = position = [...myService, ...otherService, ...petrochemical, ...oil, ...energy];
-                this.initMap(position);
+                this.initMap(myService, otherService, petrochemical, oil, energy);
             })
         },
     }
