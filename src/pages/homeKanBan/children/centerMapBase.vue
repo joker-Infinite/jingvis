@@ -11,6 +11,7 @@
         </div>
         <div id="MAP"></div>
         <div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
+        <div class="details" id="ds"></div>
     </div>
 </template>
 
@@ -149,7 +150,48 @@
                 div.style.fontSize = '14px';
                 div.style.textAlign = 'center';
                 div.onmousemove = function () {
-                    console.log(that.position[that.marker.indexOf(context.markers[0])])
+                    let arr = [];
+                    if (context.markers.length > 0) {
+                        context.markers.forEach(i => {
+                            console.log(that.position[that.marker.indexOf(i)]);
+                            arr.push(that.position[that.marker.indexOf(i)])
+                        })
+                    }
+                    let ms = [];
+                    let os = [];
+                    let sh = [];
+                    let sy = [];
+                    let jt = [];
+                    if (arr.length > 0) {
+                        arr.forEach(i => {
+                            if (i.type === 'ms') {
+                                ms.push(i);
+                            }
+                            if (i.type === 'os') {
+                                os.push(i);
+                            }
+                            if (i.type === '中石化') {
+                                sh.push(i);
+                            }
+                            if (i.type === '中石油') {
+                                sy.push(i);
+                            }
+                            if (i.type === '交投能源') {
+                                jt.push(i);
+                            }
+                        })
+                    }
+                    let ds = document.getElementById('ds');
+                    ds.innerHTML = '<p>交投服务区：' + ms.length + '</p>' +
+                        '<p>其他服务区：' + os.length + '</p>' +
+                        '<p>中石化：' + sh.length + '</p>' +
+                        '<p>中石油：' + sy.length + '</p>' +
+                        '<p>交投能源：' + jt.length + '</p>'
+                    ds.style.right = '0px';
+                }
+                div.onmouseout = function () {
+                    let ds = document.getElementById('ds');
+                    ds.style.right = '-200px';
                 }
                 context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
                 context.marker.setContent(div)
@@ -275,6 +317,19 @@
         width: 100%;
         height: 100%;
         position: relative;
+        overflow: hidden;
+
+        .details {
+            width: 160px;
+            height: 110px;
+            position: absolute;
+            top: 30px;
+            right: -200px;
+            transition: linear .3s;
+            padding: 20px;
+            border-radius: 5px;
+            background: #f3f7ff;
+        }
 
         .btn {
             width: 100%;
