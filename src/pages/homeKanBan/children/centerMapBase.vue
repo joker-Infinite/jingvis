@@ -40,8 +40,8 @@
                 map: '',
                 marker: [],
                 mapStyleArr: [
-                    // 'fresh',
-                    '8cb6df918ee512eae9c9198c38a40c91',
+                    'fresh',
+                    // '8cb6df918ee512eae9c9198c38a40c91',
                     'darkblue',
                     'blue',
                 ],
