@@ -320,6 +320,7 @@
         overflow: hidden;
 
         .details {
+            color: white;
             width: 160px;
             height: 110px;
             position: absolute;
@@ -328,7 +329,7 @@
             transition: linear .3s;
             padding: 20px;
             border-radius: 5px;
-            background: #f3f7ff;
+            background: rgba(0, 0, 0, 0.4);
         }
 
         .btn {

@@ -10,6 +10,11 @@
             <operations class="operations" time="time" @showOne="showOne(1)"></operations>
             <div id="HomeTopRight_top"></div>
             <div class="DataEi" id="HomeTopRight_topData"></div>
+            <div class="HomeTopRight_top_right">
+                A 分类<br>
+                B 分类<br>
+                C 分类<br>
+            </div>
         </div>
         <div style="width: 100%;height: 2%"></div>
         <div class="bottom">
@@ -485,6 +490,22 @@
             #HomeTopRight_top {
                 width: 70%;
                 height: 100%;
+            }
+
+            .HomeTopRight_top_right {
+                width: 35%;
+                height: 100%;
+                position: absolute;
+                right: 0;
+                top: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                text-align: center;
+                line-height: 45px;
+                color: white;
+                font-size: 20px;
+                font-weight: 700;
             }
         }
 
