@@ -1637,7 +1637,7 @@ export default {
              let data = [];
             let id = '';
             await this.$axios.get('/api/sundry/fuwuqucaiwu', 
-                {params:{nianfen:year,type:years}}
+                {params:{nianfen:year,type:years,plateName:'服务区板块'}}
             ).then(v => {
                 data = v.data.data;
                 let mm = [];
