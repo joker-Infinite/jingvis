@@ -102,7 +102,7 @@
                     })
                     i.setMap(v);
                 });
-                new AMap.plugin(["AMap.MarkerClusterer"], function () {
+               /* new AMap.plugin(["AMap.MarkerClusterer"], function () {
                     new AMap.MarkerClusterer(
                         v,
                         that.marker,
@@ -111,7 +111,7 @@
                             renderClusterMarker: that._renderClusterMarker
                         }
                     )
-                })
+                })*/
             },
             //点聚合
             _renderClusterMarker(context) {

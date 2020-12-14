@@ -177,7 +177,7 @@
                         })
                         i.setMap(v);
                     });
-                    this.timeId = setInterval(_ => {
+                   /* this.timeId = setInterval(_ => {
                         new AMap.plugin(["AMap.MarkerClusterer"], function () {
                             new AMap.MarkerClusterer(
                                 v,
@@ -188,7 +188,7 @@
                                 }
                             )
                         })
-                    }, 100)
+                    }, 100)*/
                 }
             },
             //点聚合
