@@ -94,7 +94,7 @@
                         label: "能源事业部",
                         img: require("../assets/Home/10.png"),
                         imgActive: require("../assets/Home/3.png"),
-                        menuItem: [">>能源营收", ">>能源利润", ">>预算控制", ">>批零差价", ">>能源零售", ">>批发", ">>应收账款", ">>油库来源"],
+                        menuItem: [">>能源营收", ">>能源利润", ">>预算控制", ">>批零差价", ">>能源零售", ">>油品批发", ">>应收账款", ">>油库来源"],
                         menuItemUrl: [
                             "/energy/energyrevenue",
                             "/energy/profit",

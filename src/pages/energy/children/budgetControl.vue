@@ -665,9 +665,10 @@
                                 collapseTitle: "预算控制",
                                 EChartsBox: [
                                     {
-                                        title: '<div style="font-size:15px;text-shadow:none;height: 100%;text-align: right;font-weight: normal;padding-right: 20px">2020年 执行金额:160亿元 预算金额:200亿元 总执行度:80%</div>',
+                                        title: '<span style="float: left">预算项目列表</span><span style="float: right;text-shadow:none;height: 100%;text-align: right;padding-right: 20px">2020年 执行金额:160亿元 预算金额:200亿元 总执行度:80%</span>',
                                         input: true,
                                         select: true,
+                                        selectOption: [2015, 2016, 2017, 2018],
                                         style: {
                                             width: "100%",
                                             height: "600px",
@@ -742,6 +743,7 @@
                                     {
                                         title: "分项成本变化趋势",
                                         select: true,
+                                        selectOption: ['A成本', 'B成本', 'C成本', 'D成本'],
                                         style: {
                                             width: "49.5%",
                                             height: "400px",

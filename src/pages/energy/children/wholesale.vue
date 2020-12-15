@@ -113,6 +113,7 @@
                                     {
                                         title: "批零差价（默认显示最近30天的数据）",
                                         time: true,
+                                        showSearch:'notShow',
                                         year: true,
                                         month: true,
                                         day: true,

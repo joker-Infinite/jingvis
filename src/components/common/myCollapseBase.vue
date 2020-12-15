@@ -24,7 +24,8 @@
                                     <el-input v-if="cit.allQueryData.input" placeholder="请输入内容"
                                               v-model="allQuery.inputValue"></el-input>
                                     <el-select v-if="cit.allQueryData.select"
-                                               v-model="allQuery.selectValue"></el-select>
+                                               v-model="allQuery.selectValue">
+                                    </el-select>
                                     <el-date-picker
                                             v-model="allQuery.timeValue"
                                             v-if="cit.allQueryData.time"
@@ -51,7 +52,10 @@
                                     <el-input v-model="query.inputValue" v-if="sit.input"
                                               placeholder="请输入内容"></el-input>
                                     <el-select v-model="query.selectValue"
-                                               v-if="sit.select"></el-select>
+                                               v-if="sit.select">
+                                        <el-option v-if="sit.selectOption" v-for="(oi,ox) in sit.selectOption"
+                                                   :value="oi" :key="ox" :label="oi"></el-option>
+                                    </el-select>
                                     <el-date-picker
                                             v-if="sit.time"
                                             v-model="query.timeValue"
@@ -62,7 +66,7 @@
                                             end-placeholder="结束月份">
                                     </el-date-picker>
                                     <el-button icon="el-icon-search" type="primary"
-                                               v-if="sit.time || sit.select|| sit.input"
+                                               v-if="sit.showSearch =='notShow'?false:true"
                                                @click="refreshClick(cit,query,cit.year,item.name,sit)">搜索
                                     </el-button>
                                     <el-button type="primary" v-if="sit.year">年</el-button>
@@ -681,6 +685,7 @@
                     position: relative;
 
                     .Title {
+                        position: relative;
                         width: 100%;
                         height: 40px;
                         background: white;
