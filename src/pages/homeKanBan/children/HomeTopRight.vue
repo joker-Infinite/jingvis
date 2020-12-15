@@ -136,9 +136,9 @@
                 this.resizeData.push(HomeTopRight_top);
                 let option = this.AD = {
                     title: {
-                        text: "{a|     消费转化}",
+                        text: "{a|     转化率}",
                         show: true,
-                        x: "center",
+                        y: "6",
                         textStyle: {
                             fontFamily: "幼圆",
                             lineHeight: 15,

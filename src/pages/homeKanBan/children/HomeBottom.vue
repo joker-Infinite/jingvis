@@ -376,7 +376,9 @@
                     },
                     tooltip: {
                         trigger: "axis",
-                        formatter: "{b}" + "{c}" + '%',
+                        formatter: v => {
+                            return v[0].name + ':' + (v[0].value - 91.67).toFixed(2)+'%'
+                        },
                         axisPointer: {
                             type: "shadow",
                         },
@@ -439,40 +441,7 @@
                                 formatter: '{b}'
                             },
                             data: [],
-                            markLine: {
-                                data: [
-                                    {
-                                        type: "average",
-                                        name: "目标值",
-                                        xAxis: 91.67, //设置平均值所在位置
-                                    }
-                                ],
-                                symbol: ["none", "none"],
-                                position: "insideTopCenter",
-                                itemStyle: {
-                                    normal: {
-                                        lineStyle: {
-                                            type: "dotted",
-                                            color: "white",
-                                        },
-                                        label: {
-                                            show: true,
-                                            position: "middle",
-                                            formatter: "目标值 : " + 91.67
-                                        },
-                                    },
-                                },
-                                large: true,
-                                effect: {
-                                    show: false,
-                                    loop: true,
-                                    period: 0,
-                                    scaleSize: 2,
-                                    color: null,
-                                    shadowColor: null,
-                                    shadowBlur: null,
-                                },
-                            },
+                            markLine: {},
                         },
                     ],
                 };
@@ -509,10 +478,39 @@
                         name: "目标值",
                         xAxis: 91.67, //设置平均值所在位置
                     }]
-                    this.options.series[0].markLine.itemStyle.normal.label = {
-                        show: true,
-                        position: "middle",
-                        formatter: "目标值 : " + 91.67
+                    this.options.series[0].markLine = {
+                        data: [
+                            {
+                                type: "average",
+                                name: "目标值",
+                                xAxis: 91.67, //设置平均值所在位置
+                            }
+                        ],
+                        symbol: ["none", "none"],
+                        position: "insideTopCenter",
+                        itemStyle: {
+                            normal: {
+                                lineStyle: {
+                                    type: "dotted",
+                                    color: "white",
+                                },
+                                label: {
+                                    show: true,
+                                    position: "middle",
+                                    formatter: "目标值 : " + 91.67
+                                },
+                            },
+                        },
+                        large: true,
+                        effect: {
+                            show: false,
+                            loop: true,
+                            period: 0,
+                            scaleSize: 2,
+                            color: null,
+                            shadowColor: null,
+                            shadowBlur: null,
+                        },
                     }
                     HomeBottomG.setOption(option);
                 })
