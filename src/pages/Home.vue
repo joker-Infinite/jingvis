@@ -94,7 +94,7 @@
                         label: "能源事业部",
                         img: require("../assets/Home/10.png"),
                         imgActive: require("../assets/Home/3.png"),
-                        menuItem: [">>营收", ">>利润", ">>预算控制", ">>批零差价", ">>零售", ">>批发", ">>应收账款", ">>油源", ">>油库", ">>分公司", ">>线路"],
+                        menuItem: [">>能源营收", ">>能源利润", ">>预算控制", ">>批零差价", ">>能源零售", ">>批发", ">>应收账款", ">>油库来源"],
                         menuItemUrl: [
                             "/energy/energyrevenue",
                             "/energy/profit",
@@ -103,13 +103,10 @@
                             "/energy/11",
                             "/energy/12",
                             "/energy/13",
-                            "/energy/14",
-                            "/energy/15",
-                            "/energy/16",
-                            "/energy/17",
+                            "/energy/gasSource",
                         ]
                     },
-                    {
+                  /*  {
                         id: "4",
                         label: "能源公司",
                         img: require("../assets/Home/8.png"),
@@ -135,7 +132,7 @@
                             '/energy/FYPLingShou',
                             '/energy/FYPLingShou',
                         ]
-                    },
+                    },*/
                     {
                         id: "6",
                         label: "传媒指标",

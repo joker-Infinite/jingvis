@@ -9,7 +9,7 @@
     import common from "../../../components/js/common";
 
     export default {
-        name: "budgetControl",
+        name: "gasSource",
         components: {MyCollapseBase},
         mixins: [common],
         props: {
@@ -22,691 +22,21 @@
             return {
                 collapseData: [
                     {
-                        id: "budget",
-                        name: "控制预算",
+                        id: "profit",
+                        name: "",
                         icon: require("../../../assets/business/icon_1-1.png"),
                         iconActive: require("../../../assets/business/icon_1-2.png"),
                         collapseItem: [
                             {
-                                id: "budget_2020",
+                                id: "profit_2020",
                                 year: 2020,
-                                collapseTitle: "2020年预算控制",
+                                collapseTitle: "2020年油库来源",
                                 EChartsBox: [
                                     {
                                         title: "",
                                         time: false,
-                                        timeValue: "",
-                                        style: {
-                                            width: "39.5%",
-                                            height: "350px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: function (val) {
-                                                            return (
-                                                                val[0].name + '月' +
-                                                                ":" + "<br />" +
-                                                                val[0].value / 10000 +
-                                                                "万元"
-                                                            );
-                                                        },
-                                                    },
-                                                    grid: {
-                                                        top: "50",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "60", //图表尺寸大小
-                                                    },
-                                                    dataZoom: [{
-                                                        type: 'inside'
-                                                    }, {
-                                                        type: 'slider'
-                                                    }],
-                                                    xAxis: [
-                                                        {
-                                                            type: "category",
-                                                            color: "#59588D",
-                                                            data: [],
-                                                            axisLabel: {
-                                                                margin: 10,
-                                                                color: "#999",
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                        },
-                                                    ],
-                                                    yAxis: [
-                                                        {
-                                                            axisLabel: {
-                                                                formatter: function (val) {
-                                                                    return val / 10000
-                                                                },
-                                                                color: "#999",
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                            splitLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(131,101,101,0.2)",
-                                                                    type: "dashed",
-                                                                },
-                                                            },
-                                                        },
-                                                    ],
-                                                    series: [
-                                                        {
-                                                            type: "bar",
-                                                            data: [],
-                                                            barWidth: "16px",
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color:
-                                                                        "#38A0FF",
-                                                                    barBorderRadius: [
-                                                                        30,
-                                                                        30,
-                                                                        30,
-                                                                        30,
-                                                                    ],
-                                                                },
-                                                            },
-                                                        },
-                                                    ],
-                                                },
-                                            }
-                                        ],
-                                    },
-                                    {
-                                        title: "",
-                                        time: false,
-                                        select: false,
-                                        style: {
-                                            width: "29.5%",
-                                            height: "350px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [{
-                                            style: {
-                                                width: "100%",
-                                                height: "300px",
-                                            },
-                                            option: {
-                                                title: {
-                                                    text: "",
-                                                },
-                                                grid: {
-                                                    top: "20%",
-                                                    right: "40",
-                                                    left: "60",
-                                                    bottom: "40",
-                                                },
-                                                legend: {
-                                                    orient: "horizontal",
-                                                    bottom: 5,
-                                                    data: ['新能源', '石化', '国储', '高路油站', '荆港嘉瑞']
-                                                },
-                                                tooltip: {
-                                                    trigger: "item",
-                                                },
-                                                series: [{
-                                                    type: "pie",
-                                                    center: ["50%", "50%"],
-                                                    radius: ["30%", "45%"],
-                                                    clockwise: true,
-                                                    avoidLabelOverlap: true,
-                                                    hoverOffset: 15,
-                                                    itemStyle: {
-                                                        normal: {
-                                                            color: function (v) {
-                                                                let colorList = [
-                                                                    "#76c15c",
-                                                                    "#15b3e2",
-                                                                    "#2e65fd",
-                                                                    "#1fcaa8",
-                                                                    "#ee6565",
-                                                                    "#fec02a",
-                                                                    "#fe3922",
-                                                                    "#52fe36",
-                                                                    "#fe3afc",
-                                                                ];
-                                                                return colorList[v.dataIndex];
-                                                            },
-                                                        },
-                                                    },
-                                                    label: {
-                                                        show: true,
-                                                        position: "outer",
-                                                        width: 0,
-                                                        height: 0,
-                                                        lineHeight: 0,
-                                                        backgroundColor: "auto",
-                                                        padding: [2, -2, 2, -2,],
-                                                        borderRadius: 2,
-                                                        distanceToLabelLine: 0,
-                                                        normal: {
-                                                            formatter(v) {
-                                                                let text = v.name + "\n" + v.percent + "%";
-                                                                return text;
-                                                            },
-                                                            textStyle: {
-                                                                fontSize: 16,
-                                                            },
-                                                        },
-                                                    },
-                                                    labelLine: {
-                                                        normal: {
-                                                            lineStyle: {
-                                                                width: 1,
-                                                            },
-                                                        },
-                                                    },
-                                                    data: [
-                                                        {value: 335, name: '新能源'},
-                                                        {value: 310, name: '石化'},
-                                                        {value: 234, name: '国储'},
-                                                        {value: 135, name: '高路油站'},
-                                                        {value: 1548, name: '荆港嘉瑞'}
-                                                    ]
-                                                }],
-                                            },
-                                        }],
-                                    },
-                                    {
-                                        title: "",
-                                        time: false,
-                                        select: false,
-                                        style: {
-                                            width: "29.5%",
-                                            height: "350px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [{
-                                            style: {
-                                                width: "100%",
-                                                height: "300px",
-                                            },
-                                            option: {
-                                                title: {
-                                                    text: "",
-                                                },
-                                                tooltip: {
-                                                    trigger: "item",
-                                                },
-
-                                                legend: {
-                                                    orient: "horizontal",
-                                                    bottom: 10,
-                                                    data: ['过票', '油品批发', '分销', '油品零售', '非油品零售']
-                                                },
-                                                series: [{
-                                                    type: "pie",
-                                                    avoidLabelOverlap: true,
-                                                    center: ["48%", "50%"],
-                                                    radius: ["38%", "50%"],
-                                                    clockwise: true,
-                                                    hoverOffset: 20,
-                                                    itemStyle: {
-                                                        normal: {
-                                                            color: function (v) {
-                                                                let colorList = [
-                                                                    "#76c15c",
-                                                                    "#15b3e2",
-                                                                    "#2e65fd",
-                                                                    "#1fcaa8",
-                                                                    "#ee6565",
-                                                                    "#fec02a",
-                                                                    "#fe3922",
-                                                                    "#52fe36",
-                                                                    "#fe3afc",
-                                                                ];
-                                                                return colorList[v.dataIndex];
-                                                            },
-                                                        },
-                                                    },
-                                                    label: {
-                                                        show: true,
-                                                        position: "outer",
-                                                        width: 0,
-                                                        height: 0,
-                                                        lineHeight: 0,
-                                                        backgroundColor:
-                                                            "auto",
-                                                        padding: [2, -2, 2, -2,],
-                                                        borderRadius: 2,
-                                                        distanceToLabelLine: 0,
-                                                        normal: {
-                                                            formatter(v) {
-                                                                let text = v.name + "\n" + v.percent + "%";
-                                                                return text;
-                                                            },
-                                                            textStyle: {
-                                                                fontSize: 16,
-                                                            },
-                                                        },
-                                                    },
-                                                    labelLine: {
-                                                        normal: {
-                                                            lineStyle: {
-                                                                width: 1,
-                                                            },
-                                                        },
-                                                    },
-                                                    data: [
-                                                        {value: 335, name: '过票'},
-                                                        {value: 310, name: '油品批发'},
-                                                        {value: 234, name: '分销'},
-                                                        {value: 135, name: '油品零售'},
-                                                        {value: 1548, name: '非油品零售'}
-                                                    ]
-                                                }],
-                                            },
-                                        }],
-                                    },
-                                ]
-                            },
-                            {
-                                id: "budget_2019",
-                                year: 2019,
-                                collapseTitle: "2019年预算控制",
-                                EChartsBox: [
-                                    {
-                                        title: "",
-                                        time: false,
-                                        timeValue: "",
-                                        style: {
-                                            width: "39.5%",
-                                            height: "350px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
-                                                },
-                                                option: {
-                                                    title: {
-                                                        text: "",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: function (val) {
-                                                            return (
-                                                                val[0].name + '月' +
-                                                                ":" + "<br />" +
-                                                                val[0].value / 10000 +
-                                                                "万元"
-                                                            );
-                                                        },
-                                                    },
-                                                    grid: {
-                                                        top: "50",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "60", //图表尺寸大小
-                                                    },
-                                                    dataZoom: [{
-                                                        type: 'inside'
-                                                    }, {
-                                                        type: 'slider'
-                                                    }],
-                                                    xAxis: [
-                                                        {
-                                                            type: "category",
-                                                            color: "#59588D",
-                                                            data: [],
-                                                            axisLabel: {
-                                                                margin: 10,
-                                                                color: "#999",
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                        },
-                                                    ],
-                                                    yAxis: [
-                                                        {
-                                                            axisLabel: {
-                                                                formatter: function (val) {
-                                                                    return val / 10000
-                                                                },
-                                                                color: "#999",
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                            axisLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(107,107,107,0.37)",
-                                                                },
-                                                            },
-                                                            axisTick: {
-                                                                show: false,
-                                                            },
-                                                            splitLine: {
-                                                                lineStyle: {
-                                                                    color:
-                                                                        "rgba(131,101,101,0.2)",
-                                                                    type: "dashed",
-                                                                },
-                                                            },
-                                                        },
-                                                    ],
-                                                    series: [
-                                                        {
-                                                            type: "bar",
-                                                            data: [],
-                                                            barWidth: "16px",
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color:
-                                                                        "#38A0FF",
-                                                                    barBorderRadius: [
-                                                                        30,
-                                                                        30,
-                                                                        30,
-                                                                        30,
-                                                                    ],
-                                                                },
-                                                            },
-                                                        },
-                                                    ],
-                                                },
-                                            }
-                                        ],
-                                    },
-                                    {
-                                        title: "",
-                                        time: false,
-                                        select: false,
-                                        style: {
-                                            width: "29.5%",
-                                            height: "350px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [{
-                                            style: {
-                                                width: "100%",
-                                                height: "300px",
-                                            },
-                                            option: {
-                                                title: {
-                                                    text: "",
-                                                },
-                                                grid: {
-                                                    top: "20%",
-                                                    right: "40",
-                                                    left: "60",
-                                                    bottom: "40",
-                                                },
-                                                legend: {
-                                                    orient: "horizontal",
-                                                    bottom: 5,
-                                                    data: ['新能源', '石化', '国储', '高路油站', '荆港嘉瑞']
-                                                },
-                                                tooltip: {
-                                                    trigger: "item",
-                                                },
-                                                series: [{
-                                                    type: "pie",
-                                                    center: ["50%", "50%"],
-                                                    radius: ["30%", "45%"],
-                                                    clockwise: true,
-                                                    avoidLabelOverlap: true,
-                                                    hoverOffset: 15,
-                                                    itemStyle: {
-                                                        normal: {
-                                                            color: function (v) {
-                                                                let colorList = [
-                                                                    "#76c15c",
-                                                                    "#15b3e2",
-                                                                    "#2e65fd",
-                                                                    "#1fcaa8",
-                                                                    "#ee6565",
-                                                                    "#fec02a",
-                                                                    "#fe3922",
-                                                                    "#52fe36",
-                                                                    "#fe3afc",
-                                                                ];
-                                                                return colorList[v.dataIndex];
-                                                            },
-                                                        },
-                                                    },
-                                                    label: {
-                                                        show: true,
-                                                        position: "outer",
-                                                        width: 0,
-                                                        height: 0,
-                                                        lineHeight: 0,
-                                                        backgroundColor: "auto",
-                                                        padding: [2, -2, 2, -2,],
-                                                        borderRadius: 2,
-                                                        distanceToLabelLine: 0,
-                                                        normal: {
-                                                            formatter(v) {
-                                                                let text = v.name + "\n" + v.percent + "%";
-                                                                return text;
-                                                            },
-                                                            textStyle: {
-                                                                fontSize: 16,
-                                                            },
-                                                        },
-                                                    },
-                                                    labelLine: {
-                                                        normal: {
-                                                            lineStyle: {
-                                                                width: 1,
-                                                            },
-                                                        },
-                                                    },
-                                                    data: [
-                                                        {value: 335, name: '新能源'},
-                                                        {value: 310, name: '石化'},
-                                                        {value: 234, name: '国储'},
-                                                        {value: 135, name: '高路油站'},
-                                                        {value: 1548, name: '荆港嘉瑞'}
-                                                    ]
-                                                }],
-                                            },
-                                        }],
-                                    },
-                                    {
-                                        title: "",
-                                        time: false,
-                                        select: false,
-                                        style: {
-                                            width: "29.5%",
-                                            height: "350px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                        },
-                                        EChartsItem: [{
-                                            style: {
-                                                width: "100%",
-                                                height: "300px",
-                                            },
-                                            option: {
-                                                title: {
-                                                    text: "",
-                                                },
-                                                tooltip: {
-                                                    trigger: "item",
-                                                },
-
-                                                legend: {
-                                                    orient: "horizontal",
-                                                    bottom: 10,
-                                                    data: ['过票', '油品批发', '分销', '油品零售', '非油品零售']
-                                                },
-                                                series: [{
-                                                    type: "pie",
-                                                    avoidLabelOverlap: true,
-                                                    center: ["48%", "50%"],
-                                                    radius: ["38%", "50%"],
-                                                    clockwise: true,
-                                                    hoverOffset: 20,
-                                                    itemStyle: {
-                                                        normal: {
-                                                            color: function (v) {
-                                                                let colorList = [
-                                                                    "#76c15c",
-                                                                    "#15b3e2",
-                                                                    "#2e65fd",
-                                                                    "#1fcaa8",
-                                                                    "#ee6565",
-                                                                    "#fec02a",
-                                                                    "#fe3922",
-                                                                    "#52fe36",
-                                                                    "#fe3afc",
-                                                                ];
-                                                                return colorList[v.dataIndex];
-                                                            },
-                                                        },
-                                                    },
-                                                    label: {
-                                                        show: true,
-                                                        position: "outer",
-                                                        width: 0,
-                                                        height: 0,
-                                                        lineHeight: 0,
-                                                        backgroundColor:
-                                                            "auto",
-                                                        padding: [2, -2, 2, -2,],
-                                                        borderRadius: 2,
-                                                        distanceToLabelLine: 0,
-                                                        normal: {
-                                                            formatter(v) {
-                                                                let text = v.name + "\n" + v.percent + "%";
-                                                                return text;
-                                                            },
-                                                            textStyle: {
-                                                                fontSize: 16,
-                                                            },
-                                                        },
-                                                    },
-                                                    labelLine: {
-                                                        normal: {
-                                                            lineStyle: {
-                                                                width: 1,
-                                                            },
-                                                        },
-                                                    },
-                                                    data: [
-                                                        {value: 335, name: '过票'},
-                                                        {value: 310, name: '油品批发'},
-                                                        {value: 234, name: '分销'},
-                                                        {value: 135, name: '油品零售'},
-                                                        {value: 1548, name: '非油品零售'}
-                                                    ]
-                                                }],
-                                            },
-                                        }],
-                                    },
-                                ]
-                            },
-                            {
-                                id: "budget_",
-                                year: 2019,
-                                collapseTitle: "预算控制",
-                                EChartsBox: [
-                                    {
-                                        title: '<div style="font-size:15px;text-shadow:none;height: 100%;text-align: right;font-weight: normal;padding-right: 20px">2020年 执行金额:160亿元 预算金额:200亿元 总执行度:80%</div>',
-                                        input: true,
-                                        select: true,
                                         style: {
                                             width: "100%",
-                                            height: "600px",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                style: {
-                                                    width: '100%',
-                                                    height: '600px'
-                                                },
-                                                isPagination: true,
-                                                height: "630px",
-                                                type: 'table',
-                                                columns: [
-                                                    {prop: 'a', label: '预算项目'},
-                                                    {prop: 'b', label: '预算金额（元）'},
-                                                    {prop: 'c', label: '执行金额（元）'},
-                                                    {prop: 'd', label: '执行速度'},
-                                                    {prop: 'e', label: '时间偏离度（执行进度-时间进度）'},
-                                                    {prop: 'f', label: '年份'},
-                                                ],
-                                                tableData: [
-                                                    {a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-                                                    {a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-                                                    {a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-                                                    {a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-                                                    {a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-                                                ]
-                                            },
-                                        ],
-                                    },
-                                    {
-                                        title: "成本费用利用率",
-                                        style: {
-                                            width: "49.5%",
                                             height: "400px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -718,32 +48,254 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "380px",
+                                                    height: "350px",
                                                 },
                                                 option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['2015', '2016', '2017', '2018', '2019', '2020']
+                                                    color: [
+                                                        '#67001f', '#b2182b', '#d6604d', '#f4a582', '#fddbc7', '#d1e5f0', '#92c5de', '#4393c3', '#2166ac', '#053061'
+                                                    ],
+                                                    tooltip: {
+                                                        trigger: 'item',
+                                                        triggerOn: 'mousemove'
                                                     },
-                                                    yAxis: {
-                                                        type: 'value'
-                                                    },
-                                                    series: [{
-                                                        data: [120, 200, 150, 80, 70, 110],
-                                                        type: 'line',
-                                                        itemStyle: {
-                                                            color: '#38d'
+                                                    animation: false,
+                                                    series: [
+                                                        {
+                                                            type: 'sankey',
+                                                            bottom: '10%',
+                                                            right: '5%',
+                                                            focusNodeAdjacency: 'allEdges',
+                                                            data: [
+                                                                {name: 'a'},
+                                                                {name: 'b'},
+                                                                {name: 'a1'},
+                                                                {name: 'b1'},
+                                                                {name: 'c'},
+                                                                {name: 'e'}
+                                                            ],
+                                                            links: [
+                                                                {source: 'a', target: 'a1', value: 5},
+                                                                {source: 'e', target: 'b', value: 3},
+                                                                {source: 'a', target: 'b1', value: 3},
+                                                                {source: 'b1', target: 'a1', value: 1},
+                                                                {source: 'b1', target: 'c', value: 2},
+                                                                {source: 'b', target: 'c', value: 1}
+                                                            ],
+                                                            label: {
+                                                                position: 'top'
+                                                            },
+                                                            lineStyle: {
+                                                                color: 'source',
+                                                                curveness: 0.5
+                                                            }
                                                         }
-                                                    }]
+                                                    ]
                                                 }
-                                            },
+                                            }
                                         ],
                                     },
                                     {
-                                        title: "分项成本变化趋势",
-                                        select: true,
+                                        title: "流入占比",
+                                        time: false,
+                                        select: false,
                                         style: {
                                             width: "49.5%",
+                                            height: "350px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 5,
+                                                    data: ['A进货商', 'B进货商', 'C进货商', 'D进货商', 'E进货商']
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    center: ["50%", "50%"],
+                                                    radius: ["30%", "45%"],
+                                                    clockwise: true,
+                                                    avoidLabelOverlap: true,
+                                                    hoverOffset: 15,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor: "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [
+                                                        {value: 335, name: 'A进货商'},
+                                                        {value: 310, name: 'B进货商'},
+                                                        {value: 234, name: 'C进货商'},
+                                                        {value: 135, name: 'D进货商'},
+                                                        {value: 1548, name: 'E进货商'}
+                                                    ]
+                                                }],
+                                            },
+                                        }],
+                                    },
+                                    {
+                                        title: "流出占比",
+                                        time: false,
+                                        select: false,
+                                        style: {
+                                            width: "49.5%",
+                                            height: "350px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 10,
+                                                    data: ['A批发商', 'B批发商', 'C批发商', 'D批发商', 'E批发商']
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    avoidLabelOverlap: true,
+                                                    center: ["48%", "50%"],
+                                                    radius: ["38%", "50%"],
+                                                    clockwise: true,
+                                                    hoverOffset: 20,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor:
+                                                            "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [
+                                                        {value: 335, name: 'A批发商'},
+                                                        {value: 310, name: 'B批发商'},
+                                                        {value: 234, name: 'C批发商'},
+                                                        {value: 135, name: 'D批发商'},
+                                                        {value: 1548, name: 'E批发商'}
+                                                    ]
+                                                }],
+                                            },
+                                        }],
+                                    },
+                                ]
+                            },
+                            {
+                                id: "profit_2019",
+                                year: 2020,
+                                collapseTitle: "2019年油库来源",
+                                EChartsBox: [
+                                    {
+                                        title: "",
+                                        time: false,
+                                        style: {
+                                            width: "100%",
                                             height: "400px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -755,26 +307,241 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "380px",
+                                                    height: "350px",
                                                 },
                                                 option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['2015', '2016', '2017', '2018', '2019', '2020']
+                                                    color: [
+                                                        '#67001f', '#b2182b', '#d6604d', '#f4a582', '#fddbc7', '#d1e5f0', '#92c5de', '#4393c3', '#2166ac', '#053061'
+                                                    ],
+                                                    tooltip: {
+                                                        trigger: 'item',
+                                                        triggerOn: 'mousemove'
                                                     },
-                                                    yAxis: {
-                                                        type: 'value'
-                                                    },
-                                                    series: [{
-                                                        data: [120, 200, 150, 80, 70, 110],
-                                                        type: 'bar',
-                                                        itemStyle: {
-                                                            color: '#38d'
+                                                    animation: false,
+                                                    series: [
+                                                        {
+                                                            type: 'sankey',
+                                                            bottom: '5%',
+                                                            right: '5%',
+                                                            focusNodeAdjacency: 'allEdges',
+                                                            data: [
+                                                                {name: 'a'},
+                                                                {name: 'b'},
+                                                                {name: 'a1'},
+                                                                {name: 'b1'},
+                                                                {name: 'c'},
+                                                                {name: 'e'}
+                                                            ],
+                                                            links: [
+                                                                {source: 'a', target: 'a1', value: 5},
+                                                                {source: 'e', target: 'b', value: 3},
+                                                                {source: 'a', target: 'b1', value: 3},
+                                                                {source: 'b1', target: 'a1', value: 1},
+                                                                {source: 'b1', target: 'c', value: 2},
+                                                                {source: 'b', target: 'c', value: 1}
+                                                            ],
+                                                            label: {
+                                                                position: 'top'
+                                                            },
+                                                            lineStyle: {
+                                                                color: 'source',
+                                                                curveness: 0.5
+                                                            }
                                                         }
-                                                    }]
+                                                    ]
                                                 }
-                                            },
+                                            }
                                         ],
+                                    },
+                                    {
+                                        title: "流入占比",
+                                        time: false,
+                                        select: false,
+                                        style: {
+                                            width: "49.5%",
+                                            height: "350px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 5,
+                                                    data: ['A进货商', 'B进货商', 'C进货商', 'D进货商', 'E进货商']
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    center: ["50%", "50%"],
+                                                    radius: ["30%", "45%"],
+                                                    clockwise: true,
+                                                    avoidLabelOverlap: true,
+                                                    hoverOffset: 15,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor: "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [
+                                                        {value: 335, name: 'A进货商'},
+                                                        {value: 310, name: 'B进货商'},
+                                                        {value: 234, name: 'C进货商'},
+                                                        {value: 135, name: 'D进货商'},
+                                                        {value: 1548, name: 'E进货商'}
+                                                    ]
+                                                }],
+                                            },
+                                        }],
+                                    },
+                                    {
+                                        title: "流出占比",
+                                        time: false,
+                                        select: false,
+                                        style: {
+                                            width: "49.5%",
+                                            height: "350px",
+                                            background: "white",
+                                            borderRadius: "10px",
+                                            overflow: "hidden",
+                                        },
+                                        EChartsItem: [{
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                },
+
+                                                legend: {
+                                                    orient: "horizontal",
+                                                    bottom: 10,
+                                                    data: ['A批发商', 'B批发商', 'C批发商', 'D批发商', 'E批发商']
+                                                },
+                                                series: [{
+                                                    type: "pie",
+                                                    avoidLabelOverlap: true,
+                                                    center: ["48%", "50%"],
+                                                    radius: ["38%", "50%"],
+                                                    clockwise: true,
+                                                    hoverOffset: 20,
+                                                    itemStyle: {
+                                                        normal: {
+                                                            color: function (v) {
+                                                                let colorList = [
+                                                                    "#76c15c",
+                                                                    "#15b3e2",
+                                                                    "#2e65fd",
+                                                                    "#1fcaa8",
+                                                                    "#ee6565",
+                                                                    "#fec02a",
+                                                                    "#fe3922",
+                                                                    "#52fe36",
+                                                                    "#fe3afc",
+                                                                ];
+                                                                return colorList[v.dataIndex];
+                                                            },
+                                                        },
+                                                    },
+                                                    label: {
+                                                        show: true,
+                                                        position: "outer",
+                                                        width: 0,
+                                                        height: 0,
+                                                        lineHeight: 0,
+                                                        backgroundColor:
+                                                            "auto",
+                                                        padding: [2, -2, 2, -2,],
+                                                        borderRadius: 2,
+                                                        distanceToLabelLine: 0,
+                                                        normal: {
+                                                            formatter(v) {
+                                                                let text = v.name + "\n" + v.percent + "%";
+                                                                return text;
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            lineStyle: {
+                                                                width: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    data: [
+                                                        {value: 335, name: 'A批发商'},
+                                                        {value: 310, name: 'B批发商'},
+                                                        {value: 234, name: 'C批发商'},
+                                                        {value: 135, name: 'D批发商'},
+                                                        {value: 1548, name: 'E批发商'}
+                                                    ]
+                                                }],
+                                            },
+                                        }],
                                     },
                                 ]
                             },

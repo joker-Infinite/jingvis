@@ -60,4 +60,9 @@ export default [
         name:'wholesale',
         component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/wholesale.vue'),
     },
+    {
+        path: 'gasSource',
+        name:'gasSource',
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/gasSource.vue'),
+    },
 ]

@@ -31,12 +31,6 @@
                                 id: "profit_2020",
                                 year: 2020,
                                 collapseTitle: "批零差价",
-                                allQuery: true,
-                                allQueryData: {
-                                    input: false,
-                                    select: false,
-                                    time: true
-                                },
                                 EChartsBox: [
                                     {
                                         title: "油品价格",
@@ -73,7 +67,7 @@
                                                     legend: {
                                                         orient: "horizontal",
                                                         bottom: 5,
-                                                        data: ['汽油', '柴油']
+                                                        data: ['汽油', '柴油', '总量', '92', '95', '96', '0']
                                                     },
                                                     series: [
                                                         {
@@ -86,6 +80,31 @@
                                                             data: [322, 432, 543, 234, 543, 215, 546, 654, 567, 756, 321, 435],
                                                             type: 'line'
                                                         },
+                                                        {
+                                                            name: '总量',
+                                                            data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                            type: 'line'
+                                                        },
+                                                        {
+                                                            name: '92',
+                                                            data: [33, 32, 33, 76, 35, 32, 432, 432, 32, 231, 76, 31],
+                                                            type: 'line'
+                                                        },
+                                                        {
+                                                            name: '95',
+                                                            data: [45, 123, 32, 42, 321, 44, 312, 45, 65, 87, 23, 31],
+                                                            type: 'line'
+                                                        },
+                                                        {
+                                                            name: '96',
+                                                            data: [65, 32, 76, 234, 56, 66, 312, 45, 65, 87, 34, 31],
+                                                            type: 'line'
+                                                        },
+                                                        {
+                                                            name: '0',
+                                                            data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                            type: 'line'
+                                                        },
                                                     ]
                                                 }
                                             }
@@ -94,9 +113,12 @@
                                     {
                                         title: "批零差价（默认显示最近30天的数据）",
                                         time: true,
+                                        year: true,
+                                        month: true,
+                                        day: true,
                                         style: {
                                             width: "100%",
-                                            height: "400px",
+                                            height: "450px",
                                             background: "white",
                                             borderRadius: "10px",
                                             overflow: "hidden",
@@ -107,7 +129,7 @@
                                                 /*ECharts的属性*/
                                                 style: {
                                                     width: "100%",
-                                                    height: "350px",
+                                                    height: "400px",
                                                 },
                                                 option: {
                                                     xAxis: {
@@ -121,12 +143,25 @@
                                                         left: 40,
                                                         right: 40,
                                                         top: 70,
-                                                        bottom: 30
+                                                        bottom: 50
                                                     },
-                                                    series: [{
-                                                        data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
-                                                        type: 'line'
-                                                    }]
+                                                    legend: {
+                                                        orient: "horizontal",
+                                                        bottom: 5,
+                                                        data: ['国内批发差价', '自身批发差价']
+                                                    },
+                                                    series: [
+                                                        {
+                                                            name: '国内批发差价',
+                                                            data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                            type: 'line'
+                                                        },
+                                                        {
+                                                            name: '自身批发差价',
+                                                            data: [132, 433, 321, 65, 768, 987, 343, 234, 123, 432, 543, 232],
+                                                            type: 'line'
+                                                        },
+                                                    ]
                                                 }
                                             }
                                         ],

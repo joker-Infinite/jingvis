@@ -42,7 +42,10 @@
                             <div v-for="(sit, six) in cit.EChartsBox"
                                  :key="six"
                                  :style="sit.style">
-                                <div class="Title">{{ sit.title }}</div>
+                                <div class="Title" v-if="sit.showTitle==='notShow'?false:true"
+                                     :id="'processingTitle^'+item.id+'^' + cix+'^'+six">
+                                    {{processingTitle(sit.title,'processingTitle^'+item.id+'^' + cix+'^'+six) }}
+                                </div>
                                 <div class="query"
                                      v-if="sit.time || sit.select || sit.input">
                                     <el-input v-model="query.inputValue" v-if="sit.input"
@@ -58,9 +61,13 @@
                                             start-placeholder="开始月份"
                                             end-placeholder="结束月份">
                                     </el-date-picker>
-                                    <el-button icon="el-icon-search" type="primary" v-if="sit.time || sit.select"
+                                    <el-button icon="el-icon-search" type="primary"
+                                               v-if="sit.time || sit.select|| sit.input"
                                                @click="refreshClick(cit,query,cit.year,item.name,sit)">搜索
                                     </el-button>
+                                    <el-button type="primary" v-if="sit.year">年</el-button>
+                                    <el-button type="primary" v-if="sit.month">月</el-button>
+                                    <el-button type="primary" v-if="sit.day">日</el-button>
                                 </div>
                                 <div v-for="(wit, wix) in sit.EChartsItem"
                                      :key="wix"
@@ -78,6 +85,7 @@
                                          wit.option.series[0].data.length !==0 && 
                                          wit.option.series[0].type !=='pie' &&
                                          wit.option.series[0].type !=='scatter' &&
+                                         wit.option.series[0].type !=='sankey' &&
                                          !wit.isTitle&&
                                          !wit.isbar &&
                                          wit.option.series[0].data[0].name!=='占比')">
@@ -228,6 +236,13 @@
             };
         },
         methods: {
+            //加工 title 可写 HTML代码
+            processingTitle(v, id) {
+                if (document.getElementById(id)) {
+                    return document.getElementById(id).innerHTML = v;
+                }
+                return ''
+            },
             // 切换供应商跟业态的
             switchoverClick(i) {
                 this.isShowswitchover = i
@@ -640,23 +655,21 @@
                         border-radius: 10px;
                     }
 
-                    .allQuery /deep/ .el-date-editor {
-                        margin: 5px 20px 0 0;
-                    }
-
                     .allQuery /deep/ .el-input {
-                        margin: 5px 20px 5px 10px;
+                        margin: 5px 0;
                         width: 200px;
-                    }
-
-                    .allQuery /deep/ .el-button {
-                        margin: 5px 20px;
                     }
 
                     .allQuery /deep/ .el-select {
                         margin: 0 20px;
-                        /*background: #d0d1ff;*/
-                        /*color: white;*/
+                    }
+
+                    .allQuery /deep/ .el-date-editor {
+                        margin: 5px 20px 0 0;
+                    }
+
+                    .allQuery /deep/ .el-button {
+                        margin: 5px 0;
                     }
                 }
 
@@ -681,31 +694,29 @@
 
                     .query {
                         position: absolute;
-                        width: 90%;
+                        width: 100%;
                         height: 60px;
                         z-index: 999;
                         top: 50px;
                         right: 20px;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-end;
+                        text-align: center;
+                    }
+
+                    .query /deep/ .el-input {
+                        margin: 10px 0 0 0;
+                        width: 180px;
+                    }
+
+                    .query /deep/ .el-select {
+                        margin: 0 20px;
                     }
 
                     .query /deep/ .el-date-editor {
                         margin: 10px 20px 0 0;
                     }
 
-                    .query /deep/ .el-input {
-                        margin: 10px 20px 0 0;
-                        width: 180px;
-                    }
-
-                    .query /deep/ .el-select {
-                        margin: 0 20px 0 0;
-                    }
-
                     .query /deep/ .el-button {
-                        margin: 10px 20px;
+                        margin: 10px 20px 0 0;
                     }
 
                     .query /deep/ .el-input__inner > .el-range-input {
@@ -826,12 +837,12 @@
             .MaxMinAverage {
                 position: absolute;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 top: -35px;
                 right: 10px;
                 background: #fff;
-                /*padding: 5px;*/
-                /*box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);*/
+                padding: 5px;
+                box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
                 border-radius: 5px;
                 font-size: 14px;
 
