@@ -17,6 +17,7 @@
 
 <style scoped lang="less">
     .text {
+        background: #99a9bf;
         position: fixed;
         width: 100%;
         height: 100%;

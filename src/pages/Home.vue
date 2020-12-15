@@ -154,9 +154,9 @@
                     }
                 ],
                 tagData: [],
-                key: "/serviceArea/profit",
+                key: "/serviceArea/revenue",
                 menuStatus: 1,
-                isActive: '2-0',
+                isActive: '/serviceArea/revenue',
                 openData: ''
             }
         },
