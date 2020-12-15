@@ -32,4 +32,14 @@ export default [
         name:'piFa',
         component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/piFa.vue'),
     },
+    {
+        path: 'profit',
+        name:'profit',
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/profit.vue'),
+    },
+    {
+        path: 'budgetControl',
+        name:'budgetControl',
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/budgetControl.vue'),
+    },
 ]

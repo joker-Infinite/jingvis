@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- :style="{width:navBarShow?'90%':'98%'}" -->
-        <div class="collapse" id="collapse" >
+        <div class="collapse" :style="{width:navBarShow?'90%':'98%'}" id="collapse">
             <div v-for="(item, index) in collapseData"
                  :key="index"
                  :id="item.id"
@@ -81,30 +81,30 @@
                                          !wit.isbar &&
                                          wit.option.series[0].data[0].name!=='占比')">
                                         <div>{{wit.serviceName?wit.serviceName:''}}
-                                            最高：{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ? 
-                                            parseInt(showTarget(wit.option,'max',wit.unit)) : 
+                                            最高:{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ?
+                                            parseInt(showTarget(wit.option,'max',wit.unit)) :
                                             showTarget(wit.option,'max',wit.unit)}}
                                             {{wit.unit?wit.unit:'万元'}}
                                         </div>
                                         <div>{{wit.serviceName?wit.serviceName:''}}
-                                            最低：{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ? 
-                                                parseInt(showTarget(wit.option,'min',wit.unit)):
-                                                showTarget(wit.option,'min',wit.unit)
-                                                }}
+                                            最低:{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ?
+                                            parseInt(showTarget(wit.option,'min',wit.unit)):
+                                            showTarget(wit.option,'min',wit.unit)
+                                            }}
                                             {{wit.unit?wit.unit:'万元'}}
                                         </div>
                                         <div style="text-align: right">
-                                            平均：{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ?
+                                            平均:{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ?
                                             parseInt(showTarget(wit.option,'average',wit.unit)):
                                             showTarget(wit.option,'average',wit.unit)}}
                                             {{wit.unit?wit.unit:'万元'}}
                                         </div>
                                     </div>
                                     <div class="MaxMinAverage" v-if="wit.isTitle">
-                                        <div>回款：{{showTget(wit.option,'averages') + '%'}}</div>
-                                        <div>最高：{{showTget(wit.option,'max') + '%'}}</div>
-                                        <div>最低：{{showTget(wit.option,'min') + '%'}}</div>
-                                        <div>平均：{{showTget(wit.option,'average') + '%'}}</div>
+                                        <div>回款:{{showTget(wit.option,'averages') + '%'}}</div>
+                                        <div>最高:{{showTget(wit.option,'max') + '%'}}</div>
+                                        <div>最低:{{showTget(wit.option,'min') + '%'}}</div>
+                                        <div>平均:{{showTget(wit.option,'average') + '%'}}</div>
                                     </div>
                                     <div class="null" v-if="!wit.type && wit.option.series[0].data.length ==0">
                                         暂无数据
@@ -132,6 +132,7 @@
                                                 :multiple="false"
                                                 :border=" wit.border ? wit.border : true"
                                                 :data="wit.tableData"
+                                                :show-index="!!wit.showIndex?wit.showIndex:false"
                                                 :is-pagination="wit.isPagination"
                                                 v-if="wit.type === 'table'">
                                         </my-table>
@@ -150,7 +151,7 @@
             </div>
         </div>
         <!-- <div class="navigation" v-if="navBarShow"> -->
-        <div class="navigation" v-if="false">
+        <div class="navigation" v-if="navBarShow">
             <div class="navBar">
                 <p></p>
                 <p style="cursor: pointer" @click="collapseAll">
@@ -699,7 +700,7 @@
                     }
 
                     .query /deep/ .el-select {
-                        margin: 10px 20px 0 0;
+                        margin: 0 20px 0 0;
                     }
 
                     .query /deep/ .el-button {
@@ -824,16 +825,18 @@
             .MaxMinAverage {
                 position: absolute;
                 display: flex;
-                flex-direction: column;
-                top: -40px;
+                flex-direction: row;
+                top: -35px;
                 right: 10px;
                 background: #fff;
-                padding: 5px;
-                box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
+                /*padding: 5px;*/
+                /*box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);*/
+                border-radius: 5px;
+                font-size: 14px;
 
                 div {
                     font-weight: 700;
+                    margin: 0 3px;
                 }
             }
 
