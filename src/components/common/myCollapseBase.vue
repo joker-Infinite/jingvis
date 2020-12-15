@@ -717,7 +717,7 @@
                     }
 
                     .query /deep/ .el-date-editor {
-                        margin: 10px 20px 0 0;
+                        margin: 10px 20px;
                     }
 
                     .query /deep/ .el-button {
