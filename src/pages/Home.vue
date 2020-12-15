@@ -96,7 +96,7 @@
                         imgActive: require("../assets/Home/3.png"),
                         menuItem: [">>营收", ">>利润", ">>预算控制", ">>批零差价", ">>零售", ">>批发", ">>应收账款", ">>油源", ">>油库", ">>分公司", ">>线路"],
                         menuItemUrl: [
-                            "/energy/7",
+                            "/energy/energyrevenue",
                             "/energy/profit",
                             "/energy/budgetControl",
                             "/energy/wholesale",
