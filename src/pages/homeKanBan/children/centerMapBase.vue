@@ -40,8 +40,8 @@
                 map: '',
                 marker: [],
                 mapStyleArr: [
-                    // 'fresh',
-                    '8cb6df918ee512eae9c9198c38a40c91',
+                    'fresh',
+                    // '8cb6df918ee512eae9c9198c38a40c91',
                     'darkblue',
                     'blue',
                 ],
@@ -102,7 +102,7 @@
                     })
                     i.setMap(v);
                 });
-                new AMap.plugin(["AMap.MarkerClusterer"], function () {
+               /* new AMap.plugin(["AMap.MarkerClusterer"], function () {
                     new AMap.MarkerClusterer(
                         v,
                         that.marker,
@@ -111,7 +111,7 @@
                             renderClusterMarker: that._renderClusterMarker
                         }
                     )
-                })
+                })*/
             },
             //点聚合
             _renderClusterMarker(context) {
@@ -320,6 +320,7 @@
         overflow: hidden;
 
         .details {
+            color: white;
             width: 160px;
             height: 110px;
             position: absolute;
@@ -328,7 +329,7 @@
             transition: linear .3s;
             padding: 20px;
             border-radius: 5px;
-            background: #f3f7ff;
+            background: rgba(0, 0, 0, 0.4);
         }
 
         .btn {

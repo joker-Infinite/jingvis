@@ -7,9 +7,7 @@
                     :default-active="key"
                     router
                     class="el-menu-vertical-demo"
-                    @select="select"
-                    @open="open"
-                    @close="close">
+                    @select="select">
                 <div class="oc" id="oc" style="text-align: right">
                     <i :class=" menuStatus % 2 === 0 ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
                        @click="menuOC"></i>
@@ -33,15 +31,6 @@
                             :key="cIndex">
                         {{ cItem }}
                     </el-menu-item>
-                    <!--  <el-submenu index="4-0" v-if="item.id === '4'">
-                          <template slot="title">
-                              中化交投
-                          </template>
-                          <el-menu-item index="4-0-0">加油站详情页</el-menu-item>
-                      </el-submenu>
-                      <el-menu-item index="4-1" v-if="item.id === '4'">石化能源
-                      </el-menu-item>
-                      <el-menu-item index="4-2" v-if="item.id === '4'">新能源</el-menu-item>-->
                 </el-submenu>
             </el-menu>
         </div>
@@ -118,6 +107,17 @@
                             "/serviceArea/15",
                             "/serviceArea/16",
                             "/serviceArea/17",
+                            "/energy/7",
+                            "/energy/profit",
+                            "/energy/budgetControl",
+                            "/energy/wholesale",
+                            "/energy/11",
+                            "/energy/12",
+                            "/energy/13",
+                            "/energy/14",
+                            "/energy/15",
+                            "/energy/16",
+                            "/energy/17",
                         ]
                     },
                     {
@@ -172,45 +172,8 @@
             }
         },
         methods: {
-            // tagClick(v) {
-            //     this.isActive = v.index.charAt(0);
-            //     this.key = v.index;
-            //     this.$router.push(v.path);
-            //     this.setCookie(v.index);
-            // },
-            tagClose(v) {
-                this.tagData.splice(this.tagData.indexOf(v), 1);
-            },
             clickTable(v) {
-                let i = '';
-                if (v) {
-                    i = this.openData + '-d';
-                }
-                if (!v) {
-                    i = this.openData;
-                }
-                document.cookie = 'menu=' + i;
-            },
-            setTag(v) {
-                if (v.length === 1) {
-                    v = v + '-0';
-                }
-                let arr = v.split('-');
-                let obj = {};
-                let indexs = '';
-                this.tagData.forEach(i => {
-                    indexs += i.index + ',';
-                });
-                this.submenu.forEach(i => {
-                    if (i.id == arr[0] && arr[1] && indexs.indexOf(v) === -1) {
-                        obj = {
-                            content: i.menuItem[arr[1]],
-                            path: this.$route.path,
-                            index: v
-                        };
-                        this.tagData.push(obj);
-                    }
-                })
+                this.setCookie(document.cookie.split('=')[1].split('-')[0], '/details/details')
             },
             menuOC() {
                 this.menuStatus++;
@@ -234,73 +197,35 @@
                     });
                 }
             },
-            /**
-             * 菜单子节点事件
-             * @param k 当前节点index
-             * @param n 父节点及当前节点index
-             * @param n 节点组件本身
-             * */
             select(k, n, m) {
-
-                this.key = k;
-                this.clickMenu(k);
-            },
-            /**
-             * 菜单父节点事件
-             * */
-            close(k) {
-                this.key = k + "-0";
-                // this.clickMenu(k);
-            },
-            open(k) {
-                this.key = k + "-0";
-                // this.clickMenu(k);
-            },
-            clickMenu(v) {
-                this.setCookie(v);
-                this.isActive = v.charAt(0);
-                if (v === "") {
+                if (k == '') {
                     let routeData = this.$router.resolve({
                         path: "/homeKanBan".replace("#", "")
                     });
                     window.open(routeData.href, "_blank");
+                } else {
+                    this.setCookie(k, '')
                 }
-                this.setTag(v);
             },
             getCookie() {
                 let cookie = document.cookie;
-                let arr = [];
-                let arr_ = [];
                 if (cookie) {
-                    arr = cookie.split('=');
-                    this.key = arr[2];
-                    arr_ = arr[1].split('-');
-                    if (arr_.length === 2) {
-                        this.clickMenu(arr_[0] + '-' + arr_[1]);
+                    let path = cookie.split('=')[1].split('-');
+                    this.key = path[0];
+                    if (path[1] && path[1].length > 1) {
+                        this.$router.push(path[1])
+                    } else {
+                        this.$router.push(path[0])
                     }
-                    if (arr_.length === 3) {
-                        this.key = arr_[0] + '-' + arr_[1];
-                        let i = this.openData ? this.openData : this.key + '-d';
-                        document.cookie = 'menu=' + i;
-                        this.$router.push("/details/details");
-                    }
-                    this.isActive = this.key.charAt(0);
-                } else {
-                    this.key = '2-0';
-                    this.isActive = this.key.charAt(0);
                 }
             },
-            setCookie(v) {
-                let open = v;
-                if (open.length === 1 && open != 1) {
-                    open = open + '-0';
-                }
-                this.openData = open;
-                document.cookie = 'menu=' + open;
-            },
+            setCookie(v, key) {
+                this.key = v;
+                document.cookie = 'menu=' + v + '-' + key;
+            }
         },
         mounted() {
-            // this.getCookie();
+            this.getCookie();
         }
     };
 </script>
