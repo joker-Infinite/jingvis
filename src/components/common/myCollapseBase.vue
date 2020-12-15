@@ -77,6 +77,7 @@
                                          v-if="(wit.option && wit.option.series && 
                                          wit.option.series[0].data.length !==0 && 
                                          wit.option.series[0].type !=='pie' &&
+                                         wit.option.series[0].type !=='scatter' &&
                                          !wit.isTitle&&
                                          !wit.isbar &&
                                          wit.option.series[0].data[0].name!=='占比')">

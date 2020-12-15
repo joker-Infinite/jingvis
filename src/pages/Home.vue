@@ -99,7 +99,7 @@
                             "/energy/7",
                             "/energy/profit",
                             "/energy/budgetControl",
-                            "/energy/10",
+                            "/energy/wholesale",
                             "/energy/11",
                             "/energy/12",
                             "/energy/13",
@@ -187,16 +187,25 @@
                 }
             },
             select(k, n, m) {
-                this.setCookie(k, '')
+                if (k == '') {
+                    let routeData = this.$router.resolve({
+                        path: "/homeKanBan".replace("#", "")
+                    });
+                    window.open(routeData.href, "_blank");
+                } else {
+                    this.setCookie(k, '')
+                }
             },
             getCookie() {
                 let cookie = document.cookie;
-                let path = cookie.split('=')[1].split('-');
-                this.key = path[0];
-                if (path[1] && path[1].length > 1) {
-                    this.$router.push(path[1])
-                } else {
-                    this.$router.push(path[0])
+                if (cookie) {
+                    let path = cookie.split('=')[1].split('-');
+                    this.key = path[0];
+                    if (path[1] && path[1].length > 1) {
+                        this.$router.push(path[1])
+                    } else {
+                        this.$router.push(path[0])
+                    }
                 }
             },
             setCookie(v, key) {

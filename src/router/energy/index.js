@@ -42,4 +42,9 @@ export default [
         name:'budgetControl',
         component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/budgetControl.vue'),
     },
+    {
+        path: 'wholesale',
+        name:'wholesale',
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/wholesale.vue'),
+    },
 ]
