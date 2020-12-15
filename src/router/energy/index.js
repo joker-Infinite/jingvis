@@ -12,6 +12,19 @@ export default [
         name:'ZHJiaoTou',
         component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/ZHJiaoTou.vue'),
     },
+    //营收 
+    {
+        path: 'energyrevenue',
+        name: 'energyrevenue',
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/energyrevenue.vue'),
+    }, 
+    //利润
+    
+    {
+        path: 'energprofit',
+        name: 'energprofit',
+        component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/energprofit.vue'),
+    },
     {
         path: 'YPLingShou',
         name:'YPLingShou',
