@@ -9,7 +9,7 @@
 	import common from "../../../components/js/common";
 
 	export default {
-		name: "budgetControl",
+		name: "accountsReceivable",
 		components: {MyCollapseBase},
 		mixins: [common],
 		props: {
@@ -22,20 +22,19 @@
 			return {
 				collapseData: [
 					{
-						id: "budget",
-						name: "控制预算",
+						id: "accountsReceivable",
+						name: "回款率",
 						icon: require("../../../assets/business/icon_1-1.png"),
 						iconActive: require("../../../assets/business/icon_1-2.png"),
 						collapseItem: [
 							{
 								id: "budget_2020",
 								year: 2020,
-								collapseTitle: "2020年预算控制",
+								collapseTitle: "2020年回款率",
 								EChartsBox: [
 									{
 										title: "",
 										time: false,
-										timeValue: "",
 										style: {
 											width: "39.5%",
 											height: "350px",
@@ -51,102 +50,17 @@
 													height: "300px",
 												},
 												option: {
-													title: {
-														text: "",
+													xAxis: {
+														type: 'category',
+														data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 													},
-													tooltip: {
-														trigger: "axis",
-														formatter: function (val) {
-															return (
-																val[0].name + '月' +
-																":" + "<br />" +
-																val[0].value / 10000 +
-																"万元"
-															);
-														},
+													yAxis: {
+														type: 'value'
 													},
-													grid: {
-														top: "50",
-														right: "60",
-														left: "60",
-														bottom: "60", //图表尺寸大小
-													},
-													dataZoom: [{
-														type: 'inside'
-													}, {
-														type: 'slider'
-													}],
-													xAxis: [
-														{
-															type: "category",
-															color: "#59588D",
-															data: [],
-															axisLabel: {
-																margin: 10,
-																color: "#999",
-																textStyle: {
-																	fontSize: 12,
-																},
-															},
-															axisLine: {
-																lineStyle: {
-																	color:
-																		"rgba(107,107,107,0.37)",
-																},
-															},
-															axisTick: {
-																show: false,
-															},
-														},
-													],
-													yAxis: [
-														{
-															axisLabel: {
-																formatter: function (val) {
-																	return val / 10000
-																},
-																color: "#999",
-																textStyle: {
-																	fontSize: 12,
-																},
-															},
-															axisLine: {
-																lineStyle: {
-																	color:
-																		"rgba(107,107,107,0.37)",
-																},
-															},
-															axisTick: {
-																show: false,
-															},
-															splitLine: {
-																lineStyle: {
-																	color:
-																		"rgba(131,101,101,0.2)",
-																	type: "dashed",
-																},
-															},
-														},
-													],
-													series: [
-														{
-															type: "bar",
-															data: [],
-															barWidth: "16px",
-															itemStyle: {
-																normal: {
-																	color:
-																		"#38A0FF",
-																	barBorderRadius: [
-																		30,
-																		30,
-																		30,
-																		30,
-																	],
-																},
-															},
-														},
-													],
+													series: [{
+														data: [32012, 43232, 30121, 53334, 12940, 13350, 13120, 32321, 54653, 57646, 49821, 31542],
+														type: 'line'
+													}]
 												},
 											}
 										],
@@ -275,7 +189,7 @@
 												legend: {
 													orient: "horizontal",
 													bottom: 10,
-													data: ['过票', '油品批发', '分销', '油品零售', '非油品零售']
+													data: ['A公司', 'B公司', 'C公司', 'D公司', 'E公司']
 												},
 												series: [{
 													type: "pie",
@@ -331,11 +245,11 @@
 														},
 													},
 													data: [
-														{value: 335, name: '过票'},
-														{value: 310, name: '油品批发'},
-														{value: 234, name: '分销'},
-														{value: 135, name: '油品零售'},
-														{value: 1548, name: '非油品零售'}
+														{value: 335, name: 'A公司'},
+														{value: 310, name: 'B公司'},
+														{value: 234, name: 'C公司'},
+														{value: 135, name: 'D公司'},
+														{value: 1548, name: 'E公司'}
 													]
 												}],
 											},
@@ -346,12 +260,11 @@
 							{
 								id: "budget_2019",
 								year: 2019,
-								collapseTitle: "2019年预算控制",
+								collapseTitle: "2019年回款率",
 								EChartsBox: [
 									{
 										title: "",
 										time: false,
-										timeValue: "",
 										style: {
 											width: "39.5%",
 											height: "350px",
@@ -367,102 +280,17 @@
 													height: "300px",
 												},
 												option: {
-													title: {
-														text: "",
+													xAxis: {
+														type: 'category',
+														data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 													},
-													tooltip: {
-														trigger: "axis",
-														formatter: function (val) {
-															return (
-																val[0].name + '月' +
-																":" + "<br />" +
-																val[0].value / 10000 +
-																"万元"
-															);
-														},
+													yAxis: {
+														type: 'value'
 													},
-													grid: {
-														top: "50",
-														right: "60",
-														left: "60",
-														bottom: "60", //图表尺寸大小
-													},
-													dataZoom: [{
-														type: 'inside'
-													}, {
-														type: 'slider'
-													}],
-													xAxis: [
-														{
-															type: "category",
-															color: "#59588D",
-															data: [],
-															axisLabel: {
-																margin: 10,
-																color: "#999",
-																textStyle: {
-																	fontSize: 12,
-																},
-															},
-															axisLine: {
-																lineStyle: {
-																	color:
-																		"rgba(107,107,107,0.37)",
-																},
-															},
-															axisTick: {
-																show: false,
-															},
-														},
-													],
-													yAxis: [
-														{
-															axisLabel: {
-																formatter: function (val) {
-																	return val / 10000
-																},
-																color: "#999",
-																textStyle: {
-																	fontSize: 12,
-																},
-															},
-															axisLine: {
-																lineStyle: {
-																	color:
-																		"rgba(107,107,107,0.37)",
-																},
-															},
-															axisTick: {
-																show: false,
-															},
-															splitLine: {
-																lineStyle: {
-																	color:
-																		"rgba(131,101,101,0.2)",
-																	type: "dashed",
-																},
-															},
-														},
-													],
-													series: [
-														{
-															type: "bar",
-															data: [],
-															barWidth: "16px",
-															itemStyle: {
-																normal: {
-																	color:
-																		"#38A0FF",
-																	barBorderRadius: [
-																		30,
-																		30,
-																		30,
-																		30,
-																	],
-																},
-															},
-														},
-													],
+													series: [{
+														data: [32012, 43232, 30121, 53334, 12940, 13350, 13120, 32321, 54653, 57646, 49821, 31542],
+														type: 'line'
+													}]
 												},
 											}
 										],
@@ -591,7 +419,7 @@
 												legend: {
 													orient: "horizontal",
 													bottom: 10,
-													data: ['过票', '油品批发', '分销', '油品零售', '非油品零售']
+													data: ['A公司', 'B公司', 'C公司', 'D公司', 'E公司']
 												},
 												series: [{
 													type: "pie",
@@ -647,11 +475,11 @@
 														},
 													},
 													data: [
-														{value: 335, name: '过票'},
-														{value: 310, name: '油品批发'},
-														{value: 234, name: '分销'},
-														{value: 135, name: '油品零售'},
-														{value: 1548, name: '非油品零售'}
+														{value: 335, name: 'A公司'},
+														{value: 310, name: 'B公司'},
+														{value: 234, name: 'C公司'},
+														{value: 135, name: 'D公司'},
+														{value: 1548, name: 'E公司'}
 													]
 												}],
 											},
@@ -660,132 +488,50 @@
 								]
 							},
 							{
-								id: "budget_",
-								year: 2019,
-								collapseTitle: "预算控制",
-								EChartsBox: [
-									{
-										title: '<span style="float: left">预算项目列表</span><span style="float: right;text-shadow:none;height: 100%;text-align: right;padding-right: 20px">2020年 执行金额:160亿元 预算金额:200亿元 总执行度:80%</span>',
-										input: true,
-										select: true,
-										selectOption: [[2015, 2016, 2017, 2018]],
-										style: {
-											width: "100%",
-											height: "600px",
-											background: "white",
-											borderRadius: "10px",
-											overflow: "hidden",
-											marginBottom: '10px'
-										},
-										EChartsItem: [
-											{
-												style: {
-													width: '100%',
-													height: '600px'
-												},
-												isPagination: true,
-												height: "630px",
-												type: 'table',
-												columns: [
-													{prop: 'a', label: '预算项目'},
-													{prop: 'b', label: '预算金额（元）'},
-													{prop: 'c', label: '执行金额（元）'},
-													{prop: 'd', label: '执行速度'},
-													{prop: 'e', label: '时间偏离度（执行进度-时间进度）'},
-													{prop: 'f', label: '年份'},
-												],
-												tableData: [
-													{a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-													{a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-													{a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-													{a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-													{a: '/', b: '/', c: '/', d: '/', e: '/', f: '/'},
-												]
-											},
-										],
-									},
-									{
-										title: "成本费用利用率",
-										style: {
-											width: "49.5%",
-											height: "400px",
-											background: "white",
-											borderRadius: "10px",
-											overflow: "hidden",
-											marginBottom: '10px'
-										},
-										EChartsItem: [
-											{
-												unit: '%',
-												/*ECharts的属性*/
-												style: {
-													width: "100%",
-													height: "380px",
-												},
-												option: {
-													xAxis: {
-														type: 'category',
-														data: ['2015', '2016', '2017', '2018', '2019', '2020']
-													},
-													yAxis: {
-														type: 'value'
-													},
-													series: [{
-														data: [12011, 20032, 15043, 8023, 7012, 11320],
-														type: 'line',
-														itemStyle: {
-															color: '#38d'
-														}
-													}]
-												}
-											},
-										],
-									},
-									{
-										title: "分项成本变化趋势",
-										select: true,
-										showSearch: 'notShow',
-										selectOption: [['A成本', 'B成本', 'C成本', 'D成本']],
-										style: {
-											width: "49.5%",
-											height: "400px",
-											background: "white",
-											borderRadius: "10px",
-											overflow: "hidden",
-											marginBottom: '10px'
-										},
-										EChartsItem: [
-											{
-												/*ECharts的属性*/
-												style: {
-													width: "100%",
-													height: "380px",
-												},
-												option: {
-													xAxis: {
-														type: 'category',
-														data: ['2015', '2016', '2017', '2018', '2019', '2020']
-													},
-													yAxis: {
-														type: 'value'
-													},
-													series: [{
-														data: [120, 200, 150, 80, 70, 110],
-														type: 'bar',
-														itemStyle: {
-															color: '#38d'
-														}
-													}]
-												}
-											},
-										],
-									},
-								]
-							},
-							{
 								id: "revenue_gd",
 								collapseTitle: "查看更多",
 								EChartsBox: []
+							},
+							{
+								id: "budget_2020",
+								year: 2020,
+								collapseTitle: " 当月收款计划列表",
+								EChartsBox: [
+									{
+										title: "",
+										time: false,
+										style: {
+											width: "100%",
+											height: "500px",
+											background: "white",
+											borderRadius: "10px",
+											overflow: "hidden",
+										},
+										EChartsItem: [
+											{
+												type: 'table',
+												isPagination: true,
+												style: {
+													width: "100%",
+													height: "500px",
+												},
+												height: '600px',
+												columns: [
+													{prop: 'a', label: '供应商名称'},
+													{prop: 'b', label: '应收款项名称'},
+													{prop: 'c', label: '应收时间'},
+													{prop: 'd', label: '超期时间'},
+												],
+												tableData: [
+													{a: 'A批发商', b: "8%", c: '8%', d: '8%'},
+													{a: 'B批发商', b: "8%", c: '8%', d: '8%'},
+													{a: 'C批发商', b: "8%", c: '8%', d: '8%'},
+													{a: 'D批发商', b: "8%", c: '8%', d: '8%'},
+												]
+											}
+										],
+									},
+								]
 							},
 						],
 					},
