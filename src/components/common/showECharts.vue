@@ -1,6 +1,6 @@
 <template>
     <div style="width: 100%" class="box">
-        <el-dialog :visible.sync="visible" width="80vh" :modal="false">
+        <el-dialog :visible.sync="visible" width="900px" :modal="false">
             <div class="bigShow"
                  id="bigShow"
                  v-if="visible"
@@ -34,10 +34,12 @@
                 </div>
                 <div id="commonECharts_data"></div>
                 <div id="commonECharts"
-                     :style="{width:isShow?'85%':'100%',float:'left' ,height:timeSelect?'90%':'100%'}"></div>
-                <!--<div class="block_l"></div>
-                <div class="block_r"></div>
-                <div class="block_b"></div>-->
+                     :style="{width:isShow?'85%':timeSelect?'80%':'100%',float:'left' ,height:timeSelect?'90%':'100%'}"></div>
+                <div class="addToText" v-if="timeSelect">
+                    A 分类<br>
+                    B 分类<br>
+                    C 分类<br>
+                </div>
                 <div class="operation" v-if="isShow">
                     <el-radio class="checkboxItem" @change="changeRadioCD(1)" v-model="selectCD" :label="1">营收
                     </el-radio>
@@ -60,19 +62,6 @@
                 </el-radio>
                 <el-radio class="checkboxItem" @change="changeRadioBD(4)" v-model="selectBD" :label="4">服务区招商
                 </el-radio>
-            </div>
-        </el-dialog>
-        <el-dialog :visible.sync="visible_" width="80vh">
-            <div class="bigShow_" v-if="visible_">
-                <div class="left">
-                    <div id="commonEChartsLeft"></div>
-                </div>
-                <div class="right">
-                    <div id="commonEChartsRight"></div>
-                </div>
-                <div class="block_l"></div>
-                <div class="block_r"></div>
-                <div class="block_b"></div>
             </div>
         </el-dialog>
     </div>
@@ -98,8 +87,6 @@
                 timeSelect: false,
                 time: "",
                 visible: false,
-                two: false,
-                visible_: false,
                 isShow: false,
                 selectBD: 1,
                 selectCD: 1,
@@ -358,6 +345,21 @@
         // background: #10448a;
         // background: url("../../assets/detail_background.jpg") no-repeat;
 
+        .addToText {
+            width: 35%;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            text-align: center;
+            line-height: 80px;
+            color: white;
+            font-size: 30px;
+            font-weight: 700;
+        }
 
         #commonECharts_data {
             width: 115px;

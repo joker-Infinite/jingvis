@@ -104,6 +104,7 @@
                 if (is === 1) {
                     this.AD.title.textStyle.rich.a.fontSize = 25;
                     this.AD.title.y = "4%";
+                    this.AD.title.right = "47%";
                     this.$refs["showECharts"].openDialog(this.AD, "time");
                     this.$refs["showECharts"].isShow = false;
                     this.$refs["showECharts"].timeSelect = true;
@@ -139,6 +140,7 @@
                         text: "{a|     转化率}",
                         show: true,
                         y: "6",
+                        right: '100',
                         textStyle: {
                             fontFamily: "幼圆",
                             lineHeight: 15,
