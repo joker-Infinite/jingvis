@@ -13,12 +13,62 @@
                 </div>
                 <div id="AAA"></div>
             </div>
+            <animation class="animation" style="left:0;top:6%">
+                <template>
+                    <div class="img">
+                        <div
+                            class="img1"
+                            style="background-size: 100% 100%;"
+                            :style="{ 'background-image': 'url(' + require('../../assets/animation/5.png') + ')' }"
+                        ></div>
+                        <div
+                            class="img2"
+                            style="background-size: 100% 100%;"
+                            :style="{ 'background-image': 'url(' + require('../../assets/animation/66.png') + ')' }"
+                        ></div>
+                    </div>
+                </template>
+            </animation>
+            <animation class="animation" style="right:0;top:6%">
+                <template>
+                    <div class="img">
+                        <div
+                            class="img1"
+                            style="background-size: 100% 100%;"
+                            :style="{ 'background-image': 'url(' + require('../../assets/animation/4_03.png') + ')' }"
+                        ></div>
+                        <div
+                            class="img2"
+                            style="background-size: 100% 100%;"
+                            :style="{ 'background-image': 'url(' + require('../../assets/animation/4_02.png') + ')' }"
+                        ></div>
+                    </div>
+                </template>
+            </animation>
+            <animation class="animation" style="bottom:0;left:0">
+                <template>
+                    <div class="img">
+                        <div
+                            class="img1"
+                            style="background-size: 100% 100%;"
+                            :style="{ 'background-image': 'url(' + require('../../assets/animation/3_2.png') + ')' }"
+                        ></div>
+                        <div
+                            class="img2"
+                            style="background-size: 100% 100%;"
+                            :style="{ 'background-image': 'url(' + require('../../assets/animation/3_1.png') + ')' }"
+                        ></div>
+                    </div>
+                </template>
+            </animation>
         </div>
     </el-dialog>
 </template>
 
 <script>
+import animation from "../../pages/homeKanBan/children/animation"
     export default {
+        components:{animation},
         name: "showMap",
         props: {
             backdrop: {
@@ -304,5 +354,11 @@
             width: 100%;
             height: 100%;
         }
+    }
+    .animation {
+        position: absolute;
+        // top: 5%;
+        // right: 1%;
+        z-index: 200;
     }
 </style>
