@@ -48,7 +48,7 @@
                    :style="sit.style">
                 <div class="Title" v-if="sit.showTitle==='notShow'?false:true"
                      :id="'processingTitle^'+item.id+'^' + cix+'^'+six">
-                  {{processingTitle(sit.title,'processingTitle^'+item.id+'^' + cix+'^'+six) }}
+                  {{processingTitle(sit.title,'processingTitle^'+item.id+'^' + cix+'^'+six)}}
                 </div>
                 <div class="query"
                      v-if="sit.time || sit.select || sit.input">
@@ -83,6 +83,10 @@
                   <el-button type="primary" v-if="sit.year">年</el-button>
                   <el-button type="primary" v-if="sit.month">月</el-button>
                   <el-button type="primary" v-if="sit.day">日</el-button>
+                </div>
+                <!-- 零售插件的添加按钮 -->
+                <div v-if="sit.button" style="width:98%;margin-top:10px;text-align:right">
+                    <el-button @click="AddClick(sit)">添加</el-button>
                 </div>
                 <div v-for="(wit, wix) in sit.EChartsItem"
                      :key="wix"
@@ -191,6 +195,7 @@
         <p></p>
       </div>
     </div>
+    <add-table @isForm="isForm" ref="addtable"></add-table>
   </div>
 </template>
 
@@ -200,10 +205,10 @@
 	import MyInformation from "./myInformation";
 	import {outExe} from "../../../public/api/excel";
 	import clone from "../../../public/api/clone"
-
+  import AddTable from "./Add/addTable"
 	export default {
 		name: "myCollapseBase",
-		components: {MyMap, MyTable, MyInformation},
+		components: {MyMap, MyTable, MyInformation , AddTable},
 		props: {
 			navBarShow: {
 				type: Boolean,
@@ -247,10 +252,46 @@
 					timeValue: ''
 				},
 				canSearch: true,
-				NoDataTmie: 1000
+        NoDataTmie: 1000,
+        // 保存需要修改的table
+        tableDataVla:[]
 			};
 		},
 		methods: {
+      //传输过来的数据
+      isForm(val){
+          let date = val.item
+          for (const key in val) {
+              const element = val[key];
+              if(element=='' && key!='item'){
+                val[key] = '/'
+              }
+          }
+          let item
+          if(date==''){
+            let date = new Date()
+            item = date .getFullYear() + '-' + (date .getMonth()+1) + '-' +  date .getDate(); //获取当前日(1-31)
+          }else{
+            item = date .getFullYear() + '-' + (date .getMonth()+1) + '-' +  date .getDate(); //获取当前日(1-31)
+          }
+          let obj ={
+              // A: val.name,
+              B: val.qy,
+              C: val.cy,
+              D: val.qypf,
+              E: val.cypf,
+              F: val[95],
+              G: val[98],
+              H: val[92],
+              I: item,
+          };
+        this.tableDataVla.push(obj)
+      },
+      // 添加按钮
+      AddClick(val){
+        this.$refs.addtable.dialogFormVisible=true;
+        this.tableDataVla = val.EChartsItem[0].tableData;
+      },
 			//加工 title 可写 HTML代码
 			processingTitle(v, id) {
 				if (document.getElementById(id)) {
@@ -472,7 +513,7 @@
 			},
 			mouseover(wit, wix, title, id, ids) {
 				this.optionIid = ids
-				this.optionId = id;
+        this.optionId = id;
 				this.optionTitle = title;
 				this.optionData = wit;
 				// console.log(wit,wix)
@@ -706,6 +747,7 @@
             font-weight: 600;
             border-bottom: 5px solid #f3f7ff;
             text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+
           }
 
           .query {
@@ -854,6 +896,7 @@
         position: absolute;
         display: flex;
         flex-direction: column;
+        z-index: 100;
         top: -35px;
         right: 10px;
         background: #fff;

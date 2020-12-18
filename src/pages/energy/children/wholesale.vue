@@ -223,6 +223,69 @@
 							},
 						],
 					},
+					{
+                        id: "revenueTable",
+                        name: "2020年",
+                        icon: require("../../../assets/business/icon_1-1.png"),
+                        iconActive: require("../../../assets/business/icon_1-2.png"),
+                        collapseItem: [
+                            {
+                                id: "ab_2019",
+								collapseTitle: "批零插件历史记录列表",
+								
+                                EChartsBox: [
+                                    {
+										title: "批零插件历史记录列表",
+										showTitle:'notShow',
+										button:true,
+                                        time: false,
+                                        input: false,
+                                        style: {
+                                            cursor: 'pointer',
+                                            width: "100%",
+                                            height: "550px",
+                                            borderRadius: "10px",
+                                            background: "white",
+                                            overflow: "hidden",
+                                            marginBottom: '10px'
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                type: "table",
+                                                height: "650px",
+                                                style: {
+                                                    width: "100%",
+                                                    background: "#FFF",
+                                                },
+                                                isPagination: false,
+                                                columns: [
+                                                    // {prop: "A", label: "指标名称"},
+                                                    {prop: "B", label: "最高零售指导价:汽油"},
+                                                    {prop: "C", label: "最高零售指导价:柴油"},
+                                                    {prop: "D", label: "中国汽油批发价格指数"},
+                                                    {prop: "E", label: "中国柴油批发价格指数"},
+                                                    {prop: "F", label: "最高零售指导价:#95"},
+                                                    {prop: "G", label: "最高零售指导价:#98"},
+                                                    {prop: "H", label: "最高零售指导价:#92"},
+                                                    {prop: "I", label: "时间"},
+                                                ],
+                                                tableData: [
+													// {
+                                                    //     A: "批发商11",
+                                                    //     B: "8%",
+                                                    //     C: "8%",
+                                                    //     D: "8%",
+                                                    //     E: "8%",
+                                                    //     F: "110000",
+                                                    // },
+												],
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                        ],
+                    },
 				],
 				arrData: [],
 				ValueData: {

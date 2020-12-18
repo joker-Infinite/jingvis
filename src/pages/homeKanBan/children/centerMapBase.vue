@@ -12,70 +12,22 @@
         <div id="MAP"></div>
         <div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
         <div class="details" id="ds"></div>
-        <animation class="animation" style="left:0;top:6%">
+        <!-- <animation v-for="(item,index) of rotateList" class="animation" :key="index" :style="item.style">
             <template>
                 <div class="img">
                     <div
                         class="img1"
                         style="background-size: 100% 100%;"
-                        :style="{ 'background-image': 'url(' + require('../../../assets/animation/5.png') + ')' }"
+                        :style="{ 'background-image': 'url(' + item.png1 + ')' }"
                     ></div>
                     <div
                         class="img2"
                         style="background-size: 100% 100%;"
-                        :style="{ 'background-image': 'url(' + require('../../../assets/animation/66.png') + ')' }"
+                        :style="{ 'background-image': 'url(' + item.png2 + ')' }"
                     ></div>
                 </div>
             </template>
-        </animation>
-        <animation class="animation" style="right:0;top:6%">
-            <template>
-                <div class="img">
-                    <div
-                        class="img1"
-                        style="background-size: 100% 100%;"
-                        :style="{ 'background-image': 'url(' + require('../../../assets/animation/4_03.png') + ')' }"
-                    ></div>
-                    <div
-                        class="img2"
-                        style="background-size: 100% 100%;"
-                        :style="{ 'background-image': 'url(' + require('../../../assets/animation/4_02.png') + ')' }"
-                    ></div>
-                </div>
-            </template>
-        </animation>
-        <animation class="animation" style="bottom:0;left:0">
-            <template>
-                <div class="img">
-                    <div
-                        class="img1"
-                        style="background-size: 100% 100%;"
-                        :style="{ 'background-image': 'url(' + require('../../../assets/animation/3_2.png') + ')' }"
-                    ></div>
-                    <div
-                        class="img2"
-                        style="background-size: 100% 100%;"
-                        :style="{ 'background-image': 'url(' + require('../../../assets/animation/3_1.png') + ')' }"
-                    ></div>
-                </div>
-            </template>
-        </animation>
-        <animation class="animation" style="bottom:0;right:0">
-            <template>
-                <div class="img">
-                    <div
-                        class="img1"
-                        style="background-size: 100% 100%;"
-                        :style="{ 'background-image': 'url(' + require('../../../assets/animation/2_1.png') + ')' }"
-                    ></div>
-                    <div
-                        class="img2"
-                        style="background-size: 100% 100%;"
-                        :style="{ 'background-image': 'url(' + require('../../../assets/animation/2_2.png') + ')' }"
-                    ></div>
-                </div>
-            </template>
-        </animation>
+        </animation> -->
     </div>
 </template>
 
@@ -92,6 +44,29 @@ export default {
     },
     data() {
         return {
+            //旋转的
+            rotateList:[
+                {
+                    png1:require('../../../assets/animation/5.png'),
+                    png2:require('../../../assets/animation/66.png'),
+                    style:{left:'0',top:'6%'}
+                },
+                {
+                    png1:require('../../../assets/animation/4_03.png'),
+                    png2:require('../../../assets/animation/4_02.png'),
+                    style:{right:'0',top:'6%'}
+                },
+                {
+                    png1:require('../../../assets/animation/3_2.png'),
+                    png2:require('../../../assets/animation/3_1.png'),
+                    style:{bottom:'0',left:'0'}
+                },
+                 {
+                    png1:require('../../../assets/animation/2_1.png'),
+                    png2:require('../../../assets/animation/2_2.png'),
+                    style:{bottom:'0',right:'0'}
+                },
+            ],
             position: [],
             //交投能源
             energy: [],
