@@ -56,8 +56,8 @@
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="currentPage1"
-                :page-sizes="[5, 15, 20,30]"
-                :page-size="5"
+                :page-sizes="[5,10, 15, 20,30]"
+                :page-size="numberCount"
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="totalCount"
         >
@@ -106,7 +106,11 @@
                 default: false
             },
             headerCellStyle: Object,
-            rowStyleData: Object
+            rowStyleData: Object,
+            numberCount:{
+                type: Number,
+                default: 5
+            }
         },
         data() {
             return {
@@ -115,7 +119,7 @@
                 currentPage3: 3,
                 currentPage4: 4,
                 ClickTotal: {
-                    pageSize: 5,
+                    pageSize: this.numberCount,
                     pageNum: 0
                 },
                 obj: {}

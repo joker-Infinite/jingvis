@@ -55,7 +55,6 @@ export default {
                 item: '',
             },
             formLabelWidth: "170px",
-            tableData: [],
         };
     },
     methods: {

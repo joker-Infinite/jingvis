@@ -86,7 +86,15 @@
                 </div>
                 <!-- 零售插件的添加按钮 -->
                 <div v-if="sit.button" style="width:98%;margin-top:10px;text-align:right">
-                    <el-button @click="AddClick(sit)">添加</el-button>
+                    <el-select @change="selectData()" v-model="value" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                    <el-button style="margin-left:10px" @click="AddClick(sit)">添加</el-button>
                 </div>
                 <div v-for="(wit, wix) in sit.EChartsItem"
                      :key="wix"
@@ -153,6 +161,7 @@
                        v-if="!!wit.type && wit.type !== 'box'">
                     <my-table
                             :totalCount="totalCount"
+                            :numberCount="numberCount"
                             @ClickTotal="ClickTotal"
                             @selectionChange="(row) => {$emit('selectionChange',row);}"
                             :columns="wit.columns"
@@ -221,7 +230,11 @@
 			totalCount: {
 				type: Number,
 				default: 0,
-			}
+      },
+      numberCount:{
+        type: Number,
+        default:5,
+      }
 		},
 		data() {
 			return {
@@ -254,10 +267,29 @@
 				canSearch: true,
         NoDataTmie: 1000,
         // 保存需要修改的table
-        tableDataVla:[]
+        tableDataVla:[],
+        // 下拉框
+         options: [{
+          value: '0号柴油',
+          label: '0号柴油'
+        }, {
+          value: '93#汽油',
+          label: '93#汽油'
+        }, {
+          value: '97#汽油',
+          label: '97#汽油'
+        }, {
+          value: '指导价',
+          label: '指导价'
+        }],
+        value: ''
 			};
 		},
 		methods: {
+      // 下拉框的选择值
+      selectData(){
+        this.$emit('selectData',this.value)
+      },
       //传输过来的数据
       isForm(val){
           let date = val.item
