@@ -1,517 +1,492 @@
 <template>
-  <div class="mapBox">
-    <div class="btn">
-      <!--      <el-checkbox-group v-model="checked" @change="queryDot">-->
-      <el-checkbox-group v-model="checked">
-        <el-checkbox label="服务区"></el-checkbox>
-        <el-checkbox label="服务区-卡口"></el-checkbox>
-        <el-checkbox label="服务区-收银"></el-checkbox>
-      </el-checkbox-group>
-     <!-- <el-checkbox label="服务区" v-model="serviceCheckbox"></el-checkbox>
-      <el-select v-model="serviceSelect" @change="serviceChange(serviceSelect)">
-        <el-option :value="0" label="全部"></el-option>
-        <el-option :value="1" label="卡口"></el-option>
-        <el-option :value="2" label="收银"></el-option>
-      </el-select>
-      <el-checkbox label="加油站" v-model="gasCheckbox"></el-checkbox>
-      <el-select v-model="gasSelect" multiple @change="gasChange(gasSelect)">
-        <el-option :value="0" label="全部"></el-option>
-        <el-option :value="1" label="新能源"></el-option>
-        <el-option :value="2" label="石化"></el-option>
-        <el-option :value="3" label="中化交投"></el-option>
-        <el-option :value="4" label="国储"></el-option>
-        <el-option :value="5" label="高路油站"></el-option>
-        <el-option :value="6" label="荆港嘉瑞"></el-option>
-      </el-select>-->
-      <!-- <el-checkbox label="交投服务区"></el-checkbox>
-       <el-checkbox label="其他服务区"></el-checkbox>
-       <el-checkbox label="中石化"></el-checkbox>
-       <el-checkbox label="中石油"></el-checkbox>
-       <el-checkbox label="交投能源"></el-checkbox>-->
-      <!--      </el-checkbox-group>-->
-    </div>
-    <div id="MAP"></div>
-    <div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
-    <div class="details" id="ds"></div>
-    <!-- <animation v-for="(item,index) of rotateList" class="animation" :key="index" :style="item.style">
-        <template>
-            <div class="img">
-                <div
-                    class="img1"
-                    style="background-size: 100% 100%;"
-                    :style="{ 'background-image': 'url(' + item.png1 + ')' }"
-                ></div>
-                <div
-                    class="img2"
-                    style="background-size: 100% 100%;"
-                    :style="{ 'background-image': 'url(' + item.png2 + ')' }"
-                ></div>
-            </div>
-        </template>
-    </animation> -->
-    <el-dialog title="服务区平面图" align="center" width="1400px" :modal-append-to-body="false" :visible.sync="visible">
-      <service-floor-plan></service-floor-plan>
-    </el-dialog>
-  </div>
+	<div class="mapBox">
+		<div class="btn" id="btn_map">
+			<el-checkbox-group v-model="serviceChecked" @change="serviceCheck(serviceChecked)">
+				<el-checkbox label="交投服务区"></el-checkbox>
+				<el-checkbox label="其他服务区"></el-checkbox>
+				<el-checkbox label="卡口"></el-checkbox>
+				<el-checkbox label="收银"></el-checkbox>
+			</el-checkbox-group>
+			<div style="width: 100%;height: 1px;background: #e0e0e0;margin: 5px 0"></div>
+			<el-checkbox-group v-model="gasChecked" @change="gasCheck(gasChecked)">
+				<!--				<el-checkbox label="新能源"></el-checkbox>-->
+				<el-checkbox label="中石化"></el-checkbox>
+				<el-checkbox label="中石油"></el-checkbox>
+				<el-checkbox label="交投能源"></el-checkbox>
+				<!--				<el-checkbox label="国储"></el-checkbox>-->
+				<!--				<el-checkbox label="高路油站"></el-checkbox>-->
+				<!--				<el-checkbox label="荆港嘉瑞"></el-checkbox>-->
+			</el-checkbox-group>
+			<div class="btnIcon" @click="showCheckBox">
+				<i class="el-icon-d-arrow-right"
+				   :style="{transform:clickIndex%2===0?'rotate(180deg)':'rotate(0deg)'}"></i>
+			</div>
+		</div>
+		<div id="MAP"></div>
+		<div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
+		<div class="details" id="ds"></div>
+		<!-- <animation v-for="(item,index) of rotateList" class="animation" :key="index" :style="item.style">
+			<template>
+				<div class="img">
+					<div
+						class="img1"
+						style="background-size: 100% 100%;"
+						:style="{ 'background-image': 'url(' + item.png1 + ')' }"
+					></div>
+					<div
+						class="img2"
+						style="background-size: 100% 100%;"
+						:style="{ 'background-image': 'url(' + item.png2 + ')' }"
+					></div>
+				</div>
+			</template>
+		</animation> -->
+		<el-dialog title="服务区平面图" align="center" width="1400px" :modal-append-to-body="false" :visible.sync="visible">
+			<service-floor-plan></service-floor-plan>
+		</el-dialog>
+	</div>
 </template>
 
 <script>
-	import animation from "./animation";
-	import ServiceFloorPlan from "../../serviceArea/children/serviceFloorPlan";
+    import animation from "./animation";
+    import ServiceFloorPlan from "../../serviceArea/children/serviceFloorPlan";
 
-	export default {
-		name: "centerMapBase",
-		components: {ServiceFloorPlan, animation},
-		props: {
-			backdrop: {
-				type: Number,
-				default: 0,
-			},
-		},
-		data() {
-			return {
-				visible: false,
-				serviceSelect: 0,
-				gasSelect: 0,
-				serviceCheckbox: true,
-				gasCheckbox: true,
-				//旋转的
-				rotateList: [
-					{
-						png1: require('../../../assets/animation/5.png'),
-						png2: require('../../../assets/animation/66.png'),
-						style: {left: '0', top: '6%'}
-					},
-					{
-						png1: require('../../../assets/animation/4_03.png'),
-						png2: require('../../../assets/animation/4_02.png'),
-						style: {right: '0', top: '6%'}
-					},
-					{
-						png1: require('../../../assets/animation/3_2.png'),
-						png2: require('../../../assets/animation/3_1.png'),
-						style: {bottom: '0', left: '0'}
-					},
-					{
-						png1: require('../../../assets/animation/2_1.png'),
-						png2: require('../../../assets/animation/2_2.png'),
-						style: {bottom: '0', right: '0'}
-					},
-				],
-				position: [],
-				//交投能源
-				energy: [],
-				//中石化
-				petrochemical: [],
-				//中石油
-				oil: [],
-				//交投服务区
-				myService: [],
-				//其他服务区
-				otherService: [],
-				map: "",
-				marker: [],
-				mapStyleArr: [
-					"fresh",
-					// '8cb6df918ee512eae9c9198c38a40c91',
-					"darkblue",
-					"blue",
-				],
-				i: 0,
-				timeId: "",
-				checked: ["交投服务区", "其他服务区", "中石化", "中石油", "交投能源"],
-				mapData: [],
-				selectData: ["交投服务区", "其他服务区", "中石化", "中石油", "交投能源"],
-			};
-		},
-		methods: {
-			gasChange(v) {
-				// this.queryDot(v, 'gas');
-			},
-			serviceChange(v) {
-				// this.queryDot(v, 'service');
-			},
-			enlargeMap() {
-				this.$emit("MapBase", this.mapData);
-			},
-			initMap(position) {
-				this.marker = [];
-				let map = new AMap.Map("MAP", {
-					center: [114.286298, 30.5855],
-					zoom: 8,
-				});
-				map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop]);
-				this.map = map;
-				this.addMarker(map, position);
-			},
-			addMarker(v, position) {
-				let that = this;
-				position.forEach((item, index) => {
-					let icon;
-					if (item.type) {
-						if (item.type === "ms") icon = require("../../../assets/myService.png");
-						if (item.type === "os") icon = require("../../../assets/otherService.png");
-						if (item.type === "中石化") icon = require("../../../assets/zsh.png");
-						if (item.type === "中石油") icon = require("../../../assets/zsy.png");
-						if (item.type === "交投能源") icon = require("../../../assets/jtny.png");
-					}
-					let marker = new AMap.Marker({
-						icon: new AMap.Icon({
-							image: icon,
-							size: new AMap.Size(30, 30),
-							imageSize: new AMap.Size(25, 30),
-						}),
-						position: [item.longitude, item.latitude],
-					});
-					this.marker.push(Object.assign(marker, {name: item.name}));
-				});
-				this.marker.forEach((i, x) => {
-					AMap.event.addListener(i, "click", function () {
-						if (that.position[x].type == 'ms') {
-							that.visible = true;
-						} else {
-							infoWindow.open(v, i.getPosition());
-						}
-					});
-					let content = [];
-					content.push("<div style='width: 200px;text-align: center'>" + i.name + "</div>");
-					content.push("<div style='width: 200px;text-align: center;height: 70px'>内容</div>");
-					let infoWindow = new AMap.InfoWindow({
-						content: content.join(""),
-						offset: new AMap.Pixel(3, -33),
-					});
-					infoWindow.on("close", function () {
-					});
-					i.setMap(v);
-				});
-				/* new AMap.plugin(["AMap.MarkerClusterer"], function () {
-                new AMap.MarkerClusterer(
-                    v,
-                    that.marker,
+    export default {
+        name: "centerMapBase",
+        components: {ServiceFloorPlan, animation},
+        props: {
+            backdrop: {
+                type: Number,
+                default: 0,
+            },
+        },
+        data() {
+            return {
+                clickIndex: 0,
+                serviceChecked: ['交投服务区', '其他服务区'],
+                gasChecked: ['中石化', '中石油', '交投能源',],
+                visible: false,
+                serviceSelect: 0,
+                gasSelect: 0,
+                //旋转的
+                rotateList: [
                     {
-                        gridSize: 50,
-                        renderClusterMarker: that._renderClusterMarker
+                        png1: require('../../../assets/animation/5.png'),
+                        png2: require('../../../assets/animation/66.png'),
+                        style: {left: '0', top: '6%'}
+                    },
+                    {
+                        png1: require('../../../assets/animation/4_03.png'),
+                        png2: require('../../../assets/animation/4_02.png'),
+                        style: {right: '0', top: '6%'}
+                    },
+                    {
+                        png1: require('../../../assets/animation/3_2.png'),
+                        png2: require('../../../assets/animation/3_1.png'),
+                        style: {bottom: '0', left: '0'}
+                    },
+                    {
+                        png1: require('../../../assets/animation/2_1.png'),
+                        png2: require('../../../assets/animation/2_2.png'),
+                        style: {bottom: '0', right: '0'}
+                    },
+                ],
+                position: [],
+                //交投能源
+                energy: [],
+                //中石化
+                petrochemical: [],
+                //中石油
+                oil: [],
+                //交投服务区
+                myService: [],
+                //其他服务区
+                otherService: [],
+                map: "",
+                marker: [],
+                mapStyleArr: [
+                    "fresh",
+                    // '8cb6df918ee512eae9c9198c38a40c91',
+                    "darkblue",
+                    "blue",
+                ],
+                i: 0,
+                timeId: "",
+                checked: ["交投服务区", "其他服务区", "中石化", "中石油", "交投能源"],
+                mapData: [],
+                selectData: ["交投服务区", "其他服务区", "中石化", "中石油", "交投能源"],
+            };
+        },
+        methods: {
+            serviceCheck(sv) {
+                this.refresh(this.backdrop, sv, this.gasChecked);
+            },
+            gasCheck(gv) {
+                this.refresh(this.backdrop, this.serviceChecked, gv);
+            },
+            showCheckBox() {
+                let btn_map = document.getElementById('btn_map');
+                if (this.clickIndex % 2 === 0) {
+                    btn_map.style.right = '0px';
+                }
+                if (this.clickIndex % 2 !== 0) {
+                    btn_map.style.right = '-120px';
+                }
+                this.clickIndex++;
+            },
+            enlargeMap() {
+                this.$emit("MapBase", this.mapData);
+            },
+            initMap(position) {
+                this.marker = [];
+                let map = new AMap.Map("MAP", {
+                    center: [114.286298, 30.5855],
+                    zoom: 8,
+                });
+                map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop]);
+                this.map = map;
+                this.addMarker(map, position);
+            },
+            addMarker(v, position) {
+                let that = this;
+                position.forEach((item, index) => {
+                    let icon;
+                    if (item.type) {
+                        if (item.type === "ms") icon = require("../../../assets/gas/service-c.png");
+                        if (item.type === "os") icon = require("../../../assets/gas/service-k.png");
+                        if (item.type === "中石化") icon = require("../../../assets/gas/zsy.png");
+                        if (item.type === "中石油") icon = require("../../../assets/gas/zsy.png");
+                        if (item.type === "交投能源") icon = require("../../../assets/gas/jtny.png");
                     }
-                )
-            })*/
-			},
-			//点聚合
-			_renderClusterMarker(context) {
-				let that = this;
-				let count = this.marker.length;
-				let factor;
-				let Hue;
-				factor = Math.pow(context.count / count, 1 / 18);
-				Hue = 180 - factor * 180;
-				let bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
-				let borderColor = "hsla(" + Hue + ",100%,40%,1)";
-				if (this.selectData.indexOf("交投服务区") !== -1 && this.selectData.length === 1) {
-					factor = Math.pow(context.count / count, 1 / 18);
-					Hue = 180 - factor * 230;
-					bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
-					borderColor = "hsla(" + Hue + ",100%,40%,1)";
-				}
-				if (this.selectData.indexOf("其他服务区") !== -1 && this.selectData.length === 1) {
-					factor = Math.pow(context.count / count, 1 / 18);
-					Hue = 180 - factor * 80;
-					bgColor = "hsla(" + Hue + ",0%,50%,0.7)";
-					borderColor = "hsla(" + Hue + ",0%,40%,1)";
-				}
-				let div = document.createElement("div");
-				let fontColor = "rgba(255,255,255,1)";
-				let shadowColor = "hsla(" + Hue + ",100%,50%,1)";
-				div.style.backgroundColor = bgColor;
-				let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
-				div.style.width = div.style.height = size + "px";
-				div.style.border = "solid 1px " + borderColor;
-				div.style.borderRadius = size / 2 + "px";
-				div.style.boxShadow = "0 0 1px " + shadowColor;
-				div.innerHTML = context.count;
-				div.style.lineHeight = size + "px";
-				div.style.color = fontColor;
-				div.style.fontSize = "14px";
-				div.style.textAlign = "center";
-				div.onmousemove = function () {
-					let arr = [];
-					if (context.markers.length > 0) {
-						context.markers.forEach((i) => {
-							console.log(that.position[that.marker.indexOf(i)]);
-							arr.push(that.position[that.marker.indexOf(i)]);
-						});
+                    if (item.longitude && item.latitude) {
+                        let marker = new AMap.Marker({
+                            icon: new AMap.Icon({
+                                image: icon,
+                                size: new AMap.Size(30, 30),
+                                imageSize: new AMap.Size(25, 30),
+                            }),
+                            position: [item.longitude, item.latitude],
+                        });
+                        this.marker.push(Object.assign(marker, {name: item.gisCompany}));
+                    }
+                });
+                this.marker.forEach((i, x) => {
+                    AMap.event.addListener(i, "click", function () {
+                        if (that.position[x].type == 'ms') {
+                            that.visible = true;
+                        } else {
+                            infoWindow.open(v, i.getPosition());
+                        }
+                    });
+                    let content = [];
+                    content.push("<div style='width: 200px;text-align: center'>" + i.name + "</div>");
+                    content.push("<div style='width: 200px;text-align: center;height: 70px'>内容</div>");
+                    let infoWindow = new AMap.InfoWindow({
+                        content: content.join(""),
+                        offset: new AMap.Pixel(3, -33),
+                    });
+                    infoWindow.on("close", function () {
+                    });
+                    i.setMap(v);
+                });
+                /* new AMap.plugin(["AMap.MarkerClusterer"], function () {
+				new AMap.MarkerClusterer(
+					v,
+					that.marker,
+					{
+						gridSize: 50,
+						renderClusterMarker: that._renderClusterMarker
 					}
-					let ms = [];
-					let os = [];
-					let sh = [];
-					let sy = [];
-					let jt = [];
-					if (arr.length > 0) {
-						arr.forEach((i) => {
-							if (i.type === "ms") {
-								ms.push(i);
-							}
-							if (i.type === "os") {
-								os.push(i);
-							}
-							if (i.type === "中石化") {
-								sh.push(i);
-							}
-							if (i.type === "中石油") {
-								sy.push(i);
-							}
-							if (i.type === "交投能源") {
-								jt.push(i);
-							}
-						});
-					}
-					let ds = document.getElementById("ds");
-					ds.innerHTML =
-						"<p>交投服务区：" +
-						ms.length +
-						"</p>" +
-						"<p>其他服务区：" +
-						os.length +
-						"</p>" +
-						"<p>中石化：" +
-						sh.length +
-						"</p>" +
-						"<p>中石油：" +
-						sy.length +
-						"</p>" +
-						"<p>交投能源：" +
-						jt.length +
-						"</p>";
-					ds.style.right = "0px";
-				};
-				div.onmouseout = function () {
-					let ds = document.getElementById("ds");
-					ds.style.right = "-200px";
-				};
-				context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
-				context.marker.setContent(div);
-			},
-			queryDot(v, type) {
-				let map = new AMap.Map("MAP", {
-					center: [114.286298, 30.5855],
-					zoom: 8,
-					mapStyle: this.mapStyleArr[this.backdrop],
-				});
-				map.remove(this.marker);
-				if (type == 'gas' && this.gasCheckbox) {
-
-				}
-				if (type == 'service' && this.serviceCheckbox) {
-
-				}
-				this.selectData = v;
-				this.type = v;
-				this.marker = [];
-				let position = [];
-				if (v.indexOf("交投服务区") != -1) position.push(...this.myService);
-				if (v.indexOf("其他服务区") != -1) position.push(...this.otherService);
-				if (v.indexOf("中石化") != -1) position.push(...this.petrochemical);
-				if (v.indexOf("中石油") != -1) position.push(...this.oil);
-				if (v.indexOf("交投能源") != -1) position.push(...this.energy);
-				this.initMap(position);
-			},
-			refresh(d) {
-				this.map.remove(this.marker);
-				this.marker = [];
-				let position = [];
-				if (this.checked.indexOf("交投服务区") != -1) position.push(...this.myService);
-				if (this.checked.indexOf("其他服务区") != -1) position.push(...this.otherService);
-				if (this.checked.indexOf("中石化") != -1) position.push(...this.petrochemical);
-				if (this.checked.indexOf("中石油") != -1) position.push(...this.oil);
-				if (this.checked.indexOf("交投能源") != -1) position.push(...this.energy);
-				let map = new AMap.Map("MAP", {
-					center: [114.286298, 30.5855],
-					zoom: 8,
-				});
-				map.setMapStyle("amap://styles/" + this.mapStyleArr[d]);
-				this.map = map;
-				this.addMarker(map, position);
-			},
-		},
-		mounted() {
-			let position = [];
-			//交投能源
-			let energy = [];
-			//中石化
-			let petrochemical = [];
-			//中石油
-			let oil = [];
-			//交投服务区
-			let myService = [];
-			//其他服务区
-			let otherService = [];
-			this.$axios.get("/api/index/list_jtService").then((res) => {
-				let data = res.data.data;
-				this.mapData = JSON.parse(JSON.stringify(res.data.data));
-				data.forEach((i) => {
-					if (i.fwqDanwei == "湖北交投实业发展有限公司") {
-						if (i.fwqJ && i.fwqW) {
-							myService.push({
-								longitude: i.fwqJ,
-								latitude: i.fwqW,
-								name: i.gisName,
-								type: "ms",
-							});
-						}
-					}
-					if (i.fwqDanwei != "湖北交投实业发展有限公司") {
-						if (i.fwqJ && i.fwqW) {
-							otherService.push({
-								longitude: i.fwqJ,
-								latitude: i.fwqW,
-								name: i.gisName,
-								type: "os",
-							});
-						}
-					}
-					if (i.jyzDanwei && i.jyzDanwei.charAt(2) == "化") {
-						if (i.jyzJ && i.jyzW) {
-							petrochemical.push({
-								longitude: i.jyzJ,
-								latitude: i.jyzW,
-								name: i.jyzDanwei,
-								type: "中石化",
-							});
-						}
-					}
-					if (i.jyzDanwei && i.jyzDanwei.charAt(2) == "油") {
-						if (i.jyzJ && i.jyzW) {
-							oil.push({
-								longitude: i.jyzJ,
-								latitude: i.jyzW,
-								name: i.jyzDanwei,
-								type: "中石油",
-							});
-						}
-					}
-					if (i.jyzDanwei && i.jyzDanwei == "交投能源") {
-						if (i.jyzJ && i.jyzW) {
-							energy.push({
-								longitude: i.jyzJ,
-								latitude: i.jyzW,
-								name: i.jyzDanwei,
-								type: "交投能源",
-							});
-						}
-					}
-				});
-				this.myService = myService;
-				this.otherService = otherService;
-				this.petrochemical = petrochemical;
-				this.oil = oil;
-				this.energy = energy;
-				this.position = position = [...myService, ...otherService, ...petrochemical, ...oil, ...energy];
-				this.initMap(position);
-			});
-		},
-	};
+				)
+			})*/
+            },
+            //点聚合
+            _renderClusterMarker(context) {
+                let that = this;
+                let count = this.marker.length;
+                let factor;
+                let Hue;
+                factor = Math.pow(context.count / count, 1 / 18);
+                Hue = 180 - factor * 180;
+                let bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
+                let borderColor = "hsla(" + Hue + ",100%,40%,1)";
+                if (this.selectData.indexOf("交投服务区") !== -1 && this.selectData.length === 1) {
+                    factor = Math.pow(context.count / count, 1 / 18);
+                    Hue = 180 - factor * 230;
+                    bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
+                    borderColor = "hsla(" + Hue + ",100%,40%,1)";
+                }
+                if (this.selectData.indexOf("其他服务区") !== -1 && this.selectData.length === 1) {
+                    factor = Math.pow(context.count / count, 1 / 18);
+                    Hue = 180 - factor * 80;
+                    bgColor = "hsla(" + Hue + ",0%,50%,0.7)";
+                    borderColor = "hsla(" + Hue + ",0%,40%,1)";
+                }
+                let div = document.createElement("div");
+                let fontColor = "rgba(255,255,255,1)";
+                let shadowColor = "hsla(" + Hue + ",100%,50%,1)";
+                div.style.backgroundColor = bgColor;
+                let size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
+                div.style.width = div.style.height = size + "px";
+                div.style.border = "solid 1px " + borderColor;
+                div.style.borderRadius = size / 2 + "px";
+                div.style.boxShadow = "0 0 1px " + shadowColor;
+                div.innerHTML = context.count;
+                div.style.lineHeight = size + "px";
+                div.style.color = fontColor;
+                div.style.fontSize = "14px";
+                div.style.textAlign = "center";
+                div.onmousemove = function () {
+                    let arr = [];
+                    if (context.markers.length > 0) {
+                        context.markers.forEach((i) => {
+                            console.log(that.position[that.marker.indexOf(i)]);
+                            arr.push(that.position[that.marker.indexOf(i)]);
+                        });
+                    }
+                    let ms = [];
+                    let os = [];
+                    let sh = [];
+                    let sy = [];
+                    let jt = [];
+                    if (arr.length > 0) {
+                        arr.forEach((i) => {
+                            if (i.type === "ms") {
+                                ms.push(i);
+                            }
+                            if (i.type === "os") {
+                                os.push(i);
+                            }
+                            if (i.type === "中石化") {
+                                sh.push(i);
+                            }
+                            if (i.type === "中石油") {
+                                sy.push(i);
+                            }
+                            if (i.type === "交投能源") {
+                                jt.push(i);
+                            }
+                        });
+                    }
+                    let ds = document.getElementById("ds");
+                    ds.innerHTML =
+                        "<p>交投服务区：" +
+                        ms.length +
+                        "</p>" +
+                        "<p>其他服务区：" +
+                        os.length +
+                        "</p>" +
+                        "<p>中石化：" +
+                        sh.length +
+                        "</p>" +
+                        "<p>中石油：" +
+                        sy.length +
+                        "</p>" +
+                        "<p>交投能源：" +
+                        jt.length +
+                        "</p>";
+                    ds.style.right = "0px";
+                };
+                div.onmouseout = function () {
+                    let ds = document.getElementById("ds");
+                    ds.style.right = "-200px";
+                };
+                context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
+                context.marker.setContent(div);
+            },
+            queryDot(v, type) {
+                let map = new AMap.Map("MAP", {
+                    center: [114.286298, 30.5855],
+                    zoom: 8,
+                    mapStyle: this.mapStyleArr[this.backdrop],
+                });
+                this.selectData = v;
+                this.type = v;
+                this.marker = [];
+                let position = [];
+                if (v.indexOf("交投服务区") != -1) position.push(...this.myService);
+                if (v.indexOf("其他服务区") != -1) position.push(...this.otherService);
+                if (v.indexOf("中石化") != -1) position.push(...this.petrochemical);
+                if (v.indexOf("中石油") != -1) position.push(...this.oil);
+                if (v.indexOf("交投能源") != -1) position.push(...this.energy);
+                this.initMap(position);
+            },
+            refresh(d, sv, gv) {
+                if (!gv) {
+                    gv = this.gasChecked
+                }
+                if (!sv) {
+                    sv = this.serviceChecked
+                }
+                this.map.remove(this.marker);
+                this.marker = [];
+                let position = [];
+                if (sv.indexOf("交投服务区") != -1) position.push(...this.myService);
+                if (sv.indexOf("其他服务区") != -1) position.push(...this.otherService);
+                if (sv.indexOf("卡口") != -1) position.push(...[]);
+                if (sv.indexOf("收银") != -1) position.push(...[]);
+                if (gv.indexOf("中石化") != -1) position.push(...this.petrochemical);
+                if (gv.indexOf("中石油") != -1) position.push(...this.oil);
+                if (gv.indexOf("交投能源") != -1) position.push(...this.energy);
+                let map = new AMap.Map("MAP", {
+                    center: [114.286298, 30.5855],
+                    zoom: 8,
+                });
+                map.setMapStyle("amap://styles/" + this.mapStyleArr[d]);
+                this.map = map;
+                this.addMarker(map, position);
+            },
+        },
+        async mounted() {
+            let position = [];
+            let [service, allGas] = await Promise.all([
+                this.$axios.get("/api/index/list_jtService", {params: {fwqType: '服务区'}}),
+                this.$axios.get("/api/index/list_jtService", {params: {jyzType: this.gasChecked.join(',')}}),
+            ])
+            let data = service.data.data;
+            let res = allGas.data.data;
+            this.mapData.push(...data, ...res);
+            data.forEach((i, x) => {
+                if (i.longitude && i.latitude) {
+                    if (i.gisCompany === "湖北交投实业发展有限公司") this.myService.push(Object.assign(i, {type: 'ms'}));
+                    if (i.gisCompany !== "湖北交投实业发展有限公司") this.otherService.push(Object.assign(i, {type: 'os'}));
+                }
+            });
+            res.forEach((i, x) => {
+                if (i.longitude && i.latitude) {
+                    if (i.gisCompany === '中石化') this.petrochemical.push(Object.assign(i, {type: '中石化'}));
+                    if (i.gisCompany === '中石油') this.oil.push(Object.assign(i, {type: '中石油'}));
+                    if (i.gisCompany === '交投能源') this.energy.push(Object.assign(i, {type: '交投能源'}));
+                }
+            })
+            position.push(...this.myService, ...this.otherService, ...this.petrochemical, ...this.oil, ...this.energy);
+            this.position = position;
+            this.initMap(position);
+        }
+    };
 </script>
 
 <style scoped lang="less">
-  .mapBox {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
+	.mapBox {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		overflow: hidden;
 
-    .details {
-      color: white;
-      width: 160px;
-      height: 110px;
-      position: absolute;
-      top: 30px;
-      right: -200px;
-      transition: linear 0.3s;
-      padding: 20px;
-      border-radius: 5px;
-      background: rgba(0, 0, 0, 0.4);
-    }
+		.details {
+			color: white;
+			width: 160px;
+			height: 110px;
+			position: absolute;
+			top: 30px;
+			right: -200px;
+			transition: linear 0.3s;
+			padding: 20px;
+			border-radius: 5px;
+			background: rgba(0, 0, 0, 0.4);
+		}
 
-    .btn {
-      width: 200px;
-      padding: 10px;
-      height: 150px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.4);
-      z-index: 99;
-      color: white;
-      margin: auto;
-    }
+		.btn {
+			width: 100px;
+			padding: 10px;
+			height: 180px;
+			position: absolute;
+			top: 0;
+			right: -120px;
+			background: rgba(0, 0, 0, 0.7);
+			z-index: 99;
+			color: white;
+			margin: auto;
+			transition: linear .4s;
 
-    .btn /deep/ .el-checkbox {
-      color: white;
-      margin-right: 0;
-    }
+			.btnIcon {
+				top: 0;
+				width: 30px;
+				position: absolute;
+				left: -30px;
+				height: 30px;
+				background: rgba(0, 0, 0, 0.7);
+				text-align: center;
+				cursor: pointer;
 
-    .btn /deep/ .el-select {
-      width: 90px;
-    }
+				i {
+					font-weight: 700;
+					line-height: 30px;
+					font-size: 20px;
+					transition: linear .4s;
+				}
+			}
+		}
 
-    .btn /deep/ .el-select > .el-select__tags {
-      overflow: hidden;
-      height: 30px;
-    }
+		.btn /deep/ .el-checkbox {
+			color: white;
+			margin-right: 0;
+		}
 
-    .btn /deep/ .el-select > .el-input {
-      min-width: 90px;
-    }
+		.btn /deep/ .el-select {
+			width: 90px;
+		}
 
-    .btn /deep/ .el-select > .el-input > .el-input__inner {
-      line-height: 30px;
-      height: 30px;
-      border: none;
-      border-radius: 0;
-      background: none;
-      min-width: 90px;
-      padding: 0 2px;
-      color: white;
-    }
+		.btn /deep/ .el-select > .el-select__tags {
+			overflow: hidden;
+			height: 30px;
+		}
 
-    .btn /deep/ .el-select > .el-input > .el-input__inner::-webkit-input-placeholder {
-      color: #cccccc;
-    }
+		.btn /deep/ .el-select > .el-input {
+			min-width: 90px;
+		}
 
-    .btn /deep/ .el-select > .el-input > .el-input__suffix {
-      /*width: 20px;*/
-    }
+		.btn /deep/ .el-select > .el-input > .el-input__inner {
+			line-height: 30px;
+			height: 30px;
+			border: none;
+			border-radius: 0;
+			background: none;
+			min-width: 90px;
+			padding: 0 2px;
+			color: white;
+		}
 
-    .btn /deep/ .el-select > .el-input > .el-input__suffix > .el-input__suffix-inner > .el-input__icon {
-      line-height: 30px;
-      color: white;
-    }
+		.btn /deep/ .el-select > .el-input > .el-input__inner::-webkit-input-placeholder {
+			color: #cccccc;
+		}
 
-    #MAP {
-      width: 100%;
-      height: 100%;
-    }
+		.btn /deep/ .el-select > .el-input > .el-input__suffix {
+			/*width: 20px;*/
+		}
 
-    .enlarge {
-      position: absolute;
-      z-index: 300;
-      right: 0;
-      bottom: 0;
-      width: 30px;
-      height: 30px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid white;
-      // z-index: 99;
-      font-size: 30px;
-      text-align: center;
-      line-height: 30px;
-      cursor: pointer;
-      color: white;
-    }
-  }
+		.btn /deep/ .el-select > .el-input > .el-input__suffix > .el-input__suffix-inner > .el-input__icon {
+			line-height: 30px;
+			color: white;
+		}
 
-  .animation {
-    position: absolute;
-    // top: 5%;
-    // right: 1%;
-    z-index: 200;
-  }
+		#MAP {
+			width: 100%;
+			height: 100%;
+		}
+
+		.enlarge {
+			position: absolute;
+			z-index: 300;
+			right: 0;
+			bottom: 0;
+			width: 30px;
+			height: 30px;
+			background: rgba(0, 0, 0, 0.5);
+			border: 1px solid white;
+			// z-index: 99;
+			font-size: 30px;
+			text-align: center;
+			line-height: 30px;
+			cursor: pointer;
+			color: white;
+		}
+	}
+
+	.animation {
+		position: absolute;
+		// top: 5%;
+		// right: 1%;
+		z-index: 200;
+	}
 </style>
