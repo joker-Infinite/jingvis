@@ -163,7 +163,6 @@
 					let position = [];
 					v.forEach((i, x) => {
 						if (i.longitude && i.latitude) {
-							console.log(i)
 							if (i.gisCompany === "湖北交投实业发展有限公司" && i.gisType == '服务区') this.myService.push(Object.assign(i, {type: 'ms'}));
 							if (i.gisCompany !== "湖北交投实业发展有限公司" && i.gisType == '服务区') this.otherService.push(Object.assign(i, {type: 'os'}));
 							if (i.gisCompany === '中石化') this.petrochemical.push(Object.assign(i, {type: '中石化'}));
@@ -213,7 +212,7 @@
 					AMap.event.addListener(i, "dblclick", function () {
 						clearTimeout(that.timeID);
 						if (that.position[x].type == 'ms') {
-							that.visible = true;
+							that.visible_ = true;
 						} else {
 							infoWindow.open(v, i.getPosition());
 						}
@@ -303,7 +302,6 @@ new AMap.MarkerClusterer(
 				if (sv.indexOf("超市") != -1) position.push(...[]);
 				if (sv.indexOf("收银") != -1) position.push(...[]);
 				if (sv.indexOf("油站") != -1) position.push(...this.petrochemical, ...this.oil, ...this.energy);
-				console.log(sv)
 				let map;
 				if (b === 'enlarge') {
 					map = new AMap.Map("AAA", {
