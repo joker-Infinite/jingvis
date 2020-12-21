@@ -80,4 +80,34 @@ export default [
 		name: 'gasRetail',
 		component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/gasRetail.vue'),
 	},
+	{
+		path: 'gaoLuYouZhan',
+		name: 'gaoLuYouZhan',
+		component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/gaoLuYouZhan.vue'),
+	},
+	{
+		path: 'guoChu',
+		name: 'guoChu',
+		component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/guoChu.vue'),
+	},
+	{
+		path: 'jingGangJiaRui',
+		name: 'jingGangJiaRui',
+		component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/jingGangJiaRui.vue'),
+	},
+	{
+		path: 'xinNengYuan',
+		name: 'xinNengYuan',
+		component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/xinNengYuan.vue'),
+	},
+	{
+		path: 'zhongHuaJiaoTou',
+		name: 'zhongHuaJiaoTou',
+		component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/zhongHuaJiaoTou.vue'),
+	},
+	{
+		path: 'zhongShiHua',
+		name: 'zhongShiHua',
+		component: () => import(/* webpackChunkName: "energy" */ '@/pages/energy/children/zhongShiHua.vue'),
+	},
 ]

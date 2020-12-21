@@ -611,7 +611,6 @@
 			 * 导入导出excel
 			 */
 			isData(val) {
-				debugger
 				let datas = this.isExcelData()
 				// 图标
 				if (val === "focus") {

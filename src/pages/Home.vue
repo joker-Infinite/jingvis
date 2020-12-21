@@ -12,7 +12,6 @@
           <i :class=" menuStatus % 2 === 0 ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
              @click="menuOC"></i>
         </div>
-
         <el-menu-item index=''>
           <i class="el-icon-menu"></i>
           <span slot="title">首页</span>
@@ -26,11 +25,28 @@
             <span slot="title">{{ item.label }}</span>
           </template>
           <el-menu-item
+                  v-if="item.menuItemUrl[cIndex].charAt(0)!=='#'"
                   v-for="(cItem, cIndex) in item.menuItem"
                   :index="item.menuItemUrl[cIndex]"
                   :key="cIndex">
-            {{ cItem }}
+            {{cItem}}
           </el-menu-item>
+          <el-submenu v-for="(cItem, cIndex) in item.menuItem" :index="item.menuItemUrl[cIndex]"
+                      v-if="item.menuItemUrl[cIndex].charAt(0)==='#'">
+            <template slot="title" v-if="item.menuItemUrl[cIndex].charAt(0)==='#'"> {{ cItem }}</template>
+            <el-menu-item v-for="(sItem,sIndex) in item.childMenuItem"
+                          :index="item.childMenuItemUrl[sIndex]"
+                          v-if="item.menuItemUrl[cIndex].charAt(1)==1"
+                          :key="sIndex">
+              {{sItem}}
+            </el-menu-item>
+            <el-menu-item v-for="(sItem,sIndex) in item.childMenuItem"
+                          :index="item.childMenuItemUrl[sIndex]"
+                          v-if="item.menuItemUrl[cIndex].charAt(1)==3"
+                          :key="sIndex">
+              {{sItem}}
+            </el-menu-item>
+          </el-submenu>
         </el-submenu>
       </el-menu>
     </div>
@@ -71,30 +87,55 @@
 							">>回款情况",
 							// ">>供应商",
 							// ">>用户评价",
-							// ">>服务区片区",
-							// ">>服务区线路",
+							">>服务区片区",
+							">>服务区线路",
 						],
 						menuItemUrl: [
 							'/serviceArea/comparison',
 							'/serviceArea/revenue',
 							'/serviceArea/profit',
 							'/serviceArea/costing',
-							// '/serviceArea/1',
 							'/serviceArea/basicInformations',
 							'/serviceArea/construction',
 							'/serviceArea/rateOfReturn',
-							// '/serviceArea/3',
-							// '/serviceArea/4',
+							'#1',
+							'#2',
 							// '/serviceArea/5',
 							// '/serviceArea/6',
-						]
+						],
+						childMenuItem: [
+							'>>>黄冈分公司',
+							'>>>恩施分公司',
+							'>>>宜昌分公司',
+							'>>>咸宁分公司',
+							'>>>孝感分公司',
+							'>>>石堰分公司',
+						],
+						childMenuItemUrl: [
+							"/serviceArea/huangGang",
+							'/serviceArea/enShi',
+							'/serviceArea/yiChang',
+							'/serviceArea/xianNing',
+							'/serviceArea/xiaoGan',
+							'/serviceArea/shiYan',
+						],
 					},
 					{
 						id: "3",
 						label: "能源事业部",
 						img: require("../assets/Home/10.png"),
 						imgActive: require("../assets/Home/3.png"),
-						menuItem: [">>能源营收", ">>能源利润", ">>预算控制", ">>批零差价", ">>能源零售", ">>油品批发", ">>应收账款", ">>油库来源"],
+						menuItem: [
+							">>能源营收",
+							">>能源利润",
+							">>预算控制",
+							">>批零差价",
+							">>能源零售",
+							">>油品批发",
+							">>应收账款",
+							">>油库来源",
+							">>能源片区",
+							">>能源线路",],
 						menuItemUrl: [
 							"/energy/energyrevenue",
 							"/energy/profit",
@@ -104,7 +145,25 @@
 							"/energy/gasWholesale",
 							"/energy/accountsReceivable",
 							"/energy/gasSource",
-						]
+							"#3",
+							"#4",
+						],
+						childMenuItem: [
+							'>>>新能源',
+							'>>>中石化',
+							'>>>中化交投',
+							'>>>国储',
+							'>>>高路油站',
+							'>>>荆港嘉瑞',
+						],
+						childMenuItemUrl: [
+							"/energy/xinNengYuan",
+							"/energy/zhongShiHua",
+							"/energy/zhongHuaJiaoTou",
+							"/energy/guoChu",
+							"/energy/gaoLuYouZhan",
+							"/energy/jingGangJiaRui",
+						],
 					},
 					/*  {
                 id: "4",
@@ -226,7 +285,7 @@
     justify-content: left;
 
     .nav {
-      min-width: 200px;
+      min-width: 210px;
       height: 100%;
       overflow-y: scroll;
       transition: linear 0.3s;
@@ -267,7 +326,7 @@
     }
 
     .con {
-      width: 90%;
+      width: 89.5%;
       /*height: calc(100% - 40px);*/
       height: 100%;
       background: #f3f7ff;

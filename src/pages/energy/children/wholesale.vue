@@ -234,16 +234,16 @@ export default {
                 },
                 {
                     id: "revenueTable",
-                    name: "2020年",
+                    name: "批零差价历史记录列表",
                     icon: require("../../../assets/business/icon_1-1.png"),
                     iconActive: require("../../../assets/business/icon_1-2.png"),
                     collapseItem: [
                         {
                             id: "ab_2019",
-                            collapseTitle: "批零插件历史记录列表",
+                            collapseTitle: "批零差价历史记录列表",
                             EChartsBox: [
                                 {
-                                    title: "批零插件历史记录列表",
+                                    title: "批零差价历史记录列表",
                                     showTitle: "notShow",
 									button: true,
                                     time: false,

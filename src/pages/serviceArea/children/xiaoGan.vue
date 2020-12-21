@@ -2,6 +2,7 @@
     <div style="width: 100%;height: 100%;">
         <my-collapse-base
                 ref="collapse"
+                nav-bar-show
                 @selectionChange="selectionChange"
                 @searchQuery="searchQuery"
                 @ClickTotal="ClickTotal"
@@ -41,6 +42,11 @@
                                         title: "table列表",
                                         time: true,
                                         select: true,
+                                        selectOption: [
+                                            [],
+                                            [],
+                                            []
+                                        ],
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
