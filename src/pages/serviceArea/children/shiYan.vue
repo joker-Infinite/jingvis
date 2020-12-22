@@ -5087,20 +5087,18 @@
                     this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData=[]
                     res.data.list.forEach(element => {
                         let elementData = {
-                            serviceName: element.serviceName,
-                            B: "0",
-                            G: "0",
-                            shouyi: "0",
-                            E: "0",
-                            I: '0',
-                            H: "0",
-                            maxcart: '0',
-                            mincart: '0',
-                            refuel: '0',
-                            snack: '0',
-                            convenience: '0',
-                            catering: '0',
-                            shouyi:element.shouyi
+                            serviceName: !element.serviceName ? '/' : element.serviceName,
+							B: !element.gaosuName ? '/' : element.gaosuName,
+							G: !element.lirun ? '/' : element.lirun,
+							I: !element.mianji ? '/' : element.mianji,
+							H: !element.pingxiao ? '/' : element.pingxiao,
+							maxcart: !element.carVo[0] ? '/' :element.carVo[0].count,
+							mincart: !element.carVo[1] ? '/' :element.carVo[1].count,
+							refuel: !element.jiayou ? '/' : element.jiayou,
+							snack:  !element.xiaochi ? '/' : element.xiaochi,
+							convenience: '/' ,
+							catering: !element.canyin ? '/' : element.canyin,
+							shouyi: element.shouyi
                         }
                         this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData.push(elementData)
                     });
