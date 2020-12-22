@@ -5095,7 +5095,6 @@
 									cItem.EChartsBox.forEach((sItem, sIndex) => {
 										if (sIndex == 0) {
 											sItem.EChartsItem[0].option.series[0].data = [];
-											console.log(sItem.EChartsItem[0].option.xAxis.data)
 											sItem.EChartsItem[0].option.xAxis.data = [];
 
 											let yAxis = [];

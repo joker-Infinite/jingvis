@@ -162,7 +162,7 @@
 					if (item.type) {
 						if (item.type === "ms") icon = require("../../../assets/gas/service-c.png");
 						if (item.type === "os") icon = require("../../../assets/gas/service-k.png");
-						if (item.type === "中石化") icon = require("../../../assets/gas/zsy.png");
+						if (item.type === "中石化") icon = require("../../../assets/gas/zsh.png");
 						if (item.type === "中石油") icon = require("../../../assets/gas/zsy.png");
 						if (item.type === "交投能源") icon = require("../../../assets/gas/jtny.png");
 					}
@@ -181,7 +181,7 @@
 				this.marker.forEach((i, x) => {
 					AMap.event.addListener(i, "dblclick", function () {
 						clearTimeout(that.timeID);
-						if (that.position[x].type == 'ms') {
+						if (position[x].type == 'ms') {
 							that.visible = true;
 						} else {
 							infoWindow.open(v, i.getPosition());
@@ -189,8 +189,8 @@
 					});
 					AMap.event.addListener(i, "click", function () {
 						that.timeID = setTimeout(_ => {
-							let position = [that.position[x].longitude, that.position[x].latitude]
-							that.refresh(that.backdrop, '', '', position, 'enlarge');
+							let position_ = [position[x].longitude, position[x].latitude]
+							that.refresh(that.backdrop, '', '', position_, 'enlarge');
 						}, 200)
 					});
 					let content = [];
@@ -255,7 +255,6 @@ new AMap.MarkerClusterer(
 					let arr = [];
 					if (context.markers.length > 0) {
 						context.markers.forEach((i) => {
-							console.log(that.position[that.marker.indexOf(i)]);
 							arr.push(that.position[that.marker.indexOf(i)]);
 						});
 					}
@@ -368,7 +367,7 @@ new AMap.MarkerClusterer(
 				}
 			})
 			position.push(...this.myService, ...this.otherService);
-			this.position = position;
+			this.position.push(...this.myService, ...this.otherService, ...this.petrochemical, ...this.oil, ...this.energy);
 			this.initMap(position);
 		}
 	};

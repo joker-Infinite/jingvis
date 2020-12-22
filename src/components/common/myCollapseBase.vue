@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- :style="{width:navBarShow?'90%':'98%'}" -->
-    <div class="collapse" :style="{width:navBarShow?'85%':'98%'}" id="collapse">
+    <div class="collapse" :style="{width:navBarShow?'90%':'98%'}" id="collapse">
       <div v-for="(item, index) in collapseData"
            :key="index"
            :id="item.id"
@@ -548,7 +548,6 @@
         this.optionId = id;
 				this.optionTitle = title;
 				this.optionData = wit;
-				// console.log(wit,wix)
 			},
 			/**
 			 * 导出以及table的数据
@@ -875,7 +874,7 @@
     }
 
     .navigation {
-      width: 10%;
+      width: 8%;
       height: 100%;
       display: flex;
       flex-wrap: nowrap;

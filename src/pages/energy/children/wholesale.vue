@@ -536,7 +536,6 @@ export default {
                 data = v.data.data;
                 let mm = [];
                 this.collapseData.forEach((item, index) => {
-                    console.log(item);
                     if (item.name == name) {
                         item.collapseItem.forEach((cItem, cIndex) => {
                             if (cItem.year == year) {
