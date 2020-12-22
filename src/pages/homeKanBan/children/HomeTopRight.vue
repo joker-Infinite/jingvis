@@ -128,7 +128,7 @@
 				this.initECharts_bottom_left()
 			},
 			changeRadioCD(v, m) {
-				this.initECharts_bottom_left(m)
+				this.initECharts_bottom_left(m, v)
 			},
 			initECharts_top() {
 				this.loading_ = true;
@@ -241,7 +241,7 @@
 				})
 
 			},
-			isAxiosw(echarts, option) {
+			isAxiosw(echarts, option, v) {
 				let params = {companyType: 'service', orderType: '营收', size: 6}
 				this.loading = true;
 				switch (this.selectBD) {
@@ -274,14 +274,22 @@
 						yAxis.unshift(element.serviceName);
 						xAxis.unshift((element.sumMoney / 10000).toFixed(2))
 					});
+					if (v == 1 || v == 2) option.xAxis.name = '万';
+					if (v == 3) option.xAxis.name = '元';
+					if (v == 4) option.xAxis.name = '个';
+					if (v == 5) option.xAxis.name = '%';
 					option.yAxis.data = yAxis;
 					option.series[0].data = xAxis;
 					this.BD = option;
 					echarts.setOption(option);
 					this.loading = false;
+				}).catch(e => {
+					this.loading = false;
+					option.series[0].data = []
+					option.yAxis.data = []
 				})
 			},
-			initECharts_bottom_left(m) {
+			initECharts_bottom_left(m, v) {
 				let HomeTopRight_bottom_left = this.$echarts.init(
 					document.getElementById("HomeTopRight_bottom_left")
 				);
@@ -402,7 +410,7 @@
 					],
 				});
 				this.BD = clone(option)
-				this.isAxiosw(HomeTopRight_bottom_left, option)
+				this.isAxiosw(HomeTopRight_bottom_left, option, v)
 			},
 			isResize() {
 				this.resizeData.forEach((element) => {
