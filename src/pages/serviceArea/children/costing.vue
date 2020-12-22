@@ -698,7 +698,6 @@
                                                          tooltip: {
                                                             trigger: 'item',
                                                             formatter: function(val){
-                                                                console.log(val)
                                                                 return val.name + ":" + val.data.value + '万元'+'<br>'+"占比:"+val.percent+'%'
                                                             },
                                                             textStyle: {
@@ -736,7 +735,6 @@
                                                          tooltip: {
                                                             trigger: 'item',
                                                             formatter: function(val){
-                                                                console.log(val)
                                                                 return val.name + ":" + val.data.value + '万元'+'<br>'+"占比:"+val.percent+'%'
                                                             },
                                                             textStyle: {
