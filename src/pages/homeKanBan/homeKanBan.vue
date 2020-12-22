@@ -135,7 +135,7 @@
                 ];
                 let bac = [
                     {
-                        background: "url('" + require('../../assets/bage.png') + "') no-repeat"
+                        background: "url('" + require('../../assets/bage.jpg') + "') no-repeat"
                     }, {
                         background: "url('" + require('../../assets/bgi.jpg') + "') no-repeat"
                     }, {
@@ -163,7 +163,7 @@
 .body {
     width: 100%;
     height: 100%;
-    background: url('../../assets/bage.png') no-repeat;
+    background: url('../../assets/bage.jpg') no-repeat;
     background-size: cover;
 
     .container {
@@ -183,9 +183,10 @@
 
         .more {
             /*width: 30%;*/
-            height: 31px;
+            height: 50px;
+            line-height: 50px;
             right: 13.5%;
-            top: 8.2%;
+            top: 7.2%;
             position: absolute;
 
         }
@@ -219,7 +220,7 @@
         .con {
             width: 92%;
             height: 79%;
-            margin: 6.5% 4% 0;
+            margin: 7.5% 4% 0;
 
             .H_top {
                 height: 78%;
@@ -239,7 +240,7 @@
                     z-index: 99;
                     overflow: hidden;
                     border-radius: 10em;
-                    top: 8.5%;
+                    top: 10.5%;
                     left: 20%;
                     box-sizing: border-box;
 
@@ -294,7 +295,7 @@
     position: fixed !important;
     right: 0 !important;
     margin-right: 9%;
-    margin-top: 3.5%;
+    margin-top: 4.1%;
     // top: 7.1% !important;
     z-index: 1000;
     height: 50px !important;

@@ -1,8 +1,8 @@
 <template>
   <div class="more_setting">
     <span class="focus" @click="operations('focus')"></span>
-    <span class="export" @click="operations('export')"></span>
-    <span class="moree" @click="operations('more')"></span>
+<!--    <span class="export" @click="operations('export')"></span>-->
+<!--    <span class="moree" @click="operations('more')"></span>-->
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 
 <style scoped lang="less">
 .more_setting {
-  width: 79px;
+  width: 35px;
   height: 30px;
   position: absolute;
   display: none;

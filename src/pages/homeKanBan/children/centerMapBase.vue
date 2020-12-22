@@ -60,7 +60,7 @@
 		data() {
 			return {
 				clickIndex: 0,
-				serviceChecked: ['服务区', '卡口', '收银', '油站'],
+				serviceChecked: ['服务区'],
 				gasChecked: ['中石化', '中石油', '交投能源',],
 				visible: false,
 				serviceSelect: 0,
@@ -367,7 +367,7 @@ new AMap.MarkerClusterer(
 					if (i.gisCompany === '交投能源') this.energy.push(Object.assign(i, {type: '交投能源'}));
 				}
 			})
-			position.push(...this.myService, ...this.otherService, ...this.petrochemical, ...this.oil, ...this.energy);
+			position.push(...this.myService, ...this.otherService);
 			this.position = position;
 			this.initMap(position);
 		}
