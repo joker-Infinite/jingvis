@@ -102,7 +102,7 @@
 				map: "",
 				marker: [],
 				mapStyleArr: [
-					"blue",
+					"fresh",
 					// '8cb6df918ee512eae9c9198c38a40c91',
 					"darkblue",
 					"blue",
@@ -189,7 +189,7 @@
 					});
 					AMap.event.addListener(i, "click", function () {
 						that.timeID = setTimeout(_ => {
-							let position_ = [position[x].longitude, position[x].latitude]
+							let position_ = [position[x].longitude, position[x].latitude];
 							that.refresh(that.backdrop, '', '', position_, 'enlarge');
 						}, 200)
 					});
