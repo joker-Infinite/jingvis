@@ -52,7 +52,7 @@
                 </div>
                 <div class="query"
                      v-if="sit.time || sit.select || sit.input">
-                  <el-input v-model="query.inputValue" v-if="sit.input"
+                  <el-input v-model="query.inputValue"  v-if="sit.input"
                             placeholder="请输入内容"></el-input>
                   <el-select v-model="query.selectValue"
                              v-if="sit.select">
@@ -435,7 +435,7 @@
 			},
 			// 按钮的节流
 			refreshClick(EChartsBox, query, year, name, collapseItem) {
-				this.$emit('searchQuery', EChartsBox, query, year, name)
+				this.$emit('searchQuery', EChartsBox, query, year, name,this.query.inputValue)
 			},
 			async refresh() {
 				let timeID = "";

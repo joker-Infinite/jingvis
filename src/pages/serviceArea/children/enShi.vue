@@ -30,18 +30,18 @@
                 collapseData: [
                     {
                         id: "revenueTable",
-                        name: "table列表",
+                        name: "恩施基础信息",
                         icon: require("../../../assets/business/icon_1-1.png"),
                         iconActive: require("../../../assets/business/icon_1-2.png"),
                         collapseItem: [
                             {
                                 id: "ab_2019",
-                                collapseTitle: "table列表",
+                                collapseTitle: "恩施基础信息",
                                 EChartsBox: [
                                     {
-                                        title: "table列表",
+                                        title: "恩施服务区列表",
                                         time: true,
-                                        select: true,
+                                        input: true,
                                         selectOption: [
                                             [],
                                             [],
@@ -4988,19 +4988,21 @@
                     timeValue: ['',''],
                 },
                 totalCount:0,
-                arrData:[]
+                arrData:[],
+                serverName:''
             };
         },
         methods: {
             // 传入过来的页数跟每页的数量
             ClickTotal(value){
-                this.TableDatas(value.pageNum-1,value.pageSize)
+                this.TableDatas(value.pageNum,value.pageSize)
             },
             selectionChange(val) {
                 this.$emit('clickTable', true);
                 this.$router.push("/details/details");
             },
-            async searchQuery(id, collapse , year ,name) {
+            async searchQuery(id, collapse , year ,name,inputVlaue) {
+                
                 this.ValueData = collapse;
                 id.EChartsBox.forEach((element,index) => {
                     element.EChartsItem.forEach((element,sindex) => {
@@ -5010,8 +5012,9 @@
                         })
                     });
                 });
-
-                await this.obtainData(name, year);
+                this.serverName=inputVlaue;
+                await this.TableDatas(1, 5);
+                // await this.obtainData(name, year);
             },
             async obtainData(name, year) {
                 let data = [];
@@ -5074,14 +5077,15 @@
                 })
             },
             async TableDatas(pageNum,pageSize){
-                this.$axios.get('/api/jtService/list_service',{params:
+                this.$axios.get('/api/jtService/serve_list',{params:
                         {
-                            serverCompanyId:'cc809ba275f17437088741db4ef76d499',
+                            companyId:'cea59f1fbf7bd4b90bff41aa2b65595d5',
                             pageNum:pageNum,
-                            pageSize:pageSize
+                            pageSize:pageSize,
+                            serverName:this.serverName
                         }}).then(res=>{
                     this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData=[]
-                    res.data.data.data.forEach(element => {
+                    res.data.list.forEach(element => {
                         let elementData = {
                             serviceName: element.serviceName,
                             B: "0",
@@ -5100,7 +5104,7 @@
                         }
                         this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData.push(elementData)
                     });
-                    this.totalCount = res.data.data.totalCount;
+                    this.totalCount =  res.data.total;
                 })
             }
         },
@@ -5110,7 +5114,7 @@
                     resolve();
                 }, 200);
             });
-            await this.TableDatas(0,5);
+            await this.TableDatas(1,5);
             this.$refs["collapse"].initECharts(this.collapseData);
         },
         async created() {

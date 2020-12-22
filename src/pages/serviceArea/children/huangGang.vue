@@ -31,17 +31,17 @@
 				collapseData: [
 					{
 						id: "revenueTable",
-						name: "基础信息",
+						name: "黄冈基础信息",
 						allShow: true,
 						icon: require("../../../assets/business/icon_1-1.png"),
 						iconActive: require("../../../assets/business/icon_1-2.png"),
 						collapseItem: [
 							{
 								id: "ab_2019",
-								collapseTitle: "基础信息",
+								collapseTitle: "黄冈基础信息",
 								EChartsBox: [
 									{
-										title: "服务区列表",
+										title: "黄冈服务区列表",
 										time: true,
 										input: true,
 										style: {
@@ -7186,19 +7186,20 @@
 					timeValue: ['', ''],
 				},
 				totalCount: 0,
-				arrData: []
+				arrData: [],
+				serverName:''
 			};
 		},
 		methods: {
 			// 传入过来的页数跟每页的数量
 			ClickTotal(value) {
-				this.TableDatas(value.pageNum - 1, value.pageSize)
+				this.TableDatas(value.pageNum , value.pageSize)
 			},
 			selectionChange(val) {
 				this.$emit('clickTable', true);
 				this.$router.push("/details/details");
 			},
-			async searchQuery(id, collapse, year, name) {
+			async searchQuery(id, collapse, year, name,inputVlaue) {
 				this.ValueData = collapse;
 				id.EChartsBox.forEach((element, index) => {
 					element.EChartsItem.forEach((element, sindex) => {
@@ -7208,7 +7209,9 @@
 						})
 					});
 				});
-				// await this.obtainData(name, year);
+				this.serverName=inputVlaue;
+
+				await this.TableDatas(1, 5);
 			},
 			async obtainData(name, year) {
 				let data = [];
@@ -7218,6 +7221,7 @@
 				for (let i = 0; i < res.data.data.length; i++) {
 					if (res.data.data[i].financeName == name) {
 						id = res.data.data[i].financeTypeId;
+						
 						break;
 					}
 				}
@@ -7311,16 +7315,18 @@
 				})
 			},
 			async TableDatas(pageNum, pageSize) {
-				this.$axios.get('/api/jtService/list_service', {
+				this.$axios.get('/api/jtService/serve_list', {
 					params:
 						{
-							serverCompanyId: 'cc809ba275f17437088741db4ef76d499',
+							companyId: 'cc809ba275f17437088741db4ef76d499',
 							pageNum: pageNum,
-							pageSize: pageSize
+							pageSize: pageSize,
+							serverName:this.serverName
 						}
 				}).then(res => {
+					console.log(res)
 					this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = []
-					res.data.data.data.forEach(element => {
+					res.data.list.forEach(element => {
 						let elementData = {
 							serviceName: !element.serviceName ? '/' : element.serviceName,
 							B: "/",
@@ -7339,7 +7345,7 @@
 						}
 						this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData.push(elementData)
 					});
-					this.totalCount = res.data.data.totalCount;
+					this.totalCount = res.data.total;
 				})
 			}
 		},

@@ -3997,7 +3997,8 @@
                 }],
                 company: '',
                 district: '',
-                totalCount: 0
+                totalCount: 0,
+                inputVlaue:""
             }
         },
         methods: {
@@ -4008,7 +4009,8 @@
             ClickTotal(value) {
                 this.TableDatas(value.pageNum, value.pageSize)
             },
-            async searchQuery(id, collapse, year, name) {
+            async searchQuery(id, collapse, year, name,inputValue) {
+                
                 this.ValueData = collapse;
                 id.EChartsBox.forEach((element, index) => {
                     element.EChartsItem.forEach((element, sindex) => {
@@ -4018,18 +4020,24 @@
                         })
                     });
                 });
-                await this.obtainData(name, year);
+                console.log(inputValue,id, collapse, year, name,inputValue)
+                this.inputVlaue = inputValue;
+                await this.TableDatas(1,5)
             },
             async TableDatas(pageNum, pageSize) {
+                console.log(pageNum, pageSize)
                 this.$axios.get('/api/jtService/serve_list', {
                     params:
                         {
-                            companyId: 'cc809ba275f17437088741db4ef76d499',
+                            companyId: '',
+                            endTime:'',
                             pageNum: pageNum,
-                            serverName: '',
+                            serverName: this.inputVlaue,
+                            startTime:'',
                             pageSize: pageSize
                         }
                 }).then(res => {
+                    console.log(res)
                     this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = []
                     res.data.list.forEach(element => {
                         let elementData = {

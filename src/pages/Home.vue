@@ -85,8 +85,8 @@
 							">>基础信息",
 							">>业态结构",
 							">>回款情况",
-							// ">>供应商",
-							// ">>用户评价",
+							">>供应商",//
+							">>用户评价",//
 							">>服务区片区",
 							">>服务区线路",
 						],
@@ -98,10 +98,10 @@
 							'/serviceArea/basicInformations',
 							'/serviceArea/construction',
 							'/serviceArea/rateOfReturn',
+							'/serviceArea/5',
+							'/serviceArea/6',
 							'#1',
 							'#2',
-							// '/serviceArea/5',
-							// '/serviceArea/6',
 						],
 						childMenuItem: [
 							'>>>黄冈分公司',
@@ -109,7 +109,7 @@
 							'>>>宜昌分公司',
 							'>>>咸宁分公司',
 							'>>>孝感分公司',
-							'>>>石堰分公司',
+							'>>>十堰分公司',
 						],
 						childMenuItemUrl: [
 							"/serviceArea/huangGang",
