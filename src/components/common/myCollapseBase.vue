@@ -548,7 +548,6 @@
         this.optionId = id;
 				this.optionTitle = title;
 				this.optionData = wit;
-				// console.log(wit,wix)
 			},
 			/**
 			 * 导出以及table的数据

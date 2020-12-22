@@ -848,7 +848,6 @@ export default {
 
                 });
             });
-            console.log(this.forTable,indexData,666)
             this.selectData.service = ''
         },
     }
