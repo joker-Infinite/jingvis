@@ -323,7 +323,6 @@ export default {
                                                         type: 'none'
                                                     },
                                                     formatter: function(params) {
-                                                        console.log(params)
                                                         return params[0].name+":"+"<br>"+
                                                         params[0].seriesName  + ' : ' + params[0].value+"元"+
                                                         '<br>'+params[1].seriesName  + ' : ' + params[1].value+"元"+

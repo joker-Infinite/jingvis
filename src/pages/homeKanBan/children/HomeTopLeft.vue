@@ -166,7 +166,7 @@
 								show: true,
 								position: 'insideLeft',
 								color: '#fff',
-								formatter: '{b}'
+								formatter: "{b}" + "：{c}" + '%',
 							},
 							data: [],
 							markLine: {
@@ -232,6 +232,7 @@
 						trigger: "axis",
 						formatter: v => {
 							let show = [
+								{}, {}, {}, {}, {}, {},
 								{
 									receivable: '259038.89',
 									received: '213851.26',
@@ -253,11 +254,11 @@
 									exacutiveRate: '89.28%',
 								}
 							];
-							if (parseInt(v[0].name) == 0) {
+							let index = parseInt(v[0].name) - 1;
+							if (!show[index].receivable) {
 								return '';
 							}
-							let index = parseInt(v[0].name) - 7;
-							return '合同应收款：' + show[index].receivable + '<br>合同已收款：' + show[index].received + '<br>合同执行率：' + show[index].exacutiveRate
+							return '合同应收款：' + show[index].receivable + '万元<br>合同已收款：' + show[index].received + '万元<br>合同执行率：' + show[index].exacutiveRate
 						},
 						axisPointer: {
 							type: "shadow",
@@ -267,7 +268,7 @@
 					xAxis: [
 						{
 							type: "category",
-							data: [0, 7, 8, 9, 10],
+							data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 							axisLine: {
 								//坐标轴轴线
 								// show: false
@@ -323,7 +324,7 @@
 						{
 							name: "金额",
 							type: "line",
-							data: ['', 82.56, 89.48, 87.51, 89.28],
+							data: ['', '', '', '', '', '', 82.56, 89.48, 87.51, 89.28],
 							itemStyle: {
 								normal: {
 									areaStyle: {

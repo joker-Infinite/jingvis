@@ -166,7 +166,7 @@
 						if (item.type === "中石油") icon = require("../../../assets/gas/zsy.png");
 						if (item.type === "交投能源") icon = require("../../../assets/gas/jtny.png");
 					}
-					if (item.longitude && item.latitude) {
+					if (item.longitude && item.latitude && item.longitude != 'NULL' && item.latitude != 'NULL') {
 						let marker = new AMap.Marker({
 							icon: new AMap.Icon({
 								image: icon,
@@ -189,7 +189,7 @@
 					});
 					AMap.event.addListener(i, "click", function () {
 						that.timeID = setTimeout(_ => {
-							let position_ = [position[x].longitude, position[x].latitude]
+							let position_ = [position[x].longitude, position[x].latitude];
 							that.refresh(that.backdrop, '', '', position_, 'enlarge');
 						}, 200)
 					});
