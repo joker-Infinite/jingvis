@@ -61,6 +61,7 @@
         },
         methods: {
             openDialog(v) {
+                console.log(v)
                 this.visible = true;
                 this.form.name = v.a;
                 this.form.income = v.c;

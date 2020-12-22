@@ -363,7 +363,6 @@
 						show: true,
 						textStyle: {
 							fontFamily: "幼圆",
-							lineHeight: 25,
 							textAlign: 'center',
 							color: "#FFF",
 							fontSize: "15",

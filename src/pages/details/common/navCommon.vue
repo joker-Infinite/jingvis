@@ -95,7 +95,7 @@
                                     v-model="activeNameTabs"
                                     @tab-click="tabsClick"
                                     type="card">
-                                <el-tab-pane label="东区" name="first">
+                                <el-tab-pane label="A区" name="first">
                                     <el-form class="baseForm"
                                              :model="formBasis"
                                              label-width="125px"
@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
                                 </el-tab-pane>
-                                <el-tab-pane label="西区" name="second">
+                                <el-tab-pane label="B区" name="second">
                                     <el-form class="baseForm"
                                              :model="formBasis"
                                              label-width="125px"
@@ -134,7 +134,7 @@
                                         </div>
                                     </div>
                                 </el-tab-pane>
-                                <el-tab-pane label="南区" name="third">
+                              <!--  <el-tab-pane label="南区" name="third">
                                     <el-form
                                             class="baseForm"
                                             :model="formBasis"
@@ -173,7 +173,7 @@
                                                         :img-data="it.imgData"></img-common>
                                         </div>
                                     </div>
-                                </el-tab-pane>
+                                </el-tab-pane>-->
                             </el-tabs>
                         </div>
                         <div class="businessInformation" v-if="it.content === '经营信息'">
@@ -286,7 +286,7 @@
                         </el-form>
                     </div>
                     <div class="LDB" v-if="it.content === '服务区状态'">
-                        <div class="title">商业活跃度:</div>
+                        <div class="title">综合指数:</div>
                         <div id="LD"></div>
                     </div>
                 </div>
@@ -376,7 +376,7 @@
                     address: "",
                 },
                 baseData: [
-                    {label: "服务区", value: "蔡甸服务区-东区"},
+                    {label: "服务区", value: "蔡甸服务区-A区"},
                     {label: "类别", value: "一类服务区"},
                     {label: "所属公司", value: "孝感分公司"},
                     {label: "开通状况", value: "是"},
@@ -505,12 +505,12 @@
                             }
                         },
                         indicator: [
-                            {name: 'XX', max: 6500},
-                            {name: 'XX', max: 16000},
-                            {name: 'XX', max: 30000},
-                            {name: 'XX', max: 38000},
-                            {name: 'XX', max: 52000},
-                            {name: 'XX', max: 25000}
+                            {name: '水', max: 6500},
+                            {name: '电', max: 16000},
+                            {name: '提成', max: 30000},
+                            {name: '服务费', max: 38000},
+                            {name: '租金', max: 52000},
+                            {name: '气', max: 25000}
                         ]
                     },
                     series: [{

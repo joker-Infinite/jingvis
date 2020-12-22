@@ -368,7 +368,7 @@ new AMap.MarkerClusterer(
 				}
 			})
 			position.push(...this.myService, ...this.otherService);
-			this.position = position;
+			this.position.push(...this.myService, ...this.otherService, ...this.petrochemical, ...this.oil, ...this.energy);
 			this.initMap(position);
 		}
 	};

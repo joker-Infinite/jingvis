@@ -8,7 +8,7 @@
 import MyCollapseBase from "../../../components/common/myCollapseBase";
 import common from "../../../components/js/common";
 export default {
-    name: "revenue",
+    name: "profit",
     components: { MyCollapseBase },
     mixins: [common],
     props: {
