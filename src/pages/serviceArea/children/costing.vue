@@ -690,18 +690,20 @@
                                                         },
                                                     },
                                                     series: [{
-                                                        name: '半径模式',
+                                                         name: '面积模式',
                                                         type: 'pie',
                                                         radius: [30, 110],
-                                                        center: ['75%', '50%'],
+                                                        center: ['78%', '50%'],
                                                         roseType: 'radius',
-                                                        label: {
-                                                            show: false
-                                                        },
-                                                        emphasis: {
-                                                            label: {
-                                                                show: true
-                                                            }
+                                                         tooltip: {
+                                                            trigger: 'item',
+                                                            formatter: function(val){
+                                                                console.log(val)
+                                                                return val.name + ":" + val.data.value + '万元'+'<br>'+"占比:"+val.percent+'%'
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
                                                         },
                                                         itemStyle: {
                                                                 emphasis: {
@@ -731,6 +733,16 @@
                                                         radius: [30, 110],
                                                         center: ['25%', '50%'],
                                                         roseType: 'radius',
+                                                         tooltip: {
+                                                            trigger: 'item',
+                                                            formatter: function(val){
+                                                                console.log(val)
+                                                                return val.name + ":" + val.data.value + '万元'+'<br>'+"占比:"+val.percent+'%'
+                                                            },
+                                                            textStyle: {
+                                                                fontSize: 16,
+                                                            },
+                                                        },
                                                          itemStyle: {
                                                                 emphasis: {
                                                                     shadowBlur: 10,
@@ -1305,7 +1317,7 @@
                                         ],
                                     },
                                     {
-                                        title: "2019年预算控制",
+                                        title: "实际/预算",
                                         time: false,
                                         select: false,
                                         style: {
@@ -1317,59 +1329,59 @@
                                             marginTop: "5px",
                                         },
                                         EChartsItem: [
+                                            // {
+                                            //     type: "box",
+                                            //     style: {
+                                            //         width: "30%",
+                                            //         height: "300px",
+                                            //         position: "relative",
+                                            //         style: {
+                                            //             content: "实际:暂无数据",
+                                            //             width: "80%",
+                                            //             color: "#fff",
+                                            //             height: "120px",
+                                            //             background: "#38d",
+                                            //             position: "absolute",
+                                            //             top: "80px",
+                                            //             left: "10%",
+                                            //             borderRadius: "10px",
+                                            //             lineHeight: "120px",
+                                            //             fontWeight: 700,
+                                            //             textAlign: "center",
+                                            //             fontSize: "20px",
+                                            //         },
+                                            //     },
+                                            //     option: {},
+                                            // },
+                                            // {
+                                            //     type: "box",
+                                            //     /*ECharts的属性*/
+                                            //     style: {
+                                            //         width: "30%",
+                                            //         height: "300px",
+                                            //         position: "relative",
+                                            //         style: {
+                                            //             content: "预算:暂无数据",
+                                            //             width: "80%",
+                                            //             color: "#fff",
+                                            //             height: "120px",
+                                            //             background: "#81dd9d",
+                                            //             position: "absolute",
+                                            //             top: "130px",
+                                            //             left: "10%",
+                                            //             borderRadius: "10px",
+                                            //             lineHeight: "120px",
+                                            //             fontWeight: 700,
+                                            //             textAlign: "center",
+                                            //             fontSize: "20px",
+                                            //         },
+                                            //     },
+                                            //     option: {},
+                                            // },
                                             {
-                                                type: "box",
-                                                style: {
-                                                    width: "30%",
-                                                    height: "300px",
-                                                    position: "relative",
-                                                    style: {
-                                                        content: "实际:暂无数据",
-                                                        width: "80%",
-                                                        color: "#fff",
-                                                        height: "120px",
-                                                        background: "#38d",
-                                                        position: "absolute",
-                                                        top: "80px",
-                                                        left: "10%",
-                                                        borderRadius: "10px",
-                                                        lineHeight: "120px",
-                                                        fontWeight: 700,
-                                                        textAlign: "center",
-                                                        fontSize: "20px",
-                                                    },
-                                                },
-                                                option: {},
-                                            },
-                                            {
-                                                type: "box",
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "30%",
-                                                    height: "300px",
-                                                    position: "relative",
-                                                    style: {
-                                                        content: "预算:暂无数据",
-                                                        width: "80%",
-                                                        color: "#fff",
-                                                        height: "120px",
-                                                        background: "#81dd9d",
-                                                        position: "absolute",
-                                                        top: "130px",
-                                                        left: "10%",
-                                                        borderRadius: "10px",
-                                                        lineHeight: "120px",
-                                                        fontWeight: 700,
-                                                        textAlign: "center",
-                                                        fontSize: "20px",
-                                                    },
-                                                },
-                                                option: {},
-                                            },
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "40%",
+                                                    width: "100%",
                                                     height: "300px",
                                                 },
                                                 option: {
@@ -1413,45 +1425,45 @@
                                                             },
                                                             hoverAnimation: false,
                                                             data: [
-                                                                {
-                                                                    value: 66,
-                                                                    name: "占比",
-                                                                    itemStyle: {
-                                                                        normal: {
-                                                                            color: {
-                                                                                // 颜色渐变
-                                                                                colorStops: [
-                                                                                    {
-                                                                                        offset: 0,
-                                                                                        color:
-                                                                                            "#4FADFD", // 0% 处的颜色
-                                                                                    },
-                                                                                    {
-                                                                                        offset: 1,
-                                                                                        color:
-                                                                                            "#28E8FA", // 100% 处的颜色1
-                                                                                    },
-                                                                                ],
-                                                                            },
-                                                                            label: {
-                                                                                show: false,
-                                                                            },
-                                                                            labelLine: {
-                                                                                show: false,
-                                                                            },
-                                                                        },
-                                                                    },
-                                                                },
-                                                                {
-                                                                    name: "剩余",
-                                                                    value: 100 - 66,
-                                                                    itemStyle: {
-                                                                        normal: {
-                                                                            color:
-                                                                                "#E1E8EE",
-                                                                        },
-                                                                    },
-                                                                },
+                                                                // {
+                                                                //     value: 66,
+                                                                //     name: "占比",
+                                                                //     itemStyle: {
+                                                                //         normal: {
+                                                                //             color: {
+                                                                //                 // 颜色渐变
+                                                                //                 colorStops: [
+                                                                //                     {
+                                                                //                         offset: 0,
+                                                                //                         color:
+                                                                //                             "#4FADFD", // 0% 处的颜色
+                                                                //                     },
+                                                                //                     {
+                                                                //                         offset: 1,
+                                                                //                         color:
+                                                                //                             "#28E8FA", // 100% 处的颜色1
+                                                                //                     },
+                                                                //                 ],
+                                                                //             },
+                                                                //             label: {
+                                                                //                 show: false,
+                                                                //             },
+                                                                //             labelLine: {
+                                                                //                 show: false,
+                                                                //             },
+                                                                //         },
+                                                                //     },
+                                                                // },
+                                                                // {
+                                                                //     name: "剩余",
+                                                                //     value: 100 - 66,
+                                                                //     itemStyle: {
+                                                                //         normal: {
+                                                                //             color:
+                                                                //                 "#E1E8EE",
+                                                                //         },
+                                                                //     },
+                                                                // },
                                                             ],
                                                         },
                                                     ],

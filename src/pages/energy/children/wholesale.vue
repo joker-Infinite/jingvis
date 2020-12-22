@@ -52,72 +52,176 @@ export default {
                                     },
                                     EChartsItem: [
                                         {
-                                            unit: "元",
+                                            unit: "元/吨",
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
                                                 height: "350px",
                                             },
                                             option: {
-                                                xAxis: {
-                                                    type: "category",
-                                                    data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                            title: {
+                                                text: "{a|国际价格}{b|国内批发价}{c|国内零售价}",
+                                                show: true,
+                                                y: "6",
+                                                right: '200',
+                                                textStyle: {
+                                                    lineHeight: 15,
+                                                    rich: {
+                                                        a: {
+                                                            color: "#95A2FF",
+                                                            fontSize: "15",
+                                                            
+                                                        },
+                                                        b:{
+                                                            color: "#3CB8FE",
+                                                            fontSize: "15",
+                                                            padding:10
+                                                        },
+                                                        c:{
+                                                            color: "#FE9394",
+                                                            fontSize: "15",
+                                                        }
+                                                    },
+
                                                 },
-                                                yAxis: {
-                                                    type: "value",
-                                                },
-                                                grid: {
-                                                    left: 40,
-                                                    right: 40,
-                                                    top: 30,
-                                                    bottom: 50,
-                                                },
-                                                legend: {
-                                                    orient: "horizontal",
-                                                    bottom: 5,
-                                                    data: ["汽油", "柴油", "总量", "92", "95", "96", "0"],
-                                                },
-                                                series: [
-                                                    {
-                                                        name: "汽油",
-                                                        data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
-                                                        type: "line",
-                                                    },
-                                                    {
-                                                        name: "柴油",
-                                                        data: [322, 432, 543, 234, 543, 215, 546, 654, 567, 756, 321, 435],
-                                                        type: "line",
-                                                    },
-                                                    {
-                                                        name: "总量",
-                                                        data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
-                                                        type: "line",
-                                                    },
-                                                    {
-                                                        name: "92",
-                                                        data: [33, 32, 33, 76, 35, 32, 432, 432, 32, 231, 76, 31],
-                                                        type: "line",
-                                                    },
-                                                    {
-                                                        name: "95",
-                                                        data: [45, 123, 32, 42, 321, 44, 312, 45, 65, 87, 23, 31],
-                                                        type: "line",
-                                                    },
-                                                    {
-                                                        name: "96",
-                                                        data: [65, 32, 76, 234, 56, 66, 312, 45, 65, 87, 34, 31],
-                                                        type: "line",
-                                                    },
-                                                    {
-                                                        name: "0",
-                                                        data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
-                                                        type: "line",
-                                                    },
-                                                ],
                                             },
+                                            xAxis: {
+                                                type: "category",
+                                                data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                            },
+                                            yAxis: {
+                                                type: "value",
+                                            },
+                                            grid: {
+                                                left: 40,
+                                                right: 40,
+                                                top: 30,
+                                                bottom: 50,
+                                            },
+                                            legend: {
+                                                orient: "horizontal",
+                                                bottom: 5,
+                                                selected: {
+                                                    "汽油": true, //图例为‘全部’的一项默认置灰
+                                                    "柴油": false,
+                                                    "92": false,
+                                                    "95": false,
+                                                    "98": false
+                                                },
+                                                data: [{
+                                                    name: "汽油",
+                                                    textStyle: {
+                                                        color: 'red',
+                                                        borderColor: 'red'
+                                                    }
+                                                }, "柴油", "92", "95", "98"],
+                                            },
+                                            series: [{
+                                                    name: "汽油",
+                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                    color: '#95A2FF',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "汽油",
+                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                    color: '#3CB8FE',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "汽油",
+                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                    color: '#FE9394',
+                                                    type: "line",
+                                                },
+
+
+                                                {
+                                                    name: "柴油",
+                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                    color: '#95A2FF',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "柴油",
+                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                    color: '#3CB8FE',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "柴油",
+                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                    color: '#FE9394',
+                                                    type: "line",
+                                                },
+
+
+
+
+                                                {
+                                                    name: "92",
+                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                    color: 'red',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "92",
+                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                    color: 'blue',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "92",
+                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                    color: '#000',
+                                                    type: "line",
+                                                },
+
+
+                                                {
+                                                    name: "95",
+                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                    color: 'red',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "95",
+                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                    color: 'blue',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "95",
+                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                    color: '#000',
+                                                    type: "line",
+                                                },
+
+                                                {
+                                                    name: "98",
+                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                    color: 'red',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "98",
+                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                    color: 'blue',
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "98",
+                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                    color: '#000',
+                                                    type: "line",
+                                                },
+
+
+                                                    ],
+                                                },
+                                                },
+                                            ],
                                         },
-                                    ],
-                                },
                                 {
                                     title: "批零差价",
                                     time: true,
@@ -140,43 +244,41 @@ export default {
                                                 width: "100%",
                                                 height: "400px",
                                             },
+                                            unit: "元/吨",
                                             option: {
-                                                xAxis: {
-                                                    type: "category",
-                                                    data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                                                },
-                                                yAxis: {
-                                                    type: "value",
-                                                },
-                                                grid: {
-                                                    left: 40,
-                                                    right: 40,
-                                                    top: 70,
-                                                    bottom: 50,
-                                                },
-                                                legend: {
-                                                    orient: "horizontal",
-                                                    bottom: 5,
-                                                    data: ["国内批发差价", "自身批发差价"],
-                                                },
-                                                series: [
-                                                    {
-                                                        name: "国内批发差价",
-                                                        data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
-                                                        type: "line",
-                                                    },
-                                                    {
-                                                        name: "自身批发差价",
-                                                        data: [132, 433, 321, 65, 768, 987, 343, 234, 123, 432, 543, 232],
-                                                        type: "line",
-                                                    },
-                                                ],
+                                            grid: {
+                                                top: 80,
+                                                left: 50,
+                                                right: 30,
+                                                bottom: 30,
                                             },
+                                            xAxis: {
+                                                type: "category",
+                                                data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                            },
+                                            yAxis: {
+                                                // type: "value",
+                                            },
+                                            series: [
+                                                {
+                                                    name: "国内批发差价",
+                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                    type: "line",
+                                                },
+                                                {
+                                                    name: "自身批发差价",
+                                                    data: [132, 433, 321, 65, 768, 987, 343, 234, 123, 432, 543, 232],
+                                                    type: "line",
+                                                },
+                                                
+                                            ],
+
+                                        },
                                         },
                                     ],
                                 },
                                 {
-                                    title: "采点",
+                                    title: "大宗采购",
                                     style: {
                                         width: "100%",
                                         height: "400px",
@@ -191,34 +293,65 @@ export default {
                                                 width: "100%",
                                                 height: "350px",
                                             },
+                                            unit: "元/吨",
                                             option: {
                                                 grid: {
-                                                    top: 50,
-                                                    left: 30,
+                                                    top: 80,
+                                                    left: 50,
                                                     right: 30,
                                                     bottom: 30,
                                                 },
-                                                xAxis: {},
-                                                yAxis: {},
-                                                series: [
+                                                tooltip: {
+                                                    trigger: 'axis',
+                                                    axisPointer: {
+                                                        type: 'none'
+                                                    },
+                                                    formatter: function(params) {
+                                                        console.log(params)
+                                                        return params[0].name+":"+"<br>"+
+                                                        params[0].seriesName  + ' : ' + params[0].value+"元"+
+                                                        '<br>'+params[1].seriesName  + ' : ' + params[1].value+"元"+
+                                                        '<br>'+params[2].seriesName  + ' : ' + params[2].value[1]+'吨'
+                                                    }
+                                                },
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                                },
+                                                yAxis: {
+                                                    // type: "value",
+                                                },
+                                                series: [{
+                                                        name: "国内批发差价",
+                                                        data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                        type: "line",
+                                                    },
+                                                    {
+                                                        name: "自身批发差价",
+                                                        data: [132, 433, 321, 65, 768, 987, 343, 234, 123, 432, 543, 232],
+                                                        type: "line",
+                                                    },
                                                     {
                                                         symbolSize: 20,
+                                                        name:'大宗采购',
                                                         data: [
-                                                            [10.0, 8.04],
-                                                            [8.0, 6.95],
-                                                            [13.0, 7.58],
-                                                            [9.0, 8.81],
-                                                            [11.0, 8.33],
-                                                            [14.0, 9.96],
-                                                            [6.0, 7.24],
-                                                            [4.0, 4.26],
-                                                            [12.0, 10.84],
-                                                            [7.0, 4.82],
-                                                            [5.0, 5.68],
+                                                            ['Jan', 800.04],
+                                                            ["Feb", 161.95],
+                                                            ["Mar", 370.58],
+                                                            ["Apr", 285.81],
+                                                            ["May", 282.33],
+                                                            ["Jun", 194.96],
+                                                            ["Jul", 175.24],
+                                                            ["Aug", 34.26],
+                                                            ["Sep", 100.84],
+                                                            ["Oct", 400.82],
+                                                            ["Nov", 520.68],
+                                                            ["Dec", 520.68],
                                                         ],
                                                         type: "scatter",
                                                     },
                                                 ],
+
                                             },
                                         },
                                     ],
