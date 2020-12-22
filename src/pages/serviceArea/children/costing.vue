@@ -386,7 +386,7 @@
                                         time: false,
                                         select: false,
                                         style: {
-                                            width: "50%",
+                                            width: "40%",
                                             height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -593,11 +593,11 @@
                                         ],
                                     },
                                     {
-                                        title: "2020年预算控制",
+                                        title: "实际/预算",
                                         time: false,
                                         select: false,
                                         style: {
-                                            width: "49.5%",
+                                            width: "59.5%",
                                             height: "350px",
                                             background: "white",
                                             borderRadius: "10px",
@@ -605,65 +605,65 @@
                                             marginTop: "5px",
                                         },
                                         EChartsItem: [
+                                            // {
+                                            //     type: "box",
+                                            //     style: {
+                                            //         width: "30%",
+                                            //         height: "300px",
+                                            //         position: "relative",
+                                            //         style: {
+                                            //             content: "差旅费实际:86.64万元",
+                                            //             width: "80%",
+                                            //             color: "#fff",
+                                            //             height: "120px",
+                                            //             background: "#38d",
+                                            //             position: "absolute",
+                                            //             top: "80px",
+                                            //             left: "10%",
+                                            //             borderRadius: "10px",
+                                            //             lineHeight: "120px",
+                                            //             fontWeight: 700,
+                                            //             textAlign: "center",
+                                            //             fontSize: "20px",
+                                            //         },
+                                            //     },
+                                            //     option: {},
+                                            // },
+                                            // {
+                                            //     type: "box",
+                                            //     /*ECharts的属性*/
+                                            //     style: {
+                                            //         width: "30%",
+                                            //         height: "300px",
+                                            //         position: "relative",
+                                            //         style: {
+                                            //             content: "差旅费预算:60.99万元",
+                                            //             width: "80%",
+                                            //             color: "#fff",
+                                            //             height: "120px",
+                                            //             background: "#81dd9d",
+                                            //             position: "absolute",
+                                            //             top: "130px",
+                                            //             left: "10%",
+                                            //             borderRadius: "10px",
+                                            //             lineHeight: "120px",
+                                            //             fontWeight: 700,
+                                            //             textAlign: "center",
+                                            //             fontSize: "20px",
+                                            //         },
+                                            //     },
+                                            //     option: {},
+                                            // },
                                             {
-                                                type: "box",
-                                                style: {
-                                                    width: "30%",
-                                                    height: "300px",
-                                                    position: "relative",
-                                                    style: {
-                                                        content: "差旅费实际:86.64万元",
-                                                        width: "80%",
-                                                        color: "#fff",
-                                                        height: "120px",
-                                                        background: "#38d",
-                                                        position: "absolute",
-                                                        top: "80px",
-                                                        left: "10%",
-                                                        borderRadius: "10px",
-                                                        lineHeight: "120px",
-                                                        fontWeight: 700,
-                                                        textAlign: "center",
-                                                        fontSize: "20px",
-                                                    },
-                                                },
-                                                option: {},
-                                            },
-                                            {
-                                                type: "box",
                                                 /*ECharts的属性*/
                                                 style: {
-                                                    width: "30%",
-                                                    height: "300px",
-                                                    position: "relative",
-                                                    style: {
-                                                        content: "差旅费预算:60.99万元",
-                                                        width: "80%",
-                                                        color: "#fff",
-                                                        height: "120px",
-                                                        background: "#81dd9d",
-                                                        position: "absolute",
-                                                        top: "130px",
-                                                        left: "10%",
-                                                        borderRadius: "10px",
-                                                        lineHeight: "120px",
-                                                        fontWeight: 700,
-                                                        textAlign: "center",
-                                                        fontSize: "20px",
-                                                    },
-                                                },
-                                                option: {},
-                                            },
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "40%",
+                                                    width: "100%",
                                                     height: "300px",
                                                 },
-                                                option: {
+                                                option:  {
                                                     title: {
-                                                        text: 70.40 + "%",
-                                                        x: "center",
+                                                        text: '',
+                                                        x: "15%",
                                                         y: "center",
                                                         textStyle: {
                                                             fontWeight: "normal",
@@ -671,8 +671,14 @@
                                                             fontSize: "25",
                                                         },
                                                     },
+                                                legend: {
+                                                        left: 'center',
+                                                        top: 'center',
+                                                        orient:"vertical",
+                                                         data: ['差旅费', '业务招待费', '误餐费', '交通', '办公费']
+                                                    },
                                                     tooltip: {
-                                                        formatter: function (
+                                                        formatter: function(
                                                             params
                                                         ) {
                                                             return (
@@ -683,68 +689,74 @@
                                                             );
                                                         },
                                                     },
-                                                    series: [
-                                                        {
-                                                            name: "circle",
-                                                            type: "pie",
-                                                            clockWise: true,
-                                                            radius: ["50%", "66%"],
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    label: {
-                                                                        show: false,
-                                                                    },
-                                                                    labelLine: {
-                                                                        show: false,
-                                                                    },
-                                                                },
-                                                            },
-                                                            hoverAnimation: false,
-                                                            data: [
-                                                                {
-                                                                    value: 70.40,
-                                                                    name: "占比",
-                                                                    itemStyle: {
-                                                                        normal: {
-                                                                            color: {
-                                                                                // 颜色渐变
-                                                                                colorStops: [
-                                                                                    {
-                                                                                        offset: 0,
-                                                                                        color:
-                                                                                            "#4FADFD", // 0% 处的颜色
-                                                                                    },
-                                                                                    {
-                                                                                        offset: 1,
-                                                                                        color:
-                                                                                            "#28E8FA", // 100% 处的颜色1
-                                                                                    },
-                                                                                ],
-                                                                            },
-                                                                            label: {
-                                                                                show: false,
-                                                                            },
-                                                                            labelLine: {
-                                                                                show: false,
-                                                                            },
-                                                                        },
-                                                                    },
-                                                                },
-                                                                {
-                                                                    name: "剩余",
-                                                                    value: 100 - 70.40,
-                                                                    itemStyle: {
-                                                                        normal: {
-                                                                            color:
-                                                                                "#E1E8EE",
-                                                                        },
-                                                                    },
-                                                                },
-                                                            ],
+                                                    series: [{
+                                                        name: '半径模式',
+                                                        type: 'pie',
+                                                        radius: [30, 110],
+                                                        center: ['75%', '50%'],
+                                                        roseType: 'radius',
+                                                        label: {
+                                                            show: false
                                                         },
-                                                    ],
+                                                        emphasis: {
+                                                            label: {
+                                                                show: true
+                                                            }
+                                                        },
+                                                        itemStyle: {
+                                                                emphasis: {
+                                                                    shadowBlur: 10,
+                                                                    shadowOffsetX: 0,
+                                                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                                },
+                                                                normal:{
+                                                                    color:function(params) {
+                                                                    //自定义颜色
+                                                                    var colorList = ['#0E7CE2', '#FF8352', '#E271DE', '#F8456B', '#00FFFF', '#4AEAB0'];
+                                                                        return colorList[params.dataIndex]
+                                                                    }
+                                                                }
+                                                        },
+                                                        data: [
+                                                             {value: 60.99, name: '差旅费'},
+                                                            {value: 28.26, name: '业务招待费'},
+                                                            {value: 1.05, name: '误餐费'},
+                                                            {value: 2.17, name: '交通'},
+                                                            // {value: 0, name: '办公费'}
+                                                        ]
+                                                    },
+                                                    {
+                                                        name: '面积模式',
+                                                        type: 'pie',
+                                                        radius: [30, 110],
+                                                        center: ['25%', '50%'],
+                                                        roseType: 'radius',
+                                                         itemStyle: {
+                                                                emphasis: {
+                                                                    shadowBlur: 10,
+                                                                    shadowOffsetX: 0,
+                                                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                                },
+                                                                normal:{
+                                                                    color:function(params) {
+                                                                    //自定义颜色
+                                                                    var colorList = ['#0E7CE2', '#FF8352', '#E271DE', '#F8456B', '#00FFFF', '#4AEAB0'];
+                                                                        return colorList[params.dataIndex]
+                                                                    }
+                                                                }
+                                                        },
+                                                        data: [
+                                                            {value: 86.64, name: '差旅费',},
+                                                            {value: 52.36, name: '业务招待费'},
+                                                            {value: 8.16, name: '误餐费'},
+                                                            {value: 3.14, name: '交通'},
+                                                            // {value: 0, name: '办公费'}
+                                                           
+                                                        ]
+                                                    }],
                                                 },
                                             },
+                                           
                                         ],
                                     },
                                 ],

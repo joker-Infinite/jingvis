@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- :style="{width:navBarShow?'90%':'98%'}" -->
-    <div class="collapse" :style="{width:navBarShow?'90%':'98%'}" id="collapse">
+    <div class="collapse" :style="{width:navBarShow?'85%':'98%'}" id="collapse">
       <div v-for="(item, index) in collapseData"
            :key="index"
            :id="item.id"
@@ -12,7 +12,7 @@
                   :name="item.id + cix"
                   :key="cix"
                   :class="{ noMargin: cix === 0 }">
-            <template slot="title">
+            <template slot="title" >
               {{ cit.collapseTitle }}
             </template>
             <div class="ECharts"
@@ -191,7 +191,7 @@
     <div class="navigation" v-if="navBarShow">
       <div class="navBar">
         <p></p>
-        <p style="cursor: pointer" @click="collapseAll">
+        <p v-if="!collapseData[0].allShow" style="cursor: pointer" @click="collapseAll">
           {{ sumClick % 2 === 0 ? "全部收起" : "全部展开" }}
         </p>
         <p v-for="(it, ix) in collapseData"
@@ -785,6 +785,9 @@
             position: absolute;
             width: 100%;
             height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
             z-index: 999;
             top: 50px;
             right: 20px;
@@ -872,7 +875,7 @@
     }
 
     .navigation {
-      width: 8%;
+      width: 10%;
       height: 100%;
       display: flex;
       flex-wrap: nowrap;
