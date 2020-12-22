@@ -213,21 +213,27 @@
 					let links = [];
 					name.push({name: '车辆'});
 					res.data.forEach(item => {
-						item.moneyVoList.forEach(it => {
-							name.push({name: it.goodsType});
+						item.stationMoneyTypeVo.moneyVoList.forEach(i => {
 							links.push({
-								source: it.goodsType,
-								target: item.sizeCar,
-								value: it.count,
+								source: i.goodsType == '柴油' ? '0' : i.goodsType,
+								target: item.stationMoneyTypeVo.typeName,
+								value: parseInt(i.count),
 							})
-						});
+						})
+						links.push({
+							source: item.stationMoneyTypeVo.typeName,
+							target: item.sizeCar,
+							value: parseInt(item.sumJvCount),
+						})
 						links.push({
 							source: item.sizeCar,
 							target: '车辆',
-							value: parseInt(item.sumJvCount),
+							value: parseInt(res.data[0].sumJvCount) + parseInt(res.data[1].sumJvCount),
 						})
-						name.push({name: item.sizeCar});
 					});
+					links.forEach(i => {
+						name.push({name: i.source})
+					})
 					option.series.data = name;
 					option.series.links = links;
 					HomeTopRight_top.setOption(option);
