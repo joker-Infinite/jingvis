@@ -58,167 +58,175 @@ export default {
                                                 width: "100%",
                                                 height: "350px",
                                             },
-                                            option: {
-                                            title: {
-                                                text: "{a|国际价格}{b|国内批发价}{c|国内零售价}",
-                                                show: true,
-                                                y: "6",
-                                                right: '200',
-                                                textStyle: {
-                                                    lineHeight: 15,
-                                                    rich: {
-                                                        a: {
-                                                            color: "#95A2FF",
-                                                            fontSize: "15",
-                                                            
+                                            option:{
+                                                        title: {
+                                                            text: "{a|国际价格}{b|国内批发价}{c|国内零售价}",
+                                                            show: true,
+                                                            y: "6",
+                                                            right: '200',
+                                                            textStyle: {
+                                                                lineHeight: 15,
+                                                                rich: {
+                                                                    a: {
+                                                                        color: "#95A2FF",
+                                                                        fontSize: "15",
+
+                                                                    },
+                                                                    b: {
+                                                                        color: "#3CB8FE",
+                                                                        fontSize: "15",
+                                                                        padding: 10
+                                                                    },
+                                                                    c: {
+                                                                        color: "#FE9394",
+                                                                        fontSize: "15",
+                                                                    }
+                                                                },
+
+                                                            },
                                                         },
-                                                        b:{
-                                                            color: "#3CB8FE",
-                                                            fontSize: "15",
-                                                            padding:10
+                                                        tooltip: {
+                                                            trigger: 'axis',
+                                                            formatter: function(params) {
+                                                                return params[0].seriesName + ":" + "<br>" +
+                                                                    '国际价格:' + params[0].value + '元/升' + "<br>" +
+                                                                    '国内批发价:' + params[1].value + '元/升' + "<br>" +
+                                                                    '国内零售价:' + params[2].value + '元/升' + "<br>"
+                                                            },
+                                                            show: true
                                                         },
-                                                        c:{
-                                                            color: "#FE9394",
-                                                            fontSize: "15",
-                                                        }
+                                                        xAxis: {
+                                                            type: "category",
+                                                            data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                                        },
+                                                        yAxis: {
+                                                            type: "value",
+                                                        },
+                                                        grid: {
+                                                            left: 40,
+                                                            right: 40,
+                                                            top: 30,
+                                                            bottom: 50,
+                                                        },
+                                                        legend: {
+                                                            orient: "horizontal",
+                                                            bottom: 5,
+                                                            selected: {
+                                                                "汽油": true, //图例为‘全部’的一项默认置灰
+                                                                "柴油": false,
+                                                                "92": false,
+                                                                "95": false,
+                                                                "98": false
+                                                            },
+                                                            textStyle: {
+                                                                color: 'red',
+                                                                borderColor: 'red'
+                                                            },
+                                                            data: [{
+                                                                name: "汽油",
+
+                                                            }, "柴油", "92", "95", "98"],
+                                                        },
+                                                        series: [{
+                                                                name: "汽油",
+                                                                data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                                color: '#95A2FF',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "汽油",
+                                                                data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                                color: '#3CB8FE',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "汽油",
+                                                                data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                                color: '#FE9394',
+                                                                type: "line",
+                                                            },
+
+
+                                                            {
+                                                                name: "柴油",
+                                                                data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                                color: '#95A2FF',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "柴油",
+                                                                data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                                color: '#3CB8FE',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "柴油",
+                                                                data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                                color: '#FE9394',
+                                                                type: "line",
+                                                            },
+
+
+
+
+                                                            {
+                                                                name: "92",
+                                                                data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                                color: '#95A2FF',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "92",
+                                                                data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                                color: '#3CB8FE',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "92",
+                                                                data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                                color: '#FE9394',
+                                                                type: "line",
+                                                            },
+
+                                                            {
+                                                                name: "95",
+                                                                data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                                color: '#95A2FF',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "95",
+                                                                data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                                color: '#3CB8FE',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "95",
+                                                                data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                                color: '#FE9394',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "98",
+                                                                data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
+                                                                color: '#95A2FF',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "98",
+                                                                data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
+                                                                color: '#3CB8FE',
+                                                                type: "line",
+                                                            },
+                                                            {
+                                                                name: "98",
+                                                                data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
+                                                                color: '#FE9394',
+                                                                type: "line",
+                                                            },
+
+                                                        ],
                                                     },
-
-                                                },
-                                            },
-                                            xAxis: {
-                                                type: "category",
-                                                data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                                            },
-                                            yAxis: {
-                                                type: "value",
-                                            },
-                                            grid: {
-                                                left: 40,
-                                                right: 40,
-                                                top: 30,
-                                                bottom: 50,
-                                            },
-                                            legend: {
-                                                orient: "horizontal",
-                                                bottom: 5,
-                                                selected: {
-                                                    "汽油": true, //图例为‘全部’的一项默认置灰
-                                                    "柴油": false,
-                                                    "92": false,
-                                                    "95": false,
-                                                    "98": false
-                                                },
-                                                data: [{
-                                                    name: "汽油",
-                                                    textStyle: {
-                                                        color: 'red',
-                                                        borderColor: 'red'
-                                                    }
-                                                }, "柴油", "92", "95", "98"],
-                                            },
-                                            series: [{
-                                                    name: "汽油",
-                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
-                                                    color: '#95A2FF',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "汽油",
-                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
-                                                    color: '#3CB8FE',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "汽油",
-                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
-                                                    color: '#FE9394',
-                                                    type: "line",
-                                                },
-
-
-                                                {
-                                                    name: "柴油",
-                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
-                                                    color: '#95A2FF',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "柴油",
-                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
-                                                    color: '#3CB8FE',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "柴油",
-                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
-                                                    color: '#FE9394',
-                                                    type: "line",
-                                                },
-
-
-
-
-                                                {
-                                                    name: "92",
-                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
-                                                    color: 'red',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "92",
-                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
-                                                    color: 'blue',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "92",
-                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
-                                                    color: '#000',
-                                                    type: "line",
-                                                },
-
-
-                                                {
-                                                    name: "95",
-                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
-                                                    color: 'red',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "95",
-                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
-                                                    color: 'blue',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "95",
-                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
-                                                    color: '#000',
-                                                    type: "line",
-                                                },
-
-                                                {
-                                                    name: "98",
-                                                    data: [213, 123, 432, 321, 323, 321, 234, 543, 654, 435, 434, 333],
-                                                    color: 'red',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "98",
-                                                    data: [321, 32, 435, 234, 45, 36, 312, 45, 65, 87, 432, 31],
-                                                    color: 'blue',
-                                                    type: "line",
-                                                },
-                                                {
-                                                    name: "98",
-                                                    data: [11, 22, 33, 44, 55, 66, 77, 45, 65, 87, 432, 31],
-                                                    color: '#000',
-                                                    type: "line",
-                                                },
-
-
-                                                    ],
-                                                },
                                                 },
                                             ],
                                         },
@@ -246,6 +254,14 @@ export default {
                                             },
                                             unit: "元/吨",
                                             option: {
+                                            tooltip: {
+                                                trigger: 'axis',
+                                                formatter: function(params) {
+                                                    return params[0].seriesName +":"+params[0].value+'元/吨'+"<br>"+
+                                                    params[1].seriesName +":"+params[1].value+'元/吨'
+                                                },
+                                                show: true
+                                            },
                                             grid: {
                                                 top: 80,
                                                 left: 50,
