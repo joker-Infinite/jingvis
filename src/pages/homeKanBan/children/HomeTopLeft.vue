@@ -230,41 +230,44 @@
 					},
 					tooltip: {
 						trigger: "axis",
-						formatter: function (list) {
-							return list[0].name + '月' + ":" + '<br>' + '金额:' + money[list[0].dataIndex] + '元' + '<br>' + "占比:" + list[0].value + '%';
+						formatter: v => {
+							let show = [
+								{
+									receivable: '259038.89',
+									received: '213851.26',
+									exacutiveRate: '82.56%',
+								},
+								{
+									receivable: '292087.32',
+									received: '261372.61',
+									exacutiveRate: '89.48%',
+								},
+								{
+									receivable: '311066.1388',
+									received: '272212.6888',
+									exacutiveRate: '87.51%',
+								},
+								{
+									receivable: '385717.1',
+									received: '344357.12',
+									exacutiveRate: '89.28%',
+								}
+							];
+							if (parseInt(v[0].name) == 0) {
+								return '';
+							}
+							let index = parseInt(v[0].name) - 7;
+							return '合同应收款：' + show[index].receivable + '<br>合同已收款：' + show[index].received + '<br>合同执行率：' + show[index].exacutiveRate
 						},
 						axisPointer: {
-							lineStyle: {
-								color: {
-									type: "linear",
-									x: 0,
-									y: 0,
-									x2: 0,
-									y2: 1,
-									colorStops: [
-										{
-											offset: 0,
-											color: "rgba(0, 255, 233,0)"
-										},
-										{
-											offset: 0.5,
-											color: "rgba(255, 255, 255,1)"
-										},
-										{
-											offset: 1,
-											color: "rgba(0, 255, 233,0)"
-										}
-									],
-									global: false
-								}
-							}
-						}
+							type: "shadow",
+						},
 					},
 					barWidth: 10, //设置柱状图的粗细
 					xAxis: [
 						{
 							type: "category",
-							data: [],
+							data: [0, 7, 8, 9, 10],
 							axisLine: {
 								//坐标轴轴线
 								// show: false
@@ -276,13 +279,13 @@
 								//坐标轴刻度
 								show: false
 							},
-							axisLabel: {
+							/*axisLabel: {
 								//文字换行
 								formatter: function (val) {
-									let data = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+									let data = ['7', '8', '9', '10'];
 									return data[parseInt(val) - 1] + '月'
 								}
-							}
+							}*/
 						}
 					],
 					yAxis: [
@@ -312,16 +315,15 @@
 						},
 					],
 					grid: {
-						width: "auto",
-						height: "55%",
-						top: "30%",
-						left: '20%',
+						top: "15%",
+						left: '45',
+						bottom: 30,
 					},
 					series: [
 						{
 							name: "金额",
 							type: "line",
-							data: [],
+							data: ['', 82.56, 89.48, 87.51, 89.28],
 							itemStyle: {
 								normal: {
 									areaStyle: {
@@ -342,7 +344,7 @@
 						}
 					]
 				});
-				var sum = 0;
+				/*var sum = 0;
 				var money = []
 				this.$axios.get('/api/index/list_jtsupplier_groupnian').then((res) => {
 					res.data.data.forEach(element => {
@@ -357,10 +359,10 @@
 						});
 						option.series[0].data.push(((element.yAxis) / sum * 100).toFixed(2))
 						money.push(element.yAxis)
-					});
-					HomeTopLeft_center.setOption(option);
-					this.isNoData(res.data.data, 'HomeTopLeft_center_data', 'HomeTopLeft_center', option)
-				})
+					});*/
+				HomeTopLeft_center.setOption(option);
+				// this.isNoData(res.data.data, 'HomeTopLeft_center_data', 'HomeTopLeft_center', option)
+				// })
 			},
 			initECharts_bottom() {
 				let HomeTopLeft_bottom = this.$echarts.init(
@@ -371,9 +373,7 @@
 					barWidth: "10", //设置柱状图的粗细
 					tooltip: {
 						trigger: "axis",
-						formatter: function (val) {
-							return company[val[0].dataIndex] + '欠款:' + val[0].value + "元";
-						}
+						formatter: "{b}" + "：{c} 万元",
 					},
 					title: {
 						x: "center",
@@ -421,9 +421,9 @@
 					],
 					yAxis: [
 						{
-							show: true,
+							show: false,
 							type: "category",
-							data: [],
+							data: ['湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部', '应收稻谷款(加工厂)', '应收大米款（加工厂）', '茂名市金瑞粮油贸易有限公司', '湖北省羊肚菌农业科技有限公司'],
 							axisLine: {
 								lineStyle: {
 									color: "#fff"
@@ -434,6 +434,7 @@
 								show: false
 							},
 							axisLabel: {
+								show: false,
 								textStyle: {
 									color: "#fff"
 								}
@@ -445,16 +446,22 @@
 					],
 					grid: {
 						width: "auto",
-						height: "70%",
-						top: "20%"
+						top: "25",
+						bottom: '30',
+						left: '10'
 					},
 					series: [
 						{
-							// data: [120, 200, 150, 80, 70],
-							data: [],
+							data: [2934.83, 3303.25, 3549.63, 4998.57, 8786.06],
 							type: "bar",
 							color: "rgba(208,137,208,0.5)",
-							showBackground: true,
+							showBackground: false,
+							label: {
+								show: true,
+								position: 'insideLeft',
+								color: '#fff',
+								formatter: '{b}',
+							},
 							// backgroundStyle: {
 							//     color: "rgba(255,255,255,0.2)"
 							// },
@@ -491,47 +498,47 @@
 					]
 				});
 				var sum = 0;
-				let company = []
-				this.$axios.get('/api/index/jtsupplier_arrears_topfive').then((res) => {
-					res.data.data.sort(function (a, b) {
-						return a.xBxis - b.xBxis;
-					})
-					let color = ["#00df4b", "#008bf7", "#ffb541", "#ff6a6a", "#ff6a8a"]
-					res.data.data.forEach((element, index) => {
-						sum += parseFloat(element.xBxis)
-						option.yAxis[0].data.unshift(index + 1)
-						option.series[0].data.push({
-							value: element.xBxis,
-							itemStyle: {
-								normal: {
-									barBorderRadius: 30, //设置柱状图为圆角
-									color: color[index]
-								}
-							}
-						})
-						this.company.push(element.yAxis)
-						company.push(element.yAxis)
-					});
-					this.CD = clone(option);
-					let average = 0;
-					this.CD.series[0].data.forEach(i => {
-						average += Number(i.value);
-					});
-					average = average / this.CD.series[0].data.length;
-					this.CD.series[0].markLine.data = [{
-						type: "average",
-						name: "平均值",
-						xAxis: average //设置平均值所在位置
-					}];
-					this.CD.series[0].markLine.itemStyle.normal.label = {
-						show: true,
-						position: "middle",
-						formatter: "数据平均 : " + average
-					};
-					this.CD.series[0].markLine.itemStyle.normal.label.formatter = "数据平均 : " + sum / res.data.data.length
-					HomeTopLeft_bottom.setOption(option);
-					this.isNoData(res.data.data, 'initECharts_bottom_data', 'HomeTopLeft_bottom', option)
-				})
+				// let company = []
+				/*	this.$axios.get('/api/index/jtsupplier_arrears_topfive').then((res) => {
+            res.data.data.sort(function (a, b) {
+              return a.xBxis - b.xBxis;
+            })
+            let color = ["#00df4b", "#008bf7", "#ffb541", "#ff6a6a", "#ff6a8a"]
+            res.data.data.forEach((element, index) => {
+              sum += parseFloat(element.xBxis)
+              option.yAxis[0].data.unshift(index + 1)
+              option.series[0].data.push({
+                value: element.xBxis,
+                itemStyle: {
+                  normal: {
+                    barBorderRadius: 30, //设置柱状图为圆角
+                    color: color[index]
+                  }
+                }
+              })
+              this.company.push(element.yAxis)
+              company.push(element.yAxis)
+            });*/
+				this.CD = clone(option);
+				let average = 0;
+				this.CD.series[0].data.forEach(i => {
+					average += Number(i.value);
+				});
+				average = average / this.CD.series[0].data.length;
+				this.CD.series[0].markLine.data = [{
+					type: "average",
+					name: "平均值",
+					xAxis: average //设置平均值所在位置
+				}];
+				this.CD.series[0].markLine.itemStyle.normal.label = {
+					show: true,
+					position: "middle",
+					formatter: "数据平均 : " + average
+				};
+				this.CD.series[0].markLine.itemStyle.normal.label.formatter = "数据平均 : " + sum / this.CD.series[0].data.length
+				HomeTopLeft_bottom.setOption(option);
+				// this.isNoData(res.data.data, 'initECharts_bottom_data', 'HomeTopLeft_bottom', option)
+				// })
 			}
 		},
 		mounted() {
