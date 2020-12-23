@@ -49,6 +49,18 @@ export default [
         name: 'basicInformations',
         component: () => import(/* webpackChunkName: "basicInformation" */ '@/pages/serviceArea/children/basicInformations.vue'),
     },
+    //评论
+    {
+        path: 'comment',
+        name: 'comment',
+        component: () => import(/* webpackChunkName: "basicInformation" */ '@/pages/serviceArea/children/comment.vue'),
+    },
+    //供应商
+    {
+        path: 'supplier',
+        name: 'supplier',
+        component: () => import(/* webpackChunkName: "basicInformation" */ '@/pages/serviceArea/children/supplier.vue'),
+    },
     {
         path: 'huangGang',
         name: 'huangGang',

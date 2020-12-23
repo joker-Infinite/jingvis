@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="odd_img" v-if="imgData.length === 1">
-      <img src="../../../assets/background.jpg" />
+      <img v-for="(item,index) of ListImg" :key="index" :src="item.img" />
     </div>
     <div class="dual_img" v-if="imgData.length > 1">
       <el-carousel height="150px">
@@ -24,7 +24,22 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      ListImg:[
+        {
+          img: require('../../../assets/imgCommon/background1.jpg')
+        },
+        {
+          img: require('../../../assets/imgCommon/background2.jpg')
+        },
+        {
+          img: require('../../../assets/imgCommon/background3.jpg')
+        },
+        {
+          img: require('../../../assets/imgCommon/background4.jpg')
+        },
+      ]
+    };
   },
 };
 </script>
@@ -36,6 +51,8 @@ export default {
 
   .odd_img {
     width: 100%;
+    height: 100vh;
+    overflow: auto;
   }
 
   .odd_img > img {

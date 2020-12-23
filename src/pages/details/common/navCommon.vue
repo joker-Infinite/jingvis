@@ -109,7 +109,6 @@
                                     <div class="content_r">
                                         <div class="img_box">
                                             <img-common
-                                                    v-for="i in 4"
                                                     :img-data="it.imgData"
                                             ></img-common>
                                         </div>

@@ -77,6 +77,14 @@
 				let option = [
 					{
 						barWidth: 30,
+						title:{
+							text:'近六个月收益',
+							left:'center'
+						},
+						tooltip: {
+							trigger: 'item',
+							formatter:'{b}月:{c}'
+						},
 						xAxis: {
 							type: 'category',
 							data: ['1', '2', '3', '4', '5', '6']
@@ -87,7 +95,7 @@
 						grid: {
 							left: 40,
 							right: 20,
-							top: 20,
+							top: 40,
 							bottom: 25
 						},
 						series: [{
@@ -100,6 +108,14 @@
 					},
 					{
 						barWidth: 30,
+						title:{
+							text:'近六个月订单数',
+							left:'center'
+						},
+						tooltip: {
+							trigger: 'axis',
+							formatter:'{b}月:{c}'
+						},
 						xAxis: {
 							type: 'category',
 							data: ['1', '2', '3', '4', '5', '6']
@@ -110,7 +126,7 @@
 						grid: {
 							left: 40,
 							right: 20,
-							top: 20,
+							top: 40,
 							bottom: 25
 						},
 						series: [{
@@ -123,6 +139,14 @@
 					},
 					{
 						barWidth: 30,
+						title:{
+							text:'近六个月客单价',
+							left:'center'
+						},
+						tooltip: {
+							trigger: 'axis',
+							formatter:'{b}月:{c}'
+						},
 						xAxis: {
 							type: 'category',
 							data: ['1', '2', '3', '4', '5', '6']
@@ -133,7 +157,7 @@
 						grid: {
 							left: 40,
 							right: 20,
-							top: 20,
+							top: 40,
 							bottom: 25
 						},
 						series: [{

@@ -51,45 +51,77 @@
                                                     height: "350px",
                                                 },
                                                 option: {
-                                                    color: [
-                                                        '#67001f', '#b2182b', '#d6604d', '#f4a582', '#fddbc7', '#d1e5f0', '#92c5de', '#4393c3', '#2166ac', '#053061'
-                                                    ],
+                                                    color: ['#fc853e','#28cad8','#9564bf','#bd407e','#e5a214','red'],	
                                                     tooltip: {
                                                         trigger: 'item',
                                                         triggerOn: 'mousemove'
                                                     },
                                                     animation: false,
-                                                    series: [
-                                                        {
-                                                            type: 'sankey',
-                                                            bottom: '10%',
-                                                            right: '5%',
-                                                            focusNodeAdjacency: 'allEdges',
-                                                            data: [
-                                                                {name: 'a'},
-                                                                {name: 'b'},
-                                                                {name: 'a1'},
-                                                                {name: 'b1'},
-                                                                {name: 'c'},
-                                                                {name: 'e'}
-                                                            ],
-                                                            links: [
-                                                                {source: 'a', target: 'a1', value: 5},
-                                                                {source: 'e', target: 'b', value: 3},
-                                                                {source: 'a', target: 'b1', value: 3},
-                                                                {source: 'b1', target: 'a1', value: 1},
-                                                                {source: 'b1', target: 'c', value: 2},
-                                                                {source: 'b', target: 'c', value: 1}
-                                                            ],
-                                                            label: {
-                                                                position: 'top'
+                                                    series: [{
+                                                        type: 'sankey',
+                                                        bottom: '10%',
+                                                        right: '5%',
+                                                        focusNodeAdjacency: 'allEdges',
+                                                        data: [{
+                                                                name: '吨',
+                                                                itemStyle: {
+                                                                    color: 'red'
+                                                                },
                                                             },
-                                                            lineStyle: {
-                                                                color: 'source',
-                                                                curveness: 0.5
+                                                            {
+                                                                name: 'A批发商',
+                                                                itemStyle: {
+                                                                    color: '#28cad8'
+                                                                },
+                                                            },
+                                                            {
+                                                                name: 'B批发商'
+                                                            },
+                                                            {
+                                                                name: '零售'
+                                                            },
+                                                            {
+                                                                name: 'A供应商'
+                                                            },
+                                                            {
+                                                                name: 'B供应商'
                                                             }
+                                                        ],
+                                                        links: [
+                                                            {
+                                                                source: 'A供应商',
+                                                                target: '吨',
+                                                                value: 50000
+                                                            },
+                                                            {
+                                                                source: 'B供应商',
+                                                                target: '吨',
+                                                                value: 20000
+                                                            },
+                                                            {
+                                                                source: '吨',
+                                                                target: 'A批发商',
+                                                                value: 20000
+                                                            },
+                                                            {
+                                                                source: '吨',
+                                                                target: 'B批发商',
+                                                                value: 20000
+                                                            },
+                                                            {
+                                                                source: '吨',
+                                                                target: '零售',
+                                                                value: 20000
+                                                            },
+                                                        ],
+                                                        label: {
+                                                            position: 'top'
+                                                        },
+                                                        lineStyle: {
+                                                            color: 'source',
+                                                            curveness: 0.5
                                                         }
-                                                    ]
+                                                    }]
                                                 }
                                             }
                                         ],
