@@ -443,7 +443,7 @@
 								position: 'insideLeft',
 								color: '#fff',
 								formatter: v => {
-									return v.name + '：' + v.value + '%  完成率：' + (v.value - 91.67).toFixed(2) + '%'
+									return v.name + '：' + v.value + '%  ' + (v.value - 91.67).toFixed(2) + '%'
 								}
 							},
 							data: [],
