@@ -47,7 +47,8 @@
 				BD: {},
 				CD: {},
 				option: {},
-				company: []
+				company: [],
+				budget: []
 			};
 		},
 		methods: {
@@ -106,7 +107,15 @@
 					},
 					tooltip: {
 						trigger: "axis",
-						formatter: "{b}" + "{c}" + '%',
+						formatter: v => {
+							let label = '';
+							this.budget.forEach(i => {
+								if (v[0].name == i.plateName) {
+									label = '实际控制率：' + i.sjRateCount + '%<br>实际金额：' + i.sjMoney + '万<br>预算金额：' + i.ysMoney + '万'
+								}
+							})
+							return label;
+						},
 						axisPointer: {
 							type: "shadow",
 						},
@@ -204,8 +213,13 @@
 				this.$axios.get('/api/index/rate_list', {params: {type: 'ys'}}).then(res => {
 					let rateCount = [];
 					let xBxis = [];
+					let data = res.data.data;
+					this.budget = data;
+					data.sort(function (a, b) {
+						return b.ysRateCount - a.ysRateCount
+					});
 					res.data.data.forEach(element => {
-						rateCount.unshift(element.rateCount)
+						rateCount.unshift(element.ysRateCount)
 						xBxis.unshift(element.plateName)
 					});
 					option.series[0].data = rateCount;

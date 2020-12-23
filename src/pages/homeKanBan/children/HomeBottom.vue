@@ -442,7 +442,9 @@
 								show: true,
 								position: 'insideLeft',
 								color: '#fff',
-								formatter: '{b}  {c}%'
+								formatter: v => {
+									return v.name + '：' + v.value + '%  完成率：' + (v.value - 91.67).toFixed(2) + '%'
+								}
 							},
 							data: [],
 							markLine: {},

@@ -4020,12 +4020,10 @@
                         })
                     });
                 });
-                console.log(inputValue,id, collapse, year, name,inputValue)
                 this.inputVlaue = inputValue;
                 await this.TableDatas(1,5)
             },
             async TableDatas(pageNum, pageSize) {
-                console.log(pageNum, pageSize)
                 this.$axios.get('/api/jtService/serve_list', {
                     params:
                         {
@@ -4037,7 +4035,6 @@
                             pageSize: pageSize
                         }
                 }).then(res => {
-                    console.log(res)
                     this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = []
                     res.data.list.forEach(element => {
                         let elementData = {

@@ -5083,7 +5083,6 @@
                             pageSize:pageSize,
                             serverName:this.serverName
                         }}).then(res=>{
-                            console.log(res)
                     this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData=[]
                     res.data.list.forEach(element => {
                         let elementData = {
