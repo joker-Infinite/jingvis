@@ -119,7 +119,8 @@
 				resizeData: [],
 				financeTypeId: "",
 				finance: [],
-				tooltip: []
+				tooltip: [],
+				showMore: false,
 			};
 		},
 		methods: {
@@ -263,6 +264,7 @@
 
 				// }
 				if (is === 1) {
+					this.showMore = true;
 					options.title.x = "center";
 					options.title.textStyle.fontSize = 25;
 					options.barWidth = 30;
@@ -443,7 +445,10 @@
 								position: 'insideLeft',
 								color: '#fff',
 								formatter: v => {
-									return v.name + '：' + v.value + '%  完成率：' + (v.value - 91.67).toFixed(2) + '%'
+									if (that.showMore) {
+										return v.name + '：' + v.value + '%  ' + (v.value - 91.67).toFixed(2) + '%'
+									}
+									return v.name + '：' + v.value + '%  '
 								}
 							},
 							data: [],

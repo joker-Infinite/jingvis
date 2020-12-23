@@ -1,6 +1,6 @@
 <template>
     <div class="con">
-        <div class="view">
+       <!-- <div class="view">
             <el-menu default-active="1-0" class="el-menu-vertical-demo">
                 <el-submenu v-for="(fi,fx) in menu" :key="fx" :index="fx+''" :class="{'del':fi.menuName=='首页'}">
                     <template slot="title">
@@ -15,19 +15,22 @@
         <div class="option">
             <el-input contenteditable="true" type="textarea" resize="none" rows="50"
                       v-model="JSON.stringify(menu)"></el-input>
-        </div>
+        </div>-->
+        <my-dialog></my-dialog>
     </div>
 </template>
 
 <script>
+    import MyDialog from "./myDialog";
     export default {
         name: "temporary",
+        components: {MyDialog},
         data() {
             return {
                 menu: [],
             }
         },
-        methods: {
+        /*methods: {
             async getMenuItem(data) {
                 for (let i = 0; i < data.length; i++) {
                     await this.$axios.get('/bpi/admin/jt_menu/list_menu', {params: {menuId: data[i].menuId}}).then(v => {
@@ -48,7 +51,7 @@
             const res = await this.$axios.get('/bpi/admin/jt_menu/list_menu', {params: {menuId: 0}});
             this.menu = data = res.data.data;
             await this.getMenuItem(data);
-        }
+        }*/
     }
 </script>
 
