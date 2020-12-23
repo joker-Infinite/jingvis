@@ -211,13 +211,14 @@
 				this.$axios.get('/api/jtService/station_order_money').then((res) => {
 					let name = [];
 					let links = [];
+					console.log(res)
 					name.push({name: '车辆'});
 					res.data.forEach(item => {
 						item.stationMoneyTypeVo.moneyVoList.forEach(i => {
 							links.push({
 								source: i.goodsType == '柴油' ? '0' : i.goodsType,
 								target: item.stationMoneyTypeVo.typeName,
-								value: parseInt(i.count),
+								value: parseInt(item.sumJvCount * (i.ratio / 100)),
 							})
 						})
 						links.push({

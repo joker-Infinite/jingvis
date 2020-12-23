@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;height: 100%">
+  <div style="width: 100%;height: 100%" class="sBody">
     <el-dialog width="1000px" :title="form.name" :visible.sync="visible" :modal="false">
       <el-form ref="form" :model="form" label-width="100px" class="form" disabled>
         <el-col :span="8">
@@ -154,6 +154,10 @@
 </script>
 
 <style scoped lang="less">
+  .sBody /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__header {
+    padding: 20px 20px 10px;
+  }
+
   .form {
     height: 600px;
     overflow-y: scroll;

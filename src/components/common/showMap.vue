@@ -488,6 +488,10 @@ new AMap.MarkerClusterer(
     margin-top: 20vh !important;
   }
 
+  .mapBox /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__header {
+    padding: 20px 20px 10px;
+  }
+
   .animation {
     position: absolute;
     // top: 5%;
