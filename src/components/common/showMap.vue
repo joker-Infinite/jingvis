@@ -118,6 +118,8 @@
 				myService: [],
 				//其他服务区
 				otherService: [],
+				// 卡口
+				bayonet: [],
 				map: '',
 				marker: [],
 				mapStyleArr: [
@@ -162,16 +164,47 @@
 				this.$nextTick(_ => {
 					let position = [];
 					v.forEach((i, x) => {
-						if (i.longitude && i.latitude) {
-							if (i.gisCompany === "湖北交投实业发展有限公司" && i.gisType == '服务区') this.myService.push(Object.assign(i, {type: 'ms'}));
-							if (i.gisCompany !== "湖北交投实业发展有限公司" && i.gisType == '服务区') this.otherService.push(Object.assign(i, {type: 'os'}));
-							if (i.gisCompany === '中石化') this.petrochemical.push(Object.assign(i, {type: '中石化'}));
-							if (i.gisCompany === '中石油') this.oil.push(Object.assign(i, {type: '中石油'}));
-							if (i.gisCompany === '交投能源') this.energy.push(Object.assign(i, {type: '交投能源'}));
+						if (i.longitude && i.latitude && i.longitude != 'NULL' && i.latitude != 'NULL') {
+							if (i.gisCompany === "湖北交投实业发展有限公司" && i.gisType == '服务区') {
+								this.myService.push(Object.assign(i, {
+									type: 'ms',
+									oid: 'ms' + '-' + i.longitude + '-' + i.latitude
+								}));
+							}
+							if (i.gisCompany !== "湖北交投实业发展有限公司" && i.gisType == '服务区') {
+								this.otherService.push(Object.assign(i, {
+									type: 'os',
+									oid: 'os' + '-' + i.longitude + '-' + i.latitude
+								}));
+							}
+							if (i.gisCompany === '中石化') {
+								this.petrochemical.push(Object.assign(i, {
+									type: '中石化',
+									oid: '中石化' + '-' + i.longitude + '-' + i.latitude
+								}));
+							}
+							if (i.gisCompany === '中石油') {
+								this.oil.push(Object.assign(i, {
+									type: '中石油',
+									oid: '中石油' + '-' + i.longitude + '-' + i.latitude
+								}));
+							}
+							if (i.gisCompany === '交投能源') {
+								this.energy.push(Object.assign(i, {
+									type: '交投能源',
+									oid: '交投能源' + '-' + i.longitude + '-' + i.latitude
+								}));
+							}
+							if (i.gisType === '卡口') {
+								this.bayonet.push(Object.assign(i, {
+									type: '卡口',
+									oid: '卡口' + '-' + i.longitude + '-' + i.latitude
+								}));
+							}
 						}
 					});
 					position.push(...this.myService, ...this.otherService);
-					this.position.push(...this.myService, ...this.otherService, ...this.petrochemical, ...this.oil, ...this.energy);
+					this.position.push(...this.myService, ...this.otherService, ...this.petrochemical, ...this.oil, ...this.energy, ...this.bayonet);
 					this.initMap(position);
 				})
 			},
@@ -190,11 +223,12 @@
 				position.forEach((item, index) => {
 					let icon;
 					if (item.type) {
-						if (item.type === "ms") icon = require("../../assets/gas/service-c.png");
-						if (item.type === "os") icon = require("../../assets/gas/service-k.png");
+						if (item.type === "ms") icon = require("../../assets/gas/service-k.png");
+						if (item.type === "os") icon = require("../../assets/gas/service-c.png");
 						if (item.type === "中石化") icon = require("../../assets/gas/zsy.png");
 						if (item.type === "中石油") icon = require("../../assets/gas/zsy.png");
 						if (item.type === "交投能源") icon = require("../../assets/gas/jtny.png");
+						if (item.type === "卡口") icon = require("../../assets/gas/service-k.png");
 					}
 					if (item.longitude && item.latitude) {
 						let marker = new AMap.Marker({
@@ -205,13 +239,14 @@
 							}),
 							position: [item.longitude, item.latitude],
 						});
-						this.marker.push(Object.assign(marker, {name: item.gisCompany}));
+						this.marker.push(Object.assign(marker, {name: item.gisCompany, oid: item.oid}));
 					}
 				});
 				this.marker.forEach((i, x) => {
 					AMap.event.addListener(i, "dblclick", function () {
 						clearTimeout(that.timeID);
-						if (that.position[x].type == 'ms') {
+						let arr = i.oid.split('-');
+						if (arr[0] == 'ms') {
 							that.visible_ = true;
 						} else {
 							infoWindow.open(v, i.getPosition());
@@ -219,7 +254,8 @@
 					});
 					AMap.event.addListener(i, "click", function () {
 						that.timeID = setTimeout(_ => {
-							let position = [that.position[x].longitude, that.position[x].latitude]
+							let arr = i.oid.split('-');
+							let position = [arr[1], arr[2]]
 							that.refresh(that.backdrop, '', '', position, 'enlarge');
 						}, 200)
 					});
@@ -298,7 +334,7 @@ new AMap.MarkerClusterer(
 				this.marker = [];
 				let position = [];
 				if (sv.indexOf("服务区") != -1) position.push(...this.myService, ...this.otherService);
-				if (sv.indexOf("卡口") != -1) position.push(...[]);
+				if (sv.indexOf("卡口") != -1) position.push(...this.bayonet);
 				if (sv.indexOf("超市") != -1) position.push(...[]);
 				if (sv.indexOf("收银") != -1) position.push(...[]);
 				if (sv.indexOf("油站") != -1) position.push(...this.petrochemical, ...this.oil, ...this.energy);

@@ -99,6 +99,8 @@
 				myService: [],
 				//其他服务区
 				otherService: [],
+				//卡口
+				bayonet: [],
 				map: "",
 				marker: [],
 				mapStyleArr: [
@@ -160,11 +162,12 @@
 				position.forEach((item, index) => {
 					let icon;
 					if (item.type) {
-						if (item.type === "ms") icon = require("../../../assets/gas/service-c.png");
-						if (item.type === "os") icon = require("../../../assets/gas/service-k.png");
+						if (item.type === "ms") icon = require("../../../assets/gas/service-k.png");
+						if (item.type === "os") icon = require("../../../assets/gas/service-c.png");
 						if (item.type === "中石化") icon = require("../../../assets/gas/zsh.png");
 						if (item.type === "中石油") icon = require("../../../assets/gas/zsy.png");
 						if (item.type === "交投能源") icon = require("../../../assets/gas/jtny.png");
+						if (item.type === "卡口") icon = require("../../../assets/gas/service-k.png");
 					}
 					if (item.longitude && item.latitude && item.longitude != 'NULL' && item.latitude != 'NULL') {
 						let marker = new AMap.Marker({
@@ -175,13 +178,14 @@
 							}),
 							position: [item.longitude, item.latitude],
 						});
-						this.marker.push(Object.assign(marker, {name: item.gisCompany}));
+						this.marker.push(Object.assign(marker, {name: item.gisCompany, oid: item.oid}));
 					}
 				});
 				this.marker.forEach((i, x) => {
 					AMap.event.addListener(i, "dblclick", function () {
 						clearTimeout(that.timeID);
-						if (position[x].type == 'ms') {
+						let arr = i.oid.split('-');
+						if (arr[0] == 'ms') {
 							that.visible = true;
 						} else {
 							infoWindow.open(v, i.getPosition());
@@ -189,7 +193,8 @@
 					});
 					AMap.event.addListener(i, "click", function () {
 						that.timeID = setTimeout(_ => {
-							let position_ = [position[x].longitude, position[x].latitude];
+							let arr = i.oid.split('-');
+							let position_ = [arr[1], arr[2]];
 							that.refresh(that.backdrop, '', '', position_, 'enlarge');
 						}, 200)
 					});
@@ -320,7 +325,7 @@ new AMap.MarkerClusterer(
 				let position = [];
 				if (sv.indexOf("服务区") != -1) position.push(...this.myService, ...this.otherService);
 				// if (sv.indexOf("其他服务区") != -1) position.push(...this.otherService);
-				if (sv.indexOf("卡口") != -1) position.push(...[]);
+				if (sv.indexOf("卡口") != -1) position.push(...this.bayonet);
 				if (sv.indexOf("超市") != -1) position.push(...[]);
 				if (sv.indexOf("收银") != -1) position.push(...[]);
 				if (sv.indexOf("油站") != -1) position.push(...this.petrochemical, ...this.oil, ...this.energy);
@@ -346,28 +351,64 @@ new AMap.MarkerClusterer(
 		},
 		async mounted() {
 			let position = [];
-			let [service, allGas] = await Promise.all([
+			let [service, allGas, bayonet_] = await Promise.all([
 				this.$axios.get("/api/index/list_jtService", {params: {fwqType: '服务区'}}),
 				this.$axios.get("/api/index/list_jtService", {params: {jyzType: this.gasChecked.join(',')}}),
+				this.$axios.get("/api/index/list_jtService", {params: {kakou: '卡口'}}),
 			])
 			let data = service.data.data;
 			let res = allGas.data.data;
-			this.mapData.push(...data, ...res);
+			let bayonet = bayonet_.data.data;
+			this.mapData.push(...data, ...res, ...bayonet);
 			data.forEach((i, x) => {
-				if (i.longitude && i.latitude) {
-					if (i.gisCompany === "湖北交投实业发展有限公司") this.myService.push(Object.assign(i, {type: 'ms'}));
-					if (i.gisCompany !== "湖北交投实业发展有限公司") this.otherService.push(Object.assign(i, {type: 'os'}));
+				if (i.longitude && i.latitude && i.longitude != 'NULL' && i.latitude != 'NULL') {
+					if (i.gisCompany === "湖北交投实业发展有限公司") {
+						this.myService.push(Object.assign(i, {
+							type: 'ms',
+							oid: 'ms' + '-' + i.longitude + '-' + i.latitude
+						}));
+					}
+					if (i.gisCompany !== "湖北交投实业发展有限公司") {
+						this.otherService.push(Object.assign(i, {
+							type: 'os',
+							oid: 'os' + '-' + i.longitude + '-' + i.latitude
+						}));
+					}
 				}
 			});
 			res.forEach((i, x) => {
-				if (i.longitude && i.latitude) {
-					if (i.gisCompany === '中石化') this.petrochemical.push(Object.assign(i, {type: '中石化'}));
-					if (i.gisCompany === '中石油') this.oil.push(Object.assign(i, {type: '中石油'}));
-					if (i.gisCompany === '交投能源') this.energy.push(Object.assign(i, {type: '交投能源'}));
+				if (i.longitude && i.latitude && i.longitude != 'NULL' && i.latitude != 'NULL') {
+					if (i.gisCompany === '中石化') {
+						this.petrochemical.push(Object.assign(i, {
+							type: '中石化',
+							oid: '中石化' + '-' + i.longitude + '-' + i.latitude
+						}));
+					}
+					if (i.gisCompany === '中石油') {
+						this.oil.push(Object.assign(i, {
+							type: '中石油',
+							oid: '中石油' + '-' + i.longitude + '-' + i.latitude
+						}));
+					}
+					if (i.gisCompany === '交投能源') {
+						this.energy.push(Object.assign(i, {
+							type: '交投能源',
+							oid: '交投能源' + '-' + i.longitude + '-' + i.latitude
+						}));
+					}
 				}
-			})
+			});
+			bayonet.forEach((i, x) => {
+				if (i.longitude && i.latitude && i.longitude != 'NULL' && i.latitude != 'NULL') {
+					this.bayonet.push(Object.assign(i, {
+						type: '卡口',
+						gisType: '卡口',
+						oid: '卡口' + '-' + i.longitude + '-' + i.latitude
+					}));
+				}
+			});
 			position.push(...this.myService, ...this.otherService);
-			this.position.push(...this.myService, ...this.otherService, ...this.petrochemical, ...this.oil, ...this.energy);
+			this.position.push(...this.myService, ...this.otherService, ...this.petrochemical, ...this.oil, ...this.energy, ...this.bayonet);
 			this.initMap(position);
 		}
 	};

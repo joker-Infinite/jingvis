@@ -118,7 +118,8 @@
 				options: {},
 				resizeData: [],
 				financeTypeId: "",
-				finance: []
+				finance: [],
+				tooltip: []
 			};
 		},
 		methods: {
@@ -191,7 +192,7 @@
 				this.$axios.get(url, {
 					params: params,
 				}).then((res) => {
-					optionss.title.text =title;
+					optionss.title.text = title;
 					let xBxis = [];
 					let yAxis = [];
 					res.data.data.forEach((element) => {
@@ -351,6 +352,7 @@
 				});
 			},
 			initBottomEnd(v) {
+				let that = this;
 				let HomeBottomG = this.$echarts.init(
 					document.getElementById("HomeBottomG")
 				);
@@ -371,7 +373,15 @@
 					tooltip: {
 						trigger: "axis",
 						formatter: v => {
-							return v[0].name + ':' + (v[0].value - 91.67).toFixed(2) + '%'
+							for (let j = 0; j < that.tooltip.length; j++) {
+								let i = that.tooltip[j];
+								if (i.tCRate == v[0].value && this.select == 'A') {
+									return '目标营收：' + i.targetMoney + '万元<br>实际营收：' + i.actualMoney + '万元'
+								}
+								if (i.tCRate == v[0].value && this.select == 'B') {
+									return '目标利润：' + i.targetMoney + '万元<br>实际利润：' + i.actualMoney + '万元'
+								}
+							}
 						},
 						axisPointer: {
 							type: "shadow",
@@ -432,7 +442,9 @@
 								show: true,
 								position: 'insideLeft',
 								color: '#fff',
-								formatter: '{b}  {c}%'
+								formatter: v => {
+									return v.name + '：' + v.value + '%  完成率：' + (v.value - 91.67).toFixed(2) + '%'
+								}
 							},
 							data: [],
 							markLine: {},
@@ -448,15 +460,16 @@
 				}
 				this.$axios('/api/index/wan_cheng_lv', {params: {financeTypeId: financeTypeId}}).then((res) => {
 					let datas = res.data.data
+					this.tooltip = datas;
 					datas.sort(function (a, b) {
-						return a.xBxis - b.xBxis
+						return a.tCRate - b.tCRate
 					});
 					let xBxis = [];
 					let yAxis = [];
 					datas.forEach(i => {
 						if (i.yAxis != '小龙虾公司' && i.yAxis != '新致公司') {
-							xBxis.push(i.xBxis)
-							yAxis.push(i.yAxis)
+							xBxis.push(i.tCRate)
+							yAxis.push(i.plateId)
 						}
 					});
 					option.yAxis.data = yAxis;

@@ -47,7 +47,8 @@
 				BD: {},
 				CD: {},
 				option: {},
-				company: []
+				company: [],
+				budget: []
 			};
 		},
 		methods: {
@@ -106,7 +107,15 @@
 					},
 					tooltip: {
 						trigger: "axis",
-						formatter: "{b}" + "{c}" + '%',
+						formatter: v => {
+							let label = '';
+							this.budget.forEach(i => {
+								if (v[0].name == i.plateName) {
+									label = '实际控制率：' + i.sjRateCount + '%<br>实际金额：' + i.sjMoney + '万<br>预算金额：' + i.ysMoney + '万'
+								}
+							})
+							return label;
+						},
 						axisPointer: {
 							type: "shadow",
 						},
@@ -204,8 +213,13 @@
 				this.$axios.get('/api/index/rate_list', {params: {type: 'ys'}}).then(res => {
 					let rateCount = [];
 					let xBxis = [];
+					let data = res.data.data;
+					this.budget = data;
+					data.sort(function (a, b) {
+						return b.ysRateCount - a.ysRateCount
+					});
 					res.data.data.forEach(element => {
-						rateCount.unshift(element.rateCount)
+						rateCount.unshift(element.ysRateCount)
 						xBxis.unshift(element.plateName)
 					});
 					option.series[0].data = rateCount;
@@ -424,7 +438,7 @@
 						{
 							show: false,
 							type: "category",
-							data: ['湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部', '应收稻谷款(加工厂)', '应收大米款（加工厂）', '茂名市金瑞粮油贸易有限公司', '湖北省羊肚菌农业科技有限公司'],
+							data: ['湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部', '稻谷款(加工厂)', '大米款（加工厂）', '茂名市金瑞粮油贸易有限公司', '湖北省羊肚菌农业科技有限公司'],
 							axisLine: {
 								lineStyle: {
 									color: "#fff"
