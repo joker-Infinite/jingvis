@@ -431,11 +431,11 @@
 									color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
 										{
 											offset: 0,
-											color: "rgba(192,42,84,1)",
+											color: "#0075fe",
 										},
 										{
 											offset: 1,
-											color: "rgba(127,69,224,1)",
+											color: "#03b3ff",
 										},
 									]),
 								},
@@ -569,7 +569,7 @@
 						return (list[0].value / 100000000).toFixed(2)
 					},
 				},
-				color: ["red", "#a549ff"],
+				color: ["#17cce1", "#a549ff"],
 				xAxis: [
 					{
 						show: true,
