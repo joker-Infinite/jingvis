@@ -1,35 +1,10 @@
 <template>
   <div style="width: 100%;height: 100%" class="sBody">
-    <el-dialog width="1000px" :title="form.name" :visible.sync="visible" :modal="false">
-      <el-form ref="form" :model="form" label-width="100px" class="form" disabled>
-        <el-col :span="8">
-          <el-form-item label="名称">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="面积">
-            <el-input v-model="form.area"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="收入/月">
-            <el-input v-model="form.income"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="成本/月">
-            <el-input v-model="form.cost"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="利润/月">
-            <el-input v-model="form.profit"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="24">
-          <el-form-item label="描述">
-            <el-input type="textarea" resize="none" rows="4" v-model="form.remark"></el-input>
+    <el-dialog width="1000px" align="center" :title="form.name" :visible.sync="visible" :modal="false">
+      <el-form ref="form" :model="form" label-width="125px" class="form" disabled>
+        <el-col :span="8" v-for="(it,ix) in formData" :key="ix">
+          <el-form-item :label="it.label+'：'">
+            <el-input :value="it.value"></el-input>
           </el-form-item>
         </el-col>
         <div class="echarts">
@@ -48,23 +23,22 @@
 			return {
 				visible: false,
 				form: {
-					name: '',
-					area: '50平方米',
-					income: '10000',
-					cost: '1000',
-					profit: '9000',
-					remark: ''
-				}
+					name: ''
+				},
+				formData: []
 			}
 		},
 		methods: {
 			openDialog(v) {
+				if (v.name === '大厅') {
+					return '';
+				}
+				this.formData = v.formData;
 				this.visible = true;
 				this.$nextTick(_ => {
 					let form = document.getElementsByClassName('form')[0];
 					form.scrollTo(0, 0);
 					this.form.name = v.name;
-					this.form.remark = v.remark;
 					this.ECharts();
 				})
 			},
@@ -77,13 +51,13 @@
 				let option = [
 					{
 						barWidth: 30,
-						title:{
-							text:'近六个月收益',
-							left:'center'
+						title: {
+							text: '近六个月收益',
+							left: 'center'
 						},
 						tooltip: {
 							trigger: 'item',
-							formatter:'{b}月:{c}'
+							formatter: '{b}月:{c}'
 						},
 						xAxis: {
 							type: 'category',
@@ -108,13 +82,13 @@
 					},
 					{
 						barWidth: 30,
-						title:{
-							text:'近六个月订单数',
-							left:'center'
+						title: {
+							text: '近六个月订单数',
+							left: 'center'
 						},
 						tooltip: {
 							trigger: 'axis',
-							formatter:'{b}月:{c}'
+							formatter: '{b}月:{c}'
 						},
 						xAxis: {
 							type: 'category',
@@ -139,13 +113,13 @@
 					},
 					{
 						barWidth: 30,
-						title:{
-							text:'近六个月客单价',
-							left:'center'
+						title: {
+							text: '近六个月客单价',
+							left: 'center'
 						},
 						tooltip: {
 							trigger: 'axis',
-							formatter:'{b}月:{c}'
+							formatter: '{b}月:{c}'
 						},
 						xAxis: {
 							type: 'category',
@@ -178,8 +152,16 @@
 </script>
 
 <style scoped lang="less">
+  .sBody /deep/ .el-dialog__wrapper > .el-dialog {
+    background: white !important;
+  }
+
   .sBody /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__header {
     padding: 20px 20px 10px;
+  }
+
+  .sBody /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
+    color: black !important;
   }
 
   .form {

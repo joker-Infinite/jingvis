@@ -1,6 +1,6 @@
 <template>
   <div class="imgBox">
-    <img src="../../../assets/service_.jpg" class="img"/>
+    <img src="../../assets/service.jpg" class="img"/>
     <div class="smallBox" v-for="i in box" :style="i.style" @click="$refs['more'].openDialog(i)">
       <el-popover placement="top-start"
                   :title="i.name"
@@ -8,6 +8,7 @@
                   v-if="i.name !=='大厅'"
                   trigger="hover">
         <my-table :columns="i.columns"
+                  id="elPopoverTable"
                   :data="i.data"
                   height="100%"
                   :show-index="false"
@@ -21,11 +22,11 @@
 </template>
 
 <script>
-	import MoreInformation from "../../details/common/moreInformation";
-	import MyTable from "../../../components/common/myTable";
+	import MoreInformation from "../../pages/details/common/moreInformation";
+	import MyTable from "./myTable";
 
 	export default {
-		name: "serviceFloorPlan",
+		name: "imgFloorPlan",
 		components: {MyTable, MoreInformation},
 		data() {
 			return {
@@ -55,10 +56,11 @@
 							{label: '绿化面积', value: '5689.64'},
 						],
 						style: {
-							width: '50px',
-							height: '25px',
-							top: '142px',
-							left: '320px',
+							width: '43px',
+							height: '23px',
+							top: '85px',
+							left: ' 201px',
+							background: 'red',
 						}
 					},
 					{
@@ -84,8 +86,9 @@
 						style: {
 							width: '50px',
 							height: '25px',
-							top: '226px',
-							left: '302px',
+							top: '146px',
+							left: '190px',
+							background: 'blue'
 						}
 					},
 					{
@@ -111,10 +114,11 @@
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
 						style: {
-							width: '92px',
-							height: '63px',
-							top: '169px',
-							left: '404px',
+							width: '67px',
+							height: '46px',
+							top: '108px',
+							left: '270px',
+							background: 'yellow',
 						}
 					},
 					{
@@ -141,21 +145,23 @@
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
 						style: {
-							width: '56px',
-							height: '34px',
-							top: '162px',
-							left: '496px',
-							zIndex: '10'
+							width: '47px',
+							height: '25px',
+							top: '102px',
+							left: '337px',
+							zIndex: '10',
+							background: 'rgb(51, 68, 34)',
 						}
 					},
 					{
 						name: '大厅',
 						remark: '咨询问题、提供休息处……',
 						style: {
-							width: '110px',
-							height: '60px',
-							top: '169px',
-							left: '496px',
+							width: '82px',
+							height: '45px',
+							top: '107px',
+							left: '338px',
+							background: 'rgb(102, 51, 153)',
 						}
 					},
 					{
@@ -181,10 +187,11 @@
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
 						style: {
-							width: '43px',
-							height: '67px',
-							top: '142px',
-							left: '609px',
+							width: '34px',
+							height: '49px',
+							top: '87px',
+							left: '421px',
+							background: 'rgb(153, 153, 102)',
 						}
 					},
 					{
@@ -210,10 +217,11 @@
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
 						style: {
-							width: '43px',
-							height: '67px',
-							top: '142px',
-							left: '654px',
+							width: '34px',
+							height: '49px',
+							top: '87px',
+							left: '457px',
+							background: 'rgb(52,153,36)',
 						}
 					},
 					{
@@ -235,10 +243,11 @@
 							{label: '厕所改造时间', value: '2018年09月'},
 						],
 						style: {
-							width: '58px',
-							height: '95px',
-							top: '113px',
-							left: '698px',
+							width: '41px',
+							height: '71px',
+							top: '65px',
+							left: '494px',
+							background: 'rgb(255, 0, 0)',
 						}
 					},
 					{
@@ -258,10 +267,11 @@
 							{label: '厕所改造时间', value: '2018年09月'},
 						],
 						style: {
-							width: '57px',
-							height: '95px',
-							top: '113px',
-							left: '757px',
+							width: '41px',
+							height: '71px',
+							top: '65px',
+							left: '537px',
+							background: 'rgb(255,115,14)',
 						}
 					},
 					{
@@ -287,10 +297,11 @@
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
 						style: {
-							width: '48px',
-							height: '58px',
-							top: '113px',
-							left: '815px',
+							width: '35px',
+							height: '43px',
+							top: '66px',
+							left: '581px',
+							background: 'rgb(0,255,0)'
 						}
 					},
 					{
@@ -316,10 +327,11 @@
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
 						style: {
-							width: '48px',
-							height: '48px',
-							top: '182px',
-							left: '815px',
+							width: '35px',
+							height: '33px',
+							top: '118px',
+							left: '581px',
+							background: 'rgb(39,255,221)'
 						}
 					},
 				]
@@ -334,16 +346,54 @@
 
 <style scoped lang="less">
   .imgBox {
-    width: 1300px;
-    margin: auto;
+    width: 900px;
+    /*margin: auto;*/
     position: relative;
 
     .img {
-      width: 1300px;
+      width: 900px;
     }
 
     .smallBox {
       position: absolute;
+      background: none !important;
     }
+  }
+</style>
+<style>
+  .el-popover {
+    background: rgba(15, 101, 208, 0.85);
+    border: 1px solid rgba(15, 101, 208, 0.85);
+  }
+
+  .el-popper[x-placement^=bottom] .popper__arrow::after {
+    border-bottom-color: rgba(15, 101, 208, 0.85) !important;
+  }
+
+  .popper__arrow {
+    border-bottom-color: rgba(15, 101, 208, 0.85) !important;
+  }
+
+  .el-popover__title {
+    text-align: center;
+    color: white;
+  }
+
+  #elPopoverTable /deep/ .el-table > .el-table__header-wrapper > .el-table__header > .has-gutter > tr {
+    background: rgba(15, 101, 208, 0.85) !important;
+  }
+
+  #elPopoverTable /deep/ .el-table > .el-table__header-wrapper > .el-table__header > .has-gutter > tr > th {
+    background: rgba(15, 101, 208, 0) !important;
+    color: white !important;
+  }
+
+  #elPopoverTable /deep/ .el-table > .el-table__body-wrapper > .el-table__body > tbody > tr {
+    background: rgba(15, 101, 208, 0.85) !important;
+    color: white !important;
+  }
+
+  #elPopoverTable /deep/ .el-table > .el-table__body-wrapper > .el-table__body > tbody > tr > th {
+    background: rgba(15, 101, 208, 0) !important;
   }
 </style>
