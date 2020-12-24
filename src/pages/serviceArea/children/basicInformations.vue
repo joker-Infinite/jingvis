@@ -167,9 +167,13 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "axis",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}个",
                                                     },
                                                     yAxis: {
+                                                        name: "个",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         type: 'value',
                                                         splitLine: {
                                                             show: false
@@ -179,7 +183,7 @@
                                                         },
                                                     },
                                                     series: [{
-                                                        data: [50,60,70,80,90,100,110,120,130,140,150,160],
+                                                        data: [600,610,740,750,780,900,890,910,950,950,1000,1000],
                                                         type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -333,13 +337,17 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "axis",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}㎡",
                                                         // axisPointer: {
                                                         //     type: "shadow"
                                                         // },
                                                     },
                                                     yAxis: {
                                                         type: 'value',
+                                                        name: "㎡",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         splitLine: {
                                                             show: false
                                                         },
@@ -348,8 +356,9 @@
                                                         },
                                                     },
                                                     series: [{
-                                                        data: [500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600],
+                                                        data: [600,610,740,750,780,900,890,910,950,950,1000,1000],
                                                         type: 'line',
+                                                        
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -415,12 +424,16 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "axis",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}㎡",
                                                         // axisPointer: {
                                                         //     type: "shadow"
                                                         // },
                                                     },
                                                     yAxis: {
+                                                        name: "㎡",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         type: 'value',
                                                         splitLine: {
                                                             show: false
@@ -457,10 +470,10 @@
                         collapseItem: [
                             {
                                 id: "ab_20s",
-                                collapseTitle: "车流量",
+                                collapseTitle: "日均车流量",
                                 EChartsBox: [
                                     {
-                                        title: "车流量",
+                                        title: "日均车流量",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
