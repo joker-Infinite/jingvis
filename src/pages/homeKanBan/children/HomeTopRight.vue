@@ -156,7 +156,6 @@
 						type: "sankey",
 						right: "20%",
 						top: "20%",
-						nodeGap: 50,
 						focusNodeAdjacency: "allEdges",
 						label: {
 							color: "#FFF",
@@ -211,7 +210,6 @@
 				this.$axios.get('/api/jtService/station_order_money').then((res) => {
 					let name = [];
 					let links = [];
-					console.log(res)
 					name.push({name: '车辆'});
 					res.data.forEach(item => {
 						item.stationMoneyTypeVo.moneyVoList.forEach(i => {

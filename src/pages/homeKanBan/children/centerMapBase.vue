@@ -38,8 +38,8 @@
         </div>
       </template>
     </animation> -->
-    <el-dialog title="服务区平面图" align="center" width="1400px" :modal-append-to-body="false" :visible.sync="visible">
-      <service-floor-plan></service-floor-plan>
+    <el-dialog title="蔡甸服务区" align="center" width="940px" :modal-append-to-body="false" :visible.sync="visible">
+      <img-floor-plan></img-floor-plan>
     </el-dialog>
   </div>
 </template>
@@ -47,10 +47,11 @@
 <script>
 	import animation from "./animation";
 	import ServiceFloorPlan from "../../serviceArea/children/serviceFloorPlan";
+	import ImgFloorPlan from "../../../components/common/imgFloorPlan";
 
 	export default {
 		name: "centerMapBase",
-		components: {ServiceFloorPlan, animation},
+		components: {ImgFloorPlan, ServiceFloorPlan, animation},
 		props: {
 			backdrop: {
 				type: Number,
@@ -529,6 +530,15 @@ new AMap.MarkerClusterer(
       cursor: pointer;
       color: white;
     }
+  }
+
+  .mapBox /deep/ .el-dialog__wrapper > .el-dialog {
+    background: #0c2348;
+    color: white;
+  }
+
+  .mapBox /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
+    color: white;
   }
 
   .animation {

@@ -232,133 +232,154 @@
 				let HomeTopLeft_center = this.$echarts.init(
 					document.getElementById("HomeTopLeft_center")
 				);
-				let option = (this.BD = {
-					title: {
-						text: "回款率",
-						x: 'center',
-						textStyle: {
-							color: "#FFF",
-							fontSize: "15",
-							lineHeight: 20,
-						}
-					},
-					tooltip: {
-						trigger: "axis",
-						formatter: v => {
-							let show = [
-								{}, {}, {}, {}, {}, {},
-								{
-									receivable: '259038.89',
-									received: '213851.26',
-									exacutiveRate: '82.56%',
-								},
-								{
-									receivable: '292087.32',
-									received: '261372.61',
-									exacutiveRate: '89.48%',
-								},
-								{
-									receivable: '311066.1388',
-									received: '272212.6888',
-									exacutiveRate: '87.51%',
-								},
-								{
-									receivable: '385717.1',
-									received: '344357.12',
-									exacutiveRate: '89.28%',
-								}
-							];
-							let index = parseInt(v[0].name) - 1;
-							if (!show[index].receivable) {
-								return '';
-							}
-							return '合同应收款：' + show[index].receivable + '万元<br>合同已收款：' + show[index].received + '万元<br>合同执行率：' + show[index].exacutiveRate
-						},
-						axisPointer: {
-							type: "shadow",
-						},
-					},
-					barWidth: 10, //设置柱状图的粗细
-					xAxis: [
+				let option = (this.BD =
 						{
-							type: "category",
-							data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-							axisLine: {
-								//坐标轴轴线
-								// show: false
-								lineStyle: {
-									color: "#6691ff"
-								}
+							barWidth: 10,
+							title: {
+								x: "center",
+								y: '',
+								text: "预算控制率",
+								show: true,
+								textStyle: {
+									fontFamily: "幼圆",
+									color: "#FFF",
+									fontSize: "15",
+									lineHeight: 20,
+								},
 							},
-							axisTick: {
-								//坐标轴刻度
-								show: false
-							},
-							/*axisLabel: {
-								//文字换行
-								formatter: function (val) {
-									let data = ['7', '8', '9', '10'];
-									return data[parseInt(val) - 1] + '月'
-								}
-							}*/
-						}
-					],
-					yAxis: [
-						{
-							type: "value",
-							axisLine: {
-								lineStyle: {
-									color: "#6691ff"
-								}
-							},
-							axisLabel: {
-								formatter: function (val) {
-									return val + '%'
-								}
-							},
-							name: "%",
-							nameTextStyle: {
-								fontSize: "12px"
-							},
-							axisTick: {
-								//坐标轴刻度
-								show: false
-							},
-							splitLine: {
-								show: false
-							}
-						},
-					],
-					grid: {
-						top: "15%",
-						left: '45',
-						bottom: 30,
-					},
-					series: [
-						{
-							name: "金额",
-							type: "line",
-							data: ['', '', '', '', '', '', 82.56, 89.48, 87.51, 89.28],
-							itemStyle: {
-								normal: {
-									areaStyle: {
-										color: new this.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-											{
-												offset: 0,
-												color: "rgba(60,249,255,0)"
-											},
-											{
-												offset: 1,
-												color: "rgba(60,249,255,1)"
-											}
-										])
+							tooltip: {
+								trigger: "axis",
+								formatter: v => {
+									let show = [
+										{
+											name: '服务区板块',
+											receivable: '34735.63',
+											received: '27897.51',
+											exacutiveRate: '80.31%',
+										},
+										{
+											name: '能源板块',
+											receivable: '876456.62',
+											received: '852421.61',
+											exacutiveRate: '97.26%',
+										},
+										{
+											name: '商业板块',
+											receivable: '298225.10',
+											received: '184270.84',
+											exacutiveRate: '61.79%',
+										},
+										{
+											name: '传媒板块',
+											receivable: '9300',
+											received: '5792.49',
+											exacutiveRate: '62.28%',
+										}
+									];
+									let index = 0;
+									for (let i = 0; i < show.length; i++) {
+										if (v[0].name == show[i].name) {
+											index = i;
+											break;
+										}
 									}
-								}
+									return '合同应收款：' + show[index].receivable + '万元<br>合同已收款：' + show[index].received + '万元'
+								},
+								axisPointer: {
+									type: "shadow",
+								},
 							},
-							color: "#3cf9ff"
+							grid: {
+								top: 20,
+								bottom: 30,
+								left: 20,
+							},
+							xAxis: {
+								type: "value",
+								position: "bottom",
+								axisTick: {
+									//坐标轴刻度
+									show: false,
+								},
+								axisLabel: {
+									textStyle: {
+										color: "#FFF",
+									},
+								},
+								splitLine: {show: false},
+								axisLine: {
+									lineStyle: {
+										color: "#FFF",
+									},
+								},
+							},
+							yAxis: {
+								type: "category",
+								axisLine: {show: false},
+								axisLabel: {show: false},
+								axisTick: {show: false},
+								splitLine: {show: false},
+								data: ['商业板块', '传媒板块', '服务区板块', '能源板块',],
+							},
+							series: [
+								{
+									name: "收入",
+									type: "bar",
+									stack: "总量",
+									itemStyle: {
+										normal: {
+											barBorderRadius: 30, //设置柱状图为圆角
+											color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
+												{
+													offset: 0,
+													color: "rgba(192,42,84,1)",
+												},
+												{
+													offset: 1,
+													color: "rgba(127,69,224,1)",
+												},
+											]),
+										},
+									},
+									label: {
+										show: true,
+										position: 'insideLeft',
+										color: '#fff',
+										formatter: "{b}" + "：{c}" + '%',
+									},
+									data: [61.79, 62.28, 80.31, 97.26,],
+									markLine: {
+										data: [],
+										symbol: ["none", "none"],
+										position: "insideTopCenter",
+										itemStyle: {
+											normal: {
+												lineStyle: {
+													type: "dotted",
+													color: "white",
+												},
+												label: {
+													show: false,
+													position: "middle",
+													formatter: "数据平均 :",
+												},
+											},
+										},
+										large: true,
+										effect: {
+											show: false,
+											loop: true,
+											period: 0,
+											scaleSize: 2,
+											color: null,
+											shadowColor: null,
+											shadowBlur: null,
+										},
+									},
+								},
+							],
 						}
-					]
-				});
+				);
 				/*var sum = 0;
 				var money = []
 				this.$axios.get('/api/index/list_jtsupplier_groupnian').then((res) => {
@@ -376,6 +397,95 @@
 						money.push(element.yAxis)
 					});*/
 				HomeTopLeft_center.setOption(option);
+				HomeTopLeft_center.on('click', v => {
+					let obj = ['服务区板块', '能源板块', '商业板块', '传媒板块'];
+					let allData = [
+						{
+							//应收款
+							receivable: [6822.52, 8422.05, 9302.05, 10189.01],
+							//已收款
+							received: [4762, 6832, 8206.39, 8097.12],
+						},
+						{
+							receivable: [179169.28, 204886.95, 216387.17, 276013.22],
+							received: [173495.99, 203127.35, 208401.6, 267396.67],
+						},
+						{
+							receivable: [67768.74, 73199.97, 77403.27, 79853.12],
+							received: [34122.02, 46878.08, 50457.28, 52813.46],
+						},
+						{
+							receivable: [1800, 2100, 2600, 2800],
+							received: [1020, 1256.83, 1637.83, 1877.83],
+						},
+					];
+					let ix = obj.indexOf(v.name);
+					let serviceOption = {
+						title: {
+							text: v.name,
+							x: 'center',
+							y: '2%',
+							textStyle: {
+								fontFamily: "幼圆",
+								color: "#FFF",
+								fontSize: "30",
+							},
+						},
+						grid: {
+							top: "35",
+							left: "12%",
+							right: "5%",
+							bottom: "30",
+						},
+						legend: {
+							data: ['合同已收款', '合同应收款'],
+							left: 'center',
+							bottom: 20,
+							textStyle: {
+								color: 'white'
+							}
+						},
+						xAxis: {
+							name: '月',
+							type: 'category',
+							data: ['7', '8', '9', '10'],
+							axisTick: {show: false},
+							splitLine: {show: false},
+							axisLine: {
+								lineStyle: {
+									color: "#FFF",
+								},
+							}
+						},
+						yAxis: {
+							name: "万元",
+							type: 'value',
+							axisTick: {show: false},
+							splitLine: {show: false},
+							axisLine: {
+								lineStyle: {
+									color: "#FFF",
+								},
+							}
+						},
+						series: [
+							{
+								name: '合同已收款',
+								data: allData[ix].received,
+								type: 'line',
+								itemStyle: {
+									color: '#03b3ff'
+								}
+							},
+							{
+								name: '合同应收款',
+								data: allData[ix].receivable,
+								type: 'line'
+							},
+						]
+					};
+					this.$refs['showECharts'].openDialog(serviceOption);
+				})
 				// this.isNoData(res.data.data, 'HomeTopLeft_center_data', 'HomeTopLeft_center', option)
 				// })
 			},
@@ -554,7 +664,7 @@
 				HomeTopLeft_bottom.setOption(option);
 				// this.isNoData(res.data.data, 'initECharts_bottom_data', 'HomeTopLeft_bottom', option)
 				// })
-			}
+			},
 		},
 		mounted() {
 			this.initECharts_top();
