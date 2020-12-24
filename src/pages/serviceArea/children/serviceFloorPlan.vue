@@ -9,6 +9,7 @@
                   trigger="hover">
         <my-table :columns="i.columns"
                   :data="i.data"
+                  id="elPopoverServiceFloorPlan"
                   height="100%"
                   :show-index="false"
                   :multiple="false"
@@ -345,5 +346,10 @@
     .smallBox {
       position: absolute;
     }
+  }
+</style>
+<style>
+  .el-popover__title {
+    text-align: center;
   }
 </style>
