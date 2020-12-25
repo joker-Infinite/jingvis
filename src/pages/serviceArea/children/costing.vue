@@ -30,15 +30,15 @@ export default {
                             id: "cost_2020",
                             year: 2020,
                             collapseTitle: "2020年成本",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
-                                    title: "2020年实际成本",
+                                    title: "月实际成本",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -168,11 +168,11 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年业态占比",
-                                    time: false,
+                                    title: "业态占比/子公司占比",
+                                    istime: true,
                                     select: false,
                                     style: {
-                                        width: "29.5%",
+                                        width: "59.5%",
                                         height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
@@ -182,7 +182,7 @@ export default {
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "100%",
+                                                width: "50%",
                                                 height: "300px",
                                             },
                                             option: {
@@ -284,24 +284,10 @@ export default {
                                                 ],
                                             },
                                         },
-                                    ],
-                                },
-                                {
-                                    title: "2020年片区占比",
-                                    time: false,
-                                    select: false,
-                                    style: {
-                                        width: "29.5%",
-                                        height: "350px",
-                                        background: "white",
-                                        borderRadius: "10px",
-                                        overflow: "hidden",
-                                    },
-                                    EChartsItem: [
-                                        {
+                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "100%",
+                                                width: "50%",
                                                 height: "300px",
                                             },
                                             option: {
@@ -401,7 +387,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年公司种类预算控制",
+                                    title: "公司种类预算控制",
                                     time: false,
                                     select: false,
 
@@ -552,7 +538,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年实际/预算",
+                                    title: "实际占比/预算占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1040,15 +1026,15 @@ export default {
                             id: "cost_2019",
                             year: 2019,
                             collapseTitle: "2019年成本",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
-                                    title: "2019年实际成本",
+                                    title: "月实际成本",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1178,11 +1164,11 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年业态占比",
-                                    time: false,
+                                    title: "业态占比/子公司占比",
+                                    istime: true,
                                     select: false,
                                     style: {
-                                        width: "29.5%",
+                                        width: "59.5%",
                                         height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
@@ -1192,7 +1178,7 @@ export default {
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "100%",
+                                                width: "50%",
                                                 height: "300px",
                                             },
                                             option: {
@@ -1294,24 +1280,10 @@ export default {
                                                 ],
                                             },
                                         },
-                                    ],
-                                },
-                                {
-                                    title: "2019年片区占比",
-                                    time: false,
-                                    select: false,
-                                    style: {
-                                        width: "29.5%",
-                                        height: "350px",
-                                        background: "white",
-                                        borderRadius: "10px",
-                                        overflow: "hidden",
-                                    },
-                                    EChartsItem: [
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "100%",
+                                                width: "50%",
                                                 height: "300px",
                                             },
                                             option: {
@@ -1411,7 +1383,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年公司种类预算控制",
+                                    title: "公司种类预算控制",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1561,7 +1533,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年实际/预算",
+                                    title: "实际占比/预算占比",
                                     time: false,
                                     select: false,
                                     style: {

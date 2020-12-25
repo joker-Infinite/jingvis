@@ -94,7 +94,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "接管运营总量",
+                                    title: "接管运营",
                                     style: {
                                         cursor: "pointer",
                                         width: "59.5%",
@@ -162,7 +162,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [600, 610, 740, 750, 780, 900, 890, 910, 950, 950, 1000, 1000],
+                                                        data: [5, 6, 7, 7, 7, 9, 8, 9, 9, 9, 10, 15],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -197,7 +197,7 @@ export default {
                                             },
                                             option: {
                                                 title: {
-                                                    text: "暂无数据",
+                                                    text: "",
                                                     left: "43%",
                                                     top: "48%",
                                                 },
@@ -264,7 +264,7 @@ export default {
                                 },
 
                                 {
-                                    title: "占地面积增长率",
+                                    title: "占地面积",
                                     style: {
                                         cursor: "pointer",
                                         width: "100%",
@@ -277,6 +277,7 @@ export default {
                                     EChartsItem: [
                                         {
                                             serviceName: "大悟服务区",
+                                            serviceNamemin: "点军服务区",
                                             unit: "㎡",
                                             /*ECharts的属性*/
                                             style: {
@@ -352,7 +353,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "经营面积增长率",
+                                    title: "经营面积",
                                     style: {
                                         cursor: "pointer",
                                         width: "100%",
@@ -364,7 +365,8 @@ export default {
                                     },
                                     EChartsItem: [
                                         {
-                                            serviceName: "大悟服务区",
+                                            serviceName: "黄冈服务区",
+                                            serviceNamemin: "恩施服务区",
                                             unit: "㎡",
                                             /*ECharts的属性*/
                                             style: {
@@ -439,7 +441,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "日均车流量",
+                                    title: "月均车流量",
                                     style: {
                                         cursor: "pointer",
                                         width: "100%",
@@ -452,6 +454,7 @@ export default {
                                     EChartsItem: [
                                         {
                                             serviceName: "大悟服务区",
+                                            serviceNamemin: "恩施服务区",
                                             unit: "辆",
                                             /*ECharts的属性*/
                                             style: {
@@ -526,79 +529,66 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "月订单数/总订单数=订单增长率",
-                                    style: {
-                                        cursor: "pointer",
-                                        width: "100%",
-                                        height: "350px",
-                                        borderRadius: "10px",
-                                        background: "white",
-                                        overflow: "hidden",
-                                        marginBottom: "10px",
-                                    },
-                                    EChartsItem: [
-                                        {
-                                            serviceName: "大悟服务区",
-                                            unit: "单",
-                                            /*ECharts的属性*/
-                                            style: {
-                                                width: "100%",
-                                                height: "300px",
-                                            },
-                                            option: {
-                                                xAxis: {
-                                                    type: "category",
-                                                    data: [
-                                                        "1月",
-                                                        "2月",
-                                                        "3月",
-                                                        "4月",
-                                                        "5月",
-                                                        "6月",
-                                                        "7月",
-                                                        "8月",
-                                                        "9月",
-                                                        "10月",
-                                                        "11月",
-                                                        "12月",
-                                                    ],
-                                                    splitLine: {
-                                                        show: false,
-                                                    },
-                                                    axisTick: {
-                                                        show: false,
-                                                    },
+                                        title: "月订单数/总订单数=订单数量",
+                                        style: {
+                                            cursor: 'pointer',
+                                            width: "100%",
+                                            height: "350px",
+                                            borderRadius: "10px",
+                                            background: "white",
+                                            overflow: "hidden",
+                                            marginBottom: '10px'
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                serviceName: '大悟服务区',
+                                                serviceNamemin: '恩施服务区',
+                                                unit: '单',
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "100%",
+                                                    height: "300px",
                                                 },
-                                                grid: {
-                                                    top: "70",
-                                                    right: "60",
-                                                    left: "60",
-                                                    bottom: "30",
-                                                },
-                                                tooltip: {
-                                                    trigger: "axis",
-                                                    formatter: "{b} : {c}单",
-                                                    // axisPointer: {
-                                                    //     type: "shadow"
-                                                    // },
-                                                },
-                                                yAxis: {
-                                                    type: "value",
-                                                    name: "单",
-                                                    nameTextStyle: {
-                                                        color: "#000",
+                                                option: {
+                                                    xAxis: {
+                                                        type: 'category',
+                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                                                        splitLine: {
+                                                            show: false
+                                                        },
+                                                        axisTick: {
+                                                            show: false,
+                                                        },
                                                     },
-                                                    splitLine: {
-                                                        show: false,
+                                                    grid: {
+                                                        top: "70",
+                                                        right: "60",
+                                                        left: "60",
+                                                        bottom: "30",
                                                     },
-                                                    axisTick: {
-                                                        show: false,
+                                                    tooltip: {
+                                                        trigger: "axis",
+                                                        formatter: "{b} : {c}单",
+                                                        // axisPointer: {
+                                                        //     type: "shadow"
+                                                        // },
                                                     },
-                                                },
-                                                series: [
-                                                    {
+                                                    yAxis: {
+                                                        type: 'value',
+                                                        name:'单',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
+                                                        splitLine: {
+                                                            show: false
+                                                        },
+                                                        axisTick: {
+                                                            show: false,
+                                                        },
+                                                    },
+                                                    series: [{
                                                         data: [87, 76, 56, 76, 54, 12, 43, 32, 32, 93, 66, 89],
-                                                        type: "line",
+                                                        type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -606,85 +596,72 @@ export default {
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    },
-                                                ],
+                                                    }]
+                                                }
                                             },
-                                        },
-                                    ],
-                                },
-                                {
-                                    title: "订单金额/订单数量=客单价",
-                                    style: {
-                                        cursor: "pointer",
-                                        width: "100%",
-                                        height: "350px",
-                                        borderRadius: "10px",
-                                        background: "white",
-                                        overflow: "hidden",
+                                        ],
                                     },
-                                    EChartsItem: [
-                                        {
-                                            serviceName: "大悟服务区",
-                                            unit: "元",
-                                            /*ECharts的属性*/
-                                            style: {
-                                                width: "100%",
-                                                height: "300px",
-                                            },
-                                            option: {
-                                                xAxis: {
-                                                    type: "category",
-                                                    data: [
-                                                        "1月",
-                                                        "2月",
-                                                        "3月",
-                                                        "4月",
-                                                        "5月",
-                                                        "6月",
-                                                        "7月",
-                                                        "8月",
-                                                        "9月",
-                                                        "10月",
-                                                        "11月",
-                                                        "12月",
-                                                    ],
-                                                    splitLine: {
-                                                        show: false,
-                                                    },
-                                                    axisTick: {
-                                                        show: false,
-                                                    },
+                                {
+                                        title: "订单金额/订单数量=客单价",
+                                        style: {
+                                            cursor: 'pointer',
+                                            width: "100%",
+                                            height: "350px",
+                                            borderRadius: "10px",
+                                            background: "white",
+                                            overflow: "hidden",
+
+                                        },
+                                        EChartsItem: [
+                                            {
+                                                serviceName: '浠水服务区',
+                                                serviceNamemin: '河浦服务区',
+                                                unit: '元',
+                                                /*ECharts的属性*/
+                                                style: {
+                                                    width: "100%",
+                                                    height: "300px",
                                                 },
-                                                grid: {
-                                                    top: "70",
-                                                    right: "60",
-                                                    left: "60",
-                                                    bottom: "30",
-                                                },
-                                                tooltip: {
-                                                    trigger: "axis",
-                                                    formatter: "{b} : {c}元",
-                                                    // axisPointer: {
-                                                    //     type: "shadow"
-                                                    // },
-                                                },
-                                                yAxis: {
-                                                    type: "value",
-                                                    name: "元",
-                                                    nameTextStyle: {
-                                                        color: "#000",
+                                                option: {
+                                                    xAxis: {
+                                                        type: 'category',
+                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                                                        splitLine: {
+                                                            show: false
+                                                        },
+                                                        axisTick: {
+                                                            show: false,
+                                                        },
                                                     },
-                                                    splitLine: {
-                                                        show: false,
+                                                    grid: {
+                                                        top: "70",
+                                                        right: "60",
+                                                        left: "60",
+                                                        bottom: "30",
                                                     },
-                                                    axisTick: {
-                                                        show: false,
+                                                    tooltip: {
+                                                        trigger: "axis",
+                                                        formatter: "{b} : {c}元",
+                                                        // axisPointer: {
+                                                        //     type: "shadow"
+                                                        // },
                                                     },
-                                                },
-                                                series: [
-                                                    {
+                                                    yAxis: {
+                                                        type: 'value',
+                                                        name:'元',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
+                                                        splitLine: {
+                                                            show: false
+                                                        },
+                                                        axisTick: {
+                                                            show: false,
+                                                        },
+                                                    },
+                                                    series: [{
                                                         data: [87600, 76500, 56400, 7650, 5430, 1230, 4320, 3210, 3210, 9340, 6690, 8990],
-                                                        type: "line",
+                                                        type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -692,14 +669,13 @@ export default {
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    },
-                                                ],
+                                                    }]
+                                                }
                                             },
-                                        },
-                                    ],
-                                },
+                                        ],
+                                    },
                                 {
-                                    title: "销售额/车流量=转换率",
+                                    title: "月订单数量/月车流量=转换率",
                                     style: {
                                         cursor: "pointer",
                                         width: "100%",
@@ -710,7 +686,9 @@ export default {
                                     },
                                     EChartsItem: [
                                         {
-                                            serviceName: "大悟服务区",
+                                            serviceName: "木子店服务区",
+                                            serviceNamemin: "总路咀服务区",
+
                                             unit: "%",
                                             /*ECharts的属性*/
                                             style: {
@@ -798,16 +776,16 @@ export default {
                             id: "revenue_2020",
                             year: 2020,
                             collapseTitle: "2020年营收",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
                                     title: "2020年营收",
-                                    time: false,
+                                    
                                     timeValue: "",
                                     style: {
                                         width: "35%",
@@ -830,7 +808,14 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />营收:" + (val[0].value / 10000).toFixed(2) + "万元";
+                                                        return (
+                                                            val[0].name +
+                                                            "月" +
+                                                            ":" +
+                                                            "<br />营收:" +
+                                                            (val[0].value / 10000).toFixed(2) +
+                                                            "万元"
+                                                        );
                                                     },
                                                 },
                                                 grid: {
@@ -851,7 +836,7 @@ export default {
                                                     {
                                                         type: "category",
                                                         color: "#59588D",
-                                                        data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                                                        data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
                                                             margin: 10,
                                                             color: "#999",
@@ -993,7 +978,7 @@ export default {
                                 },
                                 {
                                     title: "2020年营收业态占比/片区占比",
-                                    time: false,
+                                    istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
@@ -1217,11 +1202,11 @@ export default {
                             id: "revenue_2019",
                             year: 2019,
                             collapseTitle: "2019年营收",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
@@ -1277,7 +1262,7 @@ export default {
                                                     {
                                                         type: "category",
                                                         color: "#59588D",
-                                                        data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                                                        data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
                                                             margin: 10,
                                                             color: "#999",
@@ -1419,7 +1404,7 @@ export default {
                                 },
                                 {
                                     title: "2019年营收业态占比/片区占比",
-                                    time: false,
+                                    istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
@@ -1656,11 +1641,11 @@ export default {
                             id: "profit_2020",
                             year: 2020,
                             collapseTitle: "2020年利润",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
@@ -1709,7 +1694,7 @@ export default {
                                                     {
                                                         type: "category",
                                                         color: "#59588D",
-                                                        data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                                                        data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
                                                             margin: 10,
                                                             color: "#999",
@@ -1849,7 +1834,7 @@ export default {
                                 },
                                 {
                                     title: "2020年利润业态占比/片区占比",
-                                    time: false,
+                                    istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
@@ -2073,16 +2058,16 @@ export default {
                             id: "profit_2019",
                             year: 2019,
                             collapseTitle: "2019年利润",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
                                     title: "2019年利润",
-                                    time: false,
+                                    
                                     timeValue: "",
                                     style: {
                                         width: "35%",
@@ -2126,7 +2111,7 @@ export default {
                                                     {
                                                         type: "category",
                                                         color: "#59588D",
-                                                        data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                                                        data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
                                                             margin: 10,
                                                             color: "#999",
@@ -2266,7 +2251,7 @@ export default {
                                 },
                                 {
                                     title: "2019年利润业态占比/片区占比",
-                                    time: false,
+                                    istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
@@ -2493,7 +2478,7 @@ export default {
                         },
                     ],
                 },
-                {
+                 {
                     id: "cost",
                     name: "成本",
                     icon: require("../../../assets/business/icon_3-1.png"),
@@ -2503,15 +2488,15 @@ export default {
                             id: "cost_2020",
                             year: 2020,
                             collapseTitle: "2020年成本",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
-                                    title: "2020年实际成本",
+                                    title: "2020年成本",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -2532,6 +2517,18 @@ export default {
                                                 title: {
                                                     text: "",
                                                 },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: function(val) {
+                                                        return val[0].name + "月" + ":" + "<br />利润:" + val[0].value / 10000 + "万元";
+                                                    },
+                                                },
+                                                grid: {
+                                                    top: "50",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "60", //图表尺寸大小
+                                                },
                                                 dataZoom: [
                                                     {
                                                         type: "inside",
@@ -2540,23 +2537,11 @@ export default {
                                                         type: "slider",
                                                     },
                                                 ],
-                                                tooltip: {
-                                                    trigger: "axis",
-                                                    formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br>成本:" + val[0].value / 10000 + "元";
-                                                    },
-                                                },
-                                                grid: {
-                                                    top: "50",
-                                                    right: "40",
-                                                    left: "60",
-                                                    bottom: "60", //图表尺寸大小
-                                                },
                                                 xAxis: [
                                                     {
                                                         type: "category",
                                                         color: "#59588D",
-                                                        data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                                                        data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
                                                             margin: 10,
                                                             color: "#999",
@@ -2581,8 +2566,8 @@ export default {
                                                             color: "#000",
                                                         },
                                                         axisLabel: {
-                                                            formatter: function(value) {
-                                                                return value / 10000;
+                                                            formatter: function(val) {
+                                                                return val / 10000;
                                                             },
                                                             color: "#999",
                                                             textStyle: {
@@ -2604,20 +2589,42 @@ export default {
                                                             },
                                                         },
                                                     },
+                                                    // {
+                                                    //     type: 'value',
+                                                    //     min: '',//最小坐标
+                                                    //     max: '',//最大坐标
+                                                    //     axisLabel: {
+                                                    //         fontSize: 14,
+                                                    //         color: "#999",
+                                                    //         formatter: '{value} %'
+                                                    //     },
+                                                    //     axisLine: {
+                                                    //         lineStyle: {
+                                                    //             color:
+                                                    //                 "rgba(107,107,107,0.37)",
+                                                    //         },
+                                                    //     },
+                                                    //     splitLine: {
+                                                    //         show: false//是否显示分隔线。
+                                                    //     },
+                                                    //     axisTick: {
+                                                    //         show: false,
+                                                    //     },
+                                                    // }
                                                 ],
                                                 series: [
                                                     {
                                                         type: "bar",
                                                         data: [
-                                                            61227980.97,
-                                                            46379186.39,
-                                                            31512554.34,
-                                                            23536277.13,
-                                                            45344513.25,
+                                                            91227980.97,
+                                                            56379186.39,
+                                                            61512554.34,
+                                                            53536277.13,
+                                                            35344513.25,
                                                             51883601.06,
-                                                            69285722.58,
-                                                            53682947.29,
-                                                            35867750.94,
+                                                            39285722.58,
+                                                            33682947.29,
+                                                            65867750.94,
                                                         ],
                                                         barWidth: "16px",
                                                         itemStyle: {
@@ -2627,35 +2634,57 @@ export default {
                                                             },
                                                         },
                                                     },
-                                                    {
-                                                        data: [],
-                                                        type: "line",
-                                                        name: "折线图",
-                                                        // symbol: 'none',
-                                                        lineStyle: {
-                                                            color: "#fea2a2",
-                                                            width: 2,
-                                                            shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                                                            shadowBlur: 10,
-                                                            shadowOffsetY: 10,
-                                                        },
-                                                        areaStyle: {
-                                                            normal: {
-                                                                color: "rgba(0,0,0,0)",
-                                                            },
-                                                        },
-                                                    },
+                                                    // {
+                                                    //     data: [],
+                                                    //     type: "line",
+                                                    //     name: "折线图",
+                                                    //     yAxisIndex: 1,
+                                                    //     // symbol: 'none',
+                                                    //     lineStyle: {
+                                                    //         color: "#fea2a2",
+                                                    //         width: 2,
+                                                    //         shadowColor:
+                                                    //             "rgba(0, 0, 0, 0.3)", //设置折线阴影
+                                                    //         shadowBlur: 10,
+                                                    //         shadowOffsetY: 10,
+                                                    //     },
+                                                    //     itemStyle: {
+                                                    //         normal: {
+                                                    //             color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                    //                 offset: 0,
+                                                    //                 color: 'rgb(255, 204, 102)'
+                                                    //             }, {
+                                                    //                 offset: 1,
+                                                    //                 color: 'rgb(255, 153, 51)'
+                                                    //             }]),
+                                                    //             label: {
+                                                    //                 show: true,
+                                                    //                 position: 'top',
+                                                    //                 textStyle: {
+                                                    //                     fontSize: '16',
+                                                    //                     color: 'rgb(255, 156, 54)',
+                                                    //                 }
+                                                    //             }
+                                                    //         },
+                                                    //     },
+                                                    //     areaStyle: {
+                                                    //         normal: {
+                                                    //             color:
+                                                    //                 "rgba(0,0,0,0)",
+                                                    //         },
+                                                    //     },
+                                                    // },
                                                 ],
                                             },
                                         },
                                     ],
                                 },
                                 {
-                                    title: "2020年业态占比",
-                                    time: false,
+                                    title: "业态占比/子公司占比",
+                                    istime: true,
                                     select: false,
                                     style: {
-                                        width: "29.5%",
+                                        width: "59.5%",
                                         height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
@@ -2665,7 +2694,7 @@ export default {
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "100%",
+                                                width: "50%",
                                                 height: "300px",
                                             },
                                             option: {
@@ -2684,6 +2713,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
+                                                        
                                                         return (
                                                             val.name +
                                                             ":<br>利润:" +
@@ -2766,24 +2796,10 @@ export default {
                                                 ],
                                             },
                                         },
-                                    ],
-                                },
-                                {
-                                    title: "2020年片区占比",
-                                    time: false,
-                                    select: false,
-                                    style: {
-                                        width: "29.5%",
-                                        height: "350px",
-                                        background: "white",
-                                        borderRadius: "10px",
-                                        overflow: "hidden",
-                                    },
-                                    EChartsItem: [
-                                        {
+                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "100%",
+                                                width: "50%",
                                                 height: "300px",
                                             },
                                             option: {
@@ -2883,7 +2899,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年公司种类预算控制",
+                                    title: "公司种类预算控制",
                                     time: false,
                                     select: false,
 
@@ -3034,7 +3050,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年实际/预算",
+                                    title: "实际占比/预算占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -3320,6 +3336,7 @@ export default {
                                                 color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
                                                 tooltip: {},
                                                 formatter: function(val) {
+                                                    
                                                     if (!val.data.id) {
                                                         return val.name + ":<br>实际:" + val.value + "万元<br>占比:" + val.percent + "%";
                                                     } else {
@@ -3521,15 +3538,15 @@ export default {
                             id: "cost_2019",
                             year: 2019,
                             collapseTitle: "2019年成本",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
-                                    title: "2019年实际成本",
+                                    title: "2019年成本",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -3550,6 +3567,18 @@ export default {
                                                 title: {
                                                     text: "",
                                                 },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: function(val) {
+                                                        return val[0].name + "月" + ":" + "<br />利润:" + val[0].value / 10000 + "万元";
+                                                    },
+                                                },
+                                                grid: {
+                                                    top: "50",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "60", //图表尺寸大小
+                                                },
                                                 dataZoom: [
                                                     {
                                                         type: "inside",
@@ -3558,23 +3587,11 @@ export default {
                                                         type: "slider",
                                                     },
                                                 ],
-                                                tooltip: {
-                                                    trigger: "axis",
-                                                    formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br>成本:" + val[0].value / 10000 + "元";
-                                                    },
-                                                },
-                                                grid: {
-                                                    top: "50",
-                                                    right: "40",
-                                                    left: "60",
-                                                    bottom: "60", //图表尺寸大小
-                                                },
                                                 xAxis: [
                                                     {
                                                         type: "category",
                                                         color: "#59588D",
-                                                        data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                                                        data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
                                                             margin: 10,
                                                             color: "#999",
@@ -3599,8 +3616,8 @@ export default {
                                                             color: "#000",
                                                         },
                                                         axisLabel: {
-                                                            formatter: function(value) {
-                                                                return value / 10000;
+                                                            formatter: function(val) {
+                                                                return val / 10000;
                                                             },
                                                             color: "#999",
                                                             textStyle: {
@@ -3622,12 +3639,34 @@ export default {
                                                             },
                                                         },
                                                     },
+                                                    // {
+                                                    //     type: 'value',
+                                                    //     min: '',//最小坐标
+                                                    //     max: '',//最大坐标
+                                                    //     axisLabel: {
+                                                    //         fontSize: 14,
+                                                    //         color: "#999",
+                                                    //         formatter: '{value} %'
+                                                    //     },
+                                                    //     axisLine: {
+                                                    //         lineStyle: {
+                                                    //             color:
+                                                    //                 "rgba(107,107,107,0.37)",
+                                                    //         },
+                                                    //     },
+                                                    //     splitLine: {
+                                                    //         show: false//是否显示分隔线。
+                                                    //     },
+                                                    //     axisTick: {
+                                                    //         show: false,
+                                                    //     },
+                                                    // }
                                                 ],
                                                 series: [
                                                     {
                                                         type: "bar",
                                                         data: [
-                                                            11227980.97,
+                                                            91227980.97,
                                                             56379186.39,
                                                             61512554.34,
                                                             53536277.13,
@@ -3645,35 +3684,57 @@ export default {
                                                             },
                                                         },
                                                     },
-                                                    {
-                                                        data: [],
-                                                        type: "line",
-                                                        name: "折线图",
-                                                        // symbol: 'none',
-                                                        lineStyle: {
-                                                            color: "#fea2a2",
-                                                            width: 2,
-                                                            shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                                                            shadowBlur: 10,
-                                                            shadowOffsetY: 10,
-                                                        },
-                                                        areaStyle: {
-                                                            normal: {
-                                                                color: "rgba(0,0,0,0)",
-                                                            },
-                                                        },
-                                                    },
+                                                    // {
+                                                    //     data: [],
+                                                    //     type: "line",
+                                                    //     name: "折线图",
+                                                    //     yAxisIndex: 1,
+                                                    //     // symbol: 'none',
+                                                    //     lineStyle: {
+                                                    //         color: "#fea2a2",
+                                                    //         width: 2,
+                                                    //         shadowColor:
+                                                    //             "rgba(0, 0, 0, 0.3)", //设置折线阴影
+                                                    //         shadowBlur: 10,
+                                                    //         shadowOffsetY: 10,
+                                                    //     },
+                                                    //     itemStyle: {
+                                                    //         normal: {
+                                                    //             color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                    //                 offset: 0,
+                                                    //                 color: 'rgb(255, 204, 102)'
+                                                    //             }, {
+                                                    //                 offset: 1,
+                                                    //                 color: 'rgb(255, 153, 51)'
+                                                    //             }]),
+                                                    //             label: {
+                                                    //                 show: true,
+                                                    //                 position: 'top',
+                                                    //                 textStyle: {
+                                                    //                     fontSize: '16',
+                                                    //                     color: 'rgb(255, 156, 54)',
+                                                    //                 }
+                                                    //             }
+                                                    //         },
+                                                    //     },
+                                                    //     areaStyle: {
+                                                    //         normal: {
+                                                    //             color:
+                                                    //                 "rgba(0,0,0,0)",
+                                                    //         },
+                                                    //     },
+                                                    // },
                                                 ],
                                             },
                                         },
                                     ],
                                 },
                                 {
-                                    title: "2019年业态占比",
-                                    time: false,
+                                    title: "业态占比/子公司占比",
+                                    istime: true,
                                     select: false,
                                     style: {
-                                        width: "29.5%",
+                                        width: "59.5%",
                                         height: "350px",
                                         background: "white",
                                         borderRadius: "10px",
@@ -3683,7 +3744,7 @@ export default {
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "100%",
+                                                width: "50%",
                                                 height: "300px",
                                             },
                                             option: {
@@ -3702,6 +3763,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
+                                                        
                                                         return (
                                                             val.name +
                                                             ":<br>利润:" +
@@ -3784,24 +3846,10 @@ export default {
                                                 ],
                                             },
                                         },
-                                    ],
-                                },
-                                {
-                                    title: "2019年片区占比",
-                                    time: false,
-                                    select: false,
-                                    style: {
-                                        width: "29.5%",
-                                        height: "350px",
-                                        background: "white",
-                                        borderRadius: "10px",
-                                        overflow: "hidden",
-                                    },
-                                    EChartsItem: [
                                         {
                                             /*ECharts的属性*/
                                             style: {
-                                                width: "100%",
+                                                width: "50%",
                                                 height: "300px",
                                             },
                                             option: {
@@ -3901,7 +3949,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年公司种类预算控制",
+                                    title: "公司种类预算控制",
                                     time: false,
                                     select: false,
                                     style: {
@@ -4051,7 +4099,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年实际/预算",
+                                    title: "实际占比/预算占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -4337,6 +4385,7 @@ export default {
                                                 color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
                                                 tooltip: {},
                                                 formatter: function(val) {
+                                                    
                                                     if (!val.data.id) {
                                                         return val.name + ":<br>实际:" + val.value + "万元<br>占比:" + val.percent + "%";
                                                     } else {
@@ -6860,7 +6909,7 @@ export default {
                                                 width: "100%",
                                                 height: "300px",
                                             },
-                                            unit: "万元",
+                                            unit: '万元',
                                             option: {
                                                 title: {
                                                     text: "",
@@ -6877,11 +6926,11 @@ export default {
                                                             ":<br>" +
                                                             val0.seriesName +
                                                             ":" +
-                                                            val0.value.toFixed(2) +
+                                                            (val0.value ).toFixed(2) +
                                                             "万元<br>" +
                                                             val1.seriesName +
                                                             ":" +
-                                                            val1.value.toFixed(2) +
+                                                            (val1.value).toFixed(2) +
                                                             "万元"
                                                         );
                                                     },
@@ -6981,9 +7030,9 @@ export default {
                                                 yAxis: [
                                                     {
                                                         type: "value",
-                                                        name: "万元",
-                                                        nameTextStyle: {
-                                                            color: "#000",
+                                                        name:'万元',
+                                                        nameTextStyle:{
+                                                            color:'#000'
                                                         },
                                                         splitNumber: 5,
                                                         // axisLabel: {
@@ -7099,7 +7148,7 @@ export default {
                                             option: {
                                                 title: [
                                                     {
-                                                        text: "暂无数据",
+                                                        text: "",
                                                         // top: 15,
                                                         // left: 20,
                                                         x: "36%",
@@ -7122,6 +7171,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter: "{b}: {c}万元 ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -7574,7 +7624,7 @@ export default {
                                                 width: "100%",
                                                 height: "300px",
                                             },
-                                            unit: "万元",
+                                            unit: '万元',
                                             option: {
                                                 title: {
                                                     text: "",
@@ -7591,11 +7641,11 @@ export default {
                                                             ":<br>" +
                                                             val0.seriesName +
                                                             ":" +
-                                                            val0.value.toFixed(2) +
+                                                            (val0.value ).toFixed(2) +
                                                             "万元<br>" +
                                                             val1.seriesName +
                                                             ":" +
-                                                            val1.value.toFixed(2) +
+                                                            (val1.value).toFixed(2) +
                                                             "万元"
                                                         );
                                                     },
@@ -7695,9 +7745,9 @@ export default {
                                                 yAxis: [
                                                     {
                                                         type: "value",
-                                                        name: "万元",
-                                                        nameTextStyle: {
-                                                            color: "#000",
+                                                        name:'万元',
+                                                        nameTextStyle:{
+                                                            color:'#000'
                                                         },
                                                         splitNumber: 5,
                                                         // axisLabel: {
@@ -7813,7 +7863,7 @@ export default {
                                             option: {
                                                 title: [
                                                     {
-                                                        text: "暂无数据",
+                                                        text: "",
                                                         // top: 15,
                                                         // left: 20,
                                                         x: "36%",
@@ -7836,6 +7886,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter: "{b}: {c}万元 ({d}%)",
                                                 },
                                                 series: [
                                                     {

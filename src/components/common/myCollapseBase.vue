@@ -6,6 +6,7 @@
            :key="index"
            :id="item.id"
            class="box_">
+           <slot></slot>
         <el-collapse v-model="activeName">
           <el-collapse-item
                   v-for="(cit, cix) in item.collapseItem"
@@ -47,7 +48,7 @@
                    :key="six"
                    :style="sit.style">
                 <div class="Title" v-if="sit.showTitle==='notShow'?false:true">
-                  <div  :id="'processingTitle^'+item.id+'^' + cix+'^'+six">
+                  <div :style="{width: sit.istime && sit.isselect&& sit.isinput ? '':'100%' }"  :id="'processingTitle^'+item.id+'^' + cix+'^'+six">
                     {{processingTitle(sit.title,'processingTitle^'+item.id+'^' + cix+'^'+six)}}
                   </div>
                   <div  class="isquery" v-if="sit.istime || sit.isselect || sit.isinput">
@@ -93,7 +94,7 @@
                     <el-option v-if="sit.selectOption&&sit.selectOption[0]" v-for="(oi,ox) in sit.selectOption[0]"
                                :value="oi" :key="ox" :label="oi"></el-option>
                   </el-select>
-                  <el-select v-if="sit.selectNum&&(sit.selectNum===3||sit.selectNum===2)">
+                  <el-select v-if="sit.selectNum&&(sit.selectNum===3||sit.selectNum===2)" >
                     <el-option v-if="sit.selectOption&&sit.selectOption[1]" v-for="(oi,ox) in sit.selectOption[1]"
                                :value="oi" :key="ox" :label="oi"></el-option>
                   </el-select>
@@ -149,14 +150,16 @@
                                          wit.option.series[0].type !=='sankey' &&
                                          !wit.isTitle&&
                                          !wit.isbar &&
+                                         !wit.isShow &&
                                          wit.option.series[0].data[0].name!=='占比')">
-                    <div>{{wit.serviceName?wit.serviceName:''}}
+                    <div>{{wit.serviceNamemin?wit.serviceNamemin:''}}
                       最高:{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ?
                       parseInt(showTarget(wit.option,'max',wit.unit)) :
                       showTarget(wit.option,'max',wit.unit)}}
                       {{wit.unit?wit.unit:'万元'}}
                     </div>
-                    <div>{{wit.serviceName?wit.serviceName:''}}
+                    <div>
+                      {{wit.serviceName?wit.serviceName:''}}
                       最低:{{wit.unit=='个' || wit.unit =='辆' || wit.unit == '单' ?
                       parseInt(showTarget(wit.option,'min',wit.unit)):
                       showTarget(wit.option,'min',wit.unit)
@@ -421,8 +424,8 @@
 				let mun = [];
 				let num = 0;
 				let divisor = 1;
-				if (unit === '%') {
-					divisor = 100;
+				if (unit == '%') {
+					divisor = 1;
 				} else if (!unit) {
 					divisor = 10000
 				} else {

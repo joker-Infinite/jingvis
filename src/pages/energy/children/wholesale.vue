@@ -97,10 +97,15 @@ export default {
                                                         },
                                                         xAxis: {
                                                             type: "category",
-                                                            data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                                            
+                                                            data: ["01月", "02月", "03月", "04月", "05月", "06月", "07月", "08月", "09月", "10月", "11月", "12月"],
                                                         },
                                                         yAxis: {
                                                             type: "value",
+                                                            name:'元/升',
+                                                            nameTextStyle:{
+                                                                color:"#000"
+                                                            }
                                                         },
                                                         grid: {
                                                             left: 40,
@@ -108,10 +113,13 @@ export default {
                                                             top: 50,
                                                             bottom: 50,
                                                         },
+                                                        color:['#1DD6CF','#ED8DD0'],
                                                         legend: {
                                                             orient: "horizontal",
                                                             bottom: 5,
                                                             selectedMode:'single',
+                                                            icon:'circle',
+                                                            borderColor: '#f00',
                                                             selected: {
                                                                 "汽油": true, //图例为‘全部’的一项默认置灰
                                                                 "柴油": false,
@@ -120,9 +128,10 @@ export default {
                                                                 "98": false
                                                             },
                                                             textStyle: {
-                                                                color: '#95A2FF',
-                                                                borderColor: '#95A2FF'
+                                                                color: '#f00',
+                                                                
                                                             },
+                                                            top:10,
                                                             data: [ "汽油", "柴油", "92", "95", "98"],
                                                         },
                                                         series: [
@@ -231,11 +240,11 @@ export default {
                                         },
                                 {
                                     title: "批零差价",
-                                    time: true,
+                                    time: false,
                                     showSearch: "notShow",
-                                    year: true,
-                                    month: true,
-                                    day: true,
+                                    year: false,
+                                    month: false,
+                                    day: false,
                                     style: {
                                         width: "100%",
                                         height: "450px",
@@ -264,22 +273,23 @@ export default {
                                             legend: {
                                                 data: ['国内批发差价','自身批发差价'],
                                                 align: "right",
-                                                right: 80,
+                                                right: 200,
                                                 icon:'circle',
-                                                top: 70
+                                                top: 20
                                             },
                                             grid: {
-                                                top: 100,
+                                                top: 50,
                                                 left: 50,
                                                 right: 30,
                                                 bottom: 30,
                                             },
                                             xAxis: {
                                                 type: "category",
-                                                data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                                data: ["01月", "02月", "03月", "04月", "05月", "06月", "07月", "08月", "09月", "10月", "11月", "12月"],
                                             },
                                             yAxis: {
                                                 // type: "value",
+                                                name:'元/吨'
                                             },
                                             series: [
                                                 {
@@ -326,9 +336,9 @@ export default {
                                                 legend: {
                                                     data: ['国内批发差价','自身批发差价','大宗采购'],
                                                     align: "right",
-                                                    right: 80,
+                                                    right: 200,
                                                     icon:'circle',
-                                                    top: 50
+                                                    top: 20
                                                 },
                                                 tooltip: {
                                                     trigger: 'axis',
@@ -344,10 +354,11 @@ export default {
                                                 },
                                                 xAxis: {
                                                     type: "category",
-                                                    data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                                    data: ["01月", "02月", "03月", "04月", "05月", "06月", "07月", "08月", "09月", "10月", "11月", "12月"],
                                                 },
                                                 yAxis: {
                                                     // type: "value",
+                                                    name:'元/吨'
                                                 },
                                                 series: [{
                                                         name: "国内批发差价",
@@ -363,18 +374,18 @@ export default {
                                                         symbolSize: 20,
                                                         name:'大宗采购',
                                                         data: [
-                                                            ['Jan', 800.04],
-                                                            ["Feb", 161.95],
-                                                            ["Mar", 370.58],
-                                                            ["Apr", 285.81],
-                                                            ["May", 282.33],
-                                                            ["Jun", 194.96],
-                                                            ["Jul", 175.24],
-                                                            ["Aug", 34.26],
-                                                            ["Sep", 100.84],
-                                                            ["Oct", 400.82],
-                                                            ["Nov", 520.68],
-                                                            ["Dec", 520.68],
+                                                            ['01月', 800.04],
+                                                            ["02月", 161.95],
+                                                            ["03月", 370.58],
+                                                            ["04月", 285.81],
+                                                            ["05月", 282.33],
+                                                            ["06月", 194.96],
+                                                            ["07月", 175.24],
+                                                            ["08月", 34.26],
+                                                            ["09月", 100.84],
+                                                            ["10月", 400.82],
+                                                            ["11月", 520.68],
+                                                            ["12月", 520.68],
                                                         ],
                                                         type: "scatter",
                                                     },

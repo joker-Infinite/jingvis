@@ -619,7 +619,7 @@ export default {
                                             option: {
                                                 title: [
                                                     {
-                                                        text: "暂无数据",
+                                                        text: "",
                                                         // top: 15,
                                                         // left: 20,
                                                         x: "36%",
@@ -642,6 +642,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter: "{b}: {c}万元 ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -1333,7 +1334,7 @@ export default {
                                             option: {
                                                 title: [
                                                     {
-                                                        text: "暂无数据",
+                                                        text: "",
                                                         // top: 15,
                                                         // left: 20,
                                                         x: "36%",
@@ -1356,6 +1357,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter: "{b}: {c}万元 ({d}%)",
                                                 },
                                                 series: [
                                                     {

@@ -57,7 +57,7 @@ export default {
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "暂无数据",
+                                                    subtext: "",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
@@ -365,7 +365,7 @@ export default {
                                             },
                                             option: {
                                                 title:{
-                                                    text:"暂无数据",
+                                                    text:"",
                                                     top:'50%',
                                                     left:'45%'
                                                 },
@@ -649,7 +649,7 @@ export default {
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "暂无数据",
+                                                    subtext: "",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
@@ -801,7 +801,7 @@ export default {
                                             },
                                             option: {
                                                 title:{
-                                                    text:'暂无数据',
+                                                    text:'',
                                                     left:'45%',
                                                     top:'50%'
                                                 },
@@ -1108,7 +1108,7 @@ export default {
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "暂无数据",
+                                                    subtext: "",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
@@ -1416,7 +1416,7 @@ export default {
                                             },
                                             option: {
                                                 title:{
-                                                    text:"暂无数据",
+                                                    text:"",
                                                     top:'50%',
                                                     left:'45%'
                                                 },
@@ -1700,7 +1700,7 @@ export default {
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "暂无数据",
+                                                    subtext: "",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
@@ -1852,7 +1852,7 @@ export default {
                                             },
                                             option: {
                                                 title:{
-                                                    text:'暂无数据',
+                                                    text:'',
                                                     left:'45%',
                                                     top:'50%'
                                                 },

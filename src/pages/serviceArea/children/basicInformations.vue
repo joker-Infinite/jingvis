@@ -46,7 +46,7 @@
         },
         data() {
             return {
-                indexHover:6,
+                indexHover:5,
                 collapseData: [
                     {
                         id: "revenueTable",
@@ -128,7 +128,7 @@
                                 collapseTitle: "运营趋势",
                                 EChartsBox: [
                                     {
-                                        title: "接管运营总量",
+                                        title: "接管运营",
                                         style: {
                                             cursor: 'pointer',
                                             width: "59.5%",
@@ -183,7 +183,7 @@
                                                         },
                                                     },
                                                     series: [{
-                                                        data: [600,610,740,750,780,900,890,910,950,950,1000,1000],
+                                                        data: [5,6,7,7,7,9,8,9,9,9,10,15],
                                                         type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -218,7 +218,7 @@
                                                 option:{
                                                     
                                                     title:{
-                                                        text:'暂无数据',
+                                                        text:'',
                                                         left:'43%',
                                                         top:'48%'
                                                     },
@@ -299,7 +299,7 @@
                                 collapseTitle: "占地面积",
                                 EChartsBox: [
                                     {
-                                        title: "占地面积增长率",
+                                        title: "占地面积",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -312,6 +312,7 @@
                                         EChartsItem: [
                                             {
                                                 serviceName: '大悟服务区',
+                                                serviceNamemin: '点军服务区',
                                                 unit: '㎡',
                                                 /*ECharts的属性*/
                                                 style: {
@@ -386,7 +387,7 @@
                                 collapseTitle: "经营面积",
                                 EChartsBox: [
                                     {
-                                        title: "经营面积增长率",
+                                        title: "经营面积",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -398,7 +399,8 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                serviceName: '大悟服务区',
+                                                serviceName: '黄冈服务区',
+                                                serviceNamemin: '恩施服务区',
                                                 unit: '㎡',
                                                 /*ECharts的属性*/
                                                 style: {
@@ -473,7 +475,7 @@
                                 collapseTitle: "车流量",
                                 EChartsBox: [
                                     {
-                                        title: "车流量",
+                                        title: "月均车流量",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -486,6 +488,7 @@
                                         EChartsItem: [
                                             {
                                                 serviceName: '大悟服务区',
+                                                serviceNamemin: '恩施服务区',
                                                 unit: '辆',
                                                 /*ECharts的属性*/
                                                 style: {
@@ -559,10 +562,10 @@
                         collapseItem: [
                             {
                                 id: "ab_2019ss",
-                                collapseTitle: "订单增长率",
+                                collapseTitle: "订单数量",
                                 EChartsBox: [
                                    {
-                                        title: "月订单数/总订单数=订单增长率",
+                                        title: "月订单数/总订单数=订单数量",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -575,6 +578,7 @@
                                         EChartsItem: [
                                             {
                                                 serviceName: '大悟服务区',
+                                                serviceNamemin: '恩施服务区',
                                                 unit: '单',
                                                 /*ECharts的属性*/
                                                 style: {
@@ -664,7 +668,8 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                serviceName: '大悟服务区',
+                                                serviceName: '浠水服务区',
+                                                serviceNamemin: '河浦服务区',
                                                 unit: '元',
                                                 /*ECharts的属性*/
                                                 style: {
@@ -742,7 +747,7 @@
                                 collapseTitle: "转换率",
                                 EChartsBox: [
                                     {
-                                        title: "销售额/车流量=转换率",
+                                        title: "月订单数量/月车流量=转换率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -754,7 +759,9 @@
                                         },
                                         EChartsItem: [
                                             {
-                                                serviceName: '大悟服务区',
+                                                serviceName: '木子店服务区',
+                                                serviceNamemin: '总路咀服务区',
+
                                                 unit: '%',
                                                 /*ECharts的属性*/
                                                 style: {
@@ -971,7 +978,7 @@
                     //                             },
                     //                             option: {
                     //                                 title:{
-                    //                                     text:'暂无数据',
+                    //                                     text:'',
                     //                                     left:'43%',
                     //                                     top:'48%'
                     //                                 },
@@ -2780,7 +2787,7 @@
                                                      height: "300px",
                                                      position: "relative",
                                                      style: {
-                                                         content: "实际:暂无数据",
+                                                         content: "实际:",
                                                          width: "75%",
                                                          color: "#fff",
                                                          height: "100px",
@@ -2805,7 +2812,7 @@
                                                      height: "300px",
                                                      position: "relative",
                                                      style: {
-                                                         content: "预算:暂无数据",
+                                                         content: "预算:",
                                                          width: "75%",
                                                          color: "#fff",
                                                          height: "100px",
@@ -3490,7 +3497,7 @@
                                                      height: "300px",
                                                      position: "relative",
                                                      style: {
-                                                         content: "实际:暂无数据",
+                                                         content: "实际:",
                                                          width: "75%",
                                                          color: "#fff",
                                                          height: "100px",
@@ -3515,7 +3522,7 @@
                                                      height: "300px",
                                                      position: "relative",
                                                      style: {
-                                                         content: "预算:暂无数据",
+                                                         content: "预算:",
                                                          width: "75%",
                                                          color: "#fff",
                                                          height: "100px",
@@ -4071,11 +4078,11 @@
                             G: element.lirun ? element.lirun : '/',
                             // 业态订单数
                             J: "/",
-                            I: element.mianji ? element.mianji : '暂无数据',
+                            I: element.mianji ? element.mianji : '',
                             // 坪效
                             H: element.pingxiao ? element.pingxiao : '/',
-                            maxcart: element.carVo[0] ? element.carVo[0].count : '暂无数据',
-                            mincart: element.carVo[1] ? element.carVo[1].count : '暂无数据',
+                            maxcart: element.carVo[0] ? element.carVo[0].count : '',
+                            mincart: element.carVo[1] ? element.carVo[1].count : '',
                             refuel: element.jiayou ? element.jiayou : '/',
                             snack: element.xiaochi ? element.xiaochi : '/',
                             convenience: element.chaoshi ? element.chaoshi : '/',

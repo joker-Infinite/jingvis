@@ -29,11 +29,11 @@ export default {
                             id: "profit_2020",
                             year: 2020,
                             collapseTitle: "2020年利润",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
@@ -212,7 +212,7 @@ export default {
                                 },
                                 {
                                     title: "2020年利润业态占比/片区占比",
-                                    time: false,
+                                    istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
@@ -436,11 +436,11 @@ export default {
                             id: "profit_2019",
                             year: 2019,
                             collapseTitle: "2019年利润",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
                                 input: false,
                                 select: false,
-                                time: true,
+                                time: false,
                             },
                             EChartsBox: [
                                 {
@@ -619,7 +619,7 @@ export default {
                                 },
                                 {
                                     title: "2019年利润业态占比/片区占比",
-                                    time: false,
+                                    istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
