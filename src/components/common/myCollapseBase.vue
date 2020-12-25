@@ -46,9 +46,43 @@
               <div v-for="(sit, six) in cit.EChartsBox"
                    :key="six"
                    :style="sit.style">
-                <div class="Title" v-if="sit.showTitle==='notShow'?false:true"
-                     :id="'processingTitle^'+item.id+'^' + cix+'^'+six">
-                  {{processingTitle(sit.title,'processingTitle^'+item.id+'^' + cix+'^'+six)}}
+                <div class="Title" v-if="sit.showTitle==='notShow'?false:true">
+                  <div  :id="'processingTitle^'+item.id+'^' + cix+'^'+six">
+                    {{processingTitle(sit.title,'processingTitle^'+item.id+'^' + cix+'^'+six)}}
+                  </div>
+                  <div  class="isquery" v-if="sit.istime || sit.isselect || sit.isinput">
+                    <el-input v-model="query.inputValue"  v-if="sit.isinput"
+                            placeholder="请输入内容"></el-input>
+                  <el-select v-model="query.selectValue"
+                             v-if="sit.isselect">
+                    <el-option v-if="sit.selectOption&&sit.selectOption[0]" v-for="(oi,ox) in sit.selectOption[0]"
+                               :value="oi" :key="ox" :label="oi"></el-option>
+                  </el-select>
+                  <el-select v-if="sit.selectNum&&(sit.selectNum===3||sit.selectNum===2)">
+                    <el-option v-if="sit.selectOption&&sit.selectOption[1]" v-for="(oi,ox) in sit.selectOption[1]"
+                               :value="oi" :key="ox" :label="oi"></el-option>
+                  </el-select>
+                  <el-select v-if="sit.selectNum&&sit.selectNum===3">
+                    <el-option v-if="sit.selectOption&&sit.selectOption[2]" v-for="(oi,ox) in sit.selectOption[2]"
+                               :value="oi" :key="ox" :label="oi"></el-option>
+                  </el-select>
+                  <el-date-picker
+                          v-if="sit.istime"
+                          v-model="query.timeValue"
+                          type="monthrange"
+                          value-format="yyyy-MM"
+                          range-separator="至"
+                          start-placeholder="开始月份"
+                          end-placeholder="结束月份">
+                  </el-date-picker>
+                  <el-button icon="el-icon-search" type="primary"
+                             v-if="sit.showSearch =='notShow'?false:true"
+                             @click="refreshClick(cit,query,cit.year,item.name,sit)">搜索
+                  </el-button>
+                  <el-button type="primary" v-if="sit.year">年</el-button>
+                  <el-button type="primary" v-if="sit.month">月</el-button>
+                  <el-button type="primary" v-if="sit.day">日</el-button>
+                  </div>
                 </div>
                 <div class="query"
                      v-if="sit.time || sit.select || sit.input">
@@ -769,9 +803,12 @@
           .Title {
             position: relative;
             width: 100%;
-            height: 40px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            // background: red !important;
             background: white;
-            line-height: 40px;
+            line-height: 50px;
             text-indent: 10px;
             font-size: 18px;
             font-weight: 600;
@@ -779,7 +816,24 @@
             text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 
           }
-
+          .isquery{
+            position: absolute;
+            width: 60%;
+            height: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+            // top: 50px;
+            right: 20px;
+            text-align: center;
+          }
+          .isquery /deep/ .el-date-editor {
+            margin: 10px 20px;
+          }
+          .isquery /deep/ .el-input__inner > .el-range-separator {
+            width: 20%;
+          }
           .query {
             position: absolute;
             width: 100%;
@@ -792,7 +846,7 @@
             right: 20px;
             text-align: center;
           }
-
+          
           .query /deep/ .el-input {
             margin: 10px 0 0 0;
             width: 180px;

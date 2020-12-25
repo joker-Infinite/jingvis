@@ -32,7 +32,7 @@
                                 year:'2020',
                                 EChartsBox: [
                                     {
-                                        title: "营收",
+                                        title: "月营收",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -73,6 +73,10 @@
                                                         data: [ ],
                                                     },
                                                     yAxis: {
+                                                        name:'万元',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         axisLabel: {
                                                             formatter: function (val) {
                                                                 return val / 10000
@@ -106,9 +110,10 @@
                                         ],
                                     },
                                     {
-                                        title: "各个公司营收占比",
-                                        time: true,
+                                        title: "子公司/业态占比",
+                                        istime: true,
                                         select: false,
+
                                         timeValue: "",
                                         selectValue: "",
                                         /*包裹ECharts的父级元素的属性*/
@@ -133,7 +138,7 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "item",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}万元",
                                                         axisPointer: {
                                                             // 坐标轴指示器，坐标轴触发有效
                                                             type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
@@ -142,7 +147,7 @@
                                                     legend: {
                                                         left: "center",
                                                         bottom: "10px",
-                                                        data: ["A公司", "B公司", "C公司", "D公司", "E公司"],
+                                                        data: ["新能源", "石化", "中化交投", "国储", "高路油站","荆港嘉瑞"],
                                                     },
                                                     series: [
                                                         {
@@ -167,28 +172,33 @@
                                                             data: [
                                                                 {
                                                                     value: 335,
-                                                                    name: "A公司",
+                                                                    name: "新能源",
                                                                     itemStyle: {color: "#3AA1FF"},
                                                                 },
                                                                 {
                                                                     value: 310,
-                                                                    name: "B公司",
+                                                                    name: "石化",
                                                                     itemStyle: {color: "#59D4D4"},
                                                                 },
                                                                 {
                                                                     value: 234,
-                                                                    name: "C公司",
+                                                                    name: "中化交投",
                                                                     itemStyle: {color: "#4ECB73"},
                                                                 },
                                                                 {
                                                                     value: 135,
-                                                                    name: "D公司",
+                                                                    name: "国储",
                                                                     itemStyle: {color: "#F8D33D"},
                                                                 },
                                                                 {
                                                                     value: 1548,
-                                                                    name: "E公司",
+                                                                    name: "高路油站",
                                                                     itemStyle: {color: "#F2637B"},
+                                                                },
+                                                                {
+                                                                    value: 1548,
+                                                                    name: "荆港嘉瑞",
+                                                                    itemStyle: {color: "#00f"},
                                                                 },
                                                             ],
                                                         },
@@ -288,7 +298,7 @@
                                 year:'2019',
                                 EChartsBox: [
                                     {
-                                        title: "营收",
+                                        title: "月营收",
                                         time: false,
                                         select: false,
                                         timeValue: "",
@@ -329,6 +339,10 @@
                                                         data: [],
                                                     },
                                                     yAxis: {
+                                                        name:'万元',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         axisLabel: {
                                                             formatter: function (val) {
                                                                 return val / 10000
@@ -362,7 +376,7 @@
                                         ],
                                     },
                                     {
-                                        title: "各个公司营收占比",
+                                        title: "子公司/业态占比",
                                         time: true,
                                         select: false,
                                         timeValue: "",
@@ -389,7 +403,7 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "item",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}万元",
                                                         axisPointer: {
                                                             // 坐标轴指示器，坐标轴触发有效
                                                             type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
@@ -398,7 +412,7 @@
                                                     legend: {
                                                         left: "center",
                                                         bottom: "10px",
-                                                        data: ["A公司", "B公司", "C公司", "D公司", "E公司"],
+                                                        data: ["新能源", "石化", "中化交投", "国储", "高路油站","荆港嘉瑞"],
                                                     },
                                                     series: [
                                                         {
@@ -423,28 +437,33 @@
                                                             data: [
                                                                 {
                                                                     value: 335,
-                                                                    name: "A公司",
+                                                                    name: "新能源",
                                                                     itemStyle: {color: "#3AA1FF"},
                                                                 },
                                                                 {
                                                                     value: 310,
-                                                                    name: "B公司",
+                                                                    name: "石化",
                                                                     itemStyle: {color: "#59D4D4"},
                                                                 },
                                                                 {
                                                                     value: 234,
-                                                                    name: "C公司",
+                                                                    name: "中化交投",
                                                                     itemStyle: {color: "#4ECB73"},
                                                                 },
                                                                 {
                                                                     value: 135,
-                                                                    name: "D公司",
+                                                                    name: "国储",
                                                                     itemStyle: {color: "#F8D33D"},
                                                                 },
                                                                 {
                                                                     value: 1548,
-                                                                    name: "E公司",
+                                                                    name: "高路油站",
                                                                     itemStyle: {color: "#F2637B"},
+                                                                },
+                                                                {
+                                                                    value: 1548,
+                                                                    name: "荆港嘉瑞",
+                                                                    itemStyle: {color: "#00f"},
                                                                 },
                                                             ],
                                                         },

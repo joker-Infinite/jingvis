@@ -552,7 +552,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "实际/预算",
+                                    title: "2020年实际/预算",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1561,7 +1561,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "实际/预算",
+                                    title: "2019年实际/预算",
                                     time: false,
                                     select: false,
                                     style: {

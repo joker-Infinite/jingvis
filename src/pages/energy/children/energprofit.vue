@@ -86,6 +86,10 @@
                                                         ],
                                                     },
                                                     yAxis: {
+                                                        name:'万元',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         axisLabel: {
                                                             formatter: function (val) {
                                                                 return val / 10000

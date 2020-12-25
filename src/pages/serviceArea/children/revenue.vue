@@ -213,7 +213,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年营收业态占比/片区占比",
+                                    title: "2020年营收业态占比/片区占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -887,6 +887,7 @@ export default {
                     },
                 })
                 .then((v) => {
+                    console.log(v)
                     data = v.data.data;
                     let mm = [];
                     this.collapseData.forEach((item, index) => {

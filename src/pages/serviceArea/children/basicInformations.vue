@@ -470,10 +470,10 @@
                         collapseItem: [
                             {
                                 id: "ab_20s",
-                                collapseTitle: "日均车流量",
+                                collapseTitle: "车流量",
                                 EChartsBox: [
                                     {
-                                        title: "日均车流量",
+                                        title: "车流量",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -511,13 +511,17 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "axis",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}辆",
                                                         // axisPointer: {
                                                         //     type: "shadow"
                                                         // },
                                                     },
                                                     yAxis: {
                                                         type: 'value',
+                                                        name:'辆',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         splitLine: {
                                                             show: false
                                                         },
@@ -526,7 +530,7 @@
                                                         },
                                                     },
                                                     series: [{
-                                                        data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                                                        data: [576, 865, 664, 265, 943, 823, 932, 721, 621, 1034, 1069, 599],
                                                         type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -558,7 +562,7 @@
                                 collapseTitle: "订单增长率",
                                 EChartsBox: [
                                    {
-                                        title: "订单增长率",
+                                        title: "月订单数/总订单数=订单增长率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -596,13 +600,17 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "axis",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}单",
                                                         // axisPointer: {
                                                         //     type: "shadow"
                                                         // },
                                                     },
                                                     yAxis: {
                                                         type: 'value',
+                                                        name:'单',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         splitLine: {
                                                             show: false
                                                         },
@@ -611,7 +619,7 @@
                                                         },
                                                     },
                                                     series: [{
-                                                        data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                                                        data: [87, 76, 56, 76, 54, 12, 43, 32, 32, 93, 66, 89],
                                                         type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -644,7 +652,7 @@
                                 collapseTitle: "客单价",
                                 EChartsBox: [
                                    {
-                                        title: "客单价",
+                                        title: "订单金额/订单数量=客单价",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -682,13 +690,17 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "axis",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}元",
                                                         // axisPointer: {
                                                         //     type: "shadow"
                                                         // },
                                                     },
                                                     yAxis: {
                                                         type: 'value',
+                                                        name:'元',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         splitLine: {
                                                             show: false
                                                         },
@@ -697,7 +709,7 @@
                                                         },
                                                     },
                                                     series: [{
-                                                        data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                                                        data: [87600, 76500, 56400, 7650, 5430, 1230, 4320, 3210, 3210, 9340, 6690, 8990],
                                                         type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -730,7 +742,7 @@
                                 collapseTitle: "转换率",
                                 EChartsBox: [
                                     {
-                                        title: "转换率",
+                                        title: "销售额/车流量=转换率",
                                         style: {
                                             cursor: 'pointer',
                                             width: "100%",
@@ -768,13 +780,17 @@
                                                     },
                                                     tooltip: {
                                                         trigger: "axis",
-                                                        formatter: "{b} : {c}",
+                                                        formatter: "{b} : {c}%",
                                                         // axisPointer: {
                                                         //     type: "shadow"
                                                         // },
                                                     },
                                                     yAxis: {
                                                         type: 'value',
+                                                        name:'%',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         splitLine: {
                                                             show: false
                                                         },
@@ -783,7 +799,7 @@
                                                         },
                                                     },
                                                     series: [{
-                                                        data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                                                        data: [50,40,50,70,80,50,70,55,45,60,75,80],
                                                         type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
