@@ -38,7 +38,7 @@
         </div>
       </template>
     </animation> -->
-    <el-dialog title="蔡甸服务区" align="center" width="940px" :modal-append-to-body="false" :visible.sync="visible">
+    <el-dialog title="蔡甸服务区" align="center" width="900px" :modal-append-to-body="false" :visible.sync="visible">
       <img-floor-plan></img-floor-plan>
     </el-dialog>
   </div>
@@ -538,6 +538,15 @@ new AMap.MarkerClusterer(
   }
 
   .mapBox /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
+    color: white;
+  }
+
+  .mapBox /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__header {
+    padding: 10px 20px;
+  }
+
+  .mapBox /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__body {
+    padding: 0;
     color: white;
   }
 

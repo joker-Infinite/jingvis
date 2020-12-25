@@ -1,6 +1,7 @@
 <template>
   <div style="width: 100%;height: 100%" class="sBody">
-    <el-dialog width="1000px" align="center" :title="form.name" :visible.sync="visible" :modal="false">
+    <el-dialog width="1000px" align="center" :title="form.name" :visible.sync="visible" :modal="false"
+               @close="$emit('showPopover',true)">
       <el-form ref="form" :model="form" label-width="125px" class="form" disabled>
         <el-col :span="8" v-for="(it,ix) in formData" :key="ix">
           <el-form-item :label="it.label+'：'">
@@ -162,6 +163,11 @@
 
   .sBody /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
     color: black !important;
+  }
+
+  .sBody /deep/ .el-dialog__wrapper > .el-dialog > .el-dialog__body {
+    padding: 30px 20px !important;
+    color: white;
   }
 
   .form {
