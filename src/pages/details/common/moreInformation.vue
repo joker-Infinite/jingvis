@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;height: 100%" class="sBody">
     <el-dialog width="1000px" align="center" :title="form.name" :visible.sync="visible" :modal="false"
-               @close="$emit('showPopover',true)">
+               @close="$emit('showPopover', true)">
       <el-form ref="form" :model="form" label-width="125px" class="form" disabled>
         <el-col :span="8" v-for="(it,ix) in formData" :key="ix">
           <el-form-item :label="it.label+'：'">
@@ -9,8 +9,8 @@
           </el-form-item>
         </el-col>
         <div class="echarts">
-          <div v-for="i in 3" :key="i" :id="'details_'+i"
-               style="width: 100%;height:300px;margin-bottom: 10px"></div>
+          <div v-for="i in chartBox.length" :key="i" :id="'details_'+i"
+               style="width: 49.5%;height:300px;margin-bottom: 10px"></div>
         </div>
       </el-form>
     </el-dialog>
@@ -26,7 +26,9 @@
 				form: {
 					name: ''
 				},
-				formData: []
+				formData: [],
+				chartBox: [],
+				ID: []
 			}
 		},
 		methods: {
@@ -35,8 +37,11 @@
 					return '';
 				}
 				this.formData = v.formData;
+				this.chartBox = v.chartBox;
 				this.visible = true;
 				this.$nextTick(_ => {
+					this.$echarts.init(document.getElementById('details_1')).dispose();
+					this.$echarts.init(document.getElementById('details_2')).dispose();
 					let form = document.getElementsByClassName('form')[0];
 					form.scrollTo(0, 0);
 					this.form.name = v.name;
@@ -45,107 +50,18 @@
 			},
 			ECharts() {
 				let eId = [];
-				for (let i = 1; i < 4; i++) {
+				for (let i = 1; i < this.chartBox.length + 1; i++) {
 					let id = 'details_' + i;
 					eId.push(this.$echarts.init(document.getElementById(id)))
 				}
-				let option = [
-					{
-						barWidth: 30,
-						title: {
-							text: '近六个月收益',
-							left: 'center'
-						},
-						tooltip: {
-							trigger: 'item',
-							formatter: '{b}月:{c}'
-						},
-						xAxis: {
-							type: 'category',
-							data: ['1', '2', '3', '4', '5', '6']
-						},
-						yAxis: {
-							type: 'value'
-						},
-						grid: {
-							left: 40,
-							right: 20,
-							top: 40,
-							bottom: 25
-						},
-						series: [{
-							data: [120, 200, 150, 80, 70, 110],
-							type: 'bar',
-							itemStyle: {
-								color: '#379DFB'
-							}
-						}]
-					},
-					{
-						barWidth: 30,
-						title: {
-							text: '近六个月订单数',
-							left: 'center'
-						},
-						tooltip: {
-							trigger: 'axis',
-							formatter: '{b}月:{c}'
-						},
-						xAxis: {
-							type: 'category',
-							data: ['1', '2', '3', '4', '5', '6']
-						},
-						yAxis: {
-							type: 'value'
-						},
-						grid: {
-							left: 40,
-							right: 20,
-							top: 40,
-							bottom: 25
-						},
-						series: [{
-							data: [120, 200, 150, 80, 70, 110],
-							type: 'line',
-							itemStyle: {
-								color: '#379DFB'
-							}
-						}]
-					},
-					{
-						barWidth: 30,
-						title: {
-							text: '近六个月客单价',
-							left: 'center'
-						},
-						tooltip: {
-							trigger: 'axis',
-							formatter: '{b}月:{c}'
-						},
-						xAxis: {
-							type: 'category',
-							data: ['1', '2', '3', '4', '5', '6']
-						},
-						yAxis: {
-							type: 'value'
-						},
-						grid: {
-							left: 40,
-							right: 20,
-							top: 40,
-							bottom: 25
-						},
-						series: [{
-							data: [120, 200, 150, 80, 70, 110],
-							type: 'line',
-							itemStyle: {
-								color: '#379DFB'
-							}
-						}]
-					}
-				];
+				this.ID = eId;
 				eId.forEach((i, x) => {
-					i.setOption(option[x]);
+					if (this.openIndex % 2 == 0) {
+						document.getElementById(i).removeAttribute("_echarts_instance_");
+					}
+					this.$nextTick(_ => {
+						i.setOption(this.chartBox[x]);
+					})
 				})
 			}
 		}
@@ -171,14 +87,14 @@
   }
 
   .form {
-    height: 600px;
+    min-height: 300px;
     overflow-y: scroll;
 
     .echarts {
       width: 100%;
       display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
+      flex-direction: row;
+      flex-wrap: nowrap;
       justify-content: space-between;
     }
   }

@@ -127,6 +127,7 @@
 					xAxis: {
 						type: "value",
 						position: "bottom",
+						max: 100,
 						axisTick: {
 							//坐标轴刻度
 							show: false,
@@ -238,7 +239,7 @@
 							title: {
 								x: "center",
 								y: '',
-								text: "预算控制率",
+								text: "回款率",
 								show: true,
 								textStyle: {
 									fontFamily: "幼圆",

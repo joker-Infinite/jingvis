@@ -3,8 +3,8 @@
 * */
 export default [
       {
-            path: 'details',
-            name: 'details',
-            component: () => import(/* webpackChunkName: "details" */ '@/pages/details/details.vue'),
+            path: 'serviceDetails',
+            name: 'serviceDetails',
+            component: () => import(/* webpackChunkName: "details" */ '@/pages/details/serviceDetails.vue'),
       },
 ]

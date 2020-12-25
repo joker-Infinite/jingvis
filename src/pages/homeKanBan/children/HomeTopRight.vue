@@ -53,6 +53,7 @@
       </div>
     </div>
     <show-e-charts ref="showECharts" :backdrop="backdrop"></show-e-charts>
+    <show-deatils ref="showDetails"></show-deatils>
   </div>
 </template>
 
@@ -62,6 +63,7 @@
 	import clone from "../../../../public/api/clone"
 	import Border from "./border";
 	import BorderPlanB from "./borderPlanB";
+	import ShowDeatils from "../../../components/common/showDeatils";
 
 	export default {
 		name: "HomeTopRight",
@@ -71,7 +73,7 @@
 				default: 0
 			}
 		},
-		components: {BorderPlanB, Border, ShowECharts, Operations},
+		components: {ShowDeatils, BorderPlanB, Border, ShowECharts, Operations},
 		data() {
 			return {
 				selectBD: 2,
@@ -289,6 +291,7 @@
 				})
 			},
 			initECharts_bottom_left(m, v) {
+				let that = this;
 				let HomeTopRight_bottom_left = this.$echarts.init(
 					document.getElementById("HomeTopRight_bottom_left")
 				);
@@ -408,7 +411,17 @@
 						},
 					],
 				});
-				this.BD = clone(option)
+				this.BD = clone(option);
+				HomeTopRight_bottom_left.on('click', v => {
+					let name = '';
+					if (this.selectBD == 1) {
+						name = 'serviceDetails'
+					}
+					if (this.selectBD == 2) {
+						name = 'JYZXiangQing'
+					}
+					that.$refs['showDetails'].openDialog(name, v.name);
+				});
 				this.isAxiosw(HomeTopRight_bottom_left, option, v)
 			},
 			isResize() {
