@@ -2,18 +2,17 @@
   <div class="imgBox">
     <img src="../../assets/service.jpg" class="img"/>
     <div class="smallBox" v-for="i in box" :style="i.style" @click="$refs['more'].openDialog(i)">
-      <el-popover placement="top-start"
+      <el-popover placement="bottom"
                   :title="i.name"
                   width="300"
                   v-if="i.name !=='大厅'"
                   trigger="hover">
-        <my-table :columns="i.columns"
-                  id="elPopoverTable"
-                  :data="i.data"
-                  height="100%"
-                  :show-index="false"
-                  :multiple="false"
-                  :is-pagination="false"></my-table>
+        <table class="table" border="1" cellspacing="0">
+          <tr v-for="(it,ix) in i.data">
+            <th>{{it.a}}</th>
+            <th>{{it.b}}</th>
+          </tr>
+        </table>
         <div style="width: 100%;height: 100%" slot="reference"></div>
       </el-popover>
     </div>
@@ -357,43 +356,39 @@
     .smallBox {
       position: absolute;
       background: none !important;
+
+
     }
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    font-weight: 100;
+  }
+
+  table, th, td {
+    border: 1px solid #606266;
+    line-height: 2.5;
   }
 </style>
 <style>
   .el-popover {
-    background: rgba(15, 101, 208, 0.85);
-    border: 1px solid rgba(15, 101, 208, 0.85);
+    background: rgba(148, 193, 255, 0.8);
+    border: 1px solid rgba(148, 193, 255, 0.8);
   }
 
   .el-popper[x-placement^=bottom] .popper__arrow::after {
-    border-bottom-color: rgba(15, 101, 208, 0.85) !important;
+    border-bottom-color: rgba(148, 193, 255, 0.8) !important;
   }
 
   .popper__arrow {
-    border-bottom-color: rgba(15, 101, 208, 0.85) !important;
+    border-bottom-color: rgba(148, 193, 255, 0.8) !important;
   }
 
   .el-popover__title {
     text-align: center;
-    color: white;
-  }
-
-  #elPopoverTable /deep/ .el-table > .el-table__header-wrapper > .el-table__header > .has-gutter > tr {
-    background: rgba(15, 101, 208, 0.85) !important;
-  }
-
-  #elPopoverTable /deep/ .el-table > .el-table__header-wrapper > .el-table__header > .has-gutter > tr > th {
-    background: rgba(15, 101, 208, 0) !important;
-    color: white !important;
-  }
-
-  #elPopoverTable /deep/ .el-table > .el-table__body-wrapper > .el-table__body > tbody > tr {
-    background: rgba(15, 101, 208, 0.85) !important;
-    color: white !important;
-  }
-
-  #elPopoverTable /deep/ .el-table > .el-table__body-wrapper > .el-table__body > tbody > tr > th {
-    background: rgba(15, 101, 208, 0) !important;
+    color: #606266;
   }
 </style>
