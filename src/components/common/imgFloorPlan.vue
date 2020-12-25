@@ -1,8 +1,9 @@
 <template>
   <div class="imgBox">
-    <img src="../../assets/service.jpg" class="img"/>
-    <div class="smallBox" v-for="i in box" :style="i.style" @click="$refs['more'].openDialog(i)">
+    <img src="../../assets/service_m.jpg" class="img"/>
+    <div class="smallBox" v-for="i in box" :style="i.style" @click="popoverDisabled=true,$refs['more'].openDialog(i)">
       <el-popover placement="bottom"
+                  :disabled="popoverDisabled"
                   :title="i.name"
                   width="300"
                   v-if="i.name !=='大厅'"
@@ -16,7 +17,7 @@
         <div style="width: 100%;height: 100%" slot="reference"></div>
       </el-popover>
     </div>
-    <more-information ref="more"></more-information>
+    <more-information ref="more" @showPopover="popoverDisabled=false"></more-information>
   </div>
 </template>
 
@@ -29,6 +30,7 @@
 		components: {MyTable, MoreInformation},
 		data() {
 			return {
+				popoverDisabled: false,
 				box: [
 					{
 						name: '办公区',
@@ -375,7 +377,7 @@
 </style>
 <style>
   .el-popover {
-    background: rgba(148, 193, 255, 0.8);
+    background: rgba(181, 212, 255, 0.75);
     border: 1px solid rgba(148, 193, 255, 0.8);
   }
 
@@ -389,6 +391,6 @@
 
   .el-popover__title {
     text-align: center;
-    color: #606266;
+    color: #2b2c30;
   }
 </style>
