@@ -1640,11 +1640,11 @@ export default {
                         {
                             id: "mmm_2020",
                             year: 2020,
-                            collapseTitle: "2020年利润发展趋势",
+                            collapseTitle: "2020年利润",
                             EChartsBox: [
                                 {
                                     title: "",
-                                    select: true,
+                                    select: false,
                                     selectNum: 3,
                                     selectOption: [
                                         ["新能源", "石化", "国储", "荆港嘉瑞"],
@@ -1767,11 +1767,11 @@ export default {
                         {
                             id: "mmm_2019",
                             year: 2019,
-                            collapseTitle: "2019年利润发展趋势",
+                            collapseTitle: "2019年利润",
                             EChartsBox: [
                                 {
                                     title: "",
-                                    select: true,
+                                    select: false,
                                     selectNum: 3,
                                     selectOption: [
                                         ["新能源", "石化", "国储", "荆港嘉瑞"],
@@ -1908,9 +1908,9 @@ export default {
                             id: "money_2020",
                             year: 2020,
                             collapseTitle: "2020年现金流量",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
-                                select: true,
+                                select: false,
                                 selectOption: [["新能源", "石化", "国储", "荆港嘉瑞"]],
                             },
                             EChartsBox: [
@@ -2154,9 +2154,9 @@ export default {
                             id: "money_2019",
                             year: 2019,
                             collapseTitle: "2019年现金流量",
-                            allQuery: true,
+                            allQuery: false,
                             allQueryData: {
-                                select: true,
+                                select: false,
                                 selectOption: [["新能源", "石化", "国储", "荆港嘉瑞"]],
                             },
                             EChartsBox: [

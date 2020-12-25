@@ -32,7 +32,7 @@ export default {
                             collapseTitle: "2020年业态结构",
                             EChartsBox: [
                                 {
-                                    title: "2020年品牌店面收入占比",
+                                    title: "品牌收入占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -79,6 +79,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -346,7 +347,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年品牌经营面积占比",
+                                    title: "品牌经营面积占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -526,7 +527,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年品牌列表",
+                                    title: "品牌列表",
                                     style: {
                                         width: "100%",
                                         height: "310px",
@@ -624,7 +625,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020业态分类店面收入占比",
+                                    title: "业态分类占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -671,6 +672,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -782,7 +784,7 @@ export default {
                                     ],
                                 },
                                  {
-                                    title: "2020业态分类经营面积占比",
+                                    title: "业态经营面积占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -812,8 +814,7 @@ export default {
                                                     itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter:
-                                                        "{b}:{c}: ({d}%)",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -967,7 +968,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年业态列表",
+                                    title: "业态列表",
                                     style: {
                                         width: "100%",
                                         height: "330px",
@@ -1083,7 +1084,7 @@ export default {
                             collapseTitle: "2019年业态结构",
                             EChartsBox: [
                                 {
-                                    title: "2019年品牌店面收入占比",
+                                    title: "品牌收入占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1130,6 +1131,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -1397,7 +1399,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年品牌经营面积占比",
+                                    title: "品牌经营面积占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1427,8 +1429,7 @@ export default {
                                                     itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter:
-                                                        "{b}:{c}: ({d}%)",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -1577,7 +1578,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年品牌列表",
+                                    title: "品牌列表",
                                     style: {
                                         width: "100%",
                                         height: "310px",
@@ -1675,7 +1676,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019业态分类店面收入占比",
+                                    title: "业态分类占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1722,6 +1723,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter:"{b}:{c}: ({d}%)"
                                                 },
                                                 series: [
                                                     {
@@ -1833,7 +1835,7 @@ export default {
                                     ],
                                 },
                                  {
-                                    title: "2019业态分类经营面积占比",
+                                    title: "业态经营面积占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1863,8 +1865,7 @@ export default {
                                                     itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter:
-                                                        "{b}:{c}: ({d}%)",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -2018,7 +2019,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年业态列表",
+                                    title: "业态列表",
                                     style: {
                                         width: "100%",
                                         height: "330px",

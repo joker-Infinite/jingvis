@@ -31,7 +31,7 @@ export default {
                             collapseTitle: "2020回款率",
                             EChartsBox: [
                                 {
-                                    title: "2020年回款率",
+                                    title: "回款率",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -143,7 +143,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年回款率排行",
+                                    title: "回款率排行",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -293,7 +293,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年欠款超期",
+                                    title: "欠款超期",
                                     style: {
                                         width: "33%",
                                         height: "350px",
@@ -362,7 +362,7 @@ export default {
                                 },
 
                                 {
-                                    title: "2020年预计收款",
+                                    title: "预计收款",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -598,7 +598,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年供应商回款占比",
+                                    title: "回款占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -746,7 +746,7 @@ export default {
                             collapseTitle: "2019回款率",
                             EChartsBox: [
                                 {
-                                    title: "2019年回款率",
+                                    title: "回款率",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -858,7 +858,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年回款率排行",
+                                    title: "回款率排行",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1008,7 +1008,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年欠款超期",
+                                    title: "欠款超期",
                                     style: {
                                         width: "33%",
                                         height: "350px",
@@ -1077,7 +1077,7 @@ export default {
                                 },
 
                                 {
-                                    title: "2019年预计收款",
+                                    title: "预计收款",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1313,7 +1313,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年供应商回款占比",
+                                    title: "回款占比",
                                     time: false,
                                     select: false,
                                     style: {

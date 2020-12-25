@@ -217,22 +217,24 @@
 						yearDate: 2019
 					}
 				}).then((res) => {
-					console.log(res);
+					console.log(res)
 					let name = [];
 					let links = [];
 					name.push({name: '车辆'});
-					res.data.forEach(item => {
-						item.stationMoneyTypeVo.moneyVoList.forEach(i => {
+					let sum = 0;
+					res.data.forEach(item => {	
+						item.moneyVoList.forEach(i => {
 							links.push({
-								source: i.goodsType == '柴油' ? '0' : i.goodsType,
-								target: item.stationMoneyTypeVo.typeName,
-								value: parseInt(item.sumJvCount * (i.ratio / 100))
+								source: i.goodsType.substr(0,2) == '柴油' ? `0#${i.goodsType.substr(2)}` : i.goodsType,
+								target: item.typeName,
+								value: i.count
 							})
+							sum+=parseInt(i.count)
 						})
-						links.push({
-							source: item.stationMoneyTypeVo.typeName,
+						links.unshift({
+							source: item.typeName ,
 							target: '车辆',
-							value: parseInt(item.sumJvCount),
+							value: sum.toString(),
 						})
 						/*links.push({
 							source: item.stationMoneyTypeVo.typeName,
@@ -240,14 +242,17 @@
 							value: parseInt(res.data[0].sumJvCount) + parseInt(res.data[1].sumJvCount),
 						})*/
 					});
-					links.forEach(i => {
+					let ind=true
+					links.forEach((i,index )=> {
 						let color = '';
-						if (i.source == 0) color = '#00BBFF';
-						if (i.source == 98) color = '#4860FF';
-						if (i.source == 95) color = '#D7C12F';
-						if (i.source == 92) color = '#7C1BDA';
-						if (i.source == '汽油') color = '#30D6FC';
-						if (i.source == '柴油') color = '#52E266';
+						console.log(i)
+						color = '#00BBFF'
+						// if (index== 1) color = '#00BBFF';
+						// if (index == 2) color = '#4860FF';
+						// if (index == 3) color = '#D7C12F';
+						// if (index == 4) color = '#7C1BDA';
+						// if (index == 5) color = '#30D6FC';
+						// if (index == 6) color = '#52E266';
 						name.push({
 							name: i.source,
 							itemStyle: {
@@ -256,10 +261,11 @@
 									borderColor: color
 								}
 							}
-						})
+						})	
 					})
 					option.series.data = name;
 					option.series.links = links;
+					console.log(name,links)
 					HomeTopRight_top.setOption(option);
 					this.loading_ = false;
 				})

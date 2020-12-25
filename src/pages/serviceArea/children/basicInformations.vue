@@ -18,173 +18,379 @@
                     </el-option>
                 </el-select>
             </div> -->
-            
-            <div>
-                <el-button @click="indexHover=item" :class="{hover:indexHover===item}" v-for="(item) of 6" :key="item">{{2014+item}}</el-button>
-            </div>
 
+            <div>
+                <el-button @click="indexHover = item" :class="{ hover: indexHover === item }" v-for="item of 6" :key="item">
+                    {{ 2014 + item }}
+                </el-button>
+            </div>
         </div>
-        <my-collapse-base ref="collapse" @ClickTotal="ClickTotal" :collapseData="collapseData"
-                          @searchQuery="searchQuery" @selectionChange="selectionChange" :navBarShow="true"
-                          :totalCount="totalCount">
-        </my-collapse-base>
+        <my-collapse-base
+            ref="collapse"
+            @ClickTotal="ClickTotal"
+            :collapseData="collapseData"
+            @searchQuery="searchQuery"
+            @selectionChange="selectionChange"
+            :navBarShow="true"
+            :totalCount="totalCount"
+        ></my-collapse-base>
     </div>
 </template>
 <script>
-    import MyCollapseBase from "../../../components/common/myCollapseBase";
-    import common from "../../../components/js/common";
+import MyCollapseBase from "../../../components/common/myCollapseBase";
+import common from "../../../components/js/common";
 
-    export default {
-        name: "revenue",
-        components: {MyCollapseBase},
-        mixins: [common],
-        props: {
-            viewChange: {
-                type: Boolean,
-                default: false,
-            },
+export default {
+    name: "revenue",
+    components: { MyCollapseBase },
+    mixins: [common],
+    props: {
+        viewChange: {
+            type: Boolean,
+            default: false,
         },
-        data() {
-            return {
-                indexHover:5,
-                collapseData: [
-                    {
-                        id: "revenueTable",
-                        name: "基础信息",
-                        allShow:true,
-                        icon: require("../../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "ab_2019",
-                                collapseTitle: "基础信息",
-                                EChartsBox: [
-                                    {
-                                        title: "服务区列表",
-                                        time: true,
-                                        input: true,
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
+    },
+    data() {
+        return {
+            indexHover: 5,
+            collapseData: [
+                {
+                    id: "revenueTable",
+                    name: "基础信息",
+                    allShow: true,
+                    icon: require("../../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "ab_2019",
+                            collapseTitle: "基础信息",
+                            EChartsBox: [
+                                {
+                                    title: "服务区列表",
+                                    time: true,
+                                    input: true,
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "550px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            type: "table",
                                             height: "550px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                type: "table",
-                                                height: "550px",
-                                                style: {
-                                                    width: "100%",
-                                                    background: "#FFF",
+                                            style: {
+                                                width: "100%",
+                                                background: "#FFF",
+                                            },
+                                            isPagination: true,
+                                            columns: [
+                                                { prop: "serviceName", label: "服务区名称" },
+                                                { prop: "B", label: "高速名称" },
+                                                {
+                                                    prop: "C",
+                                                    label: "车流量(辆)",
+                                                    children: [
+                                                        { prop: "maxcart", label: "大车" },
+                                                        { prop: "mincart", label: "小车" },
+                                                    ],
                                                 },
-                                                isPagination: true,
-                                                columns: [
-                                                    {prop: "serviceName", label: "服务区名称"},
-                                                    {prop: "B", label: "高速名称"},
-                                                    {
-                                                        prop: "C",
-                                                        label: "车流量(辆)",
-                                                        children: [
-                                                            {prop: "maxcart", label: "大车"},
-                                                            {prop: "mincart", label: "小车"},
-                                                        ],
-                                                    },
-                                                    {prop: "shouyi", label: "收益(元)"},
-                                                    {prop: "G", label: "利润(元)"},
-                                                    {prop: "H", label: "坪效(元)"},
-                                                    {prop: "I", label: "面积(m)"},
+                                                { prop: "shouyi", label: "收益(元)" },
+                                                { prop: "G", label: "利润(元)" },
+                                                { prop: "H", label: "坪效(元)" },
+                                                { prop: "I", label: "面积(m)" },
 
+                                                {
+                                                    prop: "J",
+                                                    label: "业态订单数",
+                                                    children: [
+                                                        { prop: "refuel", label: "加油" },
+                                                        { prop: "snack", label: "小吃" },
+                                                        { prop: "convenience", label: "便利店" },
+                                                        { prop: "catering", label: "餐饮" },
+                                                    ],
+                                                },
+                                            ],
+                                            tableData: [],
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    id: "revenue",
+                    name: "运营趋势",
+                    icon: require("../../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "ab_20195",
+                            collapseTitle: "运营趋势",
+                            EChartsBox: [
+                                {
+                                    title: "接管运营",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "59.5%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "",
+                                            unit: "个",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}个",
+                                                },
+                                                yAxis: {
+                                                    name: "个",
+                                                    nameTextStyle: {
+                                                        color: "#000",
+                                                    },
+                                                    type: "value",
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                },
+                                                series: [
                                                     {
-                                                        prop: "J",
-                                                        label: "业态订单数",
-                                                        children: [
-                                                            {prop: "refuel", label: "加油"},
-                                                            {prop: "snack", label: "小吃"},
-                                                            {prop: "convenience", label: "便利店"},
-                                                            {prop: "catering", label: "餐饮"},
+                                                        data: [5, 6, 7, 7, 7, 9, 8, 9, 9, 9, 10, 15],
+                                                        type: "line",
+                                                        lineStyle: {
+                                                            color: "#fea528",
+                                                            width: 2,
+                                                            shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
+                                                            shadowBlur: 10,
+                                                            shadowOffsetY: 10,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: "等级分类占比",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "39.5%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                    left: "43%",
+                                                    top: "48%",
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                    formatter: "{a} <br/>{b}: {c} ({d}%)",
+                                                },
+                                                legend: {
+                                                    orient: "vertical",
+                                                    right: 10,
+                                                    top: "center",
+                                                    data: ["Ⅰ类", "Ⅱ类", "Ⅲ类", "Ⅳ类", "Ⅴ类"],
+                                                },
+                                                series: [
+                                                    {
+                                                        name: "访问来源",
+                                                        type: "pie",
+                                                        radius: ["50%", "70%"],
+                                                        avoidLabelOverlap: false,
+                                                        label: {
+                                                            show: false,
+                                                            position: "center",
+                                                        },
+                                                        emphasis: {
+                                                            label: {
+                                                                show: true,
+                                                                fontSize: "30",
+                                                                fontWeight: "bold",
+                                                            },
+                                                        },
+                                                        labelLine: {
+                                                            show: false,
+                                                        },
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color: function(v) {
+                                                                    let colorList = [
+                                                                        "#76c15c",
+                                                                        "#15b3e2",
+                                                                        "#2e65fd",
+                                                                        "#1fcaa8",
+                                                                        "#ee6565",
+                                                                        "#fec02a",
+                                                                        "#fe3922",
+                                                                        "#52fe36",
+                                                                        "#fe3afc",
+                                                                    ];
+                                                                    return colorList[v.dataIndex];
+                                                                },
+                                                            },
+                                                        },
+                                                        data: [
+                                                            { value: 335, name: "Ⅰ类" },
+                                                            { value: 310, name: "Ⅱ类" },
+                                                            { value: 234, name: "Ⅲ类" },
+                                                            { value: 135, name: "Ⅳ类" },
+                                                            { value: 1548, name: "Ⅴ类" },
                                                         ],
                                                     },
                                                 ],
-                                                tableData: [],
                                             },
-                                        ],
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    id: "revenuep",
+                    name: "占地面积",
+                    icon: require("../../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "ab_2019esp",
+                            collapseTitle: "占地面积",
+                            EChartsBox: [
+                                {
+                                    title: "占地面积",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
                                     },
-                                    
-                                ],
-                            },
-                        ],
-                    },
-                    {
-                        id: "revenue",
-                        name: "运营趋势",
-                        icon: require("../../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "ab_20195",
-                                collapseTitle: "运营趋势",
-                                EChartsBox: [
-                                    {
-                                        title: "接管运营",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "59.5%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "大悟服务区",
+                                            serviceNamemin: "点军服务区",
+                                            unit: "㎡",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}㎡",
+                                                    // axisPointer: {
+                                                    //     type: "shadow"
+                                                    // },
+                                                },
+                                                yAxis: {
+                                                    type: "value",
+                                                    name: "㎡",
+                                                    nameTextStyle: {
+                                                        color: "#000",
+                                                    },
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
+                                                },
+                                                series: [
+                                                    {
+                                                        data: [600, 610, 740, 750, 780, 900, 890, 910, 950, 950, 1000, 1000],
+                                                        type: "line",
 
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '',
-                                                unit: '个',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
-                                                },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}个",
-                                                    },
-                                                    yAxis: {
-                                                        name: "个",
-                                                        nameTextStyle: {
-                                                            color: "#000",
-                                                        },
-                                                        type: 'value',
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
-                                                        data: [5,6,7,7,7,9,8,9,9,9,10,15],
-                                                        type: 'line',
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -192,174 +398,101 @@
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    }]
-                                                }
+                                                    },
+                                                ],
                                             },
-                                        ],
-                                    },
-                                    {
-                                        title: "等级分类占比",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "39.5%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
                                         },
-                                        EChartsItem: [
-                                            {
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
-                                                },
-                                                option:{
-                                                    
-                                                    title:{
-                                                        text:'',
-                                                        left:'43%',
-                                                        top:'48%'
-                                                    },
-                                                    tooltip: {
-                                                        trigger: 'item',
-                                                        formatter: '{a} <br/>{b}: {c} ({d}%)'
-                                                    },
-                                                    legend: {
-                                                        orient: 'vertical',
-                                                        right: 10,
-                                                        top: 'center',
-                                                        data: ['Ⅰ类', 'Ⅱ类', 'Ⅲ类', 'Ⅳ类', 'Ⅴ类']
-                                                    },
-                                                    series: [
-                                                        {
-                                                            name: '访问来源',
-                                                            type: 'pie',
-                                                            radius: ['50%', '70%'],
-                                                            avoidLabelOverlap: false,
-                                                            label: {
-                                                                show: false,
-                                                                position: 'center'
-                                                            },
-                                                            emphasis: {
-                                                                label: {
-                                                                    show: true,
-                                                                    fontSize: '30',
-                                                                    fontWeight: 'bold'
-                                                                }
-                                                            },
-                                                            labelLine: {
-                                                                show: false
-                                                            },
-                                                            itemStyle: {
-                                                                normal: {
-                                                                    color: function (v) {
-                                                                        let colorList = [
-                                                                            "#76c15c",
-                                                                            "#15b3e2",
-                                                                            "#2e65fd",
-                                                                            "#1fcaa8",
-                                                                            "#ee6565",
-                                                                            "#fec02a",
-                                                                            "#fe3922",
-                                                                            "#52fe36",
-                                                                            "#fe3afc",
-                                                                        ];
-                                                                        return colorList[v.dataIndex];
-                                                                    },
-                                                                },
-                                                            },
-                                                            data:[
-                                                                {value: 335, name: 'Ⅰ类'},
-                                                                {value: 310, name: 'Ⅱ类'},
-                                                                {value: 234, name: 'Ⅲ类'},
-                                                                {value: 135, name: 'Ⅳ类'},
-                                                                {value: 1548, name: 'Ⅴ类'}
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    id: "revenuesess",
+                    name: "经营面积",
+                    icon: require("../../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "ab_201ss",
+                            collapseTitle: "经营面积",
+                            EChartsBox: [
+                                {
+                                    title: "经营面积",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "黄冈服务区",
+                                            serviceNamemin: "恩施服务区",
+                                            unit: "㎡",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
-                                    },
-                                    
-                                ],
-                            },
-                        ],
-                    },
-                    {
-                        id: "revenuep",
-                        name: "占地面积",
-                        icon: require("../../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "ab_2019esp",
-                                collapseTitle: "占地面积",
-                                EChartsBox: [
-                                    {
-                                        title: "占地面积",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '大悟服务区',
-                                                serviceNamemin: '点军服务区',
-                                                unit: '㎡',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
                                                 },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}㎡",
+                                                    // axisPointer: {
+                                                    //     type: "shadow"
+                                                    // },
+                                                },
+                                                yAxis: {
+                                                    name: "㎡",
+                                                    nameTextStyle: {
+                                                        color: "#000",
                                                     },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
+                                                    type: "value",
+                                                    splitLine: {
+                                                        show: false,
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}㎡",
-                                                        // axisPointer: {
-                                                        //     type: "shadow"
-                                                        // },
+                                                    axisTick: {
+                                                        show: false,
                                                     },
-                                                    yAxis: {
-                                                        type: 'value',
-                                                        name: "㎡",
-                                                        nameTextStyle: {
-                                                            color: "#000",
-                                                        },
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
-                                                        data: [600,610,740,750,780,900,890,910,950,950,1000,1000],
-                                                        type: 'line',
-                                                        
+                                                },
+                                                series: [
+                                                    {
+                                                        data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                                                        type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -367,174 +500,101 @@
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    }]
-                                                }
+                                                    },
+                                                ],
                                             },
-                                        ],
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                    {
-                        id: "revenuesess",
-                        name: "经营面积",
-                        icon: require("../../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "ab_201ss",
-                                collapseTitle: "经营面积",
-                                EChartsBox: [
-                                    {
-                                        title: "经营面积",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
                                         },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '黄冈服务区',
-                                                serviceNamemin: '恩施服务区',
-                                                unit: '㎡',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
-                                                },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
-                                                    },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}㎡",
-                                                        // axisPointer: {
-                                                        //     type: "shadow"
-                                                        // },
-                                                    },
-                                                    yAxis: {
-                                                        name: "㎡",
-                                                        nameTextStyle: {
-                                                            color: "#000",
-                                                        },
-                                                        type: 'value',
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
-                                                        data:[876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
-                                                        type: 'line',
-                                                        lineStyle: {
-                                                            color: "#fea528",
-                                                            width: 2,
-                                                            shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
-                                                            shadowBlur: 10,
-                                                            shadowOffsetY: 10,
-                                                        },
-                                                    }]
-                                                }
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    id: "revenueess",
+                    name: "车流量",
+                    icon: require("../../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "ab_20s",
+                            collapseTitle: "车流量",
+                            EChartsBox: [
+                                {
+                                    title: "月均车流量",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "大悟服务区",
+                                            serviceNamemin: "恩施服务区",
+                                            unit: "辆",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
                                             },
-                                        ],
-                                    },
-                                    
-                                ],
-                            },
-                        ],
-                    },
-                    {
-                        id: "revenueess",
-                        name: "车流量",
-                        icon: require("../../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "ab_20s",
-                                collapseTitle: "车流量",
-                                EChartsBox: [
-                                    {
-                                        title: "月均车流量",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '大悟服务区',
-                                                serviceNamemin: '恩施服务区',
-                                                unit: '辆',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
                                                 },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}辆",
+                                                    // axisPointer: {
+                                                    //     type: "shadow"
+                                                    // },
+                                                },
+                                                yAxis: {
+                                                    type: "value",
+                                                    name: "辆",
+                                                    nameTextStyle: {
+                                                        color: "#000",
                                                     },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
+                                                    splitLine: {
+                                                        show: false,
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}辆",
-                                                        // axisPointer: {
-                                                        //     type: "shadow"
-                                                        // },
+                                                    axisTick: {
+                                                        show: false,
                                                     },
-                                                    yAxis: {
-                                                        type: 'value',
-                                                        name:'辆',
-                                                        nameTextStyle:{
-                                                            color:'#000'
-                                                        },
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
+                                                },
+                                                series: [
+                                                    {
                                                         data: [576, 865, 664, 265, 943, 823, 932, 721, 621, 1034, 1069, 599],
-                                                        type: 'line',
+                                                        type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -542,89 +602,102 @@
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    }]
-                                                }
+                                                    },
+                                                ],
                                             },
-                                        ],
-                                    },
-                                   
-                                ],
-                            },
-                        ],
-                    },
-
-
-                    {
-                        id: "revenueTablesses",
-                        name: "订单",
-                        icon: require("../../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "ab_2019ss",
-                                collapseTitle: "订单数量",
-                                EChartsBox: [
-                                   {
-                                        title: "月订单数/总订单数=订单数量",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
                                         },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '大悟服务区',
-                                                serviceNamemin: '恩施服务区',
-                                                unit: '单',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+
+                {
+                    id: "revenueTablesses",
+                    name: "订单",
+                    icon: require("../../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "ab_2019ss",
+                            collapseTitle: "订单数量",
+                            EChartsBox: [
+                                {
+                                    title: "订单数量",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "大悟服务区",
+                                            serviceNamemin: "恩施服务区",
+                                            unit: "单",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
                                                 },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}单",
+                                                    // axisPointer: {
+                                                    //     type: "shadow"
+                                                    // },
+                                                },
+                                                yAxis: {
+                                                    type: "value",
+                                                    name: "单",
+                                                    nameTextStyle: {
+                                                        color: "#000",
                                                     },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
+                                                    splitLine: {
+                                                        show: false,
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}单",
-                                                        // axisPointer: {
-                                                        //     type: "shadow"
-                                                        // },
+                                                    axisTick: {
+                                                        show: false,
                                                     },
-                                                    yAxis: {
-                                                        type: 'value',
-                                                        name:'单',
-                                                        nameTextStyle:{
-                                                            color:'#000'
-                                                        },
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
+                                                },
+                                                series: [
+                                                    {
                                                         data: [87, 76, 56, 76, 54, 12, 43, 32, 32, 93, 66, 89],
-                                                        type: 'line',
+                                                        type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -632,90 +705,101 @@
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    }]
-                                                }
+                                                    },
+                                                ],
                                             },
-                                        ],
-                                    },
-                                   
-                                ],
-                            },
-                        ],
-                    },
-
-
-
-                    {
-                        id: "revenueTablesesa",
-                        name: "客单价",
-                        icon: require("../../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "ab_2019sa",
-                                collapseTitle: "客单价",
-                                EChartsBox: [
-                                   {
-                                        title: "订单金额/订单数量=客单价",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-
                                         },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '浠水服务区',
-                                                serviceNamemin: '河浦服务区',
-                                                unit: '元',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+
+                {
+                    id: "revenueTablesesa",
+                    name: "客单价",
+                    icon: require("../../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "ab_2019sa",
+                            collapseTitle: "客单价",
+                            EChartsBox: [
+                                {
+                                    title: "订单金额/订单数量=客单价",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "浠水服务区",
+                                            serviceNamemin: "河浦服务区",
+                                            unit: "元",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
                                                 },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}元",
+                                                    // axisPointer: {
+                                                    //     type: "shadow"
+                                                    // },
+                                                },
+                                                yAxis: {
+                                                    type: "value",
+                                                    name: "元",
+                                                    nameTextStyle: {
+                                                        color: "#000",
                                                     },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
+                                                    splitLine: {
+                                                        show: false,
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}元",
-                                                        // axisPointer: {
-                                                        //     type: "shadow"
-                                                        // },
+                                                    axisTick: {
+                                                        show: false,
                                                     },
-                                                    yAxis: {
-                                                        type: 'value',
-                                                        name:'元',
-                                                        nameTextStyle:{
-                                                            color:'#000'
-                                                        },
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
+                                                },
+                                                series: [
+                                                    {
                                                         data: [87600, 76500, 56400, 7650, 5430, 1230, 4320, 3210, 3210, 9340, 6690, 8990],
-                                                        type: 'line',
+                                                        type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -723,91 +807,102 @@
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    }]
-                                                }
+                                                    },
+                                                ],
                                             },
-                                        ],
-                                    },
-                                   
-                                ],
-                            },
-                        ],
-                    },
-
-
-
-                    {
-                        id: "revenueTablesesq",
-                        name: "转换率",
-                        icon: require("../../../assets/business/icon_1-1.png"),
-                        iconActive: require("../../../assets/business/icon_1-2.png"),
-                        collapseItem: [
-                            {
-                                id: "ab_2019sq",
-                                collapseTitle: "转换率",
-                                EChartsBox: [
-                                    {
-                                        title: "月订单数量/月车流量=转换率",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-
                                         },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '木子店服务区',
-                                                serviceNamemin: '总路咀服务区',
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
 
-                                                unit: '%',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
+                {
+                    id: "revenueTablesesq",
+                    name: "转换率",
+                    icon: require("../../../assets/business/icon_1-1.png"),
+                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    collapseItem: [
+                        {
+                            id: "ab_2019sq",
+                            collapseTitle: "转换率",
+                            EChartsBox: [
+                                {
+                                    title: "月订单数量/月车流量=转换率",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "木子店服务区",
+                                            serviceNamemin: "总路咀服务区",
+
+                                            unit: "%",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
                                                 },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}%",
+                                                    // axisPointer: {
+                                                    //     type: "shadow"
+                                                    // },
+                                                },
+                                                yAxis: {
+                                                    type: "value",
+                                                    name: "%",
+                                                    nameTextStyle: {
+                                                        color: "#000",
                                                     },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
+                                                    splitLine: {
+                                                        show: false,
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}%",
-                                                        // axisPointer: {
-                                                        //     type: "shadow"
-                                                        // },
+                                                    axisTick: {
+                                                        show: false,
                                                     },
-                                                    yAxis: {
-                                                        type: 'value',
-                                                        name:'%',
-                                                        nameTextStyle:{
-                                                            color:'#000'
-                                                        },
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
-                                                        data: [50,40,50,70,80,50,70,55,45,60,75,80],
-                                                        type: 'line',
+                                                },
+                                                series: [
+                                                    {
+                                                        data: [50, 40, 50, 70, 80, 50, 70, 55, 45, 60, 75, 80],
+                                                        type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -815,652 +910,652 @@
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    }]
-                                                }
+                                                    },
+                                                ],
                                             },
-                                        ],
-                                    },
-                                   
-                                ],
-                            },
-                        ],
-                    },
-                    // {
-                    //     id: "revenue",
-                    //     name: "2019年",
-                    //     icon: require("../../../assets/business/icon_1-1.png"),
-                    //     iconActive: require("../../../assets/business/icon_1-2.png"),
-                    //     collapseItem: [
-                    //         {
-                    //             id: "revenue_2020",
-                    //             year: 2019,
-                    //             collapseTitle: "2019年基础信息",
-                    //             EChartsBox: [
-                    //                 {
-                    //                     title: "服务区列表",
-                    //                     time: true,
-                    //                     input: true,
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "100%",
-                    //                         height: "550px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
-                    //                         marginBottom: '10px'
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             type: "table",
-                    //                             height: "550px",
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 background: "#FFF",
-                    //                             },
-                    //                             isPagination: true,
-                    //                             columns: [
-                    //                                 {prop: "serviceName", label: "服务区名称"},
-                    //                                 {prop: "B", label: "高速名称"},
-                    //                                 {
-                    //                                     prop: "C",
-                    //                                     label: "车流量(辆)",
-                    //                                     children: [
-                    //                                         {prop: "maxcart", label: "大车"},
-                    //                                         {prop: "mincart", label: "小车"},
-                    //                                     ],
-                    //                                 },
-                    //                                 {prop: "shouyi", label: "收益(元)"},
-                    //                                 {prop: "G", label: "利润(元)"},
-                    //                                 {prop: "H", label: "坪效(元)"},
-                    //                                 {prop: "I", label: "面积(m)"},
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                // {
+                //     id: "revenue",
+                //     name: "2019年",
+                //     icon: require("../../../assets/business/icon_1-1.png"),
+                //     iconActive: require("../../../assets/business/icon_1-2.png"),
+                //     collapseItem: [
+                //         {
+                //             id: "revenue_2020",
+                //             year: 2019,
+                //             collapseTitle: "2019年基础信息",
+                //             EChartsBox: [
+                //                 {
+                //                     title: "服务区列表",
+                //                     time: true,
+                //                     input: true,
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "100%",
+                //                         height: "550px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
+                //                         marginBottom: '10px'
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             type: "table",
+                //                             height: "550px",
+                //                             style: {
+                //                                 width: "100%",
+                //                                 background: "#FFF",
+                //                             },
+                //                             isPagination: true,
+                //                             columns: [
+                //                                 {prop: "serviceName", label: "服务区名称"},
+                //                                 {prop: "B", label: "高速名称"},
+                //                                 {
+                //                                     prop: "C",
+                //                                     label: "车流量(辆)",
+                //                                     children: [
+                //                                         {prop: "maxcart", label: "大车"},
+                //                                         {prop: "mincart", label: "小车"},
+                //                                     ],
+                //                                 },
+                //                                 {prop: "shouyi", label: "收益(元)"},
+                //                                 {prop: "G", label: "利润(元)"},
+                //                                 {prop: "H", label: "坪效(元)"},
+                //                                 {prop: "I", label: "面积(m)"},
 
-                    //                                 {
-                    //                                     prop: "J",
-                    //                                     label: "业态订单数",
-                    //                                     children: [
-                    //                                         {prop: "refuel", label: "加油"},
-                    //                                         {prop: "snack", label: "小吃"},
-                    //                                         {prop: "convenience", label: "便利店"},
-                    //                                         {prop: "catering", label: "餐饮"},
-                    //                                     ],
-                    //                                 },
-                    //                             ],
-                    //                             tableData: [],
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //                 {
-                    //                     title: "接管运营总量",
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "59.5%",
-                    //                         height: "350px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
-                    //                         marginBottom: '10px'
+                //                                 {
+                //                                     prop: "J",
+                //                                     label: "业态订单数",
+                //                                     children: [
+                //                                         {prop: "refuel", label: "加油"},
+                //                                         {prop: "snack", label: "小吃"},
+                //                                         {prop: "convenience", label: "便利店"},
+                //                                         {prop: "catering", label: "餐饮"},
+                //                                     ],
+                //                                 },
+                //                             ],
+                //                             tableData: [],
+                //                         },
+                //                     ],
+                //                 },
+                //                 {
+                //                     title: "接管运营总量",
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "59.5%",
+                //                         height: "350px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
+                //                         marginBottom: '10px'
 
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             serviceName: '',
-                    //                             unit: '个',
-                    //                             /*ECharts的属性*/
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 height: "300px",
-                    //                             },
-                    //                             option: {
-                    //                                 xAxis: {
-                    //                                     type: 'category',
-                    //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 grid: {
-                    //                                     top: "70",
-                    //                                     right: "60",
-                    //                                     left: "60",
-                    //                                     bottom: "30",
-                    //                                 },
-                    //                                 tooltip: {
-                    //                                     trigger: "axis",
-                    //                                     formatter: "{b} : {c}",
-                    //                                     axisPointer: {
-                    //                                         type: "shadow"
-                    //                                     },
-                    //                                 },
-                    //                                 yAxis: {
-                    //                                     type: 'value',
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 series: [{
-                    //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
-                    //                                     type: 'line',
-                    //                                     lineStyle: {
-                    //                                         color: "#fea528",
-                    //                                         width: 2,
-                    //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
-                    //                                         shadowBlur: 10,
-                    //                                         shadowOffsetY: 10,
-                    //                                     },
-                    //                                 }]
-                    //                             }
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //                 {
-                    //                     title: "服务区等级分类占比",
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "39.5%",
-                    //                         height: "350px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
-                    //                         marginBottom: '10px'
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             /*ECharts的属性*/
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 height: "300px",
-                    //                             },
-                    //                             option: {
-                    //                                 title:{
-                    //                                     text:'',
-                    //                                     left:'43%',
-                    //                                     top:'48%'
-                    //                                 },
-                    //                                 tooltip: {
-                    //                                     trigger: 'item',
-                    //                                     formatter: '{a} <br/>{b}: {c} ({d}%)'
-                    //                                 },
-                    //                                 legend: {
-                    //                                     orient: 'vertical',
-                    //                                     right: 10,
-                    //                                     top: 'center',
-                    //                                     data: ['Ⅰ类', 'Ⅱ类', 'Ⅲ类', 'Ⅳ类', 'Ⅴ类']
-                    //                                 },
-                    //                                 series: [
-                    //                                     {
-                    //                                         name: '访问来源',
-                    //                                         type: 'pie',
-                    //                                         radius: ['50%', '70%'],
-                    //                                         avoidLabelOverlap: false,
-                    //                                         label: {
-                    //                                             show: false,
-                    //                                             position: 'center'
-                    //                                         },
-                    //                                         emphasis: {
-                    //                                             label: {
-                    //                                                 show: true,
-                    //                                                 fontSize: '30',
-                    //                                                 fontWeight: 'bold'
-                    //                                             }
-                    //                                         },
-                    //                                         labelLine: {
-                    //                                             show: false
-                    //                                         },
-                    //                                         itemStyle: {
-                    //                                             normal: {
-                    //                                                 color: function (v) {
-                    //                                                     let colorList = [
-                    //                                                         "#76c15c",
-                    //                                                         "#15b3e2",
-                    //                                                         "#2e65fd",
-                    //                                                         "#1fcaa8",
-                    //                                                         "#ee6565",
-                    //                                                         "#fec02a",
-                    //                                                         "#fe3922",
-                    //                                                         "#52fe36",
-                    //                                                         "#fe3afc",
-                    //                                                     ];
-                    //                                                     return colorList[v.dataIndex];
-                    //                                                 },
-                    //                                             },
-                    //                                         },
-                    //                                         data:[
-                    //                                             {value: 335, name: 'Ⅰ类'},
-                    //                                             {value: 310, name: 'Ⅱ类'},
-                    //                                             {value: 234, name: 'Ⅲ类'},
-                    //                                             {value: 135, name: 'Ⅳ类'},
-                    //                                             {value: 1548, name: 'Ⅴ类'}
-                    //                                         ]
-                    //                                     }
-                    //                                 ]
-                    //                             }
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //                 {
-                    //                     title: "占地面积增长率",
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "49.5%",
-                    //                         height: "350px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
-                    //                         marginBottom: '10px'
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             serviceName: '大悟服务区',
-                    //                             unit: '㎡',
-                    //                             /*ECharts的属性*/
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 height: "300px",
-                    //                             },
-                    //                             option: {
-                    //                                 xAxis: {
-                    //                                     type: 'category',
-                    //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 grid: {
-                    //                                     top: "70",
-                    //                                     right: "60",
-                    //                                     left: "60",
-                    //                                     bottom: "30",
-                    //                                 },
-                    //                                 tooltip: {
-                    //                                     trigger: "axis",
-                    //                                     formatter: "{b} : {c}",
-                    //                                     axisPointer: {
-                    //                                         type: "shadow"
-                    //                                     },
-                    //                                 },
-                    //                                 yAxis: {
-                    //                                     type: 'value',
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 series: [{
-                    //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
-                    //                                     type: 'line',
-                    //                                     lineStyle: {
-                    //                                         color: "#fea528",
-                    //                                         width: 2,
-                    //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
-                    //                                         shadowBlur: 10,
-                    //                                         shadowOffsetY: 10,
-                    //                                     },
-                    //                                 }]
-                    //                             }
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //                 {
-                    //                     title: "经营面积增长率",
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "49.5%",
-                    //                         height: "350px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
-                    //                         marginBottom: '10px'
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             serviceName: '大悟服务区',
-                    //                             unit: '㎡',
-                    //                             /*ECharts的属性*/
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 height: "300px",
-                    //                             },
-                    //                             option: {
-                    //                                 xAxis: {
-                    //                                     type: 'category',
-                    //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 grid: {
-                    //                                     top: "70",
-                    //                                     right: "60",
-                    //                                     left: "60",
-                    //                                     bottom: "30",
-                    //                                 },
-                    //                                 tooltip: {
-                    //                                     trigger: "axis",
-                    //                                     formatter: "{b} : {c}",
-                    //                                     axisPointer: {
-                    //                                         type: "shadow"
-                    //                                     },
-                    //                                 },
-                    //                                 yAxis: {
-                    //                                     type: 'value',
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 series: [{
-                    //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
-                    //                                     type: 'line',
-                    //                                     lineStyle: {
-                    //                                         color: "#fea528",
-                    //                                         width: 2,
-                    //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
-                    //                                         shadowBlur: 10,
-                    //                                         shadowOffsetY: 10,
-                    //                                     },
-                    //                                 }]
-                    //                             }
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //                 {
-                    //                     title: "车流量",
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "49.5%",
-                    //                         height: "350px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
-                    //                         marginBottom: '10px'
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             serviceName: '大悟服务区',
-                    //                             unit: '辆',
-                    //                             /*ECharts的属性*/
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 height: "300px",
-                    //                             },
-                    //                             option: {
-                    //                                 xAxis: {
-                    //                                     type: 'category',
-                    //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 grid: {
-                    //                                     top: "70",
-                    //                                     right: "60",
-                    //                                     left: "60",
-                    //                                     bottom: "30",
-                    //                                 },
-                    //                                 tooltip: {
-                    //                                     trigger: "axis",
-                    //                                     formatter: "{b} : {c}",
-                    //                                     axisPointer: {
-                    //                                         type: "shadow"
-                    //                                     },
-                    //                                 },
-                    //                                 yAxis: {
-                    //                                     type: 'value',
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 series: [{
-                    //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
-                    //                                     type: 'line',
-                    //                                     lineStyle: {
-                    //                                         color: "#fea528",
-                    //                                         width: 2,
-                    //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
-                    //                                         shadowBlur: 10,
-                    //                                         shadowOffsetY: 10,
-                    //                                     },
-                    //                                 }]
-                    //                             }
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //                 {
-                    //                     title: "订单增长率",
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "49.5%",
-                    //                         height: "350px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
-                    //                         marginBottom: '10px'
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             serviceName: '大悟服务区',
-                    //                             unit: '单',
-                    //                             /*ECharts的属性*/
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 height: "300px",
-                    //                             },
-                    //                             option: {
-                    //                                 xAxis: {
-                    //                                     type: 'category',
-                    //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 grid: {
-                    //                                     top: "70",
-                    //                                     right: "60",
-                    //                                     left: "60",
-                    //                                     bottom: "30",
-                    //                                 },
-                    //                                 tooltip: {
-                    //                                     trigger: "axis",
-                    //                                     formatter: "{b} : {c}",
-                    //                                     axisPointer: {
-                    //                                         type: "shadow"
-                    //                                     },
-                    //                                 },
-                    //                                 yAxis: {
-                    //                                     type: 'value',
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 series: [{
-                    //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
-                    //                                     type: 'line',
-                    //                                     lineStyle: {
-                    //                                         color: "#fea528",
-                    //                                         width: 2,
-                    //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
-                    //                                         shadowBlur: 10,
-                    //                                         shadowOffsetY: 10,
-                    //                                     },
-                    //                                 }]
-                    //                             }
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //                 {
-                    //                     title: "客单价",
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "49.5%",
-                    //                         height: "350px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             serviceName: '',
+                //                             unit: '个',
+                //                             /*ECharts的属性*/
+                //                             style: {
+                //                                 width: "100%",
+                //                                 height: "300px",
+                //                             },
+                //                             option: {
+                //                                 xAxis: {
+                //                                     type: 'category',
+                //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 grid: {
+                //                                     top: "70",
+                //                                     right: "60",
+                //                                     left: "60",
+                //                                     bottom: "30",
+                //                                 },
+                //                                 tooltip: {
+                //                                     trigger: "axis",
+                //                                     formatter: "{b} : {c}",
+                //                                     axisPointer: {
+                //                                         type: "shadow"
+                //                                     },
+                //                                 },
+                //                                 yAxis: {
+                //                                     type: 'value',
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 series: [{
+                //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                //                                     type: 'line',
+                //                                     lineStyle: {
+                //                                         color: "#fea528",
+                //                                         width: 2,
+                //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
+                //                                         shadowBlur: 10,
+                //                                         shadowOffsetY: 10,
+                //                                     },
+                //                                 }]
+                //                             }
+                //                         },
+                //                     ],
+                //                 },
+                //                 {
+                //                     title: "服务区等级分类占比",
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "39.5%",
+                //                         height: "350px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
+                //                         marginBottom: '10px'
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             /*ECharts的属性*/
+                //                             style: {
+                //                                 width: "100%",
+                //                                 height: "300px",
+                //                             },
+                //                             option: {
+                //                                 title:{
+                //                                     text:'',
+                //                                     left:'43%',
+                //                                     top:'48%'
+                //                                 },
+                //                                 tooltip: {
+                //                                     trigger: 'item',
+                //                                     formatter: '{a} <br/>{b}: {c} ({d}%)'
+                //                                 },
+                //                                 legend: {
+                //                                     orient: 'vertical',
+                //                                     right: 10,
+                //                                     top: 'center',
+                //                                     data: ['Ⅰ类', 'Ⅱ类', 'Ⅲ类', 'Ⅳ类', 'Ⅴ类']
+                //                                 },
+                //                                 series: [
+                //                                     {
+                //                                         name: '访问来源',
+                //                                         type: 'pie',
+                //                                         radius: ['50%', '70%'],
+                //                                         avoidLabelOverlap: false,
+                //                                         label: {
+                //                                             show: false,
+                //                                             position: 'center'
+                //                                         },
+                //                                         emphasis: {
+                //                                             label: {
+                //                                                 show: true,
+                //                                                 fontSize: '30',
+                //                                                 fontWeight: 'bold'
+                //                                             }
+                //                                         },
+                //                                         labelLine: {
+                //                                             show: false
+                //                                         },
+                //                                         itemStyle: {
+                //                                             normal: {
+                //                                                 color: function (v) {
+                //                                                     let colorList = [
+                //                                                         "#76c15c",
+                //                                                         "#15b3e2",
+                //                                                         "#2e65fd",
+                //                                                         "#1fcaa8",
+                //                                                         "#ee6565",
+                //                                                         "#fec02a",
+                //                                                         "#fe3922",
+                //                                                         "#52fe36",
+                //                                                         "#fe3afc",
+                //                                                     ];
+                //                                                     return colorList[v.dataIndex];
+                //                                                 },
+                //                                             },
+                //                                         },
+                //                                         data:[
+                //                                             {value: 335, name: 'Ⅰ类'},
+                //                                             {value: 310, name: 'Ⅱ类'},
+                //                                             {value: 234, name: 'Ⅲ类'},
+                //                                             {value: 135, name: 'Ⅳ类'},
+                //                                             {value: 1548, name: 'Ⅴ类'}
+                //                                         ]
+                //                                     }
+                //                                 ]
+                //                             }
+                //                         },
+                //                     ],
+                //                 },
+                //                 {
+                //                     title: "占地面积增长率",
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "49.5%",
+                //                         height: "350px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
+                //                         marginBottom: '10px'
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             serviceName: '大悟服务区',
+                //                             unit: '㎡',
+                //                             /*ECharts的属性*/
+                //                             style: {
+                //                                 width: "100%",
+                //                                 height: "300px",
+                //                             },
+                //                             option: {
+                //                                 xAxis: {
+                //                                     type: 'category',
+                //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 grid: {
+                //                                     top: "70",
+                //                                     right: "60",
+                //                                     left: "60",
+                //                                     bottom: "30",
+                //                                 },
+                //                                 tooltip: {
+                //                                     trigger: "axis",
+                //                                     formatter: "{b} : {c}",
+                //                                     axisPointer: {
+                //                                         type: "shadow"
+                //                                     },
+                //                                 },
+                //                                 yAxis: {
+                //                                     type: 'value',
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 series: [{
+                //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                //                                     type: 'line',
+                //                                     lineStyle: {
+                //                                         color: "#fea528",
+                //                                         width: 2,
+                //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
+                //                                         shadowBlur: 10,
+                //                                         shadowOffsetY: 10,
+                //                                     },
+                //                                 }]
+                //                             }
+                //                         },
+                //                     ],
+                //                 },
+                //                 {
+                //                     title: "经营面积增长率",
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "49.5%",
+                //                         height: "350px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
+                //                         marginBottom: '10px'
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             serviceName: '大悟服务区',
+                //                             unit: '㎡',
+                //                             /*ECharts的属性*/
+                //                             style: {
+                //                                 width: "100%",
+                //                                 height: "300px",
+                //                             },
+                //                             option: {
+                //                                 xAxis: {
+                //                                     type: 'category',
+                //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 grid: {
+                //                                     top: "70",
+                //                                     right: "60",
+                //                                     left: "60",
+                //                                     bottom: "30",
+                //                                 },
+                //                                 tooltip: {
+                //                                     trigger: "axis",
+                //                                     formatter: "{b} : {c}",
+                //                                     axisPointer: {
+                //                                         type: "shadow"
+                //                                     },
+                //                                 },
+                //                                 yAxis: {
+                //                                     type: 'value',
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 series: [{
+                //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                //                                     type: 'line',
+                //                                     lineStyle: {
+                //                                         color: "#fea528",
+                //                                         width: 2,
+                //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
+                //                                         shadowBlur: 10,
+                //                                         shadowOffsetY: 10,
+                //                                     },
+                //                                 }]
+                //                             }
+                //                         },
+                //                     ],
+                //                 },
+                //                 {
+                //                     title: "车流量",
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "49.5%",
+                //                         height: "350px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
+                //                         marginBottom: '10px'
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             serviceName: '大悟服务区',
+                //                             unit: '辆',
+                //                             /*ECharts的属性*/
+                //                             style: {
+                //                                 width: "100%",
+                //                                 height: "300px",
+                //                             },
+                //                             option: {
+                //                                 xAxis: {
+                //                                     type: 'category',
+                //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 grid: {
+                //                                     top: "70",
+                //                                     right: "60",
+                //                                     left: "60",
+                //                                     bottom: "30",
+                //                                 },
+                //                                 tooltip: {
+                //                                     trigger: "axis",
+                //                                     formatter: "{b} : {c}",
+                //                                     axisPointer: {
+                //                                         type: "shadow"
+                //                                     },
+                //                                 },
+                //                                 yAxis: {
+                //                                     type: 'value',
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 series: [{
+                //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                //                                     type: 'line',
+                //                                     lineStyle: {
+                //                                         color: "#fea528",
+                //                                         width: 2,
+                //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
+                //                                         shadowBlur: 10,
+                //                                         shadowOffsetY: 10,
+                //                                     },
+                //                                 }]
+                //                             }
+                //                         },
+                //                     ],
+                //                 },
+                //                 {
+                //                     title: "订单增长率",
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "49.5%",
+                //                         height: "350px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
+                //                         marginBottom: '10px'
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             serviceName: '大悟服务区',
+                //                             unit: '单',
+                //                             /*ECharts的属性*/
+                //                             style: {
+                //                                 width: "100%",
+                //                                 height: "300px",
+                //                             },
+                //                             option: {
+                //                                 xAxis: {
+                //                                     type: 'category',
+                //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 grid: {
+                //                                     top: "70",
+                //                                     right: "60",
+                //                                     left: "60",
+                //                                     bottom: "30",
+                //                                 },
+                //                                 tooltip: {
+                //                                     trigger: "axis",
+                //                                     formatter: "{b} : {c}",
+                //                                     axisPointer: {
+                //                                         type: "shadow"
+                //                                     },
+                //                                 },
+                //                                 yAxis: {
+                //                                     type: 'value',
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 series: [{
+                //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                //                                     type: 'line',
+                //                                     lineStyle: {
+                //                                         color: "#fea528",
+                //                                         width: 2,
+                //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
+                //                                         shadowBlur: 10,
+                //                                         shadowOffsetY: 10,
+                //                                     },
+                //                                 }]
+                //                             }
+                //                         },
+                //                     ],
+                //                 },
+                //                 {
+                //                     title: "客单价",
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "49.5%",
+                //                         height: "350px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
 
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             serviceName: '大悟服务区',
-                    //                             unit: '元',
-                    //                             /*ECharts的属性*/
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 height: "300px",
-                    //                             },
-                    //                             option: {
-                    //                                 xAxis: {
-                    //                                     type: 'category',
-                    //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 grid: {
-                    //                                     top: "70",
-                    //                                     right: "60",
-                    //                                     left: "60",
-                    //                                     bottom: "30",
-                    //                                 },
-                    //                                 tooltip: {
-                    //                                     trigger: "axis",
-                    //                                     formatter: "{b} : {c}",
-                    //                                     axisPointer: {
-                    //                                         type: "shadow"
-                    //                                     },
-                    //                                 },
-                    //                                 yAxis: {
-                    //                                     type: 'value',
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 series: [{
-                    //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
-                    //                                     type: 'line',
-                    //                                     lineStyle: {
-                    //                                         color: "#fea528",
-                    //                                         width: 2,
-                    //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
-                    //                                         shadowBlur: 10,
-                    //                                         shadowOffsetY: 10,
-                    //                                     },
-                    //                                 }]
-                    //                             }
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //                 {
-                    //                     title: "转换率",
-                    //                     style: {
-                    //                         cursor: 'pointer',
-                    //                         width: "49.5%",
-                    //                         height: "350px",
-                    //                         borderRadius: "10px",
-                    //                         background: "white",
-                    //                         overflow: "hidden",
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             serviceName: '大悟服务区',
+                //                             unit: '元',
+                //                             /*ECharts的属性*/
+                //                             style: {
+                //                                 width: "100%",
+                //                                 height: "300px",
+                //                             },
+                //                             option: {
+                //                                 xAxis: {
+                //                                     type: 'category',
+                //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 grid: {
+                //                                     top: "70",
+                //                                     right: "60",
+                //                                     left: "60",
+                //                                     bottom: "30",
+                //                                 },
+                //                                 tooltip: {
+                //                                     trigger: "axis",
+                //                                     formatter: "{b} : {c}",
+                //                                     axisPointer: {
+                //                                         type: "shadow"
+                //                                     },
+                //                                 },
+                //                                 yAxis: {
+                //                                     type: 'value',
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 series: [{
+                //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                //                                     type: 'line',
+                //                                     lineStyle: {
+                //                                         color: "#fea528",
+                //                                         width: 2,
+                //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
+                //                                         shadowBlur: 10,
+                //                                         shadowOffsetY: 10,
+                //                                     },
+                //                                 }]
+                //                             }
+                //                         },
+                //                     ],
+                //                 },
+                //                 {
+                //                     title: "转换率",
+                //                     style: {
+                //                         cursor: 'pointer',
+                //                         width: "49.5%",
+                //                         height: "350px",
+                //                         borderRadius: "10px",
+                //                         background: "white",
+                //                         overflow: "hidden",
 
-                    //                     },
-                    //                     EChartsItem: [
-                    //                         {
-                    //                             serviceName: '大悟服务区',
-                    //                             unit: '%',
-                    //                             /*ECharts的属性*/
-                    //                             style: {
-                    //                                 width: "100%",
-                    //                                 height: "300px",
-                    //                             },
-                    //                             option: {
-                    //                                 xAxis: {
-                    //                                     type: 'category',
-                    //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 grid: {
-                    //                                     top: "70",
-                    //                                     right: "60",
-                    //                                     left: "60",
-                    //                                     bottom: "30",
-                    //                                 },
-                    //                                 tooltip: {
-                    //                                     trigger: "axis",
-                    //                                     formatter: "{b} : {c}",
-                    //                                     axisPointer: {
-                    //                                         type: "shadow"
-                    //                                     },
-                    //                                 },
-                    //                                 yAxis: {
-                    //                                     type: 'value',
-                    //                                     splitLine: {
-                    //                                         show: false
-                    //                                     },
-                    //                                     axisTick: {
-                    //                                         show: false,
-                    //                                     },
-                    //                                 },
-                    //                                 series: [{
-                    //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
-                    //                                     type: 'line',
-                    //                                     lineStyle: {
-                    //                                         color: "#fea528",
-                    //                                         width: 2,
-                    //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
-                    //                                         shadowBlur: 10,
-                    //                                         shadowOffsetY: 10,
-                    //                                     },
-                    //                                 }]
-                    //                             }
-                    //                         },
-                    //                     ],
-                    //                 },
-                    //             ],
-                    //         },
-                    //         {
-                    //             id: "revenue_gd",
-                    //             collapseTitle: "查看更多",
-                    //             EChartsBox: []
-                    //         },
-                    //     ],
-                    // },
-                    /* {
+                //                     },
+                //                     EChartsItem: [
+                //                         {
+                //                             serviceName: '大悟服务区',
+                //                             unit: '%',
+                //                             /*ECharts的属性*/
+                //                             style: {
+                //                                 width: "100%",
+                //                                 height: "300px",
+                //                             },
+                //                             option: {
+                //                                 xAxis: {
+                //                                     type: 'category',
+                //                                     data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 grid: {
+                //                                     top: "70",
+                //                                     right: "60",
+                //                                     left: "60",
+                //                                     bottom: "30",
+                //                                 },
+                //                                 tooltip: {
+                //                                     trigger: "axis",
+                //                                     formatter: "{b} : {c}",
+                //                                     axisPointer: {
+                //                                         type: "shadow"
+                //                                     },
+                //                                 },
+                //                                 yAxis: {
+                //                                     type: 'value',
+                //                                     splitLine: {
+                //                                         show: false
+                //                                     },
+                //                                     axisTick: {
+                //                                         show: false,
+                //                                     },
+                //                                 },
+                //                                 series: [{
+                //                                     data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                //                                     type: 'line',
+                //                                     lineStyle: {
+                //                                         color: "#fea528",
+                //                                         width: 2,
+                //                                         shadowColor: "rgba(255,155,53,0.68)", //设置折线阴影
+                //                                         shadowBlur: 10,
+                //                                         shadowOffsetY: 10,
+                //                                     },
+                //                                 }]
+                //                             }
+                //                         },
+                //                     ],
+                //                 },
+                //             ],
+                //         },
+                //         {
+                //             id: "revenue_gd",
+                //             collapseTitle: "查看更多",
+                //             EChartsBox: []
+                //         },
+                //     ],
+                // },
+                /* {
                          id: "profit",
                          name: "利润",
                          icon: require("../../../assets/business/icon_1-1.png"),
@@ -4004,97 +4099,103 @@
                              },
                          ],
                      },*/
-                ],
-                arrData: [],
-                ValueData: {
-                    inputValue: '',
-                    selectValue: '',
-                    timeValue: ['', ''],
+            ],
+            arrData: [],
+            ValueData: {
+                inputValue: "",
+                selectValue: "",
+                timeValue: ["", ""],
+            },
+            optionss: [],
+            options: [
+                {
+                    value: "选项1",
+                    label: "咸宁中心",
                 },
-                optionss: [],
-                options: [{
-                    value: '选项1',
-                    label: '咸宁中心'
-                }, {
-                    value: '选项2',
-                    label: '宜昌中心'
-                }, {
-                    value: '选项3',
-                    label: '黄冈中心'
-                }, {
-                    value: '选项4',
-                    label: '十堰中心'
-                }, {
-                    value: '选项5',
-                    label: '恩施中心'
-                }],
-                company: '',
-                district: '',
-                totalCount: 0,
-                inputVlaue:""
-            }
+                {
+                    value: "选项2",
+                    label: "宜昌中心",
+                },
+                {
+                    value: "选项3",
+                    label: "黄冈中心",
+                },
+                {
+                    value: "选项4",
+                    label: "十堰中心",
+                },
+                {
+                    value: "选项5",
+                    label: "恩施中心",
+                },
+            ],
+            company: "",
+            district: "",
+            totalCount: 0,
+            inputVlaue: "",
+        };
+    },
+    methods: {
+        selectionChange(val) {
+            this.$emit("clickTable", true);
+            this.$router.push("/details/serviceDetails");
         },
-        methods: {
-            selectionChange(val) {
-                this.$emit('clickTable', true);
-                this.$router.push("/details/serviceDetails");
-            },
-            ClickTotal(value) {
-                this.TableDatas(value.pageNum, value.pageSize)
-            },
-            async searchQuery(id, collapse, year, name,inputValue) {
-                
-                this.ValueData = collapse;
-                id.EChartsBox.forEach((element, index) => {
-                    element.EChartsItem.forEach((element, sindex) => {
-                        this.arrData.push({
-                            id: id.id + '-' + index + '-' + sindex,
-                            option: element.option
-                        })
+        ClickTotal(value) {
+            this.TableDatas(value.pageNum, value.pageSize);
+        },
+        async searchQuery(id, collapse, year, name, inputValue) {
+            this.ValueData = collapse;
+            id.EChartsBox.forEach((element, index) => {
+                element.EChartsItem.forEach((element, sindex) => {
+                    this.arrData.push({
+                        id: id.id + "-" + index + "-" + sindex,
+                        option: element.option,
                     });
                 });
-                this.inputVlaue = inputValue;
-                await this.TableDatas(1,5)
-            },
-            async TableDatas(pageNum, pageSize) {
-                this.$axios.get('/api/jtService/serve_list', {
-                    params:
-                        {
-                            companyId: '',
-                            endTime:'',
-                            pageNum: pageNum,
-                            serverName: this.inputVlaue,
-                            startTime:'',
-                            pageSize: pageSize
-                        }
-                }).then(res => {
-                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = []
-                    res.data.list.forEach(element => {
+            });
+            this.inputVlaue = inputValue;
+            await this.TableDatas(1, 5);
+        },
+        async TableDatas(pageNum, pageSize) {
+            this.$axios
+                .get("/api/jtService/serve_list", {
+                    params: {
+                        companyId: "",
+                        endTime: "",
+                        pageNum: pageNum,
+                        serverName: this.inputVlaue,
+                        startTime: "",
+                        pageSize: pageSize,
+                    },
+                })
+                .then((res) => {
+                    this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = [];
+                    res.data.list.forEach((element) => {
                         let elementData = {
-                            serviceName: element.serviceName ? element.serviceName : '/',
+                            serviceName: element.serviceName ? element.serviceName : "/",
                             // 高速名称
                             B: "/",
                             // 利润
-                            G: element.lirun ? element.lirun : '/',
+                            G: element.lirun ? element.lirun : "/",
                             // 业态订单数
                             J: "/",
-                            I: element.mianji ? element.mianji : '',
+                            I: element.mianji ? element.mianji : "",
                             // 坪效
-                            H: element.pingxiao ? element.pingxiao : '/',
-                            maxcart: element.carVo[0] ? element.carVo[0].count : '',
-                            mincart: element.carVo[1] ? element.carVo[1].count : '',
-                            refuel: element.jiayou ? element.jiayou : '/',
-                            snack: element.xiaochi ? element.xiaochi : '/',
-                            convenience: element.chaoshi ? element.chaoshi : '/',
-                            catering: element.canyin ? element.canyin : '/',
-                            shouyi: element.shouyi ? element.shouyi : '/'
-                        }
-                        this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData.push(elementData)
+                            H: element.pingxiao ? element.pingxiao : "/",
+                            maxcart: element.carVo[0] ? element.carVo[0].count : "",
+                            mincart: element.carVo[1] ? element.carVo[1].count : "",
+                            refuel: element.jiayou ? element.jiayou : "/",
+                            snack: element.xiaochi ? element.xiaochi : "/",
+                            convenience: element.chaoshi ? element.chaoshi : "/",
+                            catering: element.canyin ? element.canyin : "/",
+                            shouyi: element.shouyi ? element.shouyi : "/",
+                        };
+                        this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData.push(elementData);
                     });
                     this.totalCount = res.data.total;
-                })
-            },
-            /* async obtainData(name, year) {
+                });
+        },
+        /* async obtainData(name, year) {
                  let data = [];
                  let id = '';
                  this.ValueData.timeValue === null && (this.ValueData.timeValue = ['', '']);
@@ -4217,27 +4318,27 @@
                  //     });
                  // })
              }*/
-        },
-        async mounted() {
-            await this.TableDatas(1, 5);
-            await new Promise(resolve => {
-                setInterval(_ => {
-                    resolve();
-                }, 500);
-            });
-            this.$refs["collapse"].initECharts(this.collapseData);
-        },
-        async created() {
-            /* await this.obtainData('营收', '2019');
+    },
+    async mounted() {
+        await this.TableDatas(1, 5);
+        await new Promise((resolve) => {
+            setInterval((_) => {
+                resolve();
+            }, 500);
+        });
+        this.$refs["collapse"].initECharts(this.collapseData);
+    },
+    async created() {
+        /* await this.obtainData('营收', '2019');
              await this.obtainData('营收', '2020');
              await this.obtainData('利润', '2019');
              await this.obtainData('利润', '2020');*/
-            /* await this.obtainAxios('营收', '2020', 'ys');
+        /* await this.obtainAxios('营收', '2020', 'ys');
              await this.obtainAxios('成本', '2020', 'cb');
              await this.obtainAxios('成本', '2019', 'cb');
              await this.obtainAxios('利润', '2020', 'lr');
              await this.obtainAxios('利润', '2019', 'lr');*/
-            /*this.$axios.get('/api/jtService/car_flow').then(res => {
+        /*this.$axios.get('/api/jtService/car_flow').then(res => {
                 res.data.forEach((element, index) => {
                     let xAxis = [];
                     let yBxis = [];
@@ -4250,38 +4351,38 @@
 
                 });
             })*/
+    },
+    watch: {
+        viewChange() {
+            this.$refs["collapse"].refresh(this.collapseData);
         },
-        watch: {
-            viewChange() {
-                this.$refs["collapse"].refresh(this.collapseData);
-            },
-        }
-    }
+    },
+};
 </script>
 <style scoped lang="less">
-    .titleBox {
-        width: 100%;
-        height: calc(100% - 60px);
-    }
+.titleBox {
+    width: 100%;
+    height: calc(100% - 60px);
+}
 
-    .nav {
-        background: #f3f7ff;
-        width: 75%;
-        padding: 10px;
-        display: flex;
-        // padding-left: 30%;
-        display: flex;
-        justify-content: center;
-        // box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-        position: fixed;
-        z-index: 100;
-        top: 0;
-    }
-    .hover{
-        background: #409EFF;
-        color: #ffffff;
-    }
-    .nav > div + div {
-        margin-left: 10px;
-    }
+.nav {
+    background: #f3f7ff;
+    width: 75%;
+    padding: 10px;
+    display: flex;
+    // padding-left: 30%;
+    display: flex;
+    justify-content: center;
+    // box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+}
+.hover {
+    background: #409eff;
+    color: #ffffff;
+}
+.nav > div + div {
+    margin-left: 10px;
+}
 </style>

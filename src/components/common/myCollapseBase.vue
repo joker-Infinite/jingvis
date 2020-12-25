@@ -842,7 +842,7 @@
             width: 100%;
             height: 60px;
             display: flex;
-            /*justify-content: space-around;*/
+            justify-content: space-around;
             align-items: center;
             z-index: 999;
             top: 50px;

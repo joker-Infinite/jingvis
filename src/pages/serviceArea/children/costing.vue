@@ -38,7 +38,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "月实际成本",
+                                    title: "实际成本",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -168,7 +168,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "业态占比/子公司占比",
+                                    title: "成本占比",
                                     istime: true,
                                     select: false,
                                     style: {
@@ -538,7 +538,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "实际占比/预算占比",
+                                    title: "种类预算占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -1034,7 +1034,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "月实际成本",
+                                    title: "实际成本",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1164,7 +1164,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "业态占比/子公司占比",
+                                    title: "成本占比",
                                     istime: true,
                                     select: false,
                                     style: {
@@ -1533,7 +1533,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "实际占比/预算占比",
+                                    title: "种类预算占比",
                                     time: false,
                                     select: false,
                                     style: {

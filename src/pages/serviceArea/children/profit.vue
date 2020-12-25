@@ -37,7 +37,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "2020年利润",
+                                    title: "利润",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -211,7 +211,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年利润业态占比/片区占比",
+                                    title: "利润占比",
                                     istime: true,
                                     select: false,
                                     style: {
@@ -443,7 +443,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "2019年利润",
+                                    title: "利润",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -617,7 +617,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年利润业态占比/片区占比",
+                                    title: "利润占比",
                                     istime: true,
                                     select: false,
                                     style: {
