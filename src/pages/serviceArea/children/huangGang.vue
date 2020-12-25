@@ -7958,7 +7958,7 @@ export default {
         },
         selectionChange(val) {
             this.$emit("clickTable", true);
-            this.$router.push("/details/details");
+            this.$router.push("/details/serviceDetails");
         },
         async searchQuery(id, collapse, year, name, inputVlaue) {
             this.ValueData = collapse;

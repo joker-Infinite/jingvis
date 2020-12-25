@@ -1,6 +1,6 @@
 <template>
-  <div class="imgBox">
-    <img src="../../../assets/service_.jpg" class="img"/>
+  <div class="imgBox" :style="{width:location=='homeKanBan' ?'920px':'1300px'}">
+    <img src="../../../assets/service_.jpg" :style="{width:location=='homeKanBan' ?'920px':'1300px'}" class="img"/>
     <div class="smallBox" v-for="i in box" :style="i.style" @click="popoverDisabled=true,$refs['more'].openDialog(i)">
       <el-popover placement="bottom"
                   :title="i.name"
@@ -17,7 +17,7 @@
         <div style="width: 100%;height: 100%" slot="reference"></div>
       </el-popover>
     </div>
-    <more-information ref="more" @showPopover="popoverDisabled=false"></more-information>
+    <more-information :location="location" ref="more" @showPopover="popoverDisabled=false"></more-information>
     <start-and-radar color="black"></start-and-radar>
   </div>
 </template>
@@ -1162,7 +1162,7 @@
 			}
 		},
 		mounted() {
-			if (this.location == 'homeKanBan') {
+			if (this.size_ == 'small') {
 				this.box.forEach((i, x) => {
 					Object.assign(i.style, this.boxStyle[x]);
 				})

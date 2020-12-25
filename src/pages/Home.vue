@@ -218,7 +218,7 @@
 		},
 		methods: {
 			clickTable(v) {
-				this.setCookie(document.cookie.split('=')[1].split('-')[0], '/details/details')
+				this.setCookie(document.cookie.split('=')[1].split('-')[0], '/details/serviceDetails')
 			},
 			menuOC() {
 				this.menuStatus++;
