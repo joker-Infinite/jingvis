@@ -39,7 +39,7 @@
       </template>
     </animation> -->
     <el-dialog title="蔡甸服务区" align="center" width="900px" :modal-append-to-body="false" :visible.sync="visible">
-      <img-floor-plan></img-floor-plan>
+      <img-floor-plan location="homeKanBan"></img-floor-plan>
     </el-dialog>
   </div>
 </template>

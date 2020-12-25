@@ -4037,7 +4037,7 @@
         methods: {
             selectionChange(val) {
                 this.$emit('clickTable', true);
-                this.$router.push("/details/details");
+                this.$router.push("/details/serviceDetails");
             },
             ClickTotal(value) {
                 this.TableDatas(value.pageNum, value.pageSize)

@@ -842,14 +842,14 @@
             width: 100%;
             height: 60px;
             display: flex;
-            justify-content: space-around;
+            /*justify-content: space-around;*/
             align-items: center;
             z-index: 999;
             top: 50px;
             right: 20px;
             text-align: center;
           }
-          
+
           .query /deep/ .el-input {
             margin: 10px 0 0 0;
             width: 180px;
@@ -864,7 +864,7 @@
           }
 
           .query /deep/ .el-button {
-            margin: 10px 20px 0 0;
+            margin: 0 20px 0 0;
           }
 
           .query /deep/ .el-input__inner > .el-range-input {

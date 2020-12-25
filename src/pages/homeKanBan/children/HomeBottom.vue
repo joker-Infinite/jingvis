@@ -663,7 +663,7 @@
 						return (list[0].value / 1000000).toFixed(2)
 					},
 				},
-				color: ["red", "#a549ff"],
+				color: ["#17cce1"],
 				xAxis: [
 					{
 						type: "category",

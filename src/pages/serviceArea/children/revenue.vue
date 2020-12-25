@@ -246,7 +246,6 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         return (
                                                             val.name +
                                                             ":<br>营收:" +
@@ -663,7 +662,6 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         return (
                                                             val.name +
                                                             ":<br>营收:" +

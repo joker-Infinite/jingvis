@@ -53,6 +53,7 @@
       </div>
     </div>
     <show-e-charts ref="showECharts" :backdrop="backdrop"></show-e-charts>
+    <show-deatils ref="showDetails" imgSize="small"></show-deatils>
   </div>
 </template>
 
@@ -62,6 +63,7 @@
 	import clone from "../../../../public/api/clone"
 	import Border from "./border";
 	import BorderPlanB from "./borderPlanB";
+	import ShowDeatils from "../../../components/common/showDeatils";
 
 	export default {
 		name: "HomeTopRight",
@@ -71,7 +73,7 @@
 				default: 0
 			}
 		},
-		components: {BorderPlanB, Border, ShowECharts, Operations},
+		components: {ShowDeatils, BorderPlanB, Border, ShowECharts, Operations},
 		data() {
 			return {
 				selectBD: 2,
@@ -167,7 +169,7 @@
 							{
 								depth: 0,
 								itemStyle: {
-									color: "#ff82ce",
+									color: "#7c1dba",
 								},
 								lineStyle: {
 									color: "source",
@@ -177,7 +179,7 @@
 							{
 								depth: 1,
 								itemStyle: {
-									color: "#00aeff",
+									color: "#52e264",
 								},
 								lineStyle: {
 									color: "source",
@@ -187,7 +189,7 @@
 							{
 								depth: 2,
 								itemStyle: {
-									color: "#ff9214",
+									color: "#008DFF",
 								},
 								lineStyle: {
 									color: "source",
@@ -197,7 +199,7 @@
 							{
 								depth: 3,
 								itemStyle: {
-									color: "#f5eb4c",
+									color: "#008DFF",
 								},
 								lineStyle: {
 									color: "source",
@@ -207,7 +209,15 @@
 						]
 					},
 				};
-				this.$axios.get('/api/jtService/station_order_money').then((res) => {
+				this.$axios.get('/api/jtService/station_order_money', {
+					params: {
+						monthDate: 12,
+						pageNum: 1,
+						pageSize: 10,
+						yearDate: 2019
+					}
+				}).then((res) => {
+					console.log(res);
 					let name = [];
 					let links = [];
 					name.push({name: '车辆'});
@@ -216,22 +226,37 @@
 							links.push({
 								source: i.goodsType == '柴油' ? '0' : i.goodsType,
 								target: item.stationMoneyTypeVo.typeName,
-								value: parseInt(item.sumJvCount * (i.ratio / 100)),
+								value: parseInt(item.sumJvCount * (i.ratio / 100))
 							})
 						})
 						links.push({
 							source: item.stationMoneyTypeVo.typeName,
-							target: item.sizeCar,
+							target: '车辆',
 							value: parseInt(item.sumJvCount),
 						})
-						links.push({
-							source: item.sizeCar,
+						/*links.push({
+							source: item.stationMoneyTypeVo.typeName,
 							target: '车辆',
 							value: parseInt(res.data[0].sumJvCount) + parseInt(res.data[1].sumJvCount),
-						})
+						})*/
 					});
 					links.forEach(i => {
-						name.push({name: i.source})
+						let color = '';
+						if (i.source == 0) color = '#00BBFF';
+						if (i.source == 98) color = '#4860FF';
+						if (i.source == 95) color = '#D7C12F';
+						if (i.source == 92) color = '#7C1BDA';
+						if (i.source == '汽油') color = '#30D6FC';
+						if (i.source == '柴油') color = '#52E266';
+						name.push({
+							name: i.source,
+							itemStyle: {
+								normal: {
+									color: color,
+									borderColor: color
+								}
+							}
+						})
 					})
 					option.series.data = name;
 					option.series.links = links;
@@ -289,6 +314,7 @@
 				})
 			},
 			initECharts_bottom_left(m, v) {
+				let that = this;
 				let HomeTopRight_bottom_left = this.$echarts.init(
 					document.getElementById("HomeTopRight_bottom_left")
 				);
@@ -408,7 +434,17 @@
 						},
 					],
 				});
-				this.BD = clone(option)
+				this.BD = clone(option);
+				HomeTopRight_bottom_left.on('click', v => {
+					let name = '';
+					if (this.selectBD == 1) {
+						name = 'serviceDetails'
+					}
+					if (this.selectBD == 2) {
+						name = 'JYZXiangQing'
+					}
+					that.$refs['showDetails'].openDialog(name, v.name);
+				});
 				this.isAxiosw(HomeTopRight_bottom_left, option, v)
 			},
 			isResize() {

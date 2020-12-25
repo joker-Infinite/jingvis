@@ -17,17 +17,27 @@
         <div style="width: 100%;height: 100%" slot="reference"></div>
       </el-popover>
     </div>
-    <more-information ref="more" @showPopover="popoverDisabled=false"></more-information>
+    <more-information :location="location" ref="more" @showPopover="popoverDisabled=false"></more-information>
+    <!--    <img-details-test ref="more" @showPopover="popoverDisabled=false"></img-details-test>-->
+    <start-and-radar></start-and-radar>
   </div>
 </template>
 
 <script>
 	import MoreInformation from "../../pages/details/common/moreInformation";
 	import MyTable from "./myTable";
+	import StartAndRadar from "../widget/startAndRadar";
+	import ImgDetailsTest from "./imgDetailsTest";
 
 	export default {
 		name: "imgFloorPlan",
-		components: {MyTable, MoreInformation},
+		props: {
+			location: {
+				type: String,
+				default: ''
+			}
+		},
+		components: {ImgDetailsTest, StartAndRadar, MyTable, MoreInformation},
 		data() {
 			return {
 				popoverDisabled: false,
@@ -56,6 +66,127 @@
 							{label: '经营面积', value: '15347.26'},
 							{label: '绿化面积', value: '5689.64'},
 						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '营业额',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '万元',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								title: {
+									text: '业务类别结构',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b} : {c} ({d}%)'
+								},
+								legend: {
+									data: ['小吃', '餐饮', '零食', '其他'],
+									bottom: 10,
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								series: [
+									{
+										name: '访问来源',
+										type: 'pie',
+										radius: '55%',
+										center: ['50%', '50%'],
+										data: [
+											{value: 335, name: '小吃'},
+											{value: 310, name: '餐饮'},
+											{value: 234, name: '零食'},
+											{value: 135, name: '其他'}
+										],
+										itemStyle: {
+											normal: {
+												color: function (v) {
+													let colorList = [
+														"#76c15c",
+														"#15b3e2",
+														"#2e65fd",
+														"#1fcaa8",
+														"#ee6565",
+														"#fec02a",
+														"#fe3922",
+														"#52fe36",
+														"#fe3afc",
+													];
+													return colorList[v.dataIndex];
+												},
+											},
+										},
+										emphasis: {
+											itemStyle: {
+												shadowBlur: 10,
+												shadowOffsetX: 0,
+												shadowColor: 'rgba(0, 0, 0, 0.5)'
+											}
+										}
+									}
+								]
+							}
+						],
 						style: {
 							width: '43px',
 							height: '23px',
@@ -83,6 +214,128 @@
 							{label: '加油枪数量', value: '36'},
 							{label: '可加油', value: '0,92,95,98'},
 							{label: '是否有便利店', value: '是'},
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '营业额',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '万元',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								title: {
+									text: '业务类别结构',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b} : {c} ({d}%)'
+								},
+								legend: {
+									data: ['0', '92', '95', '98', '非油'],
+									bottom: 10,
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								series: [
+									{
+										name: '访问来源',
+										type: 'pie',
+										radius: '55%',
+										center: ['50%', '50%'],
+										data: [
+											{value: 180, name: '0'},
+											{value: 250, name: '92'},
+											{value: 234, name: '95'},
+											{value: 320, name: '98'},
+											{value: 50, name: '非油'}
+										],
+										itemStyle: {
+											normal: {
+												color: function (v) {
+													let colorList = [
+														"#76c15c",
+														"#15b3e2",
+														"#2e65fd",
+														"#1fcaa8",
+														"#ee6565",
+														"#fec02a",
+														"#fe3922",
+														"#52fe36",
+														"#fe3afc",
+													];
+													return colorList[v.dataIndex];
+												},
+											},
+										},
+										emphasis: {
+											itemStyle: {
+												shadowBlur: 10,
+												shadowOffsetX: 0,
+												shadowColor: 'rgba(0, 0, 0, 0.5)'
+											}
+										}
+									}
+								]
+							}
 						],
 						style: {
 							width: '50px',
@@ -114,6 +367,128 @@
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '营业额',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '万元',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								barWidth: 20,
+								title: {
+									text: '销量',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '个',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							}
+						],
 						style: {
 							width: '67px',
 							height: '46px',
@@ -124,7 +499,7 @@
 					},
 					{
 						// name: '隆盛牛肉面',
-						name: '牛肉面',
+						name: '隆盛牛肉面',
 						remark: '面中之王',
 						columns: [
 							{prop: 'a', label: '负责人', width: '139px'},
@@ -144,6 +519,128 @@
 							{label: '主营业务', value: '中餐速食'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '营业额',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '万元',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								barWidth: 20,
+								title: {
+									text: '销量',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '个',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							}
 						],
 						style: {
 							width: '47px',
@@ -187,6 +684,128 @@
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '营业额',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '万元',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								barWidth: 20,
+								title: {
+									text: '销量',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '个',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							}
+						],
 						style: {
 							width: '34px',
 							height: '49px',
@@ -196,7 +815,7 @@
 						}
 					},
 					{
-						name: '驿路相伴小吃',
+						name: '驿路香伴小吃',
 						remark: '特色小吃、品种丰富……',
 						columns: [
 							{prop: 'a', label: '负责人', width: '139px'},
@@ -216,6 +835,128 @@
 							{label: '主营业务', value: '中餐速食'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '营业额',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '万元',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								barWidth: 20,
+								title: {
+									text: '销量',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '个',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							}
 						],
 						style: {
 							width: '34px',
@@ -243,6 +984,143 @@
 							{label: '小便器阀数量', value: '114'},
 							{label: '厕所改造时间', value: '2018年09月'},
 						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '人流量',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '人',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [800, 932, 901, 934, 1580, 1950, 2100, 2500, 2650, 3500, 2800, 2600],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								title: {
+									text: '男女比',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b}: {c} ({d}%)'
+								},
+								legend: {
+									bottom: 0,
+									data: ['男', '女'],
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								labelLine: {
+									normal: {
+										length: 30,
+										length2: 25,
+										lineStyle: {
+											width: 1,
+										},
+									},
+								},
+								series: [
+									{
+										type: 'pie',
+										radius: ['50%', '70%'],
+										avoidLabelOverlap: false,
+										label: {
+											show: true,
+											position: "outer",
+											width: 0,
+											height: 0,
+											lineHeight: 0,
+											backgroundColor: "auto",
+											padding: [2, -2, 2, -2],
+											borderRadius: 2,
+											distanceToLabelLine: 0,
+											normal: {
+												formatter(v) {
+													let text = v.name + "\n" + v.percent + "%";
+													// let text = v.percent + "%";
+													return text;
+												},
+												textStyle: {
+													fontSize: 14,
+												},
+											},
+										},
+										labelLine: {
+											show: true
+										},
+										itemStyle: {
+											normal: {
+												color: function (v) {
+													let colorList = [
+														"#2e65fd",
+														"#fe3922",
+													];
+													return colorList[v.dataIndex];
+												},
+											},
+										},
+										data: [
+											{value: 335, name: '男'},
+											{value: 310, name: '女'},
+										]
+									}
+								]
+							}
+						],
 						style: {
 							width: '41px',
 							height: '71px',
@@ -266,6 +1144,144 @@
 							{label: '厕所等级', value: '五星'},
 							{label: '蹲位数量', value: '114'},
 							{label: '厕所改造时间', value: '2018年09月'},
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '人流量',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '人',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [800, 932, 901, 934, 1580, 1950, 2100, 2500, 2650, 3500, 2800, 2600],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								title: {
+									text: '男女比',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b}: {c} ({d}%)'
+								},
+								legend: {
+									bottom: 0,
+									data: ['男', '女'],
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+
+								labelLine: {
+									normal: {
+										length: 30,
+										length2: 25,
+										lineStyle: {
+											width: 1,
+										},
+									},
+								},
+								series: [
+									{
+										type: 'pie',
+										radius: ['50%', '70%'],
+										avoidLabelOverlap: false,
+										label: {
+											show: true,
+											position: "outer",
+											width: 0,
+											height: 0,
+											lineHeight: 0,
+											backgroundColor: "auto",
+											padding: [2, -2, 2, -2],
+											borderRadius: 2,
+											distanceToLabelLine: 0,
+											normal: {
+												formatter(v) {
+													let text = v.name + "\n" + v.percent + "%";
+													// let text = v.percent + "%";
+													return text;
+												},
+												textStyle: {
+													fontSize: 14,
+												},
+											},
+										},
+										labelLine: {
+											show: true
+										},
+										itemStyle: {
+											normal: {
+												color: function (v) {
+													let colorList = [
+														"#2e65fd",
+														"#fe3922",
+													];
+													return colorList[v.dataIndex];
+												},
+											},
+										},
+										data: [
+											{value: 335, name: '男'},
+											{value: 310, name: '女'}
+										]
+									}
+								]
+							}
 						],
 						style: {
 							width: '41px',
@@ -297,6 +1313,128 @@
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '营业额',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '万元',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								barWidth: 20,
+								title: {
+									text: '销量',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '个',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							}
+						],
 						style: {
 							width: '35px',
 							height: '43px',
@@ -326,6 +1464,128 @@
 							{label: '主营业务', value: '咖啡饮料等西式下午茶'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '营业额',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '万元',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							},
+							{
+								barWidth: 20,
+								title: {
+									text: '销量',
+									x: 'center',
+									textStyle: {
+										color: "#FFF"
+									}
+								},
+								xAxis: {
+									type: 'category',
+									name: '月',
+									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								grid: {
+									left: 40,
+									top: 40,
+									bottom: 30,
+									right: 50
+								},
+								yAxis: {
+									type: 'value',
+									name: '个',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								},
+								series: [{
+									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									type: 'bar',
+									itemStyle: {
+										color: '#379DFB'
+									}
+								}]
+							}
 						],
 						style: {
 							width: '35px',
