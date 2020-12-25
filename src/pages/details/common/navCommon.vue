@@ -89,7 +89,7 @@
             </el-form>
             <div style="width: 100%;height: 100%"
                  v-if="it.content === '基础信息'">
-              <service-floor-plan :location="location"></service-floor-plan>
+              <service-floor-plan :imgSize="imgSize" :location="location"></service-floor-plan>
               <el-tabs
                       class="tabs"
                       v-model="activeNameTabs"
@@ -316,6 +316,10 @@
 		name: "navCommon",
 		props: {
 			location: {
+				type: String,
+				default: ''
+			},
+			imgSize: {
 				type: String,
 				default: ''
 			}

@@ -53,7 +53,7 @@
       </div>
     </div>
     <show-e-charts ref="showECharts" :backdrop="backdrop"></show-e-charts>
-    <show-deatils ref="showDetails"></show-deatils>
+    <show-deatils ref="showDetails" imgSize="small"></show-deatils>
   </div>
 </template>
 

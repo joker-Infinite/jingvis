@@ -5,7 +5,7 @@
                :modal-append-to-body="false"
                :visible.sync="visible">
       <div style="width: 1160px;height: 500px;background: #f3f7ff" id="goStart">
-        <component ref="common" :is="name" location="homeKanBan"></component>
+        <component ref="common" :imgSize="imgSize" :is="name" location="homeKanBan"></component>
       </div>
     </el-dialog>
   </div>
@@ -18,6 +18,12 @@
 	export default {
 		name: "showDeatils",
 		components: {serviceDetails, JYZXiangQing},
+		props: {
+			imgSize: {
+				type: String,
+				default: ''
+			}
+		},
 		data() {
 			return {
 				visible: false,

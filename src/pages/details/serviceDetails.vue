@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <nav-common :location="location" ref="navCommon"></nav-common>
+    <nav-common :imgSize="imgSize" :location="location" ref="navCommon"></nav-common>
   </div>
 </template>
 
@@ -11,6 +11,10 @@
 		name: "serviceDetails",
 		props: {
 			location: {
+				type: String,
+				default: ''
+			},
+			imgSize: {
 				type: String,
 				default: ''
 			}

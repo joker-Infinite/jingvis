@@ -17,7 +17,8 @@
         <div style="width: 100%;height: 100%" slot="reference"></div>
       </el-popover>
     </div>
-    <more-information :location="location" ref="more" @showPopover="popoverDisabled=false"></more-information>
+    <more-information :imgSize="imgSize" :location="location" ref="more"
+                      @showPopover="popoverDisabled=false"></more-information>
     <start-and-radar color="black"></start-and-radar>
   </div>
 </template>
@@ -31,6 +32,10 @@
 		name: "serviceFloorPlan",
 		props: {
 			location: {
+				type: String,
+				default: ''
+			},
+			imgSize: {
 				type: String,
 				default: ''
 			}
@@ -816,15 +821,8 @@
 											normal: {
 												color: function (v) {
 													let colorList = [
-														"#76c15c",
-														"#15b3e2",
 														"#2e65fd",
-														"#1fcaa8",
-														"#ee6565",
-														"#fec02a",
 														"#fe3922",
-														"#52fe36",
-														"#fe3afc",
 													];
 													return colorList[v.dataIndex];
 												},
@@ -948,15 +946,8 @@
 											normal: {
 												color: function (v) {
 													let colorList = [
-														"#76c15c",
-														"#15b3e2",
 														"#2e65fd",
-														"#1fcaa8",
-														"#ee6565",
-														"#fec02a",
 														"#fe3922",
-														"#52fe36",
-														"#fe3afc",
 													];
 													return colorList[v.dataIndex];
 												},
@@ -1162,7 +1153,7 @@
 			}
 		},
 		mounted() {
-			if (this.size_ == 'small') {
+			if (this.imgSize == 'small') {
 				this.box.forEach((i, x) => {
 					Object.assign(i.style, this.boxStyle[x]);
 				})

@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;height: 100%" :class="{sBody:true,hsBody:location !='homeKanBan'}">
+  <div style="width: 100%;height: 100%" :class="{sBody:true,hsBody:imgSize =='small'||location!='homeKanBan'}">
     <el-dialog width="1000px" align="center" :visible.sync="visible" :modal="false"
                @close="$emit('showPopover', true)">
       <el-form ref="form" :model="form" label-width="125px" class="form" disabled>
@@ -23,6 +23,10 @@
 		name: "moreInformation",
 		props: {
 			location: {
+				type: String,
+				default: ''
+			},
+			imgSize: {
 				type: String,
 				default: ''
 			}
@@ -95,7 +99,7 @@
 
   .hsBody {
     .form {
-      min-height: 500px;
+      min-height: 300px;
       padding: 10px 50px 50px;
       overflow-y: scroll;
       background: none;
@@ -137,7 +141,7 @@
   }
 
   .form {
-    min-height: 500px;
+    min-height: 300px;
     padding: 20px 50px 50px;
     overflow-y: scroll;
     background: url('../../../assets/detailsTest/imgDetailsBG.jpg');
