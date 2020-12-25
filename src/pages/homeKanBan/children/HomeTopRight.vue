@@ -169,7 +169,7 @@
 							{
 								depth: 0,
 								itemStyle: {
-									color: "#ff82ce",
+									color: "#7c1dba",
 								},
 								lineStyle: {
 									color: "source",
@@ -179,7 +179,7 @@
 							{
 								depth: 1,
 								itemStyle: {
-									color: "#00aeff",
+									color: "#52e264",
 								},
 								lineStyle: {
 									color: "source",
@@ -189,7 +189,7 @@
 							{
 								depth: 2,
 								itemStyle: {
-									color: "#ff9214",
+									color: "#008DFF",
 								},
 								lineStyle: {
 									color: "source",
@@ -199,7 +199,7 @@
 							{
 								depth: 3,
 								itemStyle: {
-									color: "#f5eb4c",
+									color: "#008DFF",
 								},
 								lineStyle: {
 									color: "source",
@@ -233,7 +233,22 @@
 						})
 					});
 					links.forEach(i => {
-						name.push({name: i.source})
+						let color = '';
+						if (i.source == 0) color = '#00BBFF';
+						if (i.source == 98) color = '#4860FF';
+						if (i.source == 95) color = '#D7C12F';
+						if (i.source == 92) color = '#7C1BDA';
+						if (i.source == '汽油') color = '#30D6FC';
+						if (i.source == '柴油') color = '#52E266';
+						name.push({
+							name: i.source,
+							itemStyle: {
+								normal: {
+									color: color,
+									borderColor: color
+								}
+							}
+						})
 					})
 					option.series.data = name;
 					option.series.links = links;
