@@ -209,7 +209,15 @@
 						]
 					},
 				};
-				this.$axios.get('/api/jtService/station_order_money').then((res) => {
+				this.$axios.get('/api/jtService/station_order_money', {
+					params: {
+						monthDate: 12,
+						pageNum: 1,
+						pageSize: 10,
+						yearDate: 2019
+					}
+				}).then((res) => {
+					console.log(res);
 					let name = [];
 					let links = [];
 					name.push({name: '车辆'});
@@ -218,19 +226,19 @@
 							links.push({
 								source: i.goodsType == '柴油' ? '0' : i.goodsType,
 								target: item.stationMoneyTypeVo.typeName,
-								value: parseInt(item.sumJvCount * (i.ratio / 100)),
+								value: parseInt(item.sumJvCount * (i.ratio / 100))
 							})
 						})
 						links.push({
 							source: item.stationMoneyTypeVo.typeName,
-							target: item.sizeCar,
+							target: '车辆',
 							value: parseInt(item.sumJvCount),
 						})
-						links.push({
-							source: item.sizeCar,
+						/*links.push({
+							source: item.stationMoneyTypeVo.typeName,
 							target: '车辆',
 							value: parseInt(res.data[0].sumJvCount) + parseInt(res.data[1].sumJvCount),
-						})
+						})*/
 					});
 					links.forEach(i => {
 						let color = '';
