@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%;height: 100%" :class="{sBody:true,hsBody:imgSize =='small'||location!='homeKanBan'}">
-    <el-dialog width="1000px" align="center" :visible.sync="visible" :modal="false"
+    <el-dialog width="1100px" align="center" :visible.sync="visible" :modal="false"
                @close="closeDialog">
       <el-form ref="form" :model="form" label-width="125px" class="form" disabled>
         <p class="title">
@@ -21,6 +21,10 @@
           </el-form-item>
         </el-col>
         <el-col :span="24">
+          <div v-if="form.columns&&form.columns.length!==0"
+               :style="{fontWeight: '700',lineHeight: '30px',fontSize: '16px',color: location != 'homeKanBan' ? '#333' : (imgSize == 'small' ? '#333' : 'white')}">
+            加油站油枪列表
+          </div>
           <table :style="{color: location != 'homeKanBan' ? '#333' : (imgSize == 'small' ? '#333' : 'white')}"
                  class="table" border="1" cellspacing="0">
             <tr v-for="(it,ix) in form.columns">
@@ -33,9 +37,16 @@
             </tr>
           </table>
         </el-col>
+        <el-col :span="24">
+          <el-date-picker
+                  value="2020-12"
+                  type="month"
+                  placeholder="">
+          </el-date-picker>
+        </el-col>
         <div class="echarts">
           <div v-for="i in 2" :key="i" :id="NE+i"
-               :style="{width: '49.5%',height:formData?'300px':'400px',marginBottom: '10px',}"></div>
+               :style="{width: '49.5%',height:chartBox.length===2?'300px':'400px',marginBottom: '10px',}"></div>
         </div>
       </el-form>
     </el-dialog>
@@ -266,6 +277,10 @@
       overflow-y: scroll;
       background: none;
       background-size: 100% 100%;
+
+      .search {
+        text-align: right;
+      }
 
       .title {
         color: #606266;

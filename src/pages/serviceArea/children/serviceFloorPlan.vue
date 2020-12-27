@@ -250,7 +250,7 @@
 						}
 					},
 					{
-						name: '加油区',
+						name: '加油站',
 						remark: '提供柴油、汽油（E95、E98、95……）',
 						data: [
 							{a: '加油站负责人', b: 'XXX'},
@@ -281,7 +281,7 @@
                 {label: '异常油枪', value: '6个'},*/
 						],
 						columns: [
-							{a: '92', b: '95', c: '98', d: '0', e: '异常', f: '总计'},
+							{a: '92#', b: '95#', c: '98#', d: '0#', e: '异常', f: '总计'},
 							{a: '8个', b: '8个', c: '8个', d: '6个', e: '6个', f: '36个'},
 						],
 						chartBox: [
@@ -745,12 +745,14 @@
 						noPingEffect: true,
 						data: [
 							{a: '厕所等级', b: '五星'},
+							{label: '保洁人员', value: '4个'},
 							{a: '蹲位数量', b: '114个'},
 							{a: '小便器阀数量', b: '114个'},
 							{a: '厕所改造时间', b: '2018年09月'},
 						],
 						formData: [
 							{label: '厕所等级', value: '五星'},
+							{label: '保洁人员', value: '4个'},
 							{label: '蹲位数量', value: '114个'},
 							{label: '小便器阀数量', value: '114个'},
 							{label: '厕所改造时间', value: '2018年09月'},
@@ -888,11 +890,13 @@
 						noPingEffect: true,
 						data: [
 							{a: '厕所等级', b: '五星'},
+							{label: '保洁人员', value: '4个'},
 							{a: '蹲位数量', b: '114个'},
 							{a: '厕所改造时间', b: '2018年09月'},
 						],
 						formData: [
 							{label: '厕所等级', value: '五星'},
+							{label: '保洁人员', value: '4个'},
 							{label: '蹲位数量', value: '114个'},
 							{label: '厕所改造时间', value: '2018年09月'},
 						],
@@ -1117,7 +1121,7 @@
 							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
 							{a: '经营面积', b: 'Xx㎡'},
-							{a: '主营业务', b: '咖啡饮料等西式下午茶'},
+							{a: '主营业务', b: '咖啡饮料等西式下午茶(一级品牌)'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
 						],
@@ -1125,7 +1129,7 @@
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
 							{label: '经营面积', value: 'Xx㎡'},
-							{label: '主营业务', value: '咖啡饮料等西式下午茶'},
+							{label: '主营业务', value: '咖啡饮料等西式下午茶(一级品牌)'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
@@ -1203,11 +1207,11 @@
 						remark: '',
 						data: [
 							{a: '卡口是否正常', b: '是'},
-							{a: '日均车流量', b: '200辆'}
+							{a: '今日车流量', b: '200辆'}
 						],
 						formData: [
 							{label: '卡口是否正常', value: '是'},
-							{label: '日均车流量', value: '200辆'}
+							{label: '今日车流量', value: '200辆'}
 						],
 						chartBox: [
 							{
@@ -1360,11 +1364,11 @@
 						remark: '',
 						data: [
 							{a: '卡口是否正常', b: '是'},
-							{a: '日均车流量', b: '200辆'}
+							{a: '今日车流量', b: '200辆'}
 						],
 						formData: [
 							{label: '卡口是否正常', value: '是'},
-							{label: '日均车流量', value: '200辆'}
+							{label: '今日车流量', value: '200辆'}
 						],
 						chartBox: [
 							{
@@ -1514,6 +1518,7 @@
 					{
 						name: '停车区',
 						remark: '',
+						noPingEffect: true,
 						data: [
 							{a: '目前停车-大车', b: '100辆'},
 							{a: '目前停车-小车', b: '500辆'},
@@ -1588,75 +1593,6 @@
 									}
 								]
 							},
-							{
-								title: {
-									text: '当天进入车辆比',
-									x: 'center',
-								},
-								tooltip: {
-									trigger: 'item',
-									formatter: '{b}: {c} ({d}%)'
-								},
-								legend: {
-									bottom: 0,
-									data: ['大车', '小车'],
-								},
-								labelLine: {
-									normal: {
-										length: 30,
-										length2: 25,
-										lineStyle: {
-											width: 1,
-										},
-									},
-								},
-								series: [
-									{
-										type: 'pie',
-										radius: ['40%', '60%'],
-										avoidLabelOverlap: false,
-										label: {
-											show: true,
-											position: "outer",
-											width: 0,
-											height: 0,
-											lineHeight: 0,
-											backgroundColor: "auto",
-											padding: [2, -2, 2, -2],
-											borderRadius: 2,
-											distanceToLabelLine: 0,
-											normal: {
-												formatter(v) {
-													let text = v.name + "\n" + v.percent + "%";
-													// let text = v.percent + "%";
-													return text;
-												},
-												textStyle: {
-													fontSize: 14,
-												},
-											},
-										},
-										labelLine: {
-											show: true
-										},
-										/*itemStyle: {
-                      normal: {
-                        color: function (v) {
-                          let colorList = [
-                            "#79f0ea",
-                            "#fa3b43",
-                          ];
-                          return colorList[v.dataIndex];
-                        },
-                      },
-                    },*/
-										data: [
-											{value: 3350, name: '大车'},
-											{value: 3100, name: '小车'},
-										]
-									}
-								]
-							}
 						],
 						style: {
 							width: '160px',

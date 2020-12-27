@@ -3,13 +3,13 @@
     <div style="width: 100%;height: 900px">
       <div class="mapBox" @mouseover="showCheckBoxBar" @mouseout="hiddenCheckBoxBar">
         <div class="btn" id="btn_map_">
-          <el-checkbox-group v-model="serviceChecked" @change="serviceCheck(serviceChecked)">
-            <el-checkbox label="服务区"></el-checkbox>
-            <el-checkbox label="油站"></el-checkbox>
-            <el-checkbox label="超市"></el-checkbox>
-            <el-checkbox label="卡口"></el-checkbox>
-            <el-checkbox label="收银"></el-checkbox>
-          </el-checkbox-group>
+          <el-radio-group v-model="serviceChecked" @change="serviceCheck(serviceChecked)">
+            <el-radio label="服务区"></el-radio>
+            <el-radio label="油站"></el-radio>
+            <el-radio label="超市"></el-radio>
+            <el-radio label="卡口"></el-radio>
+            <el-radio label="收银"></el-radio>
+          </el-radio-group>
           <!--					<div style="width: 100%;height: 1px;background: #e0e0e0;margin: 5px 0"></div>-->
           <!--	<el-checkbox-group v-model="gasChecked" @change="gasCheck(gasChecked)">
               <el-checkbox label="中石化"></el-checkbox>
@@ -80,7 +80,7 @@
 		data() {
 			return {
 				clickIndex: 0,
-				serviceChecked: ['服务区'],
+				serviceChecked: '服务区',
 				gasChecked: ['中石化', '中石油', '交投能源',],
 				//旋转
 				rotateList: [
@@ -225,10 +225,10 @@
 					if (item.type) {
 						if (item.type === "ms") icon = require("../../assets/gas/service-k.png");
 						if (item.type === "os") icon = require("../../assets/gas/service-c.png");
-						if (item.type === "中石化") icon = require("../../assets/gas/zsy.png");
+						if (item.type === "中石化") icon = require("../../assets/gas/zsh.png");
 						if (item.type === "中石油") icon = require("../../assets/gas/zsy.png");
 						if (item.type === "交投能源") icon = require("../../assets/gas/jtny.png");
-						if (item.type === "卡口") icon = require("../../assets/gas/service-k.png");
+						if (item.type === "卡口") icon = require("../../assets/gas/kk.png");
 					}
 					if (item.longitude && item.latitude) {
 						let marker = new AMap.Marker({
@@ -417,9 +417,25 @@ new AMap.MarkerClusterer(
           transition: linear .4s;
         }
       }
+      /deep/ .el-radio-group {
+        .el-radio {
+          margin-right: 0;
+          line-height: 20px;
+
+          .el-radio__label {
+            color: white;
+          }
+        }
+
+        .is-checked {
+          .el-radio__label {
+            color: #409EFF;
+          }
+        }
+      }
     }
 
-    .btn /deep/ .el-checkbox {
+   /* .btn /deep/ .el-checkbox {
       color: white;
       margin-right: 0;
     }
@@ -453,13 +469,13 @@ new AMap.MarkerClusterer(
     }
 
     .btn /deep/ .el-select > .el-input > .el-input__suffix {
-      /*width: 20px;*/
+      !*width: 20px;*!
     }
 
     .btn /deep/ .el-select > .el-input > .el-input__suffix > .el-input__suffix-inner > .el-input__icon {
       line-height: 30px;
       color: white;
-    }
+    }*/
 
     #AAA {
       width: 100%;

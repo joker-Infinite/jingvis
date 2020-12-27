@@ -17,7 +17,8 @@
         <div style="width: 100%;height: 100%" slot="reference"></div>
       </el-popover>
     </div>
-    <more-information NE="imgFloorPlan" :location="location" ref="more" @showPopover="popoverDisabled=false"></more-information>
+    <more-information NE="imgFloorPlan" :location="location" ref="more"
+                      @showPopover="popoverDisabled=false"></more-information>
     <!--    <img-details-test ref="more" @showPopover="popoverDisabled=false"></img-details-test>-->
     <start-and-radar></start-and-radar>
   </div>
@@ -195,7 +196,7 @@
 						}
 					},
 					{
-						name: '加油区',
+						name: '加油站',
 						remark: '提供柴油、汽油（E95、E98、95……）',
 						data: [
 							{a: '加油站负责人', b: 'XXX'},
@@ -226,7 +227,7 @@
 							{label: '异常油枪', value: '6个'},*/
 						],
 						columns: [
-							{a: '92', b: '95', c: '98', d: '0', e: '异常', f: '总计'},
+							{a: '92#', b: '95#', c: '98#', d: '0#', e: '异常', f: '总计'},
 							{a: '8个', b: '8个', c: '8个', d: '6个', e: '6个', f: '36个'},
 						],
 						chartBox: [
@@ -654,7 +655,7 @@
 							height: '25px',
 							top: '102px',
 							left: '337px',
-							zIndex: '10',
+							zIndex: '1',
 							background: 'rgb(51, 68, 34)',
 						}
 					},
@@ -974,12 +975,14 @@
 						noPingEffect: true,
 						data: [
 							{a: '厕所等级', b: '五星'},
+							{a: '保洁人员', b: '4个'},
 							{a: '蹲位数量', b: '114个'},
 							{a: '小便器阀数量', b: '114个'},
 							{a: '厕所改造时间', b: '2018年09月'},
 						],
 						formData: [
 							{label: '厕所等级', value: '五星'},
+							{label: '保洁人员', value: '4个'},
 							{label: '蹲位数量', value: '114个'},
 							{label: '小便器阀数量', value: '114个'},
 							{label: '厕所改造时间', value: '2018年09月'},
@@ -1149,11 +1152,13 @@
 						noPingEffect: true,
 						data: [
 							{a: '厕所等级', b: '五星'},
+							{a: '保洁人员', b: '4个'},
 							{a: '蹲位数量', b: '114个'},
 							{a: '厕所改造时间', b: '2018年09月'},
 						],
 						formData: [
 							{label: '厕所等级', value: '五星'},
+							{label: '保洁人员', value: '4个'},
 							{label: '蹲位数量', value: '114个'},
 							{label: '厕所改造时间', value: '2018年09月'},
 						],
@@ -1472,7 +1477,7 @@
 							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
 							{a: '经营面积', b: 'Xx㎡'},
-							{a: '主营业务', b: '咖啡饮料等西式下午茶'},
+							{a: '主营业务', b: '咖啡饮料等西式下午茶(一级品牌)'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
 						],
@@ -1480,7 +1485,7 @@
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
 							{label: '经营面积', value: 'Xx㎡'},
-							{label: '主营业务', value: '咖啡饮料等西式下午茶'},
+							{label: '主营业务', value: '咖啡饮料等西式下午茶(一级品牌)'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
@@ -1619,11 +1624,11 @@
 						noPingEffect: true,
 						data: [
 							{a: '卡口是否正常', b: '是'},
-							{a: '日均车流量', b: '200辆'}
+							{a: '今日车流量', b: '200辆'}
 						],
 						formData: [
 							{label: '卡口是否正常', value: '是'},
-							{label: '日均车流量', value: '200辆'}
+							{label: '今日车流量', value: '200辆'}
 						],
 						chartBox: [
 							{
@@ -1805,11 +1810,11 @@
 						noPingEffect: true,
 						data: [
 							{a: '卡口是否正常', b: '是'},
-							{a: '日均车流量', b: '200辆'}
+							{a: '今日车流量', b: '200辆'}
 						],
 						formData: [
 							{label: '卡口是否正常', value: '是'},
-							{label: '日均车流量', value: '200辆'}
+							{label: '今日车流量', value: '200辆'}
 						],
 						chartBox: [
 							{
@@ -1988,12 +1993,18 @@
 					},
 					{
 						name: "停车区",
+						noPingEffect: true,
 						data: [
 							{a: '目前停车-大车', b: '100辆'},
 							{a: '目前停车-小车', b: '500辆'},
 							{a: '今日均停车时长', b: '2小时'},
 							{a: '大车停车位', b: '500个'},
 							{a: '小车停车位', b: '1000个'},
+						],
+						formData: [
+							{label: '当前大车停放', value: '100辆'},
+							{label: '当前小车停放', value: '200辆'},
+							{label: '今日均停车时长', value: '2小时'},
 						],
 						chartBox: [
 							{

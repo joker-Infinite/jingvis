@@ -441,7 +441,7 @@ new AMap.MarkerClusterer(
       height: 100px;
       position: absolute;
       top: 0;
-      right: 0px !important;
+      right: -120px;
       background: rgba(0, 0, 0, 0.7);
       z-index: 99;
       color: white;
