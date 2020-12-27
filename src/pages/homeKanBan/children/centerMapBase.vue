@@ -168,7 +168,7 @@
 						if (item.type === "中石化") icon = require("../../../assets/gas/zsh.png");
 						if (item.type === "中石油") icon = require("../../../assets/gas/zsy.png");
 						if (item.type === "交投能源") icon = require("../../../assets/gas/jtny.png");
-						if (item.type === "卡口") icon = require("../../../assets/gas/service-k.png");
+						if (item.type === "卡口") icon = require("../../../assets/gas/kk.png");
 					}
 					if (item.longitude && item.latitude && item.longitude != 'NULL' && item.latitude != 'NULL') {
 						let marker = new AMap.Marker({
@@ -465,49 +465,66 @@ new AMap.MarkerClusterer(
           transition: linear .4s;
         }
       }
+
+      /deep/ .el-radio-group {
+        .el-radio {
+          margin-right: 0;
+          line-height: 20px;
+
+          .el-radio__label {
+            color: white;
+          }
+        }
+
+        .is-checked {
+          .el-radio__label {
+            color: #409EFF;
+          }
+        }
+      }
     }
 
-    .btn /deep/ .el-checkbox {
-      color: white;
-      margin-right: 0;
-    }
+    /* .btn /deep/ .el-checkbox {
+       color: white;
+       margin-right: 0;
+     }
 
-    .btn /deep/ .el-select {
-      width: 90px;
-    }
+     .btn /deep/ .el-select {
+       width: 90px;
+     }
 
-    .btn /deep/ .el-select > .el-select__tags {
-      overflow: hidden;
-      height: 30px;
-    }
+     .btn /deep/ .el-select > .el-select__tags {
+       overflow: hidden;
+       height: 30px;
+     }
 
-    .btn /deep/ .el-select > .el-input {
-      min-width: 90px;
-    }
+     .btn /deep/ .el-select > .el-input {
+       min-width: 90px;
+     }
 
-    .btn /deep/ .el-select > .el-input > .el-input__inner {
-      line-height: 30px;
-      height: 30px;
-      border: none;
-      border-radius: 0;
-      background: none;
-      min-width: 90px;
-      padding: 0 2px;
-      color: white;
-    }
+     .btn /deep/ .el-select > .el-input > .el-input__inner {
+       line-height: 30px;
+       height: 30px;
+       border: none;
+       border-radius: 0;
+       background: none;
+       min-width: 90px;
+       padding: 0 2px;
+       color: white;
+     }
 
-    .btn /deep/ .el-select > .el-input > .el-input__inner::-webkit-input-placeholder {
-      color: #cccccc;
-    }
+     .btn /deep/ .el-select > .el-input > .el-input__inner::-webkit-input-placeholder {
+       color: #cccccc;
+     }
 
-    .btn /deep/ .el-select > .el-input > .el-input__suffix {
-      /*width: 20px;*/
-    }
+     .btn /deep/ .el-select > .el-input > .el-input__suffix {
+       !*width: 20px;*!
+     }
 
-    .btn /deep/ .el-select > .el-input > .el-input__suffix > .el-input__suffix-inner > .el-input__icon {
-      line-height: 30px;
-      color: white;
-    }
+     .btn /deep/ .el-select > .el-input > .el-input__suffix > .el-input__suffix-inner > .el-input__icon {
+       line-height: 30px;
+       color: white;
+     }*/
 
     #MAP {
       width: 100%;
