@@ -45,10 +45,6 @@
 					{
 						name: '办公区',
 						remark: '为工作人员提供舒适的办公地点',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: '王永红', width: '139px'},
-						],
 						data: [
 							{a: '负责人', b: '王永红'},
 							{a: '联系方式', b: '18071019995'},
@@ -201,10 +197,6 @@
 					{
 						name: '加油区',
 						remark: '提供柴油、汽油（E95、E98、95……）',
-						columns: [
-							{prop: 'a', label: '加油站管理单位', width: '139px'},
-							{prop: 'b', label: '中石化', width: '139px'},
-						],
 						data: [
 							{a: '加油站负责人', b: 'XXX'},
 							{a: '加油站联系电话', b: 'Xxxxxxxxxxx'},
@@ -366,10 +358,6 @@
 					{
 						name: '小圆满餐厅',
 						remark: '口味独特、菜品丰富',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'XXX', width: '139px'},
-						],
 						data: [
 							{a: '负责人', b: 'XXX'},
 							{a: '联系方式', b: 'XXXXXXXX'},
@@ -519,10 +507,6 @@
 					{
 						name: '隆盛牛肉面',
 						remark: '面中之王',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
 							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
@@ -685,10 +669,6 @@
 					{
 						name: '楚天舒便利店',
 						remark: '便宜实惠、物美价廉……',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
 							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
@@ -838,10 +818,6 @@
 					{
 						name: '驿路香伴小吃',
 						remark: '特色小吃、品种丰富……',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
 							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
@@ -991,10 +967,6 @@
 					{
 						name: '男厕',
 						remark: '男厕所',
-						columns: [
-							{prop: 'a', label: '厕所等级', width: '139px'},
-							{prop: 'b', label: '五星', width: '139px'},
-						],
 						data: [
 							{a: '厕所等级', b: '五星'},
 							{a: '蹲位数量', b: '114个'},
@@ -1169,10 +1141,6 @@
 					{
 						name: '女厕',
 						remark: '女厕所',
-						columns: [
-							{prop: 'a', label: '厕所等级', width: '139px'},
-							{prop: 'b', label: '五星', width: '139px'},
-						],
 						data: [
 							{a: '厕所等级', b: '五星'},
 							{a: '蹲位数量', b: '114个'},
@@ -1345,10 +1313,6 @@
 					{
 						name: '伟鸿汽修',
 						remark: '处理及维修汽车故障……',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
 							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
@@ -1498,10 +1462,6 @@
 					{
 						name: '猫屎咖啡',
 						remark: '累了困了喝咖啡，猫屎咖啡你值得拥有……',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
 							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
