@@ -45,6 +45,7 @@
 				box: [
 					{
 						name: '办公区',
+						noPingEffect: true,
 						remark: '为工作人员提供舒适的办公地点',
 						data: [
 							{a: '负责人', b: '王永红'},
@@ -76,10 +77,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6'],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -244,6 +254,9 @@
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -264,6 +277,12 @@
 									top: 40,
 									bottom: 30,
 									right: 50
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								yAxis: {
 									type: 'value',
@@ -389,10 +408,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -449,10 +477,19 @@
 										color: "#FFF"
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -538,10 +575,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -598,10 +644,19 @@
 										color: "#FFF"
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -700,10 +755,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -760,10 +824,19 @@
 										color: "#FFF"
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -849,10 +922,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -909,10 +991,19 @@
 										color: "#FFF"
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -997,10 +1088,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '人'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -1172,10 +1272,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '人'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -1350,10 +1459,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -1410,10 +1528,19 @@
 										color: "#FFF"
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -1499,10 +1626,19 @@
 										color: '#FFF'
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},
@@ -1559,10 +1695,19 @@
 										color: "#FFF"
 									}
 								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
+								},
 								xAxis: {
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
 									axisTick: {
 										show: false,
 									},

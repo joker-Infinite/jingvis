@@ -37,7 +37,7 @@
             </tr>
           </table>
         </el-col>
-        <el-col :span="24">
+        <el-col :span="24" v-if="chartBox.length===1">
           <el-date-picker
                   value="2020-12"
                   type="month"

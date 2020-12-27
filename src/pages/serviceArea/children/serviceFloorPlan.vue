@@ -136,6 +136,7 @@
 				box: [
 					{
 						name: '办公区',
+						noPingEffect: true,
 						remark: '为工作人员提供舒适的办公地点',
 						data: [
 							{a: '负责人', b: '王永红'},
@@ -167,7 +168,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								grid: {
 									left: 40,
@@ -294,7 +304,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								grid: {
 									left: 40,
@@ -406,7 +425,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								grid: {
 									left: 40,
@@ -435,7 +463,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
 								},
 								grid: {
 									left: 40,
@@ -493,7 +530,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								grid: {
 									left: 40,
@@ -522,7 +568,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
 								},
 								grid: {
 									left: 40,
@@ -593,7 +648,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								grid: {
 									left: 40,
@@ -622,7 +686,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
 								},
 								grid: {
 									left: 40,
@@ -681,7 +754,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								grid: {
 									left: 40,
@@ -710,7 +792,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
 								},
 								grid: {
 									left: 40,
@@ -768,10 +859,19 @@
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: 'shadow'
+									},
 									axisTick: {
 										show: false,
 									},
 									splitLine: {show: false},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '人'
+									}
 								},
 								grid: {
 									left: 40,
@@ -911,10 +1011,19 @@
 									type: 'category',
 									name: '月',
 									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: 'shadow'
+									},
 									axisTick: {
 										show: false,
 									},
 									splitLine: {show: false},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '人'
+									}
 								},
 								grid: {
 									left: 40,
@@ -1056,7 +1165,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								grid: {
 									left: 40,
@@ -1085,7 +1203,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
 								},
 								grid: {
 									left: 40,
@@ -1143,7 +1270,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '万元'
+									}
 								},
 								grid: {
 									left: 40,
@@ -1172,7 +1308,16 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',]
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisPointer: {
+										type: "shadow",
+									},
+								},
+								tooltip: {
+									trigger: "axis",
+									formatter: v => {
+										return v[0].name + '月：' + v[0].value + '个'
+									}
 								},
 								grid: {
 									left: 40,
