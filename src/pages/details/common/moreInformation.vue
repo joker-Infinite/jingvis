@@ -39,7 +39,7 @@
         </el-col>
         <el-col :span="24" v-if="chartBox.length===1">
           <el-date-picker
-                  value="2020-12"
+                  :value="dates"
                   type="month"
                   placeholder="">
           </el-date-picker>
@@ -72,6 +72,7 @@
 		},
 		data() {
 			return {
+				dates: '2020-12',
 				visible: false,
 				form: {
 					name: ''
@@ -323,6 +324,21 @@
     overflow-y: scroll;
     background: url('../../../assets/detailsTest/imgDetailsBG.jpg');
     background-size: 100% 100%;
+
+    /deep/ .el-col {
+      .el-date-editor {
+        .el-input__inner {
+          line-height: 35px;
+          height: 35px;
+        }
+
+        .el-input__prefix {
+          .el-input__icon {
+            line-height: 35px;
+          }
+        }
+      }
+    }
 
     .title {
       color: white;

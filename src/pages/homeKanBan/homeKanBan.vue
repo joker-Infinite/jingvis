@@ -60,11 +60,9 @@
 				selectValue: 0,
 				times: '',
 				timeInformation: [
-					"凌晨二时 石家庄 XXX服务区因为XXX 已临时关闭 预计XXX开放",
-					"凌晨三时 武汉 XXX服务区因为XXX 已临时关闭 预计XXX开放",
-					"凌晨二时 襄阳 XXX服务区因为XXX 已临时关闭 预计XXX开放",
-					"凌晨四时 随州 XXX服务区因为XXX 已临时关闭 预计XXX开放",
-					"凌晨五时 驻马店 XXX服务区因为XXX 已临时关闭 预计XXX开放"
+					"凌晨二时 蔡甸服务区因为XXX 已临时关闭 预计XXX开放",
+					"凌晨三时 小池服务区因为XXX 已临时关闭 预计XXX开放",
+					"凌晨二时 大悟服务区因为XXX 已临时关闭 预计XXX开放",
 				],
 				screenHeight: '',
 				screenWidth: ''

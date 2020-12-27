@@ -106,7 +106,7 @@
 				if (is === 1) {
 					this.AD.title.textStyle.fontSize = 25;
 					this.AD.title.y = "4%";
-					this.AD.title.left = "60%";
+					this.AD.title.left = "53%";
 					this.$refs["showECharts"].openDialog(this.AD, "time");
 					this.$refs["showECharts"].isShow = false;
 					this.$refs["showECharts"].timeSelect = true;
@@ -140,9 +140,9 @@
 				this.resizeData.push(HomeTopRight_top);
 				let option = this.AD = {
 					title: {
-						text: "转化率",
+						text: "转化率（2019/12）",
 						show: true,
-						left: '65%',
+						left: '58%',
 						right: '100',
 						textStyle: {
 							fontFamily: "幼圆",
@@ -221,17 +221,17 @@
 					let links = [];
 					name.push({name: '车辆'});
 					let sum = 0;
-					res.data.forEach(item => {	
+					res.data.forEach(item => {
 						item.moneyVoList.forEach(i => {
 							links.push({
-								source: i.goodsType.substr(0,2) == '柴油' ? `0#${i.goodsType.substr(2)}` : i.goodsType,
+								source: i.goodsType.substr(0, 2) == '柴油' ? `0#${i.goodsType.substr(2)}` : i.goodsType.substr(0, 2) + '#' + i.goodsType.substr(2, i.goodsType.length - 1),
 								target: item.typeName,
 								value: i.count
 							})
-							sum+=parseInt(i.count)
+							sum += parseInt(i.count)
 						})
 						links.unshift({
-							source: item.typeName ,
+							source: item.typeName,
 							target: '车辆',
 							value: sum.toString(),
 						})
@@ -241,8 +241,8 @@
 							value: parseInt(res.data[0].sumJvCount) + parseInt(res.data[1].sumJvCount),
 						})*/
 					});
-					let ind=true
-					links.forEach((i,index )=> {
+					let ind = true
+					links.forEach((i, index) => {
 						let color = '';
 						color = '#00BBFF'
 						// if (index== 1) color = '#00BBFF';
@@ -259,7 +259,7 @@
 									borderColor: color
 								}
 							}
-						})	
+						})
 					})
 					option.series.data = name;
 					option.series.links = links;
