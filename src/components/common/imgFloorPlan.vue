@@ -1610,10 +1610,101 @@
 					},
 					{
 						name: "入口",
-						noPopover: true,
 						data: [
 							{a: '卡口是否正常', b: '是'},
 							{a: '日均车流量', b: '200辆'}
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '近半年车流量',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								tooltip: {
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 2) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆<br>' + v[1].seriesName + '：' + v[1].value + '辆'
+										}
+										if (v.length === 1) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆'
+										}
+									}
+								},
+								legend: {
+									data: ['大车', '小车'],
+									bottom: 0,
+									textStyle: {color: 'white'}
+								},
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										name: '月',
+										type: 'category',
+										data: ['1', '2', '3', '4', '5', '6'],
+										axisTick: {
+											show: false,
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
+											},
+										},
+										splitLine: {show: false},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+									}
+								],
+								yAxis: [
+									{
+										type: 'value',
+										name: '辆',
+										axisTick: {
+											show: false,
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
+											},
+										},
+										splitLine: {show: false},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+									}
+								],
+								series: [
+									{
+										name: '大车',
+										type: 'bar',
+										stack: '车流量',
+										data: [620, 507, 400, 734, 689, 666]
+									},
+									{
+										name: '小车',
+										type: 'bar',
+										stack: '车流量',
+										data: [730, 650, 600, 499, 290, 230]
+									}
+								]
+							}
 						],
 						style: {
 							width: '97px',
@@ -1625,10 +1716,101 @@
 					},
 					{
 						name: "出口",
-						noPopover: true,
 						data: [
 							{a: '卡口是否正常', b: '是'},
 							{a: '日均车流量', b: '200辆'}
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '近半年车流量',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								tooltip: {
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 2) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆<br>' + v[1].seriesName + '：' + v[1].value + '辆'
+										}
+										if (v.length === 1) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆'
+										}
+									}
+								},
+								legend: {
+									data: ['大车', '小车'],
+									bottom: 0,
+									textStyle: {color: 'white'}
+								},
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										name: '月',
+										type: 'category',
+										data: ['1', '2', '3', '4', '5', '6'],
+										axisTick: {
+											show: false,
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
+											},
+										},
+										splitLine: {show: false},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+									}
+								],
+								yAxis: [
+									{
+										type: 'value',
+										name: '辆',
+										axisTick: {
+											show: false,
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
+											},
+										},
+										splitLine: {show: false},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+									}
+								],
+								series: [
+									{
+										name: '大车',
+										type: 'bar',
+										stack: '车流量',
+										data: [620, 507, 400, 734, 689, 666]
+									},
+									{
+										name: '小车',
+										type: 'bar',
+										stack: '车流量',
+										data: [730, 650, 600, 499, 290, 230]
+									}
+								]
+							}
 						],
 						style: {
 							width: '97px',

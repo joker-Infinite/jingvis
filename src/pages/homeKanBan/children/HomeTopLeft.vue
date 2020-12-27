@@ -432,6 +432,17 @@
 								fontSize: "30",
 							},
 						},
+						tooltip: {
+							trigger: "axis",
+							formatter: v => {
+								if (v.length === 2) {
+									return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '万元<br>' + v[1].seriesName + '：' + v[1].value + '万元'
+								}
+								if (v.length === 1) {
+									return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '万元'
+								}
+							}
+						},
 						grid: {
 							top: "35",
 							left: "12%",
@@ -450,6 +461,9 @@
 							name: '月',
 							type: 'category',
 							data: ['7', '8', '9', '10'],
+							axisPointer: {
+								type: "shadow",
+							},
 							axisTick: {show: false},
 							splitLine: {show: false},
 							axisLine: {

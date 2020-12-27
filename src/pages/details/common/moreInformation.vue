@@ -12,7 +12,7 @@
           </el-col>
           <el-col :span="8">
             <span style="display: inline-block;font-size: 15px;font-weight: 600">
-              {{(form.name!='男厕'&&form.name!='女厕')?'坪效：20元/㎡':''}}</span>
+              {{(form.name!='男厕'&&form.name!='女厕'&&form.name!='出口'&&form.name!='入口')?'坪效：20元/㎡':''}}</span>
           </el-col>
         </p>
         <el-col :span="8" v-for="(it,ix) in formData" :key="ix">
@@ -21,8 +21,8 @@
           </el-form-item>
         </el-col>
         <div class="echarts">
-          <div v-for="i in chartBox.length" :key="i" :id="'details_'+i"
-               style="width: 49.5%;height:300px;margin-bottom: 10px;"></div>
+          <div v-for="i in 2" :key="i" :id="'details_'+i"
+               :style="{width: '49.5%',height:formData?'300px':'400px',marginBottom: '10px',}"></div>
         </div>
       </el-form>
     </el-dialog>
@@ -50,10 +50,55 @@
 				},
 				formData: [],
 				chartBox: [],
-				ID: []
+				ID: [],
+				cellSize: [60, 60],
+				pieRadius: 20,
 			}
 		},
 		methods: {
+			getVirtulData() {
+				let date = +this.$echarts.number.parseDate('2020-12-01');
+				let end = +this.$echarts.number.parseDate('2021-1-01');
+				let dayTime = 3600 * 24 * 1000;
+				let data = [];
+				for (let time = date; time < end; time += dayTime) {
+					data.push([
+						this.$echarts.format.formatTime('yyyy-MM-dd', time),
+						Math.floor(Math.random() * 10000)
+					]);
+				}
+				return data;
+			},
+			getPieSeries(charts) {
+				let that = this;
+				return this.$echarts.util.map(this.getVirtulData(), function (item, index) {
+					let center = charts.convertToPixel('calendar', item);
+					return {
+						id: index + 'pie',
+						type: 'pie',
+						center: center,
+						barWidth: 20,
+						title: {
+							text: '近半年销售额',
+							x: 'center',
+							textStyle: {
+								color: '#FFF'
+							}
+						},
+						label: {
+							normal: {
+								formatter: '{c}',
+								position: 'inside'
+							}
+						},
+						radius: that.pieRadius,
+						data: [
+							{name: '大车', value: Math.round(Math.random() * 24)},
+							{name: '小车', value: Math.round(Math.random() * 24)}
+						]
+					};
+				});
+			},
 			openDialog(v) {
 				if (v.name === '大厅') {
 					return '';
@@ -67,16 +112,24 @@
 					let form = document.getElementsByClassName('form')[0];
 					form.scrollTo(0, 0);
 					this.form.name = v.name;
-					this.ECharts();
+					this.ECharts(v);
 				})
 			},
-			ECharts() {
+			ECharts(v) {
 				let eId = [];
-				for (let i = 1; i < this.chartBox.length + 1; i++) {
+				for (let i = 1; i < 2 + 1; i++) {
 					let id = 'details_' + i;
 					eId.push(this.$echarts.init(document.getElementById(id)))
 				}
 				this.ID = eId;
+				if (v.name !== '入口' && v.name !== '出口') {
+					this.allECharts(eId);
+				}
+				if (v.name === '入口' || v.name === '出口') {
+					this.smallECharts(eId);
+				}
+			},
+			allECharts(eId) {
 				eId.forEach((i, x) => {
 					if (this.openIndex % 2 == 0) {
 						document.getElementById(i).removeAttribute("_echarts_instance_");
@@ -85,6 +138,81 @@
 						i.setOption(this.chartBox[x]);
 					})
 				})
+			},
+			smallECharts(eId) {
+				let that = this;
+				let option = {
+					tooltip: {
+						formatter: v => {
+							return v.name + ':' + v.value + '辆';
+						}
+					},
+					title: {
+						text: '当前月每日车流量',
+						x: 'center',
+						textStyle: {
+							color: '#FFF'
+						}
+					},
+					legend: {
+						data: ['大车', '小车'],
+						bottom: 0,
+						textStyle: {
+							color: 'white'
+						}
+					},
+					calendar: {
+						top: 'middle',
+						left: 'center',
+						orient: 'vertical',
+						cellSize: this.cellSize,
+						yearLabel: {
+							show: false,
+							textStyle: {
+								fontSize: 30
+							}
+						},
+						dayLabel: {
+							margin: 5,
+							firstDay: 1,
+							nameMap: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+							textStyle: {
+								color: 'white'
+							}
+						},
+						monthLabel: {
+							show: false
+						},
+						range: ['2020-12']
+					},
+					series: [{
+						id: 'label',
+						type: 'scatter',
+						coordinateSystem: 'calendar',
+						symbolSize: 1,
+						label: {
+							normal: {
+								show: true,
+								formatter: function (params) {
+									return this.$echarts.format.formatTime('dd', params.value[0]);
+								},
+								offset: [-this.cellSize[0] / 2 + 10, -this.cellSize[1] / 2 + 10],
+								textStyle: {
+									color: '#FFF',
+									fontSize: 14
+								}
+							}
+						}
+					}]
+				};
+				eId[0].setOption(this.chartBox[0]);
+				eId[1].setOption(option);
+				setTimeout(function () {
+					let series = that.getPieSeries(eId[1]);
+					eId[1].setOption({
+						series: series
+					});
+				}, 10);
 			}
 		}
 	}
