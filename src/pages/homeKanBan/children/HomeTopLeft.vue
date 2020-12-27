@@ -436,10 +436,10 @@
 							trigger: "axis",
 							formatter: v => {
 								if (v.length === 2) {
-									return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '万元<br>' + v[1].seriesName + '：' + v[1].value + '万元'
+									return '2020年 ' + v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '万元<br>' + v[1].seriesName + '：' + v[1].value + '万元'
 								}
 								if (v.length === 1) {
-									return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '万元'
+									return '2020年 ' + v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '万元'
 								}
 							}
 						},
