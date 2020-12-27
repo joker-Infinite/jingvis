@@ -178,7 +178,7 @@
 							icon: new AMap.Icon({
 								image: icon,
 								size: new AMap.Size(30, 30),
-								imageSize: new AMap.Size(25, 30),
+								imageSize: new AMap.Size(30, 30),
 							}),
 							position: [item.longitude, item.latitude],
 						});

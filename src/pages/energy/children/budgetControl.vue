@@ -318,24 +318,6 @@ export default {
                                                         radius: ["38%", "50%"],
                                                         clockwise: true,
                                                         hoverOffset: 20,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -363,6 +345,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#ff78e7','#02cab3','#4885ff','#fec67c','#cb9bff','#54c3fc'],
                                                         data: [
                                                             { value: 335, name: "过票" },
                                                             { value: 310, name: "油品批发" },
@@ -670,24 +653,6 @@ export default {
                                                         radius: ["38%", "50%"],
                                                         clockwise: true,
                                                         hoverOffset: 20,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -715,6 +680,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#ff78e7','#02cab3','#4885ff','#fec67c','#cb9bff','#54c3fc'],
                                                         data: [
                                                             { value: 635, name: "过票" },
                                                             { value: 910, name: "油品批发" },

@@ -468,24 +468,6 @@ export default {
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -513,6 +495,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#47a2ff','#53c8d1','#59cb74','#fbd444','#7f6aad'],
                                                         data: [
                                                             { value: 335, name: "A进货商" },
                                                             { value: 310, name: "B进货商" },
@@ -777,24 +760,6 @@ export default {
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -822,6 +787,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#47a2ff','#53c8d1','#59cb74','#fbd444','#7f6aad'],
                                                         data: [
                                                             { value: 535, name: "A进货商" },
                                                             { value: 610, name: "B进货商" },
