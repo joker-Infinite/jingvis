@@ -26,7 +26,7 @@ export default {
                     icon: require("../../../assets/business/icon_1-1.png"),
                     iconActive: require("../../../assets/business/icon_1-2.png"),
                     collapseItem: [
-                       {
+                        {
                             id: "profit_2020",
                             year: 2020,
                             collapseTitle: "2020年利润",
@@ -82,9 +82,9 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
-                                                        name:'月',
-                                                        nameTextStyle:{
-                                                            color:'#000'
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
                                                         },
                                                         color: "#59588D",
                                                         data: [],
@@ -259,24 +259,6 @@ export default {
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -304,6 +286,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#73ddff','#73acff','#fdd56a','#fdb36a','#fd866a','#9e87ff'],
                                                         data: [
                                                             { value: 335, name: "新能源" },
                                                             { value: 310, name: "石化" },
@@ -334,6 +317,8 @@ export default {
                                                     bottom: 10,
                                                     data: ["过票", "油品批发", "分销", "油品零售", "非油品零售"],
                                                 },
+                                                // color: [],
+                                                
                                                 series: [
                                                     {
                                                         type: "pie",
@@ -346,15 +331,12 @@ export default {
                                                             normal: {
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#95a2ff",
+                                                                         "#3cb8fe", 
+                                                                         "#72abf9", 
+                                                                         "#73abf8", 
+                                                                         "#cb9bff", 
+                                                                         "#ff9393"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -387,6 +369,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        
                                                         data: [
                                                             { value: 335, name: "过票" },
                                                             { value: 310, name: "油品批发" },
@@ -458,9 +441,9 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
-                                                        name:'月',
-                                                        nameTextStyle:{
-                                                            color:'#000'
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
                                                         },
                                                         color: "#59588D",
                                                         data: [],
@@ -534,6 +517,7 @@ export default {
                                                     //     },
                                                     // }
                                                 ],
+                                                
                                                 series: [
                                                     {
                                                         type: "bar",
@@ -635,24 +619,6 @@ export default {
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -680,6 +646,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#73ddff','#73acff','#fdd56a','#fdb36a','#fd866a','#9e87ff'],
                                                         data: [
                                                             { value: 335, name: "新能源" },
                                                             { value: 1310, name: "石化" },
@@ -827,7 +794,14 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />利润:" + (val[0].value / 10000).toFixed(2) + "万元";
+                                                        return (
+                                                            val[0].name +
+                                                            "月" +
+                                                            ":" +
+                                                            "<br />利润:" +
+                                                            (val[0].value / 10000).toFixed(2) +
+                                                            "万元"
+                                                        );
                                                     },
                                                 },
                                                 grid: {
@@ -847,12 +821,12 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
-                                                        name:'月',
-                                                        nameTextStyle:{
-                                                            color:'#000'
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
                                                         },
                                                         color: "#59588D",
-                                                        data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                                                        data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
                                                             margin: 10,
                                                             color: "#999",
@@ -1036,24 +1010,6 @@ export default {
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -1081,6 +1037,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#73ddff','#73acff','#fdd56a','#fdb36a','#fd866a','#9e87ff'],
                                                         data: [
                                                             { value: 335, name: "新能源" },
                                                             { value: 310, name: "石化" },
@@ -1215,7 +1172,14 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />利润:" + (val[0].value / 10000).toFixed(2) + "万元";
+                                                        return (
+                                                            val[0].name +
+                                                            "月" +
+                                                            ":" +
+                                                            "<br />利润:" +
+                                                            (val[0].value / 10000).toFixed(2) +
+                                                            "万元"
+                                                        );
                                                     },
                                                 },
                                                 grid: {
@@ -1235,12 +1199,12 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
-                                                        name:'月',
-                                                        nameTextStyle:{
-                                                            color:'#000'
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
                                                         },
                                                         color: "#59588D",
-                                                        data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                                                        data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
                                                             margin: 10,
                                                             color: "#999",
@@ -1424,24 +1388,7 @@ export default {
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
+                                                        
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -1469,6 +1416,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#73ddff','#73acff','#fdd56a','#fdb36a','#fd866a','#9e87ff'],
                                                         data: [
                                                             { value: 335, name: "新能源" },
                                                             { value: 310, name: "石化" },

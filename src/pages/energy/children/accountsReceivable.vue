@@ -29,10 +29,10 @@ export default {
                         {
                             id: "budget_2020",
                             year: 2020,
-                            collapseTitle: "2020年回款率",
+                            collapseTitle: "2020年回款",
                             EChartsBox: [
                                 {
-                                    title: "月回款率",
+                                    title: "月回款",
                                     time: false,
                                     style: {
                                         width: "39.5%",
@@ -262,10 +262,10 @@ export default {
                         {
                             id: "budget_2019",
                             year: 2019,
-                            collapseTitle: "2019年回款率",
+                            collapseTitle: "2019年回款",
                             EChartsBox: [
                                 {
-                                    title: "月回款率",
+                                    title: "月回款",
                                     time: false,
                                     style: {
                                         width: "39.5%",

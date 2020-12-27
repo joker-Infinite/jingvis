@@ -21,7 +21,7 @@ export default {
             collapseData: [
                 {
                     id: "rateofreturn",
-                    name: "回款率",
+                    name: "回款",
                     icon: require("../../../assets/business/icon_6-1.png"),
                     iconActive: require("../../../assets/business/icon_6-2.png"),
                     collapseItem: [

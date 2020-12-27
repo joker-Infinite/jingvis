@@ -392,29 +392,29 @@
 					{label: "所在高速", value: "京港澳高速"},
 					{label: "高速编号", value: "G4"},
 					{label: "高速桩号", value: "K1165"},
-					{label: "占地面积", value: "131"},
-					{label: "建筑面积", value: "87333.3"},
-					{label: "经营面积", value: "15347.26"},
-					{label: "绿化面积", value: "5689.64"},
-					{label: "日均车流量", value: "33960.7"},
-					{label: "日高峰期车流量", value: "3500"},
+					{label: "占地面积", value: "131(亩)"},
+					{label: "建筑面积", value: "87333.3(㎡)"},
+					{label: "经营面积", value: "15347.26(㎡)"},
+					{label: "绿化面积", value: "5689.64(㎡)"},
+					{label: "日均车流量", value: "33960.7(辆)"},
+					{label: "日高峰期车流量", value: "3500(辆)"},
 					{label: "厕所等级", value: "五星"},
 					{label: "厕所改造时间", value: "2018.09"},
-					{label: "男女蹲位数量", value: "114，126"},
-					{label: "小便器阀数量", value: "114"},
-					{label: "大车位个数", value: "112"},
-					{label: "小车位个数", value: "150"},
-					{label: "保安人数", value: "18"},
-					{label: "保洁人数", value: "35"},
+					{label: "男女蹲位数量", value: "男:114个，女:126个"},
+					{label: "小便器阀数量", value: "114(个)"},
+					{label: "大车位个数", value: "112(个)"},
+					{label: "小车位个数", value: "150(个)"},
+					{label: "保安人数", value: "18(位)"},
+					{label: "保洁人数", value: "35(位)"},
 					{label: "加油站开通", value: "是"},
-					{label: "加油机数量", value: "14"},
-					{label: "充电桩数量", value: "8"},
+					{label: "加油机数量", value: "14(个)"},
+					{label: "充电桩数量", value: "8(个)"},
 					{label: "充电桩分布", value: "双侧"},
 					{label: "所属地域", value: "孝感市孝南区"},
 					{label: "路段管理单位", value: "京珠运营公司"},
 					{label: "服务区负责人", value: "王永红"},
 					{label: "联系方式", value: "18071019995"},
-					{label: "停车场面积", value: "90757.3"},
+					{label: "停车场面积", value: "90757.3(㎡)"},
 					{label: "加油站管理单位", value: "中石化"},
 				],
 			};
@@ -539,7 +539,7 @@
 					tooltip: {
 						trigger: "axis",
 						formatter: function (val) {
-							return val[0].name + ":" + val[0].value + "元";
+							return val[0].name+'月' + ":" + val[0].value + "元<br>"+val[1].value;
 						},
 					},
 					grid: {
@@ -550,6 +550,10 @@
 					},
 					xAxis: [
 						{
+              name:'月',
+              nameTextStyle:{
+                color:'#000'
+              },
 							type: "category",
 							color: "#59588D",
 							data: [
@@ -585,6 +589,10 @@
 					],
 					yAxis: [
 						{
+              name:'元',
+              nameTextStyle:{
+                color:'#000'
+              },
 							axisLabel: {
 								formatter: "{value}",
 								color: "#999",
@@ -681,7 +689,8 @@
 						bottom: 10,
 					},
 					tooltip: {
-						trigger: "item",
+            trigger: "item",
+            formatter: "{b}: {c}万元 ({d}%)",
 					},
 					series: [
 						{
@@ -760,7 +769,8 @@
 						text: "",
 					},
 					tooltip: {
-						trigger: "item",
+            trigger: "item",
+            formatter: "{b}: {c}万元 ({d}%)",
 					},
 
 					legend: {

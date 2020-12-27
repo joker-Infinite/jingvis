@@ -114,6 +114,7 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
+                                                
                                                 xAxis: {
                                                     type: "category",
                                                     data: [
@@ -196,10 +197,10 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                title: {
-                                                    text: "",
-                                                    left: "43%",
-                                                    top: "48%",
+                                                title:{
+                                                    text:'分类占比',
+                                                    top:'center',
+                                                    left:'center'
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
@@ -217,35 +218,39 @@ export default {
                                                         type: "pie",
                                                         radius: ["50%", "70%"],
                                                         avoidLabelOverlap: false,
-                                                        label: {
-                                                            show: false,
-                                                            position: "center",
-                                                        },
-                                                        emphasis: {
-                                                            label: {
-                                                                show: true,
-                                                                fontSize: "30",
-                                                                fontWeight: "bold",
-                                                            },
-                                                        },
-                                                        labelLine: {
-                                                            show: false,
-                                                        },
+                                                        // label: {
+                                                        //     show: false,
+                                                        //     position: "center",
+                                                        // },
+                                                        // emphasis: {
+                                                        //     label: {
+                                                        //         show: true,
+                                                        //         fontSize: "30",
+                                                        //         fontWeight: "bold",
+                                                        //     },
+                                                        // },
+                                                        
                                                         itemStyle: {
                                                             normal: {
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
+                                                                        "#36c78b",
+                                                                        "#51a3fc",
                                                                     ];
                                                                     return colorList[v.dataIndex];
+                                                                },
+                                                            },
+                                                        },
+                                                        labelLine: {
+                                                            normal: {
+                                                                length: 30,
+                                                                length2: 25,
+                                                                fontSize: 16,
+                                                                lineStyle: {
+                                                                    width: 1,
                                                                 },
                                                             },
                                                         },
@@ -278,7 +283,7 @@ export default {
                                         {
                                             serviceName: "大悟服务区",
                                             serviceNamemin: "点军服务区",
-                                            unit: "㎡",
+                                            unit: "亩",
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
@@ -301,6 +306,7 @@ export default {
                                                         "11月",
                                                         "12月",
                                                     ],
+                                                    
                                                     splitLine: {
                                                         show: false,
                                                     },
@@ -316,7 +322,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "axis",
-                                                    formatter: "{b} : {c}㎡",
+                                                    formatter: "{b} : {c}亩",
                                                     // axisPointer: {
                                                     //     type: "shadow"
                                                     // },
@@ -367,7 +373,7 @@ export default {
                                         {
                                             serviceName: "黄冈服务区",
                                             serviceNamemin: "恩施服务区",
-                                            unit: "㎡",
+                                            unit: "万㎡",
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
@@ -405,7 +411,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "axis",
-                                                    formatter: "{b} : {c}㎡",
+                                                    formatter: "{b} : {c}万㎡",
                                                     // axisPointer: {
                                                     //     type: "shadow"
                                                     // },
@@ -425,7 +431,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                                                        data: [100, 110, 110, 170, 170, 190, 190, 205, 205, 215, 260, 260],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -513,7 +519,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [576, 865, 664, 265, 943, 823, 932, 721, 621, 1034, 1069, 599],
+                                                        data: [400, 350, 460, 1045, 1580, 1406, 2100, 2600, 621, 2400, 1069, 599],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -529,66 +535,80 @@ export default {
                                     ],
                                 },
                                 {
-                                        title: "月订单数/总订单数=订单数量",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-                                            marginBottom: '10px'
-                                        },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '大悟服务区',
-                                                serviceNamemin: '恩施服务区',
-                                                unit: '单',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
+                                    title: "订单数量",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "大悟服务区",
+                                            serviceNamemin: "恩施服务区",
+                                            unit: "单",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
                                                 },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}单",
+                                                    // axisPointer: {
+                                                    //     type: "shadow"
+                                                    // },
+                                                },
+                                                yAxis: {
+                                                    type: "value",
+                                                    name: "单",
+                                                    nameTextStyle: {
+                                                        color: "#000",
                                                     },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
+                                                    splitLine: {
+                                                        show: false,
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}单",
-                                                        // axisPointer: {
-                                                        //     type: "shadow"
-                                                        // },
+                                                    axisTick: {
+                                                        show: false,
                                                     },
-                                                    yAxis: {
-                                                        type: 'value',
-                                                        name:'单',
-                                                        nameTextStyle:{
-                                                            color:'#000'
-                                                        },
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
-                                                        data: [87, 76, 56, 76, 54, 12, 43, 32, 32, 93, 66, 89],
-                                                        type: 'line',
+                                                },
+                                                series: [
+                                                    {
+                                                        data: [8700, 7600, 5600, 7600, 5400, 1200, 4300, 3200, 3200, 9300, 6600, 8900],
+                                                        type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -596,72 +616,86 @@ export default {
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    }]
-                                                }
+                                                    },
+                                                ],
                                             },
-                                        ],
-                                    },
-                                {
-                                        title: "订单金额/订单数量=客单价",
-                                        style: {
-                                            cursor: 'pointer',
-                                            width: "100%",
-                                            height: "350px",
-                                            borderRadius: "10px",
-                                            background: "white",
-                                            overflow: "hidden",
-
                                         },
-                                        EChartsItem: [
-                                            {
-                                                serviceName: '浠水服务区',
-                                                serviceNamemin: '河浦服务区',
-                                                unit: '元',
-                                                /*ECharts的属性*/
-                                                style: {
-                                                    width: "100%",
-                                                    height: "300px",
+                                    ],
+                                },
+                                {
+                                    title: "订单金额÷订单数量=客单价",
+                                    style: {
+                                        cursor: "pointer",
+                                        width: "100%",
+                                        height: "350px",
+                                        borderRadius: "10px",
+                                        background: "white",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            serviceName: "浠水服务区",
+                                            serviceNamemin: "河浦服务区",
+                                            unit: "元",
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    data: [
+                                                        "1月",
+                                                        "2月",
+                                                        "3月",
+                                                        "4月",
+                                                        "5月",
+                                                        "6月",
+                                                        "7月",
+                                                        "8月",
+                                                        "9月",
+                                                        "10月",
+                                                        "11月",
+                                                        "12月",
+                                                    ],
+                                                    splitLine: {
+                                                        show: false,
+                                                    },
+                                                    axisTick: {
+                                                        show: false,
+                                                    },
                                                 },
-                                                option: {
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
+                                                grid: {
+                                                    top: "70",
+                                                    right: "60",
+                                                    left: "60",
+                                                    bottom: "30",
+                                                },
+                                                tooltip: {
+                                                    trigger: "axis",
+                                                    formatter: "{b} : {c}元",
+                                                    // axisPointer: {
+                                                    //     type: "shadow"
+                                                    // },
+                                                },
+                                                yAxis: {
+                                                    type: "value",
+                                                    name: "元",
+                                                    nameTextStyle: {
+                                                        color: "#000",
                                                     },
-                                                    grid: {
-                                                        top: "70",
-                                                        right: "60",
-                                                        left: "60",
-                                                        bottom: "30",
+                                                    splitLine: {
+                                                        show: false,
                                                     },
-                                                    tooltip: {
-                                                        trigger: "axis",
-                                                        formatter: "{b} : {c}元",
-                                                        // axisPointer: {
-                                                        //     type: "shadow"
-                                                        // },
+                                                    axisTick: {
+                                                        show: false,
                                                     },
-                                                    yAxis: {
-                                                        type: 'value',
-                                                        name:'元',
-                                                        nameTextStyle:{
-                                                            color:'#000'
-                                                        },
-                                                        splitLine: {
-                                                            show: false
-                                                        },
-                                                        axisTick: {
-                                                            show: false,
-                                                        },
-                                                    },
-                                                    series: [{
-                                                        data: [87600, 76500, 56400, 7650, 5430, 1230, 4320, 3210, 3210, 9340, 6690, 8990],
-                                                        type: 'line',
+                                                },
+                                                series: [
+                                                    {
+                                                        data: [876, 765, 564, 765, 543, 1230, 432, 321, 340, 934, 669, 899],
+                                                        type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
                                                             width: 2,
@@ -669,13 +703,14 @@ export default {
                                                             shadowBlur: 10,
                                                             shadowOffsetY: 10,
                                                         },
-                                                    }]
-                                                }
+                                                    },
+                                                ],
                                             },
-                                        ],
-                                    },
+                                        },
+                                    ],
+                                },
                                 {
-                                    title: "月订单数量/月车流量=转换率",
+                                    title: "月订单数量÷月车流量=转换率",
                                     style: {
                                         cursor: "pointer",
                                         width: "100%",
@@ -747,7 +782,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [50, 40, 50, 70, 80, 50, 70, 55, 45, 60, 75, 80],
+                                                        data: [5.2, 4.8, 12.5, 10.3, 10.4, 6.5, 8.5, 9.5, 14.5, 13.5, 15, 13.7],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -789,7 +824,7 @@ export default {
                                     timeValue: "",
                                     style: {
                                         width: "35%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -799,7 +834,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "330px",
                                             },
                                             option: {
                                                 title: {
@@ -977,12 +1012,12 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年营收业态占比/片区占比",
+                                    title: "营收占比",
                                     istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -992,7 +1027,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "400px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -1009,7 +1044,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
-                                                    formatter: function(val) {;
+                                                    formatter: function(val) {
                                                         return (
                                                             val.name +
                                                             ":<br>营收:" +
@@ -1024,28 +1059,25 @@ export default {
                                                     {
                                                         type: "pie",
                                                         center: ["40%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -1097,7 +1129,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "400px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -1124,28 +1156,25 @@ export default {
                                                         type: "pie",
                                                         minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                                                         avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                        center: ["45%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        center: ["45%", "45%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         hoverOffset: 20,
                                                         itemStyle: {
                                                             normal: {
-                                                                // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // // 设置扇形的阴影
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -1214,7 +1243,7 @@ export default {
                                     timeValue: "",
                                     style: {
                                         width: "35%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -1224,7 +1253,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "330px",
                                             },
                                             option: {
                                                 title: {
@@ -1402,12 +1431,12 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年营收业态占比/片区占比",
+                                    title: "营收占比",
                                     istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -1417,7 +1446,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "400px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -1449,28 +1478,25 @@ export default {
                                                     {
                                                         type: "pie",
                                                         center: ["40%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -1508,10 +1534,10 @@ export default {
                                                         },
                                                         data: [
                                                             { name: "其他", value: 51154551 },
-                                                            { name: "餐饮", value: 24125877 },
-                                                            { name: "超市", value: 45478254 },
-                                                            { name: "品牌餐饮", value: 29874512 },
-                                                            { name: "小龙虾", value: 66578941 },
+                                                            { name: "餐饮", value: 14125877 },
+                                                            { name: "超市", value: 15478254 },
+                                                            { name: "品牌餐饮", value: 69874512 },
+                                                            { name: "小龙虾", value: 36578941 },
                                                             { name: "小吃", value: 12054890 },
                                                         ],
                                                     },
@@ -1522,7 +1548,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "400px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -1549,28 +1575,25 @@ export default {
                                                         type: "pie",
                                                         minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                                                         avoidLabelOverlap: true, //是否启用防止标签重叠策略
-                                                        center: ["45%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        center: ["45%", "45%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         hoverOffset: 20,
                                                         itemStyle: {
                                                             normal: {
-                                                                // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // // 设置扇形的阴影
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -1607,12 +1630,12 @@ export default {
                                                             },
                                                         },
                                                         data: [
-                                                            { name: "咸宁中心", value: 9114551 },
-                                                            { name: "宜昌中心", value: 3412577 },
-                                                            { name: "黄冈中心", value: 5547824 },
-                                                            { name: "十堰中心", value: 4987512 },
-                                                            { name: "孝感中心", value: 4657941 },
-                                                            { name: "恩施中心", value: 6205890 },
+                                                            { name: "咸宁中心", value: 5114551 },
+                                                            { name: "宜昌中心", value: 2412577 },
+                                                            { name: "黄冈中心", value: 9547824 },
+                                                            { name: "十堰中心", value: 9987512 },
+                                                            { name: "孝感中心", value: 8657941 },
+                                                            { name: "恩施中心", value: 1205890 },
                                                         ],
                                                     },
                                                 ],
@@ -1831,12 +1854,12 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年利润业态占比/片区占比",
+                                    title: "利润占比",
                                     istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -1846,7 +1869,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "370px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -1864,7 +1887,6 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
-
                                                         return (
                                                             val.name +
                                                             ":<br>利润:" +
@@ -1879,28 +1901,25 @@ export default {
                                                     {
                                                         type: "pie",
                                                         center: ["40%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -1952,7 +1971,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "370px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -1980,27 +1999,24 @@ export default {
                                                         minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                                                         avoidLabelOverlap: true, //是否启用防止标签重叠策略
                                                         center: ["45%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         hoverOffset: 20,
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -2248,12 +2264,12 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年利润业态占比/片区占比",
+                                    title: "利润占比",
                                     istime: true,
                                     select: false,
                                     style: {
                                         width: "64.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -2263,7 +2279,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "370px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -2281,7 +2297,6 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
-
                                                         return (
                                                             val.name +
                                                             ":<br>利润:" +
@@ -2296,28 +2311,25 @@ export default {
                                                     {
                                                         type: "pie",
                                                         center: ["40%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -2369,7 +2381,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "370px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -2397,27 +2409,24 @@ export default {
                                                         minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                                                         avoidLabelOverlap: true, //是否启用防止标签重叠策略
                                                         center: ["45%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         hoverOffset: 20,
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -2499,7 +2508,7 @@ export default {
                                     timeValue: "",
                                     style: {
                                         width: "40%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -2509,7 +2518,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "320px",
                                             },
                                             option: {
                                                 title: {
@@ -2518,7 +2527,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />利润:" + val[0].value / 10000 + "万元";
+                                                        return val[0].name + "月" + ":" + "<br />成本:" + (val[0].value / 10000).toFixed(2) + "万元";
                                                     },
                                                 },
                                                 grid: {
@@ -2678,12 +2687,12 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "业态占比/子公司占比",
+                                    title: "成本占比",
                                     istime: true,
                                     select: false,
                                     style: {
                                         width: "59.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -2693,7 +2702,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "350px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -2726,7 +2735,7 @@ export default {
                                                     {
                                                         type: "pie",
                                                         center: ["40%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
@@ -2739,15 +2748,12 @@ export default {
                                                                 // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -2798,7 +2804,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "350px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -2826,7 +2832,7 @@ export default {
                                                         minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                                                         avoidLabelOverlap: true, //是否启用防止标签重叠策略
                                                         center: ["45%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         hoverOffset: 20,
                                                         itemStyle: {
@@ -2838,15 +2844,12 @@ export default {
                                                                 // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -2903,7 +2906,7 @@ export default {
 
                                     style: {
                                         width: "40%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -3048,76 +3051,29 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "实际占比/预算占比",
+                                    title: "种类预算占比",
                                     time: false,
                                     select: false,
                                     style: {
                                         width: "59.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
                                         marginTop: "5px",
                                     },
                                     EChartsItem: [
-                                        // {
-                                        //     type: "box",
-                                        //     style: {
-                                        //         width: "30%",
-                                        //         height: "300px",
-                                        //         position: "relative",
-                                        //         style: {
-                                        //             content: "差旅费实际:86.64万元",
-                                        //             width: "80%",
-                                        //             color: "#fff",
-                                        //             height: "120px",
-                                        //             background: "#38d",
-                                        //             position: "absolute",
-                                        //             top: "80px",
-                                        //             left: "10%",
-                                        //             borderRadius: "10px",
-                                        //             lineHeight: "120px",
-                                        //             fontWeight: 700,
-                                        //             textAlign: "center",
-                                        //             fontSize: "20px",
-                                        //         },
-                                        //     },
-                                        //     option: {},
-                                        // },
-                                        // {
-                                        //     type: "box",
-                                        //     /*ECharts的属性*/
-                                        //     style: {
-                                        //         width: "30%",
-                                        //         height: "300px",
-                                        //         position: "relative",
-                                        //         style: {
-                                        //             content: "差旅费预算:60.99万元",
-                                        //             width: "80%",
-                                        //             color: "#fff",
-                                        //             height: "120px",
-                                        //             background: "#81dd9d",
-                                        //             position: "absolute",
-                                        //             top: "130px",
-                                        //             left: "10%",
-                                        //             borderRadius: "10px",
-                                        //             lineHeight: "120px",
-                                        //             fontWeight: 700,
-                                        //             textAlign: "center",
-                                        //             fontSize: "20px",
-                                        //         },
-                                        //     },
-                                        //     option: {},
-                                        // },
                                         {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "350px",
                                             },
                                             option: {
-                                                color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
-                                                tooltip: {},
+                                                color: ["#ff9999", "#ffb03f", "#ff9b42", "#3dba2d", "#F0D418", "#2E64FF"],
+                                                tooltip: {
+
+                                                },
                                                 formatter: function(val) {
                                                     if (!val.data.id) {
                                                         return val.name + ":<br>实际:" + val.value + "万元<br>占比:" + val.percent + "%";
@@ -3148,7 +3104,7 @@ export default {
                                                         },
                                                     ],
                                                     center: ["50%", "50%"],
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                     startAngle: 40,
                                                     name: {
                                                         show: true,
@@ -3174,7 +3130,7 @@ export default {
                                                     },
                                                 },
                                                 polar: {
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                 },
                                                 angleAxis: {
                                                     zlevel: 0,
@@ -3237,7 +3193,7 @@ export default {
                                                                 name: "交通",
                                                             },
                                                         ],
-                                                        radius: ["55%", "70%"],
+                                                        radius: ["45%", "55%"],
                                                         zlevel: -1,
                                                         name: "",
                                                         itemStyle: {
@@ -3328,10 +3284,10 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "350px",
                                             },
                                             option: {
-                                                color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
+                                                color: ["#ff9999", "#ffb03f", "#ff9b42", "#3dba2d", "#F0D418", "#2E64FF"],
                                                 tooltip: {},
                                                 formatter: function(val) {
                                                     
@@ -3364,7 +3320,7 @@ export default {
                                                         },
                                                     ],
                                                     center: ["50%", "50%"],
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                     startAngle: 40,
                                                     name: {
                                                         show: true,
@@ -3390,7 +3346,7 @@ export default {
                                                     },
                                                 },
                                                 polar: {
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                 },
                                                 angleAxis: {
                                                     zlevel: 0,
@@ -3453,7 +3409,7 @@ export default {
                                                                 name: "交通",
                                                             },
                                                         ],
-                                                        radius: ["55%", "70%"],
+                                                        radius: ["45%", "55%"],
                                                         zlevel: -1,
                                                         name: "",
                                                         itemStyle: {
@@ -3559,7 +3515,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "280px",
                                             },
                                             option: {
                                                 title: {
@@ -3568,7 +3524,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />利润:" + val[0].value / 10000 + "万元";
+                                                        return val[0].name + "月" + ":" + "<br />成本:" + (val[0].value / 10000).toFixed(2) + "万元";
                                                     },
                                                 },
                                                 grid: {
@@ -3728,7 +3684,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "业态占比/子公司占比",
+                                    title: "成本占比",
                                     istime: true,
                                     select: false,
                                     style: {
@@ -3776,7 +3732,7 @@ export default {
                                                     {
                                                         type: "pie",
                                                         center: ["40%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
@@ -3789,15 +3745,12 @@ export default {
                                                                 // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -3876,7 +3829,7 @@ export default {
                                                         minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                                                         avoidLabelOverlap: true, //是否启用防止标签重叠策略
                                                         center: ["45%", "50%"],
-                                                        radius: ["30%", "50%"],
+                                                        radius: ["30%", "40%"],
                                                         clockwise: true,
                                                         hoverOffset: 20,
                                                         itemStyle: {
@@ -3888,15 +3841,12 @@ export default {
                                                                 // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -4097,7 +4047,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "实际占比/预算占比",
+                                    title: "种类预算占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -4109,55 +4059,7 @@ export default {
                                         marginTop: "5px",
                                     },
                                     EChartsItem: [
-                                        // {
-                                        //     type: "box",
-                                        //     style: {
-                                        //         width: "30%",
-                                        //         height: "300px",
-                                        //         position: "relative",
-                                        //         style: {
-                                        //             content: "差旅费实际:86.64万元",
-                                        //             width: "80%",
-                                        //             color: "#fff",
-                                        //             height: "120px",
-                                        //             background: "#38d",
-                                        //             position: "absolute",
-                                        //             top: "80px",
-                                        //             left: "10%",
-                                        //             borderRadius: "10px",
-                                        //             lineHeight: "120px",
-                                        //             fontWeight: 700,
-                                        //             textAlign: "center",
-                                        //             fontSize: "20px",
-                                        //         },
-                                        //     },
-                                        //     option: {},
-                                        // },
-                                        // {
-                                        //     type: "box",
-                                        //     /*ECharts的属性*/
-                                        //     style: {
-                                        //         width: "30%",
-                                        //         height: "300px",
-                                        //         position: "relative",
-                                        //         style: {
-                                        //             content: "差旅费预算:60.99万元",
-                                        //             width: "80%",
-                                        //             color: "#fff",
-                                        //             height: "120px",
-                                        //             background: "#81dd9d",
-                                        //             position: "absolute",
-                                        //             top: "130px",
-                                        //             left: "10%",
-                                        //             borderRadius: "10px",
-                                        //             lineHeight: "120px",
-                                        //             fontWeight: 700,
-                                        //             textAlign: "center",
-                                        //             fontSize: "20px",
-                                        //         },
-                                        //     },
-                                        //     option: {},
-                                        // },
+                                       
                                         {
                                             /*ECharts的属性*/
                                             style: {
@@ -4165,7 +4067,7 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
+                                                color: ["#ff9999", "#ffb03f", "#ff9b42", "#3dba2d", "#F0D418", "#2E64FF"],
                                                 tooltip: {},
                                                 formatter: function(val) {
                                                     if (!val.data.id) {
@@ -4197,7 +4099,7 @@ export default {
                                                         },
                                                     ],
                                                     center: ["50%", "50%"],
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                     startAngle: 40,
                                                     name: {
                                                         show: true,
@@ -4223,7 +4125,7 @@ export default {
                                                     },
                                                 },
                                                 polar: {
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                 },
                                                 angleAxis: {
                                                     zlevel: 0,
@@ -4286,7 +4188,7 @@ export default {
                                                                 name: "交通",
                                                             },
                                                         ],
-                                                        radius: ["55%", "70%"],
+                                                        radius: ["45%", "55%"],
                                                         zlevel: -1,
                                                         name: "",
                                                         itemStyle: {
@@ -4380,7 +4282,7 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
+                                                color: ["#ff9999", "#ffb03f", "#ff9b42", "#3dba2d", "#F0D418", "#2E64FF"],
                                                 tooltip: {},
                                                 formatter: function(val) {
                                                     
@@ -4413,7 +4315,7 @@ export default {
                                                         },
                                                     ],
                                                     center: ["50%", "50%"],
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                     startAngle: 40,
                                                     name: {
                                                         show: true,
@@ -4439,7 +4341,7 @@ export default {
                                                     },
                                                 },
                                                 polar: {
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                 },
                                                 angleAxis: {
                                                     zlevel: 0,
@@ -4502,7 +4404,7 @@ export default {
                                                                 name: "交通",
                                                             },
                                                         ],
-                                                        radius: ["55%", "70%"],
+                                                        radius: ["45%", "55%"],
                                                         zlevel: -1,
                                                         name: "",
                                                         itemStyle: {
@@ -4600,7 +4502,7 @@ export default {
                             collapseTitle: "2020年业态结构",
                             EChartsBox: [
                                 {
-                                    title: "2020年品牌店面收入占比",
+                                    title: "品牌收入占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -4625,11 +4527,11 @@ export default {
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "暂无数据",
+                                                    subtext: "",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
-                                                        fontWeight: "bolder",
+                                                        "fontWeight": "bolder"
                                                     },
                                                 },
                                                 grid: {
@@ -4638,15 +4540,16 @@ export default {
                                                     left: "60",
                                                     bottom: "40", //图表尺寸大小
                                                 },
-                                                legend: {
+                                               legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 100,
+                                                    top: 'center',
+                                                    left:100,
                                                     // padding:['1000px','100px','10px','10px']
-                                                    itemGap: 25,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -4659,28 +4562,28 @@ export default {
                                                         itemStyle: {
                                                             normal: {
                                                                 borderWidth: 0,
-                                                                borderColor: "rgba(255,255,255,0)",
+                                                                borderColor: 'rgba(255,255,255,0)',
                                                                 shadowBlur: 20,
-                                                                shadowColor: "rgba(57,39,132,0.3)",
+                                                                shadowColor: 'rgba(57,39,132,0.3)',
                                                                 shadowOffsetX: -5,
                                                                 shadowOffsetY: -5,
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                             emphasis: {
                                                                 borderWidth: 10,
+
                                                             },
                                                         },
                                                         label: {
@@ -4695,7 +4598,10 @@ export default {
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    return "{name|" + v.name + "}\n{value|" + v.percent + "}";
+                                                                    return (
+                                                                        '{name|' + v.name + '}\n{value|' +
+                                                                        v.percent + '}'
+                                                                    );
                                                                 },
                                                                 textStyle: {
                                                                     fontSize: 16,
@@ -4704,11 +4610,13 @@ export default {
                                                                     name: {
                                                                         fontSize: 14,
                                                                         padding: [0, 10, 0, 4],
+
                                                                     },
                                                                     value: {
                                                                         fontSize: 16,
-                                                                    },
-                                                                },
+
+                                                                    }
+                                                                }
                                                             },
                                                         },
                                                         labelLine: {
@@ -4735,6 +4643,7 @@ export default {
                                                             },
                                                         ],
                                                     },
+
                                                 ],
                                             },
                                         },
@@ -4747,12 +4656,13 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 10,
-                                                    itemGap: 25,
+                                                    top: 'center',
+                                                    left:10,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter: "{b}:{c}: ({d}%)",
+                                                    formatter:
+                                                        "{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -4764,26 +4674,26 @@ export default {
                                                         label: {
                                                             position: "inner",
                                                             textStyle: {
-                                                                fontSize: 16,
-                                                            },
+                                                                fontSize: 16
+                                                            }
                                                         },
                                                         itemStyle: {
                                                             normal: {
-                                                                borderColor: "#fff",
+                                                                borderColor:
+                                                                    "#fff",
                                                                 borderWidth: 2,
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                         },
@@ -4810,19 +4720,18 @@ export default {
                                                         radius: ["40%", "55%"],
                                                         itemStyle: {
                                                             normal: {
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                         },
@@ -4841,13 +4750,23 @@ export default {
                                                             width: 0,
                                                             height: 0,
                                                             lineHeight: 0,
-                                                            backgroundColor: "auto",
-                                                            padding: [2, -2, 2, -2],
+                                                            backgroundColor:
+                                                                "auto",
+                                                            padding: [
+                                                                2,
+                                                                -2,
+                                                                2,
+                                                                -2,
+                                                            ],
                                                             borderRadius: 2,
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    let text = v.name + "\n" + v.percent + "%";
+                                                                    let text =
+                                                                        v.name +
+                                                                        "\n" +
+                                                                        v.percent +
+                                                                        "%";
                                                                     return text;
                                                                 },
                                                                 textStyle: {
@@ -4880,7 +4799,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年品牌经营面积占比",
+                                    title: "品牌经营面积占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -4898,19 +4817,20 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                title: {
-                                                    text: "暂无数据",
-                                                    top: "50%",
-                                                    left: "45%",
+                                                title:{
+                                                    text:"",
+                                                    top:'50%',
+                                                    left:'45%'
                                                 },
                                                 legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 10,
-                                                    itemGap: 25,
+                                                    top: 'center',
+                                                    left:10,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter: "{b}:{c}: ({d}%)",
+                                                    formatter:
+                                                        "{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -4974,19 +4894,18 @@ export default {
                                                         radius: ["40%", "55%"],
                                                         itemStyle: {
                                                             normal: {
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                         },
@@ -5005,13 +4924,23 @@ export default {
                                                             width: 0,
                                                             height: 0,
                                                             lineHeight: 0,
-                                                            backgroundColor: "auto",
-                                                            padding: [2, -2, 2, -2],
+                                                            backgroundColor:
+                                                                "auto",
+                                                            padding: [
+                                                                2,
+                                                                -2,
+                                                                2,
+                                                                -2,
+                                                            ],
                                                             borderRadius: 2,
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    let text = v.name + "\n" + v.percent + "%";
+                                                                    let text =
+                                                                        v.name +
+                                                                        "\n" +
+                                                                        v.percent +
+                                                                        "%";
                                                                     return text;
                                                                 },
                                                                 textStyle: {
@@ -5044,7 +4973,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年品牌列表",
+                                    title: "品牌列表",
                                     style: {
                                         width: "100%",
                                         height: "310px",
@@ -5057,7 +4986,7 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
-                                            height: "430px",
+                                            height: '430px',
                                             isPagination: false,
                                             border: true,
                                             style: {
@@ -5117,7 +5046,7 @@ export default {
                                                 },
                                                 {
                                                     A: "二线品牌",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -5128,7 +5057,7 @@ export default {
                                                 },
                                                 {
                                                     A: "无品牌",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -5142,7 +5071,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020业态分类店面收入占比",
+                                    title: "业态分类占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -5167,11 +5096,11 @@ export default {
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "暂无数据",
+                                                    subtext: "",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
-                                                        fontWeight: "bolder",
+                                                        "fontWeight": "bolder"
                                                     },
                                                 },
                                                 grid: {
@@ -5180,15 +5109,16 @@ export default {
                                                     left: "60",
                                                     bottom: "40", //图表尺寸大小
                                                 },
-                                                legend: {
+                                               legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 100,
+                                                    top: 'center',
+                                                    left:100,
                                                     // padding:['1000px','100px','10px','10px']
-                                                    itemGap: 25,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -5201,28 +5131,29 @@ export default {
                                                         itemStyle: {
                                                             normal: {
                                                                 borderWidth: 0,
-                                                                borderColor: "rgba(255,255,255,0)",
+                                                                borderColor: 'rgba(255,255,255,0)',
                                                                 shadowBlur: 20,
-                                                                shadowColor: "rgba(57,39,132,0.3)",
+                                                                shadowColor: 'rgba(57,39,132,0.3)',
                                                                 shadowOffsetX: -5,
                                                                 shadowOffsetY: -5,
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#4ecb73",
+                                                                        "#73acff",
+                                                                        "#fd8a2d",
+                                                                        "#9e87ff",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                             emphasis: {
                                                                 borderWidth: 10,
+
                                                             },
                                                         },
                                                         label: {
@@ -5237,7 +5168,10 @@ export default {
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    return "{name|" + v.name + "}\n{value|" + v.percent + "}";
+                                                                    return (
+                                                                        '{name|' + v.name + '}\n{value|' +
+                                                                        v.percent + '}'
+                                                                    );
                                                                 },
                                                                 textStyle: {
                                                                     fontSize: 16,
@@ -5246,11 +5180,13 @@ export default {
                                                                     name: {
                                                                         fontSize: 14,
                                                                         padding: [0, 10, 0, 4],
+
                                                                     },
                                                                     value: {
                                                                         fontSize: 16,
-                                                                    },
-                                                                },
+
+                                                                    }
+                                                                }
                                                             },
                                                         },
                                                         labelLine: {
@@ -5281,13 +5217,15 @@ export default {
                                                             },
                                                         ],
                                                     },
+
                                                 ],
                                             },
                                         },
+                                        
                                     ],
                                 },
-                                {
-                                    title: "2020业态分类经营面积占比",
+                                 {
+                                    title: "业态经营面积占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -5305,19 +5243,19 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                title: {
-                                                    text: "暂无数据",
-                                                    left: "45%",
-                                                    top: "50%",
+                                                title:{
+                                                    text:'',
+                                                    left:'45%',
+                                                    top:'50%'
                                                 },
                                                 legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 10,
-                                                    itemGap: 25,
+                                                    top: 'center',
+                                                    left:10,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter: "{b}:{c}: ({d}%)",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -5381,19 +5319,19 @@ export default {
                                                         radius: ["40%", "55%"],
                                                         itemStyle: {
                                                             normal: {
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#4ecb73",
+                                                                        "#73acff",
+                                                                        "#fd8a2d",
+                                                                        "#9e87ff",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                         },
@@ -5412,13 +5350,23 @@ export default {
                                                             width: 0,
                                                             height: 0,
                                                             lineHeight: 0,
-                                                            backgroundColor: "auto",
-                                                            padding: [2, -2, 2, -2],
+                                                            backgroundColor:
+                                                                "auto",
+                                                            padding: [
+                                                                2,
+                                                                -2,
+                                                                2,
+                                                                -2,
+                                                            ],
                                                             borderRadius: 2,
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    let text = v.name + "\n" + v.percent + "%";
+                                                                    let text =
+                                                                        v.name +
+                                                                        "\n" +
+                                                                        v.percent +
+                                                                        "%";
                                                                     return text;
                                                                 },
                                                                 textStyle: {
@@ -5456,7 +5404,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年业态列表",
+                                    title: "业态列表",
                                     style: {
                                         width: "100%",
                                         height: "330px",
@@ -5469,7 +5417,7 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
-                                            height: "550px",
+                                            height: '550px',
                                             isPagination: false,
                                             border: true,
                                             style: {
@@ -5518,7 +5466,7 @@ export default {
                                             tableData: [
                                                 {
                                                     A: "餐饮",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -5529,7 +5477,7 @@ export default {
                                                 },
                                                 {
                                                     A: "小吃",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -5540,7 +5488,7 @@ export default {
                                                 },
                                                 {
                                                     A: "便利店",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -5551,7 +5499,7 @@ export default {
                                                 },
                                                 {
                                                     A: "特产",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -5566,13 +5514,13 @@ export default {
                                 },
                             ],
                         },
-                        {
+                         {
                             id: "construction_2019",
                             year: 2019,
                             collapseTitle: "2019年业态结构",
                             EChartsBox: [
                                 {
-                                    title: "2019年品牌店面收入占比",
+                                    title: "品牌收入占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -5597,11 +5545,11 @@ export default {
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "暂无数据",
+                                                    subtext: "",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
-                                                        fontWeight: "bolder",
+                                                        "fontWeight": "bolder"
                                                     },
                                                 },
                                                 grid: {
@@ -5610,15 +5558,16 @@ export default {
                                                     left: "60",
                                                     bottom: "40", //图表尺寸大小
                                                 },
-                                                legend: {
+                                               legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 100,
+                                                    top: 'center',
+                                                    left:100,
                                                     // padding:['1000px','100px','10px','10px']
-                                                    itemGap: 25,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -5631,28 +5580,28 @@ export default {
                                                         itemStyle: {
                                                             normal: {
                                                                 borderWidth: 0,
-                                                                borderColor: "rgba(255,255,255,0)",
+                                                                borderColor: 'rgba(255,255,255,0)',
                                                                 shadowBlur: 20,
-                                                                shadowColor: "rgba(57,39,132,0.3)",
+                                                                shadowColor: 'rgba(57,39,132,0.3)',
                                                                 shadowOffsetX: -5,
                                                                 shadowOffsetY: -5,
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                             emphasis: {
                                                                 borderWidth: 10,
+
                                                             },
                                                         },
                                                         label: {
@@ -5667,7 +5616,10 @@ export default {
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    return "{name|" + v.name + "}\n{value|" + v.percent + "}";
+                                                                    return (
+                                                                        '{name|' + v.name + '}\n{value|' +
+                                                                        v.percent + '}'
+                                                                    );
                                                                 },
                                                                 textStyle: {
                                                                     fontSize: 16,
@@ -5676,11 +5628,13 @@ export default {
                                                                     name: {
                                                                         fontSize: 14,
                                                                         padding: [0, 10, 0, 4],
+
                                                                     },
                                                                     value: {
                                                                         fontSize: 16,
-                                                                    },
-                                                                },
+
+                                                                    }
+                                                                }
                                                             },
                                                         },
                                                         labelLine: {
@@ -5707,6 +5661,7 @@ export default {
                                                             },
                                                         ],
                                                     },
+
                                                 ],
                                             },
                                         },
@@ -5719,12 +5674,13 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 10,
-                                                    itemGap: 25,
+                                                    top: 'center',
+                                                    left:10,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter: "{b}:{c}: ({d}%)",
+                                                    formatter:
+                                                        "{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -5736,26 +5692,26 @@ export default {
                                                         label: {
                                                             position: "inner",
                                                             textStyle: {
-                                                                fontSize: 16,
-                                                            },
+                                                                fontSize: 16
+                                                            }
                                                         },
                                                         itemStyle: {
                                                             normal: {
-                                                                borderColor: "#fff",
+                                                                borderColor:
+                                                                    "#fff",
                                                                 borderWidth: 2,
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                         },
@@ -5782,19 +5738,18 @@ export default {
                                                         radius: ["40%", "55%"],
                                                         itemStyle: {
                                                             normal: {
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                         },
@@ -5813,13 +5768,23 @@ export default {
                                                             width: 0,
                                                             height: 0,
                                                             lineHeight: 0,
-                                                            backgroundColor: "auto",
-                                                            padding: [2, -2, 2, -2],
+                                                            backgroundColor:
+                                                                "auto",
+                                                            padding: [
+                                                                2,
+                                                                -2,
+                                                                2,
+                                                                -2,
+                                                            ],
                                                             borderRadius: 2,
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    let text = v.name + "\n" + v.percent + "%";
+                                                                    let text =
+                                                                        v.name +
+                                                                        "\n" +
+                                                                        v.percent +
+                                                                        "%";
                                                                     return text;
                                                                 },
                                                                 textStyle: {
@@ -5852,7 +5817,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年品牌经营面积占比",
+                                    title: "品牌经营面积占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -5870,19 +5835,19 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                title: {
-                                                    text: "暂无数据",
-                                                    top: "50%",
-                                                    left: "45%",
+                                                title:{
+                                                    text:"",
+                                                    top:'50%',
+                                                    left:'45%'
                                                 },
                                                 legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 10,
-                                                    itemGap: 25,
+                                                    top: 'center',
+                                                    left:10,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter: "{b}:{c}: ({d}%)",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -5946,19 +5911,18 @@ export default {
                                                         radius: ["40%", "55%"],
                                                         itemStyle: {
                                                             normal: {
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                         },
@@ -5977,13 +5941,23 @@ export default {
                                                             width: 0,
                                                             height: 0,
                                                             lineHeight: 0,
-                                                            backgroundColor: "auto",
-                                                            padding: [2, -2, 2, -2],
+                                                            backgroundColor:
+                                                                "auto",
+                                                            padding: [
+                                                                2,
+                                                                -2,
+                                                                2,
+                                                                -2,
+                                                            ],
                                                             borderRadius: 2,
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    let text = v.name + "\n" + v.percent + "%";
+                                                                    let text =
+                                                                        v.name +
+                                                                        "\n" +
+                                                                        v.percent +
+                                                                        "%";
                                                                     return text;
                                                                 },
                                                                 textStyle: {
@@ -6016,7 +5990,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年品牌列表",
+                                    title: "品牌列表",
                                     style: {
                                         width: "100%",
                                         height: "310px",
@@ -6029,7 +6003,7 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
-                                            height: "430px",
+                                            height: '430px',
                                             isPagination: false,
                                             border: true,
                                             style: {
@@ -6078,7 +6052,7 @@ export default {
                                             tableData: [
                                                 {
                                                     A: "一线品牌",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -6089,7 +6063,7 @@ export default {
                                                 },
                                                 {
                                                     A: "二线品牌",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -6100,7 +6074,7 @@ export default {
                                                 },
                                                 {
                                                     A: "无品牌",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -6114,7 +6088,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019业态分类店面收入占比",
+                                    title: "业态分类占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -6139,11 +6113,11 @@ export default {
                                                     textStyle: {
                                                         fontSize: 16,
                                                     },
-                                                    subtext: "暂无数据",
+                                                    subtext: "",
                                                     subtextStyle: {
                                                         fontSize: 20,
                                                         color: "#F98B2F",
-                                                        fontWeight: "bolder",
+                                                        "fontWeight": "bolder"
                                                     },
                                                 },
                                                 grid: {
@@ -6152,15 +6126,16 @@ export default {
                                                     left: "60",
                                                     bottom: "40", //图表尺寸大小
                                                 },
-                                                legend: {
+                                               legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 100,
+                                                    top: 'center',
+                                                    left:100,
                                                     // padding:['1000px','100px','10px','10px']
-                                                    itemGap: 25,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
+                                                    formatter:"{b}:{c}: ({d}%)"
                                                 },
                                                 series: [
                                                     {
@@ -6173,28 +6148,29 @@ export default {
                                                         itemStyle: {
                                                             normal: {
                                                                 borderWidth: 0,
-                                                                borderColor: "rgba(255,255,255,0)",
+                                                                borderColor: 'rgba(255,255,255,0)',
                                                                 shadowBlur: 20,
-                                                                shadowColor: "rgba(57,39,132,0.3)",
+                                                                shadowColor: 'rgba(57,39,132,0.3)',
                                                                 shadowOffsetX: -5,
                                                                 shadowOffsetY: -5,
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#4ecb73",
+                                                                        "#73acff",
+                                                                        "#fd8a2d",
+                                                                        "#9e87ff",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                             emphasis: {
                                                                 borderWidth: 10,
+
                                                             },
                                                         },
                                                         label: {
@@ -6209,7 +6185,10 @@ export default {
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    return "{name|" + v.name + "}\n{value|" + v.percent + "}";
+                                                                    return (
+                                                                        '{name|' + v.name + '}\n{value|' +
+                                                                        v.percent + '}'
+                                                                    );
                                                                 },
                                                                 textStyle: {
                                                                     fontSize: 16,
@@ -6218,11 +6197,13 @@ export default {
                                                                     name: {
                                                                         fontSize: 14,
                                                                         padding: [0, 10, 0, 4],
+
                                                                     },
                                                                     value: {
                                                                         fontSize: 16,
-                                                                    },
-                                                                },
+
+                                                                    }
+                                                                }
                                                             },
                                                         },
                                                         labelLine: {
@@ -6253,13 +6234,15 @@ export default {
                                                             },
                                                         ],
                                                     },
+
                                                 ],
                                             },
                                         },
+                                        
                                     ],
                                 },
-                                {
-                                    title: "2019业态分类经营面积占比",
+                                 {
+                                    title: "业态经营面积占比",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -6277,19 +6260,19 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                title: {
-                                                    text: "暂无数据",
-                                                    left: "45%",
-                                                    top: "50%",
+                                                title:{
+                                                    text:'',
+                                                    left:'45%',
+                                                    top:'50%'
                                                 },
                                                 legend: {
                                                     orient: "vertical",
-                                                    top: "center",
-                                                    left: 10,
-                                                    itemGap: 25,
+                                                    top: 'center',
+                                                    left:10,
+                                                    itemGap:25
                                                 },
                                                 tooltip: {
-                                                    formatter: "{b}:{c}: ({d}%)",
+                                                    formatter:"{b}:{c}: ({d}%)",
                                                 },
 
                                                 series: [
@@ -6353,19 +6336,19 @@ export default {
                                                         radius: ["40%", "55%"],
                                                         itemStyle: {
                                                             normal: {
-                                                                color: function(params) {
+                                                                color: function (
+                                                                    params
+                                                                ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#4ecb73",
+                                                                        "#73acff",
+                                                                        "#fd8a2d",
+                                                                        "#9e87ff",
                                                                     ];
-                                                                    return colorList[params.dataIndex];
+                                                                    return colorList[
+                                                                        params
+                                                                            .dataIndex
+                                                                    ];
                                                                 },
                                                             },
                                                         },
@@ -6384,13 +6367,23 @@ export default {
                                                             width: 0,
                                                             height: 0,
                                                             lineHeight: 0,
-                                                            backgroundColor: "auto",
-                                                            padding: [2, -2, 2, -2],
+                                                            backgroundColor:
+                                                                "auto",
+                                                            padding: [
+                                                                2,
+                                                                -2,
+                                                                2,
+                                                                -2,
+                                                            ],
                                                             borderRadius: 2,
                                                             distanceToLabelLine: 0,
                                                             normal: {
                                                                 formatter(v) {
-                                                                    let text = v.name + "\n" + v.percent + "%";
+                                                                    let text =
+                                                                        v.name +
+                                                                        "\n" +
+                                                                        v.percent +
+                                                                        "%";
                                                                     return text;
                                                                 },
                                                                 textStyle: {
@@ -6428,7 +6421,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年业态列表",
+                                    title: "业态列表",
                                     style: {
                                         width: "100%",
                                         height: "330px",
@@ -6441,7 +6434,7 @@ export default {
                                     EChartsItem: [
                                         {
                                             type: "table",
-                                            height: "550px",
+                                            height: '550px',
                                             isPagination: false,
                                             border: true,
                                             style: {
@@ -6490,7 +6483,7 @@ export default {
                                             tableData: [
                                                 {
                                                     A: "餐饮",
-                                                    B: "/",
+                                                     B: "/",
                                                     C: "/",
                                                     D: "/",
                                                     E: "/",
@@ -6538,11 +6531,11 @@ export default {
                                 },
                             ],
                         },
-
+                        
                         {
                             id: "construction_gd",
                             collapseTitle: "查看更多",
-                            EChartsBox: [],
+                            EChartsBox: []
                         },
                     ],
                 },
@@ -6555,10 +6548,10 @@ export default {
                         {
                             id: "rateofreturn_2020",
                             year: 2020,
-                            collapseTitle: "2020回款率",
+                            collapseTitle: "2020回款",
                             EChartsBox: [
                                 {
-                                    title: "2020年回款率",
+                                    title: "回款",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -6670,7 +6663,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年回款率排行",
+                                    title: "回款率排行",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -6820,7 +6813,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年欠款超期",
+                                    title: "欠款超期",
                                     style: {
                                         width: "33%",
                                         height: "350px",
@@ -6889,7 +6882,7 @@ export default {
                                 },
 
                                 {
-                                    title: "2020年预计收款",
+                                    title: "预计收款",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -6916,7 +6909,7 @@ export default {
                                                     //提示框组件
                                                     trigger: "axis",
                                                     formatter: function(val) {
-
+                                                        console.log(val);
                                                         let val0 = val[0];
                                                         let val1 = val[1];
                                                         return (
@@ -7125,7 +7118,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2020年供应商回款占比",
+                                    title: "回款占比",
                                     time: false,
                                     select: false,
                                     style: {
@@ -7270,10 +7263,10 @@ export default {
                         {
                             id: "rateofreturn_2019",
                             year: 2019,
-                            collapseTitle: "2019回款率",
+                            collapseTitle: "2019回款",
                             EChartsBox: [
                                 {
-                                    title: "2019年回款率",
+                                    title: "回款",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -7385,7 +7378,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年回款率排行",
+                                    title: "回款率排行",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -7535,7 +7528,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年欠款超期",
+                                    title: "欠款超期",
                                     style: {
                                         width: "33%",
                                         height: "350px",
@@ -7604,7 +7597,7 @@ export default {
                                 },
 
                                 {
-                                    title: "2019年预计收款",
+                                    title: "预计收款",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -7631,7 +7624,7 @@ export default {
                                                     //提示框组件
                                                     trigger: "axis",
                                                     formatter: function(val) {
-
+                                                        console.log(val);
                                                         let val0 = val[0];
                                                         let val1 = val[1];
                                                         return (
@@ -7840,7 +7833,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "2019年供应商回款占比",
+                                    title: "回款占比",
                                     time: false,
                                     select: false,
                                     style: {

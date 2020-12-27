@@ -253,24 +253,6 @@ export default {
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -298,6 +280,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#73ddff','#73acff','#fdd56a','#fdb36a','#fd866a','#9e87ff'],
                                                         data: [
                                                             { value: 335, name: "新能源" },
                                                             { value: 310, name: "石化" },
@@ -622,24 +605,6 @@ export default {
                                                         clockwise: true,
                                                         avoidLabelOverlap: true,
                                                         hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
                                                         label: {
                                                             show: true,
                                                             position: "outer",
@@ -667,6 +632,7 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#73ddff','#73acff','#fdd56a','#fdb36a','#fd866a','#9e87ff'],
                                                         data: [
                                                             { value: 655, name: "新能源" },
                                                             { value: 510, name: "石化" },

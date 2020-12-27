@@ -2,7 +2,7 @@
     <div calss="empty" style="width: 100%;height:100vh;">
         <div class="emptys">
             <img src="http://www.hbjtsy.com/themes/simpleboot3_web/public/web/images/index/logo.png" />
-            数据挖掘中
+            能源线路正在挖掘
         </div>
     </div>
 </template>

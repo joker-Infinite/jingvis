@@ -160,6 +160,7 @@ export default {
                                                     //     },
                                                     // }
                                                 ],
+                                                
                                                 series: [
                                                     {
                                                         type: "bar",
@@ -287,36 +288,31 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#73ddff','#73acff','#fdd56a','#fdb36a','#fd866a','#9e87ff'],
                                                         data: [
                                                             {
                                                                 value: 335,
                                                                 name: "新能源",
-                                                                itemStyle: { color: "#3AA1FF" },
                                                             },
                                                             {
                                                                 value: 310,
                                                                 name: "石化",
-                                                                itemStyle: { color: "#59D4D4" },
                                                             },
                                                             {
                                                                 value: 234,
                                                                 name: "中化交投",
-                                                                itemStyle: { color: "#4ECB73" },
                                                             },
                                                             {
                                                                 value: 135,
                                                                 name: "国储",
-                                                                itemStyle: { color: "#F8D33D" },
                                                             },
                                                             {
                                                                 value: 1548,
                                                                 name: "高路油站",
-                                                                itemStyle: { color: "#F2637B" },
                                                             },
                                                             {
                                                                 value: 1548,
                                                                 name: "荆港嘉瑞",
-                                                                itemStyle: { color: "#00f" },
                                                             },
                                                         ],
                                                     },
@@ -363,36 +359,31 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#ff78e7','#02cab3','#4885ff','#fec67c','#cb9bff','#54c3fc'],
                                                         data: [
                                                             {
                                                                 value: 335,
                                                                 name: "过票",
-                                                                itemStyle: { color: "#3AA1FF" },
                                                             },
                                                             {
                                                                 value: 310,
                                                                 name: "油品批发",
-                                                                itemStyle: { color: "#59D4D4" },
                                                             },
                                                             {
                                                                 value: 234,
                                                                 name: "分销",
-                                                                itemStyle: { color: "#4ECB73" },
                                                             },
                                                             {
                                                                 value: 135,
                                                                 name: "油品零售",
-                                                                itemStyle: { color: "#F8D33D" },
                                                             },
                                                             {
                                                                 value: 1548,
                                                                 name: "非油品零售",
-                                                                itemStyle: { color: "#F2637B" },
                                                             },
                                                             {
                                                                 value: 1548,
                                                                 name: "其他",
-                                                                itemStyle: { color: "#975FE5" },
                                                             },
                                                         ],
                                                     },
@@ -644,6 +635,7 @@ export default {
                                                     bottom: "10px",
                                                     data: ["新能源", "石化", "中化交投", "国储", "高路油站", "荆港嘉瑞"],
                                                 },
+                                                
                                                 series: [
                                                     {
                                                         name: "",
@@ -664,36 +656,31 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#73ddff','#73acff','#fdd56a','#fdb36a','#fd866a','#9e87ff'],
                                                         data: [
                                                             {
                                                                 value: 335,
                                                                 name: "新能源",
-                                                                itemStyle: { color: "#3AA1FF" },
                                                             },
                                                             {
                                                                 value: 310,
                                                                 name: "石化",
-                                                                itemStyle: { color: "#59D4D4" },
                                                             },
                                                             {
                                                                 value: 234,
                                                                 name: "中化交投",
-                                                                itemStyle: { color: "#4ECB73" },
                                                             },
                                                             {
                                                                 value: 1135,
                                                                 name: "国储",
-                                                                itemStyle: { color: "#F8D33D" },
                                                             },
                                                             {
                                                                 value: 1548,
                                                                 name: "高路油站",
-                                                                itemStyle: { color: "#F2637B" },
                                                             },
                                                             {
                                                                 value: 1548,
                                                                 name: "荆港嘉瑞",
-                                                                itemStyle: { color: "#00f" },
                                                             },
                                                         ],
                                                     },
@@ -740,36 +727,31 @@ export default {
                                                                 },
                                                             },
                                                         },
+                                                        color:['#ff78e7','#02cab3','#4885ff','#fec67c','#cb9bff','#54c3fc'],
                                                         data: [
                                                             {
                                                                 value: 1335,
                                                                 name: "过票",
-                                                                itemStyle: { color: "#3AA1FF" },
                                                             },
                                                             {
                                                                 value: 310,
                                                                 name: "油品批发",
-                                                                itemStyle: { color: "#59D4D4" },
                                                             },
                                                             {
                                                                 value: 234,
                                                                 name: "分销",
-                                                                itemStyle: { color: "#4ECB73" },
                                                             },
                                                             {
                                                                 value: 135,
                                                                 name: "油品零售",
-                                                                itemStyle: { color: "#F8D33D" },
                                                             },
                                                             {
                                                                 value: 1548,
                                                                 name: "非油品零售",
-                                                                itemStyle: { color: "#F2637B" },
                                                             },
                                                             {
                                                                 value: 1548,
                                                                 name: "其他",
-                                                                itemStyle: { color: "#975FE5" },
                                                             },
                                                         ],
                                                     },
