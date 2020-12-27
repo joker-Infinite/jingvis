@@ -87,7 +87,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [12, 32, 21, 34, 40, 50],
+                                                        data: [12, 12, 21, 34, 40, 50],
                                                         type: "bar",
                                                         itemStyle: {
                                                             color: "#38d",

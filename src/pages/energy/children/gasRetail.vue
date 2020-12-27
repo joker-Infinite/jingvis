@@ -27,10 +27,204 @@ export default {
         return {
             collapseData: [
                 {
+                    id: "cc",
+                    name: "油站分布",
+                    icon: require("../../../assets/serviceArea/nyls/youzhanfenbu.png"),
+                    iconActive: require("../../../assets/serviceArea/nyls/youzhanfenbu1.png"),
+                    collapseItem: [
+                        {
+                            id: "cc_2020",
+                            year: 2020,
+                            collapseTitle: "油站分布",
+                            allQuery: false,
+                            allQueryData: {
+                                time: false,
+                            },
+                            EChartsBox: [
+                                {
+                                    title: "油库分布",
+                                    style: {
+                                        width: "100%",
+                                        height: "500px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            type: "map",
+                                            style: {
+                                                width: "100%",
+                                                height: "500px",
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: "历史油站个数增长",
+                                    time: false,
+                                    style: {
+                                        width: "59.5%",
+                                        height: "350px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                        marginBottom: "10px",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            /*ECharts的属性*/
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            unit: "个",
+                                            option: {
+                                                xAxis: {
+                                                    type: "category",
+                                                    name: "年",
+                                                    nameTextStyle: {
+                                                        color: "#000",
+                                                    },
+                                                    data: ["2015", "2016", "2017", "2018", "2019", "2020"],
+                                                },
+                                                yAxis: {
+                                                    type: "value",
+                                                    name: "月",
+                                                    nameTextStyle: {
+                                                        color: "#000",
+                                                    },
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                    formatter: "{b}: {c}个",
+                                                },
+                                                series: [
+                                                    {
+                                                        data: [12, 12, 21, 34, 40, 50],
+                                                        type: "bar",
+                                                        itemStyle: {
+                                                            color: "#38d",
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: "子公司个数占比",
+                                    time: false,
+                                    select: false,
+                                    style: {
+                                        width: "40%",
+                                        height: "350px",
+                                        background: "white",
+                                        borderRadius: "10px",
+                                        overflow: "hidden",
+                                    },
+                                    EChartsItem: [
+                                        {
+                                            style: {
+                                                width: "100%",
+                                                height: "300px",
+                                            },
+                                            option: {
+                                                title: {
+                                                    text: "",
+                                                },
+                                                grid: {
+                                                    top: "20%",
+                                                    right: "40",
+                                                    left: "60",
+                                                    bottom: "40",
+                                                },
+                                                legend: {
+                                                    orient: "vertical",
+                                                    right: "5%",
+                                                    top: "center",
+                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
+                                                },
+                                                tooltip: {
+                                                    trigger: "item",
+                                                    formatter: "{b}: {c}个 ({d}%)",
+                                                },
+                                                series: [
+                                                    {
+                                                        type: "pie",
+                                                        center: ["40%", "50%"],
+                                                        radius: ["30%", "45%"],
+                                                        clockwise: true,
+                                                        avoidLabelOverlap: true,
+                                                        hoverOffset: 15,
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color: function(v) {
+                                                                    let colorList = [
+                                                                        "#76c15c",
+                                                                        "#15b3e2",
+                                                                        "#2e65fd",
+                                                                        "#1fcaa8",
+                                                                        "#ee6565",
+                                                                        "#fec02a",
+                                                                        "#fe3922",
+                                                                        "#52fe36",
+                                                                        "#fe3afc",
+                                                                    ];
+                                                                    return colorList[v.dataIndex];
+                                                                },
+                                                            },
+                                                        },
+                                                        label: {
+                                                            show: true,
+                                                            position: "outer",
+                                                            width: 0,
+                                                            height: 0,
+                                                            lineHeight: 0,
+                                                            backgroundColor: "auto",
+                                                            padding: [2, -2, 2, -2],
+                                                            borderRadius: 2,
+                                                            distanceToLabelLine: 0,
+                                                            normal: {
+                                                                formatter(v) {
+                                                                    let text = v.name + "\n" + v.percent + "%";
+                                                                    return text;
+                                                                },
+                                                                textStyle: {
+                                                                    fontSize: 16,
+                                                                },
+                                                            },
+                                                        },
+                                                        labelLine: {
+                                                            normal: {
+                                                                lineStyle: {
+                                                                    width: 1,
+                                                                },
+                                                            },
+                                                        },
+                                                        data: [
+                                                            { value: 335, name: "新能源" },
+                                                            { value: 310, name: "石化" },
+                                                            { value: 234, name: "国储" },
+                                                            { value: 135, name: "高路油站" },
+                                                            { value: 1548, name: "荆港嘉瑞" },
+                                                        ],
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
                     id: "gasRetails",
                     name: "订单列表",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/nyls/dingdanliebiao.png"),
+                    iconActive: require("../../../assets/serviceArea/nyls/dingdanliebiao1.png"),
                     collapseItem: [
                         {
                             id: "gasRetail_table",
@@ -61,18 +255,91 @@ export default {
                                             },
                                             height: "600px",
                                             columns: [
-                                                { prop: "a", label: "加油站名称" },
-                                                { prop: "b", label: "商品名称" },
-                                                { prop: "c", label: "商品类型" },
-                                                { prop: "d", label: "金额(元)" },
-                                                { prop: "e", label: "时间" },
+                                                { prop: "加油站名称", width: "300px", label: "加油站名称" },
+                                                { prop: "负责人", label: "负责人" },
+                                                { prop: "负责人电话", label: "负责人电话" },
+                                                { prop: "加油岛", width: "100px", label: "加油岛(个)" },
+                                                {
+                                                    prop: "加油枪",
+                                                    label: "加油枪(个)",
+                                                    children: [
+                                                        { prop: "92", label: "92#" },
+                                                        { prop: "95", label: "95#" },
+                                                        { prop: "98", label: "98#" },
+                                                        { prop: "0", label: "0#" },
+                                                    ],
+                                                },
+                                                {
+                                                    prop: "订单",
+                                                    label: "订单(个)",
+                                                    children: [
+                                                        { prop: "油品订单", label: "油品订单(个)" },
+                                                        { prop: "非油品订单", label: "非油品订单(个)" },
+                                                    ],
+                                                },
                                             ],
                                             tableData: [
-                                                { a: "汉十高速双沟停车区加油北站", b: "92#", c: "汽油", d: "200", e: "2020-10-1" },
-                                                { a: "汉十高速枣阳服务区加油南站（新）", b: "95#", c: "汽油", d: "251", e: "2020-10-1" },
-                                                { a: "汉十高速双沟停车区加油南站", b: "98#", c: "汽油", d: "300", e: "2020-10-1" },
-                                                { a: "汉十高速枣阳服务区加油北站 (新）", b: "0#", c: "柴油", d: "200", e: "2020-10-1" },
-                                                { a: "汉十高速双沟停车区加油南站（新）", b: "旺旺牛奶", c: "零食", d: "5", e: "2020-10-1" },
+                                                {
+                                                    加油站名称: "汉十高速双沟停车区加油北站",
+                                                    负责人: "张xx",
+                                                    负责人电话: "176xxxxxxxx",
+                                                    加油岛: "5",
+                                                    "92": "1",
+                                                    "95": "2",
+                                                    "98": "1",
+                                                    "0": "1",
+                                                    油品订单: "10",
+                                                    非油品订单: "5",
+                                                },
+                                                {
+                                                    加油站名称: "汉十高速双沟停车区加油北站",
+                                                    负责人: "李xx",
+                                                    负责人电话: "174xxxxxxxx",
+                                                    加油岛: "7",
+                                                    "92": "3",
+                                                    "95": "2",
+                                                    "98": "1",
+                                                    "0": "1",
+                                                    油品订单: "9",
+                                                    非油品订单: "4",
+                                                },
+                                                {
+                                                    加油站名称: "汉十高速双沟停车区加油北站",
+                                                    负责人: "王xx",
+                                                    负责人电话: "172xxxxxxxx",
+                                                    加油岛: "8",
+                                                    "92": "3",
+                                                    "95": "1",
+                                                    "98": "1",
+                                                    "0": "3",
+                                                    油品订单: "9",
+                                                    非油品订单: "4",
+                                                },
+                                                {
+                                                    加油站名称: "汉十高速双沟停车区加油北站",
+                                                    负责人: "刘xx",
+                                                    负责人电话: "177xxxxxxxx",
+                                                    加油岛: "6",
+                                                    "92": "2",
+                                                    "95": "1",
+                                                    "98": "1",
+                                                    "0": "4",
+                                                    油品订单: "4",
+                                                    非油品订单: "10",
+                                                },
+                                                {
+                                                    加油站名称: "汉十高速双沟停车区加油北站",
+                                                    负责人: "xx",
+                                                    负责人电话: "177xxxxxxxx",
+                                                    加油岛: "10",
+                                                    "92": "3",
+                                                    "95": "2",
+                                                    "98": "2",
+                                                    "0": "3",
+                                                    油品订单: "16",
+                                                    非油品订单: "10",
+                                                },
+                                                
                                             ],
                                         },
                                     ],
@@ -84,8 +351,8 @@ export default {
                 {
                     id: "gasRetail",
                     name: "总营收",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/nyls/zongyingshou.png"),
+                    iconActive: require("../../../assets/serviceArea/nyls/zongyingshou1.png"),
                     collapseItem: [
                         {
                             id: "gasRetail_2020",
@@ -144,6 +411,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
@@ -746,6 +1017,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
@@ -1301,8 +1576,8 @@ export default {
                 {
                     id: "aa",
                     name: "非油营收",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/nyls/feiyouyingshou.png"),
+                    iconActive: require("../../../assets/serviceArea/nyls/feiyouyingshou1.png"),
                     collapseItem: [
                         {
                             id: "aa_2020",
@@ -1361,6 +1636,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
@@ -1688,6 +1967,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
@@ -1966,8 +2249,8 @@ export default {
                 {
                     id: "bb",
                     name: "转化率",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/nyls/zhuanhualv.png"),
+                    iconActive: require("../../../assets/serviceArea/nyls/zhuanhualv1.png"),
                     collapseItem: [
                         {
                             id: "bb_2020",
@@ -2259,196 +2542,6 @@ export default {
                             id: "revenue_gd",
                             collapseTitle: "查看更多",
                             EChartsBox: [],
-                        },
-                    ],
-                },
-                {
-                    id: "cc",
-                    name: "油站分布",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
-                    collapseItem: [
-                        {
-                            id: "cc_2020",
-                            year: 2020,
-                            collapseTitle: "油站分布",
-                            allQuery: false,
-                            allQueryData: {
-                                time: false,
-                            },
-                            EChartsBox: [
-                                {
-                                    title: "油库分布",
-                                    style: {
-                                        width: "100%",
-                                        height: "400px",
-                                        background: "white",
-                                        borderRadius: "10px",
-                                        overflow: "hidden",
-                                        marginBottom: "10px",
-                                    },
-                                    EChartsItem: [
-                                        {
-                                            type: "map",
-                                            style: {
-                                                width: "100%",
-                                                height: "400px",
-                                            },
-                                        },
-                                    ],
-                                },
-                                {
-                                    title: "历史油站个数增长",
-                                    time: false,
-                                    style: {
-                                        width: "59.5%",
-                                        height: "350px",
-                                        background: "white",
-                                        borderRadius: "10px",
-                                        overflow: "hidden",
-                                        marginBottom: "10px",
-                                    },
-                                    EChartsItem: [
-                                        {
-                                            /*ECharts的属性*/
-                                            style: {
-                                                width: "100%",
-                                                height: "300px",
-                                            },
-                                            unit: "个",
-                                            option: {
-                                                xAxis: {
-                                                    type: "category",
-                                                    data: ["2015", "2016", "2017", "2018", "2019", "2020"],
-                                                },
-                                                yAxis: {
-                                                    type: "value",
-                                                    name: "个",
-                                                    nameTextStyle: {
-                                                        color: "#000",
-                                                    },
-                                                },
-                                                tooltip: {
-                                                    trigger: "item",
-                                                    formatter: "{b}: {c}个",
-                                                },
-                                                series: [
-                                                    {
-                                                        data: [12, 32, 21, 34, 40, 50],
-                                                        type: "bar",
-                                                        itemStyle: {
-                                                            color: "#38d",
-                                                        },
-                                                    },
-                                                ],
-                                            },
-                                        },
-                                    ],
-                                },
-                                {
-                                    title: "子公司个数占比",
-                                    time: false,
-                                    select: false,
-                                    style: {
-                                        width: "40%",
-                                        height: "350px",
-                                        background: "white",
-                                        borderRadius: "10px",
-                                        overflow: "hidden",
-                                    },
-                                    EChartsItem: [
-                                        {
-                                            style: {
-                                                width: "100%",
-                                                height: "300px",
-                                            },
-                                            option: {
-                                                title: {
-                                                    text: "",
-                                                },
-                                                grid: {
-                                                    top: "20%",
-                                                    right: "40",
-                                                    left: "60",
-                                                    bottom: "40",
-                                                },
-                                                legend: {
-                                                    orient: "vertical",
-                                                    right: "5%",
-                                                    top: "center",
-                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
-                                                },
-                                                tooltip: {
-                                                    trigger: "item",
-                                                    formatter: "{b}: {c}个 ({d}%)",
-                                                },
-                                                series: [
-                                                    {
-                                                        type: "pie",
-                                                        center: ["40%", "50%"],
-                                                        radius: ["30%", "45%"],
-                                                        clockwise: true,
-                                                        avoidLabelOverlap: true,
-                                                        hoverOffset: 15,
-                                                        itemStyle: {
-                                                            normal: {
-                                                                color: function(v) {
-                                                                    let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
-                                                                    ];
-                                                                    return colorList[v.dataIndex];
-                                                                },
-                                                            },
-                                                        },
-                                                        label: {
-                                                            show: true,
-                                                            position: "outer",
-                                                            width: 0,
-                                                            height: 0,
-                                                            lineHeight: 0,
-                                                            backgroundColor: "auto",
-                                                            padding: [2, -2, 2, -2],
-                                                            borderRadius: 2,
-                                                            distanceToLabelLine: 0,
-                                                            normal: {
-                                                                formatter(v) {
-                                                                    let text = v.name + "\n" + v.percent + "%";
-                                                                    return text;
-                                                                },
-                                                                textStyle: {
-                                                                    fontSize: 16,
-                                                                },
-                                                            },
-                                                        },
-                                                        labelLine: {
-                                                            normal: {
-                                                                lineStyle: {
-                                                                    width: 1,
-                                                                },
-                                                            },
-                                                        },
-                                                        data: [
-                                                            { value: 335, name: "新能源" },
-                                                            { value: 310, name: "石化" },
-                                                            { value: 234, name: "国储" },
-                                                            { value: 135, name: "高路油站" },
-                                                            { value: 1548, name: "荆港嘉瑞" },
-                                                        ],
-                                                    },
-                                                ],
-                                            },
-                                        },
-                                    ],
-                                },
-                            ],
                         },
                     ],
                 },

@@ -60,7 +60,7 @@ export default {
                                                             val[0].name +
                                                             "月" +
                                                             ":" +
-                                                            "<br />营收:" +
+                                                            "<br />预算:" +
                                                             (val[0].value / 10000).toFixed(2) +
                                                             "万元"
                                                         );
@@ -83,6 +83,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                                                         axisLabel: {
@@ -397,7 +401,7 @@ export default {
                             collapseTitle: "2019年预算控制",
                             EChartsBox: [
                                 {
-                                    title: "",
+                                    title: "月预算控制",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -425,7 +429,7 @@ export default {
                                                             val[0].name +
                                                             "月" +
                                                             ":" +
-                                                            "<br />营收:" +
+                                                            "<br />预算:" +
                                                             (val[0].value / 10000).toFixed(2) +
                                                             "万元"
                                                         );
@@ -448,6 +452,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name: "月",
+                                                        nameTextStyle: {
+                                                            color: "#000",
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                                                         axisLabel: {
@@ -819,21 +827,24 @@ export default {
                                             style: {
                                                 width: "100%",
                                                 height: "380px",
-											},
-											
+                                            },
+
                                             option: {
                                                 xAxis: {
                                                     type: "category",
-													data: ["2015", "2016", "2017", "2018", "2019", "2020"],
-													
-												},
-												tooltip: {
+                                                    name: "年",
+                                                    nameTextStyle: {
+                                                        color: "#000",
+                                                    },
+                                                    data: ["2015", "2016", "2017", "2018", "2019", "2020"],
+                                                },
+                                                tooltip: {
                                                     trigger: "axis",
-                                                    formatter: "{b}: {c}% ",
+                                                    formatter: "{b}年: {c}% ",
                                                 },
                                                 yAxis: {
-													type: "value",
-													name:'%'
+                                                    type: "value",
+                                                    name: "%",
                                                 },
                                                 series: [
                                                     {
@@ -851,8 +862,8 @@ export default {
                                 {
                                     title: "分项成本变化趋势",
                                     showSearch: "notShow",
-									selectOption: [["A成本", "B成本", "C成本", "D成本"]],
-									select:true,
+                                    selectOption: [["A成本", "B成本", "C成本", "D成本"]],
+                                    select: true,
                                     style: {
                                         width: "49.5%",
                                         height: "400px",
@@ -867,20 +878,24 @@ export default {
                                             style: {
                                                 width: "100%",
                                                 height: "380px",
-											},
-											unit:'万元',
+                                            },
+                                            unit: "万元",
                                             option: {
                                                 xAxis: {
                                                     type: "category",
+                                                    name: "年",
+                                                    nameTextStyle: {
+                                                        color: "#000",
+                                                    },
                                                     data: ["2015", "2016", "2017", "2018", "2019", "2020"],
-												},
-												tooltip: {
+                                                },
+                                                tooltip: {
                                                     trigger: "axis",
                                                     formatter: "{b}: {c}万元",
                                                 },
                                                 yAxis: {
-													type: "value",
-													name:'万元'
+                                                    type: "value",
+                                                    name: "万元",
                                                 },
                                                 series: [
                                                     {

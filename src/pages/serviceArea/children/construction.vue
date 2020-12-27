@@ -101,15 +101,9 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -222,15 +216,9 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -266,15 +254,9 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -446,15 +428,9 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -694,15 +670,10 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#4ecb73",
+                                                                        "#73acff",
+                                                                        "#fd8a2d",
+                                                                        "#9e87ff",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -882,15 +853,10 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#4ecb73",
+                                                                        "#73acff",
+                                                                        "#fd8a2d",
+                                                                        "#9e87ff",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -1153,15 +1119,9 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -1274,15 +1234,9 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -1318,15 +1272,9 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -1497,15 +1445,9 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -1745,15 +1687,10 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#4ecb73",
+                                                                        "#73acff",
+                                                                        "#fd8a2d",
+                                                                        "#9e87ff",
                                                                     ];
                                                                     return colorList[
                                                                         params
@@ -1933,15 +1870,10 @@ export default {
                                                                     params
                                                                 ) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#4ecb73",
+                                                                        "#73acff",
+                                                                        "#fd8a2d",
+                                                                        "#9e87ff",
                                                                     ];
                                                                     return colorList[
                                                                         params

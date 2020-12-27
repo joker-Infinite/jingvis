@@ -8,6 +8,7 @@
                 :events="events"
                 :map-style="mapStyle"
                 pitch-enable="false"
+                v-if="markers[0]"
         >
             <el-amap-marker
                     v-for="(marker, index) in markers"
@@ -25,7 +26,7 @@
                     :close-when-click-map="true"
                     :is-custom="true"
             >
-                <div id="info-window">
+                <!-- <div id="info-window">
                     <p style="line-height: 30px;text-align: center">
                         {{ window.address }}
                     </p>
@@ -36,7 +37,7 @@
                     >
                         {{ i }}+XXXXXXXXXXX
                     </p>
-                </div>
+                </div> -->
             </el-amap-info-window>
         </el-amap>
     </div>
@@ -86,6 +87,7 @@
         mounted() {
             this.timeClear = setInterval(this.check, 3000);
             this.$axios.get("/api/index/list_jtService").then(res => {
+                console.log(res)
                 this.data = res.data.data;
                 this.point();
             });
@@ -100,49 +102,47 @@
                 const that = this;
                 let data = [];
                 this.data.forEach((item, index) => {
-                    if (
-                        (typeof item.longitude != "undefined",
-                        typeof item.latitude != "undefined")
-                    ) {
+                    if (item.gisCompany == "交投能源"||item.gisCompany == "中石油"||item.gisCompany == "中石化") {
                         data.push(item);
                     }
                 });
+
                 data.forEach((item, index) => {
-                    if (
-                        (typeof item.longitude != "undefined",
-                        typeof item.latitude != "undefined")
-                    ) {
+                    if ( item.longitude != "NULL"&&item.latitude != "NULL") {
+                        let icon = ''
+                        if(item.gisCompany == "交投能源") icon = require('../../assets/gas/jtny.png')
+                        if(item.gisCompany == "中石油") icon = require('../../assets/gas/zsy.png')
+                        if(item.gisCompany == "中石化") icon = require('../../assets/gas/zsh.png')
                         markers.push({
                             position: [item.longitude, item.latitude],
-                            events: {
-                                click() {
-                                    // 方法：鼠标移动到点标记上，显示相应窗体
-                                    that.windows.forEach(window => {
-                                        window.visible = false; // 关闭窗体
-                                    });
-                                    that.window = that.windows[index];
-                                    that.$nextTick(() => {
-                                        that.window.visible = true;
-                                    });
-                                }
-                            },
+                            // events: {
+                            //     click() {
+                            //         // 方法：鼠标移动到点标记上，显示相应窗体
+                            //         that.windows.forEach(window => {
+                            //             window.visible = false; // 关闭窗体
+                            //         });
+                            //         that.window = that.windows[index];
+                            //         that.$nextTick(() => {
+                            //             that.window.visible = true;
+                            //         });
+                            //     }
+                            // },
                             // icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png"
                             // icon: "https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b"
                             icon: new AMap.Icon({
-                                image:
-                                    "https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b",
+                                image:icon,
                                 size: new AMap.Size(52, 52),
-                                imageSize: new AMap.Size(30, 40)
+                                imageSize: new AMap.Size(30, 30)
                             })
                         });
-                        windows.push({
-                            position: [item.longitude, item.latitude],
-                            isCustom: true,
-                            offset: [115, 55], // 窗体偏移
-                            showShadow: false,
-                            visible: false, // 初始是否显示
-                            address: item.siName
-                        });
+                        // windows.push({
+                        //     position: [item.longitude, item.latitude],
+                        //     isCustom: true,
+                        //     offset: [115, 55], // 窗体偏移
+                        //     showShadow: false,
+                        //     visible: false, // 初始是否显示
+                        //     address: item.siName
+                        // });
                     }
                 });
                 //  加点

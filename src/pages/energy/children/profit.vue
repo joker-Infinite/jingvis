@@ -62,7 +62,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />" + val[0].value / 10000 + "万元";
+                                                        return val[0].name + "月" + ":" + "<br />利润:" + val[0].value / 10000 + "万元";
                                                     },
                                                 },
                                                 grid: {
@@ -82,6 +82,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: [],
                                                         axisLabel: {
@@ -434,7 +438,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />" + val[0].value / 10000 + "万元";
+                                                        return val[0].name + "月" + ":" + "<br />利润:" + val[0].value / 10000 + "万元";
                                                     },
                                                 },
                                                 grid: {
@@ -454,6 +458,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: [],
                                                         axisLabel: {
@@ -674,7 +682,7 @@ export default {
                                                         },
                                                         data: [
                                                             { value: 335, name: "新能源" },
-                                                            { value: 310, name: "石化" },
+                                                            { value: 1310, name: "石化" },
                                                             { value: 234, name: "国储" },
                                                             { value: 135, name: "高路油站" },
                                                             { value: 1548, name: "荆港嘉瑞" },
@@ -757,7 +765,7 @@ export default {
                                                         },
                                                         data: [
                                                             { value: 335, name: "过票" },
-                                                            { value: 310, name: "油品批发" },
+                                                            { value: 2310, name: "油品批发" },
                                                             { value: 234, name: "分销" },
                                                             { value: 135, name: "油品零售" },
                                                             { value: 1548, name: "非油品零售" },
@@ -819,7 +827,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />营收:" + (val[0].value / 10000).toFixed(2) + "万元";
+                                                        return val[0].name + "月" + ":" + "<br />利润:" + (val[0].value / 10000).toFixed(2) + "万元";
                                                     },
                                                 },
                                                 grid: {
@@ -839,6 +847,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
                                                         axisLabel: {
@@ -1179,7 +1191,7 @@ export default {
                             },
                             EChartsBox: [
                                 {
-                                    title: "纯利润",
+                                    title: "毛利润",
                                     time: false,
                                     timeValue: "",
                                     style: {
@@ -1203,7 +1215,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br />营收:" + (val[0].value / 10000).toFixed(2) + "万元";
+                                                        return val[0].name + "月" + ":" + "<br />利润:" + (val[0].value / 10000).toFixed(2) + "万元";
                                                     },
                                                 },
                                                 grid: {
@@ -1223,6 +1235,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
                                                         axisLabel: {
@@ -1456,7 +1472,7 @@ export default {
                                                         data: [
                                                             { value: 335, name: "新能源" },
                                                             { value: 310, name: "石化" },
-                                                            { value: 234, name: "国储" },
+                                                            { value: 3234, name: "国储" },
                                                             { value: 135, name: "高路油站" },
                                                             { value: 1548, name: "荆港嘉瑞" },
                                                         ],
@@ -1538,10 +1554,10 @@ export default {
                                                         },
                                                         data: [
                                                             { value: 335, name: "过票" },
-                                                            { value: 310, name: "油品批发" },
+                                                            { value: 1310, name: "油品批发" },
                                                             { value: 234, name: "分销" },
-                                                            { value: 135, name: "油品零售" },
-                                                            { value: 1548, name: "非油品零售" },
+                                                            { value: 1135, name: "油品零售" },
+                                                            { value: 548, name: "非油品零售" },
                                                         ],
                                                     },
                                                 ],

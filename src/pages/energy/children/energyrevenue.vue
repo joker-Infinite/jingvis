@@ -36,7 +36,7 @@ export default {
                                     timeValue: "",
                                     style: {
                                         width: "40.5%",
-                                        height: "450px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -46,7 +46,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "380px",
+                                                height: "320px",
                                             },
                                             option: {
                                                 title: {
@@ -82,6 +82,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
@@ -233,7 +237,7 @@ export default {
                                     /*包裹ECharts的父级元素的属性*/
                                     style: {
                                         width: "59%",
-                                        height: "450px",
+                                        height: "400px",
                                         borderRadius: "10px",
                                         background: "white",
                                         marginBottom: "10px",
@@ -244,7 +248,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "400px",
+                                                height: "350px",
                                             },
                                             option: {
                                                 title: {
@@ -323,7 +327,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "400px",
+                                                height: "350px",
                                             },
                                             option: {
                                                 title: {
@@ -410,7 +414,7 @@ export default {
                                     timeValue: "",
                                     style: {
                                         width: "40.5%",
-                                        height: "450px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -420,7 +424,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "380px",
+                                                height: "320px",
                                             },
                                             option: {
                                                 title: {
@@ -456,6 +460,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
                                                         axisLabel: {
@@ -606,7 +614,7 @@ export default {
                                     /*包裹ECharts的父级元素的属性*/
                                     style: {
                                         width: "59%",
-                                        height: "450px",
+                                        height: "400px",
                                         borderRadius: "10px",
                                         background: "white",
                                         marginBottom: "10px",
@@ -617,7 +625,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "400px",
+                                                height: "350px",
                                             },
                                             option: {
                                                 title: {
@@ -673,7 +681,7 @@ export default {
                                                                 itemStyle: { color: "#4ECB73" },
                                                             },
                                                             {
-                                                                value: 135,
+                                                                value: 1135,
                                                                 name: "国储",
                                                                 itemStyle: { color: "#F8D33D" },
                                                             },
@@ -696,7 +704,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "400px",
+                                                height: "350px",
                                             },
                                             option: {
                                                 title: {
@@ -734,7 +742,7 @@ export default {
                                                         },
                                                         data: [
                                                             {
-                                                                value: 335,
+                                                                value: 1335,
                                                                 name: "过票",
                                                                 itemStyle: { color: "#3AA1FF" },
                                                             },

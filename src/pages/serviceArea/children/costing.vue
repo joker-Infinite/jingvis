@@ -43,7 +43,7 @@ export default {
                                     timeValue: "",
                                     style: {
                                         width: "40%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -53,7 +53,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "330px",
                                             },
                                             option: {
                                                 title: {
@@ -70,7 +70,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br>成本:" + val[0].value / 10000 + "元";
+                                                        return val[0].name + "月" + ":" + "<br>成本:" + val[0].value / 10000 + "万元";
                                                     },
                                                 },
                                                 grid: {
@@ -82,6 +82,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: [],
                                                         axisLabel: {
@@ -173,7 +177,7 @@ export default {
                                     select: false,
                                     style: {
                                         width: "59.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -183,7 +187,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "350px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -229,15 +233,12 @@ export default {
                                                                 // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -288,7 +289,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "350px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -328,15 +329,12 @@ export default {
                                                                 // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -393,7 +391,7 @@ export default {
 
                                     style: {
                                         width: "40%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -543,71 +541,24 @@ export default {
                                     select: false,
                                     style: {
                                         width: "59.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
                                         marginTop: "5px",
                                     },
                                     EChartsItem: [
-                                        // {
-                                        //     type: "box",
-                                        //     style: {
-                                        //         width: "30%",
-                                        //         height: "300px",
-                                        //         position: "relative",
-                                        //         style: {
-                                        //             content: "差旅费实际:86.64万元",
-                                        //             width: "80%",
-                                        //             color: "#fff",
-                                        //             height: "120px",
-                                        //             background: "#38d",
-                                        //             position: "absolute",
-                                        //             top: "80px",
-                                        //             left: "10%",
-                                        //             borderRadius: "10px",
-                                        //             lineHeight: "120px",
-                                        //             fontWeight: 700,
-                                        //             textAlign: "center",
-                                        //             fontSize: "20px",
-                                        //         },
-                                        //     },
-                                        //     option: {},
-                                        // },
-                                        // {
-                                        //     type: "box",
-                                        //     /*ECharts的属性*/
-                                        //     style: {
-                                        //         width: "30%",
-                                        //         height: "300px",
-                                        //         position: "relative",
-                                        //         style: {
-                                        //             content: "差旅费预算:60.99万元",
-                                        //             width: "80%",
-                                        //             color: "#fff",
-                                        //             height: "120px",
-                                        //             background: "#81dd9d",
-                                        //             position: "absolute",
-                                        //             top: "130px",
-                                        //             left: "10%",
-                                        //             borderRadius: "10px",
-                                        //             lineHeight: "120px",
-                                        //             fontWeight: 700,
-                                        //             textAlign: "center",
-                                        //             fontSize: "20px",
-                                        //         },
-                                        //     },
-                                        //     option: {},
-                                        // },
                                         {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "350px",
                                             },
                                             option: {
-                                                color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
-                                                tooltip: {},
+                                                color: ["#ff9999", "#ffb03f", "#ff9b42", "#3dba2d", "#F0D418", "#2E64FF"],
+                                                tooltip: {
+
+                                                },
                                                 formatter: function(val) {
                                                     if (!val.data.id) {
                                                         return val.name + ":<br>实际:" + val.value + "万元<br>占比:" + val.percent + "%";
@@ -638,7 +589,7 @@ export default {
                                                         },
                                                     ],
                                                     center: ["50%", "50%"],
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                     startAngle: 40,
                                                     name: {
                                                         show: true,
@@ -664,7 +615,7 @@ export default {
                                                     },
                                                 },
                                                 polar: {
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                 },
                                                 angleAxis: {
                                                     zlevel: 0,
@@ -727,7 +678,7 @@ export default {
                                                                 name: "交通",
                                                             },
                                                         ],
-                                                        radius: ["55%", "70%"],
+                                                        radius: ["45%", "55%"],
                                                         zlevel: -1,
                                                         name: "",
                                                         itemStyle: {
@@ -818,10 +769,10 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "350px",
                                             },
                                             option: {
-                                                color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
+                                                color: ["#ff9999", "#ffb03f", "#ff9b42", "#3dba2d", "#F0D418", "#2E64FF"],
                                                 tooltip: {},
                                                 formatter: function(val) {
                                                     
@@ -854,7 +805,7 @@ export default {
                                                         },
                                                     ],
                                                     center: ["50%", "50%"],
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                     startAngle: 40,
                                                     name: {
                                                         show: true,
@@ -880,7 +831,7 @@ export default {
                                                     },
                                                 },
                                                 polar: {
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                 },
                                                 angleAxis: {
                                                     zlevel: 0,
@@ -943,7 +894,7 @@ export default {
                                                                 name: "交通",
                                                             },
                                                         ],
-                                                        radius: ["55%", "70%"],
+                                                        radius: ["45%", "55%"],
                                                         zlevel: -1,
                                                         name: "",
                                                         itemStyle: {
@@ -1049,7 +1000,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "280px",
                                             },
                                             option: {
                                                 title: {
@@ -1066,7 +1017,7 @@ export default {
                                                 tooltip: {
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        return val[0].name + "月" + ":" + "<br>成本:" + val[0].value / 10000 + "元";
+                                                        return val[0].name + "月" + ":" + "<br>成本:" + val[0].value / 10000 + "万元";
                                                     },
                                                 },
                                                 grid: {
@@ -1077,6 +1028,10 @@ export default {
                                                 },
                                                 xAxis: [
                                                     {
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         type: "category",
                                                         color: "#59588D",
                                                         data: [],
@@ -1225,15 +1180,12 @@ export default {
                                                                 // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -1324,15 +1276,12 @@ export default {
                                                                 // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -1545,55 +1494,7 @@ export default {
                                         marginTop: "5px",
                                     },
                                     EChartsItem: [
-                                        // {
-                                        //     type: "box",
-                                        //     style: {
-                                        //         width: "30%",
-                                        //         height: "300px",
-                                        //         position: "relative",
-                                        //         style: {
-                                        //             content: "差旅费实际:86.64万元",
-                                        //             width: "80%",
-                                        //             color: "#fff",
-                                        //             height: "120px",
-                                        //             background: "#38d",
-                                        //             position: "absolute",
-                                        //             top: "80px",
-                                        //             left: "10%",
-                                        //             borderRadius: "10px",
-                                        //             lineHeight: "120px",
-                                        //             fontWeight: 700,
-                                        //             textAlign: "center",
-                                        //             fontSize: "20px",
-                                        //         },
-                                        //     },
-                                        //     option: {},
-                                        // },
-                                        // {
-                                        //     type: "box",
-                                        //     /*ECharts的属性*/
-                                        //     style: {
-                                        //         width: "30%",
-                                        //         height: "300px",
-                                        //         position: "relative",
-                                        //         style: {
-                                        //             content: "差旅费预算:60.99万元",
-                                        //             width: "80%",
-                                        //             color: "#fff",
-                                        //             height: "120px",
-                                        //             background: "#81dd9d",
-                                        //             position: "absolute",
-                                        //             top: "130px",
-                                        //             left: "10%",
-                                        //             borderRadius: "10px",
-                                        //             lineHeight: "120px",
-                                        //             fontWeight: 700,
-                                        //             textAlign: "center",
-                                        //             fontSize: "20px",
-                                        //         },
-                                        //     },
-                                        //     option: {},
-                                        // },
+                                       
                                         {
                                             /*ECharts的属性*/
                                             style: {
@@ -1601,7 +1502,7 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
+                                                color: ["#ff9999", "#ffb03f", "#ff9b42", "#3dba2d", "#F0D418", "#2E64FF"],
                                                 tooltip: {},
                                                 formatter: function(val) {
                                                     if (!val.data.id) {
@@ -1633,7 +1534,7 @@ export default {
                                                         },
                                                     ],
                                                     center: ["50%", "50%"],
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                     startAngle: 40,
                                                     name: {
                                                         show: true,
@@ -1659,7 +1560,7 @@ export default {
                                                     },
                                                 },
                                                 polar: {
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                 },
                                                 angleAxis: {
                                                     zlevel: 0,
@@ -1722,7 +1623,7 @@ export default {
                                                                 name: "交通",
                                                             },
                                                         ],
-                                                        radius: ["55%", "70%"],
+                                                        radius: ["45%", "55%"],
                                                         zlevel: -1,
                                                         name: "",
                                                         itemStyle: {
@@ -1816,7 +1717,7 @@ export default {
                                                 height: "300px",
                                             },
                                             option: {
-                                                color: ["#00e4ff", "#8E42FF", "#FF6B6B", "#FF9B42", "#F0D418", "#2E64FF"],
+                                                color: ["#ff9999", "#ffb03f", "#ff9b42", "#3dba2d", "#F0D418", "#2E64FF"],
                                                 tooltip: {},
                                                 formatter: function(val) {
                                                     
@@ -1849,7 +1750,7 @@ export default {
                                                         },
                                                     ],
                                                     center: ["50%", "50%"],
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                     startAngle: 40,
                                                     name: {
                                                         show: true,
@@ -1875,7 +1776,7 @@ export default {
                                                     },
                                                 },
                                                 polar: {
-                                                    radius: "50%",
+                                                    radius: "40%",
                                                 },
                                                 angleAxis: {
                                                     zlevel: 0,
@@ -1938,7 +1839,7 @@ export default {
                                                                 name: "交通",
                                                             },
                                                         ],
-                                                        radius: ["55%", "70%"],
+                                                        radius: ["45%", "55%"],
                                                         zlevel: -1,
                                                         name: "",
                                                         itemStyle: {

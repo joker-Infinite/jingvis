@@ -42,7 +42,7 @@ export default {
                                     timeValue: "",
                                     style: {
                                         width: "35%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -52,7 +52,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "330px",
                                             },
                                             option: {
                                                 title: {
@@ -81,6 +81,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: [],
                                                         axisLabel: {
@@ -216,7 +220,7 @@ export default {
                                     select: false,
                                     style: {
                                         width: "64.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -226,7 +230,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "370px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -265,21 +269,18 @@ export default {
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -331,7 +332,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "370px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -365,21 +366,18 @@ export default {
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -448,7 +446,7 @@ export default {
                                     timeValue: "",
                                     style: {
                                         width: "35%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -458,7 +456,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
-                                                height: "300px",
+                                                height: "330px",
                                             },
                                             option: {
                                                 title: {
@@ -487,6 +485,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: [],
                                                         axisLabel: {
@@ -622,7 +624,7 @@ export default {
                                     select: false,
                                     style: {
                                         width: "64.5%",
-                                        height: "350px",
+                                        height: "400px",
                                         background: "white",
                                         borderRadius: "10px",
                                         overflow: "hidden",
@@ -632,7 +634,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "370px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -671,21 +673,18 @@ export default {
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#06d3c4",
+                                                                        "#9e87ff",
+                                                                        "#7ebdff",
+                                                                        "#fdd36a",
+                                                                        "#fdb36a",
+                                                                        "#fd866a"
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },
@@ -737,7 +736,7 @@ export default {
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "50%",
-                                                height: "300px",
+                                                height: "370px",
                                             },
                                             option: {
                                                 title: { text: "" },
@@ -771,21 +770,18 @@ export default {
                                                         itemStyle: {
                                                             normal: {
                                                                 // 设置扇形的阴影
-                                                                shadowBlur: 30,
-                                                                shadowColor: "rgba(0,0,0,0.3)",
-                                                                shadowOffsetX: -5,
-                                                                shadowOffsetY: 5,
+                                                                // shadowBlur: 30,
+                                                                // shadowColor: "rgba(0,0,0,0.3)",
+                                                                // shadowOffsetX: -5,
+                                                                // shadowOffsetY: 5,
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#3cb8fe",
+                                                                        "#73abf8",
+                                                                        "#cb9bff",
+                                                                        "#fdb36a",
+                                                                        "#ff9393",
+                                                                        "#95a2ff",
                                                                     ];
                                                                     return colorList[v.dataIndex];
                                                                 },

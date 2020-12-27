@@ -493,7 +493,7 @@ export default {
                                     ],
                                 },
                                 {
-                                    title: "tab列表",
+                                    title: "订单列表",
                                     time: false,
                                     select: false,
                                     timeValue: "",

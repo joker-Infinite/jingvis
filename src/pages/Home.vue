@@ -285,12 +285,13 @@
     justify-content: left;
 
     .nav {
-      min-width: 210px;
+      min-width: 200px;
       height: 100%;
       overflow-y: scroll;
       transition: linear 0.3s;
-      background: white;
-
+	  background: white;
+	  margin-right: 5px;
+	  box-shadow: 1px 10px 10px rgba(0, 0, 0, .1);
       .oc {
         margin-right: 20px;
       }

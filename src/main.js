@@ -6,9 +6,9 @@ import store from "./store";
 import "./plugins/element.js";
 import VueAMap from "vue-amap";
 import "./plugins/wyz-echarts/wyz-echarts.js";
-
+import empty from "./pages/empty/empty.vue"
 Vue.config.productionTip = false;
-
+Vue.component("empty", empty);
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
   key: "5f4ec16b146bc7ebde7308bd2dbcd132",

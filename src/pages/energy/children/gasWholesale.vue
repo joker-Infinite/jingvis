@@ -83,6 +83,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                                                         axisLabel: {
@@ -225,67 +229,43 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "horizontal",
-                                                    bottom: "0",
-                                                    right: "5%",
-                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
+                                                    bottom: "20",
+                                                    x: "center",
+                                                    data: ["92#", "95#", "98#", "0#"],
+                                                    textStyle: {
+                                                        color: "#000",
+                                                        fontSize: 12,
+                                                    },
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: "{b} : {c}万元 ({d}%)",
                                                 },
+                                                color: ["#49c7ad", "#ffa55b", "#4a90e2", "#797aff"],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["50%", "50%"],
+                                                        radius: "50%",
+                                                        center: ["50%", "40%"],
                                                         label: {
                                                             position: "inner",
                                                         },
                                                         data: [
                                                             {
-                                                                value: 335,
-                                                                name: "新能源",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 3350,
+                                                                name: "92#",
                                                             },
                                                             {
                                                                 value: 310,
-                                                                name: "石化",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                name: "95#",
                                                             },
                                                             {
                                                                 value: 234,
-                                                                name: "国储",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                name: "98#",
                                                             },
                                                             {
-                                                                value: 135,
-                                                                name: "高路油站",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
-                                                            },
-                                                            {
-                                                                value: 1548,
-                                                                name: "荆港嘉瑞",
-                                                                itemStyle: {
-                                                                    color: "rgba(15,197,243,0.7)",
-                                                                    borderColor: "rgba(15,197,243,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 1350,
+                                                                name: "0#",
                                                             },
                                                         ],
                                                     },
@@ -300,62 +280,41 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "horizontal",
-                                                    bottom: "20",
-                                                    right: "0",
-                                                    data: ["92#", "95#", "98#", "0#"],
-                                                    textStyle: {
-                                                        color: "#000",
-                                                        fontSize: 12,
-                                                    },
+                                                    bottom: "10",
+                                                    x: "center",
+                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: "{b} : {c}万元 ({d}%)",
                                                 },
+                                                color: ["#FFC371", "#FC892C", "#797AFF", "#507AFF", "#51D9A2"],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["60%", "50%"],
-                                                        label: {
-                                                            position: "inner",
-                                                        },
+                                                        radius: ["30%","50%"],
+                                                        center: ["50%", "40%"],
+                                                        
                                                         data: [
                                                             {
-                                                                value: 3350,
-                                                                name: "92#",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 335,
+                                                                name: "新能源",
                                                             },
                                                             {
                                                                 value: 310,
-                                                                name: "95#",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                name: "石化",
                                                             },
                                                             {
                                                                 value: 234,
-                                                                name: "98#",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                name: "国储",
                                                             },
                                                             {
-                                                                value: 1350,
-                                                                name: "0#",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 135,
+                                                                name: "高路油站",
+                                                            },
+                                                            {
+                                                                value: 1548,
+                                                                name: "荆港嘉瑞",
                                                             },
                                                         ],
                                                     },
@@ -378,11 +337,12 @@ export default {
                                                     trigger: "item",
                                                     formatter: "{b} : {c} ({d}%)",
                                                 },
+                                                color:['#9e87ff','#73acff','#fd8a2d','#4ecb73'],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["50%", "50%"],
+                                                        radius: "50%",
+                                                        center: ["50%", "40%"],
                                                         label: {
                                                             position: "inner",
                                                         },
@@ -390,38 +350,18 @@ export default {
                                                             {
                                                                 value: 335,
                                                                 name: "贸易",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
                                                                 value: 310,
                                                                 name: "直分销",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
                                                                 value: 234,
                                                                 name: "票面",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
                                                                 value: 135,
                                                                 name: "其他",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                         ],
                                                     },
@@ -489,6 +429,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                                                         axisLabel: {
@@ -631,67 +575,43 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "horizontal",
-                                                    bottom: "0",
-                                                    right: "5%",
-                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
+                                                    bottom: "20",
+                                                    x: "center",
+                                                    data: ["92#", "95#", "98#", "0#"],
+                                                    textStyle: {
+                                                        color: "#000",
+                                                        fontSize: 12,
+                                                    },
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: "{b} : {c}万元 ({d}%)",
                                                 },
+                                                color: ["#49c7ad", "#ffa55b", "#4a90e2", "#797aff"],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["50%", "50%"],
+                                                        radius: "50%",
+                                                        center: ["50%", "40%"],
                                                         label: {
                                                             position: "inner",
                                                         },
                                                         data: [
                                                             {
-                                                                value: 335,
-                                                                name: "新能源",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 1050,
+                                                                name: "92#",
                                                             },
                                                             {
-                                                                value: 1310,
-                                                                name: "石化",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 310,
+                                                                name: "95#",
                                                             },
                                                             {
                                                                 value: 234,
-                                                                name: "国储",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                name: "98#",
                                                             },
                                                             {
-                                                                value: 135,
-                                                                name: "高路油站",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
-                                                            },
-                                                            {
-                                                                value: 1548,
-                                                                name: "荆港嘉瑞",
-                                                                itemStyle: {
-                                                                    color: "rgba(15,197,243,0.7)",
-                                                                    borderColor: "rgba(15,197,243,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 1350,
+                                                                name: "0#",
                                                             },
                                                         ],
                                                     },
@@ -706,62 +626,41 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "horizontal",
-                                                    bottom: "20",
-                                                    right: "0",
-                                                    data: ["92#", "95#", "98#", "0#"],
-                                                    textStyle: {
-                                                        color: "#000",
-                                                        fontSize: 12,
-                                                    },
+                                                    bottom: "10",
+                                                    x: "center",
+                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: "{b} : {c}万元 ({d}%)",
                                                 },
+                                                color: ["#FFC371", "#FC892C", "#797AFF", "#507AFF", "#51D9A2"],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["60%", "50%"],
-                                                        label: {
-                                                            position: "inner",
-                                                        },
+                                                        radius: ["30%","50%"],
+                                                        center: ["50%", "40%"],
+                                                        
                                                         data: [
                                                             {
-                                                                value: 3350,
-                                                                name: "92#",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 535,
+                                                                name: "新能源",
                                                             },
                                                             {
-                                                                value: 310,
-                                                                name: "95#",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 210,
+                                                                name: "石化",
                                                             },
                                                             {
-                                                                value: 1234,
-                                                                name: "98#",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 634,
+                                                                name: "国储",
                                                             },
                                                             {
-                                                                value: 1350,
-                                                                name: "0#",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 135,
+                                                                name: "高路油站",
+                                                            },
+                                                            {
+                                                                value: 1548,
+                                                                name: "荆港嘉瑞",
                                                             },
                                                         ],
                                                     },
@@ -784,11 +683,12 @@ export default {
                                                     trigger: "item",
                                                     formatter: "{b} : {c} ({d}%)",
                                                 },
+                                                color:['#9e87ff','#73acff','#fd8a2d','#4ecb73'],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["50%", "50%"],
+                                                        radius: "50%",
+                                                        center: ["50%", "40%"],
                                                         label: {
                                                             position: "inner",
                                                         },
@@ -796,38 +696,18 @@ export default {
                                                             {
                                                                 value: 335,
                                                                 name: "贸易",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
                                                                 value: 310,
                                                                 name: "直分销",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
-                                                                value: 1234,
+                                                                value: 534,
                                                                 name: "票面",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
-                                                                value: 135,
+                                                                value: 235,
                                                                 name: "其他",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                         ],
                                                     },
@@ -908,6 +788,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                                                         axisLabel: {
@@ -1010,67 +894,43 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "horizontal",
-                                                    bottom: "0",
-                                                    right: "5%",
-                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
+                                                    bottom: "20",
+                                                    x: "center",
+                                                    data: ["92#", "95#", "98#", "0#"],
+                                                    textStyle: {
+                                                        color: "#000",
+                                                        fontSize: 12,
+                                                    },
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: "{b} : {c}万元 ({d}%)",
                                                 },
+                                                color: ["#49c7ad", "#ffa55b", "#4a90e2", "#797aff"],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["50%", "50%"],
+                                                        radius: "50%",
+                                                        center: ["50%", "40%"],
                                                         label: {
                                                             position: "inner",
                                                         },
                                                         data: [
                                                             {
-                                                                value: 335,
-                                                                name: "新能源",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 2050,
+                                                                name: "92#",
                                                             },
                                                             {
-                                                                value: 1310,
-                                                                name: "石化",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 510,
+                                                                name: "95#",
                                                             },
                                                             {
-                                                                value: 234,
-                                                                name: "国储",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 934,
+                                                                name: "98#",
                                                             },
                                                             {
-                                                                value: 1135,
-                                                                name: "高路油站",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
-                                                            },
-                                                            {
-                                                                value: 1548,
-                                                                name: "荆港嘉瑞",
-                                                                itemStyle: {
-                                                                    color: "rgba(15,197,243,0.7)",
-                                                                    borderColor: "rgba(15,197,243,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 1350,
+                                                                name: "0#",
                                                             },
                                                         ],
                                                     },
@@ -1085,63 +945,41 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "horizontal",
-                                                    bottom: "20",
-                                                    right: "0",
-                                                    data: ["92#", "95#", "98#", "0#"],
-                                                    textStyle: {
-														
-                                                        color: "#000",
-                                                        fontSize: 12,
-                                                    },
+                                                    bottom: "10",
+                                                    x: "center",
+                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: "{b} : {c}万元 ({d}%)",
                                                 },
+                                                color: ["#FFC371", "#FC892C", "#797AFF", "#507AFF", "#51D9A2"],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["60%", "50%"],
-                                                        label: {
-                                                            position: "inner",
-                                                        },
+                                                        radius: ["30%","50%"],
+                                                        center: ["50%", "40%"],
+                                                        
                                                         data: [
                                                             {
-                                                                value: 3350,
-                                                                name: "92#",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 535,
+                                                                name: "新能源",
                                                             },
                                                             {
-                                                                value: 1310,
-                                                                name: "95#",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 610,
+                                                                name: "石化",
                                                             },
                                                             {
-                                                                value: 1234,
-                                                                name: "98#",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 634,
+                                                                name: "国储",
                                                             },
                                                             {
-                                                                value: 1350,
-                                                                name: "0#",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 1135,
+                                                                name: "高路油站",
+                                                            },
+                                                            {
+                                                                value: 1548,
+                                                                name: "荆港嘉瑞",
                                                             },
                                                         ],
                                                     },
@@ -1164,50 +1002,31 @@ export default {
                                                     trigger: "item",
                                                     formatter: "{b} : {c} ({d}%)",
                                                 },
+                                                color:['#9e87ff','#73acff','#fd8a2d','#4ecb73'],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["50%", "50%"],
+                                                        radius: "50%",
+                                                        center: ["50%", "40%"],
                                                         label: {
                                                             position: "inner",
                                                         },
                                                         data: [
                                                             {
-                                                                value: 335,
+                                                                value: 835,
                                                                 name: "贸易",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
-                                                                value: 310,
+                                                                value: 610,
                                                                 name: "直分销",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
-                                                                value: 1234,
+                                                                value: 534,
                                                                 name: "票面",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
-                                                                value: 1135,
+                                                                value: 435,
                                                                 name: "其他",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                         ],
                                                     },
@@ -1275,6 +1094,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                                                         axisLabel: {
@@ -1417,67 +1240,43 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "horizontal",
-                                                    bottom: "0",
-                                                    right: "5%",
-                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
+                                                    bottom: "20",
+                                                    x: "center",
+                                                    data: ["92#", "95#", "98#", "0#"],
+                                                    textStyle: {
+                                                        color: "#000",
+                                                        fontSize: 12,
+                                                    },
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: "{b} : {c}万元 ({d}%)",
                                                 },
+                                                color: ["#49c7ad", "#ffa55b", "#4a90e2", "#797aff"],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["50%", "50%"],
+                                                        radius: "50%",
+                                                        center: ["50%", "40%"],
                                                         label: {
                                                             position: "inner",
                                                         },
                                                         data: [
                                                             {
-                                                                value: 335,
-                                                                name: "新能源",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 2050,
+                                                                name: "92#",
                                                             },
                                                             {
-                                                                value: 1310,
-                                                                name: "石化",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 510,
+                                                                name: "95#",
                                                             },
                                                             {
-                                                                value: 234,
-                                                                name: "国储",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 934,
+                                                                name: "98#",
                                                             },
                                                             {
-                                                                value: 135,
-                                                                name: "高路油站",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
-                                                            },
-                                                            {
-                                                                value: 1548,
-                                                                name: "荆港嘉瑞",
-                                                                itemStyle: {
-                                                                    color: "rgba(15,197,243,0.7)",
-                                                                    borderColor: "rgba(15,197,243,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 1350,
+                                                                name: "0#",
                                                             },
                                                         ],
                                                     },
@@ -1492,62 +1291,41 @@ export default {
                                             option: {
                                                 legend: {
                                                     orient: "horizontal",
-                                                    bottom: "20",
-                                                    right: "0",
-                                                    data: ["92#", "95#", "98#", "0#"],
-                                                    textStyle: {
-                                                        color: "#000",
-                                                        fontSize: 12,
-                                                    },
+                                                    bottom: "10",
+                                                    x: "center",
+                                                    data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
                                                 },
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: "{b} : {c}万元 ({d}%)",
                                                 },
+                                                color: ["#FFC371", "#FC892C", "#797AFF", "#507AFF", "#51D9A2"],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["60%", "50%"],
-                                                        label: {
-                                                            position: "inner",
-                                                        },
+                                                        radius: ["30%","50%"],
+                                                        center: ["50%", "40%"],
+                                                        
                                                         data: [
                                                             {
-                                                                value: 3350,
-                                                                name: "92#",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 535,
+                                                                name: "新能源",
                                                             },
                                                             {
-                                                                value: 310,
-                                                                name: "95#",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 610,
+                                                                name: "石化",
                                                             },
                                                             {
-                                                                value: 1234,
-                                                                name: "98#",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 634,
+                                                                name: "国储",
                                                             },
                                                             {
-                                                                value: 1350,
-                                                                name: "0#",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
+                                                                value: 1135,
+                                                                name: "高路油站",
+                                                            },
+                                                            {
+                                                                value: 1548,
+                                                                name: "荆港嘉瑞",
                                                             },
                                                         ],
                                                     },
@@ -1570,50 +1348,31 @@ export default {
                                                     trigger: "item",
                                                     formatter: "{b} : {c} ({d}%)",
                                                 },
+                                                color:['#9e87ff','#73acff','#fd8a2d','#4ecb73'],
                                                 series: [
                                                     {
                                                         type: "pie",
-                                                        radius: "60%",
-                                                        center: ["50%", "50%"],
+                                                        radius: "50%",
+                                                        center: ["50%", "40%"],
                                                         label: {
                                                             position: "inner",
                                                         },
                                                         data: [
                                                             {
-                                                                value: 335,
+                                                                value: 835,
                                                                 name: "贸易",
-                                                                itemStyle: {
-                                                                    color: "rgba(50,123,250,0.7)",
-                                                                    borderColor: "rgba(50,123,250,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
-                                                                value: 310,
+                                                                value: 610,
                                                                 name: "直分销",
-                                                                itemStyle: {
-                                                                    color: "rgba(244,201,7,0.7)",
-                                                                    borderColor: "rgba(244,201,7,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
-                                                                value: 1234,
+                                                                value: 534,
                                                                 name: "票面",
-                                                                itemStyle: {
-                                                                    color: "rgba(23,216,161,0.7)",
-                                                                    borderColor: "rgba(23,216,161,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                             {
-                                                                value: 135,
+                                                                value: 435,
                                                                 name: "其他",
-                                                                itemStyle: {
-                                                                    color: "rgba(122,60,235,0.7)",
-                                                                    borderColor: "rgba(122,60,235,1)",
-                                                                    borderWidth: 3,
-                                                                },
                                                             },
                                                         ],
                                                     },
@@ -1649,7 +1408,7 @@ export default {
                                     selectOption: [
                                         ["新能源", "石化", "国储", "荆港嘉瑞"],
                                         ["贸易", "直分销", "票面", "其他"],
-                                        ["批发毛利", "利润率", "成本费用利润率"],
+                                        ["成本", "利润", "成本费用利润率"],
                                     ],
                                     style: {
                                         width: "100%",
@@ -1668,15 +1427,21 @@ export default {
                                             option: {
                                                 xAxis: {
                                                     type: "category",
-                                                    data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+                                                    data: ["01月", "02月", "03月", "04月", "05月", "06月", "07月", "08月", "09月", "10月", "11月", "12月"],
                                                 },
-                                                yAxis: {
+                                                yAxis: [{
                                                     type: "value",
                                                     name: "万元",
                                                     nameTextStyle: {
                                                         color: "#000",
                                                     },
-                                                },
+                                                },{
+                                                    type: "value",
+                                                    name: "%",
+                                                    nameTextStyle: {
+                                                        color: "#000",
+                                                    },
+                                                }],
                                                 grid: {
                                                     bottom: 50,
                                                     right: 30,
@@ -1685,17 +1450,19 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "axis",
-                                                    formatter: "{b}月:<br>{a0}:{c0}万元<br>{a1}:{c1}万元<br>{a2}:{c2}万元 ",
+                                                    formatter: "{b}:<br>{a0}:{c0}万元<br>{a1}:{c1}万元<br>{a2}:{c2}% ",
                                                 },
                                                 legend: {
                                                     orient: "horizontal",
-                                                    top: 55,
+                                                    top: 30,
                                                     icon: "circle",
-                                                    data: ["批发毛利", "利润", "成本费用利润率"],
+                                                    data: ["成本", "利润", "成本费用利润率"],
                                                 },
+                                                color:['#9e87ff','#73acff','#fd8a2d'],
                                                 series: [
                                                     {
-                                                        name: "批发毛利",
+                                                        name: "成本",
+                                                        barWidth : 20,
                                                         data: [
                                                             32012,
                                                             43232,
@@ -1710,52 +1477,45 @@ export default {
                                                             49821,
                                                             31542,
                                                         ],
-                                                        type: "line",
-                                                        itemStyle: {
-                                                            color: "#38d",
-                                                        },
+                                                        type: "bar",
                                                     },
                                                     {
                                                         name: "利润",
+                                                        barWidth : 20,
                                                         data: [
                                                             13212,
                                                             24332,
                                                             30541,
                                                             33234,
-                                                            42120,
-                                                            36550,
-                                                            53760,
-                                                            25421,
+                                                            92120,
+                                                            26550,
+                                                            63760,
+                                                            15421,
                                                             54543,
                                                             57546,
                                                             49451,
                                                             35442,
                                                         ],
-                                                        type: "line",
-                                                        itemStyle: {
-                                                            color: "green",
-                                                        },
+                                                        type: "bar",
                                                     },
                                                     {
                                                         name: "成本费用利润率",
+                                                        yAxisIndex: 1,
                                                         data: [
-                                                            32322,
-                                                            43222,
-                                                            31221,
-                                                            53234,
-                                                            14340,
-                                                            15450,
-                                                            16520,
-                                                            37621,
-                                                            58753,
-                                                            55446,
-                                                            43221,
-                                                            37642,
+                                                            32,
+                                                            43,
+                                                            31,
+                                                            53,
+                                                            14,
+                                                            15,
+                                                            16,
+                                                            37,
+                                                            58,
+                                                            55,
+                                                            43,
+                                                            37,
                                                         ],
                                                         type: "line",
-                                                        itemStyle: {
-                                                            color: "yellow",
-                                                        },
                                                     },
                                                 ],
                                             },
@@ -1795,15 +1555,21 @@ export default {
                                             option: {
                                                 xAxis: {
                                                     type: "category",
-                                                    data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+                                                    data: ["01月", "02月", "03月", "04月", "05月", "06月", "07月", "08月", "09月", "10月", "11月", "12月"],
                                                 },
-                                                yAxis: {
+                                                yAxis: [{
                                                     type: "value",
                                                     name: "万元",
                                                     nameTextStyle: {
                                                         color: "#000",
                                                     },
-                                                },
+                                                },{
+                                                    type: "value",
+                                                    name: "%",
+                                                    nameTextStyle: {
+                                                        color: "#000",
+                                                    },
+                                                }],
                                                 grid: {
                                                     bottom: 50,
                                                     right: 30,
@@ -1812,77 +1578,72 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "axis",
-                                                    formatter: "{b}月:<br>{a0}:{c0}万元<br>{a1}:{c1}万元<br>{a2}:{c2}万元 ",
+                                                    formatter: "{b}:<br>{a0}:{c0}万元<br>{a1}:{c1}万元<br>{a2}:{c2}% ",
                                                 },
                                                 legend: {
                                                     orient: "horizontal",
-                                                    top: 55,
+                                                    top: 30,
                                                     icon: "circle",
-                                                    data: ["批发毛利", "利润", "成本费用利润率"],
+                                                    data: ["成本", "利润", "成本费用利润率"],
                                                 },
+                                                color:['#9e87ff','#73acff','#fd8a2d'],
                                                 series: [
                                                     {
-                                                        name: "批发毛利",
+                                                        name: "成本",
+                                                        barWidth : 20,
                                                         data: [
-                                                            12012,
-                                                            93232,
+                                                            82012,
+                                                            33232,
                                                             40121,
-                                                            53334,
-                                                            82940,
-                                                            73350,
-                                                            43120,
-                                                            92321,
-                                                            44653,
-                                                            67646,
-                                                            19821,
-                                                            61542,
+                                                            63334,
+                                                            92940,
+                                                            83350,
+                                                            23120,
+                                                            12321,
+                                                            54653,
+                                                            77646,
+                                                            29821,
+                                                            11542,
                                                         ],
-                                                        type: "line",
-                                                        itemStyle: {
-                                                            color: "#38d",
-                                                        },
+                                                        type: "bar",
                                                     },
                                                     {
                                                         name: "利润",
+                                                        barWidth : 20,
                                                         data: [
-                                                            63212,
-                                                            54332,
-                                                            40541,
-                                                            43234,
-                                                            72120,
-                                                            86550,
-                                                            93760,
-                                                            15421,
-                                                            54543,
-                                                            67546,
-                                                            79451,
-                                                            45442,
+                                                            53212,
+                                                            64332,
+                                                            80541,
+                                                            33234,
+                                                            82120,
+                                                            46550,
+                                                            33760,
+                                                            25421,
+                                                            14543,
+                                                            17546,
+                                                            29451,
+                                                            15442,
                                                         ],
-                                                        type: "line",
-                                                        itemStyle: {
-                                                            color: "green",
-                                                        },
+                                                        type: "bar",
                                                     },
                                                     {
                                                         name: "成本费用利润率",
+                                                        yAxisIndex: 1,
                                                         data: [
-                                                            62322,
-                                                            43222,
-                                                            81221,
-                                                            43234,
-                                                            14340,
-                                                            65450,
-                                                            16520,
-                                                            77621,
-                                                            88753,
-                                                            95446,
-                                                            13221,
-                                                            67642,
+                                                            52,
+                                                            23,
+                                                            51,
+                                                            53,
+                                                            54,
+                                                            65,
+                                                            56,
+                                                            57,
+                                                            58,
+                                                            85,
+                                                            53,
+                                                            57,
                                                         ],
                                                         type: "line",
-                                                        itemStyle: {
-                                                            color: "yellow",
-                                                        },
                                                     },
                                                 ],
                                             },
@@ -1966,6 +1727,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                                                         axisLabel: {
@@ -2079,8 +1844,8 @@ export default {
                                                     data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
                                                 },
                                                 tooltip: {
-													trigger: "item",
-													formatter: "{b}: {c}万元 ({d}%)",
+                                                    trigger: "item",
+                                                    formatter: "{b}: {c}万元 ({d}%)",
                                                 },
                                                 series: [
                                                     {
@@ -2212,6 +1977,10 @@ export default {
                                                 xAxis: [
                                                     {
                                                         type: "category",
+                                                        name:'月',
+                                                        nameTextStyle:{
+                                                            color:'#000'
+                                                        },
                                                         color: "#59588D",
                                                         data: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                                                         axisLabel: {
@@ -2325,8 +2094,8 @@ export default {
                                                     data: ["新能源", "石化", "国储", "高路油站", "荆港嘉瑞"],
                                                 },
                                                 tooltip: {
-													trigger: "item",
-													formatter: "{b}: {c}万元 ({d}%)",
+                                                    trigger: "item",
+                                                    formatter: "{b}: {c}万元 ({d}%)",
                                                 },
                                                 series: [
                                                     {

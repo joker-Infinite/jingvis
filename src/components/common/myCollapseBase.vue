@@ -48,6 +48,7 @@
                    :key="six"
                    :style="sit.style">
                 <div class="Title" v-if="sit.showTitle==='notShow'?false:true">
+                  <span v-if="sit.title.length>0" class="icon">  </span>
                   <div :style="{width: sit.istime && sit.isselect&& sit.isinput ? '':'100%' }"  :id="'processingTitle^'+item.id+'^' + cix+'^'+six">
                     {{processingTitle(sit.title,'processingTitle^'+item.id+'^' + cix+'^'+six)}}
                   </div>
@@ -811,6 +812,7 @@
             justify-content: space-between;
             // background: red !important;
             background: white;
+            padding-left: 30px;
             line-height: 50px;
             text-indent: 10px;
             font-size: 18px;
@@ -935,11 +937,13 @@
       height: 100%;
       display: flex;
       flex-wrap: nowrap;
+      position: relative;
+      right: -0.5%;
       flex-direction: column;
       justify-content: center;
 
       .navBar {
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);
         width: 100%;
         // height: 80%;
         background: #fff;
@@ -1040,5 +1044,13 @@
     .echarts:hover.echarts > .information {
       display: block;
     }
+  }
+  .icon{
+    width:3px;background:#1D7DCA;
+    height: 34%;
+    position: relative;
+    top: 33.5%;
+    left: 0px;
+    
   }
 </style>

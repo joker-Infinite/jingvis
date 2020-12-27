@@ -58,8 +58,8 @@ export default {
                     id: "revenueTable",
                     name: "基础信息",
                     allShow: true,
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/jcxx/jichuxinxi.png"),
+                    iconActive: require("../../../assets/serviceArea/jcxx/jichuxinxi1.png"),
                     collapseItem: [
                         {
                             id: "ab_2019",
@@ -125,8 +125,8 @@ export default {
                 {
                     id: "revenue",
                     name: "运营趋势",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/jcxx/yunyingqushi.png"),
+                    iconActive: require("../../../assets/serviceArea/jcxx/yunyingqushi1.png"),
                     collapseItem: [
                         {
                             id: "ab_20195",
@@ -256,35 +256,39 @@ export default {
                                                         type: "pie",
                                                         radius: ["50%", "70%"],
                                                         avoidLabelOverlap: false,
-                                                        label: {
-                                                            show: false,
-                                                            position: "center",
-                                                        },
-                                                        emphasis: {
-                                                            label: {
-                                                                show: true,
-                                                                fontSize: "30",
-                                                                fontWeight: "bold",
-                                                            },
-                                                        },
-                                                        labelLine: {
-                                                            show: false,
-                                                        },
+                                                        // label: {
+                                                        //     show: false,
+                                                        //     position: "center",
+                                                        // },
+                                                        // emphasis: {
+                                                        //     label: {
+                                                        //         show: true,
+                                                        //         fontSize: "30",
+                                                        //         fontWeight: "bold",
+                                                        //     },
+                                                        // },
+                                                        
                                                         itemStyle: {
                                                             normal: {
                                                                 color: function(v) {
                                                                     let colorList = [
-                                                                        "#76c15c",
-                                                                        "#15b3e2",
-                                                                        "#2e65fd",
-                                                                        "#1fcaa8",
-                                                                        "#ee6565",
-                                                                        "#fec02a",
-                                                                        "#fe3922",
-                                                                        "#52fe36",
-                                                                        "#fe3afc",
+                                                                        "#fec279",
+                                                                        "#968af5",
+                                                                        "#e790e8",
+                                                                        "#36c78b",
+                                                                        "#51a3fc",
                                                                     ];
                                                                     return colorList[v.dataIndex];
+                                                                },
+                                                            },
+                                                        },
+                                                        labelLine: {
+                                                            normal: {
+                                                                length: 30,
+                                                                length2: 25,
+                                                                fontSize: 16,
+                                                                lineStyle: {
+                                                                    width: 1,
                                                                 },
                                                             },
                                                         },
@@ -308,8 +312,8 @@ export default {
                 {
                     id: "revenuep",
                     name: "占地面积",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/jcxx/zhandimianji.png"),
+                    iconActive: require("../../../assets/serviceArea/jcxx/zhandimianji1.png"),
                     collapseItem: [
                         {
                             id: "ab_2019esp",
@@ -330,7 +334,7 @@ export default {
                                         {
                                             serviceName: "大悟服务区",
                                             serviceNamemin: "点军服务区",
-                                            unit: "㎡",
+                                            unit: "亩",
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
@@ -353,6 +357,7 @@ export default {
                                                         "11月",
                                                         "12月",
                                                     ],
+                                                    
                                                     splitLine: {
                                                         show: false,
                                                     },
@@ -368,7 +373,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "axis",
-                                                    formatter: "{b} : {c}㎡",
+                                                    formatter: "{b} : {c}亩",
                                                     // axisPointer: {
                                                     //     type: "shadow"
                                                     // },
@@ -411,8 +416,8 @@ export default {
                 {
                     id: "revenuesess",
                     name: "经营面积",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/jcxx/jingyingmianiji.png"),
+                    iconActive: require("../../../assets/serviceArea/jcxx/jingyingmianiji1.png"),
                     collapseItem: [
                         {
                             id: "ab_201ss",
@@ -433,7 +438,7 @@ export default {
                                         {
                                             serviceName: "黄冈服务区",
                                             serviceNamemin: "恩施服务区",
-                                            unit: "㎡",
+                                            unit: "万㎡",
                                             /*ECharts的属性*/
                                             style: {
                                                 width: "100%",
@@ -471,7 +476,7 @@ export default {
                                                 },
                                                 tooltip: {
                                                     trigger: "axis",
-                                                    formatter: "{b} : {c}㎡",
+                                                    formatter: "{b} : {c}万㎡",
                                                     // axisPointer: {
                                                     //     type: "shadow"
                                                     // },
@@ -491,7 +496,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [876, 765, 564, 765, 543, 123, 432, 321, 321, 934, 669, 899],
+                                                        data: [100, 110, 110, 170, 170, 190, 190, 205, 205, 215, 260, 260],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -513,8 +518,8 @@ export default {
                 {
                     id: "revenueess",
                     name: "车流量",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/jcxx/cheliuliang.png"),
+                    iconActive: require("../../../assets/serviceArea/jcxx/cheliuliang1.png"),
                     collapseItem: [
                         {
                             id: "ab_20s",
@@ -593,7 +598,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [576, 865, 664, 265, 943, 823, 932, 721, 621, 1034, 1069, 599],
+                                                        data: [400, 350, 460, 1045, 1580, 1406, 2100, 2600, 621, 2400, 1069, 599],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -616,8 +621,8 @@ export default {
                 {
                     id: "revenueTablesses",
                     name: "订单",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/jcxx/dingdan.png"),
+                    iconActive: require("../../../assets/serviceArea/jcxx/dingdan1.png"),
                     collapseItem: [
                         {
                             id: "ab_2019ss",
@@ -696,7 +701,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [87, 76, 56, 76, 54, 12, 43, 32, 32, 93, 66, 89],
+                                                        data: [8700, 7600, 5600, 7600, 5400, 1200, 4300, 3200, 3200, 9300, 6600, 8900],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -719,15 +724,15 @@ export default {
                 {
                     id: "revenueTablesesa",
                     name: "客单价",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/jcxx/kedanjia.png"),
+                    iconActive: require("../../../assets/serviceArea/jcxx/kedanjia1.png"),
                     collapseItem: [
                         {
                             id: "ab_2019sa",
                             collapseTitle: "客单价",
                             EChartsBox: [
                                 {
-                                    title: "订单金额/订单数量=客单价",
+                                    title: "订单金额÷订单数量=客单价",
                                     style: {
                                         cursor: "pointer",
                                         width: "100%",
@@ -798,7 +803,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [87600, 76500, 56400, 7650, 5430, 1230, 4320, 3210, 3210, 9340, 6690, 8990],
+                                                        data: [876, 765, 564, 765, 543, 1230, 432, 321, 340, 934, 669, 899],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
@@ -821,15 +826,15 @@ export default {
                 {
                     id: "revenueTablesesq",
                     name: "转换率",
-                    icon: require("../../../assets/business/icon_1-1.png"),
-                    iconActive: require("../../../assets/business/icon_1-2.png"),
+                    icon: require("../../../assets/serviceArea/jcxx/zhuanhuanlv.png"),
+                    iconActive: require("../../../assets/serviceArea/jcxx/zhuanhuanlv1.png"),
                     collapseItem: [
                         {
                             id: "ab_2019sq",
                             collapseTitle: "转换率",
                             EChartsBox: [
                                 {
-                                    title: "月订单数量/月车流量=转换率",
+                                    title: "月订单数量÷月车流量=转换率",
                                     style: {
                                         cursor: "pointer",
                                         width: "100%",
@@ -901,7 +906,7 @@ export default {
                                                 },
                                                 series: [
                                                     {
-                                                        data: [50, 40, 50, 70, 80, 50, 70, 55, 45, 60, 75, 80],
+                                                        data: [5.2, 4.8, 12.5, 10.3, 10.4, 6.5, 8.5, 9.5, 14.5, 13.5, 15, 13.7],
                                                         type: "line",
                                                         lineStyle: {
                                                             color: "#fea528",
