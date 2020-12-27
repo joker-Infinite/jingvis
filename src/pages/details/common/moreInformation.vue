@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;height: 100%" :class="{sBody:true,hsBody:imgSize =='small'||location!='homeKanBan'}">
     <el-dialog width="1000px" align="center" :visible.sync="visible" :modal="false"
-               @close="$emit('showPopover', true)">
+               @close="closeDialog">
       <el-form ref="form" :model="form" label-width="125px" class="form" disabled>
         <p class="title">
           <el-col :span="8">
@@ -11,8 +11,8 @@
             <span style="display: inline-block;">{{form.name}}</span>
           </el-col>
           <el-col :span="8">
-            <span style="display: inline-block;font-size: 15px;font-weight: 600">
-              {{(form.name!='男厕'&&form.name!='女厕'&&form.name!='出口'&&form.name!='入口')?'坪效：20元/㎡':''}}</span>
+            <span :style="{display: 'inline-block',fontSize: '15px',fontWeight: '600',color:(imgSize =='small'||location!='homeKanBan')?'#38d': '#f6fe96'}">
+              {{!form.noPingEffect?'坪效：20元/㎡':''}}</span>
           </el-col>
         </p>
         <el-col :span="8" v-for="(it,ix) in formData" :key="ix">
@@ -20,8 +20,21 @@
             <el-input :value="it.value"></el-input>
           </el-form-item>
         </el-col>
+        <el-col :span="24">
+          <table :style="{color: location != 'homeKanBan' ? '#333' : (imgSize == 'small' ? '#333' : 'white')}"
+                 class="table" border="1" cellspacing="0">
+            <tr v-for="(it,ix) in form.columns">
+              <th>{{it.a}}</th>
+              <th>{{it.b}}</th>
+              <th>{{it.c}}</th>
+              <th>{{it.d}}</th>
+              <th>{{it.e}}</th>
+              <th>{{it.f}}</th>
+            </tr>
+          </table>
+        </el-col>
         <div class="echarts">
-          <div v-for="i in 2" :key="i" :id="'details_'+i"
+          <div v-for="i in 2" :key="i" :id="NE+i"
                :style="{width: '49.5%',height:formData?'300px':'400px',marginBottom: '10px',}"></div>
         </div>
       </el-form>
@@ -40,6 +53,10 @@
 			imgSize: {
 				type: String,
 				default: ''
+			},
+			NE: {
+				type: String,
+				default: ''
 			}
 		},
 		data() {
@@ -56,6 +73,14 @@
 			}
 		},
 		methods: {
+			async closeDialog() {
+				await this.clearECharts();
+				this.$emit('showPopover', true);
+			},
+			clearECharts() {
+				document.getElementById(this.NE + '1').removeAttribute("_echarts_instance_");
+				document.getElementById(this.NE + '2').removeAttribute("_echarts_instance_");
+			},
 			getVirtulData() {
 				let date = +this.$echarts.number.parseDate('2020-12-01');
 				let end = +this.$echarts.number.parseDate('2021-1-01');
@@ -107,25 +132,23 @@
 				this.chartBox = v.chartBox;
 				this.visible = true;
 				this.$nextTick(_ => {
-					this.$echarts.init(document.getElementById('details_1')).dispose();
-					this.$echarts.init(document.getElementById('details_2')).dispose();
 					let form = document.getElementsByClassName('form')[0];
 					form.scrollTo(0, 0);
-					this.form.name = v.name;
+					this.form = v;
 					this.ECharts(v);
 				})
 			},
 			ECharts(v) {
 				let eId = [];
 				for (let i = 1; i < 2 + 1; i++) {
-					let id = 'details_' + i;
+					let id = this.NE + i;
 					eId.push(this.$echarts.init(document.getElementById(id)))
 				}
 				this.ID = eId;
-				if (v.name !== '入口' && v.name !== '出口') {
+				if (v.name !== '停车区') {
 					this.allECharts(eId);
 				}
-				if (v.name === '入口' || v.name === '出口') {
+				if (v.name === '停车区') {
 					this.smallECharts(eId);
 				}
 			},
@@ -151,14 +174,14 @@
 						text: '当前月每日车流量',
 						x: 'center',
 						textStyle: {
-							color: '#FFF'
+							color: this.location != 'homeKanBan' ? '#333' : (this.imgSize == 'small' ? '#333' : 'white')
 						}
 					},
 					legend: {
 						data: ['大车', '小车'],
 						bottom: 0,
 						textStyle: {
-							color: 'white'
+							color: this.location != 'homeKanBan' ? '#333' : (this.imgSize == 'small' ? '#333' : 'white')
 						}
 					},
 					calendar: {
@@ -177,7 +200,7 @@
 							firstDay: 1,
 							nameMap: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
 							textStyle: {
-								color: 'white'
+								color: this.location != 'homeKanBan' ? '#333' : (this.imgSize == 'small' ? '#333' : 'white')
 							}
 						},
 						monthLabel: {
@@ -198,7 +221,7 @@
 								},
 								offset: [-this.cellSize[0] / 2 + 10, -this.cellSize[1] / 2 + 10],
 								textStyle: {
-									color: '#FFF',
+									color: this.location != 'homeKanBan' ? '#333' : (this.imgSize == 'small' ? '#333' : 'white'),
 									fontSize: 14
 								}
 							}
@@ -318,6 +341,20 @@
         }
       }
     }
+  }
+
+  table {
+    color: #333;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 10px;
+  }
+
+  table, th, td {
+    border: 1px solid #606266;
+    line-height: 2.5;
   }
 
   .form::-webkit-scrollbar {

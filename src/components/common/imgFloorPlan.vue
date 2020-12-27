@@ -17,7 +17,7 @@
         <div style="width: 100%;height: 100%" slot="reference"></div>
       </el-popover>
     </div>
-    <more-information :location="location" ref="more" @showPopover="popoverDisabled=false"></more-information>
+    <more-information NE="imgFloorPlan" :location="location" ref="more" @showPopover="popoverDisabled=false"></more-information>
     <!--    <img-details-test ref="more" @showPopover="popoverDisabled=false"></img-details-test>-->
     <start-and-radar></start-and-radar>
   </div>
@@ -202,8 +202,8 @@
 							{a: '加油站联系电话', b: 'Xxxxxxxxxxx'},
 							{a: '加油站管理单位', b: '中石化'},
 							{a: '加油岛数量', b: '6个'},
-							{a: '加油枪数量', b: '36个'},
-							{a: '可加油', b: '0,92,95,98'},
+							// {a: '加油枪数量', b: '36个'},
+							// {a: '可加油', b: '0,92,95,98'},
 							{a: '是否有便利店', b: '是'},
 							/*	{a: '油枪(92)', b: '8个'},
                 {a: '油枪(95)', b: '8个'},
@@ -216,14 +216,18 @@
 							{label: '加油站联系电话', value: 'Xxxxxxxxxxx'},
 							{label: '加油站管理单位', value: '中石化'},
 							{label: '加油岛数量', value: '6个'},
-							{label: '加油枪数量', value: '36个'},
-							{label: '可加油', value: '0,92,95,98'},
+							// {label: '加油枪数量', value: '36个'},
+							// {label: '可加油', value: '0,92,95,98'},
 							{label: '是否有便利店', value: '是'},
-							{label: '油枪(92)', value: '8个'},
+							/*{label: '油枪(92)', value: '8个'},
 							{label: '油枪(95)', value: '8个'},
 							{label: '油枪(98)', value: '8个'},
 							{label: '油枪(0)', value: '6个'},
-							{label: '异常油枪', value: '6个'},
+							{label: '异常油枪', value: '6个'},*/
+						],
+						columns: [
+							{a: '92', b: '95', c: '98', d: '0', e: '异常', f: '总计'},
+							{a: '8个', b: '8个', c: '8个', d: '6个', e: '6个', f: '36个'},
 						],
 						chartBox: [
 							{
@@ -967,6 +971,7 @@
 					{
 						name: '男厕',
 						remark: '男厕所',
+						noPingEffect: true,
 						data: [
 							{a: '厕所等级', b: '五星'},
 							{a: '蹲位数量', b: '114个'},
@@ -1141,6 +1146,7 @@
 					{
 						name: '女厕',
 						remark: '女厕所',
+						noPingEffect: true,
 						data: [
 							{a: '厕所等级', b: '五星'},
 							{a: '蹲位数量', b: '114个'},
@@ -1610,9 +1616,14 @@
 					},
 					{
 						name: "入口",
+						noPingEffect: true,
 						data: [
 							{a: '卡口是否正常', b: '是'},
 							{a: '日均车流量', b: '200辆'}
+						],
+						formData: [
+							{label: '卡口是否正常', value: '是'},
+							{label: '日均车流量', value: '200辆'}
 						],
 						chartBox: [
 							{
@@ -1702,6 +1713,81 @@
 										type: 'bar',
 										stack: '车流量',
 										data: [730, 650, 600, 499, 290, 230]
+									}
+								]
+							},
+							{
+								title: {
+									text: '当天进入车辆比',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b}: {c} ({d}%)'
+								},
+								legend: {
+									bottom: 0,
+									data: ['大车', '小车'],
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								labelLine: {
+									normal: {
+										length: 30,
+										length2: 25,
+										lineStyle: {
+											width: 1,
+										},
+									},
+								},
+								series: [
+									{
+										type: 'pie',
+										radius: ['40%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											show: true,
+											position: "outer",
+											width: 0,
+											height: 0,
+											lineHeight: 0,
+											backgroundColor: "auto",
+											padding: [2, -2, 2, -2],
+											borderRadius: 2,
+											distanceToLabelLine: 0,
+											normal: {
+												formatter(v) {
+													let text = v.name + "\n" + v.percent + "%";
+													// let text = v.percent + "%";
+													return text;
+												},
+												textStyle: {
+													fontSize: 14,
+												},
+											},
+										},
+										labelLine: {
+											show: true
+										},
+										/*itemStyle: {
+											normal: {
+												color: function (v) {
+													let colorList = [
+														"#79f0ea",
+														"#fa3b43",
+													];
+													return colorList[v.dataIndex];
+												},
+											},
+										},*/
+										data: [
+											{value: 3350, name: '大车'},
+											{value: 3100, name: '小车'},
+										]
 									}
 								]
 							}
@@ -1716,9 +1802,14 @@
 					},
 					{
 						name: "出口",
+						noPingEffect: true,
 						data: [
 							{a: '卡口是否正常', b: '是'},
 							{a: '日均车流量', b: '200辆'}
+						],
+						formData: [
+							{label: '卡口是否正常', value: '是'},
+							{label: '日均车流量', value: '200辆'}
 						],
 						chartBox: [
 							{
@@ -1810,6 +1901,81 @@
 										data: [730, 650, 600, 499, 290, 230]
 									}
 								]
+							},
+							{
+								title: {
+									text: '当天进入车辆比',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b}: {c} ({d}%)'
+								},
+								legend: {
+									bottom: 0,
+									data: ['大车', '小车'],
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								labelLine: {
+									normal: {
+										length: 30,
+										length2: 25,
+										lineStyle: {
+											width: 1,
+										},
+									},
+								},
+								series: [
+									{
+										type: 'pie',
+										radius: ['40%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											show: true,
+											position: "outer",
+											width: 0,
+											height: 0,
+											lineHeight: 0,
+											backgroundColor: "auto",
+											padding: [2, -2, 2, -2],
+											borderRadius: 2,
+											distanceToLabelLine: 0,
+											normal: {
+												formatter(v) {
+													let text = v.name + "\n" + v.percent + "%";
+													// let text = v.percent + "%";
+													return text;
+												},
+												textStyle: {
+													fontSize: 14,
+												},
+											},
+										},
+										labelLine: {
+											show: true
+										},
+										/*itemStyle: {
+                      normal: {
+                        color: function (v) {
+                          let colorList = [
+                            "#79f0ea",
+                            "#fa3b43",
+                          ];
+                          return colorList[v.dataIndex];
+                        },
+                      },
+                    },*/
+										data: [
+											{value: 3350, name: '大车'},
+											{value: 3100, name: '小车'},
+										]
+									}
+								]
 							}
 						],
 						style: {
@@ -1822,13 +1988,104 @@
 					},
 					{
 						name: "停车区",
-						noPopover: true,
 						data: [
 							{a: '目前停车-大车', b: '100辆'},
 							{a: '目前停车-小车', b: '500辆'},
 							{a: '今日均停车时长', b: '2小时'},
 							{a: '大车停车位', b: '500个'},
 							{a: '小车停车位', b: '1000个'},
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '当天各时区车流量',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								tooltip: {
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 2) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + v[0].value + '辆<br>' + v[1].seriesName + '：' + v[1].value + '辆'
+										}
+										if (v.length === 1) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + v[0].value + '辆'
+										}
+									}
+								},
+								legend: {
+									data: ['大车', '小车'],
+									bottom: 0,
+									textStyle: {color: 'white'}
+								},
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										name: '时',
+										type: 'category',
+										data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23'],
+										axisTick: {
+											show: false,
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
+											},
+										},
+										splitLine: {show: false},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+									}
+								],
+								yAxis: [
+									{
+										type: 'value',
+										name: '辆',
+										axisTick: {
+											show: false,
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
+											},
+										},
+										splitLine: {show: false},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+									}
+								],
+								series: [
+									{
+										name: '大车',
+										type: 'bar',
+										stack: '车流量',
+										data: [620, 507, 400, 734, 689, 666]
+									},
+									{
+										name: '小车',
+										type: 'bar',
+										stack: '车流量',
+										data: [730, 650, 600, 499, 290, 230]
+									}
+								]
+							},
 						],
 						style: {
 							width: '160px',
