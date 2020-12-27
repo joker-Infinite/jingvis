@@ -17,7 +17,7 @@
             <el-option :value="3" label="宜昌"></el-option>
             <el-option :value="4" label="咸宁"></el-option>
             <el-option :value="4" label="孝感"></el-option>
-            <el-option :value="4" label="石堰"></el-option>
+            <el-option :value="4" label="十堰"></el-option>
           </el-select>
           <el-select v-model="dateDay" placeholder="请选择节假日">
             <el-option :value="1" label="清明"></el-option>

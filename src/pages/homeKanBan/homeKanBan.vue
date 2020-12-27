@@ -1,6 +1,6 @@
 <template>
   <div class="body" id="body_a">
-    <div id="weather-v2-plugin-simple"></div>
+    <div id="weather-v2-plugin-simple" style="position:fixed;left:20px"></div>
     <div class="container">
       <div class="con" id="theme">
         <div class="H_top">
@@ -106,8 +106,8 @@
 			let item = setInterval(() => {
 				if (document.getElementsByClassName("s-sticker")[0]) {
 					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.position = 'fixed'
-					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.right = '18%'
-					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '11%'
+					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.left = '0%'
+					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '5%'
 					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.zIndex = '100000'
 					clearInterval(item)
 				}
@@ -294,9 +294,10 @@
   // position: absolute !important;
   width: 100px !important;
   position: fixed !important;
-  right: 0 !important;
-  margin-right: 9%;
-  margin-top: 4.1%;
+  left: 0 !important;
+  top: 0 !important;
+  /*margin-right: 9%;*/
+  /*margin-top: 4.1%;*/
   // top: 7.1% !important;
   z-index: 1000;
   height: 50px !important;

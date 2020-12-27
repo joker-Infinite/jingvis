@@ -46,6 +46,7 @@
 					{
 						name: '办公区',
 						noPingEffect: true,
+						BGQ: true,
 						remark: '为工作人员提供舒适的办公地点',
 						data: [
 							{a: '负责人', b: '王永红'},

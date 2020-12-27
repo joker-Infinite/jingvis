@@ -9,6 +9,7 @@
       <el-rate :max="3" :value="3" disabled></el-rate>
     </div>
     <div class="radar">
+      <div style="position:absolute;left: -20px;font-size: 18px;">指数：</div>
       <div id="radar"></div>
     </div>
   </div>
