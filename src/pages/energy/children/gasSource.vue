@@ -55,7 +55,6 @@ export default {
                                                     trigger: "item",
                                                     triggerOn: "mousemove",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         if (!val.data.target) {
                                                             return val.name + ":" + val.value + "吨";
                                                         } else {
@@ -365,7 +364,6 @@ export default {
                                                     trigger: "item",
                                                     triggerOn: "mousemove",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         if (!val.data.target) {
                                                             return val.name + ":" + val.value + "吨";
                                                         } else {
