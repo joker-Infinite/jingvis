@@ -2,11 +2,11 @@
   <div style="width: 100%;height: 100%">
     <div class="star">
       <span :style="{color:color}">硬件环境：</span>
-      <el-rate :value="5" disabled></el-rate>
+      <el-rate :max="3" :value="3" disabled></el-rate>
       <span :style="{color:color}">车流量：</span>
-      <el-rate :value="5" disabled></el-rate>
+      <el-rate :max="3" :value="3" disabled></el-rate>
       <span :style="{color:color}">商户评级：</span>
-      <el-rate :value="5" disabled></el-rate>
+      <el-rate :max="3" :value="3" disabled></el-rate>
     </div>
     <div class="radar">
       <div id="radar"></div>
@@ -79,7 +79,7 @@
 
     /deep/ .el-rate {
       float: left;
-      width: 80px;
+      width: 48px;
     }
 
     /deep/ .el-rate > .el-rate__item > .el-rate__icon {

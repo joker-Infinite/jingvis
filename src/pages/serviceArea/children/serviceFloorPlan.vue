@@ -1,7 +1,7 @@
 <template>
   <div class="imgBox" :style="{width:location=='homeKanBan' ?'920px':'1300px'}">
     <img src="../../../assets/service_.jpg" :style="{width:location=='homeKanBan' ?'920px':'1300px'}" class="img"/>
-    <div class="smallBox" v-for="i in box" :style="i.style" @click="popoverDisabled=true,$refs['more'].openDialog(i)">
+    <div class="smallBox" v-for="i in box" :style="i.style" @click="openDetails(i)">
       <el-popover placement="bottom"
                   :title="i.name"
                   width="300"
@@ -17,7 +17,7 @@
         <div style="width: 100%;height: 100%" slot="reference"></div>
       </el-popover>
     </div>
-    <more-information :imgSize="imgSize" :location="location" ref="more"
+    <more-information NE="serviceFloorPlan" :imgSize="imgSize" :location="location" ref="more"
                       @showPopover="popoverDisabled=false"></more-information>
     <start-and-radar color="black"></start-and-radar>
   </div>
@@ -113,17 +113,32 @@
 						height: '38px',
 						top: '126px',
 						left: '577px',
+					},
+					{
+						width: '134px',
+						height: '54px',
+						top: '197px',
+						left: '96px',
+					},
+					{
+						width: '134px',
+						height: '54px',
+						top: '197px',
+						left: '680px',
+					},
+					{
+						width: '134px',
+						height: '54px',
+						top: '197px',
+						left: '382px',
 					}
 				],
 				box: [
 					{
 						name: '办公区',
 						remark: '为工作人员提供舒适的办公地点',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: '王永红', width: '139px'},
-						],
 						data: [
+							{a: '负责人', b: '王永红'},
 							{a: '联系方式', b: '18071019995'},
 							{a: '所属地域', b: '孝感市孝南区'},
 							{a: '路段管理单位', b: '京珠运营公司'},
@@ -135,22 +150,24 @@
 							{label: '开通状况', value: '是'},
 							{label: '开通时间', value: '2002.11'},
 							{label: '所在高速', value: '京港澳高速'},
-							{label: '占地面积', value: '131'},
-							{label: '建筑面积', value: '87333.3'},
-							{label: '经营面积', value: '15347.26'},
-							{label: '绿化面积', value: '5689.64'},
+							{label: '固定办公人员', value: '5位'},
+							{label: '月均收益', value: '50元/月'},
+							{label: '占地面积', value: '131㎡'},
+							{label: '建筑面积', value: '87333.3㎡'},
+							{label: '经营面积', value: '15347.26㎡'},
+							{label: '绿化面积', value: '5689.64㎡'},
 						],
 						chartBox: [
 							{
 								barWidth: 20,
 								title: {
-									text: '营业额',
+									text: '近半年销售额',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -163,7 +180,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [200, 150, 250, 300, 500, 450, 546, 650, 600, 800, 720, 756],
+									data: [200, 150, 250, 300, 500, 450,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -172,7 +189,7 @@
 							},
 							{
 								title: {
-									text: '业务类别结构',
+									text: '业务占比',
 									x: 'center'
 								},
 								tooltip: {
@@ -235,34 +252,49 @@
 					{
 						name: '加油区',
 						remark: '提供柴油、汽油（E95、E98、95……）',
-						columns: [
-							{prop: 'a', label: '加油站管理单位', width: '139px'},
-							{prop: 'b', label: '中石化', width: '139px'},
-						],
 						data: [
-							{a: '加油岛数量', b: '6'},
-							{a: '加油枪数量', b: '36'},
-							{a: '可加油', b: '0,92,95,98'},
+							{a: '加油站负责人', b: 'XXX'},
+							{a: '加油站联系电话', b: 'Xxxxxxxxxxx'},
+							{a: '加油站管理单位', b: '中石化'},
+							{a: '加油岛数量', b: '6个'},
+							// {a: '加油枪数量', b: '36个'},
+							// {a: '可加油', b: '0,92,95,98'},
 							{a: '是否有便利店', b: '是'},
+							/*	{a: '油枪(92)', b: '8个'},
+                {a: '油枪(95)', b: '8个'},
+                {a: '油枪(98)', b: '8个'},
+                {a: '油枪(0)', b: '6个'},
+                {a: '异常油枪', b: '6个'},*/
 						],
 						formData: [
+							{label: '加油站负责人', value: 'XXX'},
+							{label: '加油站联系电话', value: 'Xxxxxxxxxxx'},
 							{label: '加油站管理单位', value: '中石化'},
-							{label: '加油岛数量', value: '6'},
-							{label: '加油枪数量', value: '36'},
-							{label: '可加油', value: '0,92,95,98'},
+							{label: '加油岛数量', value: '6个'},
+							// {label: '加油枪数量', value: '36个'},
+							// {label: '可加油', value: '0,92,95,98'},
 							{label: '是否有便利店', value: '是'},
+							/*	{label: '油枪(92)', value: '8个'},
+                {label: '油枪(95)', value: '8个'},
+                {label: '油枪(98)', value: '8个'},
+                {label: '油枪(0)', value: '6个'},
+                {label: '异常油枪', value: '6个'},*/
+						],
+						columns: [
+							{a: '92', b: '95', c: '98', d: '0', e: '异常', f: '总计'},
+							{a: '8个', b: '8个', c: '8个', d: '6个', e: '6个', f: '36个'},
 						],
 						chartBox: [
 							{
 								barWidth: 20,
 								title: {
-									text: '营业额',
+									text: '近半年销售额',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -275,7 +307,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [300, 250, 350, 440, 786, 820, 730, 750, 920, 1200, 980, 930],
+									data: [300, 250, 350, 440, 786, 820,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -284,7 +316,7 @@
 							},
 							{
 								title: {
-									text: '业务类别结构',
+									text: '类型占比',
 									x: 'center'
 								},
 								tooltip: {
@@ -348,22 +380,19 @@
 					{
 						name: '小圆满餐厅',
 						remark: '口味独特、菜品丰富',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'XXX', width: '139px'},
-						],
 						data: [
+							{a: '负责人', b: 'XXX'},
 							{a: '联系方式', b: 'XXXXXXXX'},
-							{a: '经营面积', b: 'Xx平方米'},
-							{a: '主营业务', b: '中餐速食'},
+							{a: '经营面积', b: 'Xx㎡'},
+							{a: '主营业务', b: '中餐速食(一级品牌)'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
 						],
 						formData: [
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
-							{label: '经营面积', value: 'Xx平方米'},
-							{label: '主营业务', value: '中餐速食'},
+							{label: '经营面积', value: 'Xx㎡'},
+							{label: '主营业务', value: '中餐速食(一级品牌)'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
@@ -371,13 +400,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '营业额',
+									text: '近半年销售额',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -390,7 +419,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21, 18, 19, 22, 30, 25, 23],
+									data: [10, 8, 13, 15, 20, 21,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -400,13 +429,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '销量',
+									text: '近半年销售量',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -419,7 +448,7 @@
 									name: '个'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									data: [300, 430, 450, 1050, 1150, 930,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -436,25 +465,21 @@
 						}
 					},
 					{
-						// name: '隆盛牛肉面',
-						name: '牛肉面',
+						name: '隆盛牛肉面',
 						remark: '面中之王',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
+							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
-							{a: '经营面积', b: 'Xx平方米'},
-							{a: '主营业务', b: '中餐速食'},
+							{a: '经营面积', b: 'Xx㎡'},
+							{a: '主营业务', b: '中餐速食(一级品牌)'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
 						],
 						formData: [
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
-							{label: '经营面积', value: 'Xx平方米'},
-							{label: '主营业务', value: '中餐速食'},
+							{label: '经营面积', value: 'Xx㎡'},
+							{label: '主营业务', value: '中餐速食(一级品牌)'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
@@ -462,13 +487,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '营业额',
+									text: '近半年销售额',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -481,7 +506,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21, 18, 19, 22, 30, 25, 23],
+									data: [10, 8, 13, 15, 20, 21,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -491,13 +516,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '销量',
+									text: '近半年销售量',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -510,7 +535,7 @@
 									name: '个'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									data: [300, 430, 450, 1050, 1150, 930,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -529,6 +554,7 @@
 					},
 					{
 						name: '大厅',
+						noPopover: true,
 						remark: '咨询问题、提供休息处……',
 						style: {
 							width: '110px',
@@ -541,13 +567,10 @@
 					{
 						name: '楚天舒便利店',
 						remark: '便宜实惠、物美价廉……',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
+							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
-							{a: '经营面积', b: 'Xx平方米'},
+							{a: '经营面积', b: 'Xx㎡'},
 							{a: '主营业务', b: '便利店'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
@@ -555,7 +578,7 @@
 						formData: [
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
-							{label: '经营面积', value: 'Xx平方米'},
+							{label: '经营面积', value: 'Xx㎡'},
 							{label: '主营业务', value: '便利店'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
@@ -564,13 +587,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '营业额',
+									text: '近半年销售额',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -583,7 +606,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21, 18, 19, 22, 30, 25, 23],
+									data: [10, 8, 13, 15, 20, 21,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -593,13 +616,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '销量',
+									text: '近半年销售量',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -612,7 +635,7 @@
 									name: '个'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									data: [300, 430, 450, 1050, 1150, 930,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -631,22 +654,20 @@
 					{
 						name: '驿路相伴小吃',
 						remark: '特色小吃、品种丰富……',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
+
 						data: [
+							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
-							{a: '经营面积', b: 'Xx平方米'},
-							{a: '主营业务', b: '中餐速食'},
+							{a: '经营面积', b: 'Xx㎡'},
+							{a: '主营业务', b: '中餐速食(一级品牌)'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
 						],
 						formData: [
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
-							{label: '经营面积', value: 'Xx平方米'},
-							{label: '主营业务', value: '中餐速食'},
+							{label: '经营面积', value: 'Xx㎡'},
+							{label: '主营业务', value: '中餐速食(一级品牌)'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
@@ -654,13 +675,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '营业额',
+									text: '近半年销售额',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -673,7 +694,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21, 18, 19, 22, 30, 25, 23],
+									data: [10, 8, 13, 15, 20, 21,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -683,13 +704,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '销量',
+									text: '近半年销售量',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -702,7 +723,7 @@
 									name: '个'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									data: [300, 430, 450, 1050, 1150, 930,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -721,55 +742,72 @@
 					{
 						name: '男厕',
 						remark: '男厕所',
-						columns: [
-							{prop: 'a', label: '厕所等级', width: '139px'},
-							{prop: 'b', label: '五星', width: '139px'},
-						],
+						noPingEffect: true,
 						data: [
-							{a: '蹲位数量', b: '114'},
-							{a: '小便器阀数量', b: '114'},
+							{a: '厕所等级', b: '五星'},
+							{a: '蹲位数量', b: '114个'},
+							{a: '小便器阀数量', b: '114个'},
 							{a: '厕所改造时间', b: '2018年09月'},
 						],
 						formData: [
 							{label: '厕所等级', value: '五星'},
-							{label: '蹲位数量', value: '114'},
-							{label: '小便器阀数量', value: '114'},
+							{label: '蹲位数量', value: '114个'},
+							{label: '小便器阀数量', value: '114个'},
 							{label: '厕所改造时间', value: '2018年09月'},
 						],
 						chartBox: [
 							{
 								barWidth: 20,
 								title: {
-									text: '人流量',
-									x: 'center'
+									text: '近半年男女如厕',
+									x: 'center',
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisTick: {
+										show: false,
+									},
+									splitLine: {show: false},
 								},
 								grid: {
 									left: 40,
 									top: 40,
-									bottom: 30,
+									bottom: 50,
 									right: 50
 								},
 								yAxis: {
 									type: 'value',
-									name: '人'
+									name: '人',
+									axisTick: {
+										show: false,
+									},
+									splitLine: {show: false},
 								},
-								series: [{
-									data: [800, 932, 901, 934, 1580, 1950, 2100, 2500, 2650, 3500, 2800, 2600],
-									type: 'bar',
-									itemStyle: {
-										color: '#379DFB'
-									}
-								}]
+								legend: {
+									bottom: 0,
+									data: ['男', '女'],
+								},
+								series: [
+									{
+										name: "男",
+										data: [800, 932, 901, 934, 1580, 1400],
+										type: 'bar',
+										itemStyle: {color: '#379DFB'}
+									},
+									{
+										name: "女",
+										data: [830, 912, 951, 974, 1700, 1550],
+										type: 'bar',
+										itemStyle: {color: '#fa3b43'}
+									},
+								]
 							},
 							{
 								title: {
-									text: '男女比',
-									x: 'center'
+									text: '人数占比',
+									x: 'center',
 								},
 								tooltip: {
 									trigger: 'item',
@@ -821,16 +859,16 @@
 											normal: {
 												color: function (v) {
 													let colorList = [
-														"#2e65fd",
-														"#fe3922",
+														"#379DFB",
+														"#fa3b43",
 													];
 													return colorList[v.dataIndex];
 												},
 											},
 										},
 										data: [
-											{value: 335, name: '男'},
-											{value: 310, name: '女'},
+											{value: 3350, name: '男'},
+											{value: 3100, name: '女'},
 										]
 									}
 								]
@@ -847,53 +885,70 @@
 					{
 						name: '女厕',
 						remark: '女厕所',
-						columns: [
-							{prop: 'a', label: '厕所等级', width: '139px'},
-							{prop: 'b', label: '五星', width: '139px'},
-						],
+						noPingEffect: true,
 						data: [
-							{a: '蹲位数量', b: '114'},
+							{a: '厕所等级', b: '五星'},
+							{a: '蹲位数量', b: '114个'},
 							{a: '厕所改造时间', b: '2018年09月'},
 						],
 						formData: [
 							{label: '厕所等级', value: '五星'},
-							{label: '蹲位数量', value: '114'},
+							{label: '蹲位数量', value: '114个'},
 							{label: '厕所改造时间', value: '2018年09月'},
 						],
 						chartBox: [
 							{
 								barWidth: 20,
 								title: {
-									text: '人流量',
-									x: 'center'
+									text: '近半年男女如厕',
+									x: 'center',
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',],
+									axisTick: {
+										show: false,
+									},
+									splitLine: {show: false},
 								},
 								grid: {
 									left: 40,
 									top: 40,
-									bottom: 30,
+									bottom: 50,
 									right: 50
 								},
 								yAxis: {
 									type: 'value',
-									name: '人'
+									name: '人',
+									axisTick: {
+										show: false,
+									},
+									splitLine: {show: false},
 								},
-								series: [{
-									data: [800, 932, 901, 934, 1580, 1950, 2100, 2500, 2650, 3500, 2800, 2600],
-									type: 'bar',
-									itemStyle: {
-										color: '#379DFB'
-									}
-								}]
+								legend: {
+									bottom: 0,
+									data: ['男', '女'],
+								},
+								series: [
+									{
+										name: "男",
+										data: [800, 932, 901, 934, 1580, 1400],
+										type: 'bar',
+										itemStyle: {color: '#379DFB'}
+									},
+									{
+										name: "女",
+										data: [830, 912, 951, 974, 1700, 1550],
+										type: 'bar',
+										itemStyle: {color: '#fa3b43'}
+									},
+								]
 							},
 							{
 								title: {
-									text: '男女比',
-									x: 'center'
+									text: '人数占比',
+									x: 'center',
 								},
 								tooltip: {
 									trigger: 'item',
@@ -903,7 +958,6 @@
 									bottom: 0,
 									data: ['男', '女'],
 								},
-
 								labelLine: {
 									normal: {
 										length: 30,
@@ -946,16 +1000,16 @@
 											normal: {
 												color: function (v) {
 													let colorList = [
-														"#2e65fd",
-														"#fe3922",
+														"#379DFB",
+														"#fa3b43",
 													];
 													return colorList[v.dataIndex];
 												},
 											},
 										},
 										data: [
-											{value: 335, name: '男'},
-											{value: 310, name: '女'}
+											{value: 3350, name: '男'},
+											{value: 3100, name: '女'},
 										]
 									}
 								]
@@ -972,13 +1026,10 @@
 					{
 						name: '伟鸿汽修',
 						remark: '处理及维修汽车故障……',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
+							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
-							{a: '经营面积', b: 'Xx平方米'},
+							{a: '经营面积', b: 'Xx㎡'},
 							{a: '主营业务', b: '汽修'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
@@ -986,7 +1037,7 @@
 						formData: [
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
-							{label: '经营面积', value: 'Xx平方米'},
+							{label: '经营面积', value: 'Xx㎡'},
 							{label: '主营业务', value: '汽修'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
@@ -995,13 +1046,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '营业额',
+									text: '近半年销售额',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -1014,7 +1065,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21, 18, 19, 22, 30, 25, 23],
+									data: [10, 8, 13, 15, 20, 21,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -1024,13 +1075,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '销量',
+									text: '近半年销售量',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -1043,7 +1094,7 @@
 									name: '个'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									data: [300, 430, 450, 1050, 1150, 930,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -1062,13 +1113,10 @@
 					{
 						name: '猫屎咖啡',
 						remark: '累了困了喝咖啡，猫屎咖啡你值得拥有……',
-						columns: [
-							{prop: 'a', label: '负责人', width: '139px'},
-							{prop: 'b', label: 'Xxx', width: '139px'},
-						],
 						data: [
+							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
-							{a: '经营面积', b: 'Xx平方米'},
+							{a: '经营面积', b: 'Xx㎡'},
 							{a: '主营业务', b: '咖啡饮料等西式下午茶'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
@@ -1076,7 +1124,7 @@
 						formData: [
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
-							{label: '经营面积', value: 'Xx平方米'},
+							{label: '经营面积', value: 'Xx㎡'},
 							{label: '主营业务', value: '咖啡饮料等西式下午茶'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
@@ -1085,13 +1133,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '营业额',
+									text: '近半年销售额',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -1104,7 +1152,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21, 18, 19, 22, 30, 25, 23],
+									data: [10, 8, 13, 15, 20, 21,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -1114,13 +1162,13 @@
 							{
 								barWidth: 20,
 								title: {
-									text: '销量',
+									text: '近半年销售量',
 									x: 'center'
 								},
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+									data: ['1', '2', '3', '4', '5', '6',]
 								},
 								grid: {
 									left: 40,
@@ -1133,7 +1181,7 @@
 									name: '个'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930, 900, 950, 1000, 1600, 1250, 1050],
+									data: [300, 430, 450, 1050, 1150, 930,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -1149,8 +1197,485 @@
 							background: '#665'
 						}
 					},
+					{
+						name: '出口',
+						noPingEffect: true,
+						remark: '',
+						data: [
+							{a: '卡口是否正常', b: '是'},
+							{a: '日均车流量', b: '200辆'}
+						],
+						formData: [
+							{label: '卡口是否正常', value: '是'},
+							{label: '日均车流量', value: '200辆'}
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '近半年车流量',
+									x: 'center',
+								},
+								tooltip: {
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 2) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆<br>' + v[1].seriesName + '：' + v[1].value + '辆'
+										}
+										if (v.length === 1) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆'
+										}
+									}
+								},
+								legend: {
+									data: ['大车', '小车'],
+									bottom: 0,
+								},
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										name: '月',
+										type: 'category',
+										data: ['1', '2', '3', '4', '5', '6'],
+										axisTick: {
+											show: false,
+										},
+										splitLine: {show: false},
+									}
+								],
+								yAxis: [
+									{
+										type: 'value',
+										name: '辆',
+										axisTick: {
+											show: false,
+										},
+										splitLine: {show: false},
+									}
+								],
+								series: [
+									{
+										name: '大车',
+										type: 'bar',
+										stack: '车流量',
+										data: [620, 507, 400, 734, 689, 666]
+									},
+									{
+										name: '小车',
+										type: 'bar',
+										stack: '车流量',
+										data: [730, 650, 600, 499, 290, 230]
+									}
+								]
+							},
+							{
+								title: {
+									text: '当天进入车辆比',
+									x: 'center',
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b}: {c} ({d}%)'
+								},
+								legend: {
+									bottom: 0,
+									data: ['大车', '小车'],
+								},
+								labelLine: {
+									normal: {
+										length: 30,
+										length2: 25,
+										lineStyle: {
+											width: 1,
+										},
+									},
+								},
+								series: [
+									{
+										type: 'pie',
+										radius: ['40%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											show: true,
+											position: "outer",
+											width: 0,
+											height: 0,
+											lineHeight: 0,
+											backgroundColor: "auto",
+											padding: [2, -2, 2, -2],
+											borderRadius: 2,
+											distanceToLabelLine: 0,
+											normal: {
+												formatter(v) {
+													let text = v.name + "\n" + v.percent + "%";
+													// let text = v.percent + "%";
+													return text;
+												},
+												textStyle: {
+													fontSize: 14,
+												},
+											},
+										},
+										labelLine: {
+											show: true
+										},
+										/*itemStyle: {
+                      normal: {
+                        color: function (v) {
+                          let colorList = [
+                            "#79f0ea",
+                            "#fa3b43",
+                          ];
+                          return colorList[v.dataIndex];
+                        },
+                      },
+                    },*/
+										data: [
+											{value: 3350, name: '大车'},
+											{value: 3100, name: '小车'},
+										]
+									}
+								]
+							}
+						],
+						style: {
+							width: '190px',
+							height: '62px',
+							top: '293px',
+							left: '96px',
+							background: '#66382d'
+						}
+					},
+					{
+						name: '入口',
+						noPingEffect: true,
+						remark: '',
+						data: [
+							{a: '卡口是否正常', b: '是'},
+							{a: '日均车流量', b: '200辆'}
+						],
+						formData: [
+							{label: '卡口是否正常', value: '是'},
+							{label: '日均车流量', value: '200辆'}
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '近半年车流量',
+									x: 'center',
+								},
+								tooltip: {
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 2) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆<br>' + v[1].seriesName + '：' + v[1].value + '辆'
+										}
+										if (v.length === 1) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆'
+										}
+									}
+								},
+								legend: {
+									data: ['大车', '小车'],
+									bottom: 0,
+								},
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										name: '月',
+										type: 'category',
+										data: ['1', '2', '3', '4', '5', '6'],
+										axisTick: {
+											show: false,
+										},
+										splitLine: {show: false},
+									}
+								],
+								yAxis: [
+									{
+										type: 'value',
+										name: '辆',
+										axisTick: {
+											show: false,
+										},
+										splitLine: {show: false},
+									}
+								],
+								series: [
+									{
+										name: '大车',
+										type: 'bar',
+										stack: '车流量',
+										data: [620, 507, 400, 734, 689, 666]
+									},
+									{
+										name: '小车',
+										type: 'bar',
+										stack: '车流量',
+										data: [730, 650, 600, 499, 290, 230]
+									}
+								]
+							},
+							{
+								title: {
+									text: '当天进入车辆比',
+									x: 'center',
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b}: {c} ({d}%)'
+								},
+								legend: {
+									bottom: 0,
+									data: ['大车', '小车'],
+								},
+								labelLine: {
+									normal: {
+										length: 30,
+										length2: 25,
+										lineStyle: {
+											width: 1,
+										},
+									},
+								},
+								series: [
+									{
+										type: 'pie',
+										radius: ['40%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											show: true,
+											position: "outer",
+											width: 0,
+											height: 0,
+											lineHeight: 0,
+											backgroundColor: "auto",
+											padding: [2, -2, 2, -2],
+											borderRadius: 2,
+											distanceToLabelLine: 0,
+											normal: {
+												formatter(v) {
+													let text = v.name + "\n" + v.percent + "%";
+													// let text = v.percent + "%";
+													return text;
+												},
+												textStyle: {
+													fontSize: 14,
+												},
+											},
+										},
+										labelLine: {
+											show: true
+										},
+										/*itemStyle: {
+                      normal: {
+                        color: function (v) {
+                          let colorList = [
+                            "#79f0ea",
+                            "#fa3b43",
+                          ];
+                          return colorList[v.dataIndex];
+                        },
+                      },
+                    },*/
+										data: [
+											{value: 3350, name: '大车'},
+											{value: 3100, name: '小车'},
+										]
+									}
+								]
+							}
+						],
+						style: {
+							width: '190px',
+							height: '62px',
+							top: '293px',
+							left: '1080px',
+							background: '#66244a'
+						}
+					},
+					{
+						name: '停车区',
+						remark: '',
+						data: [
+							{a: '目前停车-大车', b: '100辆'},
+							{a: '目前停车-小车', b: '500辆'},
+							{a: '今日均停车时长', b: '2小时'},
+							{a: '大车停车位', b: '500个'},
+							{a: '小车停车位', b: '1000个'},
+						],
+						chartBox: [
+							{
+								barWidth: 20,
+								title: {
+									text: '近半年车流量',
+									x: 'center',
+								},
+								tooltip: {
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 2) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆<br>' + v[1].seriesName + '：' + v[1].value + '辆'
+										}
+										if (v.length === 1) {
+											return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆'
+										}
+									}
+								},
+								legend: {
+									data: ['大车', '小车'],
+									bottom: 0,
+								},
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										name: '月',
+										type: 'category',
+										data: ['1', '2', '3', '4', '5', '6'],
+										axisTick: {
+											show: false,
+										},
+										splitLine: {show: false},
+									}
+								],
+								yAxis: [
+									{
+										type: 'value',
+										name: '辆',
+										axisTick: {
+											show: false,
+										},
+										splitLine: {show: false},
+									}
+								],
+								series: [
+									{
+										name: '大车',
+										type: 'bar',
+										stack: '车流量',
+										data: [620, 507, 400, 734, 689, 666]
+									},
+									{
+										name: '小车',
+										type: 'bar',
+										stack: '车流量',
+										data: [730, 650, 600, 499, 290, 230]
+									}
+								]
+							},
+							{
+								title: {
+									text: '当天进入车辆比',
+									x: 'center',
+								},
+								tooltip: {
+									trigger: 'item',
+									formatter: '{b}: {c} ({d}%)'
+								},
+								legend: {
+									bottom: 0,
+									data: ['大车', '小车'],
+								},
+								labelLine: {
+									normal: {
+										length: 30,
+										length2: 25,
+										lineStyle: {
+											width: 1,
+										},
+									},
+								},
+								series: [
+									{
+										type: 'pie',
+										radius: ['40%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											show: true,
+											position: "outer",
+											width: 0,
+											height: 0,
+											lineHeight: 0,
+											backgroundColor: "auto",
+											padding: [2, -2, 2, -2],
+											borderRadius: 2,
+											distanceToLabelLine: 0,
+											normal: {
+												formatter(v) {
+													let text = v.name + "\n" + v.percent + "%";
+													// let text = v.percent + "%";
+													return text;
+												},
+												textStyle: {
+													fontSize: 14,
+												},
+											},
+										},
+										labelLine: {
+											show: true
+										},
+										/*itemStyle: {
+                      normal: {
+                        color: function (v) {
+                          let colorList = [
+                            "#79f0ea",
+                            "#fa3b43",
+                          ];
+                          return colorList[v.dataIndex];
+                        },
+                      },
+                    },*/
+										data: [
+											{value: 3350, name: '大车'},
+											{value: 3100, name: '小车'},
+										]
+									}
+								]
+							}
+						],
+						style: {
+							width: '160px',
+							height: '80px',
+							top: '275px',
+							left: '532px',
+							background: '#176617'
+						}
+					},
 				]
 			}
+		},
+		methods: {
+			openDetails(i) {
+				if (!i.noPopover) {
+					this.popoverDisabled = true;
+					this.$refs['more'].openDialog(i)
+				}
+			},
 		},
 		mounted() {
 			if (this.imgSize == 'small') {

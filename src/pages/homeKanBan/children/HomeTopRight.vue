@@ -217,7 +217,6 @@
 						yearDate: 2019
 					}
 				}).then((res) => {
-					console.log(res)
 					let name = [];
 					let links = [];
 					name.push({name: '车辆'});
@@ -245,7 +244,6 @@
 					let ind=true
 					links.forEach((i,index )=> {
 						let color = '';
-						console.log(i)
 						color = '#00BBFF'
 						// if (index== 1) color = '#00BBFF';
 						// if (index == 2) color = '#4860FF';
@@ -265,7 +263,6 @@
 					})
 					option.series.data = name;
 					option.series.links = links;
-					console.log(name,links)
 					HomeTopRight_top.setOption(option);
 					this.loading_ = false;
 				})

@@ -1032,7 +1032,6 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         return (
                                                             val.name +
                                                             ":<br>营收:" +
@@ -1458,7 +1457,6 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         return (
                                                             val.name +
                                                             ":<br>营收:" +
@@ -1888,7 +1886,6 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         return (
                                                             val.name +
                                                             ":<br>利润:" +
@@ -2305,7 +2302,6 @@ export default {
                                                 tooltip: {
                                                     trigger: "item",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         return (
                                                             val.name +
                                                             ":<br>利润:" +
@@ -6876,7 +6872,6 @@ export default {
                                                     //提示框组件
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         let val0 = val[0];
                                                         let val1 = val[1];
                                                         return (
@@ -7590,7 +7585,6 @@ export default {
                                                     //提示框组件
                                                     trigger: "axis",
                                                     formatter: function(val) {
-                                                        console.log(val);
                                                         let val0 = val[0];
                                                         let val1 = val[1];
                                                         return (
