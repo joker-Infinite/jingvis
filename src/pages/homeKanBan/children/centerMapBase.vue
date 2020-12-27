@@ -1,13 +1,13 @@
 <template>
   <div class="mapBox" @mouseover="showCheckBoxBar" @mouseout="hiddenCheckBoxBar">
     <div class="btn" id="btn_map">
-      <el-checkbox-group v-model="serviceChecked" @change="serviceCheck(serviceChecked)">
-        <el-checkbox label="服务区"></el-checkbox>
-        <el-checkbox label="油站"></el-checkbox>
-        <el-checkbox label="超市"></el-checkbox>
-        <el-checkbox label="卡口"></el-checkbox>
-        <el-checkbox label="收银"></el-checkbox>
-      </el-checkbox-group>
+      <el-radio-group v-model="serviceChecked" @change="serviceCheck(serviceChecked)">
+        <el-radio label="服务区"></el-radio>
+        <el-radio label="油站"></el-radio>
+        <el-radio label="超市"></el-radio>
+        <el-radio label="卡口"></el-radio>
+        <el-radio label="收银"></el-radio>
+      </el-radio-group>
       <!--  <div style="width: 100%;height: 1px;background: #e0e0e0;margin: 5px 0"></div>
         <el-checkbox-group v-model="gasChecked" @change="gasCheck(gasChecked)">
           <el-checkbox label="中石化"></el-checkbox>
@@ -61,7 +61,7 @@
 		data() {
 			return {
 				clickIndex: 0,
-				serviceChecked: ['服务区'],
+				serviceChecked: '服务区',
 				gasChecked: ['中石化', '中石油', '交投能源',],
 				visible: false,
 				serviceSelect: 0,
@@ -441,7 +441,7 @@ new AMap.MarkerClusterer(
       height: 100px;
       position: absolute;
       top: 0;
-      right: -120px;
+      right: 0px !important;
       background: rgba(0, 0, 0, 0.7);
       z-index: 99;
       color: white;

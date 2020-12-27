@@ -3,7 +3,18 @@
     <el-dialog width="1000px" align="center" :visible.sync="visible" :modal="false"
                @close="$emit('showPopover', true)">
       <el-form ref="form" :model="form" label-width="125px" class="form" disabled>
-        <p class="title">{{form.name}}</p>
+        <p class="title">
+          <el-col :span="8">
+            <el-form-item></el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <span style="display: inline-block;">{{form.name}}</span>
+          </el-col>
+          <el-col :span="8">
+            <span style="display: inline-block;font-size: 15px;font-weight: 600">
+              {{(form.name!='男厕'&&form.name!='女厕')?'坪效：20元/㎡':''}}</span>
+          </el-col>
+        </p>
         <el-col :span="8" v-for="(it,ix) in formData" :key="ix">
           <el-form-item :label="it.label+'：'">
             <el-input :value="it.value"></el-input>
