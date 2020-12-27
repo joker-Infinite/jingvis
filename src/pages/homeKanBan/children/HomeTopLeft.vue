@@ -423,7 +423,7 @@
 					let ix = obj.indexOf(v.name);
 					let serviceOption = {
 						title: {
-							text: v.name,
+							text: v.name+'(2020)',
 							x: 'center',
 							y: '2%',
 							textStyle: {

@@ -1,6 +1,6 @@
 <template>
   <div class="body" id="body_a">
-    <div id="weather-v2-plugin-simple"></div>
+    <div id="weather-v2-plugin-simple" style="position:fixed;left:20px"></div>
     <div class="container">
       <div class="con" id="theme">
         <div class="H_top">
@@ -60,11 +60,9 @@
 				selectValue: 0,
 				times: '',
 				timeInformation: [
-					"凌晨二时 石家庄 XXX服务区因为XXX 已临时关闭 预计XXX开放 11111111",
-					"凌晨三时 武汉 XXX服务区因为XXX 已临时关闭 预计XXX开放 22222222",
-					"凌晨二时 襄阳 XXX服务区因为XXX 已临时关闭 预计XXX开放 3333333",
-					"凌晨四时 随州 XXX服务区因为XXX 已临时关闭 预计XXX开放 44444444",
-					"凌晨五时 驻马店 XXX服务区因为XXX 已临时关闭 预计XXX开放 55555555"
+					"凌晨二时 蔡甸服务区因为XXX 已临时关闭 预计XXX开放",
+					"凌晨三时 小池服务区因为XXX 已临时关闭 预计XXX开放",
+					"凌晨二时 大悟服务区因为XXX 已临时关闭 预计XXX开放",
 				],
 				screenHeight: '',
 				screenWidth: ''
@@ -108,8 +106,8 @@
 			let item = setInterval(() => {
 				if (document.getElementsByClassName("s-sticker")[0]) {
 					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.position = 'fixed'
-					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.right = '18%'
-					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '11%'
+					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.left = '0%'
+					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '5%'
 					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.zIndex = '100000'
 					clearInterval(item)
 				}
@@ -296,9 +294,10 @@
   // position: absolute !important;
   width: 100px !important;
   position: fixed !important;
-  right: 0 !important;
-  margin-right: 9%;
-  margin-top: 4.1%;
+  left: 0 !important;
+  top: 0 !important;
+  /*margin-right: 9%;*/
+  /*margin-top: 4.1%;*/
   // top: 7.1% !important;
   z-index: 1000;
   height: 50px !important;

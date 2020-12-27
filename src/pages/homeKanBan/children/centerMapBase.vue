@@ -38,7 +38,8 @@
         </div>
       </template>
     </animation> -->
-    <el-dialog title="蔡甸服务区" align="center" width="900px" :modal-append-to-body="false" :visible.sync="visible">
+    <el-dialog :title="serviceName+'服务区'" align="center" width="900px" :modal-append-to-body="false"
+               :visible.sync="visible">
       <img-floor-plan location="homeKanBan"></img-floor-plan>
     </el-dialog>
   </div>
@@ -102,6 +103,8 @@
 				otherService: [],
 				//卡口
 				bayonet: [],
+				// 服务区名
+				serviceName: '',
 				map: "",
 				marker: [],
 				mapStyleArr: [
@@ -179,7 +182,11 @@
 							}),
 							position: [item.longitude, item.latitude],
 						});
-						this.marker.push(Object.assign(marker, {name: item.gisCompany, oid: item.oid}));
+						this.marker.push(Object.assign(marker, {
+							gisName: item.gisName,
+							name: item.gisCompany,
+							oid: item.oid
+						}));
 					}
 				});
 				this.marker.forEach((i, x) => {
@@ -187,6 +194,7 @@
 						clearTimeout(that.timeID);
 						let arr = i.oid.split('-');
 						if (arr[0] == 'ms') {
+							that.serviceName = i.gisName;
 							that.visible = true;
 						} else {
 							infoWindow.open(v, i.getPosition());
@@ -200,7 +208,7 @@
 						}, 200)
 					});
 					let content = [];
-					content.push("<div style='width: 200px;text-align: center'>" + i.name + "</div>");
+					content.push("<div style='width: 200px;text-align: center'>" + i.gisName + "</div>");
 					content.push("<div style='width: 200px;text-align: center;height: 70px'>内容</div>");
 					let infoWindow = new AMap.InfoWindow({
 						content: content.join(""),
@@ -441,7 +449,7 @@ new AMap.MarkerClusterer(
       height: 100px;
       position: absolute;
       top: 0;
-      right: 0px !important;
+      right: -120px;
       background: rgba(0, 0, 0, 0.7);
       z-index: 99;
       color: white;

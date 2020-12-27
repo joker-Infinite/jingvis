@@ -1,8 +1,8 @@
 <template>
   <div style="width: 100%;height: 100%" :class="{sBody:true,hsBody:imgSize =='small'||location!='homeKanBan'}">
-    <el-dialog width="1000px" align="center" :visible.sync="visible" :modal="false"
+    <el-dialog width="1100px" align="center" :visible.sync="visible" :modal="false"
                @close="closeDialog">
-      <el-form ref="form" :model="form" label-width="125px" class="form" disabled>
+      <el-form ref="form" :model="form" label-width="125px" class="form">
         <p class="title">
           <el-col :span="8">
             <el-form-item></el-form-item>
@@ -13,14 +13,20 @@
           <el-col :span="8">
             <span :style="{display: 'inline-block',fontSize: '15px',fontWeight: '600',color:(imgSize =='small'||location!='homeKanBan')?'#38d': '#f6fe96'}">
               {{!form.noPingEffect?'坪效：20元/㎡':''}}</span>
+            <span :style="{display: 'inline-block',fontSize: '15px',fontWeight: '600',color:(imgSize =='small'||location!='homeKanBan')?'#38d': '#f6fe96'}">
+              {{form.BGQ?'服务区坪效：20元/㎡':''}}</span>
           </el-col>
         </p>
         <el-col :span="8" v-for="(it,ix) in formData" :key="ix">
           <el-form-item :label="it.label+'：'">
-            <el-input :value="it.value"></el-input>
+            <el-input disabled :value="it.value"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="24">
+          <div v-if="form.columns&&form.columns.length!==0"
+               :style="{fontWeight: '700',lineHeight: '30px',fontSize: '16px',color: location != 'homeKanBan' ? '#333' : (imgSize == 'small' ? '#333' : 'white')}">
+            加油站油枪列表
+          </div>
           <table :style="{color: location != 'homeKanBan' ? '#333' : (imgSize == 'small' ? '#333' : 'white')}"
                  class="table" border="1" cellspacing="0">
             <tr v-for="(it,ix) in form.columns">
@@ -33,9 +39,16 @@
             </tr>
           </table>
         </el-col>
+        <el-col :span="24" v-if="chartBox.length===1">
+          <el-date-picker
+                  v-model="dates"
+                  type="month"
+                  placeholder="请选择日期">
+          </el-date-picker>
+        </el-col>
         <div class="echarts">
           <div v-for="i in 2" :key="i" :id="NE+i"
-               :style="{width: '49.5%',height:formData?'300px':'400px',marginBottom: '10px',}"></div>
+               :style="{width: '49.5%',height:chartBox.length===2?'300px':'400px',marginBottom: '10px',}"></div>
         </div>
       </el-form>
     </el-dialog>
@@ -61,6 +74,7 @@
 		},
 		data() {
 			return {
+				dates: '2020-12',
 				visible: false,
 				form: {
 					name: ''
@@ -267,6 +281,10 @@
       background: none;
       background-size: 100% 100%;
 
+      .search {
+        text-align: right;
+      }
+
       .title {
         color: #606266;
         font-size: 20px;
@@ -308,6 +326,21 @@
     overflow-y: scroll;
     background: url('../../../assets/detailsTest/imgDetailsBG.jpg');
     background-size: 100% 100%;
+
+    /deep/ .el-col {
+      .el-date-editor {
+        .el-input__inner {
+          line-height: 35px;
+          height: 35px;
+        }
+
+        .el-input__prefix {
+          .el-input__icon {
+            line-height: 35px;
+          }
+        }
+      }
+    }
 
     .title {
       color: white;

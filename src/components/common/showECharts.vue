@@ -11,7 +11,20 @@
         <border v-if="backdrop===0"></border>
         <border-plan-b v-if="backdrop===1"></border-plan-b>
         <div class="time" v-if="timeSelect">
-          <span class="text_icon">从</span>
+          <el-select v-model="GS" placeholder="请选择片区">
+            <el-option :value="1" label="黄冈"></el-option>
+            <el-option :value="2" label="恩施"></el-option>
+            <el-option :value="3" label="宜昌"></el-option>
+            <el-option :value="4" label="咸宁"></el-option>
+            <el-option :value="4" label="孝感"></el-option>
+            <el-option :value="4" label="十堰"></el-option>
+          </el-select>
+          <el-select v-model="dateDay" placeholder="请选择节假日">
+            <el-option :value="1" label="清明"></el-option>
+            <el-option :value="2" label="中秋"></el-option>
+            <el-option :value="3" label="元旦"></el-option>
+            <el-option :value="4" label="春节"></el-option>
+          </el-select>
           <el-date-picker
                   v-model="time"
                   type="daterange"
@@ -83,6 +96,8 @@
 		},
 		data() {
 			return {
+				dateDay: '',
+				GS: '',
 				loading: false,
 				timeSelect: false,
 				time: "",
@@ -314,6 +329,28 @@
 
     .text_icon {
       padding: 0 10px;
+    }
+
+    /deep/ .el-select {
+      width: 130px;
+      border-radius: 0;
+      margin-right: 10px;
+
+      .el-input {
+        .el-input__inner {
+          border-radius: 0;
+          height: 35px;
+          line-height: 35px;
+        }
+
+        .el-input__suffix {
+          .el-input__suffix-inner {
+            .el-input__icon {
+              line-height: 35px;
+            }
+          }
+        }
+      }
     }
   }
 
