@@ -18,12 +18,16 @@
       <div style="position:absolute;left: -20px;font-size: 18px;">指数：</div>
       <div id="radar"></div>
     </div>
+    <show-e-charts ref="showECharts"></show-e-charts>
   </div>
 </template>
 
 <script>
+	import ShowECharts from "../common/showECharts";
+
 	export default {
 		name: "startAndRadar",
+		components: {ShowECharts},
 		props: {
 			color: {
 				type: String,
@@ -33,23 +37,25 @@
 		data() {
 			return {
 				option: {
+					tooltip: {},
 					radar: {
 						center: ["55%", "50%"],
 						radius: 50,
 						indicator: [
-							{name: "订单数量"},
-							{name: "客单价"},
-							{name: "均车消费"},
-							{name: "转化率"},
-							{name: "坪效"}
+							{name: "订单数量", max: 1000},
+							{name: "客单价", max: 500},
+							{name: "均车消费", max: 500},
+							{name: "转化率", max: 100},
+							{name: "坪效", max: 600}
 						]
 					},
 					series: [
 						{
+							name: '指数',
 							type: "radar",
 							data: [
 								{
-									value: [1, 0.5, 0.7, 0.4, 0.8, 0.9]
+									value: [500, 90, 200, 80, 85, 90]
 								}
 							]
 						}
@@ -64,6 +70,100 @@
 			}
 		},
 		mounted() {
+			let option = {
+				tooltip: {
+					trigger: 'axis',
+				},
+				legend: {
+					data: ['客单价', '均车消费', '转化率'],
+					bottom: 20,
+					textStyle: {color: 'white'}
+				},
+				grid: {
+					left: 80,
+					top: 100,
+					right: 70,
+					bottom: 70
+				},
+				xAxis: [
+					{
+						type: 'category',
+						data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+						axisPointer: {
+							type: 'shadow'
+						},
+						axisLabel: {
+							textStyle: {
+								color: '#FFF'
+							}
+						},
+						axisLine: {
+							lineStyle: {
+								color: "#FFF",
+							},
+						},
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						name: '元',
+						min: 0,
+						max: 250,
+						interval: 50,
+						axisLabel: {
+							formatter: '{value}',
+							textStyle: {
+								color: '#FFF'
+							}
+						},
+						axisLine: {
+							lineStyle: {
+								color: "#FFF",
+							},
+						},
+					},
+					{
+						type: 'value',
+						name: '转化率',
+						min: 0,
+						max: 25,
+						interval: 5,
+						axisLabel: {
+							formatter: '{value} %',
+							textStyle: {
+								color: '#FFF'
+							}
+						},
+						axisLine: {
+							lineStyle: {
+								color: "#FFF",
+							},
+						},
+					}
+				],
+				series: [
+					{
+						name: '客单价',
+						type: 'bar',
+						data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+					},
+					{
+						name: '均车消费',
+						type: 'bar',
+						data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+					},
+					{
+						name: '转化率',
+						type: 'line',
+						yAxisIndex: 1,
+						data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+					}
+				]
+			};
+			document.getElementById("radar").onclick = v => {
+				this.$refs['showECharts'].openDialog(option, 'not');
+			};
 			this.initCharts();
 		}
 	};
