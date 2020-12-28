@@ -293,6 +293,225 @@
 						background: 'blue'
 					}
 				},
+				bayonetDetails: {
+					name: "卡口",
+					noPingEffect: true,
+					data: [
+						{a: '卡口是否正常', b: '是'},
+						{a: '今日进入车辆', b: '2568辆'},
+						{a: '日均车流量', b: '1940辆'}
+					],
+					formData: [
+						{label: '卡口是否正常', value: '是'},
+						{label: '今日进入车辆', value: '2568辆'},
+						{label: '日均车流量', value: '1940辆'}
+					],
+					chartBox: [
+						{
+							barWidth: 20,
+							title: {
+								text: '近半年车流量',
+								x: 'center',
+								textStyle: {
+									color: '#FFF'
+								}
+							},
+							tooltip: {
+								trigger: 'axis',
+								axisPointer: {
+									type: 'shadow'
+								},
+								formatter: v => {
+									if (v.length === 2) {
+										return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆<br>' + v[1].seriesName + '：' + v[1].value + '辆'
+									}
+									if (v.length === 1) {
+										return v[0].name + '月<br>' + v[0].seriesName + '：' + v[0].value + '辆'
+									}
+								}
+							},
+							legend: {
+								data: ['大车', '小车'],
+								bottom: 0,
+								textStyle: {color: 'white'}
+							},
+							grid: {
+								left: '3%',
+								right: '7%',
+								bottom: '30',
+								containLabel: true
+							},
+							xAxis: [
+								{
+									name: '月',
+									type: 'category',
+									data: ['7', '8', '9', '10', '11', '12'],
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								}
+							],
+							yAxis: [
+								{
+									type: 'value',
+									name: '万辆',
+									axisTick: {
+										show: false,
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									splitLine: {show: false},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+								}
+							],
+							series: [
+								{
+									name: '大车',
+									type: 'bar',
+									stack: '车流量',
+									data: [620, 507, 400, 734, 689, 666]
+								},
+								{
+									name: '小车',
+									type: 'bar',
+									stack: '车流量',
+									data: [730, 650, 600, 499, 290, 230]
+								}
+							]
+						},
+						{
+							title: {
+								text: '今日各时段进入车辆',
+								x: 'center',
+								textStyle: {
+									color: '#FFF'
+								}
+							},
+							barWidth: 10,
+							tooltip: {
+								trigger: 'axis',
+								axisPointer: {
+									type: 'shadow'
+								},
+								formatter: v => {
+									if (v.length === 1) {
+										return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆'
+									}
+									if (v.length === 2) {
+										return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆<br>' + v[1].seriesName + '：' + Math.abs(v[1].value) + '辆'
+									}
+								}
+							},
+							legend: {
+								data: ['大车', '小车'],
+								bottom: 0,
+								textStyle: {
+									color: "#FFF",
+								},
+							},
+							grid: {
+								left: '3%',
+								right: '50',
+								bottom: '30',
+								containLabel: true
+							},
+							xAxis: [
+								{
+									name: '辆',
+									type: 'value',
+									axisLabel: {
+										formatter: v => {
+											return Math.abs(v)
+										},
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+									axisTick: {
+										show: false,
+									},
+								}
+							],
+							yAxis: [
+								{
+									name: '时',
+									type: 'category',
+									axisTick: {
+										show: false
+									},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF",
+										},
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF",
+										},
+									},
+									data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23']
+								}
+							],
+							series: [
+								{
+									name: '大车',
+									type: 'bar',
+									stack: '总量',
+									label: {
+										show: true,
+										position: 'left',
+										color: 'white',
+										formatter: v => {
+											return Math.abs(v.value)
+										},
+									},
+									data: [-90, -80, -153, -236, -326, -230]
+								},
+								{
+									name: '小车',
+									type: 'bar',
+									stack: '总量',
+									label: {
+										show: true,
+										position: 'right',
+										color: 'white'
+									},
+									data: [68, 93, 462, 432, 390, 293]
+								}
+							]
+						}
+					],
+					style: {
+						width: '97px',
+						height: '52px',
+						top: '195px',
+						left: '768px',
+						background: 'rgb(39,255,221)'
+					}
+				},
 				map: "",
 				marker: [],
 				mapStyleArr: [
@@ -399,6 +618,8 @@
 							that.visible = true;
 						} else if (id[0] === '中石化' || id[0] === '中石油' || id[0] === '交投能源') {
 							that.$refs['more'].openDialog(that.gasDetails);
+						} else if (id[0] === '卡口') {
+							that.$refs['more'].openDialog(that.bayonetDetails);
 						} else {
 							infoWindow.open(v, i.getPosition());
 						}

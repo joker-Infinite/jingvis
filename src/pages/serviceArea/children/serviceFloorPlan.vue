@@ -448,7 +448,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21,],
+									data: [34.82, 23.90, 15.68, 21.77, 12.39, 14.09,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -472,7 +472,7 @@
 								tooltip: {
 									trigger: "axis",
 									formatter: v => {
-										return v[0].name + '月：' + v[0].value + '个'
+										return v[0].name + '月：' + v[0].value + '万单'
 									}
 								},
 								grid: {
@@ -483,10 +483,10 @@
 								},
 								yAxis: {
 									type: 'value',
-									name: '个'
+									name: '万单'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930,],
+									data: [1.56, 0.97, 0.86, 1.18, 0.63, 0.75,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -553,7 +553,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21,],
+									data: [9.24, 11.14, 10.20, 12.18, 9.17, 10.46,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -591,7 +591,7 @@
 									name: '个'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930,],
+									data: [0.48, 0.62, 0.51, 0.63, 0.46, 0.58,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -671,7 +671,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21,],
+									data: [42.31, 49.51, 36.40, 41.53, 23.40, 19.62,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -709,7 +709,7 @@
 									name: '个'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930,],
+									data: [21.25, 24.98, 17.65, 21.35, 12.62, 10.69,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -777,7 +777,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21,],
+									data: [12.20, 12.81, 10.61, 16.83, 10.81, 12.02,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -801,7 +801,7 @@
 								tooltip: {
 									trigger: "axis",
 									formatter: v => {
-										return v[0].name + '月：' + v[0].value + '个'
+										return v[0].name + '月：' + v[0].value + '万单'
 									}
 								},
 								grid: {
@@ -812,10 +812,10 @@
 								},
 								yAxis: {
 									type: 'value',
-									name: '个'
+									name: '万单'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930,],
+									data: [1.11, 1.31, 1.02, 1.69, 1.22, 1.21,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -1206,7 +1206,7 @@
 								tooltip: {
 									trigger: "axis",
 									formatter: v => {
-										return v[0].name + '月：' + v[0].value + '万元'
+										return v[0].name + '月：' + v[0].value + '元'
 									}
 								},
 								grid: {
@@ -1217,10 +1217,10 @@
 								},
 								yAxis: {
 									type: 'value',
-									name: '万元'
+									name: '元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21,],
+									data: [7200.2, 2770.16, 1300.52, 3201.82, 2106.2, 2603.26,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -1244,7 +1244,7 @@
 								tooltip: {
 									trigger: "axis",
 									formatter: v => {
-										return v[0].name + '月：' + v[0].value + '个'
+										return v[0].name + '月：' + v[0].value + '单'
 									}
 								},
 								grid: {
@@ -1255,10 +1255,10 @@
 								},
 								yAxis: {
 									type: 'value',
-									name: '个'
+									name: '单'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930,],
+									data: [35, 14, 7, 16, 10, 13,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -1325,7 +1325,7 @@
 									name: '万元'
 								},
 								series: [{
-									data: [10, 8, 13, 15, 20, 21,],
+									data: [1.65, 2.26, 2.68, 5.77, 4.69, 3.62,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
@@ -1349,7 +1349,7 @@
 								tooltip: {
 									trigger: "axis",
 									formatter: v => {
-										return v[0].name + '月：' + v[0].value + '个'
+										return v[0].name + '月：' + v[0].value + '万单'
 									}
 								},
 								grid: {
@@ -1360,10 +1360,10 @@
 								},
 								yAxis: {
 									type: 'value',
-									name: '个'
+									name: '万单'
 								},
 								series: [{
-									data: [300, 430, 450, 1050, 1150, 930,],
+									data: [0.52, 0.73, 0.82, 1.93, 1.56, 1.21,],
 									type: 'bar',
 									itemStyle: {
 										color: '#379DFB'
