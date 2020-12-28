@@ -39,7 +39,7 @@
             </tr>
           </table>
         </el-col>
-        <el-col :span="24" v-if="chartBox.length===1">
+        <el-col :span="12" v-if="chartBox.length===1">
           <el-date-picker
                   v-model="dates"
                   type="month"
@@ -47,8 +47,12 @@
           </el-date-picker>
         </el-col>
         <div class="echarts">
-          <div v-for="i in 2" :key="i" :id="NE+i"
-               :style="{width: '49.5%',height:chartBox.length===2?'300px':'400px',marginBottom: '10px',}"></div>
+          <div v-for="i in 2" :key="i"
+               :style="{width: '49.5%',height:chartBox.length===2?'300px':'400px',marginBottom: '10px',position: 'relative'}">
+            <div v-if="i ==2&&NE=='gas'" class="KK ll">进入</div>
+            <div v-if="i ==2&&NE=='gas'" class="KK rr">驶出</div>
+            <div :id="NE+i" style="width: 100%;height: 100%"></div>
+          </div>
         </div>
       </el-form>
     </el-dialog>
@@ -132,8 +136,8 @@
 						},
 						radius: that.pieRadius,
 						data: [
-							{name: '大车', value: Math.round(Math.random() * 24)},
-							{name: '小车', value: Math.round(Math.random() * 24)}
+							{name: '大车', value: Math.round(Math.random() * 24), itemStyle: {color: '#596aec'}},
+							{name: '小车', value: Math.round(Math.random() * 24), itemStyle: {color: '#43cef7'}}
 						]
 					};
 				});
@@ -293,6 +297,25 @@
       }
 
       /deep/ .el-col {
+        .el-date-editor {
+          .el-input__inner {
+            line-height: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid #dcdfe6;
+            color: #606266;
+          }
+
+          .el-input__prefix {
+            .el-input__icon {
+              line-height: 35px;
+              color: #606266;
+            }
+          }
+        }
+      }
+
+      /deep/ .el-col {
         .el-form-item {
           .el-form-item__label {
             color: #606266;
@@ -316,6 +339,7 @@
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-between;
+        position: relative;
       }
     }
   }
@@ -332,11 +356,16 @@
         .el-input__inner {
           line-height: 35px;
           height: 35px;
+          background: rgba(0, 0, 0, 0);
+          border: 1px solid #6deee8;
+          color: #6deee8;
         }
 
         .el-input__prefix {
           .el-input__icon {
             line-height: 35px;
+            background: rgba(0, 0, 0, 0);
+            color: #6deee8;
           }
         }
       }
@@ -374,6 +403,21 @@
         }
       }
     }
+  }
+
+  .KK {
+    position: absolute;
+    z-index: 10;
+    font-size: 18px;
+    color: white;
+  }
+
+  .ll {
+    left: 50px;
+  }
+
+  .rr {
+    right: 50px;
   }
 
   table {

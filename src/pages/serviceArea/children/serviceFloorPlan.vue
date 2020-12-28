@@ -982,7 +982,6 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'right',
 											formatter: v => {
 												return Math.abs(v.value)
 											}
@@ -1150,7 +1149,6 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'right',
 											formatter: v => {
 												return Math.abs(v.value)
 											}
@@ -1450,13 +1448,15 @@
 										name: '大车',
 										type: 'bar',
 										stack: '车流量',
-										data: [620, 507, 400, 734, 689, 666]
+										data: [620, 507, 400, 734, 689, 666],
+										itemStyle: {color: '#596aec'},
 									},
 									{
 										name: '小车',
 										type: 'bar',
 										stack: '车流量',
-										data: [730, 650, 600, 499, 290, 230]
+										data: [730, 650, 600, 499, 290, 230],
+										itemStyle: {color: '#43cef7'},
 									}
 								]
 							},
@@ -1482,7 +1482,7 @@
 								},
 								legend: {
 									data: ['大车', '小车'],
-									bottom: 0
+									bottom: 0,
 								},
 								grid: {
 									left: '3%',
@@ -1501,7 +1501,7 @@
 										axisTick: {
 											show: false,
 										},
-										// splitLine: {show: false},
+										splitLine: {show: false},
 									}
 								],
 								yAxis: [
@@ -1521,12 +1521,12 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'left',
 											formatter: v => {
 												return Math.abs(v.value)
 											},
 										},
-										data: [-90, -80, -153, -236, -326, -230]
+										data: [90, 80, 153, 236, 326, 230],
+										itemStyle: {color: '#596aec'},
 									},
 									{
 										name: '小车',
@@ -1534,12 +1534,12 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'right',
 											formatter: v => {
 												return Math.abs(v.value)
 											}
 										},
-										data: [68, 93, 462, 432, 390, 293]
+										data: [68, 93, 462, 432, 390, 293],
+										itemStyle: {color: '#43cef7'},
 									}
 								]
 							}
@@ -1623,13 +1623,15 @@
 										name: '大车',
 										type: 'bar',
 										stack: '车流量',
-										data: [620, 507, 400, 734, 689, 666]
+										data: [620, 507, 400, 734, 689, 666],
+										itemStyle: {color: '#596aec'},
 									},
 									{
 										name: '小车',
 										type: 'bar',
 										stack: '车流量',
-										data: [730, 650, 600, 499, 290, 230]
+										data: [730, 650, 600, 499, 290, 230],
+										itemStyle: {color: '#43cef7'},
 									}
 								]
 							},
@@ -1674,7 +1676,7 @@
 										axisTick: {
 											show: false,
 										},
-										// splitLine: {show: false},
+										splitLine: {show: false},
 									}
 								],
 								yAxis: [
@@ -1694,12 +1696,12 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'left',
 											formatter: v => {
 												return Math.abs(v.value)
 											},
 										},
-										data: [-80, -106, -161, -224, -210, -130]
+										data: [80, 106, 161, 224, 210, 130],
+										itemStyle: {color: '#596aec'},
 									},
 									{
 										name: '小车',
@@ -1707,12 +1709,12 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'right',
 											formatter: v => {
 												return Math.abs(v.value)
 											}
 										},
-										data: [60, 89, 441, 474, 490, 320]
+										data: [60, 89, 441, 474, 490, 320],
+										itemStyle: {color: '#43cef7'},
 									}
 								]
 							}
@@ -1798,12 +1800,14 @@
 										name: '大车',
 										type: 'bar',
 										stack: '车流量',
-										data: [620, 507, 400, 734, 689, 666]
+										data: [620, 507, 400, 734, 689, 666],
+										itemStyle: {color: '#596aec'},
 									},
 									{
 										name: '小车',
 										type: 'bar',
 										stack: '车流量',
+										itemStyle: {color: '#43cef7'},
 										data: [730, 650, 600, 499, 290, 230]
 									}
 								]

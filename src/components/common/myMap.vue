@@ -85,7 +85,6 @@ export default {
   mounted() {
     this.timeClear = setInterval(this.check, 3000);
     this.$axios.get("/api/index/list_jtService").then(res => {
-      console.log(res);
       this.data = res.data.data;
       this.point();
     });

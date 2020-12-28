@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%;height: 100%">
-    <div class="star">
+    <div class="star" v-if="showStar">
       <p>
         <span :style="{ color: color }">硬件环境：</span>
         <el-rate :max="3" :value="3" disabled></el-rate>
@@ -32,6 +32,10 @@
 			color: {
 				type: String,
 				default: "white"
+			},
+			showStar: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {

@@ -558,7 +558,17 @@
 					barWidth: "10", //设置柱状图的粗细
 					tooltip: {
 						trigger: "axis",
-						formatter: "{b}" + "：{c} 万元"
+						//  湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部
+						formatter: v => {
+							let name = '';
+							if (v[0].name == "湖北长江路桥股份有限公司……") {
+								name = '湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部';
+							}
+							if (v[0].name !== "湖北长江路桥股份有限公司……") {
+								name = v[0].name;
+							}
+							return name + '：' + v[0].value + '万元'
+						}
 					},
 					title: {
 						x: "center",

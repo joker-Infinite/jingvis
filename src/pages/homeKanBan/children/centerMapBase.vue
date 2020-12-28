@@ -387,13 +387,15 @@
 									name: '大车',
 									type: 'bar',
 									stack: '车流量',
-									data: [620, 507, 400, 734, 689, 666]
+									data: [620, 507, 400, 734, 689, 666],
+									itemStyle: {color: '#596aec'},
 								},
 								{
 									name: '小车',
 									type: 'bar',
 									stack: '车流量',
-									data: [730, 650, 600, 499, 290, 230]
+									data: [730, 650, 600, 499, 290, 230],
+									itemStyle: {color: '#43cef7'},
 								}
 							]
 						},
@@ -412,12 +414,19 @@
 									type: 'shadow'
 								},
 								formatter: v => {
-									if (v.length === 1) {
-										return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆'
-									}
-									if (v.length === 2) {
-										return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆<br>' + v[1].seriesName + '：' + Math.abs(v[1].value) + '辆'
-									}
+									let time = '';
+									let SR = '';
+									let SC = '';
+									v.forEach(i => {
+										time = i.name + '时<br>';
+										if (i.value < 0) {
+											SC += i.seriesName + '：' + Math.abs(i.value) + '<br>'
+										}
+										if (i.value > 0) {
+											SR += i.seriesName + '：' + Math.abs(i.value) + '<br>'
+										}
+									});
+									return time + '进入<br>' + SC + '驶出<br>' + SR
 								}
 							},
 							legend: {
@@ -453,6 +462,7 @@
 									axisTick: {
 										show: false,
 									},
+									splitLine: {show: false},
 								}
 							],
 							yAxis: [
@@ -479,27 +489,54 @@
 								{
 									name: '大车',
 									type: 'bar',
-									stack: '总量',
+									stack: '进入',
 									label: {
 										show: true,
-										position: 'left',
-										color: 'white',
 										formatter: v => {
 											return Math.abs(v.value)
 										},
 									},
-									data: [-90, -80, -153, -236, -326, -230]
+									data: [-80, -106, -161, -224, -210, -130],
+									itemStyle: {color: '#596aec'},
 								},
 								{
 									name: '小车',
 									type: 'bar',
-									stack: '总量',
+									stack: '进入',
 									label: {
 										show: true,
-										position: 'right',
-										color: 'white'
+										formatter: v => {
+											return Math.abs(v.value)
+										}
 									},
-									data: [68, 93, 462, 432, 390, 293]
+									data: [-60, -89, -441, -474, -490, -320],
+									itemStyle: {color: '#43cef7'},
+								},
+								{
+									name: '大车',
+									type: 'bar',
+									stack: '驶出',
+									label: {
+										show: true,
+										formatter: v => {
+											return Math.abs(v.value)
+										},
+									},
+									data: [90, 80, 153, 236, 326, 230],
+									itemStyle: {color: '#596aec'},
+								},
+								{
+									name: '小车',
+									type: 'bar',
+									stack: '驶出',
+									label: {
+										show: true,
+										formatter: v => {
+											return Math.abs(v.value)
+										}
+									},
+									data: [68, 93, 462, 432, 390, 293],
+									itemStyle: {color: '#43cef7'},
 								}
 							]
 						}

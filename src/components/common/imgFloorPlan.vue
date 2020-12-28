@@ -20,7 +20,7 @@
     <more-information NE="imgFloorPlan" :location="location" ref="more"
                       @showPopover="popoverDisabled=false"></more-information>
     <!--    <img-details-test ref="more" @showPopover="popoverDisabled=false"></img-details-test>-->
-    <start-and-radar></start-and-radar>
+    <start-and-radar :showStar="true"></start-and-radar>
   </div>
 </template>
 
@@ -1263,7 +1263,6 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'right',
 											color: 'white'
 										},
 										itemStyle: {color: '#fa3b43'},
@@ -1480,7 +1479,6 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'right',
 											color: 'white'
 										},
 										itemStyle: {color: '#fa3b43'},
@@ -1925,13 +1923,15 @@
 										name: '大车',
 										type: 'bar',
 										stack: '车流量',
-										data: [620, 507, 400, 734, 689, 666]
+										data: [620, 507, 400, 734, 689, 666],
+										itemStyle: {color: '#596aec'},
 									},
 									{
 										name: '小车',
 										type: 'bar',
 										stack: '车流量',
-										data: [730, 650, 600, 499, 290, 230]
+										data: [730, 650, 600, 499, 290, 230],
+										itemStyle: {color: '#43cef7'},
 									}
 								]
 							},
@@ -1991,6 +1991,7 @@
 										axisTick: {
 											show: false,
 										},
+										splitLine: {show: false},
 									}
 								],
 								yAxis: [
@@ -2020,13 +2021,13 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'left',
 											color: 'white',
 											formatter: v => {
 												return Math.abs(v.value)
 											},
 										},
-										data: [-90, -80, -153, -236, -326, -230]
+										itemStyle: {color: '#596aec'},
+										data: [90, 80, 153, 236, 326, 230]
 									},
 									{
 										name: '小车',
@@ -2034,9 +2035,9 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'right',
 											color: 'white'
 										},
+										itemStyle: {color: '#43cef7'},
 										data: [68, 93, 462, 432, 390, 293]
 									}
 								]
@@ -2144,13 +2145,15 @@
 										name: '大车',
 										type: 'bar',
 										stack: '车流量',
-										data: [620, 507, 400, 734, 689, 666]
+										data: [620, 507, 400, 734, 689, 666],
+										itemStyle: {color: '#596aec'},
 									},
 									{
 										name: '小车',
 										type: 'bar',
 										stack: '车流量',
-										data: [730, 650, 600, 499, 290, 230]
+										data: [730, 650, 600, 499, 290, 230],
+										itemStyle: {color: '#43cef7'},
 									}
 								]
 							},
@@ -2210,6 +2213,7 @@
 										axisTick: {
 											show: false,
 										},
+										splitLine: {show: false},
 									}
 								],
 								yAxis: [
@@ -2239,13 +2243,13 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'left',
 											color: 'white',
 											formatter: v => {
 												return Math.abs(v.value)
 											},
 										},
-										data: [-80, -106, -161, -224, -210, -130]
+										data: [80, 106, 161, 224, 210, 130],
+										itemStyle: {color: '#596aec'},
 									},
 									{
 										name: '小车',
@@ -2253,10 +2257,10 @@
 										stack: '总量',
 										label: {
 											show: true,
-											position: 'right',
 											color: 'white'
 										},
-										data: [60, 89, 441, 474, 490, 320]
+										data: [60, 89, 441, 474, 490, 320],
+										itemStyle: {color: '#43cef7'},
 									}
 								]
 							}
@@ -2365,13 +2369,15 @@
 										name: '大车',
 										type: 'bar',
 										stack: '车流量',
-										data: [620, 507, 400, 734, 689, 666]
+										data: [620, 507, 400, 734, 689, 666],
+										itemStyle: {color: '#596aec'}
 									},
 									{
 										name: '小车',
 										type: 'bar',
 										stack: '车流量',
-										data: [730, 650, 600, 499, 290, 230]
+										data: [730, 650, 600, 499, 290, 230],
+										itemStyle: {color: '#43cef7'}
 									}
 								]
 							},
