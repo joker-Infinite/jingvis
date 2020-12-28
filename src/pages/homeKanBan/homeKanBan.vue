@@ -133,11 +133,14 @@
 				];
 				let bac = [
 					{
-						background: "url('" + require('../../assets/bage.jpg') + "') no-repeat"
+						background: "url('" + require('../../assets/bage.jpg') + "') no-repeat",
+						backgroundSize: '100% 100%'
 					}, {
-						background: "url('" + require('../../assets/bgi.jpg') + "') no-repeat"
+						background: "url('" + require('../../assets/bgi.jpg') + "') no-repeat",
+						backgroundSize: '100% 100%'
 					}, {
-						background: "url('" + require('../../assets/bage3.png') + "') no-repeat"
+						background: "url('" + require('../../assets/bage3.png') + "') no-repeat",
+						backgroundSize: '100% 100%'
 					}
 				];
 				let top = ['10.5%', '8.5%'];
@@ -294,8 +297,8 @@
   // position: absolute !important;
   width: 100px !important;
   position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
+  left: 50px !important;
+  top: 10px !important;
   /*margin-right: 9%;*/
   /*margin-top: 4.1%;*/
   // top: 7.1% !important;

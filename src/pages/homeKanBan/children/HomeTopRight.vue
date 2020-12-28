@@ -245,12 +245,12 @@
 					links.forEach((i, index) => {
 						let color = '';
 						color = '#00BBFF'
-						// if (index== 1) color = '#00BBFF';
-						// if (index == 2) color = '#4860FF';
-						// if (index == 3) color = '#D7C12F';
-						// if (index == 4) color = '#7C1BDA';
-						// if (index == 5) color = '#30D6FC';
-						// if (index == 6) color = '#52E266';
+						if (index== 1) color = '#00BBFF';
+						if (index == 2) color = '#4860FF';
+						if (index == 3) color = '#D7C12F';
+						if (index == 4) color = '#7C1BDA';
+						if (index == 5) color = '#30D6FC';
+						if (index == 6) color = '#52E266';
 						name.push({
 							name: i.source,
 							itemStyle: {

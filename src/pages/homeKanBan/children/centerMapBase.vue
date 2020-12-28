@@ -208,8 +208,16 @@
 						}, 200)
 					});
 					let content = [];
-					content.push("<div style='width: 200px;text-align: center'>" + i.gisName + "</div>");
-					content.push("<div style='width: 200px;text-align: center;height: 70px'>内容</div>");
+					let id = i.oid.split('-');
+					content.push("<div style='width: 200px;text-align: center;font-weight: 700'>" + i.gisName + "</div>");
+					if (id[0] === '卡口') {
+						content.push("<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>卡口是否正常：是</div>");
+						content.push("<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>日均车流量：3000辆</div>");
+						content.push("<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>今日进入车辆：1867辆</div>");
+						content.push("<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>今日驶出车辆：1835辆</div>");
+					} else {
+						content.push("<div style='width: 200px;text-align: center;line-height: 88px;font-size: 14px'>内容</div>");
+					}
 					let infoWindow = new AMap.InfoWindow({
 						content: content.join(""),
 						offset: new AMap.Pixel(3, -33),

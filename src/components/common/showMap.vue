@@ -235,11 +235,15 @@
 							icon: new AMap.Icon({
 								image: icon,
 								size: new AMap.Size(30, 30),
-								imageSize: new AMap.Size(25, 30),
+								imageSize: new AMap.Size(30, 30),
 							}),
 							position: [item.longitude, item.latitude],
 						});
-						this.marker.push(Object.assign(marker, {name: item.gisCompany, oid: item.oid}));
+						this.marker.push(Object.assign(marker, {
+							gisName: item.gisName,
+							name: item.gisCompany,
+							oid: item.oid
+						}));
 					}
 				});
 				this.marker.forEach((i, x) => {
@@ -260,8 +264,16 @@
 						}, 200)
 					});
 					let content = [];
-					content.push("<div style='width: 200px;text-align: center'>" + i.name + "</div>");
-					content.push("<div style='width: 200px;text-align: center;height: 70px'>内容</div>");
+					let id = i.oid.split('-');
+					content.push("<div style='width: 200px;text-align: center;font-weight: 700'>" + i.gisName + "</div>");
+					if (id[0] === '卡口') {
+						content.push("<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>卡口是否正常：是</div>");
+						content.push("<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>日均车流量：3000辆</div>");
+						content.push("<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>今日进入车辆：1867辆</div>");
+						content.push("<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>今日驶出车辆：1835辆</div>");
+					} else {
+						content.push("<div style='width: 200px;text-align: center;line-height: 88px;font-size: 14px'>内容</div>");
+					}
 					let infoWindow = new AMap.InfoWindow({
 						content: content.join(""),
 						offset: new AMap.Pixel(3, -33),
@@ -417,6 +429,7 @@ new AMap.MarkerClusterer(
           transition: linear .4s;
         }
       }
+
       /deep/ .el-radio-group {
         .el-radio {
           margin-right: 0;
@@ -435,47 +448,47 @@ new AMap.MarkerClusterer(
       }
     }
 
-   /* .btn /deep/ .el-checkbox {
-      color: white;
-      margin-right: 0;
-    }
+    /* .btn /deep/ .el-checkbox {
+       color: white;
+       margin-right: 0;
+     }
 
-    .btn /deep/ .el-select {
-      width: 90px;
-    }
+     .btn /deep/ .el-select {
+       width: 90px;
+     }
 
-    .btn /deep/ .el-select > .el-select__tags {
-      overflow: hidden;
-      height: 30px;
-    }
+     .btn /deep/ .el-select > .el-select__tags {
+       overflow: hidden;
+       height: 30px;
+     }
 
-    .btn /deep/ .el-select > .el-input {
-      min-width: 90px;
-    }
+     .btn /deep/ .el-select > .el-input {
+       min-width: 90px;
+     }
 
-    .btn /deep/ .el-select > .el-input > .el-input__inner {
-      line-height: 30px;
-      height: 30px;
-      border: none;
-      border-radius: 0;
-      background: none;
-      min-width: 90px;
-      padding: 0 2px;
-      color: white;
-    }
+     .btn /deep/ .el-select > .el-input > .el-input__inner {
+       line-height: 30px;
+       height: 30px;
+       border: none;
+       border-radius: 0;
+       background: none;
+       min-width: 90px;
+       padding: 0 2px;
+       color: white;
+     }
 
-    .btn /deep/ .el-select > .el-input > .el-input__inner::-webkit-input-placeholder {
-      color: #cccccc;
-    }
+     .btn /deep/ .el-select > .el-input > .el-input__inner::-webkit-input-placeholder {
+       color: #cccccc;
+     }
 
-    .btn /deep/ .el-select > .el-input > .el-input__suffix {
-      !*width: 20px;*!
-    }
+     .btn /deep/ .el-select > .el-input > .el-input__suffix {
+       !*width: 20px;*!
+     }
 
-    .btn /deep/ .el-select > .el-input > .el-input__suffix > .el-input__suffix-inner > .el-input__icon {
-      line-height: 30px;
-      color: white;
-    }*/
+     .btn /deep/ .el-select > .el-input > .el-input__suffix > .el-input__suffix-inner > .el-input__icon {
+       line-height: 30px;
+       color: white;
+     }*/
 
     #AAA {
       width: 100%;

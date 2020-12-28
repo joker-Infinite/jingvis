@@ -87,7 +87,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6'],
+									data: ['7', '8', '9', '10', '11', '12'],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -254,7 +254,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -418,7 +418,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -487,7 +487,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -585,7 +585,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -654,7 +654,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -765,7 +765,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -834,7 +834,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -932,7 +932,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -1001,7 +1001,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -1098,7 +1098,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -1282,7 +1282,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -1469,7 +1469,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -1538,7 +1538,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -1636,7 +1636,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -1705,7 +1705,7 @@
 								xAxis: {
 									type: 'category',
 									name: '月',
-									data: ['1', '2', '3', '4', '5', '6',],
+									data: ['7', '8', '9', '10', '11', '12',],
 									axisPointer: {
 										type: "shadow",
 									},
@@ -1770,11 +1770,13 @@
 						noPingEffect: true,
 						data: [
 							{a: '卡口是否正常', b: '是'},
-							{a: '今日车流量', b: '200辆'}
+							{a: '今日进入车辆', b: '200辆'},
+							{a: '日均车流量', b: '200辆'}
 						],
 						formData: [
 							{label: '卡口是否正常', value: '是'},
-							{label: '今日车流量', value: '200辆'}
+							{label: '今日进入车辆', value: '200辆'},
+							{label: '日均车流量', value: '200辆'}
 						],
 						chartBox: [
 							{
@@ -1815,7 +1817,7 @@
 									{
 										name: '月',
 										type: 'category',
-										data: ['1', '2', '3', '4', '5', '6'],
+										data: ['7', '8', '9', '10', '11', '12'],
 										axisTick: {
 											show: false,
 										},
@@ -1956,11 +1958,13 @@
 						noPingEffect: true,
 						data: [
 							{a: '卡口是否正常', b: '是'},
-							{a: '今日车流量', b: '200辆'}
+							{a: '今日驶出车辆', b: '200辆'},
+							{a: '日均车流量', b: '200辆'}
 						],
 						formData: [
 							{label: '卡口是否正常', value: '是'},
-							{label: '今日车流量', value: '200辆'}
+							{label: '今日驶出车辆', value: '200辆'},
+							{label: '日均车流量', value: '200辆'}
 						],
 						chartBox: [
 							{
@@ -2001,7 +2005,7 @@
 									{
 										name: '月',
 										type: 'category',
-										data: ['1', '2', '3', '4', '5', '6'],
+										data: ['7', '8', '9', '10', '11', '12'],
 										axisTick: {
 											show: false,
 										},

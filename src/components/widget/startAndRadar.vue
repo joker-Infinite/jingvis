@@ -1,12 +1,18 @@
 <template>
   <div style="width: 100%;height: 100%">
     <div class="star">
-      <span :style="{color:color}">硬件环境：</span>
-      <el-rate :max="3" :value="3" disabled></el-rate>
-      <span :style="{color:color}">车流量：</span>
-      <el-rate :max="3" :value="3" disabled></el-rate>
-      <span :style="{color:color}">商户评级：</span>
-      <el-rate :max="3" :value="3" disabled></el-rate>
+      <p>
+        <span :style="{color:color}">硬件环境：</span>
+        <el-rate :max="3" :value="3" disabled></el-rate>
+      </p>
+      <p>
+        <span :style="{color:color}">车流量：</span>
+        <el-rate :max="3" :value="3" disabled></el-rate>
+      </p>
+      <p>
+        <span :style="{color:color}">商户评级：</span>
+        <el-rate :max="3" :value="3" disabled></el-rate>
+      </p>
     </div>
     <div class="radar">
       <div style="position:absolute;left: -20px;font-size: 18px;">指数：</div>
@@ -67,8 +73,13 @@
     font-size: 14px;
     left: 15px;
     top: 35px;
-    width: 150px;
-    height: 60px;
+    width: 250px;
+
+    p {
+      width: 200px;
+      height: 100%;
+      overflow: hidden;
+    }
 
     span {
       width: 70px;
