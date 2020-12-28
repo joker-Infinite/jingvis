@@ -50,10 +50,10 @@
             align="center"
             width="900px"
             :modal-append-to-body="false"
-            :visible.sync="visible"
-    >
+            :visible.sync="visible">
       <img-floor-plan location="homeKanBan"></img-floor-plan>
     </el-dialog>
+    <more-information NE="gas" ref="more" location="homeKanBan"></more-information>
   </div>
 </template>
 
@@ -61,10 +61,11 @@
 	import animation from "./animation";
 	import ServiceFloorPlan from "../../serviceArea/children/serviceFloorPlan";
 	import ImgFloorPlan from "../../../components/common/imgFloorPlan";
+	import MoreInformation from "../../details/common/moreInformation";
 
 	export default {
 		name: "centerMapBase",
-		components: {ImgFloorPlan, ServiceFloorPlan, animation},
+		components: {MoreInformation, ImgFloorPlan, ServiceFloorPlan, animation},
 		props: {
 			backdrop: {
 				type: Number,
@@ -117,6 +118,181 @@
 				bayonet: [],
 				// 服务区名
 				serviceName: "",
+				//加油站详情
+				gasDetails: {
+					name: '加油站',
+					remark: '提供柴油、汽油（E95、E98、95……）',
+					data: [
+						{a: '加油站负责人', b: 'XXX'},
+						{a: '加油站联系电话', b: 'Xxxxxxxxxxx'},
+						{a: '加油站管理单位', b: '中石化'},
+						{a: '加油岛数量', b: '6个'},
+						// {a: '加油枪数量', b: '36个'},
+						// {a: '可加油', b: '0,92,95,98'},
+						{a: '是否有便利店', b: '是'},
+						/*	{a: '油枪(92)', b: '8个'},
+              {a: '油枪(95)', b: '8个'},
+              {a: '油枪(98)', b: '8个'},
+              {a: '油枪(0)', b: '6个'},
+              {a: '异常油枪', b: '6个'},*/
+					],
+					formData: [
+						{label: '加油站负责人', value: 'XXX'},
+						{label: '加油站联系电话', value: 'Xxxxxxxxxxx'},
+						{label: '加油站管理单位', value: '中石化'},
+						{label: '加油岛数量', value: '6个'},
+						// {label: '加油枪数量', value: '36个'},
+						// {label: '可加油', value: '0,92,95,98'},
+						{label: '是否有便利店', value: '是'},
+						/*{label: '油枪(92)', value: '8个'},
+            {label: '油枪(95)', value: '8个'},
+            {label: '油枪(98)', value: '8个'},
+            {label: '油枪(0)', value: '6个'},
+            {label: '异常油枪', value: '6个'},*/
+					],
+					columns: [
+						{a: '92#', b: '95#', c: '98#', d: '0#', e: '异常', f: '总计'},
+						{a: '8个', b: '8个', c: '8个', d: '6个', e: '6个', f: '36个'},
+					],
+					chartBox: [
+						{
+							barWidth: 20,
+							title: {
+								text: '近半年销售额',
+								x: 'center',
+								textStyle: {
+									color: "#FFF"
+								}
+							},
+							xAxis: {
+								type: 'category',
+								name: '月',
+								data: ['7', '8', '9', '10', '11', '12',],
+								axisPointer: {
+									type: "shadow",
+								},
+								axisTick: {
+									show: false,
+								},
+								axisLabel: {
+									textStyle: {
+										color: "#FFF",
+									},
+								},
+								splitLine: {show: false},
+								axisLine: {
+									lineStyle: {
+										color: "#FFF",
+									},
+								},
+							},
+							grid: {
+								left: 40,
+								top: 40,
+								bottom: 30,
+								right: 50
+							},
+							tooltip: {
+								trigger: "axis",
+								formatter: v => {
+									return v[0].name + '月：' + v[0].value + '万元'
+								}
+							},
+							yAxis: {
+								type: 'value',
+								name: '万元',
+								axisTick: {
+									show: false,
+								},
+								axisLabel: {
+									textStyle: {
+										color: "#FFF",
+									},
+								},
+								splitLine: {show: false},
+								axisLine: {
+									lineStyle: {
+										color: "#FFF",
+									},
+								},
+							},
+							series: [{
+								data: [200, 150, 250, 300, 500, 450,],
+								type: 'bar',
+								itemStyle: {
+									color: '#79f0ea'
+								}
+							}]
+						},
+						{
+							title: {
+								text: '类型占比',
+								x: 'center',
+								textStyle: {
+									color: "#FFF"
+								}
+							},
+							tooltip: {
+								trigger: 'item',
+								formatter: '{b} : {c} ({d}%)'
+							},
+							legend: {
+								data: ['0#', '92#', '95#', '98#', '非油'],
+								bottom: 10,
+								textStyle: {
+									color: "#FFF"
+								}
+							},
+							series: [
+								{
+									name: '访问来源',
+									type: 'pie',
+									radius: '55%',
+									center: ['50%', '50%'],
+									data: [
+										{value: 180, name: '0#'},
+										{value: 250, name: '92#'},
+										{value: 234, name: '95#'},
+										{value: 320, name: '98#'},
+										{value: 50, name: '非油'}
+									],
+									itemStyle: {
+										normal: {
+											color: function (v) {
+												let colorList = [
+													"#76c15c",
+													"#15b3e2",
+													"#2e65fd",
+													"#1fcaa8",
+													"#ee6565",
+													"#fec02a",
+													"#fe3922",
+													"#52fe36",
+													"#fe3afc",
+												];
+												return colorList[v.dataIndex];
+											},
+										},
+									},
+									emphasis: {
+										itemStyle: {
+											shadowBlur: 10,
+											shadowOffsetX: 0,
+											shadowColor: 'rgba(0, 0, 0, 0.5)'
+										}
+									}
+								}
+							]
+						}
+					],
+					style: {
+						width: '50px',
+						height: '25px',
+						top: '146px',
+						left: '190px',
+						background: 'blue'
+					}
+				},
 				map: "",
 				marker: [],
 				mapStyleArr: [
@@ -221,6 +397,8 @@
 						if (arr[0] == "ms") {
 							that.serviceName = i.gisName;
 							that.visible = true;
+						} else if (id[0] === '中石化' || id[0] === '中石油' || id[0] === '交投能源') {
+							that.$refs['more'].openDialog(that.gasDetails);
 						} else {
 							infoWindow.open(v, i.getPosition());
 						}
