@@ -1074,6 +1074,7 @@
 						],
 						formData: [
 							{label: '厕所等级', value: '五星'},
+							{label: '如厕总数', value: '263个'},
 							{label: '保洁人员', value: '4个'},
 							{label: '蹲位数量', value: '114个'},
 							{label: '小便器阀数量', value: '114个'},
@@ -1293,6 +1294,7 @@
 						],
 						formData: [
 							{label: '厕所等级', value: '五星'},
+							{label: '如厕总数', value: '263个'},
 							{label: '保洁人员', value: '4个'},
 							{label: '蹲位数量', value: '114个'},
 							{label: '厕所改造时间', value: '2018年09月'},
