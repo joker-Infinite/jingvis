@@ -154,7 +154,7 @@
 							{label: '所在高速', value: '京港澳高速'},
 							{label: '固定办公人员', value: '5位'},
 							{label: '月均收益', value: '50元/月'},
-							{label: '占地面积', value: '131㎡'},
+							{label: '占地面积', value: '13亩'},
 							{label: '建筑面积', value: '87333.3㎡'},
 							{label: '经营面积', value: '15347.26㎡'},
 							{label: '绿化面积', value: '5689.64㎡'},
