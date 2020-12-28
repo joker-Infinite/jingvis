@@ -344,7 +344,7 @@
 									formatter: '{b} : {c} ({d}%)'
 								},
 								legend: {
-									data: ['0', '92', '95', '98', '非油'],
+									data: ['0#', '92#', '95#', '98#', '非油'],
 									bottom: 10
 								},
 								series: [
@@ -354,10 +354,10 @@
 										radius: '55%',
 										center: ['50%', '50%'],
 										data: [
-											{value: 180, name: '0'},
-											{value: 250, name: '92'},
-											{value: 234, name: '95'},
-											{value: 320, name: '98'},
+											{value: 180, name: '0#'},
+											{value: 250, name: '92#'},
+											{value: 234, name: '95#'},
+											{value: 320, name: '98#'},
 											{value: 50, name: '非油'}
 										],
 										itemStyle: {
@@ -909,70 +909,86 @@
 							},
 							{
 								title: {
-									text: '人数占比',
-									x: 'center',
+									text: '今日各时段男女如厕情况',
+									x: 'center'
 								},
+								barWidth: 10,
 								tooltip: {
-									trigger: 'item',
-									formatter: '{b}: {c} ({d}%)'
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 1) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆'
+										}
+										if (v.length === 2) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆<br>' + v[1].seriesName + '：' + Math.abs(v[1].value) + '辆'
+										}
+									}
 								},
 								legend: {
-									bottom: 0,
 									data: ['男', '女'],
+									bottom: 0
 								},
-								labelLine: {
-									normal: {
-										length: 30,
-										length2: 25,
-										lineStyle: {
-											width: 1,
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										type: 'value',
+										axisLabel: {
+											formatter: v => {
+												return Math.abs(v)
+											}
 										},
-									},
-								},
+										axisTick: {
+											show: false,
+										},
+										// splitLine: {show: false},
+									}
+								],
+								yAxis: [
+									{
+										name: '时',
+										type: 'category',
+										axisTick: {
+											show: false
+										},
+										data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23']
+									}
+								],
 								series: [
 									{
-										type: 'pie',
-										radius: ['50%', '70%'],
-										avoidLabelOverlap: false,
+										name: '男',
+										type: 'bar',
+										stack: '总量',
 										label: {
 											show: true,
-											position: "outer",
-											width: 0,
-											height: 0,
-											lineHeight: 0,
-											backgroundColor: "auto",
-											padding: [2, -2, 2, -2],
-											borderRadius: 2,
-											distanceToLabelLine: 0,
-											normal: {
-												formatter(v) {
-													let text = v.name + "\n" + v.percent + "%";
-													// let text = v.percent + "%";
-													return text;
-												},
-												textStyle: {
-													fontSize: 14,
-												},
+											position: 'left',
+											formatter: v => {
+												return Math.abs(v.value)
 											},
 										},
-										labelLine: {
-											show: true
+										itemStyle: {color: '#379DFB'},
+										data: [-30, -50, -48, -36, -36, -23]
+									},
+									{
+										name: '女',
+										type: 'bar',
+										stack: '总量',
+										label: {
+											show: true,
+											position: 'right',
+											formatter: v => {
+												return Math.abs(v.value)
+											}
 										},
-										itemStyle: {
-											normal: {
-												color: function (v) {
-													let colorList = [
-														"#379DFB",
-														"#fa3b43",
-													];
-													return colorList[v.dataIndex];
-												},
-											},
-										},
-										data: [
-											{value: 3350, name: '男'},
-											{value: 3100, name: '女'},
-										]
+										itemStyle: {color: '#fa3b43'},
+										data: [28, 33, 42, 32, 39, 29]
 									}
 								]
 							}
@@ -1061,70 +1077,86 @@
 							},
 							{
 								title: {
-									text: '人数占比',
-									x: 'center',
+									text: '今日各时段男女如厕情况',
+									x: 'center'
 								},
+								barWidth: 10,
 								tooltip: {
-									trigger: 'item',
-									formatter: '{b}: {c} ({d}%)'
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 1) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆'
+										}
+										if (v.length === 2) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆<br>' + v[1].seriesName + '：' + Math.abs(v[1].value) + '辆'
+										}
+									}
 								},
 								legend: {
-									bottom: 0,
 									data: ['男', '女'],
+									bottom: 0
 								},
-								labelLine: {
-									normal: {
-										length: 30,
-										length2: 25,
-										lineStyle: {
-											width: 1,
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										type: 'value',
+										axisLabel: {
+											formatter: v => {
+												return Math.abs(v)
+											}
 										},
-									},
-								},
+										axisTick: {
+											show: false,
+										},
+										// splitLine: {show: false},
+									}
+								],
+								yAxis: [
+									{
+										name: '时',
+										type: 'category',
+										axisTick: {
+											show: false
+										},
+										data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23']
+									}
+								],
 								series: [
 									{
-										type: 'pie',
-										radius: ['50%', '70%'],
-										avoidLabelOverlap: false,
+										name: '男',
+										type: 'bar',
+										stack: '总量',
 										label: {
 											show: true,
-											position: "outer",
-											width: 0,
-											height: 0,
-											lineHeight: 0,
-											backgroundColor: "auto",
-											padding: [2, -2, 2, -2],
-											borderRadius: 2,
-											distanceToLabelLine: 0,
-											normal: {
-												formatter(v) {
-													let text = v.name + "\n" + v.percent + "%";
-													// let text = v.percent + "%";
-													return text;
-												},
-												textStyle: {
-													fontSize: 14,
-												},
+											position: 'left',
+											formatter: v => {
+												return Math.abs(v.value)
 											},
 										},
-										labelLine: {
-											show: true
+										itemStyle: {color: '#379DFB'},
+										data: [-30, -50, -48, -36, -36, -23]
+									},
+									{
+										name: '女',
+										type: 'bar',
+										stack: '总量',
+										label: {
+											show: true,
+											position: 'right',
+											formatter: v => {
+												return Math.abs(v.value)
+											}
 										},
-										itemStyle: {
-											normal: {
-												color: function (v) {
-													let colorList = [
-														"#379DFB",
-														"#fa3b43",
-													];
-													return colorList[v.dataIndex];
-												},
-											},
-										},
-										data: [
-											{value: 3350, name: '男'},
-											{value: 3100, name: '女'},
-										]
+										itemStyle: {color: '#fa3b43'},
+										data: [28, 33, 42, 32, 39, 29]
 									}
 								]
 							}

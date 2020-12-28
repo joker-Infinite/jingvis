@@ -12,7 +12,7 @@
           </el-col>
           <el-col :span="8">
             <span :style="{display: 'inline-block',fontSize: '15px',fontWeight: '600',color:(imgSize =='small'||location!='homeKanBan')?'#38d': '#f6fe96'}">
-              {{!form.noPingEffect?'坪效：20元/㎡':''}}</span>
+              {{!form.noPingEffect?form.remark?(form.remark.length<10?'坪效：20元/㎡(自营)':form.remark>10&&form.remark<20?'坪效：20元/㎡(合营)':'坪效：20元/㎡(租赁)'):'坪效：20元/㎡(租赁)':''}}</span>
             <span :style="{display: 'inline-block',fontSize: '15px',fontWeight: '600',color:(imgSize =='small'||location!='homeKanBan')?'#38d': '#f6fe96'}">
               {{form.BGQ?'服务区坪效：20元/㎡':''}}</span>
           </el-col>
