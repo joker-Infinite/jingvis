@@ -71,7 +71,7 @@ export default {
       markersData: [],
       markerRefs: [],
       zoom: 8,
-      center: [114.286298, 30.5855],
+      center: [112.34, 31.10],
       expandZoomRange: true,
       markers: [],
       windows: [],
