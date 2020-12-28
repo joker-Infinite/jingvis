@@ -40,10 +40,7 @@
                     v-model="allQuery.selectValue"
                   >
                     <el-option
-                      v-if="
-                        cit.allQueryData.selectOption &&
-                          cit.allQueryData.selectOption[0]
-                      "
+                      v-if="cit.allQueryData.selectOption &&cit.allQueryData.selectOption[0]"
                       v-for="(oi, ox) in cit.allQueryData.selectOption[0]"
                       :value="oi"
                       :key="ox"
@@ -53,11 +50,14 @@
                   <el-date-picker
                     v-model="allQuery.timeValue"
                     v-if="cit.allQueryData.time"
-                    type="monthrange"
                     value-format="yyyy-MM"
                     range-separator="至"
-                    start-placeholder="开始月份"
-                    end-placeholder="结束月份"
+                    align="right"
+                    start-placeholder="开始时间"
+                    end-placeholder="结束时间"
+                    type="daterange"
+                    unlink-panels
+                    :picker-options="pickerOptions"
                   >
                   </el-date-picker>
                   <el-button
@@ -138,11 +138,14 @@
                     <el-date-picker
                       v-if="sit.istime"
                       v-model="query.timeValue"
-                      type="monthrange"
+                      type="daterange"
+                      align="right"
+                      unlink-panels
+                      :picker-options="pickerOptions"
                       value-format="yyyy-MM"
                       range-separator="至"
-                      start-placeholder="开始月份"
-                      end-placeholder="结束月份"
+                      start-placeholder="开始时间"
+                      end-placeholder="结束时间"
                     >
                     </el-date-picker>
                     <el-button
@@ -200,18 +203,21 @@
                   <el-date-picker
                     v-if="sit.time"
                     v-model="query.timeValue"
-                    type="monthrange"
+                    type="daterange"
+                    unlink-panels
+                    align="right"
                     value-format="yyyy-MM"
                     range-separator="至"
-                    start-placeholder="开始月份"
-                    end-placeholder="结束月份"
+                    start-placeholder="开始时间"
+                    end-placeholder="结束时间"
+                    :picker-options="pickerOptions"
                   >
                   </el-date-picker>
                   <el-button
                     icon="el-icon-search"
                     type="primary"
                     v-if="sit.showSearch == 'notShow' ? false : true"
-                    @click="refreshClick(cit, query, cit.year, item.name, sit)"
+                    @click="refreshClick(cit, query, cit.year, item.name, sit,)"
                     >搜索
                   </el-button>
                   <el-button type="primary" v-if="sit.year">年</el-button>
@@ -494,10 +500,38 @@ export default {
     };
   },
   methods: {
+    
     // 下拉框的选择值
     selectData() {
       this.$emit("selectData", this.value);
     },
+    pickerOptions: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
     //传输过来的数据
     isForm(val) {
       let date = val.item;
@@ -615,12 +649,14 @@ export default {
       if (v && v.series) {
         let d = v.series[0].data;
         d.forEach(i => {
-          if (i.value) {
-            mun.push(i.value);
-            num += Number(i.value);
-          } else {
-            mun.push(i);
-            num += Number(i);
+          if(i!=0){
+            if (i.value) {
+              mun.push(i.value);
+              num += Number(i.value);
+            } else {
+              mun.push(i);
+              num += Number(i);
+            }
           }
         });
         obj.max = Math.max(...mun);
@@ -653,14 +689,24 @@ export default {
     },
     // 按钮的节流
     refreshClick(EChartsBox, query, year, name, collapseItem) {
-      this.$emit(
-        "searchQuery",
-        EChartsBox,
-        query,
-        year,
-        name,
-        this.query.inputValue
-      );
+      this.EChartsData_[1].EChartsBox.forEach((element,index) => {
+        if(index==1){
+          element.EChartsItem.forEach((item,indexs) => {
+            console.log(item,999,index,indexs,)
+            this.$echarts.init(document.getElementById(EChartsBox.id+`-${index}`+`-${indexs}`)).dispose();
+            this.$echarts.init(document.getElementById(EChartsBox.id+`-${index}`+`-${indexs}`)).setOption(item.option);
+          });
+        }
+      });
+      console.log(this.EChartsData_)
+      // this.$emit(
+      //   "searchQuery",
+      //   EChartsBox,
+      //   query,
+      //   year,
+      //   name,
+      //   this.query.inputValue
+      // );
     },
     async refresh() {
       let timeID = "";
@@ -896,6 +942,7 @@ export default {
     }
   },
   mounted() {
+    
     // this.refresh()
     this.scrollChange();
     this.collapseData.forEach(i => {

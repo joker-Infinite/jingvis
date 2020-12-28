@@ -202,13 +202,12 @@
             </div>
             <div v-if="it.content === '合同信息'">
               <my-table
-                :isDetails="true"
+                :isDetails="false"
                 height="700px"
                 :isPagination="true"
-                :multiple="false"
+                :multiple="true"
                 :columns="columns"
                 :data="tableData"
-                @selectionChange="selectionChange"
               ></my-table>
             </div>
             <el-form
@@ -366,25 +365,43 @@ export default {
         { prop: "d", label: "合同签署日期" },
         { prop: "e", label: "合同生效日期" },
         { prop: "f", label: "合同结束日期" },
-        { prop: "g", label: "描述" }
+        // { prop: "g", label: "描述" }
       ],
       tableData: [
         {
-          a: "XX麻辣烫",
-          b: "15平方米",
-          c: "5000",
-          d: "2019-1-1",
-          e: "2019-1-1",
-          f: "2029-1-1",
+          a: "KFC",
+          b: "300平方",
+          c: "600万",
+          d: "2018/2/1",
+          e: "2018/4/1",
+          f: "2023/3/1",
           g: "XXXXXXXXXX"
         },
         {
-          a: "XX小吃",
-          b: "15平方米",
-          c: "5000",
-          d: "2019-1-1",
-          e: "2019-1-1",
-          f: "2029-1-1",
+          a: "猫屎咖啡",
+          b: "180平方",
+          c: "200万",
+          d: "2017/4/1",
+          e: "2017/7/1",
+          f: "2022/6/1",
+          g: "XXXXXXXXXX"
+        },
+        {
+          a: "一品荆楚",
+          b: "100平方",
+          c: "180万",
+          d: "2017/8/23",
+          e: "2017/9/23",
+          f: "2022/9/23",
+          g: "XXXXXXXXXX"
+        },
+        {
+          a: "交投中百",
+          b: "63平方",
+          c: "100万",
+          d: "2017/8/12",
+          e: "2018/11/12",
+          f: "2023/10/1",
           g: "XXXXXXXXXX"
         }
       ],
@@ -448,8 +465,8 @@ export default {
         { label: "日高峰期车流量", value: "3500(辆)" },
         { label: "厕所等级", value: "五星" },
         { label: "厕所改造时间", value: "2018.09" },
-        { label: "男女蹲位数量", value: "男:114个，女:126个" },
-        { label: "小便器阀数量", value: "114(个)" },
+        { label: "男女蹲位数量", value: "男:11个，女:12个" },
+        { label: "小便器阀数量", value: "11(个)" },
         { label: "大车位个数", value: "112(个)" },
         { label: "小车位个数", value: "150(个)" },
         { label: "保安人数", value: "18(位)" },
@@ -587,11 +604,7 @@ export default {
         },
         tooltip: {
           trigger: "axis",
-          formatter: function(val) {
-            return (
-              val[0].name + "月" + ":" + val[0].value + "元<br>" + val[1].value
-            );
-          }
+          formatter: "{b}月:营收{c}"
         },
         grid: {
           top: "20%",
@@ -670,7 +683,18 @@ export default {
         series: [
           {
             type: "bar",
-            data: [40, 80, 500, 36, 30, 35, 400, 60, 40, 80, 50, 360],
+            data: [79.28,
+                  127.65,
+                  41.37,
+                  45.262,
+                  48.739,
+                  42.08,
+                  56.318,
+                  64.77,
+                  49.74,
+                  65.700,
+                  42.95,
+                  43.7490],
             barWidth: "16px",
             itemStyle: {
               normal: {
@@ -679,24 +703,6 @@ export default {
               }
             }
           },
-          {
-            data: [40, 80, 500, 36, 30, 35, 400, 60, 40, 80, 50, 360],
-            type: "line",
-            name: "折线图",
-            // symbol: 'none',
-            lineStyle: {
-              color: "#fea2a2",
-              width: 2,
-              shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
-              shadowBlur: 10,
-              shadowOffsetY: 10
-            },
-            areaStyle: {
-              normal: {
-                color: "rgba(0,0,0,0)"
-              }
-            }
-          }
         ]
       };
       let option_s = {

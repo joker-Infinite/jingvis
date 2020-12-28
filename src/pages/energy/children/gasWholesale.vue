@@ -28,8 +28,8 @@ export default {
         {
           id: "gasWholesale",
           name: "批发营收",
-          icon: require("../../../assets/business/icon_1-1.png"),
-          iconActive: require("../../../assets/business/icon_1-2.png"),
+          icon: require("../../../assets/serviceArea/yppf/ys.png"),
+          iconActive: require("../../../assets/serviceArea/yppf/ys1.png"),
           collapseItem: [
             {
               id: "budget_2020",
@@ -172,7 +172,7 @@ export default {
                               85867750.94,
                               25867750.94,
                               15867750.94,
-                              35867750.94
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -257,7 +257,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c}万元 ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: ["#49c7ad", "#ffa55b", "#4a90e2", "#797aff"],
                         series: [
@@ -310,7 +310,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c}万元 ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: [
                           "#FFC371",
@@ -365,7 +365,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c} ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: ["#9e87ff", "#73acff", "#fd8a2d", "#4ecb73"],
                         series: [
@@ -628,7 +628,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c}万元 ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: ["#49c7ad", "#ffa55b", "#4a90e2", "#797aff"],
                         series: [
@@ -681,7 +681,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c}万元 ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: [
                           "#FFC371",
@@ -736,7 +736,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c} ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: ["#9e87ff", "#73acff", "#fd8a2d", "#4ecb73"],
                         series: [
@@ -783,8 +783,8 @@ export default {
         {
           id: "gasWholesale2",
           name: "批发利润",
-          icon: require("../../../assets/business/icon_1-1.png"),
-          iconActive: require("../../../assets/business/icon_1-2.png"),
+          icon: require("../../../assets/serviceArea/yppf/lr.png"),
+          iconActive: require("../../../assets/serviceArea/yppf/lr1.png"),
           collapseItem: [
             {
               id: "gasWholesale2_2020",
@@ -927,7 +927,7 @@ export default {
                               25867750.94,
                               15867750.94,
                               65867750.94,
-                              65867750.94
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -972,7 +972,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c}万元 ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: ["#49c7ad", "#ffa55b", "#4a90e2", "#797aff"],
                         series: [
@@ -1025,7 +1025,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c}万元 ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: [
                           "#FFC371",
@@ -1080,7 +1080,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c} ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: ["#9e87ff", "#73acff", "#fd8a2d", "#4ecb73"],
                         series: [
@@ -1343,7 +1343,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c}万元 ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: ["#49c7ad", "#ffa55b", "#4a90e2", "#797aff"],
                         series: [
@@ -1396,7 +1396,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c}万元 ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: [
                           "#FFC371",
@@ -1451,7 +1451,7 @@ export default {
                         },
                         tooltip: {
                           trigger: "item",
-                          formatter: "{b} : {c} ({d}%)"
+                          formatter: "{b} :<br> {c}万元 ({d}%)"
                         },
                         color: ["#9e87ff", "#73acff", "#fd8a2d", "#4ecb73"],
                         series: [
@@ -1498,17 +1498,19 @@ export default {
         {
           id: "mmm",
           name: "发展趋势",
-          icon: require("../../../assets/business/icon_1-1.png"),
-          iconActive: require("../../../assets/business/icon_1-2.png"),
+          icon: require("../../../assets/serviceArea/yppf/qs.png"),
+          iconActive: require("../../../assets/serviceArea/yppf/qs1.png"),
           collapseItem: [
             {
               id: "mmm_2020",
               year: 2020,
               collapseTitle: "2020年利润",
+              
               EChartsBox: [
                 {
-                  title: "",
+                  title: "成本利润",
                   select: false,
+                  
                   selectNum: 3,
                   selectOption: [
                     ["新能源", "石化", "国储", "荆港嘉瑞"],
@@ -1580,14 +1582,7 @@ export default {
                           icon: "circle",
                           data: ["成本", "利润", "成本费用利润率"]
                         },
-                        color: [
-                          "#73ddff",
-                          "#73acff",
-                          "#fdd56a",
-                          "#fdb36a",
-                          "#fd866a",
-                          "#9e87ff"
-                        ],
+                        color: ["#9e87ff", "#73acff", "#fd8a2d"],
                         series: [
                           {
                             name: "成本",
@@ -1659,7 +1654,7 @@ export default {
               collapseTitle: "2019年利润",
               EChartsBox: [
                 {
-                  title: "",
+                  title: "成本利润",
                   select: false,
                   selectNum: 3,
                   selectOption: [
@@ -1808,8 +1803,8 @@ export default {
         {
           id: "money",
           name: "现金流量",
-          icon: require("../../../assets/business/icon_1-1.png"),
-          iconActive: require("../../../assets/business/icon_1-2.png"),
+          icon: require("../../../assets/serviceArea/yppf/xj.png"),
+          iconActive: require("../../../assets/serviceArea/yppf/xj1.png"),
           collapseItem: [
             {
               id: "money_2020",
@@ -1822,7 +1817,7 @@ export default {
               },
               EChartsBox: [
                 {
-                  title: "月批发利润",
+                  title: "现金流量",
                   istime: false,
                   timeValue: "",
                   style: {
@@ -1850,7 +1845,7 @@ export default {
                               val[0].name +
                               "月" +
                               ":" +
-                              "<br />营收:" +
+                              "<br />金额:" +
                               (val[0].value / 10000).toFixed(2) +
                               "万元"
                             );
@@ -1957,7 +1952,7 @@ export default {
                               25867750.94,
                               15867750.94,
                               65867750.94,
-                              65867750.94
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -2081,7 +2076,7 @@ export default {
               },
               EChartsBox: [
                 {
-                  title: "月批发利润",
+                  title: "现金流量",
                   istime: false,
                   timeValue: "",
                   style: {
@@ -2109,7 +2104,7 @@ export default {
                               val[0].name +
                               "月" +
                               ":" +
-                              "<br />营收:" +
+                              "<br />金额:" +
                               (val[0].value / 10000).toFixed(2) +
                               "万元"
                             );

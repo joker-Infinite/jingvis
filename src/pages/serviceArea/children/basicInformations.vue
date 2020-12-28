@@ -337,8 +337,8 @@ export default {
                   },
                   EChartsItem: [
                     {
-                      serviceName: "大悟服务区",
-                      serviceNamemin: "点军服务区",
+                      serviceName: "刘畈停车区",
+                      serviceNamemin: "郧阳服务区",
                       unit: "亩",
                       /*ECharts的属性*/
                       style: {
@@ -399,18 +399,18 @@ export default {
                         series: [
                           {
                             data: [
-                              600,
-                              610,
-                              740,
-                              750,
-                              780,
-                              900,
-                              890,
-                              910,
-                              950,
-                              950,
-                              1000,
-                              1000
+                              10,
+                              60.56,
+                              150.58,
+                              160.56,
+                              180.54,
+                              180.24,
+                              200.56,
+                              220.64,
+                              220.80,
+                              250.32,
+                              280.56,
+                              283
                             ],
                             type: "line",
 
@@ -454,9 +454,9 @@ export default {
                   },
                   EChartsItem: [
                     {
-                      serviceName: "黄冈服务区",
-                      serviceNamemin: "恩施服务区",
-                      unit: "万㎡",
+                      serviceName: "英山服务区",
+                      serviceNamemin: "咸宁服务区",
+                      unit: "㎡",
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
@@ -515,18 +515,18 @@ export default {
                         series: [
                           {
                             data: [
-                              100,
-                              110,
-                              110,
-                              170,
-                              170,
-                              190,
-                              190,
-                              205,
-                              205,
-                              215,
-                              260,
-                              260
+                              40,
+                              1100,
+                              1100,
+                              1700,
+                              1700,
+                              1900,
+                              1900,
+                              2050,
+                              2050,
+                              2150,
+                              2600,
+                              9953.64
                             ],
                             type: "line",
                             lineStyle: {

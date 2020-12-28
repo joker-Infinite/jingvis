@@ -110,7 +110,7 @@ export default {
             // ">>预算控制",
             ">>基础信息",
             ">>业态结构",
-            ">>营收账款",
+            ">>应收账款",
             ">>供应商", //
             ">>用户评价", //
             ">>服务区片区",
@@ -176,17 +176,17 @@ export default {
             "#4"
           ],
           childMenuItem: [
+            ">>>中化交投",
             ">>>新能源",
             ">>>中石化",
-            ">>>中化交投",
             ">>>国储",
             ">>>高路油站",
             ">>>荆港嘉瑞"
           ],
           childMenuItemUrl: [
+            "/energy/zhongHuaJiaoTou",
             "/energy/xinNengYuan",
             "/energy/zhongShiHua",
-            "/energy/zhongHuaJiaoTou",
             "/energy/guoChu",
             "/energy/gaoLuYouZhan",
             "/energy/jingGangJiaRui"

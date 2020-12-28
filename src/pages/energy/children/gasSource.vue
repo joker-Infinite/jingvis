@@ -636,7 +636,7 @@ export default {
                   time: false,
                   style: {
                     width: "100%",
-                    height: "400px",
+                    height: "800px",
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
@@ -647,7 +647,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "350px"
+                        height: "800px"
                       },
                       option: {
                         color: [
@@ -690,12 +690,58 @@ export default {
                                   color: "#28cad8"
                                 }
                               },
+                              { name: "A公司" },
+                              { name: "92#" },
+                              { name: "95#" },
+                              { name: "98#" },
+                              { name: "0#" },
+                              { name: "92# " },
+                              { name: "95# " },
+                              { name: "98# " },
+                              { name: "0# " },
+                              { name: "B公司" },
+                              { name: "C公司" },
+                              { name: "D公司" },
                               {
                                 name: "直分销"
                               },
+                              { name: "A批发商" },
+                              { name: "B批发商" },
+                              { name: "C批发商" },
+                              { name: "D批发商" },
                               {
                                 name: "零售"
                               },
+                              { name: "汉十高速双沟停车区加油北站" },
+                              { name: "双沟0#" },
+                              { name: "双沟92#" },
+                              { name: "双沟95#" },
+                              { name: "双沟98#" },
+                              { name: "汉十高速枣阳服务区加油南站(新)" },
+                              { name: "枣阳0#" },
+                              { name: "枣阳92#" },
+                              { name: "枣阳95#" },
+                              { name: "枣阳98#" },
+                              { name: "汉十高速随州服务区加油南站" },
+                              { name: "随州0#" },
+                              { name: "随州92#" },
+                              { name: "随州95#" },
+                              { name: "随州98#" },
+                              { name: "沙公高速沙市服务区西站" },
+                              { name: "沙市0#" },
+                              { name: "沙市92#" },
+                              { name: "沙市95#" },
+                              { name: "沙市98#" },
+                              { name: "汉十高速钟岗服务区加油北站" },
+                              { name: "钟岗0#" },
+                              { name: "钟岗92#" },
+                              { name: "钟岗95#" },
+                              { name: "钟岗98#" },
+                              { name: "孝洪高速汉川西服务区加油东站" },
+                              { name: "汉川0#" },
+                              { name: "汉川92#" },
+                              { name: "汉川95#" },
+                              { name: "汉川98#" },
                               {
                                 name: "A供应商"
                               },
@@ -712,24 +758,263 @@ export default {
                               {
                                 source: "B供应商",
                                 target: "库存",
-                                value: 10000
+                                value: 20000
                               },
+
                               {
                                 source: "库存",
                                 target: "贸易",
-                                value: 10000
+                                value: 20000
                               },
+                              {
+                                source: "贸易",
+                                target: "A公司",
+                                value: 17000
+                              },
+                              {
+                                source: "A公司",
+                                target: "92#",
+                                value: 4250
+                              },
+                              {
+                                source: "A公司",
+                                target: "95#",
+                                value: 4250
+                              },
+                              {
+                                source: "A公司",
+                                target: "98#",
+                                value: 4250
+                              },
+                              {
+                                source: "A公司",
+                                target: "0#",
+                                value: 4250
+                              },
+                              {
+                                source: "贸易",
+                                target: "B公司",
+                                value: 1000
+                              },
+                              {
+                                source: "贸易",
+                                target: "C公司",
+                                value: 1000
+                              },
+                              {
+                                source: "贸易",
+                                target: "D公司",
+                                value: 1000
+                              },
+
                               {
                                 source: "库存",
                                 target: "直分销",
-                                value: 10000
+                                value: 20000
                               },
+                              {
+                                source: "直分销",
+                                target: "A批发商",
+                                value: 17000
+                              },
+                              {
+                                source: "A批发商",
+                                target: "0# ",
+                                value: 4250
+                              },
+                              {
+                                source: "A批发商",
+                                target: "92# ",
+                                value: 4250
+                              },
+                              {
+                                source: "A批发商",
+                                target: "95# ",
+                                value: 4250
+                              },
+                              {
+                                source: "A批发商",
+                                target: "98# ",
+                                value: 4250
+                              },
+                              {
+                                source: "直分销",
+                                target: "B批发商",
+                                value: 1000
+                              },
+                              {
+                                source: "直分销",
+                                target: "C批发商",
+                                value: 1000
+                              },
+                              {
+                                source: "直分销",
+                                target: "D批发商",
+                                value: 1000
+                              },
+
                               {
                                 source: "库存",
                                 target: "零售",
-                                value: 10000
+                                value: 20000
+                              },
+                              {
+                                source: "零售",
+                                target: "汉十高速双沟停车区加油北站",
+                                value: 3333
+                              },
+                              {
+                                source: "汉十高速双沟停车区加油北站",
+                                target: "双沟0#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速双沟停车区加油北站",
+                                target: "双沟92#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速双沟停车区加油北站",
+                                target: "双沟95#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速双沟停车区加油北站",
+                                target: "双沟98#",
+                                value: 833
+                              },
+
+                              {
+                                source: "零售",
+                                target: "汉十高速枣阳服务区加油南站(新)",
+                                value: 3333
+                              },
+                              {
+                                source: "汉十高速枣阳服务区加油南站(新)",
+                                target: "枣阳0#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速枣阳服务区加油南站(新)",
+                                target: "枣阳92#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速枣阳服务区加油南站(新)",
+                                target: "枣阳95#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速枣阳服务区加油南站(新)",
+                                target: "枣阳98#",
+                                value: 833
+                              },
+                              {
+                                source: "零售",
+                                target: "汉十高速随州服务区加油南站",
+                                value: 3333
+                              },
+                              {
+                                source: "汉十高速随州服务区加油南站",
+                                target: "随州0#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速随州服务区加油南站",
+                                target: "随州92#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速随州服务区加油南站",
+                                target: "随州95#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速随州服务区加油南站",
+                                target: "随州98#",
+                                value: 833
+                              },
+                              {
+                                source: "零售",
+                                target: "沙公高速沙市服务区西站",
+                                value: 3333
+                              },
+                              {
+                                source: "沙公高速沙市服务区西站",
+                                target: "沙市0#",
+                                value: 833
+                              },
+                              {
+                                source: "沙公高速沙市服务区西站",
+                                target: "沙市92#",
+                                value: 833
+                              },
+                              {
+                                source: "沙公高速沙市服务区西站",
+                                target: "沙市95#",
+                                value: 833
+                              },
+                              {
+                                source: "沙公高速沙市服务区西站",
+                                target: "沙市98#",
+                                value: 833
+                              },
+
+                              {
+                                source: "零售",
+                                target: "汉十高速钟岗服务区加油北站",
+                                value: 3333
+                              },
+                              {
+                                source: "汉十高速钟岗服务区加油北站",
+                                target: "钟岗0#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速钟岗服务区加油北站",
+                                target: "钟岗92#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速钟岗服务区加油北站",
+                                target: "钟岗95#",
+                                value: 833
+                              },
+                              {
+                                source: "汉十高速钟岗服务区加油北站",
+                                target: "钟岗98#",
+                                value: 833
+                              },
+
+                              {
+                                source: "零售",
+                                target: "孝洪高速汉川西服务区加油东站",
+                                value: 3333
+                              },
+                              {
+                                source: "孝洪高速汉川西服务区加油东站",
+                                target: "汉川0#",
+                                value: 833
+                              },
+                              {
+                                source: "孝洪高速汉川西服务区加油东站",
+                                target: "汉川92#",
+                                value: 833
+                              },
+                              {
+                                source: "孝洪高速汉川西服务区加油东站",
+                                target: "汉川95#",
+                                value: 833
+                              },
+                              {
+                                source: "孝洪高速汉川西服务区加油东站",
+                                target: "汉川98#",
+                                value: 833
                               }
                             ],
+                            // nodeWidth:'30',
+                            nodeAlign: "left",
+                            draggable: true,
                             label: {
                               position: "left"
                             },
@@ -828,11 +1113,11 @@ export default {
                               "#7f6aad"
                             ],
                             data: [
-                              { value: 535, name: "A进货商" },
-                              { value: 610, name: "B进货商" },
-                              { value: 334, name: "C进货商" },
-                              { value: 635, name: "D进货商" },
-                              { value: 548, name: "E进货商" }
+                              { value: 335, name: "A进货商" },
+                              { value: 310, name: "B进货商" },
+                              { value: 234, name: "C进货商" },
+                              { value: 135, name: "D进货商" },
+                              { value: 1548, name: "E进货商" }
                             ]
                           }
                         ]
@@ -925,9 +1210,9 @@ export default {
                               }
                             },
                             data: [
-                              { value: 1335, name: "贸易" },
-                              { value: 3010, name: "直分销" },
-                              { value: 2304, name: "零售" }
+                              { value: 335, name: "贸易" },
+                              { value: 310, name: "直分销" },
+                              { value: 234, name: "零售" }
                             ]
                           }
                         ]

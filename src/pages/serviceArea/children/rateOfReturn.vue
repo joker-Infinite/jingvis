@@ -172,8 +172,8 @@ export default {
                     }
                   ]
                 },
-                {
-                  title: "回款率排行",
+                 {
+                  title: "回款金额排行",
                   time: false,
                   timeValue: "",
                   style: {
@@ -192,144 +192,64 @@ export default {
                         height: "300px"
                       },
                       option: {
-                        title: {
-                          text: "",
-                          top: 10,
-                          left: 20
-                        },
                         tooltip: {
                           trigger: "axis",
-                          formatter: function(val) {
-                            return (
-                              val[0].name +
-                              ":" +
-                              val[0].value +
-                              "万元" +
-                              "<br>" +
-                              val[1].value +
-                              "万元" +
-                              "<br>" +
-                              "执行率:" +
-                              val[2].value +
-                              "%"
-                            );
-                          }
+                          axisPointer: {
+                            type: "shadow"
+                          },
+                          formatter: "{b}<br>金额:{c}万元"
                         },
                         grid: {
                           left: "3%",
-                          right: "4%",
-                          bottom: "3%",
-                          top: "13%",
+                          right: "10%",
+                          bottom: "10%",
+                          top:'10%',
                           containLabel: true
                         },
                         xAxis: {
                           type: "value",
-                          splitLine: {
-                            show: false
+                          name: "万元",
+                          nameTextStyle: {
+                            color: "#000"
                           },
-                          axisTick: {
-                            show: false
-                          },
-                          axisLine: {
-                            show: false
-                          },
-                          axisLabel: {
-                            show: false
-                          }
+                          boundaryGap: [0, 0.01]
                         },
+
                         yAxis: {
                           type: "category",
+                          axisLine: { show: false },
+                          axisLabel: { show: false },
+                          axisTick: { show: false },
+                          splitLine: { show: false },
                           data: [
-                            "A供应商",
-                            "B供应商",
-                            "C供应商",
-                            "D供应商",
-                            "E供应商",
-                            "F供应商"
-                          ],
-                          splitLine: {
-                            show: false
-                          },
-                          axisTick: {
-                            show: false
-                          },
-                          axisLine: {
-                            show: false
-                          }
+                            "湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部",
+                            "应收稻谷款(加工厂)",
+                            "应收大米款（加工厂）",
+                            "茂名市金瑞粮油贸易有限公司",
+                            "湖北省羊肚菌农业科技有限公司"
+                          ]
                         },
                         series: [
                           {
-                            name: "A门店",
                             type: "bar",
-                            stack: "总量",
-                            barWidth: 20,
-                            itemStyle: {
-                              normal: {
-                                color: "#379DFB",
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
-                            },
                             label: {
-                              normal: {
-                                show: false,
-                                color: "#fff",
-                                position: "insideRight"
-                              }
+                              show: true,
+                              position: "insideLeft",
+                              color: "#000",
+                              formatter: "{b}"
                             },
-                            z: 10,
-                            data: [0.0, 2.5, 3.41, 8.16, 52.36, 86.64]
-                          },
-                          {
-                            name: "B门店",
-                            type: "bar",
-                            stack: "总量",
+                            data: (function(){
+                              let data=[29348333.33, 33032530.21, 35496337.3, 49985731.14, 87860562.51];
+                              let datas = []
+                              data.forEach(element => {
+                                datas.push((element/10000).toFixed(2))
+                              });
+                              console.log(datas)
+                              return datas
+                            })(),
                             itemStyle: {
-                              normal: {
-                                color: "#dfe5f1",
-                                shadowBlur: [0, 0, 0, 10],
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
-                            },
-                            label: {
-                              normal: {
-                                show: false,
-                                color: "#000",
-                                position: "insideRight"
-                              }
-                            },
-                            z: 5,
-                            data: [0.0, 1.11, 2.17, 1.05, 28.26, 60.99]
-                          },
-                          {
-                            name: "B门店",
-                            type: "bar",
-                            stack: "总量",
-                            itemStyle: {
-                              normal: {
-                                color: "rgba(237,125,49, 0)",
-                                shadowBlur: [0, 0, 0, 10],
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
-                            },
-                            label: {
-                              normal: {
-                                color: "red",
-                                show: true,
-                                position: [10, 5],
-                                formatter: function(params) {
-                                  return params.value + "%";
-                                }
-                              }
-                            },
-                            z: 5,
-                            data: [
-                              "0",
-                              "44.40",
-                              "63.78",
-                              "12.90",
-                              "53.97",
-                              "70.40"
-                            ]
+                              color: "#38d"
+                            }
                           }
                         ]
                       }
@@ -337,7 +257,7 @@ export default {
                   ]
                 },
                 {
-                  title: "欠款超期",
+                  title: "回款超期",
                   style: {
                     width: "33%",
                     height: "350px",
@@ -360,11 +280,12 @@ export default {
                       columns: [
                         {
                           prop: "A",
-                          label: "供应商"
+                          label: "供应商",
+                          width:'220'
                         },
                         {
                           prop: "B",
-                          label: "还款时间"
+                          label: "回款时间"
                         },
                         {
                           prop: "C",
@@ -372,34 +293,42 @@ export default {
                         },
                         {
                           prop: "D",
-                          label: "金额"
+                          label: "金额(元)",
+                          width:'120'
                         }
                       ],
                       tableData: [
                         {
-                          A: "A",
-                          B: "/",
-                          C: "/",
-                          D: "/"
+                          A: "应收大米款（加工厂）",
+                          B: "2020-9-4",
+                          C: '21天',
+                          D: "35496337.3"
                         },
                         {
-                          A: "B",
-                          B: "/",
-                          C: "/",
-                          D: "/"
+                          A: "茂名市金瑞粮油贸易有限公司",
+                          B: "2020-9-3",
+                          C: "20天",
+                          D: "49985731.14"
                         },
                         {
-                          A: "C",
-                          B: "/",
-                          C: "/",
-                          D: "/"
+                          A: "湖北省羊肚菌农业科技有限公司",
+                          B: "2020-9-5",
+                          C:'15天',
+                          D: "87860562.51"
                         },
+                        // {
+                        //   A: "湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部",
+                        //   B: "2020-9-3",
+                        //   C: "12天",
+                        //   D: "29348333.33"
+                        // },
                         {
-                          A: "D",
-                          B: "/",
-                          C: "/",
-                          D: "/"
-                        }
+                          A: "应收稻谷款(加工厂)",
+                          B: "2020-9-2",
+                          C: '10天',
+                          D: "33032530.21"
+                        },
+                        
                       ]
                     }
                   ]
@@ -928,7 +857,7 @@ export default {
                   ]
                 },
                 {
-                  title: "回款率排行",
+                  title: "回款金额排行",
                   time: false,
                   timeValue: "",
                   style: {
@@ -947,144 +876,64 @@ export default {
                         height: "300px"
                       },
                       option: {
-                        title: {
-                          text: "",
-                          top: 10,
-                          left: 20
-                        },
                         tooltip: {
                           trigger: "axis",
-                          formatter: function(val) {
-                            return (
-                              val[0].name +
-                              ":" +
-                              val[0].value +
-                              "万元" +
-                              "<br>" +
-                              val[1].value +
-                              "万元" +
-                              "<br>" +
-                              "执行率:" +
-                              val[2].value +
-                              "%"
-                            );
-                          }
+                          axisPointer: {
+                            type: "shadow"
+                          },
+                          formatter: "{b}<br>金额:{c}万元"
                         },
                         grid: {
                           left: "3%",
-                          right: "4%",
-                          bottom: "3%",
-                          top: "13%",
+                          right: "10%",
+                          bottom: "10%",
+                          top:'10%',
                           containLabel: true
                         },
                         xAxis: {
                           type: "value",
-                          splitLine: {
-                            show: false
+                          name: "万元",
+                          nameTextStyle: {
+                            color: "#000"
                           },
-                          axisTick: {
-                            show: false
-                          },
-                          axisLine: {
-                            show: false
-                          },
-                          axisLabel: {
-                            show: false
-                          }
+                          boundaryGap: [0, 0.01]
                         },
+
                         yAxis: {
                           type: "category",
+                          axisLine: { show: false },
+                          axisLabel: { show: false },
+                          axisTick: { show: false },
+                          splitLine: { show: false },
                           data: [
-                            "A供应商",
-                            "B供应商",
-                            "C供应商",
-                            "D供应商",
-                            "E供应商",
-                            "F供应商"
-                          ],
-                          splitLine: {
-                            show: false
-                          },
-                          axisTick: {
-                            show: false
-                          },
-                          axisLine: {
-                            show: false
-                          }
+                            "湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部",
+                            "应收稻谷款(加工厂)",
+                            "应收大米款（加工厂）",
+                            "茂名市金瑞粮油贸易有限公司",
+                            "湖北省羊肚菌农业科技有限公司"
+                          ]
                         },
                         series: [
                           {
-                            name: "A门店",
                             type: "bar",
-                            stack: "总量",
-                            barWidth: 20,
-                            itemStyle: {
-                              normal: {
-                                color: "#379DFB",
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
-                            },
                             label: {
-                              normal: {
-                                show: false,
-                                color: "#fff",
-                                position: "insideRight"
-                              }
+                              show: true,
+                              position: "insideLeft",
+                              color: "#000",
+                              formatter: "{b}"
                             },
-                            z: 10,
-                            data: [0.0, 2.5, 3.41, 8.16, 52.36, 86.64]
-                          },
-                          {
-                            name: "B门店",
-                            type: "bar",
-                            stack: "总量",
+                            data: (function(){
+                              let data=[29348333.33, 33032530.21, 35496337.3, 49985731.14, 87860562.51];
+                              let datas = []
+                              data.forEach(element => {
+                                datas.push((element/10000).toFixed(2))
+                              });
+                              console.log(datas)
+                              return datas
+                            })(),
                             itemStyle: {
-                              normal: {
-                                color: "#dfe5f1",
-                                shadowBlur: [0, 0, 0, 10],
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
-                            },
-                            label: {
-                              normal: {
-                                show: false,
-                                color: "#000",
-                                position: "insideRight"
-                              }
-                            },
-                            z: 5,
-                            data: [0.0, 1.11, 2.17, 1.05, 28.26, 60.99]
-                          },
-                          {
-                            name: "B门店",
-                            type: "bar",
-                            stack: "总量",
-                            itemStyle: {
-                              normal: {
-                                color: "rgba(237,125,49, 0)",
-                                shadowBlur: [0, 0, 0, 10],
-                                barBorderRadius: [5, 5, 5, 5]
-                              }
-                            },
-                            label: {
-                              normal: {
-                                color: "red",
-                                show: true,
-                                position: [10, 5],
-                                formatter: function(params) {
-                                  return params.value + "%";
-                                }
-                              }
-                            },
-                            z: 5,
-                            data: [
-                              "0",
-                              "44.40",
-                              "63.78",
-                              "12.90",
-                              "53.97",
-                              "70.40"
-                            ]
+                              color: "#38d"
+                            }
                           }
                         ]
                       }
@@ -1092,7 +941,7 @@ export default {
                   ]
                 },
                 {
-                  title: "欠款超期",
+                  title: "回款超期",
                   style: {
                     width: "33%",
                     height: "350px",
@@ -1115,11 +964,12 @@ export default {
                       columns: [
                         {
                           prop: "A",
-                          label: "供应商"
+                          label: "供应商",
+                          width:'220'
                         },
                         {
                           prop: "B",
-                          label: "还款时间"
+                          label: "回款时间"
                         },
                         {
                           prop: "C",
@@ -1127,34 +977,42 @@ export default {
                         },
                         {
                           prop: "D",
-                          label: "金额"
+                          label: "金额(元)",
+                          width:'120'
                         }
                       ],
                       tableData: [
                         {
-                          A: "A",
-                          B: "/",
-                          C: "/",
-                          D: "/"
+                          A: "应收大米款（加工厂）",
+                          B: "2020-9-4",
+                          C: '21天',
+                          D: "35496337.3"
                         },
                         {
-                          A: "B",
-                          B: "/",
-                          C: "/",
-                          D: "/"
+                          A: "茂名市金瑞粮油贸易有限公司",
+                          B: "2020-9-3",
+                          C: "20天",
+                          D: "49985731.14"
                         },
                         {
-                          A: "C",
-                          B: "/",
-                          C: "/",
-                          D: "/"
+                          A: "湖北省羊肚菌农业科技有限公司",
+                          B: "2020-9-5",
+                          C:'15天',
+                          D: "87860562.51"
                         },
+                        // {
+                        //   A: "湖北长江路桥股份有限公司枣潜高速公路第七标段项目经理部",
+                        //   B: "2020-9-3",
+                        //   C: "12天",
+                        //   D: "29348333.33"
+                        // },
                         {
-                          A: "D",
-                          B: "/",
-                          C: "/",
-                          D: "/"
-                        }
+                          A: "应收稻谷款(加工厂)",
+                          B: "2020-9-2",
+                          C: '10天',
+                          D: "33032530.21"
+                        },
+                        
                       ]
                     }
                   ]

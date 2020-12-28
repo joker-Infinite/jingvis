@@ -171,7 +171,7 @@ export default {
                               25867750.94,
                               95867750.94,
                               55867750.94,
-                              45867750.94
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -785,13 +785,13 @@ export default {
               EChartsBox: [
                 {
                   title:
-                    '<span style="float: left">预算项目列表</span><span style="float: right ;text-shadow:none;height: 100%;text-align: right;padding-right: 20px;font-weight:100;">2020年 执行金额:160亿元 预算金额:200亿元 总执行度:80%</span>',
+                    '<span style="float: left">预算项目列表</span><span style="float: right ;text-shadow:none;height: 100%;text-align: right;padding-right: 20px;font-weight:100;">2020年 执行金额:3478万元 预算金额:5432万元 总执行度:64%</span>',
                   input: true,
                   select: true,
                   selectOption: [[2015, 2016, 2017, 2018]],
                   style: {
                     width: "100%",
-                    height: "600px",
+                    height: "650px",
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
@@ -801,25 +801,27 @@ export default {
                     {
                       style: {
                         width: "100%",
-                        height: "600px"
+                        height: "650px"
                       },
                       isPagination: true,
-                      height: "630px",
+                      height: "660px",
                       type: "table",
                       columns: [
                         { prop: "a", label: "预算项目" },
                         { prop: "b", label: "预算金额（元）" },
                         { prop: "c", label: "执行金额（元）" },
-                        { prop: "d", label: "执行速度" },
+                        { prop: "d", label: "执行进度" },
                         { prop: "e", label: "时间偏离度（执行进度-时间进度）" },
                         { prop: "f", label: "年份" }
                       ],
                       tableData: [
-                        { a: "/", b: "/", c: "/", d: "/", e: "/", f: "/" },
-                        { a: "/", b: "/", c: "/", d: "/", e: "/", f: "/" },
-                        { a: "/", b: "/", c: "/", d: "/", e: "/", f: "/" },
-                        { a: "/", b: "/", c: "/", d: "/", e: "/", f: "/" },
-                        { a: "/", b: "/", c: "/", d: "/", e: "/", f: "/" }
+                        { a: "零售业务", b: "2041.55", c: "3894.80", d: "74.88%", e: "22.46%", f: "2020" },
+                        { a: "批发业务", b: "3015.05", c: "4202.41", d: "102.49%", e: "30.75%", f: "2020" },
+                        { a: "经营租赁", b: "557.37", c: "927.39", d: "85.86%", e: "25.76%", f: "2020" },
+                        { a: "开办费", b: "313.77", c: "552.44", d: "81.14%", e: "24.34%", f: "2020" },
+                        { a: "物业费收入", b: "548.56", c: "1091.13", d: "71.82%", e: "21.55%", f: "2020" },
+                        { a: "自动售货机", b: "193.30", c: "332.17", d: "83.11%", e: "24.93%", f: "2020" },
+                        { a: "公益补助", b: "260.93", c: "430.15", d: "92.46%", e: "27.74%", f: "2020" },
                       ]
                     }
                   ]
@@ -862,7 +864,7 @@ export default {
                         },
                         series: [
                           {
-                            data: [12, 20, 15, 80, 70, 11],
+                            data: [3.1, 2.2, 2.6, 8.5, 7.4, 2.9],
                             type: "line",
                             itemStyle: {
                               color: "#38d"

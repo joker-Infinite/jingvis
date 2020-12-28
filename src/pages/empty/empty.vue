@@ -4,7 +4,7 @@
       <img
         src="http://www.hbjtsy.com/themes/simpleboot3_web/public/web/images/index/logo.png"
       />
-      能源线路正在挖掘
+      数据正在挖掘中
     </div>
   </div>
 </template>

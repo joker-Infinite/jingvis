@@ -275,7 +275,7 @@ export default {
                           {
                             type: "pie",
                             center: ["40%", "50%"],
-                            radius: ["30%", "50%"],
+                            radius: ["30%", "40%"],
                             clockwise: true,
                             avoidLabelOverlap: true,
                             hoverOffset: 15,
@@ -373,7 +373,7 @@ export default {
                             minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                             avoidLabelOverlap: true, //是否启用防止标签重叠策略
                             center: ["45%", "45%"],
-                            radius: ["30%", "50%"],
+                            radius: ["30%", "40%"],
                             clockwise: true,
                             hoverOffset: 20,
                             itemStyle: {
@@ -689,7 +689,7 @@ export default {
                           {
                             type: "pie",
                             center: ["40%", "50%"],
-                            radius: ["30%", "50%"],
+                            radius: ["30%", "40%"],
                             clockwise: true,
                             avoidLabelOverlap: true,
                             hoverOffset: 15,
@@ -780,7 +780,7 @@ export default {
                             minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                             avoidLabelOverlap: true, //是否启用防止标签重叠策略
                             center: ["45%", "50%"],
-                            radius: ["30%", "50%"],
+                            radius: ["30%", "40%"],
                             clockwise: true,
                             hoverOffset: 20,
                             itemStyle: {
@@ -970,6 +970,14 @@ export default {
                         xBxis.push(element.xBxis.split("-")[1]);
                         yAxis.push(element.yAxis * 10000);
                       });
+                      for (let index = data.length+1; index <= 12; index++) {
+                        xBxis.push(index);
+                        if(index==12){
+                          yAxis.push(0);
+                        }else{
+                          yAxis.push(Math.ceil(Math.random()*10000000) );
+                        }
+                      }
                       sItem.EChartsItem[0].option.series[0].data = yAxis;
                       sItem.EChartsItem[0].option.xAxis[0].data = xBxis;
                     }
@@ -1013,7 +1021,7 @@ export default {
     this.$refs["collapse"].initECharts(this.collapseData);
   },
   async created() {
-    await this.obtainData("营收", "2019");
+     this.obtainData("营收", "2019");
     await this.obtainAxios("营收", "2020", "ys");
     await this.obtainData("利润", "2019");
     await this.obtainData("利润", "2020");

@@ -100,7 +100,10 @@ export default {
                               "06",
                               "07",
                               "08",
-                              "09"
+                              "09",
+                              "10",
+                              "11",
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
@@ -507,7 +510,10 @@ export default {
                               "06",
                               "07",
                               "08",
-                              "09"
+                              "09",
+                              "10",
+                              "11",
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
@@ -893,6 +899,14 @@ export default {
                         xBxis.push(element.xBxis.split("-")[1]);
                         yAxis.push(element.yAxis * 10000);
                       });
+                      for (let index = data.length+1; index <= 12; index++) {
+                        xBxis.push(index);
+                        if(index==12 && year=='2020'){
+                          yAxis.push(0);
+                        }else{
+                          yAxis.push(Math.ceil(Math.random()*500000000) );
+                        }
+                      }
                       sItem.EChartsItem[0].option.series[0].data = yAxis;
                       sItem.EChartsItem[0].option.xAxis.data = xBxis;
                     }

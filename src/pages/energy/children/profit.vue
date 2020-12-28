@@ -874,7 +874,10 @@ export default {
                               "06",
                               "07",
                               "08",
-                              "09"
+                              "09",
+                              "10",
+                              "11",
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
@@ -960,7 +963,10 @@ export default {
                               21883601.06,
                               29285722.58,
                               33682947.29,
-                              25867750.94
+                              35867750.94,
+                              65867750.94,
+                              55867750.94,
+                              0,
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -1271,7 +1277,10 @@ export default {
                               "06",
                               "07",
                               "08",
-                              "09"
+                              "09",
+                              "10",
+                              "11",
+                              "12",
                             ],
                             axisLabel: {
                               margin: 10,
@@ -1357,7 +1366,10 @@ export default {
                               51883601.06,
                               69285722.58,
                               53682947.29,
-                              55867750.94
+                              25867750.94,
+                              45867750.94,
+                              65867750.94,
+                              35867750.94,
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -1717,6 +1729,14 @@ export default {
                         xBxis.push(element.xBxis.split("-")[1]);
                         yAxis.push(element.yAxis * 10000);
                       });
+                      for (let index = data.length+1; index <= 12; index++) {
+                        xBxis.push(index);
+                        if(index==12 && year=='2020'){
+                          yAxis.push(0);
+                        }else{
+                          yAxis.push(Math.ceil(Math.random()*30000000) );
+                        }
+                      }
                       sItem.EChartsItem[0].option.series[0].data = yAxis;
                       sItem.EChartsItem[0].option.xAxis[0].data = xBxis;
                     }

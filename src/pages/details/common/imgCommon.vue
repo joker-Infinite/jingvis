@@ -27,6 +27,9 @@ export default {
     return {
       ListImg: [
         {
+          img: require("../../../assets/imgCommon/background4.jpg")
+        },
+        {
           img: require("../../../assets/imgCommon/background1.jpg")
         },
         {
@@ -35,9 +38,7 @@ export default {
         {
           img: require("../../../assets/imgCommon/background3.jpg")
         },
-        {
-          img: require("../../../assets/imgCommon/background4.jpg")
-        }
+        
       ]
     };
   }
