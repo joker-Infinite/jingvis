@@ -266,7 +266,7 @@ export default {
                   ]
                 },
 
-               {
+                {
                   title: "占地面积",
                   style: {
                     cursor: "pointer",
@@ -349,7 +349,7 @@ export default {
                               180.24,
                               200.56,
                               220.64,
-                              220.80,
+                              220.8,
                               250.32,
                               280.56,
                               283
@@ -1789,7 +1789,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -1878,7 +1878,7 @@ export default {
                               35867750.94,
                               65867750.94,
                               55867750.94,
-                              0,
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -2228,7 +2228,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -2317,7 +2317,7 @@ export default {
                               35867750.94,
                               65867750.94,
                               55867750.94,
-                              65867750.94,
+                              65867750.94
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -2680,7 +2680,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -2769,7 +2769,7 @@ export default {
                               35867750.94,
                               65867750.94,
                               55867750.94,
-                              0,
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -3119,7 +3119,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -3208,7 +3208,7 @@ export default {
                               35867750.94,
                               65867750.94,
                               55867750.94,
-                              0,
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -5552,7 +5552,7 @@ export default {
                     }
                   ]
                 },
-                 {
+                {
                   title: "回款金额排行",
                   time: false,
                   timeValue: "",
@@ -5583,7 +5583,7 @@ export default {
                           left: "3%",
                           right: "10%",
                           bottom: "10%",
-                          top:'10%',
+                          top: "10%",
                           containLabel: true
                         },
                         xAxis: {
@@ -5618,14 +5618,20 @@ export default {
                               color: "#000",
                               formatter: "{b}"
                             },
-                            data: (function(){
-                              let data=[29348333.33, 33032530.21, 35496337.3, 49985731.14, 87860562.51];
-                              let datas = []
+                            data: (function() {
+                              let data = [
+                                29348333.33,
+                                33032530.21,
+                                35496337.3,
+                                49985731.14,
+                                87860562.51
+                              ];
+                              let datas = [];
                               data.forEach(element => {
-                                datas.push((element/10000).toFixed(2))
+                                datas.push((element / 10000).toFixed(2));
                               });
-                              console.log(datas)
-                              return datas
+                              console.log(datas);
+                              return datas;
                             })(),
                             itemStyle: {
                               color: "#38d"
@@ -5661,7 +5667,7 @@ export default {
                         {
                           prop: "A",
                           label: "供应商",
-                          width:'220'
+                          width: "220"
                         },
                         {
                           prop: "B",
@@ -5674,14 +5680,14 @@ export default {
                         {
                           prop: "D",
                           label: "金额(元)",
-                          width:'120'
+                          width: "120"
                         }
                       ],
                       tableData: [
                         {
                           A: "应收大米款（加工厂）",
                           B: "2020-9-4",
-                          C: '21天',
+                          C: "21天",
                           D: "35496337.3"
                         },
                         {
@@ -5693,7 +5699,7 @@ export default {
                         {
                           A: "湖北省羊肚菌农业科技有限公司",
                           B: "2020-9-5",
-                          C:'15天',
+                          C: "15天",
                           D: "87860562.51"
                         },
                         // {
@@ -5705,10 +5711,9 @@ export default {
                         {
                           A: "应收稻谷款(加工厂)",
                           B: "2020-9-2",
-                          C: '10天',
+                          C: "10天",
                           D: "33032530.21"
-                        },
-                        
+                        }
                       ]
                     }
                   ]
@@ -6267,7 +6272,7 @@ export default {
                           left: "3%",
                           right: "10%",
                           bottom: "10%",
-                          top:'10%',
+                          top: "10%",
                           containLabel: true
                         },
                         xAxis: {
@@ -6302,14 +6307,20 @@ export default {
                               color: "#000",
                               formatter: "{b}"
                             },
-                            data: (function(){
-                              let data=[29348333.33, 33032530.21, 35496337.3, 49985731.14, 87860562.51];
-                              let datas = []
+                            data: (function() {
+                              let data = [
+                                29348333.33,
+                                33032530.21,
+                                35496337.3,
+                                49985731.14,
+                                87860562.51
+                              ];
+                              let datas = [];
                               data.forEach(element => {
-                                datas.push((element/10000).toFixed(2))
+                                datas.push((element / 10000).toFixed(2));
                               });
-                              console.log(datas)
-                              return datas
+                              console.log(datas);
+                              return datas;
                             })(),
                             itemStyle: {
                               color: "#38d"
@@ -6345,7 +6356,7 @@ export default {
                         {
                           prop: "A",
                           label: "供应商",
-                          width:'220'
+                          width: "220"
                         },
                         {
                           prop: "B",
@@ -6358,14 +6369,14 @@ export default {
                         {
                           prop: "D",
                           label: "金额(元)",
-                          width:'120'
+                          width: "120"
                         }
                       ],
                       tableData: [
                         {
                           A: "应收大米款（加工厂）",
                           B: "2020-9-4",
-                          C: '21天',
+                          C: "21天",
                           D: "35496337.3"
                         },
                         {
@@ -6377,7 +6388,7 @@ export default {
                         {
                           A: "湖北省羊肚菌农业科技有限公司",
                           B: "2020-9-5",
-                          C:'15天',
+                          C: "15天",
                           D: "87860562.51"
                         },
                         // {
@@ -6389,10 +6400,9 @@ export default {
                         {
                           A: "应收稻谷款(加工厂)",
                           B: "2020-9-2",
-                          C: '10天',
+                          C: "10天",
                           D: "33032530.21"
-                        },
-                        
+                        }
                       ]
                     }
                   ]
@@ -6818,7 +6828,7 @@ export default {
       await this.TableDatas(1, 5);
       // await this.obtainData(name, year);
     },
-   async obtainData(name, year) {
+    async obtainData(name, year) {
       let data = [];
       let id = "";
       this.ValueData.timeValue === null &&
@@ -6926,7 +6936,8 @@ export default {
           });
           this.totalCount = res.data.total;
         });
-    },async obtainAxios(name, year, years) {
+    },
+    async obtainAxios(name, year, years) {
       let data = [];
       let id = "";
       await this.$axios
@@ -6950,12 +6961,12 @@ export default {
                         xBxis.push(element.xBxis.split("-")[1]);
                         yAxis.push(element.yAxis * 10000);
                       });
-                      for (let index = data.length+1; index <= 12; index++) {
+                      for (let index = data.length + 1; index <= 12; index++) {
                         xBxis.push(index);
-                        if(index==12){
+                        if (index == 12) {
                           yAxis.push(0);
-                        }else{
-                          yAxis.push(Math.ceil(Math.random()*10000000) );
+                        } else {
+                          yAxis.push(Math.ceil(Math.random() * 10000000));
                         }
                       }
                       sItem.EChartsItem[0].option.series[0].data = yAxis;
@@ -6992,7 +7003,7 @@ export default {
       // })
     },
     async TableDatas(pageNum, pageSize) {
-      console.log(4564654)
+      console.log(4564654);
       this.$axios
         .get("/api/jtService/serve_list", {
           params: {
@@ -7003,7 +7014,6 @@ export default {
           }
         })
         .then(res => {
-          
           this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = [];
           res.data.list.forEach(element => {
             let elementData = {
@@ -7028,7 +7038,7 @@ export default {
         });
     }
   },
-    async mounted() {
+  async mounted() {
     await new Promise(resolve => {
       setInterval(_ => {
         resolve();
@@ -7037,8 +7047,8 @@ export default {
     this.$refs["collapse"].initECharts(this.collapseData);
   },
   async created() {
-    this.TableDatas(1,5)
-     this.obtainData("营收", "2019");
+    this.TableDatas(1, 5);
+    this.obtainData("营收", "2019");
     await this.obtainAxios("营收", "2020", "ys");
     // await this.obtainData("利润", "2019");
     // await this.obtainData("利润", "2020");

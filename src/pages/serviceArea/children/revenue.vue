@@ -970,12 +970,12 @@ export default {
                         xBxis.push(element.xBxis.split("-")[1]);
                         yAxis.push(element.yAxis * 10000);
                       });
-                      for (let index = data.length+1; index <= 12; index++) {
+                      for (let index = data.length + 1; index <= 12; index++) {
                         xBxis.push(index);
-                        if(index==12){
+                        if (index == 12) {
                           yAxis.push(0);
-                        }else{
-                          yAxis.push(Math.ceil(Math.random()*10000000) );
+                        } else {
+                          yAxis.push(Math.ceil(Math.random() * 10000000));
                         }
                       }
                       sItem.EChartsItem[0].option.series[0].data = yAxis;
@@ -1021,7 +1021,7 @@ export default {
     this.$refs["collapse"].initECharts(this.collapseData);
   },
   async created() {
-     this.obtainData("营收", "2019");
+    this.obtainData("营收", "2019");
     await this.obtainAxios("营收", "2020", "ys");
     await this.obtainData("利润", "2019");
     await this.obtainData("利润", "2020");

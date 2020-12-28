@@ -254,7 +254,7 @@ export default {
     initMap(position) {
       this.marker = [];
       let map = new AMap.Map("AAA", {
-        center: [112.34, 31.10],
+        center: [112.34, 31.1],
         zoom: 8
       });
       map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop]);
@@ -424,7 +424,7 @@ new AMap.MarkerClusterer(
       }
       if (b !== "enlarge") {
         map = new AMap.Map("AAA", {
-          center: [112.34, 31.10],
+          center: [112.34, 31.1],
           zoom: 8
         });
       }

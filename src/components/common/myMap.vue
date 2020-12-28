@@ -66,7 +66,7 @@ export default {
         // }
       ],
       zoom: 10,
-      center: [112.34, 31.10],
+      center: [112.34, 31.1],
       expandZoomRange: true,
       markers: [],
       windows: [],

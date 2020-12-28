@@ -172,7 +172,7 @@ export default {
                     }
                   ]
                 },
-                 {
+                {
                   title: "回款金额排行",
                   time: false,
                   timeValue: "",
@@ -203,7 +203,7 @@ export default {
                           left: "3%",
                           right: "10%",
                           bottom: "10%",
-                          top:'10%',
+                          top: "10%",
                           containLabel: true
                         },
                         xAxis: {
@@ -238,14 +238,20 @@ export default {
                               color: "#000",
                               formatter: "{b}"
                             },
-                            data: (function(){
-                              let data=[29348333.33, 33032530.21, 35496337.3, 49985731.14, 87860562.51];
-                              let datas = []
+                            data: (function() {
+                              let data = [
+                                29348333.33,
+                                33032530.21,
+                                35496337.3,
+                                49985731.14,
+                                87860562.51
+                              ];
+                              let datas = [];
                               data.forEach(element => {
-                                datas.push((element/10000).toFixed(2))
+                                datas.push((element / 10000).toFixed(2));
                               });
-                              console.log(datas)
-                              return datas
+                              console.log(datas);
+                              return datas;
                             })(),
                             itemStyle: {
                               color: "#38d"
@@ -281,7 +287,7 @@ export default {
                         {
                           prop: "A",
                           label: "供应商",
-                          width:'220'
+                          width: "220"
                         },
                         {
                           prop: "B",
@@ -294,14 +300,14 @@ export default {
                         {
                           prop: "D",
                           label: "金额(元)",
-                          width:'120'
+                          width: "120"
                         }
                       ],
                       tableData: [
                         {
                           A: "应收大米款（加工厂）",
                           B: "2020-9-4",
-                          C: '21天',
+                          C: "21天",
                           D: "35496337.3"
                         },
                         {
@@ -313,7 +319,7 @@ export default {
                         {
                           A: "湖北省羊肚菌农业科技有限公司",
                           B: "2020-9-5",
-                          C:'15天',
+                          C: "15天",
                           D: "87860562.51"
                         },
                         // {
@@ -325,10 +331,9 @@ export default {
                         {
                           A: "应收稻谷款(加工厂)",
                           B: "2020-9-2",
-                          C: '10天',
+                          C: "10天",
                           D: "33032530.21"
-                        },
-                        
+                        }
                       ]
                     }
                   ]
@@ -887,7 +892,7 @@ export default {
                           left: "3%",
                           right: "10%",
                           bottom: "10%",
-                          top:'10%',
+                          top: "10%",
                           containLabel: true
                         },
                         xAxis: {
@@ -922,14 +927,20 @@ export default {
                               color: "#000",
                               formatter: "{b}"
                             },
-                            data: (function(){
-                              let data=[29348333.33, 33032530.21, 35496337.3, 49985731.14, 87860562.51];
-                              let datas = []
+                            data: (function() {
+                              let data = [
+                                29348333.33,
+                                33032530.21,
+                                35496337.3,
+                                49985731.14,
+                                87860562.51
+                              ];
+                              let datas = [];
                               data.forEach(element => {
-                                datas.push((element/10000).toFixed(2))
+                                datas.push((element / 10000).toFixed(2));
                               });
-                              console.log(datas)
-                              return datas
+                              console.log(datas);
+                              return datas;
                             })(),
                             itemStyle: {
                               color: "#38d"
@@ -965,7 +976,7 @@ export default {
                         {
                           prop: "A",
                           label: "供应商",
-                          width:'220'
+                          width: "220"
                         },
                         {
                           prop: "B",
@@ -978,14 +989,14 @@ export default {
                         {
                           prop: "D",
                           label: "金额(元)",
-                          width:'120'
+                          width: "120"
                         }
                       ],
                       tableData: [
                         {
                           A: "应收大米款（加工厂）",
                           B: "2020-9-4",
-                          C: '21天',
+                          C: "21天",
                           D: "35496337.3"
                         },
                         {
@@ -997,7 +1008,7 @@ export default {
                         {
                           A: "湖北省羊肚菌农业科技有限公司",
                           B: "2020-9-5",
-                          C:'15天',
+                          C: "15天",
                           D: "87860562.51"
                         },
                         // {
@@ -1009,10 +1020,9 @@ export default {
                         {
                           A: "应收稻谷款(加工厂)",
                           B: "2020-9-2",
-                          C: '10天',
+                          C: "10天",
                           D: "33032530.21"
-                        },
-                        
+                        }
                       ]
                     }
                   ]

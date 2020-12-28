@@ -27,7 +27,6 @@ export default {
     return {
       collapseData: [
         {
-          
           id: "cc",
           name: "油站分布",
           icon: require("../../../assets/serviceArea/nyls/youzhanfenbu.png"),
@@ -428,7 +427,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -495,7 +494,7 @@ export default {
                               4867750.94,
                               2867750.94,
                               6867750.94,
-                              0,
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -1046,7 +1045,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -1113,7 +1112,7 @@ export default {
                               25867750.94,
                               55867750.94,
                               35867750.94,
-                              75867750.94,
+                              75867750.94
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -1677,7 +1676,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -1744,7 +1743,7 @@ export default {
                               5867750.94,
                               2867750.94,
                               3867750.94,
-                              0,
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -2010,7 +2009,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -2077,7 +2076,7 @@ export default {
                               5867750.94,
                               4867750.94,
                               6867750.94,
-                              7867750.94,
+                              7867750.94
                             ],
                             barWidth: "16px",
                             itemStyle: {

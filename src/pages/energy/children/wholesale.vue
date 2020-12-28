@@ -583,97 +583,124 @@ export default {
                       },
                       unit: "元/吨",
                       option: {
-                          grid: {
-                              top: 80,
-                              left: 50,
-                              right: 30,
-                              bottom: 30,
+                        grid: {
+                          top: 80,
+                          left: 50,
+                          right: 30,
+                          bottom: 30
+                        },
+                        legend: {
+                          data: ["国内批发指导价", "国内零售价", "大宗采购"],
+                          align: "right",
+                          right: 200,
+                          icon: "circle",
+                          top: 20
+                        },
+                        tooltip: {
+                          trigger: "axis",
+                          axisPointer: {
+                            type: "none"
                           },
-                          legend: {
-                              data: ["国内批发指导价", "国内零售价", "大宗采购"],
-                              align: "right",
-                              right: 200,
-                              icon: "circle",
-                              top: 20,
+                          formatter: function(params) {
+                            return (
+                              params[0].name +
+                              ":" +
+                              "<br>" +
+                              params[0].seriesName +
+                              " : " +
+                              params[0].value +
+                              "元" +
+                              "<br>" +
+                              params[1].seriesName +
+                              " : " +
+                              params[1].value +
+                              "元" +
+                              "<br>" +
+                              params[2].seriesName +
+                              " : " +
+                              params[2].value[1] +
+                              "吨"
+                            );
+                          }
+                        },
+                        xAxis: {
+                          type: "category",
+                          data: [
+                            "01月",
+                            "02月",
+                            "03月",
+                            "04月",
+                            "05月",
+                            "06月",
+                            "07月",
+                            "08月",
+                            "09月",
+                            "10月",
+                            "11月",
+                            "12月"
+                          ]
+                        },
+                        yAxis: {
+                          // type: "value",
+                          name: "元/吨"
+                        },
+                        series: [
+                          {
+                            name: "国内批发指导价",
+                            data: [
+                              5220,
+                              4900,
+                              5000,
+                              5120,
+                              5400,
+                              4999,
+                              5346,
+                              5643,
+                              5110,
+                              5200,
+                              5433,
+                              5677
+                            ],
+                            type: "line"
                           },
-                          tooltip: {
-                              trigger: "axis",
-                              axisPointer: {
-                                  type: "none",
-                              },
-                              formatter: function(params) {
-                                  return (
-                                      params[0].name +
-                                      ":" +
-                                      "<br>" +
-                                      params[0].seriesName +
-                                      " : " +
-                                      params[0].value +
-                                      "元" +
-                                      "<br>" +
-                                      params[1].seriesName +
-                                      " : " +
-                                      params[1].value +
-                                      "元" +
-                                      "<br>" +
-                                      params[2].seriesName +
-                                      " : " +
-                                      params[2].value[1] +
-                                      "吨"
-                                  );
-                              },
+                          {
+                            name: "国内零售价",
+                            data: [
+                              5000,
+                              5120,
+                              5400,
+                              4999,
+                              5346,
+                              5643,
+                              5110,
+                              5200,
+                              5433,
+                              5677,
+                              5220,
+                              5220
+                            ],
+                            type: "line"
                           },
-                          xAxis: {
-                              type: "category",
-                              data: [
-                                  "01月",
-                                  "02月",
-                                  "03月",
-                                  "04月",
-                                  "05月",
-                                  "06月",
-                                  "07月",
-                                  "08月",
-                                  "09月",
-                                  "10月",
-                                  "11月",
-                                  "12月",
-                              ],
-                          },
-                          yAxis: {
-                              // type: "value",
-                              name: "元/吨",
-                          },
-                          series: [{
-                                  name: "国内批发指导价",
-                                  data: [5220, 4900, 5000, 5120, 5400, 4999, 5346, 5643, 5110, 5200, 5433, 5677],
-                                  type: "line",
-                              },
-                              {
-                                  name: "国内零售价",
-                                  data: [5000, 5120, 5400, 4999, 5346, 5643, 5110, 5200, 5433, 5677, 5220, 5220],
-                                  type: "line",
-                              },
-                              {
-                                  symbolSize: 20,
-                                  name: "大宗采购",
-                                  data: [
-                                      ["01月", 3000.04],
-                                      ["02月", 5000.95],
-                                      ["03月", 4000.58],
-                                      ["04月", 5000.81],
-                                      ["05月", 3000.33],
-                                      ["06月", 4000.96],
-                                      ["07月", 5000.24],
-                                      ["08月", 6000.26],
-                                      ["09月", 4500.84],
-                                      ["10月", 4800.82],
-                                      ["11月", 5520.68],
-                                      ["12月", 5520.68],
-                                  ],
-                                  type: "scatter",
-                              },
-                          ],
+                          {
+                            symbolSize: 20,
+                            name: "大宗采购",
+                            data: [
+                              ["01月", 3000.04],
+                              ["02月", 5000.95],
+                              ["03月", 4000.58],
+                              ["04月", 5000.81],
+                              ["05月", 3000.33],
+                              ["06月", 4000.96],
+                              ["07月", 5000.24],
+                              ["08月", 6000.26],
+                              ["09月", 4500.84],
+                              ["10月", 4800.82],
+                              ["11月", 5520.68],
+                              ["12月", 5520.68]
+                            ],
+                            type: "scatter"
+                          }
+                        ]
                       }
                     }
                   ]
@@ -723,13 +750,19 @@ export default {
                       isPagination: true,
                       columns: [
                         // {prop: "A", label: "指标名称"},
-                        { prop: "dieselLingshou", label: "最高汽油零售指导价(元)" },
+                        {
+                          prop: "dieselLingshou",
+                          label: "最高汽油零售指导价(元)"
+                        },
                         { prop: "dieselPifa", label: "最高汽油批发价格(元)" },
                         {
                           prop: "gasolineLingshou",
                           label: "最高柴油零售指导价(元)"
                         },
-                        { prop: "gasolinePifa", label: "最高柴油批发指导价(元)" },
+                        {
+                          prop: "gasolinePifa",
+                          label: "最高柴油批发指导价(元)"
+                        },
                         { prop: "oilType", label: "油品类型" },
                         { prop: "odateTime", label: "日期时间" }
                       ],

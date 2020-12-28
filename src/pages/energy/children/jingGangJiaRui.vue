@@ -425,7 +425,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -835,7 +835,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -2734,13 +2734,62 @@ export default {
                         { prop: "f", label: "年份" }
                       ],
                       tableData: [
-                        { a: "零售业务", b: "2041.55", c: "3894.80", d: "74.88%", e: "22.46%", f: "2020" },
-                        { a: "批发业务", b: "3015.05", c: "4202.41", d: "102.49%", e: "30.75%", f: "2020" },
-                        { a: "经营租赁", b: "557.37", c: "927.39", d: "85.86%", e: "25.76%", f: "2020" },
-                        { a: "开办费", b: "313.77", c: "552.44", d: "81.14%", e: "24.34%", f: "2020" },
-                        { a: "物业费收入", b: "548.56", c: "1091.13", d: "71.82%", e: "21.55%", f: "2020" },
-                        { a: "自动售货机", b: "193.30", c: "332.17", d: "83.11%", e: "24.93%", f: "2020" },
-                        { a: "公益补助", b: "260.93", c: "430.15", d: "92.46%", e: "27.74%", f: "2020" },
+                        {
+                          a: "零售业务",
+                          b: "2041.55",
+                          c: "3894.80",
+                          d: "74.88%",
+                          e: "22.46%",
+                          f: "2020"
+                        },
+                        {
+                          a: "批发业务",
+                          b: "3015.05",
+                          c: "4202.41",
+                          d: "102.49%",
+                          e: "30.75%",
+                          f: "2020"
+                        },
+                        {
+                          a: "经营租赁",
+                          b: "557.37",
+                          c: "927.39",
+                          d: "85.86%",
+                          e: "25.76%",
+                          f: "2020"
+                        },
+                        {
+                          a: "开办费",
+                          b: "313.77",
+                          c: "552.44",
+                          d: "81.14%",
+                          e: "24.34%",
+                          f: "2020"
+                        },
+                        {
+                          a: "物业费收入",
+                          b: "548.56",
+                          c: "1091.13",
+                          d: "71.82%",
+                          e: "21.55%",
+                          f: "2020"
+                        },
+                        {
+                          a: "自动售货机",
+                          b: "193.30",
+                          c: "332.17",
+                          d: "83.11%",
+                          e: "24.93%",
+                          f: "2020"
+                        },
+                        {
+                          a: "公益补助",
+                          b: "260.93",
+                          c: "430.15",
+                          d: "92.46%",
+                          e: "27.74%",
+                          f: "2020"
+                        }
                       ]
                     }
                   ]
@@ -3050,7 +3099,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -3117,7 +3166,7 @@ export default {
                               4867750.94,
                               2867750.94,
                               6867750.94,
-                              0,
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -3662,7 +3711,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -3729,7 +3778,7 @@ export default {
                               25867750.94,
                               55867750.94,
                               35867750.94,
-                              75867750.94,
+                              75867750.94
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -4274,7 +4323,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -4341,7 +4390,7 @@ export default {
                               5867750.94,
                               2867750.94,
                               3867750.94,
-                              0,
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -4601,7 +4650,7 @@ export default {
                               "09",
                               "10",
                               "11",
-                              "12",
+                              "12"
                             ],
                             axisLabel: {
                               margin: 10,
@@ -4668,7 +4717,7 @@ export default {
                               5867750.94,
                               4867750.94,
                               6867750.94,
-                              7867750.94,
+                              7867750.94
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -5149,7 +5198,7 @@ export default {
                   ]
                 }
               ]
-            },
+            }
           ]
         },
         {
@@ -5173,7 +5222,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -5365,7 +5414,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -5540,7 +5589,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -5732,7 +5781,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -5907,7 +5956,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -6059,7 +6108,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -6234,7 +6283,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -6426,7 +6475,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -6594,7 +6643,7 @@ export default {
                 {
                   title: "成本利润",
                   select: false,
-                  
+
                   selectNum: 3,
                   selectOption: [
                     ["新能源", "石化", "国储", "荆港嘉瑞"],
@@ -6607,7 +6656,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -6747,7 +6796,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -6882,7 +6931,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -7032,7 +7081,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -7132,7 +7181,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -7282,7 +7331,7 @@ export default {
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden",
-                    marginTop:'10px'
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -7905,11 +7954,36 @@ export default {
                         { prop: "d", label: "金额(元)" }
                       ],
                       tableData: [
-                        { a: "中海油华东销售有限公司", b: "2020-12-31", c: "0天", d: "3879750" },
-                        { a: "中铁十二局集团有限公司", b: "2020-12-31", c: "0天", d: "4671700" },
-                        { a: "湖北省交通投资集团有限公司", b: "2020-12-31", c: "0天", d: "12828090.01" },
-                        { a: "武汉双驰贸易有限公司", b: "2020-12-31", c: "0天", d: "26625490.95" },
-                        { a: "湖北省羊肚菌农业科技有限公司", b: "2020-12-31", c: "0天", d: "87860562.51" }
+                        {
+                          a: "中海油华东销售有限公司",
+                          b: "2020-12-31",
+                          c: "0天",
+                          d: "3879750"
+                        },
+                        {
+                          a: "中铁十二局集团有限公司",
+                          b: "2020-12-31",
+                          c: "0天",
+                          d: "4671700"
+                        },
+                        {
+                          a: "湖北省交通投资集团有限公司",
+                          b: "2020-12-31",
+                          c: "0天",
+                          d: "12828090.01"
+                        },
+                        {
+                          a: "武汉双驰贸易有限公司",
+                          b: "2020-12-31",
+                          c: "0天",
+                          d: "26625490.95"
+                        },
+                        {
+                          a: "湖北省羊肚菌农业科技有限公司",
+                          b: "2020-12-31",
+                          c: "0天",
+                          d: "87860562.51"
+                        }
                       ]
                     }
                   ]
@@ -7963,12 +8037,12 @@ export default {
                         xBxis.push(element.xBxis.split("-")[1]);
                         yAxis.push(element.yAxis * 10000);
                       });
-                      for (let index = data.length+1; index <= 12; index++) {
+                      for (let index = data.length + 1; index <= 12; index++) {
                         xBxis.push(index);
-                        if(index==12){
+                        if (index == 12) {
                           yAxis.push(0);
-                        }else{
-                          yAxis.push(Math.ceil(Math.random()*10000000) );
+                        } else {
+                          yAxis.push(Math.ceil(Math.random() * 10000000));
                         }
                       }
                       sItem.EChartsItem[0].option.series[0].data = yAxis;
@@ -8003,7 +8077,7 @@ export default {
 
       //     });
       // })
-    },
+    }
   },
   watch: {
     viewChange() {

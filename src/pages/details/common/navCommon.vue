@@ -364,7 +364,7 @@ export default {
         { prop: "c", label: "租金" },
         { prop: "d", label: "合同签署日期" },
         { prop: "e", label: "合同生效日期" },
-        { prop: "f", label: "合同结束日期" },
+        { prop: "f", label: "合同结束日期" }
         // { prop: "g", label: "描述" }
       ],
       tableData: [
@@ -683,18 +683,20 @@ export default {
         series: [
           {
             type: "bar",
-            data: [79.28,
-                  127.65,
-                  41.37,
-                  45.262,
-                  48.739,
-                  42.08,
-                  56.318,
-                  64.77,
-                  49.74,
-                  65.700,
-                  42.95,
-                  43.7490],
+            data: [
+              79.28,
+              127.65,
+              41.37,
+              45.262,
+              48.739,
+              42.08,
+              56.318,
+              64.77,
+              49.74,
+              65.7,
+              42.95,
+              43.749
+            ],
             barWidth: "16px",
             itemStyle: {
               normal: {
@@ -702,7 +704,7 @@ export default {
                 barBorderRadius: [30, 30, 30, 30]
               }
             }
-          },
+          }
         ]
       };
       let option_s = {

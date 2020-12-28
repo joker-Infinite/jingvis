@@ -977,12 +977,12 @@ export default {
                         xBxis.push(element.xBxis.split("-")[1]);
                         yAxis.push(element.yAxis * 10000);
                       });
-                      for (let index = data.length+1; index <= 12; index++) {
+                      for (let index = data.length + 1; index <= 12; index++) {
                         xBxis.push(index);
-                        if(index==12 && year=='2020'){
+                        if (index == 12 && year == "2020") {
                           yAxis.push(0);
-                        }else{
-                          yAxis.push(Math.ceil(Math.random()*10000000) );
+                        } else {
+                          yAxis.push(Math.ceil(Math.random() * 10000000));
                         }
                       }
                       sItem.EChartsItem[0].option.series[0].data = yAxis;

@@ -1505,12 +1505,12 @@ export default {
               id: "mmm_2020",
               year: 2020,
               collapseTitle: "2020年利润",
-              
+
               EChartsBox: [
                 {
                   title: "成本利润",
                   select: false,
-                  
+
                   selectNum: 3,
                   selectOption: [
                     ["新能源", "石化", "国储", "荆港嘉瑞"],

@@ -37,8 +37,7 @@ export default {
         },
         {
           img: require("../../../assets/imgCommon/background3.jpg")
-        },
-        
+        }
       ]
     };
   }
