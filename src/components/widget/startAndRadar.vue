@@ -77,6 +77,20 @@
 			let option = {
 				tooltip: {
 					trigger: 'axis',
+					formatter: v => {
+						let text = '';
+						let time = '';
+						v.forEach(i => {
+							time = i.name;
+							if (i.seriesName == '均车消费' || i.seriesName == '客单价') {
+								text += i.seriesName + '：' + i.value + '元<br>'
+							}
+							if (i.seriesName == '转化率') {
+								text += i.seriesName + '：' + i.value + '%<br>'
+							}
+						});
+						return time + '<br>' + text;
+					}
 				},
 				legend: {
 					data: ['客单价', '均车消费', '转化率'],

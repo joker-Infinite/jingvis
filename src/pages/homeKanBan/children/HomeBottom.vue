@@ -477,7 +477,7 @@
 											"%"
 										);
 									}
-									return v.name + "：" + v.value + "%  ";
+									return v.name + "：" + v.value + "%";
 								}
 							},
 							data: [],

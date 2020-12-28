@@ -340,7 +340,7 @@
 							lineStyle: {
 								color: "#FFF"
 							}
-						}
+						},
 					},
 					yAxis: {
 						type: "category",
@@ -568,6 +568,9 @@
 								name = v[0].name;
 							}
 							return name + '：' + v[0].value + '万元'
+						},
+						axisPointer: {
+							type: "shadow"
 						}
 					},
 					title: {
