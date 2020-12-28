@@ -1430,70 +1430,84 @@
 							},
 							{
 								title: {
-									text: '当天进入车辆比',
-									x: 'center',
+									text: '今日各时段驶出车辆',
+									x: 'center'
 								},
+								barWidth: 10,
 								tooltip: {
-									trigger: 'item',
-									formatter: '{b}: {c} ({d}%)'
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 1) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆'
+										}
+										if (v.length === 2) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆<br>' + v[1].seriesName + '：' + Math.abs(v[1].value) + '辆'
+										}
+									}
 								},
 								legend: {
-									bottom: 0,
 									data: ['大车', '小车'],
+									bottom: 0
 								},
-								labelLine: {
-									normal: {
-										length: 30,
-										length2: 25,
-										lineStyle: {
-											width: 1,
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										type: 'value',
+										axisLabel: {
+											formatter: v => {
+												return Math.abs(v)
+											}
 										},
-									},
-								},
+										axisTick: {
+											show: false,
+										},
+										// splitLine: {show: false},
+									}
+								],
+								yAxis: [
+									{
+										name: '时',
+										type: 'category',
+										axisTick: {
+											show: false
+										},
+										data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23']
+									}
+								],
 								series: [
 									{
-										type: 'pie',
-										radius: ['40%', '60%'],
-										avoidLabelOverlap: false,
+										name: '大车',
+										type: 'bar',
+										stack: '总量',
 										label: {
 											show: true,
-											position: "outer",
-											width: 0,
-											height: 0,
-											lineHeight: 0,
-											backgroundColor: "auto",
-											padding: [2, -2, 2, -2],
-											borderRadius: 2,
-											distanceToLabelLine: 0,
-											normal: {
-												formatter(v) {
-													let text = v.name + "\n" + v.percent + "%";
-													// let text = v.percent + "%";
-													return text;
-												},
-												textStyle: {
-													fontSize: 14,
-												},
+											position: 'left',
+											formatter: v => {
+												return Math.abs(v.value)
 											},
 										},
-										labelLine: {
-											show: true
+										data: [-120, -132, -101, -134, -190, -230]
+									},
+									{
+										name: '小车',
+										type: 'bar',
+										stack: '总量',
+										label: {
+											show: true,
+											position: 'right',
+											formatter: v => {
+												return Math.abs(v.value)
+											}
 										},
-										/*itemStyle: {
-                      normal: {
-                        color: function (v) {
-                          let colorList = [
-                            "#79f0ea",
-                            "#fa3b43",
-                          ];
-                          return colorList[v.dataIndex];
-                        },
-                      },
-                    },*/
-										data: [
-											{value: 3350, name: '大车'},
-											{value: 3100, name: '小车'},
-										]
+										data: [320, 302, 341, 374, 390, 450]
 									}
 								]
 							}
@@ -1589,70 +1603,84 @@
 							},
 							{
 								title: {
-									text: '当天进入车辆比',
-									x: 'center',
+									text: '今日各时段进入车辆',
+									x: 'center'
 								},
+								barWidth: 10,
 								tooltip: {
-									trigger: 'item',
-									formatter: '{b}: {c} ({d}%)'
+									trigger: 'axis',
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 1) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆'
+										}
+										if (v.length === 2) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆<br>' + v[1].seriesName + '：' + Math.abs(v[1].value) + '辆'
+										}
+									}
 								},
 								legend: {
-									bottom: 0,
 									data: ['大车', '小车'],
+									bottom: 0
 								},
-								labelLine: {
-									normal: {
-										length: 30,
-										length2: 25,
-										lineStyle: {
-											width: 1,
+								grid: {
+									left: '3%',
+									right: '7%',
+									bottom: '30',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										type: 'value',
+										axisLabel: {
+											formatter: v => {
+												return Math.abs(v)
+											}
 										},
-									},
-								},
+										axisTick: {
+											show: false,
+										},
+										// splitLine: {show: false},
+									}
+								],
+								yAxis: [
+									{
+										name: '时',
+										type: 'category',
+										axisTick: {
+											show: false
+										},
+										data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23']
+									}
+								],
 								series: [
 									{
-										type: 'pie',
-										radius: ['40%', '60%'],
-										avoidLabelOverlap: false,
+										name: '大车',
+										type: 'bar',
+										stack: '总量',
 										label: {
 											show: true,
-											position: "outer",
-											width: 0,
-											height: 0,
-											lineHeight: 0,
-											backgroundColor: "auto",
-											padding: [2, -2, 2, -2],
-											borderRadius: 2,
-											distanceToLabelLine: 0,
-											normal: {
-												formatter(v) {
-													let text = v.name + "\n" + v.percent + "%";
-													// let text = v.percent + "%";
-													return text;
-												},
-												textStyle: {
-													fontSize: 14,
-												},
+											position: 'left',
+											formatter: v => {
+												return Math.abs(v.value)
 											},
 										},
-										labelLine: {
-											show: true
+										data: [-120, -132, -101, -134, -190, -230]
+									},
+									{
+										name: '小车',
+										type: 'bar',
+										stack: '总量',
+										label: {
+											show: true,
+											position: 'right',
+											formatter: v => {
+												return Math.abs(v.value)
+											}
 										},
-										/*itemStyle: {
-                      normal: {
-                        color: function (v) {
-                          let colorList = [
-                            "#79f0ea",
-                            "#fa3b43",
-                          ];
-                          return colorList[v.dataIndex];
-                        },
-                      },
-                    },*/
-										data: [
-											{value: 3350, name: '大车'},
-											{value: 3100, name: '小车'},
-										]
+										data: [320, 302, 341, 374, 390, 450]
 									}
 								]
 							}

@@ -1870,73 +1870,108 @@
 								]
 							},
 							{
+								title: {
+									text: '今日各时段进入车辆',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								barWidth: 10,
 								tooltip: {
 									trigger: 'axis',
-									axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-										type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 1) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆'
+										}
+										if (v.length === 2) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆<br>' + v[1].seriesName + '：' + Math.abs(v[1].value) + '辆'
+										}
 									}
 								},
 								legend: {
-									data: ['大车-驶入', '大车-驶出', '小车-驶入', '小车-驶出']
+									data: ['大车', '小车'],
+									bottom: 0,
+									textStyle: {
+										color: "#FFF",
+									},
 								},
 								grid: {
 									left: '3%',
-									right: '4%',
-									bottom: '3%',
+									right: '50',
+									bottom: '30',
 									containLabel: true
 								},
 								xAxis: [
 									{
-										type: 'value'
+										name: '辆',
+										type: 'value',
+										axisLabel: {
+											formatter: v => {
+												return Math.abs(v)
+											},
+											textStyle: {
+												color: "#FFF",
+											},
+										},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+										axisTick: {
+											show: false,
+										},
 									}
 								],
 								yAxis: [
 									{
+										name: '时',
 										type: 'category',
 										axisTick: {
 											show: false
+										},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
+											},
 										},
 										data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23']
 									}
 								],
 								series: [
 									{
-										name: '大车-驶入',
+										name: '大车',
 										type: 'bar',
-										stack: '大车',
-										label: {
-											show: true
-										},
-										data: [320, 302, 341, 374, 390, 450,]
-									},
-									{
-										name: '大车-驶出',
-										type: 'bar',
-										stack: '大车',
+										stack: '总量',
 										label: {
 											show: true,
-											position: 'left'
+											position: 'left',
+											color: 'white',
+											formatter: v => {
+												return Math.abs(v.value)
+											},
 										},
-										data: [-120, -132, -101, -134, -190, -230,]
+										data: [-120, -132, -101, -134, -190, -230]
 									},
 									{
-										name: '小车-驶入',
+										name: '小车',
 										type: 'bar',
-										stack: '小车',
-										label: {
-											show: true
-										},
-										data: [320, 302, 341, 374, 390, 450,]
-									},
-									{
-										name: '小车-驶出',
-										type: 'bar',
-										stack: '小车',
+										stack: '总量',
 										label: {
 											show: true,
-											position: 'left'
+											position: 'right',
+											color: 'white'
 										},
-										data: [-120, -132, -101, -134, -190, -230,]
+										data: [320, 302, 341, 374, 390, 450]
 									}
 								]
 							}
@@ -2054,38 +2089,60 @@
 								]
 							},
 							{
+								title: {
+									text: '今日各时段驶出车辆',
+									x: 'center',
+									textStyle: {
+										color: '#FFF'
+									}
+								},
+								barWidth: 10,
 								tooltip: {
 									trigger: 'axis',
-									axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-										type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+									axisPointer: {
+										type: 'shadow'
+									},
+									formatter: v => {
+										if (v.length === 1) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆'
+										}
+										if (v.length === 2) {
+											return v[0].name + '时<br>' + v[0].seriesName + '：' + Math.abs(v[0].value) + '辆<br>' + v[1].seriesName + '：' + Math.abs(v[1].value) + '辆'
+										}
 									}
 								},
 								legend: {
-									data: ['大车-驶入', '大车-驶出', '小车-驶入', '小车-驶出'],
-									textStyle: {color: "white"}
+									data: ['大车', '小车'],
+									bottom: 0,
+									textStyle: {
+										color: "#FFF",
+									},
 								},
 								grid: {
 									left: '3%',
-									right: '4%',
-									bottom: '3%',
+									right: '50',
+									bottom: '30',
 									containLabel: true
 								},
 								xAxis: [
 									{
+										name: '辆',
 										type: 'value',
-										axisTick: {
-											show: false,
-										},
 										axisLabel: {
+											formatter: v => {
+												return Math.abs(v)
+											},
 											textStyle: {
 												color: "#FFF",
 											},
 										},
-										splitLine: {show: true},
 										axisLine: {
 											lineStyle: {
 												color: "#FFF",
 											},
+										},
+										axisTick: {
+											show: false,
 										},
 									}
 								],
@@ -2101,7 +2158,6 @@
 												color: "#FFF",
 											},
 										},
-										splitLine: {show: false},
 										axisLine: {
 											lineStyle: {
 												color: "#FFF",
@@ -2112,42 +2168,29 @@
 								],
 								series: [
 									{
-										name: '大车-驶入',
+										name: '大车',
 										type: 'bar',
-										stack: '大车',
-										label: {
-											show: true
-										},
-										data: [320, 302, 341, 374, 390, 450,]
-									},
-									{
-										name: '大车-驶出',
-										type: 'bar',
-										stack: '大车',
+										stack: '总量',
 										label: {
 											show: true,
-											position: 'left'
+											position: 'left',
+											color: 'white',
+											formatter: v => {
+												return Math.abs(v.value)
+											},
 										},
-										data: [-120, -132, -101, -134, -190, -230,]
+										data: [-120, -132, -101, -134, -190, -230]
 									},
 									{
-										name: '小车-驶入',
+										name: '小车',
 										type: 'bar',
-										stack: '小车',
-										label: {
-											show: true
-										},
-										data: [320, 302, 341, 374, 390, 450,]
-									},
-									{
-										name: '小车-驶出',
-										type: 'bar',
-										stack: '小车',
+										stack: '总量',
 										label: {
 											show: true,
-											position: 'left'
+											position: 'right',
+											color: 'white'
 										},
-										data: [-120, -132, -101, -134, -190, -230,]
+										data: [320, 302, 341, 374, 390, 450]
 									}
 								]
 							}
