@@ -9,12 +9,17 @@
       <el-tooltip class="item" effect="dark" content="列表" placement="top">
         <i class="el-icon-s-grid"></i>
       </el-tooltip>
-      </span>
+    </span>
     <span class="excel" @click="operations('excel')">
-      <el-tooltip class="item" effect="dark" content="导出Excel" placement="top">
+      <el-tooltip
+        class="item"
+        effect="dark"
+        content="导出Excel"
+        placement="top"
+      >
         <i class="el-icon-download"></i>
       </el-tooltip>
-      </span>
+    </span>
   </div>
 </template>
 <script>
@@ -31,8 +36,10 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.el-icon-s-marketing,.el-icon-s-grid,.el-icon-download{
-  color: #38A0FF;
+.el-icon-s-marketing,
+.el-icon-s-grid,
+.el-icon-download {
+  color: #38a0ff;
 }
 .inform {
   position: absolute;
@@ -55,9 +62,9 @@ export default {
     text-align: center;
     // background: #38A0FF;
     margin: 5px 0;
-    border: 1px solid #38A0FF;
+    border: 1px solid #38a0ff;
   }
-  span+span{
+  span + span {
     margin-left: 10px;
   }
 }

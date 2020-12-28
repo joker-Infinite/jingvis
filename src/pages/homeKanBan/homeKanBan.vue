@@ -10,25 +10,40 @@
           <div class="Real-timeInformation">
             <div id="con">
               <p v-for="i in timeInformation" :key="i">
-                <img src="../../assets/announcement.png">{{ i }}
+                <img src="../../assets/announcement.png" />{{ i }}
               </p>
             </div>
           </div>
           <div class="H_top_center">
             <!--                        <center-map :backdrop="backdrop" @showMap="showMap"></center-map>-->
-            <center-map-base @MapBase="MapBase" ref="centerMap" :backdrop="backdrop"></center-map-base>
+            <center-map-base
+              @MapBase="MapBase"
+              ref="centerMap"
+              :backdrop="backdrop"
+            ></center-map-base>
           </div>
           <div class="H_top_right">
-            <HomeTopRight :backdrop="backdrop" ref="homeTopRight"></HomeTopRight>
+            <HomeTopRight
+              :backdrop="backdrop"
+              ref="homeTopRight"
+            ></HomeTopRight>
           </div>
         </div>
         <div style="height: 1%;width: 100%"></div>
         <div class="H_bottom">
-          <home-bottom :backdrop="backdrop" ref="homebottom" @showOne="showOne"></home-bottom>
+          <home-bottom
+            :backdrop="backdrop"
+            ref="homebottom"
+            @showOne="showOne"
+          ></home-bottom>
         </div>
       </div>
       <div class="Switch">
-        <el-select popper-class="DATAselect" v-model="selectValue" @change="switchStyle(selectValue)">
+        <el-select
+          popper-class="DATAselect"
+          v-model="selectValue"
+          @change="switchStyle(selectValue)"
+        >
           <el-option label="默认" :value="0"></el-option>
           <el-option label="靛青" :value="1"></el-option>
         </el-select>
@@ -43,43 +58,43 @@
 </template>
 
 <script>
-	import HomeTopLeft from "./children/HomeTopLeft";
-	import CenterMap from "./children/centerMap";
-	import HomeTopRight from "./children/HomeTopRight";
-	import HomeBottom from "./children/HomeBottom";
-	import ShowECharts from "../../components/common/showECharts";
-	import ShowMap from "../../components/common/showMap";
-	import time from "../../components/js/time"
-	import CenterMapBase from "./children/centerMapBase";
+import HomeTopLeft from "./children/HomeTopLeft";
+import CenterMap from "./children/centerMap";
+import HomeTopRight from "./children/HomeTopRight";
+import HomeBottom from "./children/HomeBottom";
+import ShowECharts from "../../components/common/showECharts";
+import ShowMap from "../../components/common/showMap";
+import time from "../../components/js/time";
+import CenterMapBase from "./children/centerMapBase";
 
-	export default {
-		name: "homeKanBan",
-		data() {
-			return {
-				backdrop: 0,
-				selectValue: 0,
-				times: '',
-				timeInformation: [
-					"凌晨二时 蔡甸服务区因为XXX 已临时关闭 预计XXX开放",
-					"凌晨三时 小池服务区因为XXX 已临时关闭 预计XXX开放",
-					"凌晨二时 大悟服务区因为XXX 已临时关闭 预计XXX开放",
-				],
-				screenHeight: '',
-				screenWidth: ''
-			};
-		},
-		mounted() {
-			this.screenHeight = window.screen.height + 'px';
-			this.screenWidth = window.screen.width + 'px';
-			let this_ = this;
-			this_.times = time()
-			setInterval(function () {
-				// 修改数据da
-				this_.times = time()
-			}, 1000)
-			var script = document.createElement("script");
-			var script2 = document.createElement("script");
-			let WIDGET = `WIDGET = {
+export default {
+  name: "homeKanBan",
+  data() {
+    return {
+      backdrop: 0,
+      selectValue: 0,
+      times: "",
+      timeInformation: [
+        "凌晨二时 蔡甸服务区因为XXX 已临时关闭 预计XXX开放",
+        "凌晨三时 小池服务区因为XXX 已临时关闭 预计XXX开放",
+        "凌晨二时 大悟服务区因为XXX 已临时关闭 预计XXX开放"
+      ],
+      screenHeight: "",
+      screenWidth: ""
+    };
+  },
+  mounted() {
+    this.screenHeight = window.screen.height + "px";
+    this.screenWidth = window.screen.width + "px";
+    let this_ = this;
+    this_.times = time();
+    setInterval(function() {
+      // 修改数据da
+      this_.times = time();
+    }, 1000);
+    var script = document.createElement("script");
+    var script2 = document.createElement("script");
+    let WIDGET = `WIDGET = {
                 CONFIG: {
                     "modules": "0132",
                     "background": 5,
@@ -98,76 +113,102 @@
                     "horizontal": "right",
                     "key": "s02uREQje9"
                 }
-                }`
-			script.text = WIDGET
-			script2.src = "https://apip.weatherdt.com/simple/static/js/weather-simple-common.js?v=2.0"
-			document.body.appendChild(script)
-			document.body.appendChild(script2)
-			let item = setInterval(() => {
-				if (document.getElementsByClassName("s-sticker")[0]) {
-					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.position = 'fixed'
-					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.left = '0%'
-					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.top = '5%'
-					document.getElementsByClassName("s-sticker")[0].nextElementSibling.style.zIndex = '100000'
-					clearInterval(item)
-				}
-			}, 100);
-		},
-		methods: {
-			switchStyle(v) {
-				this.backdrop = v;
-				let style = [
-					{
-						width: '92%',
-						height: '79%',
-						margin: '6.5% 4% 0',
-					}, {
-						width: '97%',
-						height: '85%',
-						margin: ' 6.5% 1.5% 0',
-					}, {
-						width: '97%',
-						height: '85%',
-						margin: ' 6.5% 1.5% 0',
-					}
-				];
-				let bac = [
-					{
-						background: "url('" + require('../../assets/bage.jpg') + "') no-repeat",
-						backgroundSize: '100% 100%'
-					}, {
-						background: "url('" + require('../../assets/bgi.jpg') + "') no-repeat",
-						backgroundSize: '100% 100%'
-					}, {
-						background: "url('" + require('../../assets/bage3.png') + "') no-repeat",
-						backgroundSize: '100% 100%'
-					}
-				];
-				let top = ['10.5%', '8.5%'];
-				let theme = document.getElementById('theme');
-				let body_a = document.getElementById('body_a');
-				let realTimeInformation = document.getElementsByClassName('Real-timeInformation')[0];
-				Object.assign(theme.style, style[v]);
-				Object.assign(body_a.style, bac[v]);
-				realTimeInformation.style.top = top[v];
-				this.$refs['centerMap'].refresh(v);
-			},
-			showOne(v, type) {
-				this.$refs["showECharts"].openDialog(v, type, this.selectValue);
-			},
-			MapBase(v) {
-				this.$refs['showMaps'].openDialog(v);
-			}
-		},
-		components: {CenterMapBase, ShowMap, ShowECharts, HomeBottom, HomeTopRight, CenterMap, HomeTopLeft}
-	};
+                }`;
+    script.text = WIDGET;
+    script2.src =
+      "https://apip.weatherdt.com/simple/static/js/weather-simple-common.js?v=2.0";
+    document.body.appendChild(script);
+    document.body.appendChild(script2);
+    let item = setInterval(() => {
+      if (document.getElementsByClassName("s-sticker")[0]) {
+        document.getElementsByClassName(
+          "s-sticker"
+        )[0].nextElementSibling.style.position = "fixed";
+        document.getElementsByClassName(
+          "s-sticker"
+        )[0].nextElementSibling.style.left = "0%";
+        document.getElementsByClassName(
+          "s-sticker"
+        )[0].nextElementSibling.style.top = "5%";
+        document.getElementsByClassName(
+          "s-sticker"
+        )[0].nextElementSibling.style.zIndex = "100000";
+        clearInterval(item);
+      }
+    }, 100);
+  },
+  methods: {
+    switchStyle(v) {
+      this.backdrop = v;
+      let style = [
+        {
+          width: "92%",
+          height: "79%",
+          margin: "6.5% 4% 0"
+        },
+        {
+          width: "97%",
+          height: "85%",
+          margin: " 6.5% 1.5% 0"
+        },
+        {
+          width: "97%",
+          height: "85%",
+          margin: " 6.5% 1.5% 0"
+        }
+      ];
+      let bac = [
+        {
+          background:
+            "url('" + require("../../assets/bage.jpg") + "') no-repeat",
+          backgroundSize: "100% 100%"
+        },
+        {
+          background:
+            "url('" + require("../../assets/bgi.jpg") + "') no-repeat",
+          backgroundSize: "100% 100%"
+        },
+        {
+          background:
+            "url('" + require("../../assets/bage3.png") + "') no-repeat",
+          backgroundSize: "100% 100%"
+        }
+      ];
+      let top = ["10.5%", "8.5%"];
+      let theme = document.getElementById("theme");
+      let body_a = document.getElementById("body_a");
+      let realTimeInformation = document.getElementsByClassName(
+        "Real-timeInformation"
+      )[0];
+      Object.assign(theme.style, style[v]);
+      Object.assign(body_a.style, bac[v]);
+      realTimeInformation.style.top = top[v];
+      this.$refs["centerMap"].refresh(v);
+    },
+    showOne(v, type) {
+      this.$refs["showECharts"].openDialog(v, type, this.selectValue);
+    },
+    MapBase(v) {
+      this.$refs["showMaps"].openDialog(v);
+    }
+  },
+  components: {
+    CenterMapBase,
+    ShowMap,
+    ShowECharts,
+    HomeBottom,
+    HomeTopRight,
+    CenterMap,
+    HomeTopLeft
+  }
+};
 </script>
 
-<style lang="less"> 
-.body {
+<style lang="less">
+  .body {
   width: 100%;
   height: 100%;
-  background: url('../../assets/bage.jpg') no-repeat;
+  background: url("../../assets/bage.jpg") no-repeat;
   background-size: cover;
 
   .container {
@@ -192,13 +233,12 @@
       right: 13.5%;
       top: 7.2%;
       position: absolute;
-
     }
 
     .Switch /deep/ .el-input__inner {
       background: transparent;
       color: #fff;
-      border-color: #0681D5;
+      border-color: #0681d5;
       box-shadow: inset 1px 1px 7px rgba(1, 192, 249, 0.5);
     }
 
@@ -253,7 +293,6 @@
             height: 100%;
             color: red;
             transition: linear 0.3s;
-
           }
 
           #con > p {
@@ -305,5 +344,4 @@
   z-index: 1000;
   height: 50px !important;
 }
-
 </style>

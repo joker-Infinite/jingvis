@@ -22,18 +22,18 @@
 </template>
 
 <script>
-	import MyDialog from "./myDialog";
-	import ImgFloorPlan from "./imgFloorPlan";
+import MyDialog from "./myDialog";
+import ImgFloorPlan from "./imgFloorPlan";
 
-	export default {
-		name: "temporary",
-		components: {ImgFloorPlan, MyDialog},
-		data() {
-			return {
-				menu: [],
-			}
-		},
-		/*methods: {
+export default {
+  name: "temporary",
+  components: { ImgFloorPlan, MyDialog },
+  data() {
+    return {
+      menu: []
+    };
+  }
+  /*methods: {
         async getMenuItem(data) {
             for (let i = 0; i < data.length; i++) {
                 await this.$axios.get('/bpi/admin/jt_menu/list_menu', {params: {menuId: data[i].menuId}}).then(v => {
@@ -55,31 +55,31 @@
         this.menu = data = res.data.data;
         await this.getMenuItem(data);
     }*/
-	}
+};
 </script>
 
 <style scoped lang="less">
-  .con {
-    width: 80%;
+.con {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+
+  .view {
+    width: 70%;
     height: 100%;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-
-    .view {
-      width: 70%;
-      height: 100%;
-      background: #99a9bf;
-    }
-
-    .view /deep/ .el-menu > .del > .el-submenu__title > .el-submenu__icon-arrow {
-      display: none;
-    }
-
-    .option {
-      width: 30%;
-      height: 100%;
-      background: #A8D9FF;
-    }
+    background: #99a9bf;
   }
+
+  .view /deep/ .el-menu > .del > .el-submenu__title > .el-submenu__icon-arrow {
+    display: none;
+  }
+
+  .option {
+    width: 30%;
+    height: 100%;
+    background: #a8d9ff;
+  }
+}
 </style>

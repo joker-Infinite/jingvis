@@ -1438,7 +1438,7 @@
 							{a: '负责人', b: 'Xxx'},
 							{a: '联系方式', b: 'Xxxxxxxxxxx'},
 							{a: '经营面积', b: 'Xx㎡'},
-							{a: '主营业务', b: '汽修'},
+							{a: '主营业务', b: '汽修(一级品牌)'},
 							{a: '合同开始日期', b: 'Xxxx年xx月xx日'},
 							{a: '合同结束日期', b: 'Xxxx年xx月xx日'},
 						],
@@ -1446,7 +1446,7 @@
 							{label: '负责人', value: 'XXX'},
 							{label: '联系方式', value: 'Xxxxxxxxxxx'},
 							{label: '经营面积', value: 'Xx㎡'},
-							{label: '主营业务', value: '汽修'},
+							{label: '主营业务', value: '汽修(一级品牌)'},
 							{label: '合同开始日期', value: 'Xxxx年xx月xx日'},
 							{label: '合同结束日期', value: 'Xxxx年xx月xx日'},
 						],
@@ -1870,77 +1870,73 @@
 								]
 							},
 							{
-								title: {
-									text: '当天进入车辆比',
-									x: 'center',
-									textStyle: {
-										color: '#FFF'
-									}
-								},
 								tooltip: {
-									trigger: 'item',
-									formatter: '{b}: {c} ({d}%)'
+									trigger: 'axis',
+									axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+										type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+									}
 								},
 								legend: {
-									bottom: 0,
-									data: ['大车', '小车'],
-									textStyle: {
-										color: '#FFF'
+									data: ['大车-驶入', '大车-驶出', '小车-驶入', '小车-驶出']
+								},
+								grid: {
+									left: '3%',
+									right: '4%',
+									bottom: '3%',
+									containLabel: true
+								},
+								xAxis: [
+									{
+										type: 'value'
 									}
-								},
-								labelLine: {
-									normal: {
-										length: 30,
-										length2: 25,
-										lineStyle: {
-											width: 1,
+								],
+								yAxis: [
+									{
+										type: 'category',
+										axisTick: {
+											show: false
 										},
-									},
-								},
+										data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23']
+									}
+								],
 								series: [
 									{
-										type: 'pie',
-										radius: ['40%', '60%'],
-										avoidLabelOverlap: false,
+										name: '大车-驶入',
+										type: 'bar',
+										stack: '大车',
 										label: {
-											show: true,
-											position: "outer",
-											width: 0,
-											height: 0,
-											lineHeight: 0,
-											backgroundColor: "auto",
-											padding: [2, -2, 2, -2],
-											borderRadius: 2,
-											distanceToLabelLine: 0,
-											normal: {
-												formatter(v) {
-													let text = v.name + "\n" + v.percent + "%";
-													// let text = v.percent + "%";
-													return text;
-												},
-												textStyle: {
-													fontSize: 14,
-												},
-											},
-										},
-										labelLine: {
 											show: true
 										},
-										/*itemStyle: {
-											normal: {
-												color: function (v) {
-													let colorList = [
-														"#79f0ea",
-														"#fa3b43",
-													];
-													return colorList[v.dataIndex];
-												},
-											},
-										},*/
-										data: [
-											{value: 3350, name: '大车'},
-											{value: 3100, name: '小车'},
-										]
+										data: [320, 302, 341, 374, 390, 450,]
+									},
+									{
+										name: '大车-驶出',
+										type: 'bar',
+										stack: '大车',
+										label: {
+											show: true,
+											position: 'left'
+										},
+										data: [-120, -132, -101, -134, -190, -230,]
+									},
+									{
+										name: '小车-驶入',
+										type: 'bar',
+										stack: '小车',
+										label: {
+											show: true
+										},
+										data: [320, 302, 341, 374, 390, 450,]
+									},
+									{
+										name: '小车-驶出',
+										type: 'bar',
+										stack: '小车',
+										label: {
+											show: true,
+											position: 'left'
+										},
+										data: [-120, -132, -101, -134, -190, -230,]
 									}
 								]
 							}
@@ -2058,77 +2054,100 @@
 								]
 							},
 							{
-								title: {
-									text: '当天进入车辆比',
-									x: 'center',
-									textStyle: {
-										color: '#FFF'
-									}
-								},
 								tooltip: {
-									trigger: 'item',
-									formatter: '{b}: {c} ({d}%)'
+									trigger: 'axis',
+									axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+										type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+									}
 								},
 								legend: {
-									bottom: 0,
-									data: ['大车', '小车'],
-									textStyle: {
-										color: '#FFF'
-									}
+									data: ['大车-驶入', '大车-驶出', '小车-驶入', '小车-驶出'],
+									textStyle: {color: "white"}
 								},
-								labelLine: {
-									normal: {
-										length: 30,
-										length2: 25,
-										lineStyle: {
-											width: 1,
-										},
-									},
+								grid: {
+									left: '3%',
+									right: '4%',
+									bottom: '3%',
+									containLabel: true
 								},
-								series: [
+								xAxis: [
 									{
-										type: 'pie',
-										radius: ['40%', '60%'],
-										avoidLabelOverlap: false,
-										label: {
-											show: true,
-											position: "outer",
-											width: 0,
-											height: 0,
-											lineHeight: 0,
-											backgroundColor: "auto",
-											padding: [2, -2, 2, -2],
-											borderRadius: 2,
-											distanceToLabelLine: 0,
-											normal: {
-												formatter(v) {
-													let text = v.name + "\n" + v.percent + "%";
-													// let text = v.percent + "%";
-													return text;
-												},
-												textStyle: {
-													fontSize: 14,
-												},
+										type: 'value',
+										axisTick: {
+											show: false,
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
 											},
 										},
-										labelLine: {
+										splitLine: {show: true},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+									}
+								],
+								yAxis: [
+									{
+										name: '时',
+										type: 'category',
+										axisTick: {
+											show: false
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF",
+											},
+										},
+										splitLine: {show: false},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF",
+											},
+										},
+										data: ['0-3', '4-7', '8-11', '12-15', '16-19', '20-23']
+									}
+								],
+								series: [
+									{
+										name: '大车-驶入',
+										type: 'bar',
+										stack: '大车',
+										label: {
 											show: true
 										},
-										/*itemStyle: {
-                      normal: {
-                        color: function (v) {
-                          let colorList = [
-                            "#79f0ea",
-                            "#fa3b43",
-                          ];
-                          return colorList[v.dataIndex];
-                        },
-                      },
-                    },*/
-										data: [
-											{value: 3350, name: '大车'},
-											{value: 3100, name: '小车'},
-										]
+										data: [320, 302, 341, 374, 390, 450,]
+									},
+									{
+										name: '大车-驶出',
+										type: 'bar',
+										stack: '大车',
+										label: {
+											show: true,
+											position: 'left'
+										},
+										data: [-120, -132, -101, -134, -190, -230,]
+									},
+									{
+										name: '小车-驶入',
+										type: 'bar',
+										stack: '小车',
+										label: {
+											show: true
+										},
+										data: [320, 302, 341, 374, 390, 450,]
+									},
+									{
+										name: '小车-驶出',
+										type: 'bar',
+										stack: '小车',
+										label: {
+											show: true,
+											position: 'left'
+										},
+										data: [-120, -132, -101, -134, -190, -230,]
 									}
 								]
 							}
