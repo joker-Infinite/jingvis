@@ -91,7 +91,7 @@
 				let HomeTopLeft_top = this.$echarts.init(
 					document.getElementById("HomeTopLeft_top")
 				);
-				let option = (this.AD = {
+				let option = {
 					barWidth: 10,
 					title: {
 						x: "center",
@@ -186,62 +186,71 @@
 								formatter: "{b}" + "：{c}" + "%"
 							},
 							data: [],
-							markLine: {
-								data: [],
-								symbol: ["none", "none"],
-								position: "insideTopCenter",
-								itemStyle: {
-									normal: {
-										lineStyle: {
-											type: "dotted",
-											color: "white"
-										},
-										label: {
-											show: false,
-											position: "middle",
-											formatter: "数据平均 :"
-										}
-									}
-								},
-								large: true,
-								effect: {
-									show: false,
-									loop: true,
-									period: 0,
-									scaleSize: 2,
-									color: null,
-									shadowColor: null,
-									shadowBlur: null
-								}
-							}
+							markLine: {}
 						}
 					]
-				});
-				var sum = 0;
-				this.$axios
-					.get("/api/index/rate_list", {params: {type: "ys"}})
-					.then(res => {
-						let rateCount = [];
-						let xBxis = [];
-						let data = res.data.data;
-						this.budget = data;
-						data.sort(function (a, b) {
-							return b.ysRateCount - a.ysRateCount;
-						});
-						res.data.data.forEach(element => {
-							rateCount.unshift(element.ysRateCount);
-							xBxis.unshift(element.plateName);
-						});
-						option.series[0].data = rateCount;
-						option.yAxis.data = xBxis;
-						HomeTopLeft_top.setOption(option);
-						this.isNoData(
-							res.data.data,
-							"initECharts_top_data",
-							"HomeTopLeft_top",
-							option
-						);
+				};
+				this.$axios.get("/api/index/rate_list", {params: {type: "ys"}}).then(res => {
+					let rateCount = [];
+					let xBxis = [];
+					let data = res.data.data;
+					let sum = 0;
+					data.forEach(i => {
+						sum += (i.ysRateCount - 0);
+					})
+					this.budget = data;
+					data.sort(function (a, b) {
+						return b.ysRateCount - a.ysRateCount;
 					});
+					res.data.data.forEach(element => {
+						rateCount.unshift(element.ysRateCount);
+						xBxis.unshift(element.plateName);
+					});
+					option.series[0].data = rateCount;
+					option.yAxis.data = xBxis;
+					this.AD = JSON.parse(JSON.stringify(option));
+					this.AD.series[0].markLine = {
+						data: [
+							{
+								type: "average",
+								name: "平均值",
+								xAxis: (sum / data.length).toFixed(2)
+							}
+						],
+						symbol: ["none", "none"],
+						position: "insideTopCenter",
+						itemStyle: {
+							normal: {
+								lineStyle: {
+									type: "dotted",
+									color: "white"
+								},
+								label: {
+									show: true,
+									position: "middle",
+									formatter: "平均值 : " + (sum / data.length).toFixed(2) + '%'
+								}
+							}
+						},
+						large: true,
+						effect: {
+							show: false,
+							loop: true,
+							period: 0,
+							scaleSize: 2,
+							color: null,
+							shadowColor: null,
+							shadowBlur: null
+						}
+					};
+					HomeTopLeft_top.setOption(option);
+					this.isNoData(
+						res.data.data,
+						"initECharts_top_data",
+						"HomeTopLeft_top",
+						option
+					);
+				});
 			},
 			initECharts_center() {
 				let HomeTopLeft_center = this.$echarts.init(

@@ -516,13 +516,6 @@ export default {
           average += Number(i);
         });
         average = parseInt(average / this.options.series[0].data.length);
-        this.options.series[0].markLine.data = [
-          {
-            type: "average",
-            name: "目标值",
-            xAxis: 91.67 //设置平均值所在位置
-          }
-        ];
         this.options.series[0].markLine = {
           data: [
             {
