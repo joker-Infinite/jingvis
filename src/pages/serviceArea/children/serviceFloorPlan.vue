@@ -1406,7 +1406,7 @@
 								yAxis: [
 									{
 										type: 'value',
-										name: '辆',
+										name: '万辆',
 										axisTick: {
 											show: false,
 										},
@@ -1494,7 +1494,7 @@
 												return Math.abs(v.value)
 											},
 										},
-										data: [-120, -132, -101, -134, -190, -230]
+										data: [-90, -80, -153, -236, -326, -230]
 									},
 									{
 										name: '小车',
@@ -1507,7 +1507,7 @@
 												return Math.abs(v.value)
 											}
 										},
-										data: [320, 302, 341, 374, 390, 450]
+										data: [68, 93, 462, 432, 390, 293]
 									}
 								]
 							}
@@ -1579,7 +1579,7 @@
 								yAxis: [
 									{
 										type: 'value',
-										name: '辆',
+										name: '万辆',
 										axisTick: {
 											show: false,
 										},
@@ -1667,7 +1667,7 @@
 												return Math.abs(v.value)
 											},
 										},
-										data: [-120, -132, -101, -134, -190, -230]
+										data: [-80, -106, -161, -224, -210, -130]
 									},
 									{
 										name: '小车',
@@ -1680,7 +1680,7 @@
 												return Math.abs(v.value)
 											}
 										},
-										data: [320, 302, 341, 374, 390, 450]
+										data: [60, 89, 441, 474, 490, 320]
 									}
 								]
 							}
