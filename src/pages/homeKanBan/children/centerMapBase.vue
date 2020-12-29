@@ -624,7 +624,7 @@ export default {
       this.marker = [];
       let map = new AMap.Map("MAP", {
         center: [112.34, 31.1],
-        zoom: 8
+        zoom: 7
       });
       map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop]);
       this.map = map;
@@ -883,7 +883,7 @@ export default {
       if (b !== "enlarge") {
         map = new AMap.Map("MAP", {
           center: [112.34, 31.1],
-          zoom: 8
+          zoom: 7
         });
       }
       map.setMapStyle("amap://styles/" + this.mapStyleArr[d]);

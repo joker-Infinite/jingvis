@@ -1106,7 +1106,7 @@ export default {
           ],
           formData: [
             { label: "厕所等级", value: "五星" },
-            { label: "如厕总数", value: "263个" },
+            { label: "如厕总数", value: "398个" },
             { label: "保洁人员", value: "4个" },
             { label: "蹲位数量", value: "114个" },
             { label: "小便器阀数量", value: "114个" },
@@ -1344,7 +1344,7 @@ export default {
           ],
           formData: [
             { label: "厕所等级", value: "五星" },
-            { label: "如厕总数", value: "263个" },
+            { label: "如厕总数", value: "398个" },
             { label: "保洁人员", value: "4个" },
             { label: "蹲位数量", value: "114个" },
             { label: "厕所改造时间", value: "2018年09月" }
@@ -1916,12 +1916,12 @@ export default {
           noPingEffect: true,
           data: [
             { a: "卡口是否正常", b: "是" },
-            { a: "今日进入车辆", b: "2568辆" },
+            { a: "今日进入车辆", b: "2853辆" },
             { a: "日均车流量", b: "1940辆" }
           ],
           formData: [
             { label: "卡口是否正常", value: "是" },
-            { label: "今日进入车辆", value: "2568辆" },
+            { label: "今日进入车辆", value: "2853辆" },
             { label: "日均车流量", value: "1940辆" }
           ],
           chartBox: [
