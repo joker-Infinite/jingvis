@@ -328,7 +328,7 @@ export default {
             "<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>日均车流量：3000辆</div>"
           );
           content.push(
-            "<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>今日进入车辆：1867辆</div>"
+            "<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px;'>今日进入车辆：1867辆</div>"
           );
           content.push(
             "<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>今日驶出车辆：1835辆</div>"
