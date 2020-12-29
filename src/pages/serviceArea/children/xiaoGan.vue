@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      collapseData: [
+       collapseData: [
         {
           id: "revenueTable",
           name: "基础信息",
@@ -1736,7 +1736,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "280px"
+                        height: "330px"
                       },
                       option: {
                         title: {
@@ -2175,7 +2175,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "280px"
+                        height: "330px"
                       },
                       option: {
                         title: {
@@ -2627,7 +2627,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "280px"
+                        height: "330px"
                       },
                       option: {
                         title: {
@@ -2640,7 +2640,7 @@ export default {
                               val[0].name +
                               "月" +
                               ":" +
-                              "<br />利润:" +
+                              "<br />成本:" +
                               (val[0].value / 10000).toFixed(2) +
                               "万元"
                             );
@@ -3066,7 +3066,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "280px"
+                        height: "330px"
                       },
                       option: {
                         title: {
@@ -3079,7 +3079,7 @@ export default {
                               val[0].name +
                               "月" +
                               ":" +
-                              "<br />利润:" +
+                              "<br />成本:" +
                               (val[0].value / 10000).toFixed(2) +
                               "万元"
                             );
