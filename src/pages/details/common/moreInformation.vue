@@ -42,7 +42,7 @@
 					</el-col>
 				</p>
 				<el-col :span="8" v-for="(it, ix) in formData" :key="ix">
-					<el-form-item :label="it.label + '：'">
+					<el-form-item :label="it.label + '：'" :class="it.addColor">
 						<el-input disabled :value="it.value"></el-input>
 					</el-form-item>
 				</el-col>
@@ -408,6 +408,34 @@
 						}
 					}
 				}
+
+				.red {
+					.el-form-item__label {
+						color: red !important;
+					}
+
+					.el-form-item__content {
+						.el-input {
+							.el-input__inner {
+								color: red !important;
+							}
+						}
+					}
+				}
+
+				.green {
+					.el-form-item__label {
+						color: green !important;
+					}
+
+					.el-form-item__content {
+						.el-input {
+							.el-input__inner {
+								color: green !important;
+							}
+						}
+					}
+				}
 			}
 
 			/deep/ .el-col {
@@ -461,6 +489,34 @@
 						line-height: 35px;
 						background: rgba(0, 0, 0, 0);
 						color: #6deee8;
+					}
+				}
+			}
+
+			.red {
+				.el-form-item__label {
+					color: red !important;
+				}
+
+				.el-form-item__content {
+					.el-input {
+						.el-input__inner {
+							color: red !important;
+						}
+					}
+				}
+			}
+
+			.green {
+				.el-form-item__label {
+					color: green !important;
+				}
+
+				.el-form-item__content {
+					.el-input {
+						.el-input__inner {
+							color: green !important;
+						}
 					}
 				}
 			}
