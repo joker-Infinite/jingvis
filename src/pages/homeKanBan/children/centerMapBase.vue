@@ -2,13 +2,11 @@
 	<div
 		class="mapBox"
 		@mouseover="showCheckBoxBar"
-		@mouseout="hiddenCheckBoxBar"
-	>
+		@mouseout="hiddenCheckBoxBar">
 		<div class="btn" id="btn_map">
 			<el-radio-group
 				v-model="serviceChecked"
-				@change="serviceCheck(serviceChecked)"
-			>
+				@change="serviceCheck(serviceChecked)">
 				<el-radio label="服务区"></el-radio>
 				<el-radio label="油站"></el-radio>
 				<el-radio label="超市"></el-radio>
@@ -26,9 +24,14 @@
 				 :style="{transform:clickIndex%2===0?'rotate(180deg)':'rotate(0deg)'}"></i>
 			</div>-->
 		</div>
+		<div style="width: 20%;position:absolute;top: 0;left: 0;z-index: 99">
+			<el-select v-model="searchSelect" filterable @change="searchMapDot(searchSelect,searchOption)">
+				<el-option v-for="(i,x) in searchOption" :key="x" :value="i.searchName"></el-option>
+			</el-select>
+		</div>
 		<div id="MAP"></div>
 		<div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
-		<div class="details" id="ds"></div>
+		<!--		<div class="details" id="ds"></div>-->
 		<!-- <animation v-for="(item,index) of rotateList" class="animation" :key="index" :style="item.style">
 		  <template>
 			<div class="img">
@@ -79,6 +82,8 @@
         },
         data() {
             return {
+                searchOption: [],
+                searchSelect: '',
                 clickIndex: 0,
                 serviceChecked: "服务区",
                 gasChecked: ["中石化", "中石油", "交投能源"],
@@ -594,6 +599,20 @@
             };
         },
         methods: {
+            formatterCenter(s, a) {
+                let op = [];
+                a.forEach((i, x) => {
+                    if (i.searchName == s) {
+                        op = [i.longitude, i.latitude];
+                    }
+                });
+                return op;
+            },
+            searchMapDot(s, a) {
+                let op = this.formatterCenter(s, a);
+                this.refresh(this.backdrop, '', '', op, 'enlarge');
+                this.$emit('selectValue', op);
+            },
             hiddenCheckBoxBar() {
                 let btn_map = document.getElementById("btn_map");
                 btn_map.style.right = "-120px";
@@ -603,6 +622,8 @@
                 btn_map.style.right = "0px";
             },
             serviceCheck(sv) {
+                this.searchSelect = '';
+                this.$emit('selectValue', []);
                 this.refresh(this.backdrop, sv, this.gasChecked);
             },
             gasCheck(gv) {
@@ -641,7 +662,7 @@
                         if (item.type === "os")
                             icon = require("../../../assets/gas/service-c.png");
                         if (item.type === "中石化")
-                            this.backdrop==1? icon = require("../../../assets/gas/zsh.png") :icon = require("../../../assets/gas/zsh1.png");
+                            this.backdrop == 1 ? icon = require("../../../assets/gas/zsh.png") : icon = require("../../../assets/gas/zsh1.png");
                         if (item.type === "中石油")
                             icon = require("../../../assets/gas/zsy.png");
                         if (item.type === "交投能源")
@@ -856,6 +877,7 @@
                 context.marker.setContent(div);
             },
             refresh(d, sv, gv, center, b) {
+                this.searchOption = [];
                 if (!gv) {
                     gv = this.gasChecked;
                 }
@@ -871,10 +893,10 @@
                 if (sv.indexOf("卡口") != -1) position.push(...this.bayonet);
                 if (sv.indexOf("超市") != -1) position.push(...[]);
                 if (sv.indexOf("收银") != -1) position.push(...[]);
-                if (sv.indexOf("油站") != -1)
-                    position.push(...this.petrochemical, ...this.oil, ...this.energy);
+                if (sv.indexOf("油站") != -1) position.push(...this.petrochemical, ...this.oil, ...this.energy);
                 // if (gv.indexOf("中石油") != -1) position.push(...this.oil);
                 // if (gv.indexOf("交投能源") != -1) position.push(...this.energy);
+                this.searchOption = [...position];
                 let map;
                 if (b === "enlarge") {
                     map = new AMap.Map("MAP", {
@@ -921,7 +943,8 @@
                         this.myService.push(
                             Object.assign(i, {
                                 type: "ms",
-                                oid: "ms" + "-" + i.longitude + "-" + i.latitude
+                                oid: "ms" + "-" + i.longitude + "-" + i.latitude,
+                                searchName: i.gisName + i.gisType
                             })
                         );
                     }
@@ -929,7 +952,8 @@
                         this.otherService.push(
                             Object.assign(i, {
                                 type: "os",
-                                oid: "os" + "-" + i.longitude + "-" + i.latitude
+                                oid: "os" + "-" + i.longitude + "-" + i.latitude,
+                                searchName: i.gisName + i.gisType
                             })
                         );
                     }
@@ -946,7 +970,8 @@
                         this.petrochemical.push(
                             Object.assign(i, {
                                 type: "中石化",
-                                oid: "中石化" + "-" + i.longitude + "-" + i.latitude
+                                oid: "中石化" + "-" + i.longitude + "-" + i.latitude,
+                                searchName: i.gisName + i.gisType
                             })
                         );
                     }
@@ -954,7 +979,8 @@
                         this.oil.push(
                             Object.assign(i, {
                                 type: "中石油",
-                                oid: "中石油" + "-" + i.longitude + "-" + i.latitude
+                                oid: "中石油" + "-" + i.longitude + "-" + i.latitude,
+                                searchName: i.gisName + i.gisType
                             })
                         );
                     }
@@ -962,7 +988,8 @@
                         this.energy.push(
                             Object.assign(i, {
                                 type: "交投能源",
-                                oid: "交投能源" + "-" + i.longitude + "-" + i.latitude
+                                oid: "交投能源" + "-" + i.longitude + "-" + i.latitude,
+                                searchName: i.gisName + i.gisType
                             })
                         );
                     }
@@ -979,7 +1006,8 @@
                         Object.assign(i, {
                             type: "卡口",
                             gisType: "卡口",
-                            oid: "卡口" + "-" + i.longitude + "-" + i.latitude
+                            oid: "卡口" + "-" + i.longitude + "-" + i.latitude,
+                            searchName: i.gisName + i.gisType
                         })
                     );
                 }
@@ -993,6 +1021,7 @@
                 ...this.energy,
                 ...this.bayonet
             );
+            this.searchOption = [...position];
             this.initMap(position);
         }
     };
@@ -1021,7 +1050,6 @@
 		.btn {
 			width: 70px;
 			padding: 10px;
-			height: 100px;
 			position: absolute;
 			top: 0;
 			right: -120px;
