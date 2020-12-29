@@ -79,6 +79,8 @@ export default {
   },
   data() {
     return {
+      // 判断选择的主题颜色
+      isColor:0,
       clickIndex: 0,
       serviceChecked: "服务区",
       gasChecked: ["中石化", "中石油", "交投能源"],
@@ -632,6 +634,7 @@ export default {
     },
     addMarker(v, position) {
       let that = this;
+      console.log(this.backdrop)
       position.forEach((item, index) => {
         let icon;
         if (item.type) {
@@ -640,7 +643,7 @@ export default {
           if (item.type === "os")
             icon = require("../../../assets/gas/service-c.png");
           if (item.type === "中石化")
-            icon = require("../../../assets/gas/zsh.png");
+            icon = this.backdrop===1 ? require("../../../assets/gas/zsh.png") : require("../../../assets/gas/zsh1.png");
           if (item.type === "中石油")
             icon = require("../../../assets/gas/zsy.png");
           if (item.type === "交投能源")
@@ -648,6 +651,7 @@ export default {
           if (item.type === "卡口")
             icon = require("../../../assets/gas/kk.png");
         }
+        
         if (
           item.longitude &&
           item.latitude &&
@@ -892,6 +896,7 @@ export default {
     }
   },
   async mounted() {
+    
     let position = [];
     let [service, allGas, bayonet_] = await Promise.all([
       this.$axios.get("/api/index/list_jtService", {

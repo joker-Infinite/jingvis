@@ -140,6 +140,7 @@ export default {
   methods: {
     switchStyle(v) {
       this.backdrop = v;
+      this.$refs["centerMap"].serviceChecked='服务区';
       let style = [
         {
           width: "92%",
