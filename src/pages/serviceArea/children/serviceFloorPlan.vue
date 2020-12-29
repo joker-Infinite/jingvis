@@ -1475,8 +1475,8 @@
                         ],
                         formData: [
                             {label: "卡口是否正常", value: "是"},
-                            {label: "今日驶入车辆", value: "2853辆", addColor: 'red'},
-                            {label: "今日驶出车辆", value: "2766辆", addColor: 'green'},
+                            {label: "今日驶入车辆", value: "2853辆", },
+                            {label: "今日驶出车辆", value: "2766辆",},
                             {label: "日均车流量", value: "1800辆"}
                         ],
                         chartBox: [
@@ -1688,8 +1688,8 @@
                         ],
                         formData: [
                             {label: "卡口是否正常", value: "是"},
-                            {label: "今日驶入车辆", value: "2853辆", addColor: 'red'},
-                            {label: "今日驶出车辆", value: "2766辆", addColor: 'green'},
+                            {label: "今日驶入车辆", value: "2853辆", },
+                            {label: "今日驶出车辆", value: "2766辆",},
                             {label: "日均车流量", value: "1940辆"}
                         ],
                         chartBox: [
