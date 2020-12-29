@@ -271,7 +271,7 @@ export default {
           if (item.type === "os")
             icon = require("../../assets/gas/service-c.png");
           if (item.type === "中石化")
-            icon = require("../../assets/gas/zsh.png");
+            this.backdrop==1? icon = require("../../assets/gas/zsh.png") :icon = require("../../assets/gas/zsh1.png");
           if (item.type === "中石油")
             icon = require("../../assets/gas/zsy.png");
           if (item.type === "交投能源")
