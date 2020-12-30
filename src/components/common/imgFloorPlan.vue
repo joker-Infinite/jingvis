@@ -2070,6 +2070,26 @@
 								},
 								xAxis: [
 									{
+										name: "时",
+										type: "category",
+										axisTick: {
+											show: false
+										},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF"
+											}
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF"
+											}
+										},
+										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
+									}
+								],
+								yAxis: [
+									{
 										name: "辆",
 										type: "value",
 										axisLabel: {
@@ -2091,49 +2111,27 @@
 										splitLine: {show: false}
 									}
 								],
-								yAxis: [
-									{
-										name: "时",
-										type: "category",
-										axisTick: {
-											show: false
-										},
-										axisLine: {
-											lineStyle: {
-												color: "#FFF"
-											}
-										},
-										axisLabel: {
-											textStyle: {
-												color: "#FFF"
-											}
-										},
-										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
-									}
-								],
 								series: [
 									{
 										name: "大车",
-										type: "bar",
-										stack: "总量",
-										label: {
+										type: "line",
+										/*label: {
 											show: true,
 											color: "white",
 											formatter: v => {
 												return Math.abs(v.value);
 											}
-										},
+										},*/
 										itemStyle: {color: "#596aec"},
 										data: [90, 80, 153, 236, 326, 230]
 									},
 									{
 										name: "小车",
-										type: "bar",
-										stack: "总量",
-										label: {
+										type: "line",
+										/*label: {
 											show: true,
 											color: "white"
-										},
+										},*/
 										itemStyle: {color: "#43cef7"},
 										data: [68, 93, 462, 432, 390, 293]
 									}
@@ -2330,6 +2328,26 @@
 								},
 								xAxis: [
 									{
+										name: "时",
+										type: "category",
+										axisTick: {
+											show: false
+										},
+										axisLabel: {
+											textStyle: {
+												color: "#FFF"
+											}
+										},
+										axisLine: {
+											lineStyle: {
+												color: "#FFF"
+											}
+										},
+										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
+									}
+								],
+								yAxis: [
+									{
 										name: "辆",
 										type: "value",
 										axisLabel: {
@@ -2351,49 +2369,27 @@
 										splitLine: {show: false}
 									}
 								],
-								yAxis: [
-									{
-										name: "时",
-										type: "category",
-										axisTick: {
-											show: false
-										},
-										axisLabel: {
-											textStyle: {
-												color: "#FFF"
-											}
-										},
-										axisLine: {
-											lineStyle: {
-												color: "#FFF"
-											}
-										},
-										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
-									}
-								],
 								series: [
 									{
 										name: "大车",
-										type: "bar",
-										stack: "总量",
+										type: "line",/*
 										label: {
 											show: true,
 											color: "white",
 											formatter: v => {
 												return Math.abs(v.value);
 											}
-										},
+										},*/
 										data: [80, 106, 161, 224, 210, 130],
 										itemStyle: {color: "#596aec"}
 									},
 									{
 										name: "小车",
-										type: "bar",
-										stack: "总量",
-										label: {
+										type: "line",
+										/*label: {
 											show: true,
 											color: "white"
-										},
+										},*/
 										data: [60, 89, 441, 474, 490, 320],
 										itemStyle: {color: "#43cef7"}
 									}

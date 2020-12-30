@@ -28,7 +28,8 @@
       <el-select v-model="searchSelect" filterable @change="searchMapDot(searchSelect,searchOption)">
         <el-option v-for="(i,x) in searchOption" :key="x" :value="i.searchName"></el-option>
         <div slot="prefix">
-          <div style="width: 25px;height: 35px;line-height: 35px;text-align: center;font-size: 16px" class="el-icon-search">
+          <div style="width: 25px;height: 35px;line-height: 35px;text-align: center;font-size: 16px"
+               class="el-icon-search">
           </div>
         </div>
       </el-select>
@@ -141,28 +142,14 @@
 						{a: "加油站联系电话", b: "Xxxxxxxxxxx"},
 						{a: "加油站管理单位", b: "中石化"},
 						{a: "加油岛数量", b: "6个"},
-						// {a: '加油枪数量', b: '36个'},
-						// {a: '可加油', b: '0,92,95,98'},
 						{a: "是否有便利店", b: "是"}
-						/*	{a: '油枪(92)', b: '8个'},
-  {a: '油枪(95)', b: '8个'},
-  {a: '油枪(98)', b: '8个'},
-  {a: '油枪(0)', b: '6个'},
-  {a: '异常油枪', b: '6个'},*/
 					],
 					formData: [
 						{label: "加油站负责人", value: "XXX"},
 						{label: "加油站联系电话", value: "Xxxxxxxxxxx"},
 						{label: "加油站管理单位", value: "中石化"},
 						{label: "加油岛数量", value: "6个"},
-						// {label: '加油枪数量', value: '36个'},
-						// {label: '可加油', value: '0,92,95,98'},
 						{label: "是否有便利店", value: "是"}
-						/*{label: '油枪(92)', value: '8个'},
-  {label: '油枪(95)', value: '8个'},
-  {label: '油枪(98)', value: '8个'},
-  {label: '油枪(0)', value: '6个'},
-  {label: '异常油枪', value: '6个'},*/
 					],
 					columns: [
 						{a: "92#", b: "95#", c: "98#", d: "0#", e: "异常", f: "总计"},
@@ -449,23 +436,33 @@
 									type: "shadow"
 								},
 								formatter: v => {
+									//进入
+									let R = {
+										D: [80, 106, 161, 224, 210, 130],
+										X: [60, 89, 441, 474, 490, 320]
+									};
+									//驶出
+									let C = {
+										D: [90, 80, 153, 236, 326, 230],
+										X: [68, 93, 462, 432, 390, 293]
+									};
 									let time = "";
-									let SR = "";
-									let SC = "";
+									let text = '';
 									v.forEach(i => {
+										//dataIndex
 										time = i.name + "时<br>";
-										if (i.value < 0) {
-											SC += i.seriesName + "：" + Math.abs(i.value) + "辆<br>";
+										if (i.seriesName == '驶入') {
+											text += i.seriesName + '<br>大车：' + R.D[i.dataIndex] + '辆<br>小车：' + R.X[i.dataIndex] + '辆<br>';
 										}
-										if (i.value > 0) {
-											SR += i.seriesName + "：" + Math.abs(i.value) + "辆<br>";
+										if (i.seriesName == '驶出') {
+											text += i.seriesName + '<br>大车：' + C.D[i.dataIndex] + '辆<br>小车：' + C.X[i.dataIndex] + '辆';
 										}
 									});
-									return time + "进入<br>" + SC + "驶出<br>" + SR;
+									return time + text
 								}
 							},
 							legend: {
-								data: ["大车", "小车"],
+								data: ["驶入", "驶出"],
 								bottom: 0,
 								textStyle: {
 									color: "#FFF"
@@ -478,6 +475,26 @@
 								containLabel: true
 							},
 							xAxis: [
+								{
+									name: "时",
+									type: "category",
+									axisTick: {
+										show: false
+									},
+									axisLine: {
+										lineStyle: {
+											color: "#FFF"
+										}
+									},
+									axisLabel: {
+										textStyle: {
+											color: "#FFF"
+										}
+									},
+									data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
+								}
+							],
+							yAxis: [
 								{
 									name: "辆",
 									type: "value",
@@ -500,77 +517,29 @@
 									splitLine: {show: false}
 								}
 							],
-							yAxis: [
-								{
-									name: "时",
-									type: "category",
-									axisTick: {
-										show: false
-									},
-									axisLine: {
-										lineStyle: {
-											color: "#FFF"
-										}
-									},
-									axisLabel: {
-										textStyle: {
-											color: "#FFF"
-										}
-									},
-									data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
-								}
-							],
 							series: [
 								{
-									name: "大车",
-									type: "bar",
-									stack: "进入",
-									label: {
+									name: "驶入",
+									type: "line",
+								/*	label: {
 										show: true,
 										formatter: v => {
 											return Math.abs(v.value);
 										}
-									},
-									data: [-80, -106, -161, -224, -210, -130],
+									},*/
+									data: [140, 195, 602, 698, 700, 350],
 									itemStyle: {color: "#596aec"}
 								},
 								{
-									name: "小车",
-									type: "bar",
-									stack: "进入",
-									label: {
+									name: "驶出",
+									type: "line",
+								/*	label: {
 										show: true,
 										formatter: v => {
 											return Math.abs(v.value);
 										}
-									},
-									data: [-60, -89, -441, -474, -490, -320],
-									itemStyle: {color: "#43cef7"}
-								},
-								{
-									name: "大车",
-									type: "bar",
-									stack: "驶出",
-									label: {
-										show: true,
-										formatter: v => {
-											return Math.abs(v.value);
-										}
-									},
-									data: [90, 80, 153, 236, 326, 230],
-									itemStyle: {color: "#596aec"}
-								},
-								{
-									name: "小车",
-									type: "bar",
-									stack: "驶出",
-									label: {
-										show: true,
-										formatter: v => {
-											return Math.abs(v.value);
-										}
-									},
-									data: [68, 93, 462, 432, 390, 293],
+									},*/
+									data: [158, 173, 615, 668, 716, 523],
 									itemStyle: {color: "#43cef7"}
 								}
 							]

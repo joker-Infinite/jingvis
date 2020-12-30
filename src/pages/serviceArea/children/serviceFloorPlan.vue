@@ -1593,6 +1593,16 @@
 								},
 								xAxis: [
 									{
+										name: "时",
+										type: "category",
+										axisTick: {
+											show: false
+										},
+										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
+									}
+								],
+								yAxis: [
+									{
 										type: "value",
 										axisLabel: {
 											formatter: v => {
@@ -1605,40 +1615,28 @@
 										splitLine: {show: false}
 									}
 								],
-								yAxis: [
-									{
-										name: "时",
-										type: "category",
-										axisTick: {
-											show: false
-										},
-										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
-									}
-								],
 								series: [
 									{
 										name: "大车",
-										type: "bar",
-										stack: "总量",
-										label: {
+										type: "line",
+									/*	label: {
 											show: true,
 											formatter: v => {
 												return Math.abs(v.value);
 											}
-										},
+										},*/
 										data: [90, 80, 153, 236, 326, 230],
 										itemStyle: {color: "#596aec"}
 									},
 									{
 										name: "小车",
-										type: "bar",
-										stack: "总量",
-										label: {
+										type: "line",
+									/*	label: {
 											show: true,
 											formatter: v => {
 												return Math.abs(v.value);
 											}
-										},
+										},*/
 										data: [68, 93, 462, 432, 390, 293],
 										itemStyle: {color: "#43cef7"}
 									}
@@ -1806,6 +1804,16 @@
 								},
 								xAxis: [
 									{
+										name: "时",
+										type: "category",
+										axisTick: {
+											show: false
+										},
+										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
+									}
+								],
+								yAxis: [
+									{
 										type: "value",
 										axisLabel: {
 											formatter: v => {
@@ -1818,40 +1826,28 @@
 										splitLine: {show: false}
 									}
 								],
-								yAxis: [
-									{
-										name: "时",
-										type: "category",
-										axisTick: {
-											show: false
-										},
-										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
-									}
-								],
 								series: [
 									{
 										name: "大车",
-										type: "bar",
-										stack: "总量",
-										label: {
+										type: "line",
+										/*label: {
 											show: true,
 											formatter: v => {
 												return Math.abs(v.value);
 											}
-										},
+										},*/
 										data: [80, 106, 161, 224, 210, 130],
 										itemStyle: {color: "#596aec"}
 									},
 									{
 										name: "小车",
-										type: "bar",
-										stack: "总量",
-										label: {
+										type: "line",
+									/*	label: {
 											show: true,
 											formatter: v => {
 												return Math.abs(v.value);
 											}
-										},
+										},*/
 										data: [60, 89, 441, 474, 490, 320],
 										itemStyle: {color: "#43cef7"}
 									}

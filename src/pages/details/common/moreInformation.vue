@@ -86,8 +86,8 @@
                   v-for="i in 2"
                   :key="i"
                   :style="{ width: '49.5%',height: chartBox.length === 2 ? '300px' : '400px',marginBottom: '10px',position: 'relative'}">
-            <div v-if="i == 2 && NE == 'gas'" class="KK ll">进入</div>
-            <div v-if="i == 2 && NE == 'gas'" class="KK rr">驶出</div>
+          <!--  <div v-if="i == 2 && NE == 'gas'" class="KK ll">进入</div>
+            <div v-if="i == 2 && NE == 'gas'" class="KK rr">驶出</div>-->
             <div class="KK ll" v-if="i==2&& (form.name=='男厕'|| form.name=='女厕')">男（223）</div>
             <div class="KK rr" v-if="i==2&& (form.name=='男厕'|| form.name=='女厕')">女（175）</div>
             <div class="KK rr"></div>
