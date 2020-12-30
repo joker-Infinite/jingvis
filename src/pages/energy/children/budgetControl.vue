@@ -927,7 +927,9 @@ export default {
                 {
                   title: "分项成本变化趋势",
                   showSearch: "notShow",
-                  selectOption: [["A成本", "B成本", "C成本", "D成本"]],
+                  selectOption: [
+                    ["零售业务", "批发业务", "经营租赁", "开办费"]
+                  ],
                   select: true,
                   style: {
                     width: "49.5%",

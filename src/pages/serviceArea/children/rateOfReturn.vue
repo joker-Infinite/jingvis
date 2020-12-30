@@ -118,7 +118,7 @@ export default {
                           ]
                         },
                         legend: {
-                          data: ["机关回款率", "服务区回款率"]
+                          data: ["整体回款率", "服务区回款率"]
                         },
                         yAxis: {
                           name: "%",
@@ -150,7 +150,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "机关回款率",
+                            name: "整体回款率",
                             data: [
                               52,
                               38,
@@ -807,7 +807,7 @@ export default {
                           ]
                         },
                         legend: {
-                          data: ["机关回款率", "服务区回款率"]
+                          data: ["整体回款率", "服务区回款率"]
                         },
                         yAxis: {
                           name: "%",
@@ -839,7 +839,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "机关回款率",
+                            name: "整体回款率",
                             data: [
                               90,
                               34,

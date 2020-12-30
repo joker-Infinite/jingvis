@@ -487,8 +487,8 @@ export default {
           label: "0号柴油"
         },
         {
-          value: "93#汽油",
-          label: "93#汽油"
+          value: "92#汽油",
+          label: "92#汽油"
         },
         {
           value: "97#汽油",

@@ -108,7 +108,6 @@ export default {
                         },
                         xAxis: {
                           type: "category",
-
                           data: [
                             "01月",
                             "02月",
@@ -144,18 +143,18 @@ export default {
                           selectedMode: "single",
                           icon: "circle",
                           borderColor: "#f00",
-                          selected: {
-                            汽油: true, //图例为‘全部’的一项默认置灰
-                            柴油: false,
-                            "92": false,
-                            "95": false,
-                            "98": false
-                          },
+                          // selected: {
+                          //   汽油: true, //图例为‘全部’的一项默认置灰
+                          //   柴油: false,
+                          //   "92": false,
+                          //   "95": false,
+                          //   "98": false
+                          // },
                           textStyle: {
                             color: "#f00"
                           },
                           top: 10,
-                          data: ["汽油", "柴油", "92", "95", "98"]
+                          data: ["汽油", "柴油", "92#", "95#", "98#"]
                         },
                         series: [
                           {
@@ -273,7 +272,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "92",
+                            name: "92#",
                             data: [
                               5.05,
                               5.05,
@@ -292,7 +291,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "92",
+                            name: "92#",
                             data: [
                               5.55,
                               5.65,
@@ -311,7 +310,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "92",
+                            name: "92#",
                             data: [
                               6.05,
                               6.25,
@@ -330,7 +329,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "95",
+                            name: "95#",
                             data: [
                               6.25,
                               6.05,
@@ -349,7 +348,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "95",
+                            name: "95#",
                             data: [
                               6.55,
                               6.65,
@@ -368,7 +367,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "95",
+                            name: "95#",
                             data: [
                               6.95,
                               6.95,
@@ -387,7 +386,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "98",
+                            name: "98#",
                             data: [
                               6.05,
                               6.05,
@@ -406,7 +405,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "98",
+                            name: "98#",
                             data: [
                               6.55,
                               6.85,
@@ -425,7 +424,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "98",
+                            name: "98#",
                             data: [
                               7.05,
                               7.25,
@@ -465,24 +464,44 @@ export default {
                   },
                   EChartsItem: [
                     {
-                      /*ECharts的属性*/
+                      /* ECharts的属性 */
                       style: {
                         width: "100%",
                         height: "400px"
                       },
                       unit: "元/吨",
                       option: {
+                        title: {
+                          text: "{a|国内批零差价}{b|自身批零差价}",
+                          show: true,
+                          y: "6",
+                          right: "200",
+                          textStyle: {
+                            lineHeight: 15,
+                            rich: {
+                              a: {
+                                color: "#95A2FF",
+                                fontSize: "15"
+                              },
+                              b: {
+                                color: "#FE9394",
+                                fontSize: "15",
+                                padding: 10
+                              }
+                            }
+                          }
+                        },
                         tooltip: {
                           trigger: "axis",
                           formatter: function(params) {
+                            console.log(params);
                             return (
                               params[0].seriesName +
-                              ":" +
+                              `(${params[0].axisValue})` +
+                              "<br> 国内批零差价 : " +
                               params[0].value +
                               "元/吨" +
-                              "<br>" +
-                              params[1].seriesName +
-                              ":" +
+                              "<br> 自身批零差价 : " +
                               params[1].value +
                               "元/吨"
                             );
@@ -490,9 +509,10 @@ export default {
                           show: true
                         },
                         legend: {
-                          data: ["国内批发差价", "自身批发差价"],
+                          data: ["汽油", "柴油"],
                           align: "right",
-                          right: 200,
+                          selectedMode: "single",
+                          right: "center",
                           icon: "circle",
                           top: 20
                         },
@@ -525,38 +545,78 @@ export default {
                         },
                         series: [
                           {
-                            name: "国内批发差价",
+                            name: "汽油",
+                            color: "#FE9394",
                             data: [
-                              213,
-                              123,
-                              432,
-                              321,
-                              323,
-                              321,
-                              234,
-                              543,
-                              654,
-                              435,
-                              434,
-                              333
+                              2485,
+                              2560,
+                              2402,
+                              2905,
+                              2588,
+                              2645,
+                              2024,
+                              2456,
+                              2658,
+                              2598,
+                              2985,
+                              2580
                             ],
                             type: "line"
                           },
                           {
-                            name: "自身批发差价",
+                            name: "汽油",
+                            color: "#95A2FF",
                             data: [
-                              132,
-                              433,
-                              321,
-                              65,
-                              768,
+                              2585,
+                              2660,
+                              2502,
+                              2950,
+                              2688,
+                              2745,
+                              2564,
+                              2056,
+                              2658,
+                              2858,
+                              2995,
+                              2650
+                            ],
+                            type: "line"
+                          },
+                          {
+                            name: "柴油",
+                            color: "#FE9394",
+                            data: [
+                              799,
+                              878,
+                              690,
+                              988,
+                              765,
+                              964,
+                              885,
+                              999,
+                              654,
+                              702,
+                              958,
+                              906
+                            ],
+                            type: "line"
+                          },
+                          {
+                            name: "柴油",
+                            color: "#95A2FF",
+                            data: [
+                              785,
+                              854,
+                              689,
+                              958,
+                              715,
+                              956,
+                              844,
                               987,
-                              343,
-                              234,
-                              123,
-                              432,
-                              543,
-                              232
+                              680,
+                              695,
+                              980,
+                              860
                             ],
                             type: "line"
                           }
@@ -751,16 +811,16 @@ export default {
                       columns: [
                         // {prop: "A", label: "指标名称"},
                         {
-                          prop: "dieselLingshou",
+                          prop: "gasolineLingshou",
                           label: "最高汽油零售指导价(元)"
                         },
-                        { prop: "dieselPifa", label: "最高汽油批发价格(元)" },
+                        { prop: "gasolinePifa", label: "最高汽油批发价格(元)" },
                         {
-                          prop: "gasolineLingshou",
+                          prop: "dieselLingshou",
                           label: "最高柴油零售指导价(元)"
                         },
                         {
-                          prop: "gasolinePifa",
+                          prop: "dieselPifa",
                           label: "最高柴油批发指导价(元)"
                         },
                         { prop: "oilType", label: "油品类型" },

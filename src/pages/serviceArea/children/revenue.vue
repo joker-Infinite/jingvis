@@ -322,7 +322,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 15,
                                 length2: 25,
                                 lineStyle: {
                                   width: 1
@@ -419,7 +419,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 15,
                                 length2: 10,
                                 lineStyle: {
                                   width: 1
@@ -736,7 +736,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 15,
                                 length2: 25,
                                 lineStyle: {
                                   width: 1
@@ -826,7 +826,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 15,
                                 length2: 10,
                                 lineStyle: {
                                   width: 1
