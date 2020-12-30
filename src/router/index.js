@@ -66,6 +66,13 @@ const routes = [
       )
   },
   {
+    path: "/EChartsTest",
+    component: () =>
+        import(
+            /* webpackChunkName: "frame" */ "../../src/components/EChartsTest"
+            )
+  },
+  {
     path: "/403",
     component: () =>
       import(/* webpackChunkName: "frame" */ "../../src/components/common/403")

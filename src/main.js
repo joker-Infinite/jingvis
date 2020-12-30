@@ -8,6 +8,7 @@ import VueAMap from "vue-amap";
 import "./plugins/wyz-echarts/wyz-echarts.js";
 import empty from "./pages/empty/empty.vue";
 import "./assets/icon/iconfont.css";
+import 'echarts-liquidfill'
 
 Vue.config.productionTip = false;
 Vue.component("empty", empty);
