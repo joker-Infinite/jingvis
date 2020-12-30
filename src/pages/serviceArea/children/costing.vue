@@ -185,6 +185,11 @@ export default {
                   title: "成本占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "59.5%",
                     height: "400px",
@@ -1166,6 +1171,11 @@ export default {
                   title: "成本占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "59.5%",
                     height: "350px",

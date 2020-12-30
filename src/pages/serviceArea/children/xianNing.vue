@@ -1091,6 +1091,11 @@ export default {
                   title: "营收占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "64.5%",
                     height: "400px",
@@ -1182,7 +1187,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 15,
                                 length2: 25,
                                 lineStyle: {
                                   width: 1
@@ -1279,7 +1284,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 15,
                                 length2: 10,
                                 lineStyle: {
                                   width: 1
@@ -1504,6 +1509,11 @@ export default {
                   title: "营收占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "64.5%",
                     height: "400px",
@@ -1596,7 +1606,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 15,
                                 length2: 25,
                                 lineStyle: {
                                   width: 1
@@ -1686,7 +1696,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 15,
                                 length2: 10,
                                 lineStyle: {
                                   width: 1
@@ -1943,6 +1953,11 @@ export default {
                   title: "利润占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "64.5%",
                     height: "400px",
@@ -2382,6 +2397,11 @@ export default {
                   title: "利润占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "64.5%",
                     height: "400px",
@@ -2789,6 +2809,11 @@ export default {
                   title: "成本占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "59.5%",
                     height: "400px",
@@ -3796,6 +3821,11 @@ export default {
                   title: "成本占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "59.5%",
                     height: "350px",

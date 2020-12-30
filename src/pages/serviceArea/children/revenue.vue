@@ -231,6 +231,11 @@ export default {
                   title: "营收占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "64.5%",
                     height: "400px",
@@ -644,6 +649,11 @@ export default {
                   title: "营收占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "64.5%",
                     height: "400px",

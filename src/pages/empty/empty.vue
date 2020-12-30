@@ -4,7 +4,7 @@
       <img
         src="http://www.hbjtsy.com/themes/simpleboot3_web/public/web/images/index/logo.png"
       />
-      数据正在挖掘中
+      {{text}}
     </div>
   </div>
 </template>
@@ -12,6 +12,12 @@
 export default {
   data() {
     return {};
+  },
+  props:{
+    text:{
+      type:String,
+      default:'数据正在挖掘中'
+    }
   }
 };
 </script>

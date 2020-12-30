@@ -249,7 +249,11 @@ export default {
                   title: "子公司/业态占比",
                   istime: true,
                   isselect: false,
-
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   timeValue: "",
                   selectValue: "",
                   /*包裹ECharts的父级元素的属性*/
@@ -658,6 +662,11 @@ export default {
                   title: "子公司/业态占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   timeValue: "",
                   selectValue: "",
                   /*包裹ECharts的父级元素的属性*/

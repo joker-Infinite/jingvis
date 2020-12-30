@@ -230,6 +230,11 @@ export default {
                   title: "子公司占比/业态占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "60%",
                     height: "350px",
@@ -604,6 +609,11 @@ export default {
                   title: "子公司占比/业态占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "60%",
                     height: "350px",
@@ -788,6 +798,11 @@ export default {
                     '<span style="float: left">预算项目列表</span><span style="float: right ;text-shadow:none;height: 100%;text-align: right;padding-right: 20px;font-weight:100;">2020年 执行金额:3478万元 预算金额:5432万元 总执行度:64%</span>',
                   input: true,
                   select: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   selectOption: [[2015, 2016, 2017, 2018]],
                   style: {
                     width: "100%",
@@ -931,6 +946,11 @@ export default {
                     ["零售业务", "批发业务", "经营租赁", "开办费"]
                   ],
                   select: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "49.5%",
                     height: "400px",
