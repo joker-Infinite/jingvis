@@ -65,7 +65,7 @@ export default {
         //   address: "民主一街"
         // }
       ],
-      zoom: 10,
+      zoom: 7,
       center: [112.34, 31.1],
       expandZoomRange: true,
       markers: [],
@@ -116,7 +116,7 @@ export default {
           if (item.gisCompany == "中石油")
             icon = require("../../assets/gas/zsy.png");
           if (item.gisCompany == "中石化")
-            icon = require("../../assets/gas/zsh.png");
+            icon = require("../../assets/gas/zsh1.png");
           markers.push({
             position: [item.longitude, item.latitude],
             // events: {

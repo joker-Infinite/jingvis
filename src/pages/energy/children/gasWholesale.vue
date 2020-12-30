@@ -231,6 +231,11 @@ export default {
                   title: "分公司占比/业态占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "65%",
                     height: "350px",
@@ -602,6 +607,11 @@ export default {
                   title: "分公司占比/业态占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "65%",
                     height: "350px",
@@ -946,6 +956,11 @@ export default {
                   title: "分公司占比/业态占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "60%",
                     height: "350px",
@@ -1317,6 +1332,11 @@ export default {
                   title: "分公司占比/业态占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "60%",
                     height: "350px",

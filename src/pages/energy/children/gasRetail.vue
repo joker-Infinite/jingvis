@@ -232,6 +232,11 @@ export default {
                   select: true,
                   input: true,
                   time: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   selectOption: [["新能源", "石化", "国储", "荆港嘉瑞"]],
                   style: {
                     width: "100%",
@@ -513,6 +518,11 @@ export default {
                   title: "子公司/非油与油占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "59.5%",
                     height: "350px",
@@ -597,7 +607,7 @@ export default {
                             ],
                             data: [
                               { value: 335, name: "新能源" },
-                              { value: 310, name: "石化" },
+                              { value: 1310, name: "石化" },
                               { value: 234, name: "国储" },
                               { value: 135, name: "高路油站" },
                               { value: 1548, name: "荆港嘉瑞" }
@@ -693,7 +703,7 @@ export default {
                   time: false,
                   select: false,
                   style: {
-                    width: "32.5%",
+                    width: "33%",
                     height: "350px",
                     background: "white",
                     borderRadius: "10px",
@@ -785,7 +795,7 @@ export default {
                   time: false,
                   select: false,
                   style: {
-                    width: "32.5%",
+                    width: "33%",
                     height: "350px",
                     background: "white",
                     borderRadius: "10px",
@@ -879,7 +889,7 @@ export default {
                   time: false,
                   select: false,
                   style: {
-                    width: "32.5%",
+                    width: "33%",
                     height: "350px",
                     background: "white",
                     borderRadius: "10px",
@@ -1131,6 +1141,11 @@ export default {
                   title: "子公司/非油与油占比",
                   istime: true,
                   select: false,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "59.5%",
                     height: "350px",
@@ -1311,7 +1326,7 @@ export default {
                   time: false,
                   select: false,
                   style: {
-                    width: "32.5%",
+                    width: "33%",
                     height: "350px",
                     background: "white",
                     borderRadius: "10px",
@@ -1389,7 +1404,7 @@ export default {
                               }
                             },
                             data: [
-                              { value: 335, name: "汽油" },
+                              { value: 435, name: "汽油" },
                               { value: 310, name: "柴油" }
                             ]
                           }
@@ -1403,7 +1418,7 @@ export default {
                   time: false,
                   select: false,
                   style: {
-                    width: "32.5%",
+                    width: "33%",
                     height: "350px",
                     background: "white",
                     borderRadius: "10px",
@@ -1484,7 +1499,7 @@ export default {
                             },
                             data: [
                               { value: 335, name: "汽油" },
-                              { value: 310, name: "柴油" }
+                              { value: 510, name: "柴油" }
                             ]
                           }
                         ]
@@ -1497,7 +1512,7 @@ export default {
                   time: false,
                   select: false,
                   style: {
-                    width: "32.5%",
+                    width: "33%",
                     height: "350px",
                     background: "white",
                     borderRadius: "10px",
@@ -1578,7 +1593,7 @@ export default {
                             },
                             data: [
                               { value: 335, name: "92#" },
-                              { value: 310, name: "95#" },
+                              { value: 610, name: "95#" },
                               { value: 310, name: "98#" }
                             ]
                           }
@@ -1612,7 +1627,7 @@ export default {
                   time: false,
                   timeValue: "",
                   style: {
-                    width: "40%",
+                    width: "39.5%",
                     height: "350px",
                     background: "white",
                     borderRadius: "10px",
@@ -1763,6 +1778,11 @@ export default {
                   time: false,
                   select: false,
                   istime: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "60%",
                     height: "350px",
@@ -1848,8 +1868,8 @@ export default {
                             ],
                             data: [
                               { value: 335, name: "新能源" },
-                              { value: 310, name: "石化" },
-                              { value: 234, name: "国储" },
+                              { value: 1310, name: "石化" },
+                              { value: 2234, name: "国储" },
                               { value: 135, name: "高路油站" },
                               { value: 1548, name: "荆港嘉瑞" }
                             ]
@@ -1923,7 +1943,7 @@ export default {
                             data: [
                               { value: 335, name: "小吃" },
                               { value: 310, name: "酒水饮料" },
-                              { value: 310, name: "香烟" },
+                              { value: 1310, name: "香烟" },
                               { value: 310, name: "车用品" },
                               { value: 310, name: "其他" }
                             ]
@@ -1945,7 +1965,7 @@ export default {
                   time: false,
                   timeValue: "",
                   style: {
-                    width: "40%",
+                    width: "39.5%",
                     height: "350px",
                     background: "white",
                     borderRadius: "10px",
@@ -2096,6 +2116,11 @@ export default {
                   time: false,
                   select: false,
                   istime: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "60%",
                     height: "350px",
@@ -2179,7 +2204,7 @@ export default {
                               "#9e87ff"
                             ],
                             data: [
-                              { value: 335, name: "新能源" },
+                              { value: 1335, name: "新能源" },
                               { value: 310, name: "石化" },
                               { value: 234, name: "国储" },
                               { value: 135, name: "高路油站" },
@@ -2361,6 +2386,11 @@ export default {
                 {
                   title: "月均油站排名",
                   istime: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "49.5%",
                     height: "350px",
@@ -2517,6 +2547,11 @@ export default {
                 {
                   title: "月均油站排名",
                   istime: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     width: "49.5%",
                     height: "350px",
