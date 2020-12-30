@@ -27,6 +27,10 @@
     <div class="searchMap" style="width: 20%;position:absolute;top: 0;left: 0;z-index: 99">
       <el-select v-model="searchSelect" filterable @change="searchMapDot(searchSelect,searchOption)">
         <el-option v-for="(i,x) in searchOption" :key="x" :value="i.searchName"></el-option>
+        <div slot="prefix">
+          <div style="width: 25px;height: 35px;line-height: 35px;text-align: center;font-size: 16px" class="el-icon-search">
+          </div>
+        </div>
       </el-select>
     </div>
     <div id="MAP"></div>
