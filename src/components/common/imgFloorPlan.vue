@@ -1724,7 +1724,7 @@
 							{a: "负责人", b: "Xxx"},
 							{a: "联系方式", b: "Xxxxxxxxxxx"},
 							{a: "经营面积", b: "Xx㎡"},
-							{a: "主营业务", b: "咖啡饮料等西式下午茶(一级品牌)"},
+							{a: "主营业务", b: "咖啡饮料(一级品牌)"},
 							{a: "合同开始日期", b: "Xxxx年xx月xx日"},
 							{a: "合同结束日期", b: "Xxxx年xx月xx日"}
 						],
@@ -1732,7 +1732,7 @@
 							{label: "负责人", value: "XXX"},
 							{label: "联系方式", value: "Xxxxxxxxxxx"},
 							{label: "经营面积", value: "Xx㎡"},
-							{label: "主营业务", value: "咖啡饮料等西式下午茶(一级品牌)"},
+							{label: "主营业务", value: "咖啡饮料(一级品牌)"},
 							{label: "合同开始日期", value: "Xxxx年xx月xx日"},
 							{label: "合同结束日期", value: "Xxxx年xx月xx日"}
 						],
