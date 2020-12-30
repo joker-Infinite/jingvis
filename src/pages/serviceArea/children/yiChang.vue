@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-       collapseData: [
+      collapseData: [
         {
           id: "revenueTable",
           name: "基础信息",
@@ -370,6 +370,7 @@ export default {
                     }
                   ]
                 },
+
                 {
                   title: "经营面积",
                   style: {
@@ -471,6 +472,7 @@ export default {
                     }
                   ]
                 },
+
                 {
                   title: "月均车流量",
                   style: {
@@ -572,6 +574,7 @@ export default {
                     }
                   ]
                 },
+
                 {
                   title: "订单数量",
                   style: {
@@ -673,6 +676,7 @@ export default {
                     }
                   ]
                 },
+
                 {
                   title: "订单金额÷订单数量=客单价",
                   style: {
@@ -773,6 +777,7 @@ export default {
                     }
                   ]
                 },
+
                 {
                   title: "月订单数量÷月车流量=转换率",
                   style: {
@@ -781,7 +786,8 @@ export default {
                     height: "350px",
                     borderRadius: "10px",
                     background: "white",
-                    overflow: "hidden"
+                    overflow: "hidden",
+                    marginTop: "10px"
                   },
                   EChartsItem: [
                     {
@@ -2595,14 +2601,15 @@ export default {
             }
           ]
         },
+
         {
           id: "cost",
           name: "成本",
-          icon: require("../../../assets/serviceArea/jcxq/chengben.png"),
-          iconActive: require("../../../assets/serviceArea/jcxq/chengben1.png"),
+          icon: require("../../../assets/business/icon_3-1.png"),
+          iconActive: require("../../../assets/business/icon_3-2.png"),
           collapseItem: [
             {
-              id: "profit_2020sss",
+              id: "cost_2020",
               year: 2020,
               collapseTitle: "2020年成本",
               allQuery: false,
@@ -2613,11 +2620,11 @@ export default {
               },
               EChartsBox: [
                 {
-                  title: "成本",
+                  title: "实际成本",
                   time: false,
                   timeValue: "",
                   style: {
-                    width: "35%",
+                    width: "40%",
                     height: "400px",
                     background: "white",
                     borderRadius: "10px",
@@ -2634,25 +2641,6 @@ export default {
                         title: {
                           text: ""
                         },
-                        tooltip: {
-                          trigger: "axis",
-                          formatter: function(val) {
-                            return (
-                              val[0].name +
-                              "月" +
-                              ":" +
-                              "<br />成本:" +
-                              (val[0].value / 10000).toFixed(2) +
-                              "万元"
-                            );
-                          }
-                        },
-                        grid: {
-                          top: "50",
-                          right: "60",
-                          left: "60",
-                          bottom: "60" //图表尺寸大小
-                        },
                         dataZoom: [
                           {
                             type: "inside"
@@ -2661,6 +2649,25 @@ export default {
                             type: "slider"
                           }
                         ],
+                        tooltip: {
+                          trigger: "axis",
+                          formatter: function(val) {
+                            return (
+                              val[0].name +
+                              "月" +
+                              ":" +
+                              "<br>成本:" +
+                              val[0].value / 10000 +
+                              "万元"
+                            );
+                          }
+                        },
+                        grid: {
+                          top: "50",
+                          right: "40",
+                          left: "60",
+                          bottom: "60" //图表尺寸大小
+                        },
                         xAxis: [
                           {
                             type: "category",
@@ -2705,12 +2712,10 @@ export default {
                             name: "万元",
                             nameTextStyle: {
                               color: "#000"
-                              // fontSize: 16,
-                              // padding: 10,
                             },
                             axisLabel: {
-                              formatter: function(val) {
-                                return val / 10000;
+                              formatter: function(value) {
+                                return value / 10000;
                               },
                               color: "#999",
                               textStyle: {
@@ -2732,28 +2737,6 @@ export default {
                               }
                             }
                           }
-                          // {
-                          //     type: 'value',
-                          //     min: '',//最小坐标
-                          //     max: '',//最大坐标
-                          //     axisLabel: {
-                          //         fontSize: 14,
-                          //         color: "#999",
-                          //         formatter: '{value} %'
-                          //     },
-                          //     axisLine: {
-                          //         lineStyle: {
-                          //             color:
-                          //                 "rgba(107,107,107,0.37)",
-                          //         },
-                          //     },
-                          //     splitLine: {
-                          //         show: false//是否显示分隔线。
-                          //     },
-                          //     axisTick: {
-                          //         show: false,
-                          //     },
-                          // }
                         ],
                         series: [
                           {
@@ -2767,9 +2750,9 @@ export default {
                               21883601.06,
                               29285722.58,
                               33682947.29,
-                              35867750.94,
-                              65867750.94,
+                              25867750.94,
                               55867750.94,
+                              45867750.94,
                               0
                             ],
                             barWidth: "16px",
@@ -2779,58 +2762,36 @@ export default {
                                 barBorderRadius: [30, 30, 30, 30]
                               }
                             }
+                          },
+                          {
+                            data: [],
+                            type: "line",
+                            name: "折线图",
+                            // symbol: 'none',
+                            lineStyle: {
+                              color: "#fea2a2",
+                              width: 2,
+                              shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
+                              shadowBlur: 10,
+                              shadowOffsetY: 10
+                            },
+                            areaStyle: {
+                              normal: {
+                                color: "rgba(0,0,0,0)"
+                              }
+                            }
                           }
-                          // {
-                          //     data: [],
-                          //     type: "line",
-                          //     name: "折线图",
-                          //     yAxisIndex: 1,
-                          //     // symbol: 'none',
-                          //     lineStyle: {
-                          //         color: "#fea2a2",
-                          //         width: 2,
-                          //         shadowColor:
-                          //             "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                          //         shadowBlur: 10,
-                          //         shadowOffsetY: 10,
-                          //     },
-                          //     itemStyle: {
-                          //         normal: {
-                          //             color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                          //                 offset: 0,
-                          //                 color: 'rgb(255, 204, 102)'
-                          //             }, {
-                          //                 offset: 1,
-                          //                 color: 'rgb(255, 153, 51)'
-                          //             }]),
-                          //             label: {
-                          //                 show: true,
-                          //                 position: 'top',
-                          //                 textStyle: {
-                          //                     fontSize: '16',
-                          //                     color: 'rgb(255, 156, 54)',
-                          //                 }
-                          //             }
-                          //         },
-                          //     },
-                          //     areaStyle: {
-                          //         normal: {
-                          //             color:
-                          //                 "rgba(0,0,0,0)",
-                          //         },
-                          //     },
-                          // },
                         ]
                       }
                     }
                   ]
                 },
                 {
-                  title: "利润占比",
+                  title: "成本占比",
                   istime: true,
                   select: false,
                   style: {
-                    width: "64.5%",
+                    width: "59.5%",
                     height: "400px",
                     background: "white",
                     borderRadius: "10px",
@@ -2841,7 +2802,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "50%",
-                        height: "370px"
+                        height: "350px"
                       },
                       option: {
                         title: { text: "" },
@@ -2873,7 +2834,7 @@ export default {
                           {
                             type: "pie",
                             center: ["40%", "50%"],
-                            radius: ["30%", "40%"],
+                            radius: ["30%", "50%"],
                             clockwise: true,
                             avoidLabelOverlap: true,
                             hoverOffset: 15,
@@ -2920,7 +2881,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 10,
                                 length2: 25,
                                 lineStyle: {
                                   width: 1
@@ -2932,7 +2893,6 @@ export default {
                               { name: "餐饮", value: 54125877 },
                               { name: "超市", value: 65478254 },
                               { name: "品牌餐饮", value: 69874512 },
-                              { name: "小龙虾", value: 36578941 },
                               { name: "小吃", value: 12054890 }
                             ]
                           }
@@ -2943,7 +2903,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "50%",
-                        height: "370px"
+                        height: "350px"
                       },
                       option: {
                         title: { text: "" },
@@ -2971,7 +2931,7 @@ export default {
                             minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                             avoidLabelOverlap: true, //是否启用防止标签重叠策略
                             center: ["45%", "50%"],
-                            radius: ["30%", "40%"],
+                            radius: ["30%", "50%"],
                             clockwise: true,
                             hoverOffset: 20,
                             itemStyle: {
@@ -3017,7 +2977,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 10,
                                 length2: 10,
                                 lineStyle: {
                                   width: 1
@@ -3037,11 +2997,626 @@ export default {
                       }
                     }
                   ]
+                },
+                {
+                  title: "公司种类预算控制",
+                  time: false,
+                  select: false,
+                  style: {
+                    width: "40%",
+                    height: "400px",
+                    background: "white",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    marginTop: "5px"
+                  },
+                  EChartsItem: [
+                    {
+                      /*ECharts的属性*/
+                      isbar: false,
+                      style: {
+                        width: "100%",
+                        height: "300px"
+                      },
+                      option: {
+                        title: {
+                          text: "",
+                          top: 20,
+                          left: 20
+                        },
+                        tooltip: {
+                          trigger: "axis",
+                          formatter: function(val) {
+                            return (
+                              val[0].name +
+                              ":<br>实际:" +
+                              (val[0].value / 10000).toFixed(2) +
+                              "万元" +
+                              "<br>预算:" +
+                              (val[1].value / 10000).toFixed(2) +
+                              "万元" +
+                              "<br>" +
+                              "执行率:" +
+                              val[2].value +
+                              "%"
+                            );
+                          }
+                        },
+                        grid: {
+                          left: "3%",
+                          right: "10%",
+                          bottom: "3%",
+                          containLabel: true
+                        },
+                        xAxis: {
+                          type: "value",
+                          splitLine: {
+                            show: false
+                          },
+                          axisTick: {
+                            show: false
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          axisLabel: {
+                            show: false
+                          }
+                        },
+                        yAxis: {
+                          type: "category",
+                          data: [
+                            "办公费",
+                            "交通",
+                            "误餐费",
+                            "业务招待费",
+                            "差旅费"
+                          ],
+                          splitLine: {
+                            show: false
+                          },
+                          axisTick: {
+                            show: false
+                          },
+                          axisLine: {
+                            show: false
+                          }
+                        },
+                        series: [
+                          {
+                            name: "A门店",
+                            type: "bar",
+                            stack: "总量",
+                            barWidth: 20,
+                            itemStyle: {
+                              normal: {
+                                color: "#379DFB",
+                                barBorderRadius: [5, 5, 5, 5]
+                              }
+                            },
+                            label: {
+                              normal: {
+                                show: false,
+                                color: "#fff",
+                                position: "insideRight"
+                              }
+                            },
+                            z: 10,
+                            data: [0, 34100, 81600, 523600, 866400]
+                          },
+                          {
+                            name: "B门店",
+                            type: "bar",
+                            stack: "总量",
+                            itemStyle: {
+                              normal: {
+                                color: "#dfe5f1",
+                                shadowBlur: [0, 0, 0, 10],
+                                barBorderRadius: [5, 5, 5, 5]
+                              }
+                            },
+                            label: {
+                              normal: {
+                                show: false,
+                                color: "#000",
+                                position: "insideRight"
+                              }
+                            },
+                            z: 5,
+                            data: [0, 21700, 10500, 282600, 609900]
+                          },
+                          {
+                            name: "B门店",
+                            type: "bar",
+                            stack: "总量",
+                            itemStyle: {
+                              normal: {
+                                color: "rgba(237,125,49, 0)",
+                                shadowBlur: [0, 0, 0, 10],
+                                barBorderRadius: [5, 5, 5, 5]
+                              }
+                            },
+                            label: {
+                              normal: {
+                                color: "red",
+                                show: true,
+                                position: [10, 5],
+                                formatter: function(params) {
+                                  return params.value + "%";
+                                }
+                              }
+                            },
+                            z: 5,
+                            data: ["0", "63.78", "12.90", "53.97", "70.40"]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  title: "种类预算占比",
+                  time: false,
+                  select: false,
+                  style: {
+                    width: "59.5%",
+                    height: "400px",
+                    background: "white",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    marginTop: "5px"
+                  },
+                  EChartsItem: [
+                    {
+                      /*ECharts的属性*/
+                      style: {
+                        width: "50%",
+                        height: "350px"
+                      },
+                      option: {
+                        color: [
+                          "#ff9999",
+                          "#ffb03f",
+                          "#ff9b42",
+                          "#3dba2d",
+                          "#F0D418",
+                          "#2E64FF"
+                        ],
+                        tooltip: {},
+                        formatter: function(val) {
+                          if (!val.data.id) {
+                            return (
+                              val.name +
+                              ":<br>实际:" +
+                              val.value +
+                              "万元<br>占比:" +
+                              val.percent +
+                              "%"
+                            );
+                          } else {
+                            let datas = val.name + ":<br>";
+                            val.data.id.forEach((item, index) => {
+                              datas +=
+                                item.name + ":" + item.value + "万元<br>";
+                            });
+                            return datas;
+                          }
+                        },
+                        radar: {
+                          zlevel: 11,
+                          shape: "circle",
+                          scale: true,
+                          indicator: [
+                            {
+                              name: "差旅费"
+                            },
+                            {
+                              name: "业务招待费"
+                            },
+                            {
+                              name: "误餐费"
+                            },
+                            {
+                              name: "交通"
+                            }
+                          ],
+                          center: ["50%", "50%"],
+                          radius: "40%",
+                          startAngle: 40,
+                          name: {
+                            show: true,
+                            color: "transparent"
+                          },
+                          axisLine: {
+                            show: true,
+                            lineStyle: {
+                              color: "rgba(32,126,255, .5)"
+                              // opacity: 0.2
+                            }
+                          },
+                          splitLine: {
+                            lineStyle: {
+                              color: "rgba(32,126,255, .5)"
+                              // opacity: 0.2
+                            }
+                          },
+                          splitArea: {
+                            areaStyle: {
+                              color: "rgba(32,126,255, 0.1)"
+                            }
+                          }
+                        },
+                        polar: {
+                          radius: "40%"
+                        },
+                        angleAxis: {
+                          zlevel: 0,
+                          min: 0,
+                          max: 360,
+                          interval: 5,
+                          clockwise: false,
+                          axisTick: {
+                            show: false
+                          },
+                          axisLabel: {
+                            show: false
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          splitLine: {
+                            show: false
+                          }
+                        },
+                        radiusAxis: {
+                          zlevel: 0,
+                          min: 0,
+                          max: 100,
+                          axisLabel: {
+                            textStyle: {
+                              color: "rgba(29,208,240,0)"
+                            }
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          splitLine: {
+                            show: false
+                          },
+                          splitArea: {
+                            show: false
+                          }
+                        },
+                        series: [
+                          {
+                            type: "pie",
+                            data: [
+                              {
+                                value: 86.64,
+                                name: "差旅费"
+                              },
+                              {
+                                value: 52.36,
+                                name: "业务招待费"
+                              },
+                              {
+                                value: 8.16,
+                                name: "误餐费"
+                              },
+                              {
+                                value: 3.41,
+                                name: "交通"
+                              }
+                            ],
+                            radius: ["45%", "55%"],
+                            zlevel: -1,
+                            name: "",
+                            itemStyle: {
+                              normal: {
+                                // borderColor: 'white'
+                              }
+                            },
+                            label: {
+                              show: true,
+                              position: "outer",
+                              width: 0,
+                              height: 0,
+                              lineHeight: 0,
+                              backgroundColor: "auto",
+                              padding: [2, -2, 2, -2],
+                              borderRadius: 2,
+                              distanceToLabelLine: 0,
+                              normal: {
+                                formatter(v) {
+                                  let text = v.name + "\n" + v.percent + "%";
+                                  // let text = v.percent + "%";
+                                  return text;
+                                },
+                                textStyle: {
+                                  fontSize: 14
+                                }
+                              }
+                            }
+                          },
+                          {
+                            type: "radar",
+                            data: [
+                              {
+                                value: [86.64, 52.36, 8.16, 3.41],
+                                name: "指数",
+                                id: [
+                                  {
+                                    value: 86.64,
+                                    name: "差旅费"
+                                  },
+                                  {
+                                    value: 52.36,
+                                    name: "业务招待费"
+                                  },
+                                  {
+                                    value: 8.16,
+                                    name: "误餐费"
+                                  },
+                                  {
+                                    value: 3.41,
+                                    name: "交通"
+                                  }
+                                ],
+                                max: 100,
+                                //   label:{
+                                //       show:true,
+                                //   },
+                                areaStyle: {
+                                  normal: {
+                                    color: {
+                                      type: "radial",
+                                      x: 0.5,
+                                      y: 0.5,
+                                      r: 0.5,
+                                      colorStops: [
+                                        {
+                                          offset: 0,
+                                          color: "rgba(32,126,255, 0.5)" // 0% 处的颜色
+                                        },
+                                        {
+                                          offset: 1,
+                                          color: "rgba(32,126,255, 0.1)" // 100% 处的颜色
+                                        }
+                                      ],
+                                      global: false // 缺省为 false
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            zlevel: 2,
+                            z: 4
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      /*ECharts的属性*/
+                      style: {
+                        width: "50%",
+                        height: "350px"
+                      },
+                      option: {
+                        color: [
+                          "#ff9999",
+                          "#ffb03f",
+                          "#ff9b42",
+                          "#3dba2d",
+                          "#F0D418",
+                          "#2E64FF"
+                        ],
+                        tooltip: {},
+                        formatter: function(val) {
+                          if (!val.data.id) {
+                            return (
+                              val.name +
+                              ":<br>实际:" +
+                              val.value +
+                              "万元<br>占比:" +
+                              val.percent +
+                              "%"
+                            );
+                          } else {
+                            let datas = val.name + ":<br>";
+                            val.data.id.forEach((item, index) => {
+                              datas +=
+                                item.name + ":" + item.value + "万元<br>";
+                            });
+                            return datas;
+                          }
+                        },
+                        radar: {
+                          zlevel: 11,
+                          shape: "circle",
+                          scale: true,
+                          indicator: [
+                            {
+                              name: "差旅费"
+                            },
+                            {
+                              name: "业务招待费"
+                            },
+                            {
+                              name: "误餐费"
+                            },
+                            {
+                              name: "交通"
+                            }
+                          ],
+                          center: ["50%", "50%"],
+                          radius: "40%",
+                          startAngle: 40,
+                          name: {
+                            show: true,
+                            color: "transparent"
+                          },
+                          axisLine: {
+                            show: true,
+                            lineStyle: {
+                              color: "rgba(32,126,255, .5)"
+                              // opacity: 0.2
+                            }
+                          },
+                          splitLine: {
+                            lineStyle: {
+                              color: "rgba(32,126,255, .5)"
+                              // opacity: 0.2
+                            }
+                          },
+                          splitArea: {
+                            areaStyle: {
+                              color: "rgba(32,126,255, 0.1)"
+                            }
+                          }
+                        },
+                        polar: {
+                          radius: "40%"
+                        },
+                        angleAxis: {
+                          zlevel: 0,
+                          min: 0,
+                          max: 360,
+                          interval: 5,
+                          clockwise: false,
+                          axisTick: {
+                            show: false
+                          },
+                          axisLabel: {
+                            show: false
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          splitLine: {
+                            show: false
+                          }
+                        },
+                        radiusAxis: {
+                          zlevel: 0,
+                          min: 0,
+                          max: 100,
+                          axisLabel: {
+                            textStyle: {
+                              color: "rgba(29,208,240,0)"
+                            }
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          splitLine: {
+                            show: false
+                          },
+                          splitArea: {
+                            show: false
+                          }
+                        },
+                        series: [
+                          {
+                            type: "pie",
+                            data: [
+                              {
+                                value: 60.99,
+                                name: "差旅费"
+                              },
+                              {
+                                value: 28.26,
+                                name: "业务招待费"
+                              },
+                              {
+                                value: 1.05,
+                                name: "误餐费"
+                              },
+                              {
+                                value: 2.17,
+                                name: "交通"
+                              }
+                            ],
+                            radius: ["45%", "55%"],
+                            zlevel: -1,
+                            name: "",
+                            itemStyle: {
+                              normal: {
+                                // borderColor: 'white'
+                              }
+                            },
+                            label: {
+                              show: true,
+                              position: "outer",
+                              width: 0,
+                              height: 0,
+                              lineHeight: 0,
+                              backgroundColor: "auto",
+                              padding: [2, -2, 2, -2],
+                              borderRadius: 2,
+                              distanceToLabelLine: 0,
+                              normal: {
+                                formatter(v) {
+                                  let text = v.name + "\n" + v.percent + "%";
+                                  // let text = v.percent + "%";
+                                  return text;
+                                },
+                                textStyle: {
+                                  fontSize: 14
+                                }
+                              }
+                            }
+                          },
+                          {
+                            type: "radar",
+                            data: [
+                              {
+                                value: [60.99, 28.26, 1.05, 2.17],
+                                name: "指数",
+                                id: [
+                                  { value: 60.99, name: "差旅费" },
+                                  { value: 28.26, name: "业务招待费" },
+                                  { value: 1.05, name: "误餐费" },
+                                  { value: 2.17, name: "交通" }
+                                ],
+                                max: 100,
+                                //   label:{
+                                //       show:true,
+                                //   },
+                                areaStyle: {
+                                  normal: {
+                                    color: {
+                                      type: "radial",
+                                      x: 0.5,
+                                      y: 0.5,
+                                      r: 0.5,
+                                      colorStops: [
+                                        {
+                                          offset: 0,
+                                          color: "rgba(32,126,255, 0.5)" // 0% 处的颜色
+                                        },
+                                        {
+                                          offset: 1,
+                                          color: "rgba(32,126,255, 0.1)" // 100% 处的颜色
+                                        }
+                                      ],
+                                      global: false // 缺省为 false
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            zlevel: 2,
+                            z: 4
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 }
               ]
             },
             {
-              id: "profit_2019fds",
+              id: "cost_2019",
               year: 2019,
               collapseTitle: "2019年成本",
               allQuery: false,
@@ -3052,12 +3627,12 @@ export default {
               },
               EChartsBox: [
                 {
-                  title: "成本",
+                  title: "实际成本",
                   time: false,
                   timeValue: "",
                   style: {
-                    width: "35%",
-                    height: "400px",
+                    width: "40%",
+                    height: "350px",
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden"
@@ -3067,30 +3642,11 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "100%",
-                        height: "330px"
+                        height: "280px"
                       },
                       option: {
                         title: {
                           text: ""
-                        },
-                        tooltip: {
-                          trigger: "axis",
-                          formatter: function(val) {
-                            return (
-                              val[0].name +
-                              "月" +
-                              ":" +
-                              "<br />成本:" +
-                              (val[0].value / 10000).toFixed(2) +
-                              "万元"
-                            );
-                          }
-                        },
-                        grid: {
-                          top: "50",
-                          right: "60",
-                          left: "60",
-                          bottom: "60" //图表尺寸大小
                         },
                         dataZoom: [
                           {
@@ -3100,13 +3656,32 @@ export default {
                             type: "slider"
                           }
                         ],
+                        tooltip: {
+                          trigger: "axis",
+                          formatter: function(val) {
+                            return (
+                              val[0].name +
+                              "月" +
+                              ":" +
+                              "<br>成本:" +
+                              val[0].value / 10000 +
+                              "万元"
+                            );
+                          }
+                        },
+                        grid: {
+                          top: "50",
+                          right: "40",
+                          left: "60",
+                          bottom: "60" //图表尺寸大小
+                        },
                         xAxis: [
                           {
-                            type: "category",
                             name: "月",
                             nameTextStyle: {
                               color: "#000"
                             },
+                            type: "category",
                             color: "#59588D",
                             data: [
                               "01",
@@ -3144,12 +3719,10 @@ export default {
                             name: "万元",
                             nameTextStyle: {
                               color: "#000"
-                              // fontSize: 16,
-                              // padding: 10,
                             },
                             axisLabel: {
-                              formatter: function(val) {
-                                return val / 10000;
+                              formatter: function(value) {
+                                return value / 10000;
                               },
                               color: "#999",
                               textStyle: {
@@ -3171,28 +3744,6 @@ export default {
                               }
                             }
                           }
-                          // {
-                          //     type: 'value',
-                          //     min: '',//最小坐标
-                          //     max: '',//最大坐标
-                          //     axisLabel: {
-                          //         fontSize: 14,
-                          //         color: "#999",
-                          //         formatter: '{value} %'
-                          //     },
-                          //     axisLine: {
-                          //         lineStyle: {
-                          //             color:
-                          //                 "rgba(107,107,107,0.37)",
-                          //         },
-                          //     },
-                          //     splitLine: {
-                          //         show: false//是否显示分隔线。
-                          //     },
-                          //     axisTick: {
-                          //         show: false,
-                          //     },
-                          // }
                         ],
                         series: [
                           {
@@ -3206,10 +3757,10 @@ export default {
                               21883601.06,
                               29285722.58,
                               33682947.29,
-                              35867750.94,
-                              65867750.94,
+                              25867750.94,
                               55867750.94,
-                              0
+                              45867750.94,
+                              35867750.94
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -3218,59 +3769,37 @@ export default {
                                 barBorderRadius: [30, 30, 30, 30]
                               }
                             }
+                          },
+                          {
+                            data: [],
+                            type: "line",
+                            name: "折线图",
+                            // symbol: 'none',
+                            lineStyle: {
+                              color: "#fea2a2",
+                              width: 2,
+                              shadowColor: "rgba(0, 0, 0, 0.3)", //设置折线阴影
+                              shadowBlur: 10,
+                              shadowOffsetY: 10
+                            },
+                            areaStyle: {
+                              normal: {
+                                color: "rgba(0,0,0,0)"
+                              }
+                            }
                           }
-                          // {
-                          //     data: [],
-                          //     type: "line",
-                          //     name: "折线图",
-                          //     yAxisIndex: 1,
-                          //     // symbol: 'none',
-                          //     lineStyle: {
-                          //         color: "#fea2a2",
-                          //         width: 2,
-                          //         shadowColor:
-                          //             "rgba(0, 0, 0, 0.3)", //设置折线阴影
-                          //         shadowBlur: 10,
-                          //         shadowOffsetY: 10,
-                          //     },
-                          //     itemStyle: {
-                          //         normal: {
-                          //             color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                          //                 offset: 0,
-                          //                 color: 'rgb(255, 204, 102)'
-                          //             }, {
-                          //                 offset: 1,
-                          //                 color: 'rgb(255, 153, 51)'
-                          //             }]),
-                          //             label: {
-                          //                 show: true,
-                          //                 position: 'top',
-                          //                 textStyle: {
-                          //                     fontSize: '16',
-                          //                     color: 'rgb(255, 156, 54)',
-                          //                 }
-                          //             }
-                          //         },
-                          //     },
-                          //     areaStyle: {
-                          //         normal: {
-                          //             color:
-                          //                 "rgba(0,0,0,0)",
-                          //         },
-                          //     },
-                          // },
                         ]
                       }
                     }
                   ]
                 },
                 {
-                  title: "利润占比",
+                  title: "成本占比",
                   istime: true,
                   select: false,
                   style: {
-                    width: "64.5%",
-                    height: "400px",
+                    width: "59.5%",
+                    height: "350px",
                     background: "white",
                     borderRadius: "10px",
                     overflow: "hidden"
@@ -3280,7 +3809,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "50%",
-                        height: "370px"
+                        height: "300px"
                       },
                       option: {
                         title: { text: "" },
@@ -3312,7 +3841,7 @@ export default {
                           {
                             type: "pie",
                             center: ["40%", "50%"],
-                            radius: ["30%", "40%"],
+                            radius: ["30%", "50%"],
                             clockwise: true,
                             avoidLabelOverlap: true,
                             hoverOffset: 15,
@@ -3359,7 +3888,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 10,
                                 length2: 25,
                                 lineStyle: {
                                   width: 1
@@ -3367,12 +3896,11 @@ export default {
                               }
                             },
                             data: [
-                              { name: "其他", value: 5154551 },
-                              { name: "餐饮", value: 2125877 },
-                              { name: "超市", value: 8478254 },
-                              { name: "品牌餐饮", value: 1874512 },
-                              { name: "小龙虾", value: 9578941 },
-                              { name: "小吃", value: 4054890 }
+                              { name: "其他", value: 15154551 },
+                              { name: "餐饮", value: 94125877 },
+                              { name: "超市", value: 15478254 },
+                              { name: "品牌餐饮", value: 49874512 },
+                              { name: "小吃", value: 62054890 }
                             ]
                           }
                         ]
@@ -3382,7 +3910,7 @@ export default {
                       /*ECharts的属性*/
                       style: {
                         width: "50%",
-                        height: "370px"
+                        height: "300px"
                       },
                       option: {
                         title: { text: "" },
@@ -3410,7 +3938,7 @@ export default {
                             minAngle: 5, //最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互
                             avoidLabelOverlap: true, //是否启用防止标签重叠策略
                             center: ["45%", "50%"],
-                            radius: ["30%", "40%"],
+                            radius: ["30%", "50%"],
                             clockwise: true,
                             hoverOffset: 20,
                             itemStyle: {
@@ -3456,7 +3984,7 @@ export default {
                             },
                             labelLine: {
                               normal: {
-                                length: 30,
+                                length: 10,
                                 length2: 10,
                                 lineStyle: {
                                   width: 1
@@ -3464,13 +3992,628 @@ export default {
                               }
                             },
                             data: [
-                              { name: "咸宁中心", value: 6114551 },
-                              { name: "宜昌中心", value: 7412577 },
-                              { name: "黄冈中心", value: 7547824 },
-                              { name: "十堰中心", value: 287512 },
-                              { name: "孝感中心", value: 1657941 },
-                              { name: "恩施中心", value: 1205890 }
+                              { name: "咸宁中心", value: 2114551 },
+                              { name: "宜昌中心", value: 9412577 },
+                              { name: "黄冈中心", value: 6547824 },
+                              { name: "十堰中心", value: 7987512 },
+                              { name: "孝感中心", value: 2657941 },
+                              { name: "恩施中心", value: 5205890 }
                             ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  title: "公司种类预算控制",
+                  time: false,
+                  select: false,
+                  style: {
+                    width: "40%",
+                    height: "350px",
+                    background: "white",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    marginTop: "5px"
+                  },
+                  EChartsItem: [
+                    {
+                      /*ECharts的属性*/
+                      isbar: false,
+                      style: {
+                        width: "100%",
+                        height: "300px"
+                      },
+                      option: {
+                        title: {
+                          text: "",
+                          top: 20,
+                          left: 20
+                        },
+                        tooltip: {
+                          trigger: "axis",
+                          formatter: function(val) {
+                            return (
+                              val[0].name +
+                              ":<br>实际:" +
+                              (val[0].value / 10000).toFixed(2) +
+                              "万元" +
+                              "<br>预算:" +
+                              (val[1].value / 10000).toFixed(2) +
+                              "万元" +
+                              "<br>" +
+                              "执行率:" +
+                              val[2].value +
+                              "%"
+                            );
+                          }
+                        },
+                        grid: {
+                          left: "3%",
+                          right: "10%",
+                          bottom: "3%",
+                          containLabel: true
+                        },
+                        xAxis: {
+                          type: "value",
+                          splitLine: {
+                            show: false
+                          },
+                          axisTick: {
+                            show: false
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          axisLabel: {
+                            show: false
+                          }
+                        },
+                        yAxis: {
+                          type: "category",
+                          data: [
+                            "办公费",
+                            "交通",
+                            "误餐费",
+                            "业务招待费",
+                            "差旅费"
+                          ],
+                          splitLine: {
+                            show: false
+                          },
+                          axisTick: {
+                            show: false
+                          },
+                          axisLine: {
+                            show: false
+                          }
+                        },
+                        series: [
+                          {
+                            name: "A门店",
+                            type: "bar",
+                            stack: "总量",
+                            barWidth: 20,
+                            itemStyle: {
+                              normal: {
+                                color: "#379DFB",
+                                barBorderRadius: [5, 5, 5, 5]
+                              }
+                            },
+                            label: {
+                              normal: {
+                                show: false,
+                                color: "#fff",
+                                position: "insideRight"
+                              }
+                            },
+                            z: 10,
+                            data: [0, 34100, 81600, 523600, 866400]
+                          },
+                          {
+                            name: "B门店",
+                            type: "bar",
+                            stack: "总量",
+                            itemStyle: {
+                              normal: {
+                                color: "#dfe5f1",
+                                shadowBlur: [0, 0, 0, 10],
+                                barBorderRadius: [5, 5, 5, 5]
+                              }
+                            },
+                            label: {
+                              normal: {
+                                show: false,
+                                color: "#000",
+                                position: "insideRight"
+                              }
+                            },
+                            z: 5,
+                            data: [0, 21700, 10500, 282600, 609900]
+                          },
+                          {
+                            name: "B门店",
+                            type: "bar",
+                            stack: "总量",
+                            itemStyle: {
+                              normal: {
+                                color: "rgba(237,125,49, 0)",
+                                shadowBlur: [0, 0, 0, 10],
+                                barBorderRadius: [5, 5, 5, 5]
+                              }
+                            },
+                            label: {
+                              normal: {
+                                color: "red",
+                                show: true,
+                                position: [10, 5],
+                                formatter: function(params) {
+                                  return params.value + "%";
+                                }
+                              }
+                            },
+                            z: 5,
+                            data: ["0", "63.78", "12.90", "53.97", "70.40"]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  title: "种类预算占比",
+                  time: false,
+                  select: false,
+                  style: {
+                    width: "59.5%",
+                    height: "350px",
+                    background: "white",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    marginTop: "5px"
+                  },
+                  EChartsItem: [
+                    {
+                      /*ECharts的属性*/
+                      style: {
+                        width: "50%",
+                        height: "300px"
+                      },
+                      option: {
+                        color: [
+                          "#ff9999",
+                          "#ffb03f",
+                          "#ff9b42",
+                          "#3dba2d",
+                          "#F0D418",
+                          "#2E64FF"
+                        ],
+                        tooltip: {},
+                        formatter: function(val) {
+                          if (!val.data.id) {
+                            return (
+                              val.name +
+                              ":<br>实际:" +
+                              val.value +
+                              "万元<br>占比:" +
+                              val.percent +
+                              "%"
+                            );
+                          } else {
+                            let datas = val.name + ":<br>";
+                            val.data.id.forEach((item, index) => {
+                              datas +=
+                                item.name + ":" + item.value + "万元<br>";
+                            });
+                            return datas;
+                          }
+                        },
+                        radar: {
+                          zlevel: 11,
+                          shape: "circle",
+                          scale: true,
+                          indicator: [
+                            {
+                              name: "差旅费"
+                            },
+                            {
+                              name: "业务招待费"
+                            },
+                            {
+                              name: "误餐费"
+                            },
+                            {
+                              name: "交通"
+                            }
+                          ],
+                          center: ["50%", "50%"],
+                          radius: "40%",
+                          startAngle: 40,
+                          name: {
+                            show: true,
+                            color: "transparent"
+                          },
+                          axisLine: {
+                            show: true,
+                            lineStyle: {
+                              color: "rgba(32,126,255, .5)"
+                              // opacity: 0.2
+                            }
+                          },
+                          splitLine: {
+                            lineStyle: {
+                              color: "rgba(32,126,255, .5)"
+                              // opacity: 0.2
+                            }
+                          },
+                          splitArea: {
+                            areaStyle: {
+                              color: "rgba(32,126,255, 0.1)"
+                            }
+                          }
+                        },
+                        polar: {
+                          radius: "40%"
+                        },
+                        angleAxis: {
+                          zlevel: 0,
+                          min: 0,
+                          max: 360,
+                          interval: 5,
+                          clockwise: false,
+                          axisTick: {
+                            show: false
+                          },
+                          axisLabel: {
+                            show: false
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          splitLine: {
+                            show: false
+                          }
+                        },
+                        radiusAxis: {
+                          zlevel: 0,
+                          min: 0,
+                          max: 100,
+                          axisLabel: {
+                            textStyle: {
+                              color: "rgba(29,208,240,0)"
+                            }
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          splitLine: {
+                            show: false
+                          },
+                          splitArea: {
+                            show: false
+                          }
+                        },
+                        series: [
+                          {
+                            type: "pie",
+                            data: [
+                              {
+                                value: 86.64,
+                                name: "差旅费"
+                              },
+                              {
+                                value: 52.36,
+                                name: "业务招待费"
+                              },
+                              {
+                                value: 8.16,
+                                name: "误餐费"
+                              },
+                              {
+                                value: 3.41,
+                                name: "交通"
+                              }
+                            ],
+                            radius: ["45%", "55%"],
+                            zlevel: -1,
+                            name: "",
+                            itemStyle: {
+                              normal: {
+                                // borderColor: 'white'
+                              }
+                            },
+                            label: {
+                              show: true,
+                              position: "outer",
+                              width: 0,
+                              height: 0,
+                              lineHeight: 0,
+                              backgroundColor: "auto",
+                              padding: [2, -2, 2, -2],
+                              borderRadius: 2,
+                              distanceToLabelLine: 0,
+                              normal: {
+                                formatter(v) {
+                                  let text = v.name + "\n" + v.percent + "%";
+                                  // let text = v.percent + "%";
+                                  return text;
+                                },
+                                textStyle: {
+                                  fontSize: 14
+                                }
+                              }
+                            }
+                          },
+                          {
+                            type: "radar",
+                            data: [
+                              {
+                                value: [86.64, 52.36, 8.16, 3.41],
+                                name: "指数",
+                                id: [
+                                  {
+                                    value: 86.64,
+                                    name: "差旅费"
+                                  },
+                                  {
+                                    value: 52.36,
+                                    name: "业务招待费"
+                                  },
+                                  {
+                                    value: 8.16,
+                                    name: "误餐费"
+                                  },
+                                  {
+                                    value: 3.41,
+                                    name: "交通"
+                                  }
+                                ],
+                                max: 100,
+                                //   label:{
+                                //       show:true,
+                                //   },
+                                areaStyle: {
+                                  normal: {
+                                    color: {
+                                      type: "radial",
+                                      x: 0.5,
+                                      y: 0.5,
+                                      r: 0.5,
+                                      colorStops: [
+                                        {
+                                          offset: 0,
+                                          color: "rgba(32,126,255, 0.5)" // 0% 处的颜色
+                                        },
+                                        {
+                                          offset: 1,
+                                          color: "rgba(32,126,255, 0.1)" // 100% 处的颜色
+                                        }
+                                      ],
+                                      global: false // 缺省为 false
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            zlevel: 2,
+                            z: 4
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      /*ECharts的属性*/
+                      style: {
+                        width: "50%",
+                        height: "300px"
+                      },
+                      option: {
+                        color: [
+                          "#ff9999",
+                          "#ffb03f",
+                          "#ff9b42",
+                          "#3dba2d",
+                          "#F0D418",
+                          "#2E64FF"
+                        ],
+                        tooltip: {},
+                        formatter: function(val) {
+                          if (!val.data.id) {
+                            return (
+                              val.name +
+                              ":<br>实际:" +
+                              val.value +
+                              "万元<br>占比:" +
+                              val.percent +
+                              "%"
+                            );
+                          } else {
+                            let datas = val.name + ":<br>";
+                            val.data.id.forEach((item, index) => {
+                              datas +=
+                                item.name + ":" + item.value + "万元<br>";
+                            });
+                            return datas;
+                          }
+                        },
+                        radar: {
+                          zlevel: 11,
+                          shape: "circle",
+                          scale: true,
+                          indicator: [
+                            {
+                              name: "差旅费"
+                            },
+                            {
+                              name: "业务招待费"
+                            },
+                            {
+                              name: "误餐费"
+                            },
+                            {
+                              name: "交通"
+                            }
+                          ],
+                          center: ["50%", "50%"],
+                          radius: "40%",
+                          startAngle: 40,
+                          name: {
+                            show: true,
+                            color: "transparent"
+                          },
+                          axisLine: {
+                            show: true,
+                            lineStyle: {
+                              color: "rgba(32,126,255, .5)"
+                              // opacity: 0.2
+                            }
+                          },
+                          splitLine: {
+                            lineStyle: {
+                              color: "rgba(32,126,255, .5)"
+                              // opacity: 0.2
+                            }
+                          },
+                          splitArea: {
+                            areaStyle: {
+                              color: "rgba(32,126,255, 0.1)"
+                            }
+                          }
+                        },
+                        polar: {
+                          radius: "40%"
+                        },
+                        angleAxis: {
+                          zlevel: 0,
+                          min: 0,
+                          max: 360,
+                          interval: 5,
+                          clockwise: false,
+                          axisTick: {
+                            show: false
+                          },
+                          axisLabel: {
+                            show: false
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          splitLine: {
+                            show: false
+                          }
+                        },
+                        radiusAxis: {
+                          zlevel: 0,
+                          min: 0,
+                          max: 100,
+                          axisLabel: {
+                            textStyle: {
+                              color: "rgba(29,208,240,0)"
+                            }
+                          },
+                          axisLine: {
+                            show: false
+                          },
+                          splitLine: {
+                            show: false
+                          },
+                          splitArea: {
+                            show: false
+                          }
+                        },
+                        series: [
+                          {
+                            type: "pie",
+                            data: [
+                              {
+                                value: 60.99,
+                                name: "差旅费"
+                              },
+                              {
+                                value: 28.26,
+                                name: "业务招待费"
+                              },
+                              {
+                                value: 1.05,
+                                name: "误餐费"
+                              },
+                              {
+                                value: 2.17,
+                                name: "交通"
+                              }
+                            ],
+                            radius: ["45%", "55%"],
+                            zlevel: -1,
+                            name: "",
+                            itemStyle: {
+                              normal: {
+                                // borderColor: 'white'
+                              }
+                            },
+                            label: {
+                              show: true,
+                              position: "outer",
+                              width: 0,
+                              height: 0,
+                              lineHeight: 0,
+                              backgroundColor: "auto",
+                              padding: [2, -2, 2, -2],
+                              borderRadius: 2,
+                              distanceToLabelLine: 0,
+                              normal: {
+                                formatter(v) {
+                                  let text = v.name + "\n" + v.percent + "%";
+                                  // let text = v.percent + "%";
+                                  return text;
+                                },
+                                textStyle: {
+                                  fontSize: 14
+                                }
+                              }
+                            }
+                          },
+                          {
+                            type: "radar",
+                            data: [
+                              {
+                                value: [60.99, 28.26, 1.05, 2.17],
+                                name: "指数",
+                                id: [
+                                  { value: 60.99, name: "差旅费" },
+                                  { value: 28.26, name: "业务招待费" },
+                                  { value: 1.05, name: "误餐费" },
+                                  { value: 2.17, name: "交通" }
+                                ],
+                                max: 100,
+                                //   label:{
+                                //       show:true,
+                                //   },
+                                areaStyle: {
+                                  normal: {
+                                    color: {
+                                      type: "radial",
+                                      x: 0.5,
+                                      y: 0.5,
+                                      r: 0.5,
+                                      colorStops: [
+                                        {
+                                          offset: 0,
+                                          color: "rgba(32,126,255, 0.5)" // 0% 处的颜色
+                                        },
+                                        {
+                                          offset: 1,
+                                          color: "rgba(32,126,255, 0.1)" // 100% 处的颜色
+                                        }
+                                      ],
+                                      global: false // 缺省为 false
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            zlevel: 2,
+                            z: 4
                           }
                         ]
                       }
@@ -3480,12 +4623,13 @@ export default {
               ]
             },
             {
-              id: "revenue_gd",
+              id: "cost_gd",
               collapseTitle: "查看更多",
               EChartsBox: []
             }
           ]
         },
+
         {
           id: "construction",
           name: "结构",
@@ -5406,9 +6550,9 @@ export default {
         },
         {
           id: "rateofreturn",
-          name: "回款率",
-          icon: require("../../../assets/serviceArea/jcxq/huikuanlv1.png"),
-          iconActive: require("../../../assets/serviceArea/jcxq/huikuanlv.png"),
+          name: "回款",
+          icon: require("../../../assets/business/icon_6-1.png"),
+          iconActive: require("../../../assets/business/icon_6-2.png"),
           collapseItem: [
             {
               id: "rateofreturn_2020",
@@ -5499,7 +6643,7 @@ export default {
                           ]
                         },
                         legend: {
-                          data: ["机关回款率", "服务区回款率"]
+                          data: ["整体回款率", "服务区回款率"]
                         },
                         yAxis: {
                           name: "%",
@@ -5531,7 +6675,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "机关回款率",
+                            name: "整体回款率",
                             data: [
                               52,
                               38,
@@ -5672,7 +6816,7 @@ export default {
                         },
                         {
                           prop: "B",
-                          label: "还款时间"
+                          label: "回款时间"
                         },
                         {
                           prop: "C",
@@ -6188,7 +7332,7 @@ export default {
                           ]
                         },
                         legend: {
-                          data: ["机关回款率", "服务区回款率"]
+                          data: ["整体回款率", "服务区回款率"]
                         },
                         yAxis: {
                           name: "%",
@@ -6220,7 +7364,7 @@ export default {
                             type: "line"
                           },
                           {
-                            name: "机关回款率",
+                            name: "整体回款率",
                             data: [
                               90,
                               34,
@@ -6361,7 +7505,7 @@ export default {
                         },
                         {
                           prop: "B",
-                          label: "还款时间"
+                          label: "回款时间"
                         },
                         {
                           prop: "C",
