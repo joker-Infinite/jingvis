@@ -91,7 +91,7 @@
 				searchSelect: '',
 				clickIndex: 0,
 				serviceChecked: "服务区",
-				gasChecked: ["中石化", "中石油", "交投能源"],
+				gasChecked: ['新能源公司', '石化能源公司', '中化交投公司', '高路油站公司'],
 				visible: false,
 				serviceSelect: 0,
 				gasSelect: 0,
@@ -134,6 +134,10 @@
 				// 服务区名
 				serviceName: "",
 				//加油站详情
+				xny: [],
+				shny: [],
+				zhjt: [],
+				glyz: [],
 				gasDetails: {
 					name: "加油站",
 					remark: "提供柴油、汽油（E95、E98、95……）",
@@ -624,7 +628,7 @@
 				});
 				map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop]);
 				this.map = map;
-				this.addMarker(map, position,this.backdrop);
+				this.addMarker(map, position, this.backdrop);
 			},
 			addMarker(v, position, d) {
 				let that = this;
@@ -635,13 +639,15 @@
 							icon = require("../../../assets/gas/service-k.png");
 						if (item.type === "os")
 							icon = require("../../../assets/gas/service-c.png");
-						if (item.type === "中石化") {
-							icon = d === 0 ? require("../../../assets/gas/zsh1.png") : require("../../../assets/gas/zsh.png");
+						if (item.type === "新能源公司") {
+							icon = require("../../../assets/gas/新能源.png");
 						}
-						if (item.type === "中石油")
-							icon = require("../../../assets/gas/zsy.png");
-						if (item.type === "交投能源")
-							icon = require("../../../assets/gas/jtny.png");
+						if (item.type === "石化能源公司")
+							icon = require("../../../assets/gas/交投石化能源.png");
+						if (item.type === "中化交投公司")
+							icon = require("../../../assets/gas/中化交投.png");
+						if (item.type === "高路油站公司")
+							icon = require("../../../assets/gas/高路油站.png");
 						if (item.type === "卡口")
 							icon = require("../../../assets/gas/kk.png");
 					}
@@ -676,9 +682,10 @@
 							that.serviceName = i.gisName;
 							that.visible = true;
 						} else if (
-							id[0] === "中石化" ||
-							id[0] === "中石油" ||
-							id[0] === "交投能源"
+							id[0] === "新能源公司" ||
+							id[0] === "石化能源公司" ||
+							id[0] === "中化交投公司" ||
+							id[0] === "高路油站公司"
 						) {
 							that.$refs["more"].openDialog(that.gasDetails);
 						} else if (id[0] === "卡口") {
@@ -715,9 +722,10 @@
 							"<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>今日驶出车辆：1835辆</div>"
 						);
 					} else if (
-						id[0] === "中石化" ||
-						id[0] === "中石油" ||
-						id[0] === "交投能源"
+						id[0] === "新能源公司" ||
+						id[0] === "石化能源公司" ||
+						id[0] === "中化交投公司" ||
+						id[0] === "高路油站公司"
 					) {
 						content.push(
 							"<div style='width: 200px;text-align: left;line-height: 22px;font-size: 14px'>是否开通：是</div>"
@@ -868,7 +876,7 @@ renderClusterMarker: that._renderClusterMarker
 				if (sv.indexOf("卡口") != -1) position.push(...this.bayonet);
 				if (sv.indexOf("超市") != -1) position.push(...[]);
 				if (sv.indexOf("收银") != -1) position.push(...[]);
-				if (sv.indexOf("油站") != -1) position.push(...this.petrochemical, ...this.oil, ...this.energy);
+				if (sv.indexOf("油站") != -1) position.push(...this.xny, ...this.shny, ...this.zhjt, ...this.glyz);
 				// if (gv.indexOf("中石油") != -1) position.push(...this.oil);
 				// if (gv.indexOf("交投能源") != -1) position.push(...this.energy);
 				this.searchOption = [...position];
@@ -941,33 +949,70 @@ renderClusterMarker: that._renderClusterMarker
 					i.longitude != "NULL" &&
 					i.latitude != "NULL"
 				) {
-					if (i.gisCompany === "中石化") {
-						this.petrochemical.push(
+					if (i.gisCompany === "新能源公司") {
+						this.xny.push(
 							Object.assign(i, {
-								type: "中石化",
-								oid: "中石化" + "-" + i.longitude + "-" + i.latitude,
+								type: "新能源公司",
+								oid: "新能源公司" + "-" + i.longitude + "-" + i.latitude,
 								searchName: i.gisName + i.gisType
 							})
 						);
 					}
-					if (i.gisCompany === "中石油") {
-						this.oil.push(
+					if (i.gisCompany === "石化能源公司") {
+						this.shny.push(
 							Object.assign(i, {
-								type: "中石油",
-								oid: "中石油" + "-" + i.longitude + "-" + i.latitude,
+								type: "石化能源公司",
+								oid: "石化能源公司" + "-" + i.longitude + "-" + i.latitude,
 								searchName: i.gisName + i.gisType
 							})
 						);
 					}
-					if (i.gisCompany === "交投能源") {
-						this.energy.push(
+					if (i.gisCompany === "中化交投公司") {
+						this.zhjt.push(
 							Object.assign(i, {
-								type: "交投能源",
-								oid: "交投能源" + "-" + i.longitude + "-" + i.latitude,
+								type: "中化交投公司",
+								oid: "中化交投公司" + "-" + i.longitude + "-" + i.latitude,
 								searchName: i.gisName + i.gisType
 							})
 						);
 					}
+					if (i.gisCompany === "高路油站公司") {
+						this.glyz.push(
+							Object.assign(i, {
+								type: "高路油站公司",
+								oid: "高路油站公司" + "-" + i.longitude + "-" + i.latitude,
+								searchName: i.gisName + i.gisType
+							})
+						);
+					}
+					//新能源公司，石化能源公司，中化交投公司，高路油站公司
+					/*	if (i.gisCompany === "中石化") {
+              this.petrochemical.push(
+                Object.assign(i, {
+                  type: "中石化",
+                  oid: "中石化" + "-" + i.longitude + "-" + i.latitude,
+                  searchName: i.gisName + i.gisType
+                })
+              );
+            }
+            if (i.gisCompany === "中石油") {
+              this.oil.push(
+                Object.assign(i, {
+                  type: "中石油",
+                  oid: "中石油" + "-" + i.longitude + "-" + i.latitude,
+                  searchName: i.gisName + i.gisType
+                })
+              );
+            }
+            if (i.gisCompany === "交投能源") {
+              this.energy.push(
+                Object.assign(i, {
+                  type: "交投能源",
+                  oid: "交投能源" + "-" + i.longitude + "-" + i.latitude,
+                  searchName: i.gisName + i.gisType
+                })
+              );
+            }*/
 				}
 			});
 			bayonet.forEach((i, x) => {
@@ -992,9 +1037,10 @@ renderClusterMarker: that._renderClusterMarker
 				...this.myService,
 				...this.otherService,
 				...this.petrochemical,
-				...this.oil,
-				...this.energy,
-				...this.bayonet
+				...this.xny,
+				...this.shny,
+				...this.zhjt,
+				...this.glyz,
 			);
 			this.searchOption = [...position];
 			this.initMap(position);
