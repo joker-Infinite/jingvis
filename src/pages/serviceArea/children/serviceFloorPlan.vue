@@ -1617,6 +1617,16 @@
 								},
 								xAxis: [
 									{
+										name: "时",
+										type: "category",
+										axisTick: {
+											show: false
+										},
+										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
+									}
+								],
+								yAxis: [
+									{
 										type: "value",
 										axisLabel: {
 											formatter: v => {
@@ -1629,21 +1639,10 @@
 										splitLine: {show: false}
 									}
 								],
-								yAxis: [
-									{
-										name: "时",
-										type: "category",
-										axisTick: {
-											show: false
-										},
-										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
-									}
-								],
 								series: [
 									{
 										name: "大车",
-										type: "bar",
-										stack: "总量",
+										type: "line",
 										label: {
 											show: true,
 											formatter: v => {
@@ -1655,8 +1654,7 @@
 									},
 									{
 										name: "小车",
-										type: "bar",
-										stack: "总量",
+										type: "line",
 										label: {
 											show: true,
 											formatter: v => {
@@ -1831,6 +1829,16 @@
 								},
 								xAxis: [
 									{
+										name: "时",
+										type: "category",
+										axisTick: {
+											show: false
+										},
+										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
+									}
+								],
+								yAxis: [
+									{
 										type: "value",
 										axisLabel: {
 											formatter: v => {
@@ -1843,21 +1851,10 @@
 										splitLine: {show: false}
 									}
 								],
-								yAxis: [
-									{
-										name: "时",
-										type: "category",
-										axisTick: {
-											show: false
-										},
-										data: ["0-3", "4-7", "8-11", "12-15", "16-19", "20-23"]
-									}
-								],
 								series: [
 									{
 										name: "大车",
-										type: "bar",
-										stack: "总量",
+										type: "line",
 										label: {
 											show: true,
 											formatter: v => {
@@ -1869,8 +1866,7 @@
 									},
 									{
 										name: "小车",
-										type: "bar",
-										stack: "总量",
+										type: "line",
 										label: {
 											show: true,
 											formatter: v => {
