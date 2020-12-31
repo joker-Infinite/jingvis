@@ -624,9 +624,9 @@
 				});
 				map.setMapStyle("amap://styles/" + this.mapStyleArr[this.backdrop]);
 				this.map = map;
-				this.addMarker(map, position);
+				this.addMarker(map, position,this.backdrop);
 			},
-			addMarker(v, position) {
+			addMarker(v, position, d) {
 				let that = this;
 				position.forEach((item, index) => {
 					let icon;
@@ -635,8 +635,9 @@
 							icon = require("../../../assets/gas/service-k.png");
 						if (item.type === "os")
 							icon = require("../../../assets/gas/service-c.png");
-						if (item.type === "中石化")
-							this.backdrop == 1 ? icon = require("../../../assets/gas/zsh.png") : icon = require("../../../assets/gas/zsh1.png");
+						if (item.type === "中石化") {
+							icon = d === 0 ? require("../../../assets/gas/zsh1.png") : require("../../../assets/gas/zsh.png");
+						}
 						if (item.type === "中石油")
 							icon = require("../../../assets/gas/zsy.png");
 						if (item.type === "交投能源")
@@ -886,7 +887,7 @@ renderClusterMarker: that._renderClusterMarker
 				}
 				map.setMapStyle("amap://styles/" + this.mapStyleArr[d]);
 				this.map = map;
-				this.addMarker(map, position);
+				this.addMarker(map, position, d);
 			}
 		},
 		async mounted() {
