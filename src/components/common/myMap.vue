@@ -54,7 +54,7 @@ export default {
     },
     text:{
       type:String,
-      default:"中化交投公司"
+      default:""
     }
   },
   data() {
@@ -89,7 +89,6 @@ export default {
   mounted() {
     this.timeClear = setInterval(this.check, 3000);
     this.$axios.get("/api/index/list_jtService",{params:{jyzType:this.text}}).then(res => {
-      console.log(res)
       this.data = res.data.data;
       this.point();
     });
@@ -103,16 +102,27 @@ export default {
       const windows = [];
       const that = this;
       let data = [];
+     
       this.data.forEach((item, index) => {
-          console.log(item.latitude)
-          if(item.latitude!=''){
+          if(item.longitude&&item.latitude&&item.latitude!=''&&item.longitude != ""&&item.latitude!='NULL'&&item.longitude != "NULL"){
             data.push(item);
           }
-        
       });
       data.forEach((item, index) => {
-        if (item.longitude != "NULL" && item.latitude != "NULL") {
-          let icon = require("../../assets/gas/jtny.png");
+          let icon ;
+          if(this.text=='新能源公司'){
+              icon = require("../../assets/gas/新能源.png");
+          }
+          if(this.text=='石化能源公司'){
+            icon = require("../../assets/gas/交投石化能源.png");
+          }
+          if(this.text=='中化交投公司'){
+            icon = require("../../assets/gas/中化交投.png");
+          }
+          if(this.text=='高路油站公司'){
+            icon = require("../../assets/gas/高路油站.png");
+          }
+          if(this.text=='') icon =require("../../assets/gas/透明.png")
           markers.push({
             position: [item.longitude, item.latitude],
             // events: {
@@ -129,6 +139,7 @@ export default {
             // },
             // icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png"
             // icon: "https://iknow-pic.cdn.bcebos.com/43a7d933c895d1438b0a645d63f082025aaf074b"
+            
             icon: new AMap.Icon({
               image: icon,
               size: new AMap.Size(52, 52),
@@ -143,12 +154,13 @@ export default {
           //     visible: false, // 初始是否显示
           //     address: item.siName
           // });
-        }
       });
-      //  加点
-      this.markers = markers;
-      // 加弹窗
-      this.windows = windows;
+      
+                //  加点
+          this.markers = markers;
+          // 加弹窗
+          this.windows = windows;
+     
     }
   }
 };
