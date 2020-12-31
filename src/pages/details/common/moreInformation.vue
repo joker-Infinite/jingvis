@@ -38,7 +38,7 @@
                 fontSize: '15px',
                 fontWeight: '600',
                 color: imgSize == 'small' || location != 'homeKanBan'? '#38d': '#f6fe96'}">
-              {{ form.BGQ ? "服务区坪效：20元/㎡" : "" }}</span>
+              {{ form.BGQ ? "服务区坪效：6元/㎡" : "" }}</span>
           </el-col>
         </p>
         <el-col :span="8" v-for="(it, ix) in formData" :key="ix">
