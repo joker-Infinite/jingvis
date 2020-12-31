@@ -2057,6 +2057,7 @@
 								},
 								legend: {
 									data: ["大车", "小车"],
+									icon: 'circle',
 									bottom: 0,
 									textStyle: {
 										color: "#FFF"
@@ -2315,6 +2316,7 @@
 								},
 								legend: {
 									data: ["大车", "小车"],
+									icon: 'circle',
 									bottom: 0,
 									textStyle: {
 										color: "#FFF"
@@ -2423,7 +2425,7 @@
 							{
 								barWidth: 20,
 								title: {
-									text: "当天各时区车流量",
+									text: "当天各时区停车量",
 									x: "center",
 									textStyle: {
 										color: "#FFF"
