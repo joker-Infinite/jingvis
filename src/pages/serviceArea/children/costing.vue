@@ -414,6 +414,7 @@ export default {
                     {
                       /*ECharts的属性*/
                       isbar: false,
+                      isShow:true,
                       style: {
                         width: "100%",
                         height: "300px"
@@ -1400,6 +1401,7 @@ export default {
                     {
                       /*ECharts的属性*/
                       isbar: false,
+                      isShow:true,
                       style: {
                         width: "100%",
                         height: "300px"

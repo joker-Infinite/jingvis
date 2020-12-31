@@ -203,7 +203,7 @@
             <div v-if="it.content === '合同信息'">
               <my-table
                 :isDetails="false"
-                height="700px"
+                height="500px"
                 :isPagination="true"
                 :multiple="true"
                 :columns="columns"

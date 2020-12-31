@@ -522,8 +522,8 @@ export default {
           label: "92#汽油"
         },
         {
-          value: "97#汽油",
-          label: "97#汽油"
+          value: "98#汽油",
+          label: "98#汽油"
         },
         {
           value: "指导价",

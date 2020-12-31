@@ -8916,7 +8916,9 @@ export default {
   },
   methods: {
     selectionChange(v) {
-      this.$router.push("/energy/JYZXiangQing");
+      if(Object.keys(v).length==6){
+        this.$router.push("/energy/JYZXiangQing");
+      }
     },
     async obtainAxios(name, year, years) {
       let data = [];

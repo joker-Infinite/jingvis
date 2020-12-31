@@ -52,7 +52,7 @@ export default {
               collapseTitle: "加油站",
               EChartsBox: [
                 {
-                  title: "转化率/成本费用利润率",
+                  title: "成本利润率",
                   time: false,
                   year: false,
                   month: false,
@@ -73,15 +73,14 @@ export default {
                         width: "100%",
                         height: "400px"
                       },
+                      
                       option: {
                           title: {
                               text: ""
                           },
                           tooltip: {
                               trigger: "axis",
-                              formatter: function(val) {
-                                  return val[0].name + ":" + val[0].value + "元";
-                              },
+                              formatter: '{b}<br>{a0}:{c0}万元<br>{a1}:{c1}万元<br>{a2}:{c2}%',
                           },
                           grid: {
                               top: "20%",
@@ -92,7 +91,7 @@ export default {
                           legend: {
                               orient: "horizontal",
                               top: 30,
-                              data: ["a", "b"]
+                              data: ["成本", "利润",'成本利润率']
                           },
                           xAxis: [{
                               type: "category",
@@ -182,9 +181,8 @@ export default {
                           }],
                           
                           series: [{
-                                  name: "a",
+                                  name: "成本",
                                   type: "bar",
-
                                   data: [
                                       321,
                                       432,
@@ -208,7 +206,32 @@ export default {
                                   }
                               },
                               {
-                                  name: "b",
+                                  name: "利润",
+                                  type: "bar",
+                                  data: [
+                                      221,
+                                      321,
+                                      101,
+                                      421,
+                                      121,
+                                      91,
+                                      321,
+                                      121,
+                                      521,
+                                      221,
+                                      221,
+                                      621
+                                  ],
+                                  barWidth: "16px",
+                                  itemStyle: {
+                                      normal: {
+                                          color:"#fd866a",
+                                          barBorderRadius: [30, 30, 30, 30]
+                                      }
+                                  }
+                              },
+                              {
+                                  name: "成本利润率",
                                   type: "line",
                                   yAxisIndex: 1,
                                   data: [
@@ -239,7 +262,7 @@ export default {
                   ]
                 },
                 {
-                  title: "非油品、油、柴油、汽油、92、95、98、E92、E95 ",
+                  title: "营收",
                   timeValue: "",
                   style: {
                     width: "100%",
@@ -249,6 +272,12 @@ export default {
                     overflow: "hidden",
                     marginBottom: "10px"
                   },
+                  istime:true,
+                  query: {
+                        inputValue: "",
+                        selectValue: "",
+                        timeValue: ""
+                      },
                   EChartsItem: [
                     {
                       /*ECharts的属性*/
@@ -256,143 +285,65 @@ export default {
                         width: "100%",
                         height: "400px"
                       },
+                      isShow:true,
+                      
+                      
                       option: {
-                        title: {
-                          text: ""
-                        },
-                        tooltip: {
-                          trigger: "axis",
-                          formatter: function(val) {
-                            return val[0].name + ":" + val[0].value + "万元";
-                          }
-                        },
-                        grid: {
-                          top: "20%",
-                          right: "40",
-                          left: "60",
-                          bottom: "70"
-                        },
-                        legend: {
-                          orient: "horizontal",
-                          bottom: 10,
-                          data: ["a", "b"]
-                        },
-                        xAxis: [
-                          {
-                            type: "category",
-                            color: "#59588D",
-                            data: [
-                              "1",
-                              "2",
-                              "3",
-                              "4",
-                              "5",
-                              "6",
-                              "7",
-                              "8",
-                              "9",
-                              "10",
-                              "11",
-                              "12"
-                            ],
-                            axisLabel: {
-                              margin: 10,
-                              color: "#999",
-                              textStyle: {
-                                fontSize: 12
-                              }
-                            },
-                            axisLine: {
-                              lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
-                            },
-                            axisTick: {
-                              show: false
-                            }
-                          }
-                        ],
-                        yAxis: [
-                          {
-                            name: "万元",
-                            nameTextStyle: {
-                              color: "#000"
-                            },
-                            axisLabel: {
-                              formatter: "{value}",
-                              color: "#999",
-                              textStyle: {
-                                fontSize: 12
-                              }
-                            },
-                            axisLine: {
-                              lineStyle: {
-                                color: "rgba(107,107,107,0.37)"
-                              }
-                            },
-                            axisTick: {
-                              show: false
-                            },
-                            splitLine: {
-                              lineStyle: {
-                                color: "rgba(131,101,101,0.2)",
-                                type: "dashed"
-                              }
-                            }
-                          }
-                        ],
-                        series: [
-                          {
-                            name: "a",
-                            type: "bar",
-                            data: [
-                              586,
-                              560,
-                              500,
-                              365,
-                              256,
-                              362,
-                              400,
-                              265,
-                              333,
-                              352,
-                              254,
-                              360
-                            ],
-                            barWidth: "16px",
-                            itemStyle: {
-                              normal: {
-                                color: "#38A0FF",
-                                barBorderRadius: [30, 30, 30, 30]
-                              }
-                            }
-                          },
-                          {
-                            name: "b",
-                            type: "bar",
-                            data: [
-                              321,
-                              432,
-                              123,
-                              543,
-                              256,
-                              123,
-                              400,
-                              265,
-                              654,
-                              352,
-                              326,
-                              765
-                            ],
-                            barWidth: "16px",
-                            itemStyle: {
-                              normal: {
-                                color: "#76c15c",
-                                barBorderRadius: [30, 30, 30, 30]
-                              }
-                            }
-                          }
-                        ]
+                          tooltip: {
+                                trigger: "item",
+                                formatter: "{b} : {c} 万元"
+                              },
+                          series: [{
+                          roam:false,
+                          breadcrumb: { show: false},
+                          color:["#cb9bff","#3cb8fe","#73abf8","#fdb36a","#ff9393"],
+                          nodeClick:false,
+                          
+                              type: 'treemap',
+                              data: [{
+                                  name: '油品',            // First tree
+                                  value: 15000,
+                                  itemStyle: {
+                                      color: 'transparent',
+                                  },
+                                  children: [{
+                                      name: '汽油',       // First leaf of first tree
+                                      value: 10000,
+                                      children: [{
+                                          name: '92#',       // First leaf of first tree
+                                          value: 6000,
+                                          itemStyle: {
+                                              color: '#cb9bff',
+                                          },
+                                      },
+                                      {
+                                          name: '98#',       // First leaf of first tree
+                                          value: 2000,
+                                          itemStyle: {
+                                              color: '#3cb8fe',
+                                          },
+                                      },{
+                                          name: '95#',       // First leaf of first tree
+                                          value: 2000,
+                                          itemStyle: {
+                                              color: '#73abf8',
+                                          },
+                                      }]
+                                  }, {
+                                      name: '柴油',       // Second leaf of first tree
+                                      value: 5000,
+                                      itemStyle: {
+                                              color: '#fdb36a',
+                                          },
+                                  }]
+                              }, {
+                                  name: '非油品',            // Second tree
+                                  value: 5000,
+                                  itemStyle: {
+                                              color: "#ff9393",
+                                          },
+                              }]
+                          }]
                       }
                     }
                   ]
@@ -428,10 +379,11 @@ export default {
                         legend: {
                           orient: "horizontal",
                           bottom: 5,
-                          data: ["非油品", "柴油", "92", "95", "98"]
+                          data: ["非油品", "柴油", "92#", "95#", "98#"]
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
+                          formatter: "{b} : {c} ({d}%)"
                         },
                         series: [
                           {
@@ -489,9 +441,9 @@ export default {
                             data: [
                               { value: 335, name: "非油品" },
                               { value: 310, name: "柴油" },
-                              { value: 234, name: "92" },
-                              { value: 135, name: "95" },
-                              { value: 1548, name: "98" }
+                              { value: 234, name: "92#" },
+                              { value: 135, name: "95#" },
+                              { value: 1548, name: "98#" }
                             ]
                           }
                         ]
@@ -530,10 +482,11 @@ export default {
                         legend: {
                           orient: "horizontal",
                           bottom: 5,
-                          data: ["非油品", "柴油", "92", "95", "98"]
+                          data: ["非油品", "柴油", "92#", "95#", "98#"]
                         },
                         tooltip: {
-                          trigger: "item"
+                          trigger: "item",
+                          formatter: "{b} : {c} ({d}%)"
                         },
                         series: [
                           {
@@ -591,9 +544,9 @@ export default {
                             data: [
                               { value: 335, name: "非油品" },
                               { value: 310, name: "柴油" },
-                              { value: 234, name: "92" },
-                              { value: 135, name: "95" },
-                              { value: 1548, name: "98" }
+                              { value: 234, name: "92#" },
+                              { value: 135, name: "95#" },
+                              { value: 1548, name: "98#" }
                             ]
                           }
                         ]
@@ -627,50 +580,45 @@ export default {
                       },
                       border: true,
                       columns: [
-                        { prop: "a", label: "加油站" },
+                        { prop: "a", label: "加油站",width:'240' },
                         { prop: "b", label: "零食（金额/订单）" },
                         { prop: "c", label: "小吃（金额/订单）" },
-                        { prop: "d", label: "饮料（金额/订单）" },
-                        { prop: "e", label: "烟酒（金额/订单）" },
-                        { prop: "f", label: "汽车用品（金额/订单）" },
-                        { prop: "g", label: "时间" },
-                        { prop: "h", label: "汽油" },
-                        { prop: "i", label: "柴油" }
+                        { prop: "d", label: "酒水饮料（金额/订单）",width:'170' },
+                        { prop: "e", label: "汽车用品（金额/订单）",width:'170' },
+                        { prop: "f", label: "时间" },
+                        { prop: "g", label: "汽油" ,
+                        children: [
+                            { prop: "92#", label: "92#" },
+                            { prop: "95#", label: "95#" },
+                            { prop: "98#", label: "98#" },
+                          ]},
+                        { prop: "h", label: "柴油" }
                       ],
                       tableData: [
                         {
-                          a: "xxx加油站",
-                          b: "5%",
-                          c: "5%",
-                          d: "5%",
-                          e: "5%",
-                          f: "5%",
-                          g: "5%",
-                          h: "5%",
-                          i: "5%"
+                           a: "汉十高速双沟停车区加油北站",
+                           b: "703.2922",
+                           c: "535.1852",
+                           d: "791.8291",
+                           e: "4954.5455",
+                           f: "2019-07",
+                          '92#':"21056.2554",
+                          '95#':"28842.8178",
+                          '98#':"33440.5405",
+                           h: "28921.4",
                         },
                         {
-                          a: "xxx加油站",
-                          b: "5%",
-                          c: "5%",
-                          d: "5%",
-                          e: "5%",
-                          f: "5%",
-                          g: "5%",
-                          h: "5%",
-                          i: "5%"
+                          a: "汉十高速双沟停车区加油南站",
+                           b: "741.4345",
+                           c: "927.1186",
+                           d: "793.8475",
+                           e: "5700",
+                           f: "2019-07",
+                          '92#':"21400.2934",
+                          '95#':"29273.043",
+                          '98#':"33524.9",
+                           h: "32081.3187",
                         },
-                        {
-                          a: "xxx加油站",
-                          b: "5%",
-                          c: "5%",
-                          d: "5%",
-                          e: "5%",
-                          f: "5%",
-                          g: "5%",
-                          h: "5%",
-                          i: "5%"
-                        }
                       ],
                       option: {}
                     }
