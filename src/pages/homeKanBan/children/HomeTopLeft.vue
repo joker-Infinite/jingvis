@@ -247,163 +247,207 @@
 						};
 						HomeTopLeft_top.setOption(option);
 						HomeTopLeft_top.on('click', v => {
+							let dbData = [];
 							if (v.name == '服务区板块' || v.name == '能源板块') {
-								this.$refs["showECharts"].openDialog([
-									{
-										title: {text: ""},
-										grid: {
-											top: "0",
-											right: "40",
-											left: "0",
-											bottom: "40" //图表尺寸大小
-										},
-										legend: {
-											bottom: 80
-										},
-										tooltip: {
-											trigger: "item",
-										},
-										series: [
-											{
-												type: "pie",
-												center: ["50%", "60%"],
-												radius: ["40%", "55%"],
-												clockwise: true,
-												avoidLabelOverlap: true,
-												hoverOffset: 15,
-												itemStyle: {
-													normal: {
-														color: function (v) {
-															let colorList = [
-																"#06d3c4",
-																"#9e87ff",
-																"#7ebdff",
-																"#fdd36a",
-																"#fdb36a",
-																"#fd866a"
-															];
-															return colorList[v.dataIndex];
-														}
-													}
-												},
-												label: {
-													show: true,
-													position: "outer",
-													width: 0,
-													height: 0,
-													lineHeight: 0,
-													backgroundColor: "auto",
-													padding: [2, -2, 2, -2],
-													borderRadius: 2,
-													distanceToLabelLine: 0,
-													normal: {
-														formatter(v) {
-															let text = v.name + "\n" + v.percent + "%";
-															return text;
-														},
-														textStyle: {
-															fontSize: 14
-														}
-													}
-												},
-												labelLine: {
-													normal: {
-														length: 30,
-														length2: 25,
-														lineStyle: {
-															width: 1
-														}
-													}
-												},
-												data: [
-													{name: "其他", value: 11154551},
-													{name: "餐饮", value: 54125877},
-													{name: "超市", value: 65478254},
-													{name: "品牌餐饮", value: 69874512},
-													{name: "小龙虾", value: 36578941},
-													{name: "小吃", value: 12054890}
-												]
-											}
+								if (v.name == '服务区板块') {
+									dbData = [
+										[
+											{name: "办公费", value: 13.62},
+											{name: "误餐费", value: 1.86},
+											{name: "招待费", value: 1.00},
+											{name: "房租水电费", value: 0.27},
+											{name: "审计咨询费", value: 23.57}
+										],
+										[
+											{name: "办公费", value: 11.34},
+											{name: "误餐费", value: 2.81},
+											{name: "招待费", value: 3.00},
+											{name: "房租水电费", value: 92.76},
+											{name: "审计咨询费", value: 42.00}
 										]
-									},
-									{
-										title: {text: ""},
-										grid: {
-											top: "0",
-											right: "40",
-											left: "0",
-											bottom: "40" //图表尺寸大小
-										},
-										legend: {
-											bottom: 80
-										},
-										tooltip: {
-											trigger: "item",
-										},
-										series: [
-											{
-												type: "pie",
-												center: ["50%", "60%"],
-												radius: ["40%", "55%"],
-												clockwise: true,
-												avoidLabelOverlap: true,
-												hoverOffset: 15,
-												itemStyle: {
-													normal: {
-														color: function (v) {
-															let colorList = [
-																"#06d3c4",
-																"#9e87ff",
-																"#7ebdff",
-																"#fdd36a",
-																"#fdb36a",
-																"#fd866a"
-															];
-															return colorList[v.dataIndex];
-														}
-													}
-												},
-												label: {
-													show: true,
-													position: "outer",
-													width: 0,
-													height: 0,
-													lineHeight: 0,
-													backgroundColor: "auto",
-													padding: [2, -2, 2, -2],
-													borderRadius: 2,
-													distanceToLabelLine: 0,
-													normal: {
-														formatter(v) {
-															let text = v.name + "\n" + v.percent + "%";
-															return text;
-														},
-														textStyle: {
-															fontSize: 14
-														}
-													}
-												},
-												labelLine: {
-													normal: {
-														length: 30,
-														length2: 25,
-														lineStyle: {
-															width: 1
-														}
-													}
-												},
-												data: [
-													{name: "其他", value: 11154551},
-													{name: "餐饮", value: 54125877},
-													{name: "超市", value: 65478254},
-													{name: "品牌餐饮", value: 69874512},
-													{name: "小龙虾", value: 36578941},
-													{name: "小吃", value: 12054890}
-												]
-											}
+									];
+								}
+								if (v.name == '能源板块') {
+									dbData = [
+										[
+											{name: "办公耗材", value: 0.35},
+											{name: "专项费用", value: 0.40},
+											{name: "公共维修费", value: 0.40},
+											{name: "误餐费", value: 0.72},
+											{name: "招待费", value: 0.81}
+										],
+										[
+											{name: "办公耗材", value: 2.11},
+											{name: "专项费用", value: 2.05},
+											{name: "公共维修费", value: 0.70},
+											{name: "误餐费", value: 3.29},
+											{name: "招待费", value: 4.70}
 										]
+									];
+								}
+								this.$refs["showECharts"].openDialog([{
+									title: {
+										text: "执行金额",
+										x: "center",
+										y: '5%',
+										textStyle: {
+											color: 'white',
+											fontSize: 30
+										}
 									},
-								]);
+									grid: {
+										top: "0",
+										right: "40",
+										left: "0",
+										bottom: "40" //图表尺寸大小
+									},
+									legend: {
+										bottom: 80,
+										textStyle: {
+											color: 'white'
+										}
+									},
+									tooltip: {
+										trigger: "item",
+										formatter: '{b}: {c}万元 ({d}%)'
+									},
+									series: [
+										{
+											type: "pie",
+											center: ["50%", "50%"],
+											radius: ["30%", "42%"],
+											clockwise: true,
+											avoidLabelOverlap: true,
+											hoverOffset: 15,
+											itemStyle: {
+												normal: {
+													color: function (v) {
+														let colorList = [
+															"#06d3c4",
+															"#9e87ff",
+															"#7ebdff",
+															"#fdd36a",
+															"#fdb36a",
+															"#fd866a"
+														];
+														return colorList[v.dataIndex];
+													}
+												}
+											},
+											label: {
+												show: true,
+												position: "outer",
+												width: 0,
+												height: 0,
+												lineHeight: 0,
+												backgroundColor: "auto",
+												padding: [2, -2, 2, -2],
+												borderRadius: 2,
+												distanceToLabelLine: 0,
+												normal: {
+													formatter(v) {
+														let text = v.name + "\n" + v.percent + "%";
+														return text;
+													},
+													textStyle: {
+														fontSize: 14
+													}
+												}
+											},
+											labelLine: {
+												normal: {
+													length: 30,
+													length2: 25,
+													lineStyle: {
+														width: 1
+													}
+												}
+											},
+											data: dbData[0]
+										}
+									]
+								}, {
+									title: {
+										text: "预算金额",
+										x: "center",
+										y: '5%',
+										textStyle: {
+											color: 'white',
+											fontSize: 30
+										}
+									},
+									grid: {
+										top: "0",
+										right: "40",
+										left: "0",
+										bottom: "40" //图表尺寸大小
+									},
+									legend: {
+										bottom: 80,
+										textStyle: {
+											color: 'white'
+										}
+									},
+									tooltip: {
+										trigger: "item",
+										formatter: '{b}: {c}万元 ({d}%)'
+									},
+									series: [
+										{
+											type: "pie",
+											center: ["50%", "50%"],
+											radius: ["30%", "42%"],
+											clockwise: true,
+											avoidLabelOverlap: true,
+											hoverOffset: 15,
+											itemStyle: {
+												normal: {
+													color: function (v) {
+														let colorList = [
+															"#06d3c4",
+															"#9e87ff",
+															"#7ebdff",
+															"#fdd36a",
+															"#fdb36a",
+															"#fd866a"
+														];
+														return colorList[v.dataIndex];
+													}
+												}
+											},
+											label: {
+												show: true,
+												position: "outer",
+												width: 0,
+												height: 0,
+												lineHeight: 0,
+												backgroundColor: "auto",
+												padding: [2, -2, 2, -2],
+												borderRadius: 2,
+												distanceToLabelLine: 0,
+												normal: {
+													formatter(v) {
+														let text = v.name + "\n" + v.percent + "%";
+														return text;
+													},
+													textStyle: {
+														fontSize: 14
+													}
+												}
+											},
+											labelLine: {
+												normal: {
+													length: 30,
+													length2: 25,
+													lineStyle: {
+														width: 1
+													}
+												}
+											},
+											data: dbData[1]
+										}
+									]
+								},], 'timeSelect');
 							}
 						});
 						this.isNoData(

@@ -34,10 +34,23 @@
                   range-separator="至"
                   start-placeholder="开始日期"
                   end-placeholder="结束日期"
-                  :picker-options="pickerOptions"
-          >
+                  :picker-options="pickerOptions">
           </el-date-picker>
           <el-button size="small">搜索</el-button>
+        </div>
+        <div class="time" v-if="commonTime||commonSelect">
+          <el-select v-if="commonSelect" v-model="commonSelectValue"></el-select>
+          <el-date-picker
+                  v-model="commonTimeValue"
+                  v-if="commonTime"
+                  type="daterange"
+                  align="right"
+                  unlink-panels
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  :picker-options="pickerOptions">
+          </el-date-picker>
         </div>
         <div class="MMA" v-if="type">
           平均：{{ obj.average }}<br/>
@@ -150,6 +163,10 @@
 		},
 		data() {
 			return {
+				commonTime: false,
+				commonSelect: false,
+				commonTimeValue: '',
+				commonSelectValue: '',
 				dateDay: "",
 				GS: "",
 				loading: false,
@@ -261,6 +278,10 @@
 					});
 				}
 				if (v.constructor === Array) {
+					if (t == 'timeSelect') {
+						this.commonTime = true;
+						this.commonSelect = true;
+					}
 					this.initDblECharts(v);
 				}
 				this.$nextTick(_ => {
@@ -273,8 +294,6 @@
 				})
 			},
 			initDblECharts(v) {
-				// document.getElementById("commonECharts_a").removeAttribute("_echarts_instance_");
-				// document.getElementById("commonECharts_b").removeAttribute("_echarts_instance_");
 				this.$nextTick(_ => {
 					let commonEChartsA = this.$echarts.init(document.getElementById("commonECharts_a"));
 					let commonEChartsB = this.$echarts.init(document.getElementById("commonECharts_b"));
