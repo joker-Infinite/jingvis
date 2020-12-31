@@ -114,7 +114,7 @@ export default {
               icon = require("../../assets/gas/新能源.png");
           }
           if(this.text=='石化能源公司'){
-            icon = require("../../assets/gas/交投石化能源.png");
+            icon = require("../../assets/gas/zsh_a.png");
           }
           if(this.text=='中化交投公司'){
             icon = require("../../assets/gas/中化交投.png");

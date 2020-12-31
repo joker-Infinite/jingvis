@@ -24,7 +24,7 @@
          :style="{transform:clickIndex%2===0?'rotate(180deg)':'rotate(0deg)'}"></i>
       </div>-->
     </div>
-    <div class="searchMap" style="width: 20%;position:absolute;top: 0;left: 0;z-index: 99">
+    <!--<div class="searchMap" style="width: 20%;position:absolute;top: 0;left: 0;z-index: 99">
       <el-select v-model="searchSelect" filterable @change="searchMapDot(searchSelect,searchOption)">
         <el-option v-for="(i,x) in searchOption" :key="x" :value="i.searchName"></el-option>
         <div slot="prefix">
@@ -33,7 +33,7 @@
           </div>
         </div>
       </el-select>
-    </div>
+    </div>-->
     <div id="MAP"></div>
     <div class="el-icon-full-screen enlarge" @click="enlargeMap"></div>
     <!--		<div class="details" id="ds"></div>-->
@@ -643,7 +643,7 @@
 							icon = require("../../../assets/gas/新能源.png");
 						}
 						if (item.type === "石化能源公司")
-							icon = require("../../../assets/gas/交投石化能源.png");
+							icon = require("../../../assets/gas/zsh_a.png");
 						if (item.type === "中化交投公司")
 							icon = require("../../../assets/gas/中化交投.png");
 						if (item.type === "高路油站公司")
