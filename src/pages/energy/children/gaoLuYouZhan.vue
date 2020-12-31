@@ -8916,7 +8916,7 @@ export default {
   },
   methods: {
     selectionChange(v) {
-      if(Object.keys(v).length==6){
+      if(Object.keys(v).length==10){
         this.$router.push("/energy/JYZXiangQing");
       }
     },

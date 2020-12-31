@@ -789,107 +789,15 @@ export default {
               ]
             },
             {
+              id: "revenue_gd",
+              collapseTitle: "查看更多",
+              EChartsBox: []
+            },
+            {
               id: "budget_",
               year: 2019,
               collapseTitle: "预算控制",
               EChartsBox: [
-                {
-                  title:
-                    '<span style="float: left">预算项目列表</span><span style="float: right ;text-shadow:none;height: 100%;text-align: right;padding-right: 20px;font-weight:100;">2020年 执行金额:3478万元 预算金额:5432万元 总执行度:64%</span>',
-                  input: true,
-                  select: true,
-                  query: {
-                    inputValue: "",
-                    selectValue: "",
-                    timeValue: ""
-                  },
-                  selectOption: [[2015, 2016, 2017, 2018]],
-                  style: {
-                    width: "100%",
-                    height: "650px",
-                    background: "white",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    marginBottom: "10px"
-                  },
-                  EChartsItem: [
-                    {
-                      style: {
-                        width: "100%",
-                        height: "650px"
-                      },
-                      isPagination: true,
-                      height: "660px",
-                      type: "table",
-                      columns: [
-                        { prop: "a", label: "预算项目" },
-                        { prop: "b", label: "预算金额（元）" },
-                        { prop: "c", label: "执行金额（元）" },
-                        { prop: "d", label: "执行进度" },
-                        { prop: "e", label: "时间偏离度（执行进度-时间进度）" },
-                        { prop: "f", label: "年份" }
-                      ],
-                      tableData: [
-                        {
-                          a: "零售业务",
-                          b: "2041.55",
-                          c: "3894.80",
-                          d: "74.88%",
-                          e: "22.46%",
-                          f: "2020"
-                        },
-                        {
-                          a: "批发业务",
-                          b: "3015.05",
-                          c: "4202.41",
-                          d: "102.49%",
-                          e: "30.75%",
-                          f: "2020"
-                        },
-                        {
-                          a: "经营租赁",
-                          b: "557.37",
-                          c: "927.39",
-                          d: "85.86%",
-                          e: "25.76%",
-                          f: "2020"
-                        },
-                        {
-                          a: "开办费",
-                          b: "313.77",
-                          c: "552.44",
-                          d: "81.14%",
-                          e: "24.34%",
-                          f: "2020"
-                        },
-                        {
-                          a: "物业费收入",
-                          b: "548.56",
-                          c: "1091.13",
-                          d: "71.82%",
-                          e: "21.55%",
-                          f: "2020"
-                        },
-                        {
-                          a: "自动售货机",
-                          b: "193.30",
-                          c: "332.17",
-                          d: "83.11%",
-                          e: "24.93%",
-                          f: "2020"
-                        },
-                        {
-                          a: "公益补助",
-                          b: "260.93",
-                          c: "430.15",
-                          d: "92.46%",
-                          e: "27.74%",
-                          f: "2020"
-                        }
-                      ]
-                    }
-                  ]
-                },
                 {
                   title: "成本费用利用率",
                   style: {
@@ -996,14 +904,108 @@ export default {
                       }
                     }
                   ]
-                }
+                },
+                {
+                  title:
+                    '<span style="float: left">预算项目列表</span><span style="float: right ;text-shadow:none;height: 100%;text-align: right;padding-right: 20px;font-weight:100;">2020年 执行金额:3478万元 预算金额:5432万元 总执行度:64%</span>',
+                  input: true,
+                  select: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
+                  selectOption: [[2015, 2016, 2017, 2018]],
+                  style: {
+                    width: "100%",
+                    height: "650px",
+                    background: "white",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    marginBottom: "10px"
+                  },
+                  EChartsItem: [
+                    {
+                      style: {
+                        width: "100%",
+                        height: "650px"
+                      },
+                      isPagination: true,
+                      height: "660px",
+                      type: "table",
+                      columns: [
+                        { prop: "a", label: "预算项目" },
+                        { prop: "b", label: "预算金额（元）" },
+                        { prop: "c", label: "执行金额（元）" },
+                        { prop: "d", label: "执行进度" },
+                        { prop: "e", label: "时间偏离度（执行进度-时间进度）" },
+                        { prop: "f", label: "年份" }
+                      ],
+                      tableData: [
+                        {
+                          a: "零售业务",
+                          b: "2041.55",
+                          c: "3894.80",
+                          d: "74.88%",
+                          e: "22.46%",
+                          f: "2020"
+                        },
+                        {
+                          a: "批发业务",
+                          b: "3015.05",
+                          c: "4202.41",
+                          d: "102.49%",
+                          e: "30.75%",
+                          f: "2020"
+                        },
+                        {
+                          a: "经营租赁",
+                          b: "557.37",
+                          c: "927.39",
+                          d: "85.86%",
+                          e: "25.76%",
+                          f: "2020"
+                        },
+                        {
+                          a: "开办费",
+                          b: "313.77",
+                          c: "552.44",
+                          d: "81.14%",
+                          e: "24.34%",
+                          f: "2020"
+                        },
+                        {
+                          a: "物业费收入",
+                          b: "548.56",
+                          c: "1091.13",
+                          d: "71.82%",
+                          e: "21.55%",
+                          f: "2020"
+                        },
+                        {
+                          a: "自动售货机",
+                          b: "193.30",
+                          c: "332.17",
+                          d: "83.11%",
+                          e: "24.93%",
+                          f: "2020"
+                        },
+                        {
+                          a: "公益补助",
+                          b: "260.93",
+                          c: "430.15",
+                          d: "92.46%",
+                          e: "27.74%",
+                          f: "2020"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                
               ]
             },
-            {
-              id: "revenue_gd",
-              collapseTitle: "查看更多",
-              EChartsBox: []
-            }
+            
           ]
         }
       ],

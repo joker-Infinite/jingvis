@@ -3753,7 +3753,7 @@ export default {
               EChartsBox: [
                 {
                   title: "订单列表",
-                  select: true,
+                  select: false,
                   input: true,
                   time: true,
                   query: {
@@ -7550,8 +7550,7 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden",
-                    marginTop:'10px'
+                    overflow: "hidden"
                   },
                   EChartsItem: [
                     {
@@ -7636,18 +7635,18 @@ export default {
                             name: "利润",
                             barWidth: 20,
                             data: [
-                              13212,
-                              24332,
-                              30541,
-                              33234,
-                              92120,
-                              26550,
-                              63760,
-                              15421,
-                              54543,
-                              57546,
-                              49451,
-                              35442
+                              22012,
+                              33232,
+                              20121,
+                              43334,
+                              10940,
+                              10350,
+                              10120,
+                              22321,
+                              44653,
+                              47646,
+                              39821,
+                              21542
                             ],
                             type: "bar"
                           },
@@ -7677,7 +7676,7 @@ export default {
                 },
 
                 {
-                  title: "2019年成本利润",
+                  title: "2020年成本利润",
                   select: false,
                   selectNum: 3,
                   selectOption: [
@@ -7690,8 +7689,7 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden",
-                    marginTop:'10px'
+                    overflow: "hidden"
                   },
                   EChartsItem: [
                     {
@@ -7776,18 +7774,18 @@ export default {
                             name: "利润",
                             barWidth: 20,
                             data: [
-                              53212,
-                              64332,
-                              80541,
-                              33234,
-                              82120,
-                              46550,
-                              33760,
-                              25421,
-                              14543,
-                              17546,
-                              29451,
-                              15442
+                              62012,
+                              23232,
+                              30121,
+                              53334,
+                              82940,
+                              73350,
+                              13120,
+                              10321,
+                              44653,
+                              67646,
+                              19821,
+                              9542
                             ],
                             type: "bar"
                           },
@@ -8916,9 +8914,10 @@ export default {
   },
   methods: {
     selectionChange(v) {
-      if(Object.keys(v).length==6){
+      if(Object.keys(v).length==10){
         this.$router.push("/energy/JYZXiangQing");
       }
+
     },
     async obtainAxios(name, year, years) {
       let data = [];

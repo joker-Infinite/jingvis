@@ -480,11 +480,11 @@ export default {
                             lineHeight: 15,
                             rich: {
                               a: {
-                                color: "#95A2FF",
+                                color: "#cb9bff",
                                 fontSize: "15"
                               },
                               b: {
-                                color: "#FE9394",
+                                color: "#59588D",
                                 fontSize: "15",
                                 padding: 10
                               }
@@ -546,7 +546,7 @@ export default {
                         series: [
                           {
                             name: "汽油",
-                            color: "#FE9394",
+                            color: "#cb9bff",
                             data: [
                               2485,
                               2560,
@@ -565,7 +565,7 @@ export default {
                           },
                           {
                             name: "汽油",
-                            color: "#95A2FF",
+                            color: "#59588D",
                             data: [
                               2585,
                               2660,
