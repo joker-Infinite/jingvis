@@ -378,6 +378,7 @@
                     <my-map
                       v-if="wit.type === 'map'"
                       :vid="cit.id + '-' + six + '-' + wix"
+                      :text="cit.text"
                     ></my-map>
                   </div>
                   <div

@@ -32,6 +32,7 @@ export default {
           collapseItem: [
             {
               id: "cc_2020",
+              text:"中化交投公司",
               year: 2020,
               collapseTitle: "油站分布",
               allQuery: false,

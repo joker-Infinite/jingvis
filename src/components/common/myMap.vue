@@ -51,6 +51,10 @@ export default {
     vid: {
       type: String,
       default: "map"
+    },
+    text:{
+      type:String,
+      default:"中化交投公司"
     }
   },
   data() {
@@ -84,7 +88,8 @@ export default {
   },
   mounted() {
     this.timeClear = setInterval(this.check, 3000);
-    this.$axios.get("/api/index/list_jtService").then(res => {
+    this.$axios.get("/api/index/list_jtService",{params:{jyzType:this.text}}).then(res => {
+      console.log(res)
       this.data = res.data.data;
       this.point();
     });
@@ -99,24 +104,15 @@ export default {
       const that = this;
       let data = [];
       this.data.forEach((item, index) => {
-        if (
-          item.gisCompany == "交投能源" ||
-          item.gisCompany == "中石油" ||
-          item.gisCompany == "中石化"
-        ) {
-          data.push(item);
-        }
+          console.log(item.latitude)
+          if(item.latitude!=''){
+            data.push(item);
+          }
+        
       });
-
       data.forEach((item, index) => {
         if (item.longitude != "NULL" && item.latitude != "NULL") {
-          let icon = "";
-          if (item.gisCompany == "交投能源")
-            icon = require("../../assets/gas/jtny.png");
-          if (item.gisCompany == "中石油")
-            icon = require("../../assets/gas/zsy.png");
-          if (item.gisCompany == "中石化")
-            icon = require("../../assets/gas/zsh1.png");
+          let icon = require("../../assets/gas/jtny.png");
           markers.push({
             position: [item.longitude, item.latitude],
             // events: {
