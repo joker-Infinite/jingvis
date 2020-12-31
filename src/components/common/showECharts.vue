@@ -51,6 +51,7 @@
                   end-placeholder="结束日期"
                   :picker-options="pickerOptions">
           </el-date-picker>
+          <el-button>搜索</el-button>
         </div>
         <div class="MMA" v-if="type">
           平均：{{ obj.average }}<br/>
@@ -228,6 +229,8 @@
 				this.option = v;
 				this.type = false;
 				this.visible = true;
+				this.commonTime = false;
+				this.commonSelect = false;
 				v = clone(v);
 				if (v.constructor !== Array) {
 					if (t === "time") {
@@ -426,6 +429,10 @@
 
     .text_icon {
       padding: 0 10px;
+    }
+
+    /deep/ .el-button {
+      padding: 10px 15px;
     }
 
     /deep/ .el-select {
