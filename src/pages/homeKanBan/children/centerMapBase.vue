@@ -463,6 +463,7 @@
 							},
 							legend: {
 								data: ["驶入", "驶出"],
+								icon: 'circle',
 								bottom: 0,
 								textStyle: {
 									color: "#FFF"
@@ -521,24 +522,24 @@
 								{
 									name: "驶入",
 									type: "line",
-								/*	label: {
-										show: true,
-										formatter: v => {
-											return Math.abs(v.value);
-										}
-									},*/
+									/*	label: {
+                      show: true,
+                      formatter: v => {
+                        return Math.abs(v.value);
+                      }
+                    },*/
 									data: [140, 195, 602, 698, 700, 350],
 									itemStyle: {color: "#596aec"}
 								},
 								{
 									name: "驶出",
 									type: "line",
-								/*	label: {
-										show: true,
-										formatter: v => {
-											return Math.abs(v.value);
-										}
-									},*/
+									/*	label: {
+                      show: true,
+                      formatter: v => {
+                        return Math.abs(v.value);
+                      }
+                    },*/
 									data: [158, 173, 615, 668, 716, 523],
 									itemStyle: {color: "#43cef7"}
 								}

@@ -27,11 +27,11 @@
                 !form.noPingEffect
                   ? form.remark
                     ? form.remark.length < 10
-                      ? "坪效：20元/㎡(自营)"
+                      ? "坪效：6元/㎡(自营)"
                       : form.remark > 10 && form.remark < 20
-                      ? "坪效：20元/㎡(合营)"
-                      : "坪效：20元/㎡(租赁)"
-                    : "坪效：20元/㎡(租赁)"
+                      ? "坪效：5元/㎡(合营)"
+                      : "坪效：5元/㎡(租赁)"
+                    : "坪效：6元/㎡(租赁)"
                   : ""
               }}</span><span :style="{
                 display: 'inline-block',
@@ -86,8 +86,8 @@
                   v-for="i in 2"
                   :key="i"
                   :style="{ width: '49.5%',height: chartBox.length === 2 ? '300px' : '400px',marginBottom: '10px',position: 'relative'}">
-          <!--  <div v-if="i == 2 && NE == 'gas'" class="KK ll">进入</div>
-            <div v-if="i == 2 && NE == 'gas'" class="KK rr">驶出</div>-->
+            <!--  <div v-if="i == 2 && NE == 'gas'" class="KK ll">进入</div>
+              <div v-if="i == 2 && NE == 'gas'" class="KK rr">驶出</div>-->
             <div class="KK ll" v-if="i==2&& (form.name=='男厕'|| form.name=='女厕')">男（223）</div>
             <div class="KK rr" v-if="i==2&& (form.name=='男厕'|| form.name=='女厕')">女（175）</div>
             <div class="KK rr"></div>
@@ -128,7 +128,8 @@
 				ID: [],
 				cellSize: [60, 60],
 				pieRadius: 20,
-				legendSelected: {}
+				legendSelected: {},
+				scatterData: []
 			};
 		},
 		methods: {
@@ -209,6 +210,7 @@
 					let form = document.getElementsByClassName("form")[0];
 					form.scrollTo(0, 0);
 					this.form = v;
+					this.scatterData = this.getVirtulData();
 					this.ECharts(v);
 				});
 			},
@@ -236,7 +238,6 @@
 					});
 					if (x == 1) {
 						i.on('legendselectchanged', function (v) {
-							console.log(v);
 							this.legendSelected = v;
 						})
 					}
@@ -311,35 +312,26 @@
 						},
 						range: ["2020-12"]
 					},
-					series: [
-						{
-							id: "label",
-							type: "scatter",
-							coordinateSystem: "calendar",
-							symbolSize: 1,
-							label: {
-								normal: {
-									show: true,
-									formatter: function (params) {
-										return this.$echarts.format.formatTime("dd", params.value[0]);
-									},
-									offset: [
-										-this.cellSize[0] / 2 + 10,
-										-this.cellSize[1] / 2 + 10
-									],
-									textStyle: {
-										color:
-											this.location != "homeKanBan"
-												? "#333"
-												: this.imgSize == "small"
-												? "#333"
-												: "white",
-										fontSize: 14
-									}
+					series: [{
+						id: 'label',
+						type: 'scatter',
+						coordinateSystem: 'calendar',
+						symbolSize: 1,
+						label: {
+							normal: {
+								show: true,
+								formatter: function (params) {
+									return that.$echarts.format.formatTime('dd', params.value[0]);
+								},
+								offset: [-that.cellSize[0] / 2 + 10, -that.cellSize[1] / 2 + 10],
+								textStyle: {
+									color: '#000',
+									fontSize: 14
 								}
 							}
-						}
-					]
+						},
+						data: this.scatterData
+					}]
 				};
 				eId[0].setOption(this.chartBox[0]);
 				eId[1].setOption(option);
@@ -481,7 +473,8 @@
 
     /deep/ .el-col {
       p {
-				height: 50px;
+        height: 50px;
+
         .el-date-editor {
           .el-input__inner {
             line-height: 35px;

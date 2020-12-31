@@ -386,7 +386,7 @@
 										bottom: 80,
 										textStyle: {
 											color: 'white'
-										}
+										},
 									},
 									tooltip: {
 										trigger: "item",
