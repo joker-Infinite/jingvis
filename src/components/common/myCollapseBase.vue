@@ -106,7 +106,7 @@
                       v-if="sit.isinput"
                       placeholder="请输入内容"
                     ></el-input>
-                    <el-select v-model="query.selectValue" v-if="sit.isselect">
+                    <el-select v-model="sit.query.selectValue" v-if="sit.isselect">
                       <el-option
                         v-if="sit.selectOption && sit.selectOption[0]"
                         v-for="(oi, ox) in sit.selectOption[0]"
@@ -167,11 +167,11 @@
                 </div>
                 <div class="query" v-if="sit.time || sit.select || sit.input">
                   <el-input
-                    v-model="query.inputValue"
+                    v-model="sit.query.inputValue"
                     v-if="sit.input"
                     placeholder="请输入内容"
                   ></el-input>
-                  <el-select v-model="query.selectValue" v-if="sit.select">
+                  <el-select v-model="sit.query.selectValue" v-if="sit.select">
                     <el-option
                       v-if="sit.selectOption && sit.selectOption[0]"
                       v-for="(oi, ox) in sit.selectOption[0]"

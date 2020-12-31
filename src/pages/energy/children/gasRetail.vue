@@ -218,17 +218,17 @@ export default {
         },
         {
           id: "gasRetails",
-          name: "订单列表",
+          name: "加油站",
           icon: require("../../../assets/serviceArea/nyls/dingdanliebiao.png"),
           iconActive: require("../../../assets/serviceArea/nyls/dingdanliebiao1.png"),
           collapseItem: [
             {
               id: "gasRetail_table",
               year: 2020,
-              collapseTitle: "订单列表",
+              collapseTitle: "加油站",
               EChartsBox: [
                 {
-                  title: "订单列表",
+                  title: "加油站列表",
                   select: true,
                   input: true,
                   time: true,

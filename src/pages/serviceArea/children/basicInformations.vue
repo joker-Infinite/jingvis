@@ -73,7 +73,16 @@ export default {
                 {
                   title: "服务区列表",
                   time: true,
+                  select:true,
+                  selectOption: [
+                    ["黄冈分公司", "恩施分公司", "宜昌分公司", "咸宁分公司", "孝感分公司", "十堰分公司"]
+                  ],
                   input: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     cursor: "pointer",
                     width: "100%",

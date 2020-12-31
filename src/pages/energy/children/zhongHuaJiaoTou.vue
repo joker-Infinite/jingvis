@@ -3528,103 +3528,6 @@ export default {
               collapseTitle: "预算控制",
               EChartsBox: [
                 {
-                  title:
-                    '<span style="float: left">预算项目列表</span><span style="float: right ;text-shadow:none;height: 100%;text-align: right;padding-right: 20px;font-weight:100;">2020年 执行金额:3478万元 预算金额:5432万元 总执行度:64%</span>',
-                  input: true,
-                  select: true,
-                  query: {
-                    inputValue: "",
-                    selectValue: "",
-                    timeValue: ""
-                  },
-                  selectOption: [[2015, 2016, 2017, 2018]],
-                  style: {
-                    width: "100%",
-                    height: "650px",
-                    background: "white",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    marginBottom: "10px"
-                  },
-                  EChartsItem: [
-                    {
-                      style: {
-                        width: "100%",
-                        height: "650px"
-                      },
-                      isPagination: true,
-                      height: "660px",
-                      type: "table",
-                      columns: [
-                        { prop: "a", label: "预算项目" },
-                        { prop: "b", label: "预算金额（元）" },
-                        { prop: "c", label: "执行金额（元）" },
-                        { prop: "d", label: "执行进度" },
-                        { prop: "e", label: "时间偏离度（执行进度-时间进度）" },
-                        { prop: "f", label: "年份" }
-                      ],
-                      tableData: [
-                        {
-                          a: "零售业务",
-                          b: "2041.55",
-                          c: "3894.80",
-                          d: "74.88%",
-                          e: "22.46%",
-                          f: "2020"
-                        },
-                        {
-                          a: "批发业务",
-                          b: "3015.05",
-                          c: "4202.41",
-                          d: "102.49%",
-                          e: "30.75%",
-                          f: "2020"
-                        },
-                        {
-                          a: "经营租赁",
-                          b: "557.37",
-                          c: "927.39",
-                          d: "85.86%",
-                          e: "25.76%",
-                          f: "2020"
-                        },
-                        {
-                          a: "开办费",
-                          b: "313.77",
-                          c: "552.44",
-                          d: "81.14%",
-                          e: "24.34%",
-                          f: "2020"
-                        },
-                        {
-                          a: "物业费收入",
-                          b: "548.56",
-                          c: "1091.13",
-                          d: "71.82%",
-                          e: "21.55%",
-                          f: "2020"
-                        },
-                        {
-                          a: "自动售货机",
-                          b: "193.30",
-                          c: "332.17",
-                          d: "83.11%",
-                          e: "24.93%",
-                          f: "2020"
-                        },
-                        {
-                          a: "公益补助",
-                          b: "260.93",
-                          c: "430.15",
-                          d: "92.46%",
-                          e: "27.74%",
-                          f: "2020"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
                   title: "成本费用利用率",
                   style: {
                     width: "49.5%",
@@ -3730,7 +3633,105 @@ export default {
                       }
                     }
                   ]
-                }
+                },
+                {
+                  title:
+                    '<span style="float: left">预算项目列表</span><span style="float: right ;text-shadow:none;height: 100%;text-align: right;padding-right: 20px;font-weight:100;">2020年 执行金额:3478万元 预算金额:5432万元 总执行度:64%</span>',
+                  input: true,
+                  select: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
+                  selectOption: [[2015, 2016, 2017, 2018]],
+                  style: {
+                    width: "100%",
+                    height: "650px",
+                    background: "white",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    marginBottom: "10px"
+                  },
+                  EChartsItem: [
+                    {
+                      style: {
+                        width: "100%",
+                        height: "650px"
+                      },
+                      isPagination: true,
+                      height: "660px",
+                      type: "table",
+                      columns: [
+                        { prop: "a", label: "预算项目" },
+                        { prop: "b", label: "预算金额（元）" },
+                        { prop: "c", label: "执行金额（元）" },
+                        { prop: "d", label: "执行进度" },
+                        { prop: "e", label: "时间偏离度（执行进度-时间进度）" },
+                        { prop: "f", label: "年份" }
+                      ],
+                      tableData: [
+                        {
+                          a: "零售业务",
+                          b: "2041.55",
+                          c: "3894.80",
+                          d: "74.88%",
+                          e: "22.46%",
+                          f: "2020"
+                        },
+                        {
+                          a: "批发业务",
+                          b: "3015.05",
+                          c: "4202.41",
+                          d: "102.49%",
+                          e: "30.75%",
+                          f: "2020"
+                        },
+                        {
+                          a: "经营租赁",
+                          b: "557.37",
+                          c: "927.39",
+                          d: "85.86%",
+                          e: "25.76%",
+                          f: "2020"
+                        },
+                        {
+                          a: "开办费",
+                          b: "313.77",
+                          c: "552.44",
+                          d: "81.14%",
+                          e: "24.34%",
+                          f: "2020"
+                        },
+                        {
+                          a: "物业费收入",
+                          b: "548.56",
+                          c: "1091.13",
+                          d: "71.82%",
+                          e: "21.55%",
+                          f: "2020"
+                        },
+                        {
+                          a: "自动售货机",
+                          b: "193.30",
+                          c: "332.17",
+                          d: "83.11%",
+                          e: "24.93%",
+                          f: "2020"
+                        },
+                        {
+                          a: "公益补助",
+                          b: "260.93",
+                          c: "430.15",
+                          d: "92.46%",
+                          e: "27.74%",
+                          f: "2020"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                
               ]
             },
             {
@@ -3749,10 +3750,10 @@ export default {
             {
               id: "gasRetail_table",
               year: 2020,
-              collapseTitle: "订单列表",
+              collapseTitle: "加油站",
               EChartsBox: [
                 {
-                  title: "订单列表",
+                  title: "加油站列表",
                   select: false,
                   input: true,
                   time: true,
@@ -7538,7 +7539,6 @@ export default {
                 {
                   title: "2020年成本利润",
                   select: false,
-
                   selectNum: 3,
                   selectOption: [
                     ["新能源", "石化", "国储", "荆港嘉瑞"],
@@ -7550,7 +7550,8 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
+                    marginTop:'10px'
                   },
                   EChartsItem: [
                     {
@@ -7654,18 +7655,18 @@ export default {
                             name: "成本费用利润率",
                             yAxisIndex: 1,
                             data: [
-                              32,
-                              43,
-                              31,
-                              53,
-                              14,
-                              15,
-                              16,
-                              37,
-                              58,
-                              55,
-                              43,
-                              37
+                              68.76,
+                              76.86,
+                              66.80,
+                              81.25,
+                              84.54,
+                              77.52,
+                              77.13,
+                              69.06,
+                              81.70,
+                              82.65,
+                              79.92,
+                              68.29,
                             ],
                             type: "line"
                           }
@@ -7676,7 +7677,7 @@ export default {
                 },
 
                 {
-                  title: "2020年成本利润",
+                  title: "2019年成本利润",
                   select: false,
                   selectNum: 3,
                   selectOption: [
@@ -7689,7 +7690,8 @@ export default {
                     height: "450px",
                     background: "white",
                     borderRadius: "10px",
-                    overflow: "hidden"
+                    overflow: "hidden",
+                    marginTop:'10px'
                   },
                   EChartsItem: [
                     {
@@ -7793,18 +7795,19 @@ export default {
                             name: "成本费用利润率",
                             yAxisIndex: 1,
                             data: [
-                              52,
-                              23,
-                              51,
-                              53,
-                              54,
-                              65,
-                              56,
-                              57,
-                              58,
-                              85,
-                              53,
-                              57
+                              75.61,
+                              69.91, 
+                              75.08, 
+                              84.21, 
+                              89.24, 
+                              88.00, 
+                              56.75, 
+                              83.77, 
+                              81.70, 
+                              87.12, 
+                              66.47, 
+                              82.67, 
+
                             ],
                             type: "line"
                           }

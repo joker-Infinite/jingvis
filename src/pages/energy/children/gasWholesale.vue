@@ -1517,14 +1517,14 @@ export default {
         },
         {
           id: "mmm",
-          name: "发展趋势",
+          name: "成本利润",
           icon: require("../../../assets/serviceArea/yppf/qs.png"),
           iconActive: require("../../../assets/serviceArea/yppf/qs1.png"),
           collapseItem: [
             {
               id: "mmm_2020",
               year: 2020,
-              collapseTitle: "2020年利润",
+              collapseTitle: "2020年成本利润",
 
               EChartsBox: [
                 {
@@ -1646,18 +1646,18 @@ export default {
                             name: "成本费用利润率",
                             yAxisIndex: 1,
                             data: [
-                              32,
-                              43,
-                              31,
-                              53,
-                              14,
-                              15,
-                              16,
-                              37,
-                              58,
-                              55,
-                              43,
-                              37
+                              68.76,
+                              76.86,
+                              66.80,
+                              81.25,
+                              84.54,
+                              77.52,
+                              77.13,
+                              69.06,
+                              81.70,
+                              82.65,
+                              79.92,
+                              68.29,
                             ],
                             type: "line"
                           }
@@ -1671,7 +1671,7 @@ export default {
             {
               id: "mmm_2019",
               year: 2019,
-              collapseTitle: "2019年利润",
+              collapseTitle: "2019年成本利润",
               EChartsBox: [
                 {
                   title: "成本利润",
@@ -1791,18 +1791,19 @@ export default {
                             name: "成本费用利润率",
                             yAxisIndex: 1,
                             data: [
-                              52,
-                              23,
-                              51,
-                              53,
-                              54,
-                              65,
-                              56,
-                              57,
-                              58,
-                              85,
-                              53,
-                              57
+                              75.61,
+                              69.91, 
+                              75.08, 
+                              84.21, 
+                              89.24, 
+                              88.00, 
+                              56.75, 
+                              83.77, 
+                              81.70, 
+                              87.12, 
+                              66.47, 
+                              82.67, 
+
                             ],
                             type: "line"
                           }

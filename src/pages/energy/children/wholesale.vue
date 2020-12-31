@@ -67,17 +67,18 @@ export default {
                           textStyle: {
                             lineHeight: 15,
                             rich: {
+                              
                               a: {
-                                color: "#95A2FF",
+                                color: "#73A0FA",
                                 fontSize: "15"
                               },
                               b: {
-                                color: "#3CB8FE",
+                                color: "#73DEB3",
                                 fontSize: "15",
                                 padding: 10
                               },
                               c: {
-                                color: "#FE9394",
+                                color: "#FFB761",
                                 fontSize: "15"
                               }
                             }
@@ -173,7 +174,8 @@ export default {
                               5.15,
                               5.15
                             ],
-                            color: "#95A2FF",
+                             
+                            color: "#73A0FA",
                             type: "line"
                           },
                           {
@@ -192,7 +194,8 @@ export default {
                               5.45,
                               5.95
                             ],
-                            color: "#3CB8FE",
+                            
+                            color: "#73DEB3",
                             type: "line"
                           },
                           {
@@ -211,7 +214,7 @@ export default {
                               6.15,
                               6.95
                             ],
-                            color: "#FE9394",
+                            color: "#FFB761",
                             type: "line"
                           },
                           {
@@ -230,7 +233,7 @@ export default {
                               5.85,
                               5.85
                             ],
-                            color: "#95A2FF",
+                            color: "#73A0FA",
                             type: "line"
                           },
                           {
@@ -249,7 +252,7 @@ export default {
                               5.45,
                               5.95
                             ],
-                            color: "#3CB8FE",
+                            color: "#73DEB3",
                             type: "line"
                           },
                           {
@@ -268,7 +271,7 @@ export default {
                               6.85,
                               6.85
                             ],
-                            color: "#FE9394",
+                            color: "#FFB761",
                             type: "line"
                           },
                           {
@@ -287,7 +290,7 @@ export default {
                               5.15,
                               5.15
                             ],
-                            color: "#95A2FF",
+                            color: "#73A0FA",
                             type: "line"
                           },
                           {
@@ -306,7 +309,7 @@ export default {
                               5.45,
                               5.95
                             ],
-                            color: "#3CB8FE",
+                            color: "#73DEB3",
                             type: "line"
                           },
                           {
@@ -325,7 +328,7 @@ export default {
                               6.15,
                               6.95
                             ],
-                            color: "#FE9394",
+                            color: "#FFB761",
                             type: "line"
                           },
                           {
@@ -344,7 +347,7 @@ export default {
                               6.15,
                               6.15
                             ],
-                            color: "#95A2FF",
+                            color: "#73A0FA",
                             type: "line"
                           },
                           {
@@ -363,7 +366,7 @@ export default {
                               6.45,
                               6.95
                             ],
-                            color: "#3CB8FE",
+                            color: "#73DEB3",
                             type: "line"
                           },
                           {
@@ -382,7 +385,7 @@ export default {
                               7.15,
                               7.95
                             ],
-                            color: "#FE9394",
+                            color: "#FFB761",
                             type: "line"
                           },
                           {
@@ -401,7 +404,7 @@ export default {
                               6.15,
                               6.95
                             ],
-                            color: "#95A2FF",
+                            color: "#73A0FA",
                             type: "line"
                           },
                           {
@@ -420,7 +423,7 @@ export default {
                               7.15,
                               6.99
                             ],
-                            color: "#3CB8FE",
+                            color: "#73DEB3",
                             type: "line"
                           },
                           {
@@ -439,7 +442,7 @@ export default {
                               8.15,
                               8.0
                             ],
-                            color: "#FE9394",
+                            color: "#FFB761",
                             type: "line"
                           }
                         ]
@@ -480,11 +483,11 @@ export default {
                             lineHeight: 15,
                             rich: {
                               a: {
-                                color: "#cb9bff",
+                                color: "#9E8BFF",
                                 fontSize: "15"
                               },
                               b: {
-                                color: "#59588D",
+                                color: "#73DDA5",
                                 fontSize: "15",
                                 padding: 10
                               }
@@ -546,7 +549,7 @@ export default {
                         series: [
                           {
                             name: "汽油",
-                            color: "#cb9bff",
+                            color: "#9E8BFF",
                             data: [
                               2485,
                               2560,
@@ -565,7 +568,7 @@ export default {
                           },
                           {
                             name: "汽油",
-                            color: "#59588D",
+                            color: "#73DDA5",
                             data: [
                               2585,
                               2660,
@@ -584,7 +587,7 @@ export default {
                           },
                           {
                             name: "柴油",
-                            color: "#FE9394",
+                            color: "#9E8BFF",
                             data: [
                               799,
                               878,
@@ -603,7 +606,7 @@ export default {
                           },
                           {
                             name: "柴油",
-                            color: "#95A2FF",
+                            color: "#73DDA5",
                             data: [
                               785,
                               854,
