@@ -44,6 +44,11 @@ export default {
                   title: "宜昌服务区列表",
                   time: true,
                   input: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     cursor: "pointer",
                     width: "100%",
@@ -73,7 +78,7 @@ export default {
                             { prop: "mincart", label: "小车" }
                           ]
                         },
-                        { prop: "shouyi", label: "收益(元)" },
+                        { prop: "shouyi", label: "收益(元)",width:150 },
                         { prop: "G", label: "利润(元)" },
                         { prop: "H", label: "坪效(元)" },
                         { prop: "I", label: "面积(m)" },
@@ -447,15 +452,15 @@ export default {
                             data: [
                               40,
                               1100,
-                              1100,
-                              1700,
-                              1700,
-                              1900,
-                              1900,
-                              2050,
-                              2050,
-                              2150,
-                              2600,
+                              2500,
+                              3564,
+                              4586,
+                              6587,
+                              7850,
+                              8854,
+                              8948,
+                              9352,
+                              9854,
                               9953.64
                             ],
                             type: "line",
@@ -6686,7 +6691,7 @@ export default {
                               data.forEach(element => {
                                 datas.push((element / 10000).toFixed(2));
                               });
-                              console.log(datas);
+                              
                               return datas;
                             })(),
                             itemStyle: {
@@ -6803,7 +6808,7 @@ export default {
                           //提示框组件
                           trigger: "axis",
                           formatter: function(val) {
-                            console.log(val);
+                            
                             let val0 = val[0];
                             let val1 = val[1];
                             return (
@@ -7375,7 +7380,7 @@ export default {
                               data.forEach(element => {
                                 datas.push((element / 10000).toFixed(2));
                               });
-                              console.log(datas);
+                              
                               return datas;
                             })(),
                             itemStyle: {
@@ -7492,7 +7497,7 @@ export default {
                           //提示框组件
                           trigger: "axis",
                           formatter: function(val) {
-                            console.log(val);
+                            
                             let val0 = val[0];
                             let val1 = val[1];
                             return (
@@ -8058,41 +8063,7 @@ export default {
       //     });
       // })
     },
-    async TableDatas(pageNum, pageSize) {
-      console.log(4564654);
-      this.$axios
-        .get("/api/jtService/serve_list", {
-          params: {
-            companyId: "cc809ba275f17437088741db4ef76d499",
-            pageNum: pageNum,
-            pageSize: pageSize,
-            serverName: this.serverName
-          }
-        })
-        .then(res => {
-          this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = [];
-          res.data.list.forEach(element => {
-            let elementData = {
-              serviceName: !element.serviceName ? "/" : element.serviceName,
-              B: !element.gaosuName ? "/" : element.gaosuName,
-              G: !element.lirun ? "/" : element.lirun,
-              I: !element.mianji ? "/" : element.mianji,
-              H: !element.pingxiao ? "/" : element.pingxiao,
-              maxcart: !element.carVo[0] ? "/" : element.carVo[0].count,
-              mincart: !element.carVo[1] ? "/" : element.carVo[1].count,
-              refuel: !element.jiayou ? "/" : element.jiayou,
-              snack: !element.xiaochi ? "/" : element.xiaochi,
-              convenience: "/",
-              catering: !element.canyin ? "/" : element.canyin,
-              shouyi: element.shouyi
-            };
-            this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData.push(
-              elementData
-            );
-          });
-          this.totalCount = res.data.total;
-        });
-    }
+    
   },
   async mounted() {
     await new Promise(resolve => {

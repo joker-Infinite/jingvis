@@ -44,6 +44,11 @@ export default {
                   title: "黄冈服务区列表",
                   time: true,
                   input: true,
+                  query: {
+                    inputValue: "",
+                    selectValue: "",
+                    timeValue: ""
+                  },
                   style: {
                     cursor: "pointer",
                     width: "100%",
@@ -73,7 +78,7 @@ export default {
                             { prop: "mincart", label: "小车" }
                           ]
                         },
-                        { prop: "shouyi", label: "收益(元)" },
+                        { prop: "shouyi", label: "收益(元)",width:150 },
                         { prop: "G", label: "利润(元)" },
                         { prop: "H", label: "坪效(元)" },
                         { prop: "I", label: "面积(m)" },
@@ -447,15 +452,15 @@ export default {
                             data: [
                               40,
                               1100,
-                              1100,
-                              1700,
-                              1700,
-                              1900,
-                              1900,
-                              2050,
-                              2050,
-                              2150,
-                              2600,
+                              2500,
+                              3564,
+                              4586,
+                              6587,
+                              7850,
+                              8854,
+                              8948,
+                              9352,
+                              9854,
                               9953.64
                             ],
                             type: "line",
@@ -6686,7 +6691,7 @@ export default {
                               data.forEach(element => {
                                 datas.push((element / 10000).toFixed(2));
                               });
-                              console.log(datas);
+                              
                               return datas;
                             })(),
                             itemStyle: {
@@ -6803,7 +6808,7 @@ export default {
                           //提示框组件
                           trigger: "axis",
                           formatter: function(val) {
-                            console.log(val);
+                            
                             let val0 = val[0];
                             let val1 = val[1];
                             return (
@@ -7375,7 +7380,7 @@ export default {
                               data.forEach(element => {
                                 datas.push((element / 10000).toFixed(2));
                               });
-                              console.log(datas);
+                              
                               return datas;
                             })(),
                             itemStyle: {
@@ -7492,7 +7497,7 @@ export default {
                           //提示框组件
                           trigger: "axis",
                           formatter: function(val) {
-                            console.log(val);
+                            
                             let val0 = val[0];
                             let val1 = val[1];
                             return (
@@ -7871,6 +7876,7 @@ export default {
       if(Object.keys(val).length==12) this.$router.push("/details/serviceDetails");
     },
     async searchQuery(id, collapse, year, name, inputVlaue) {
+      
       this.ValueData = collapse;
       id.EChartsBox.forEach((element, index) => {
         element.EChartsItem.forEach((element, sindex) => {
@@ -7905,7 +7911,7 @@ export default {
           }
         })
         .then(v => {
-          console.log(v);
+          
           data = v.data.data;
           let mm = [];
           this.collapseData.forEach((item, index) => {
@@ -8034,6 +8040,7 @@ export default {
           }
         })
         .then(res => {
+          
           this.collapseData[0].collapseItem[0].EChartsBox[0].EChartsItem[0].tableData = [];
           res.data.list.forEach(element => {
             let elementData = {
@@ -8064,11 +8071,13 @@ export default {
         resolve();
       }, 500);
     });
+    
     this.$refs["collapse"].initECharts(this.collapseData);
   },
   async created() {
     this.TableDatas(1, 5);
     this.obtainData("营收", "2019");
+    
     await this.obtainAxios("营收", "2020", "ys");
     // await this.obtainData("利润", "2019");
     // await this.obtainData("利润", "2020");

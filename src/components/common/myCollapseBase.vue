@@ -67,7 +67,7 @@
                     icon="el-icon-search"
                     type="primary"
                     @click="
-                      refreshClick(cit, allQuery, cit.year, item.name, cit)
+                      refreshClick(cit, sit.query, cit.year, item.name, cit)
                     "
                     >搜索
                   </el-button>
@@ -156,7 +156,7 @@
                       type="primary"
                       v-if="sit.showSearch == 'notShow' ? false : true"
                       @click="
-                        refreshClick(cit, query, cit.year, item.name, sit)
+                        refreshClick(cit, sit.query, cit.year, item.name, sit)
                       "
                       >搜索
                     </el-button>
@@ -220,7 +220,7 @@
                     icon="el-icon-search"
                     type="primary"
                     v-if="sit.showSearch == 'notShow' ? false : true"
-                    @click="refreshClick(cit, query, cit.year, item.name, sit)"
+                    @click="refreshClick(cit, sit.query, cit.year, item.name, sit)"
                     >搜索
                   </el-button>
                   <el-button type="primary" v-if="sit.year">年</el-button>
@@ -697,36 +697,39 @@ export default {
     },
     // 按钮的节流
     refreshClick(EChartsBox, query, year, name, collapseItem) {
-      this.EChartsData_[1].EChartsBox.forEach((element, index) => {
-        if (index == 1) {
-          element.EChartsItem.forEach((item, indexs) => {
-            
-            this.$echarts
-              .init(
-                document.getElementById(
-                  EChartsBox.id + `-${index}` + `-${indexs}`
-                )
-              )
-              .dispose();
-            this.$echarts
-              .init(
-                document.getElementById(
-                  EChartsBox.id + `-${index}` + `-${indexs}`
-                )
-              )
-              .setOption(item.option);
-          });
-        }
-      });
       
-      // this.$emit(
-      //   "searchQuery",
-      //   EChartsBox,
-      //   query,
-      //   year,
-      //   name,
-      //   this.query.inputValue
-      // );
+      if(year){
+        this.EChartsData_[1].EChartsBox.forEach((element, index) => {
+          if (index == 1) {
+            element.EChartsItem.forEach((item, indexs) => {
+              
+              this.$echarts
+                .init(
+                  document.getElementById(
+                    EChartsBox.id + `-${index}` + `-${indexs}`
+                  )
+                )
+                .dispose();
+              this.$echarts
+                .init(
+                  document.getElementById(
+                    EChartsBox.id + `-${index}` + `-${indexs}`
+                  )
+                )
+                .setOption(item.option);
+            });
+          }
+        });
+      }else{
+        this.$emit(
+          "searchQuery",
+          EChartsBox,
+          query,
+          year,
+          name,
+          query.inputValue
+        );
+      }
     },
     async refresh() {
       let timeID = "";
