@@ -36,6 +36,7 @@ export default {
               id: "cc_2020",
               year: 2020,
               collapseTitle: "油站分布",
+              text:"全部",
               allQuery: false,
               allQueryData: {
                 time: false

@@ -700,7 +700,7 @@ export default {
       this.EChartsData_[1].EChartsBox.forEach((element, index) => {
         if (index == 1) {
           element.EChartsItem.forEach((item, indexs) => {
-            console.log(item, 999, index, indexs);
+            
             this.$echarts
               .init(
                 document.getElementById(
@@ -718,7 +718,7 @@ export default {
           });
         }
       });
-      console.log(this.EChartsData_);
+      
       // this.$emit(
       //   "searchQuery",
       //   EChartsBox,

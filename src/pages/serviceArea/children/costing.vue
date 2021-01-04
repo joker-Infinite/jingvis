@@ -607,19 +607,22 @@ export default {
                           zlevel: 11,
                           shape: "circle",
                           scale: true,
-                          indicator: [
-                            {
-                              name: "差旅费"
-                            },
-                            {
-                              name: "业务招待费"
-                            },
-                            {
-                              name: "误餐费"
-                            },
-                            {
-                              name: "交通"
-                            }
+                          indicator: [{
+                                  name: "差旅费",
+                                  max:100
+                              },
+                              {
+                                  name: "业务招待费", 
+                                  max:100
+                              },
+                              {
+                                  name: "误餐费", 
+                                  max:100
+                              },
+                              {
+                                  name: "交通", 
+                                  max:100
+                              }
                           ],
                           center: ["50%", "50%"],
                           radius: "40%",
@@ -835,19 +838,22 @@ export default {
                           zlevel: 11,
                           shape: "circle",
                           scale: true,
-                          indicator: [
-                            {
-                              name: "差旅费"
-                            },
-                            {
-                              name: "业务招待费"
-                            },
-                            {
-                              name: "误餐费"
-                            },
-                            {
-                              name: "交通"
-                            }
+                          indicator: [{
+                                  name: "差旅费",
+                                  max:100
+                              },
+                              {
+                                  name: "业务招待费", 
+                                  max:100
+                              },
+                              {
+                                  name: "误餐费", 
+                                  max:100
+                              },
+                              {
+                                  name: "交通", 
+                                  max:100
+                              }
                           ],
                           center: ["50%", "50%"],
                           radius: "40%",
@@ -1594,19 +1600,22 @@ export default {
                           zlevel: 11,
                           shape: "circle",
                           scale: true,
-                          indicator: [
-                            {
-                              name: "差旅费"
-                            },
-                            {
-                              name: "业务招待费"
-                            },
-                            {
-                              name: "误餐费"
-                            },
-                            {
-                              name: "交通"
-                            }
+                          indicator: [{
+                                  name: "差旅费",
+                                  max:100
+                              },
+                              {
+                                  name: "业务招待费", 
+                                  max:100
+                              },
+                              {
+                                  name: "误餐费", 
+                                  max:100
+                              },
+                              {
+                                  name: "交通", 
+                                  max:100
+                              }
                           ],
                           center: ["50%", "50%"],
                           radius: "40%",
@@ -1822,19 +1831,22 @@ export default {
                           zlevel: 11,
                           shape: "circle",
                           scale: true,
-                          indicator: [
-                            {
-                              name: "差旅费"
-                            },
-                            {
-                              name: "业务招待费"
-                            },
-                            {
-                              name: "误餐费"
-                            },
-                            {
-                              name: "交通"
-                            }
+                          indicator: [{
+                                  name: "差旅费",
+                                  max:100
+                              },
+                              {
+                                  name: "业务招待费", 
+                                  max:100
+                              },
+                              {
+                                  name: "误餐费", 
+                                  max:100
+                              },
+                              {
+                                  name: "交通", 
+                                  max:100
+                              }
                           ],
                           center: ["50%", "50%"],
                           radius: "40%",

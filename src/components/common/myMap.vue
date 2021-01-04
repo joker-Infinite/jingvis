@@ -88,7 +88,18 @@ export default {
   },
   mounted() {
     this.timeClear = setInterval(this.check, 3000);
-    this.$axios.get("/api/index/list_jtService",{params:{jyzType:this.text}}).then(res => {
+    let params ;
+    
+    if(this.text==='全部'){
+      params = {
+        jyzType:['新能源公司', '石化能源公司', '中化交投公司', '高路油站公司'].join(",")
+      };
+    }else{
+      params = {
+        jyzType:this.text
+      };
+    }
+    this.$axios.get("/api/index/list_jtService",{params:params}).then(res => {
       this.data = res.data.data;
       this.point();
     });
@@ -108,19 +119,22 @@ export default {
             data.push(item);
           }
       });
+      
       data.forEach((item, index) => {
           let icon ;
-          if(this.text=='新能源公司'){
-              icon = require("../../assets/gas/新能源.png");
-          }
-          if(this.text=='石化能源公司'){
-            icon = require("../../assets/gas/zsh_a.png");
-          }
-          if(this.text=='中化交投公司'){
-            icon = require("../../assets/gas/中化交投.png");
-          }
-          if(this.text=='高路油站公司'){
-            icon = require("../../assets/gas/高路油站.png");
+          if(this.text=='新能源公司')icon = require("../../assets/gas/新能源.png");
+          
+          if(this.text=='石化能源公司')icon = require("../../assets/gas/zsh_a.png");
+          
+          if(this.text=='中化交投公司')icon = require("../../assets/gas/中化交投.png");
+          
+          if(this.text=='高路油站公司')icon = require("../../assets/gas/高路油站.png");
+          
+          if(this.text=='全部'){
+            if(item.gisCompany=="新能源公司") icon = require("../../assets/gas/新能源.png")
+            if(item.gisCompany=="石化能源公司") icon = require("../../assets/gas/zsh_a.png")
+            if(item.gisCompany=="中化交投公司") icon = require("../../assets/gas/中化交投.png")
+            if(item.gisCompany=="高路油站公司") icon = require("../../assets/gas/高路油站.png")
           }
           if(this.text=='') icon =require("../../assets/gas/透明.png")
           markers.push({
