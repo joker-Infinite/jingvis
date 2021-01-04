@@ -27,8 +27,8 @@ export default {
         {
           id: "ag",
           name: "油站分布",
-          icon: require("../../../assets/serviceArea/nyls/youzhanfenbu.png"),
-          iconActive: require("../../../assets/serviceArea/nyls/youzhanfenbu1.png"),
+          icon: require("../../../assets/serviceArea/nyls/yzfb.png"),
+          iconActive: require("../../../assets/serviceArea/nyls/yzfb1.png"),
           collapseItem: [
             {
               id: "cc_2020",
