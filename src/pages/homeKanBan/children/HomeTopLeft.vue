@@ -48,11 +48,13 @@
 				CD: {},
 				option: {},
 				company: [],
-				budget: []
+				budget: [],
+				clickOn: ''
 			};
 		},
 		methods: {
 			mouseHover(v) {
+				this.clickOn = v;
 				this.option = this[v];
 			},
 			isNoData(is, id, ids, option) {
@@ -67,6 +69,10 @@
 				}
 			},
 			showOne(is) {
+				let tooltip = [];
+				if (this.clickOn == 'AD') {
+					tooltip = this.budget;
+				}
 				/*  console.log(this.option.yAxis.data)
               if (this.option.yAxis[0].data) {
                   this.option.yAxis[0].data.forEach((element, index) => {
@@ -85,7 +91,7 @@
 				// this.option.legend.textStyle.fontSize = "20";
 				// this.option.legend.itemHeight = 15;
 				// this.option.legend.itemWidth = 15;
-				this.$refs["showECharts"].openDialog(this.option);
+				this.$refs["showECharts"].openDialog(this.option, '', '', tooltip);
 			},
 			initECharts_top() {
 				let HomeTopLeft_top = this.$echarts.init(

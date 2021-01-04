@@ -225,7 +225,7 @@
 					}
 				}
 			},
-			openDialog(v, t, data) {
+			openDialog(v, t, data, tooltip) {
 				this.option = v;
 				this.type = false;
 				this.visible = true;
@@ -258,6 +258,30 @@
 					}
 					if (t === "B") {
 						this.msg = "利润";
+					}
+					if (tooltip&&tooltip.length != 0) {
+						v.tooltip = {
+							trigger: "axis",
+							formatter: v => {
+								let label = "";
+								tooltip.forEach(i => {
+									if (v[0].name == i.plateName) {
+										label =
+											"实际控制率：" +
+											i.sjRateCount +
+											"%<br>实际金额：" +
+											i.sjMoney +
+											"万<br>预算金额：" +
+											i.ysMoney +
+											"万";
+									}
+								});
+								return label;
+							},
+							axisPointer: {
+								type: "shadow"
+							}
+						}
 					}
 					this.$nextTick(() => {
 						if (v.series[0] && v.series[0].data.length === 0) {
