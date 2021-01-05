@@ -20,7 +20,7 @@
         <div class="item" style="padding: 10px 10px">
           <el-button size="mini" type="primary" icon="el-icon-info" circle disabled></el-button>
           名字：
-          <el-input v-model="FD.name"></el-input>
+          <el-input v-model="FD.name" :disabled="selectTable"></el-input>
         </div>
         <div class="item" style="padding: 10px 10px">
           <el-button size="mini" type="primary" icon="el-icon-edit" circle disabled></el-button>
@@ -67,7 +67,7 @@
           <el-input v-model="FD.background" @blur="changeNumber('background')"></el-input>
         </div>
         <div class="item btn" style="padding: 10px 10px;text-align: center">
-          <el-button type="primary" @click="preview(FD)">预览&保存</el-button>
+          <el-button type="primary" @click="previewSave(FD)">预览&保存</el-button>
           <el-button type="primary" :disabled="tableData.length===0" @click="generateAll(tableData)">全部生成代码</el-button>
         </div>
       </el-form>
@@ -124,10 +124,12 @@
 		methods: {
 			//列表中选择需要单个调整的块
 			selectionChange(v) {
-				this.selectTable = true;
-				v = JSON.parse(JSON.stringify(v));
-				Object.assign(this.FD, v);
-				this.style = v;
+				if (v) {
+					this.selectTable = true;
+					v = JSON.parse(JSON.stringify(v));
+					Object.assign(this.FD, v);
+					this.style = v;
+				}
 			},
 			//清空所填内容
 			clearBox() {
@@ -161,18 +163,18 @@
 				let code = '';
 				v.forEach(i => {
 					code += JSON.stringify({
-						name: i.name,
+						'name': i.name,
 						style: {
-							width: i.width + 'px',
-							height: i.height + 'px',
-							top: i.top + 'px',
-							left: i.left + 'px',
-							background: i.background,
-							position: 'absolute',
+							'width': i.width + 'px',
+							'height': i.height + 'px',
+							'top': i.top + 'px',
+							'left': i.left + 'px',
+							'background': i.background,
+							'position': 'absolute',
 						}
-					}) + ',';
+					});
 				});
-				this.gCode = [code];
+				this.gCode = code;
 			},
 			//添加至表格
 			addToTable(v) {
@@ -215,7 +217,7 @@
 				this.FD[this.FP] = arr;
 			},
 			//预览
-			preview(v) {
+			previewSave(v) {
 				let lt = [];
 				let rb = [];
 				if (!v.lt && !this.selectTable) {
@@ -248,13 +250,11 @@
 						name: v.name,
 					};
 					this.addToTable(this.style);
-					this.clearBox();
 					this.previewAll();
 				}
 				if (this.selectTable) {
 					this.selectTable = false;
 					this.addToTable(v);
-					this.clearBox();
 					this.previewAll();
 
 				}
