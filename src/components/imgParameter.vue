@@ -9,7 +9,7 @@
            v-if="selectTable"
            :style="{width:style.width+'px',height:style.height+'px',top:style.top+'px',left:style.left+'px',background:style.background}"></div>
       <img src="" id="imgDot" :style="{width:FD.imgWidth+'px'}">
-      <my-table @selectionChange="selectionChange" :multiple="false" class="table" :columns="columns" height="600px"
+      <my-table @selectionChange="selectionChange" :multiple="false" class="table" :columns="columns" height="500px"
                 :data="tableData"></my-table>
     </div>
     <div class="i_r">
@@ -72,7 +72,7 @@
         </div>
       </el-form>
       <div class="text_json">
-        <el-input type="textarea" rows="12" resize="none" v-model="gCode"></el-input>
+        <el-input type="textarea" rows="17" resize="none" v-model="gCode"></el-input>
       </div>
     </div>
   </div>
@@ -281,7 +281,7 @@
     .i_l {
       width: calc(100% - 400px);
       height: 100%;
-      background: white;
+      background: #ddf5f7;
       position: relative;
 
       .sBox {
