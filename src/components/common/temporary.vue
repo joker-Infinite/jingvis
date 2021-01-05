@@ -16,9 +16,9 @@
          <el-input contenteditable="true" type="textarea" resize="none" rows="50"
                    v-model="JSON.stringify(menu)"></el-input>
      </div>-->
-    <!--<img-floor-plan></img-floor-plan>
-    <my-dialog></my-dialog>-->
-    <el-button @click="reset">重置</el-button>
+    <img-floor-plan></img-floor-plan>
+    <!--<my-dialog></my-dialog>-->
+    <!--<el-button @click="reset">重置</el-button>
     <span @click="clear"
           :style="{color:(this.del % 2 === 0&&this.start % 2 === 1)?'#38d':'#606266',padding:'12px 20px'}">橡皮擦</span>
     <span @click="clear"
@@ -26,7 +26,7 @@
     <div class="bigB" @click="startPainting">
       <div v-for="i in 25000" style="width: 10px;height: 10px" :class="'ss'+i+' box'"
            @mouseover="changeColor('ss'+i)"></div>
-    </div>
+    </div>-->
   </div>
 </template>
 

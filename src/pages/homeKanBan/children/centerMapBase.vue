@@ -56,7 +56,7 @@
     <el-dialog
             :title="serviceName + '服务区'"
             align="center"
-            width="900px"
+            width="1200px"
             :modal-append-to-body="false"
             :visible.sync="visible"
     >

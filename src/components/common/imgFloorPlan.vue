@@ -208,10 +208,10 @@
 							}
 						],
 						style: {
-							width: "43px",
-							height: "23px",
-							top: "85px",
-							left: " 201px",
+							width: "55px",
+							height: "29px",
+							top: "114px",
+							left: " 269px",
 							background: "red"
 						}
 					},
@@ -366,10 +366,10 @@
 							}
 						],
 						style: {
-							width: "50px",
-							height: "25px",
-							top: "146px",
-							left: "190px",
+							width: "55px",
+							height: "30px",
+							top: "198px",
+							left: "255px",
 							background: "blue"
 						}
 					},
@@ -537,10 +537,10 @@
 							}
 						],
 						style: {
-							width: "67px",
-							height: "46px",
-							top: "108px",
-							left: "270px",
+							width: "90px",
+							height: "61px",
+							top: "144px",
+							left: "360px",
 							background: "yellow"
 						}
 					},
@@ -708,10 +708,10 @@
 							}
 						],
 						style: {
-							width: "47px",
-							height: "25px",
-							top: "102px",
-							left: "337px",
+							width: "61px",
+							height: "32px",
+							top: "136px",
+							left: "450px",
 							zIndex: "1",
 							background: "rgb(51, 68, 34)"
 						}
@@ -721,10 +721,10 @@
 						remark: "咨询问题、提供休息处……",
 						noPopover: true,
 						style: {
-							width: "82px",
-							height: "45px",
-							top: "107px",
-							left: "338px",
+							width: "109px",
+							height: "59px",
+							top: "143px",
+							left: "451px",
 							background: "rgb(102, 51, 153)"
 						}
 					},
@@ -892,10 +892,10 @@
 							}
 						],
 						style: {
-							width: "34px",
-							height: "49px",
-							top: "87px",
-							left: "421px",
+							width: "47px",
+							height: "67px",
+							top: "115px",
+							left: "561px",
 							background: "rgb(153, 153, 102)"
 						}
 					},
@@ -1063,10 +1063,10 @@
 							}
 						],
 						style: {
-							width: "34px",
-							height: "49px",
-							top: "87px",
-							left: "457px",
+							width: "48px",
+							height: "67px",
+							top: "115px",
+							left: "609px",
 							background: "rgb(52,153,36)"
 						}
 					},
@@ -1302,10 +1302,10 @@
 							}
 						],
 						style: {
-							width: "41px",
-							height: "71px",
-							top: "65px",
-							left: "494px",
+							width: "57px",
+							height: "96px",
+							top: "86px",
+							left: "658px",
 							background: "rgb(255, 0, 0)"
 						}
 					},
@@ -1539,10 +1539,10 @@
 							}
 						],
 						style: {
-							width: "41px",
-							height: "71px",
-							top: "65px",
-							left: "537px",
+							width: "57px",
+							height: "96px",
+							top: "86px",
+							left: "716px",
 							background: "rgb(255,115,14)"
 						}
 					},
@@ -1710,10 +1710,10 @@
 							}
 						],
 						style: {
-							width: "35px",
-							height: "43px",
-							top: "66px",
-							left: "581px",
+							width: "48px",
+							height: "61px",
+							top: "85px",
+							left: "774px",
 							background: "rgb(0,255,0)"
 						}
 					},
@@ -1881,10 +1881,10 @@
 							}
 						],
 						style: {
-							width: "35px",
-							height: "33px",
-							top: "118px",
-							left: "581px",
+							width: "48px",
+							height: "48px",
+							top: "155px",
+							left: "774px",
 							background: "rgb(39,255,221)"
 						}
 					},
@@ -2140,11 +2140,11 @@
 							}
 						],
 						style: {
-							width: "97px",
-							height: "52px",
-							top: "195px",
-							left: "768px",
-							background: "rgb(39,255,221)"
+							width: "150px",
+							height: "65px",
+							top: "264px",
+							left: "985px",
+							background: "rgba(39,255,221,.3)"
 						}
 					},
 					{
@@ -2399,11 +2399,11 @@
 							}
 						],
 						style: {
-							width: "97px",
-							height: "52px",
-							top: "195px",
+							width: "150px",
+							height: "65px",
+							top: "266px",
 							left: "75px",
-							background: "rgb(39,255,221)"
+							background: "rgba(39,255,221,.3)"
 						}
 					},
 					{
@@ -2534,11 +2534,11 @@
 							}
 						],
 						style: {
-							width: "160px",
-							height: "80px",
-							top: "165px",
-							left: "400px",
-							background: "rgb(255,47,35)"
+							width: "220px",
+							height: "100px",
+							top: "230px",
+							left: "470px",
+							background: "rgba(255,47,35,.3)"
 						}
 					}
 				]
@@ -2557,12 +2557,12 @@
 
 <style scoped lang="less">
   .imgBox {
-    width: 900px;
+    width: 1200px;
     /*margin: auto;*/
     position: relative;
 
     .img {
-      width: 900px;
+      width: 1200px;
     }
 
     .smallBox {
