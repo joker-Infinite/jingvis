@@ -72,7 +72,7 @@
         </div>
       </el-form>
       <div class="text_json">
-        <el-input type="textarea" rows="17" resize="none" v-model="gCode"></el-input>
+        <textarea rows="25" v-model="gCode" style="width: 400px"></textarea>
       </div>
     </div>
   </div>
@@ -172,7 +172,7 @@
 							'background': i.background,
 							'position': 'absolute',
 						}
-					});
+					}) + ',';
 				});
 				this.gCode = code;
 			},
