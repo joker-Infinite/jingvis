@@ -41,9 +41,11 @@
 	import MyTable from "./myTable";
 	import StartAndRadar from "../widget/startAndRadar";
 	import ImgDetailsTest from "./imgDetailsTest";
+	import service from "../json/service"
 
 	export default {
 		name: "imgFloorPlan",
+		mixins: [service],
 		props: {
 			location: {
 				type: String,
@@ -2551,6 +2553,9 @@
 					this.$refs["more"].openDialog(i);
 				}
 			}
+		},
+		mounted() {
+			// console.log(this['蔡甸服务区_东']);
 		}
 	};
 </script>

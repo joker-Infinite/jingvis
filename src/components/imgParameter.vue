@@ -3,10 +3,13 @@
     <div class="i_l" id="IL">
       <div class="sBox"
            :style="{width:style.width+'px',height:style.height+'px',top:style.top+'px',left:style.left+'px',background:style.background}"></div>
-      <img src="../assets/service_.jpg" id="imgDot" :style="{width:FD.imgWidth+'px'}" @click="clickDot">
+      <img src="" id="imgDot" :style="{width:FD.imgWidth+'px'}" @click="clickDot">
     </div>
     <div class="i_r">
       <el-form :model="FD">
+        <div class="item" style="padding: 10px 10px">
+          <input id="upload" type="file" @change="uploadImg">
+        </div>
         <div class="item" style="padding: 10px 10px">
           <el-button size="mini" type="primary" icon="el-icon-info" circle disabled></el-button>
           名字：
@@ -75,14 +78,14 @@
 			return {
 				FD: {
 					name: '',
-					imgWidth: 1100,
+					imgWidth: 1200,
 					lt: '',
 					rb: '',
 					width: '',
 					height: '',
 					left: '',
 					top: '',
-					background: '',
+					background: 'rgba(0,0,0,.4)',
 				},
 				FP: '',
 				gCode: '',
@@ -90,6 +93,11 @@
 			}
 		},
 		methods: {
+			uploadImg(v) {
+				let f = document.getElementById('upload').files[0];
+				let src = window.URL.createObjectURL(f);
+				document.getElementById('imgDot').src = src;
+			},
 			generate(v) {
 				this.gCode = JSON.stringify({
 					name: v.name,
@@ -116,7 +124,7 @@
 			preview(v) {
 				let lt = [];
 				let rb = [];
-				if (v.lt && v.rb && v.background) {
+				if (v.lt && v.rb) {
 					lt = v.lt.split(',');
 					rb = v.rb.split(',');
 					v.left = lt[0];
