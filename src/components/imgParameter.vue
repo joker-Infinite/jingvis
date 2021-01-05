@@ -1,9 +1,16 @@
 <template>
   <div class="BB">
-    <div class="i_l" id="IL">
+    <div class="i_l" id="IL" @click="clickDot">
       <div class="sBox"
+           v-for="i in viewData"
+           v-if="viewData.length>0&&!selectTable"
+           :style="{width:i.width+'px',height:i.height+'px',top:i.top+'px',left:i.left+'px',background:i.background}"></div>
+      <div class="sBox"
+           v-if="selectTable"
            :style="{width:style.width+'px',height:style.height+'px',top:style.top+'px',left:style.left+'px',background:style.background}"></div>
-      <img src="" id="imgDot" :style="{width:FD.imgWidth+'px'}" @click="clickDot">
+      <img src="" id="imgDot" :style="{width:FD.imgWidth+'px'}">
+      <my-table @selectionChange="selectionChange" :multiple="false" class="table" :columns="columns" height="600px"
+                :data="tableData"></my-table>
     </div>
     <div class="i_r">
       <el-form :model="FD">
@@ -59,9 +66,9 @@
           颜色：
           <el-input v-model="FD.background" @blur="changeNumber('background')"></el-input>
         </div>
-        <div class="item" style="padding: 10px 10px;text-align: center">
-          <el-button type="primary" @click="preview(FD)">预览</el-button>
-          <el-button type="primary" @click="generate(style)">生成代码</el-button>
+        <div class="item btn" style="padding: 10px 10px;text-align: center">
+          <el-button type="primary" @click="preview(FD)">预览&保存</el-button>
+          <el-button type="primary" :disabled="tableData.length===0" @click="generateAll(tableData)">全部生成代码</el-button>
         </div>
       </el-form>
       <div class="text_json">
@@ -72,8 +79,11 @@
 </template>
 
 <script>
+	import MyTable from "./common/myTable";
+
 	export default {
 		name: "imgParameter",
+		components: {MyTable},
 		data() {
 			return {
 				FD: {
@@ -89,32 +99,116 @@
 				},
 				FP: '',
 				gCode: '',
-				style: {}
+				style: {
+					width: '',
+					height: '',
+					top: '',
+					left: '',
+					background: '',
+				},
+				columns: [
+					{prop: 'name', label: '名字'},
+					{prop: 'width', label: '宽度'},
+					{prop: 'height', label: '高度'},
+					{prop: 'left', label: '距左'},
+					{prop: 'top', label: '距上'},
+					{prop: 'background', label: '颜色'},
+				],
+				tableData: [],
+				viewData: [],
+				disabledBtn: false,
+				view: false,
+				selectTable: false
 			}
 		},
 		methods: {
-			uploadImg(v) {
+			//列表中选择需要单个调整的块
+			selectionChange(v) {
+				this.selectTable = true;
+				v = JSON.parse(JSON.stringify(v));
+				Object.assign(this.FD, v);
+				this.style = v;
+			},
+			//清空所填内容
+			clearBox() {
+				this.FD = {
+					name: '',
+					imgWidth: 1200,
+					lt: '',
+					rb: '',
+					width: '',
+					height: '',
+					left: '',
+					top: '',
+					background: 'rgba(0,0,0,.4)',
+				};
+				this.style = {
+					name: '',
+					width: '',
+					height: '',
+					top: '',
+					left: '',
+					background: '',
+				};
+			},
+			//全部预览
+			previewAll() {
+				this.clearBox();
+				this.viewData = JSON.parse(JSON.stringify(this.tableData));
+			},
+			//全部生成代码
+			generateAll(v) {
+				let code = '';
+				v.forEach(i => {
+					code += JSON.stringify({
+						name: i.name,
+						style: {
+							width: i.width + 'px',
+							height: i.height + 'px',
+							top: i.top + 'px',
+							left: i.left + 'px',
+							background: i.background,
+							position: 'absolute',
+						}
+					}) + ',';
+				});
+				this.gCode = [code];
+			},
+			//添加至表格
+			addToTable(v) {
+				v = JSON.parse(JSON.stringify(v));
+				let data = JSON.parse(JSON.stringify(this.tableData));
+				this.tableData = [];
+				if (!v.name) {
+					return;
+				}
+				if (data.length === 0) {
+					data.push(v);
+				} else {
+					let name = data.map(i => {
+						return i.name
+					});
+					if (name.indexOf(v.name) !== -1) {
+						data[name.indexOf(v.name)] = v;
+					}
+					if (name.indexOf(v.name) === -1) {
+						data.push(v);
+					}
+				}
+				this.tableData = data;
+			},
+			uploadImg() {
 				let f = document.getElementById('upload').files[0];
 				let src = window.URL.createObjectURL(f);
 				document.getElementById('imgDot').src = src;
-			},
-			generate(v) {
-				this.gCode = JSON.stringify({
-					name: v.name,
-					style: {
-						width: v.width + 'px',
-						height: v.height + 'px',
-						top: v.top + 'px',
-						left: v.left + 'px',
-						background: v.background,
-						position: 'absolute',
-					}
-				});
 			},
 			changeNumber(v) {
 				this.style[v] = this.FD[v];
 			},
 			clickDot() {
+				if (!this.disabledBtn) {
+					return;
+				}
 				let left = event.clientX;
 				let top = event.clientY;
 				let arr = left + ',' + top;
@@ -124,7 +218,21 @@
 			preview(v) {
 				let lt = [];
 				let rb = [];
-				if (v.lt && v.rb) {
+				if (!v.lt && !this.selectTable) {
+					this.$message.warning('请选择左上角');
+					return;
+				}
+				if (!v.rb && !this.selectTable) {
+					this.$message.warning('请选择右下角');
+					return;
+				}
+				if (!v.name && !this.selectTable) {
+					this.$message.warning('请输入名字');
+					return;
+				}
+				this.disabledBtn = false;
+				this.view = true;
+				if (v.lt && v.rb && !this.selectTable) {
 					lt = v.lt.split(',');
 					rb = v.rb.split(',');
 					v.left = lt[0];
@@ -139,10 +247,21 @@
 						background: v.background,
 						name: v.name,
 					};
+					this.addToTable(this.style);
+					this.clearBox();
+					this.previewAll();
+				}
+				if (this.selectTable) {
+					this.selectTable = false;
+					this.addToTable(v);
+					this.clearBox();
+					this.previewAll();
+
 				}
 			},
 			//参数
 			parameter(v) {
+				this.disabledBtn = true;
 				this.FP = v;
 			}
 		}
@@ -167,6 +286,13 @@
 
       .sBox {
         position: absolute;
+      }
+
+      .table {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: calc(100% - 50px);
       }
     }
 
@@ -196,6 +322,12 @@
           .el-input-number__decrease {
             line-height: 15px;
           }
+        }
+      }
+
+      .btn {
+        /deep/ .el-button {
+          margin-bottom: 10px;
         }
       }
 
