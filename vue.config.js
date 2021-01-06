@@ -10,15 +10,15 @@ module.exports = {
         pathRewrite: {
           "^/api": ""
         }
-      }
+      },
       /*加载菜单专用代理*/
-      /* "/bpi": {
-                target: "http://192.168.0.197:9081",
-                changeOrigin: true,
-                pathRewrite: {
-                    "^/bpi": "/"
-                }
-            },*/
+      "/bpi": {
+        target: "http://192.168.0.197:9081",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/bpi": "/"
+        }
+      },
     }
   },
   configureWebpack: {

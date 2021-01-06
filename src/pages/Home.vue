@@ -10,10 +10,7 @@
         @select="select"
       >
         <div class="oc" id="oc" style="text-align: right">
-          <i
-            :class="
-              menuStatus % 2 === 0 ? 'el-icon-s-unfold' : 'el-icon-s-fold'
-            "
+          <i :class="menuStatus % 2 === 0 ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
             @click="menuOC"
           ></i>
         </div>
