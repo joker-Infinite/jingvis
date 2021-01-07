@@ -54,8 +54,8 @@
                     label="操作"
                     :width="operationsWidth" align="center">
                 <template slot-scope="scope">
-                    <el-button type="text"
-                               size="small"
+                    <el-button :type="operation.type?operation.type:'primary'"
+                               size="mini"
                                v-for="operation in operations"
                                :key="operation.name"
                                @click.stop="columnClick(scope.row,scope.$index,operation.callback)">
@@ -189,6 +189,24 @@
                     tr {
                         th {
                             background: #efefef;
+                        }
+                    }
+                }
+            }
+
+            .el-table__fixed-right {
+                .el-table__fixed-body-wrapper {
+                    .el-table__body {
+                        tbody {
+                            .el-table__row {
+                                td {
+                                    .cell {
+                                        .el-button--mini {
+                                            padding: 7px;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

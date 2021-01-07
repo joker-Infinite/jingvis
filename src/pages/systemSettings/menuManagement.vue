@@ -1,22 +1,32 @@
 <template>
-    <my-table-base chooseItem="single"
-                   :gridIndex="false"
-                   :operations="operations"
-                   :columns="columns"
-                   operationsWidth="100px"
-                   :data="tableData"
-                   :buttons="buttons"
-                   @selection-change="selectionChange"></my-table-base>
+    <div style="width: 100%;height: 100%">
+        <my-table-base chooseItem="single"
+                       :gridIndex="false"
+                       :operations="operations"
+                       :columns="columns"
+                       operationsWidth="180px"
+                       :data="tableData"
+                       :buttons="buttons"
+                       @selection-change="selectionChange">
+        </my-table-base>
+        <my-dialog width="1000px" title="XXXX" :visible.sync="visible" :closeOnClickModal="true" height="500px">
+            <div v-for="i in 80">
+                {{i}}<br>
+            </div>
+        </my-dialog>
+    </div>
 </template>
 
 <script>
     import MyTableBase from "../../components/common/myTableBase";
+    import MyDialog from "../../components/common/myDialog";
 
     export default {
         name: "menuManagement",
-        components: {MyTableBase},
+        components: {MyDialog, MyTableBase},
         data() {
             return {
+                visible: false,
                 columns: [
                     {prop: 'a', label: '名称', width: '100px'},
                     {prop: 'b', label: '图标'},
@@ -41,6 +51,7 @@
                         name: '新增',
                         icon: 'el-icon-plus',
                         callback: _ => {
+                            this.visible = true;
                         }
                     },
                     {
@@ -54,12 +65,14 @@
                 operations: [
                     {
                         name: '编辑',
+                        type: 'info',
                         callback: _ => {
                         }
 
                     },
                     {
                         name: '删除',
+                        type: 'danger',
                         callback: _ => {
                         }
                     },
