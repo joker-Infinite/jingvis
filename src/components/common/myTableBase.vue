@@ -47,6 +47,7 @@
             <template v-for="(item,index) in columns">
                 <el-table-column
                         :key="index"
+                        :sortable="item.sortable"
                         :prop="item.prop"
                         :label="item.label"
                         :align="item.align ? item.align : 'center'"

@@ -53,6 +53,11 @@
                         <el-input v-model="formData.state"></el-input>
                     </el-form-item>
                 </el-col>
+                <el-col :span="8">
+                    <el-form-item label="标识：">
+                        <el-input v-model="formData.mark"></el-input>
+                    </el-form-item>
+                </el-col>
             </el-form>
             <div slot="footerButton">
                 <el-button type="primary">确定</el-button>
@@ -82,6 +87,7 @@
                     eMail: '',
                     phone: '',
                     state: '',
+                    mark: '',
                 },
                 columns: [
                     {prop: 'a', label: '用户名'},
@@ -91,12 +97,43 @@
                     {prop: 'e', label: '手机号'},
                     {prop: 'f', label: '部门名称'},
                     {prop: 'g', label: '状态'},
-                    {prop: 'h', label: '创建时间'},
+                    {prop: 'i', label: '标识'},
+                    {prop: 'h', label: '创建时间', sortable: true},
                 ],
                 tableData: [
-                    {a: 'XXX', b: 'XXX', c: '男', d: 'xxx', e: '13333323652', f: 'xxx', g: '启用', h: '2020/12/29'},
-                    {a: 'XXX', b: 'XXX', c: '男', d: 'xxx', e: '13333323652', f: 'xxx', g: '启用', h: '2020/12/29'},
-                    {a: 'XXX', b: 'XXX', c: '男', d: 'xxx', e: '13333323652', f: 'xxx', g: '启用', h: '2020/12/29'},
+                    {
+                        a: 'XXX',
+                        b: 'XXX',
+                        c: '男',
+                        d: 'xxx',
+                        e: '13333323652',
+                        f: 'xxx',
+                        g: '启用',
+                        h: '2020/12/13',
+                        i: 'sys'
+                    },
+                    {
+                        a: 'XXX',
+                        b: 'XXX',
+                        c: '男',
+                        d: 'xxx',
+                        e: '13333323652',
+                        f: 'xxx',
+                        g: '启用',
+                        h: '2020/12/12',
+                        i: 'user'
+                    },
+                    {
+                        a: 'XXX',
+                        b: 'XXX',
+                        c: '男',
+                        d: 'xxx',
+                        e: '13333323652',
+                        f: 'xxx',
+                        g: '启用',
+                        h: '2020/12/11',
+                        i: 'oth'
+                    },
                 ],
                 buttons: [
                     {
