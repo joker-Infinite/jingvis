@@ -12,6 +12,9 @@
                 :ops="{bar:{background:'#000',opacity:0.2,keepShow:true,size:'8px',onlyShowBarOnScroll:true},scrollPanel:{scrollingX:false}}">
             <slot></slot>
         </vue-scroll>
+        <div style="width: 100%;height: 50px;text-align: right">
+            <slot name="footerButton"></slot>
+        </div>
     </el-dialog>
 </template>
 
@@ -73,7 +76,7 @@
         }
 
         .el-dialog__body {
-            padding: 15px 5px 15px 15px;
+            padding: 15px;
         }
     }
 </style>

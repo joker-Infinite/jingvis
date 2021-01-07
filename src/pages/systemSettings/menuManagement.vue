@@ -9,9 +9,37 @@
                        :buttons="buttons"
                        @selection-change="selectionChange">
         </my-table-base>
-        <my-dialog width="1000px" title="XXXX" :visible.sync="visible" :closeOnClickModal="true" height="500px">
-            <div v-for="i in 80">
-                {{i}}<br>
+        <my-dialog width="1000px" title="新增" :visible.sync="visible" :closeOnClickModal="true" height="500px">
+            <el-form :model="formData" label-width="100px">
+                <el-col :span="8">
+                    <el-form-item label="名称：">
+                        <el-input v-model="formData.name"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="8">
+                    <el-form-item label="图标：">
+                        <el-input v-model="formData.icon"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="8">
+                    <el-form-item label="类型：">
+                        <el-input v-model="formData.type"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="8">
+                    <el-form-item label="排序：">
+                        <el-input v-model="formData.index"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="8">
+                    <el-form-item label="路由：">
+                        <el-input v-model="formData.router"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-form>
+            <div slot="footerButton">
+                <el-button type="primary">确定</el-button>
+                <el-button type="info" @click="visible=false">取消</el-button>
             </div>
         </my-dialog>
     </div>
@@ -27,6 +55,13 @@
         data() {
             return {
                 visible: false,
+                formData: {
+                    name: '',
+                    icon: '',
+                    type: '',
+                    index: '',
+                    router: '',
+                },
                 columns: [
                     {prop: 'a', label: '名称', width: '100px', query: true},
                     {prop: 'b', label: '图标', query: true},
@@ -76,7 +111,7 @@
                         callback: _ => {
                         }
                     },
-                ]
+                ],
             }
         },
         methods: {
