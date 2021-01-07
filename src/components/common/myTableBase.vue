@@ -277,9 +277,10 @@
             padding: 8px 0;
 
             .label {
-                width: 100px;
+                width: 140px;
                 text-align: right;
                 line-height: 35px;
+                font-size: 14px;
             }
 
             /deep/ .el-input {
