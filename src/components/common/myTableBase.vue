@@ -1,30 +1,35 @@
 <template>
     <div style="width: 100%;height: 100%;background: white" class="myTable">
-        <div class="btnBar" v-if="buttons.length>0">
-            <template v-for="btn in buttons">
-                <el-button
-                        size="medium"
-                        :key="btn.name"
-                        v-show="typeof(btn.hidden) == 'undefined'?true:((typeof btn.hidden == 'function')?!btn.hidden():!btn.hidden)"
-                        :type="btn.type?btn.type:'primary'"
-                        :icon="btn.icon?btn.icon:''"
-                        :disabled="typeof(btn.disabled) === 'undefined'?false:((typeof btn.disabled == 'function')?btn.disabled():btn.disabled)"
-                        @click="buttonClick(btn.callback)">
-                    {{btn.name}}
-                </el-button>
-            </template>
+        <div class="headerBox">
+            <div class="btnBar" v-if="buttons.length>0">
+                <template v-for="btn in buttons">
+                    <el-button
+                            size="medium"
+                            :key="btn.name"
+                            v-show="typeof(btn.hidden) == 'undefined'?true:((typeof btn.hidden == 'function')?!btn.hidden():!btn.hidden)"
+                            :type="btn.type?btn.type:'primary'"
+                            :icon="btn.icon?btn.icon:''"
+                            :disabled="typeof(btn.disabled) === 'undefined'?false:((typeof btn.disabled == 'function')?btn.disabled():btn.disabled)"
+                            @click="buttonClick(btn.callback)">
+                        {{btn.name}}
+                    </el-button>
+                </template>
+            </div>
+            <div class="searchBar" v-if="search">
+                <el-button type="primary" @click="advancedSearch">高级查询</el-button>
+            </div>
         </div>
         <el-table
                 :data="data"
-                :height="buttons.length==0&&!pagination?'100%':buttons.length==0||!pagination?'calc(100% - 50px)':'calc(100% - 100px)'"
+                :height="buttons.length===0&&!pagination?'100%':buttons.length===0||!pagination?'calc(100% - 50px)':'calc(100% - 100px)'"
                 style="width: 100%;"
-                :highlight-current-row="chooseItem == 'single'"
+                :highlight-current-row="chooseItem === 'single'"
                 row-key="id"
                 :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
                 @select="select"
                 @row-click="selection"
                 @select-all="selectAll">
-            <el-table-column v-if="chooseItem != 'single'"
+            <el-table-column v-if="chooseItem !== 'single'"
                              align="center"
                              fixed="left"
                              type="selection"
@@ -75,12 +80,26 @@
                     :total="400">
             </el-pagination>
         </div>
+        <my-drawer v-model="drawer">
+            <div style="text-align: center;font-size: 20px;line-height: 45px">高级查询</div>
+            <div class="searchQuery" v-for="(item,index) in columns">
+                <div class="label">{{item.label}}：</div>
+                <el-input v-model="item.prop"></el-input>
+            </div>
+            <div class="footerBtn">
+                <el-button type="primary">搜索</el-button>
+                <el-button type="info">重置</el-button>
+            </div>
+        </my-drawer>
     </div>
 </template>
 
 <script>
+    import MyDrawer from "./myDrawer";
+
     export default {
         name: "myTableBase",
+        components: {MyDrawer},
         props: {
             data: {
                 type: Array,
@@ -121,14 +140,22 @@
             pagination: {
                 type: Boolean,
                 default: true
+            },
+            search: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
             return {
+                drawer: false,
                 currentPage4: 4
             }
         },
         methods: {
+            advancedSearch() {
+                this.drawer = true;
+            },
             columnClick(item, index, callback) {
                 if (callback) {
                     callback(item, index);
@@ -146,7 +173,7 @@
                 console.log(`当前页: ${val}`);
             },
             //多选时点击复选框
-            select(selection, row) {
+            select(selection) {
                 this.$emit('selection-change', selection)
             },
             //单选
@@ -163,13 +190,33 @@
 
 <style scoped lang="less">
     .myTable {
-        .btnBar {
-            width: 100%;
-            height: 50px;
+        .headerBox {
+            width: calc(100% - 20px);
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            padding: 0 10px;
 
-            /deep/ .el-button {
-                padding: 10px 10px;
-                margin: 6px 5px;
+            .btnBar {
+                width: 70%;
+                height: 50px;
+
+                /deep/ .el-button {
+                    padding: 10px 10px;
+                    margin: 6px 5px;
+                }
+            }
+
+            .searchBar {
+                width: 30%;
+                height: 50px;
+                text-align: right;
+
+                /deep/ .el-button {
+                    padding: 10px 10px;
+                    margin: 6px 5px;
+                }
             }
         }
 
@@ -219,6 +266,40 @@
             height: 32px;
             text-align: right;
             overflow: hidden;
+        }
+
+        .searchQuery {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            padding: 8px 0;
+
+            .label {
+                width: 100px;
+                text-align: right;
+                line-height: 35px;
+            }
+
+            /deep/ .el-input {
+                .el-input__inner {
+                    height: 35px;
+                    line-height: 35px;
+                }
+            }
+        }
+
+        .footerBtn {
+            width: 100%;
+            position: absolute;
+            text-align: center;
+            left: 0;
+            bottom: 40px;
+
+            /deep/ .el-button {
+                margin: 0 10px;
+            }
         }
     }
 </style>

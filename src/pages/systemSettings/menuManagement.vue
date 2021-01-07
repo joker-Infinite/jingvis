@@ -28,11 +28,11 @@
             return {
                 visible: false,
                 columns: [
-                    {prop: 'a', label: '名称', width: '100px'},
-                    {prop: 'b', label: '图标'},
-                    {prop: 'c', label: '类型'},
-                    {prop: 'd', label: '排序'},
-                    {prop: 'e', label: '路由'},
+                    {prop: 'a', label: '名称', width: '100px', query: true},
+                    {prop: 'b', label: '图标', query: true},
+                    {prop: 'c', label: '类型', query: true},
+                    {prop: 'd', label: '排序', query: true},
+                    {prop: 'e', label: '路由', query: true},
                 ],
                 tableData: [
                     {id: 1, a: '111', b: '222', c: '菜单', d: 1, e: '/.../..'},
