@@ -1,6 +1,6 @@
 <template>
     <div style="width: 100%;height: 100%;background: white" class="myTable">
-        <div class="headerBox">
+        <div class="headerBox" v-if="buttons.length>0||search">
             <div class="btnBar" v-if="buttons.length>0">
                 <template v-for="btn in buttons">
                     <el-button
@@ -21,7 +21,7 @@
         </div>
         <el-table
                 :data="data"
-                :height="buttons.length===0&&!pagination?'100%':buttons.length===0||!pagination?'calc(100% - 50px)':'calc(100% - 100px)'"
+                :height="buttons.length===0&&!pagination&&!search?'100%':(buttons.length!==0||search)&&pagination?'calc(100% - 100px)':'calc(100% - 50px)'"
                 style="width: 100%;"
                 :highlight-current-row="chooseItem === 'single'"
                 row-key="id"
@@ -82,7 +82,7 @@
         </div>
         <my-drawer v-model="drawer">
             <div style="text-align: center;font-size: 20px;line-height: 45px">高级查询</div>
-            <div class="searchQuery" v-for="(item,index) in columns">
+            <div class="searchQuery" v-for="(item,index) in columns" :key="index">
                 <div class="label">{{item.label}}：</div>
                 <el-input v-model="item.prop"></el-input>
             </div>
@@ -192,15 +192,12 @@
     .myTable {
         .headerBox {
             width: calc(100% - 20px);
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            flex-wrap: nowrap;
             padding: 0 10px;
 
             .btnBar {
                 width: 70%;
                 height: 50px;
+                float: left;
 
                 /deep/ .el-button {
                     padding: 10px 10px;
@@ -212,6 +209,7 @@
                 width: 30%;
                 height: 50px;
                 text-align: right;
+                float: right;
 
                 /deep/ .el-button {
                     padding: 10px 10px;
