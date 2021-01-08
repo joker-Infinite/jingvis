@@ -49,11 +49,6 @@
                         <el-input v-model="formData.router"></el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :span="24">
-                    <el-form-item label="授权标识：">
-                        <el-input v-model="formData.authorization"></el-input>
-                    </el-form-item>
-                </el-col>
             </el-form>
             <div slot="footerButton">
                 <el-button type="primary">确定</el-button>
@@ -76,7 +71,6 @@
                 formData: {
                     name: '',
                     fatherName: '',
-                    authorization: '',
                     icon: '',
                     type: '',
                     index: '',

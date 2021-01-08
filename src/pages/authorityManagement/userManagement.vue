@@ -53,8 +53,8 @@
                         <el-input v-model="formData.state"></el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :span="8">
-                    <el-form-item label="标识：">
+                <el-col :span="24">
+                    <el-form-item label="授权页面：">
                         <el-input v-model="formData.mark"></el-input>
                     </el-form-item>
                 </el-col>
@@ -154,7 +154,6 @@
                 operations: [
                     {
                         name: '编辑',
-                        type: 'info',
                         callback: _ => {
                         }
                     },
