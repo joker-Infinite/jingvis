@@ -357,14 +357,14 @@ export default {
                                   type: 'liquidFill',
                                   radius: '62%',
                                   center: ['50%', '50%'],
-                                  data: [0.7, 0.7, 0.7], // data个数代表波浪数
+                                  data: [0.5, 0.5, 0.5], // data个数代表波浪数
                                   backgroundStyle: {
                                       borderWidth: 1,
                                       color: 'rgb(97, 142, 205,0.1)'
                                   },
                                   label: {
                                       normal: {
-                                          formatter: (0.7 * 100).toFixed(2) + '%',
+                                          formatter: (0.5 * 100).toFixed(2) + '%',
                                           textStyle: {
                                               fontSize: 20
                                           }
@@ -616,7 +616,7 @@ export default {
                               25867750.94,
                               95867750.94,
                               55867750.94,
-                              45867750.94,
+                              0
                             ],
                             barWidth: "16px",
                             itemStyle: {
@@ -803,14 +803,14 @@ export default {
                                   type: 'liquidFill',
                                   radius: '62%',
                                   center: ['50%', '50%'],
-                                  data: [0.7, 0.7, 0.7], // data个数代表波浪数
+                                  data: [0.5, 0.5, 0.5], // data个数代表波浪数
                                   backgroundStyle: {
                                       borderWidth: 1,
                                       color: 'rgb(97, 142, 205,0.1)'
                                   },
                                   label: {
                                       normal: {
-                                          formatter: (0.7 * 100).toFixed(2) + '%',
+                                          formatter: (0.5 * 100).toFixed(2) + '%',
                                           textStyle: {
                                               fontSize: 20
                                           }
@@ -1100,10 +1100,10 @@ export default {
     this.$refs["collapse"].initECharts(this.collapseData);
   },
   async created() {
-    // this.obtainData("营收", "2019");
-    // await this.obtainAxios("营收", "2020", "ys");
-    // await this.obtainData("利润", "2019");
-    // await this.obtainData("利润", "2020");
+    this.obtainData("营收", "2019");
+    await this.obtainAxios("营收", "2020", "ys");
+    await this.obtainData("利润", "2019");
+    await this.obtainData("利润", "2020");
   },
   watch: {
     viewChange() {
