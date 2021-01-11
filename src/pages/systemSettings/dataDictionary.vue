@@ -15,7 +15,7 @@
             <el-form :model="dataForm" label-width="100px">
                 <el-col :span="24">
                     <el-form-item label="字典名称：">
-                        <el-input v-model="dataForm.name"></el-input>
+                        <el-input v-model="dataForm.name" @input="inputChange(dataForm.name)"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="24">
@@ -40,10 +40,12 @@
 <script>
     import MyTableBase from "../../components/common/myTableBase";
     import MyDialog from "../../components/common/myDialog";
+    import vPinYin from '../../components/js/vue-py'
 
     export default {
         name: "dataDictionary",
         components: {MyDialog, MyTableBase},
+        mixins: [vPinYin],
         data() {
             return {
                 visible: false,
@@ -80,9 +82,10 @@
         },
         methods: {
             selectionChange() {
+            },
+            inputChange(v) {
+                this.dataForm.code = this.simplePinYin(v);//简拼
             }
-        },
-        mounted() {
         }
     }
 </script>
