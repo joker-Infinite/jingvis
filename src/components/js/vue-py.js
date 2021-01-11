@@ -2,8 +2,8 @@
 import {pinyin} from "./pinyin";
 
 export default {
-    //全部
     methods: {
+        //全拼
         chineseToPinYin(l1) {
             let l2 = l1.length;
             let I1 = "";
