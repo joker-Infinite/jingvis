@@ -34,9 +34,13 @@
                 if (this.name == "" && this.pwd == "") {
                     this.$message.error("账号或密码不能为空哦");
                 } else {
+                    localStorage.setItem('token', "Bearer " + this.name);
                     this.$router.push("/serviceArea/revenue");
                 }
             }
+        },
+        mounted() {
+            document.cookie = "menu=/serviceArea/revenue-";
         }
     };
 </script>

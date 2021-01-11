@@ -270,6 +270,8 @@
                             // "/media/media",
                             ]
                     },
+                ],
+                admin: [
                     {
                         id: '8',
                         label: '权限管理',
@@ -289,9 +291,11 @@
                         imgActive: require("../assets/Home/7.png"),
                         menuItem: [
                             ">>菜单管理",
+                            ">>字典管理",
                         ],
                         menuItemUrl: [
                             "/systemSettings/menuManagement",
+                            "/systemSettings/dataDictionary",
                         ],
                     }
                 ],
@@ -360,6 +364,11 @@
         },
         mounted() {
             this.getCookie();
+            let token = localStorage.getItem('token');
+            token = token.split(' ');
+            if (token[1] === 'admin') {
+                this.submenu.push(...this.admin);
+            }
         }
     };
 </script>
