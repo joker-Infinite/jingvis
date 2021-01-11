@@ -2555,7 +2555,7 @@
 			}
 		},
 		mounted() {
-			// console.log(this['蔡甸服务区_东']);
+			// console.log(this['安陆服务区-东区']);
 		}
 	};
 </script>
