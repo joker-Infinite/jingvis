@@ -219,17 +219,56 @@
                         },*/
                     {
                         id: "6",
-                        label: "传媒指标",
+                        label: "传媒事业部",
                         img: require("../assets/Home/4.png"),
                         imgActive: require("../assets/Home/5.png"),
-                        menuItem: [">>广告详情"],
-                        menuItemUrl: ["/media/media"]
+                        menuItem: [
+                            ">>传媒营收",
+                            ">>传媒利润",
+                            ">>传媒成本",
+                            ">>基础信息",
+                            // ">>传媒空置",
+                            // ">>传媒地图展示",
+                            // ">>传媒车流量",
+                            ],
+                        menuItemUrl: [
+                            "/media/mediarevenue",
+                            "/media/mediaprofit",
+                            "/media/mediacosting",
+                            "/media/mediaAreaNumber",
+                            // "/media/mediavacancy",
+                            // "/media/media",
+                            // "/media/media",
+                            // "/media/media",
+                            ]
                     },
                     {
                         id: "7",
-                        label: "商业指标",
+                        label: "商业事业部",
                         img: require("../assets/Home/4.png"),
-                        imgActive: require("../assets/Home/5.png")
+                        imgActive: require("../assets/Home/5.png"),
+                         menuItem: [
+                            ">>商业营收",
+                            ">>商业利润",
+                            ">>商业成本",
+                            ">>中百比对",
+                            ">>应收管理",
+                            // ">>传媒空置",
+                            // ">>传媒地图展示",
+                            // ">>传媒车流量",
+                            ],
+                        menuItemUrl: [
+                            "/business/businessrevenue",
+                            "/business/businessprofit",
+                            "/business/businesscosting",
+                            "/business/comparison",
+                            "/business/rateOfReturn",
+                            
+                            // "/media/mediavacancy",
+                            // "/media/media",
+                            // "/media/media",
+                            // "/media/media",
+                            ]
                     },
                     {
                         id: '8',

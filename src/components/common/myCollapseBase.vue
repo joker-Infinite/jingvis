@@ -37,7 +37,7 @@
                   ></el-input>
                   <el-select
                     v-if="cit.allQueryData.select"
-                    v-model="allQuery.selectValue"
+                    v-model="cit.query.selectValue"
                   >
                     <el-option
                       v-if="
@@ -45,6 +45,21 @@
                           cit.allQueryData.selectOption[0]
                       "
                       v-for="(oi, ox) in cit.allQueryData.selectOption[0]"
+                      :value="oi"
+                      :key="ox"
+                      :label="oi"
+                    ></el-option>
+                  </el-select>
+                  <el-select
+                    v-if="cit.allQueryData.select"
+                    v-model="cit.query.selectValue1"
+                  >
+                    <el-option
+                      v-if="
+                        cit.allQueryData.selectOption &&
+                          cit.allQueryData.selectOption[1]
+                      "
+                      v-for="(oi, ox) in cit.allQueryData.selectOption[1]"
                       :value="oi"
                       :key="ox"
                       :label="oi"
