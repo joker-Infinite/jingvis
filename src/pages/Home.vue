@@ -222,7 +222,7 @@
                         label: "传媒事业部",
                         img: require("../assets/Home/4.png"),
                         imgActive: require("../assets/Home/5.png"),
-                        menuItem: [
+                      /*  menuItem: [
                             ">>传媒营收",
                             ">>传媒利润",
                             ">>传媒成本",
@@ -240,35 +240,35 @@
                             // "/media/media",
                             // "/media/media",
                             // "/media/media",
-                            ]
+                            ]*/
                     },
                     {
                         id: "7",
                         label: "商业事业部",
                         img: require("../assets/Home/4.png"),
                         imgActive: require("../assets/Home/5.png"),
-                         menuItem: [
-                            ">>商业营收",
-                            ">>商业利润",
-                            ">>商业成本",
-                            ">>中百比对",
-                            ">>应收管理",
-                            // ">>传媒空置",
-                            // ">>传媒地图展示",
-                            // ">>传媒车流量",
-                            ],
-                        menuItemUrl: [
-                            "/business/businessrevenue",
-                            "/business/businessprofit",
-                            "/business/businesscosting",
-                            "/business/comparison",
-                            "/business/rateOfReturn",
-                            
-                            // "/media/mediavacancy",
-                            // "/media/media",
-                            // "/media/media",
-                            // "/media/media",
-                            ]
+                        /*   menuItem: [
+                              ">>商业营收",
+                              ">>商业利润",
+                              ">>商业成本",
+                              ">>中百比对",
+                              ">>应收管理",
+                              // ">>传媒空置",
+                              // ">>传媒地图展示",
+                              // ">>传媒车流量",
+                              ],
+                          menuItemUrl: [
+                              "/business/businessrevenue",
+                              "/business/businessprofit",
+                              "/business/businesscosting",
+                              "/business/comparison",
+                              "/business/rateOfReturn",
+
+                              // "/media/mediavacancy",
+                              // "/media/media",
+                              // "/media/media",
+                              // "/media/media",
+                              ]*/
                     },
                 ],
                 admin: [
@@ -367,7 +367,7 @@
             let token = localStorage.getItem('token');
             token = token.split(' ');
             if (token[1] === 'admin') {
-                this.submenu.push(...this.admin);
+                // this.submenu.push(...this.admin);
             }
         }
     };
