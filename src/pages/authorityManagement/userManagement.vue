@@ -100,41 +100,7 @@
                     {prop: 'i', label: '标识'},
                     {prop: 'h', label: '创建时间', sortable: true},
                 ],
-                tableData: [
-                    {
-                        a: 'XXX',
-                        b: 'XXX',
-                        c: '男',
-                        d: 'xxx',
-                        e: '13333323652',
-                        f: 'xxx',
-                        g: '启用',
-                        h: '2020/12/13',
-                        i: 'sys'
-                    },
-                    {
-                        a: 'XXX',
-                        b: 'XXX',
-                        c: '男',
-                        d: 'xxx',
-                        e: '13333323652',
-                        f: 'xxx',
-                        g: '启用',
-                        h: '2020/12/12',
-                        i: 'user'
-                    },
-                    {
-                        a: 'XXX',
-                        b: 'XXX',
-                        c: '男',
-                        d: 'xxx',
-                        e: '13333323652',
-                        f: 'xxx',
-                        g: '启用',
-                        h: '2020/12/11',
-                        i: 'oth'
-                    },
-                ],
+                tableData: [],
                 buttons: [
                     {
                         name: '新增',
