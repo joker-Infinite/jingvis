@@ -20,7 +20,7 @@
             </div>
         </div>
         <el-table
-                :data="data"
+                :data="tableData"
                 :height="buttons.length===0&&!pagination&&!search?'100%':(buttons.length!==0||search)&&pagination?'calc(100% - 100px)':'calc(100% - 50px)'"
                 style="width: 100%;"
                 :highlight-current-row="chooseItem === 'single'"
@@ -78,7 +78,7 @@
                     :page-sizes="[20,50,100,200]"
                     :page-size="20"
                     layout="total, sizes, prev, pager, next, jumper"
-                    :total="20">
+                    :total="tableData.length">
             </el-pagination>
         </div>
         <my-drawer v-model="drawer">
@@ -102,7 +102,7 @@
         name: "myTableBase",
         components: {MyDrawer},
         props: {
-            data: {
+            tableData: {
                 type: Array,
                 default: []
             },

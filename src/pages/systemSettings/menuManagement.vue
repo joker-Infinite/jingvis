@@ -5,7 +5,7 @@
                        :operations="operations"
                        :columns="columns"
                        operationsWidth="180px"
-                       :data="tableData"
+                       :tableData="tableData"
                        :buttons="buttons"
                        :pagination="false"
                        @selection-change="selectionChange">
