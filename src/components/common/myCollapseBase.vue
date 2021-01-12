@@ -1188,6 +1188,7 @@ export default {
 
     .box_ /deep/ .el-collapse > .el-collapse-item > .el-collapse-item__wrap {
       background-color: rgba(0, 0, 0, 0) !important;
+      border: none;
     }
 
     .box_

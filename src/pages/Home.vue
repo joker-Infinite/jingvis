@@ -383,7 +383,7 @@
         justify-content: left;
 
         .nav {
-            min-width: 200px;
+            min-width: 210px;
             height: 100%;
             overflow-y: scroll;
             transition: linear 0.3s;
