@@ -8,6 +8,7 @@ import media from "./media/index";
 import details from "./details/index";
 import authorityManagement from './authorityManagement/index'
 import systemSettings from './systemSettings/index'
+import widget from './widget/index'
 
 export default {
     serviceArea: serviceArea,
@@ -16,5 +17,6 @@ export default {
     media: media,
     authorityManagement: authorityManagement,
     systemSettings: systemSettings,
-    details: details
+    details: details,
+    widget: widget,
 };
