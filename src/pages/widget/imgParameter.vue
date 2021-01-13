@@ -25,14 +25,18 @@
         }"
             ></div>
             <img src="" id="imgDot" :style="{ width: FD.imgWidth + 'px' }"/>
-            <my-table
+            <my-table-base
                     @selectionChange="selectionChange"
+                    chooseItem='single'
+                    :pagination="false"
+                    :search="false"
                     :multiple="false"
                     class="table"
+                    :operations="operations"
                     :columns="columns"
                     height="500px"
-                    :data="tableData"
-            ></my-table>
+                    :tableData="tableData"
+            ></my-table-base>
         </div>
         <div class="i_r">
             <el-form :model="FD">
@@ -205,12 +209,31 @@
 <script>
 
     import MyTable from "../../components/common/myTable";
+    import MyTableBase from "../../components/common/myTableBase";
 
     export default {
         name: "imgParameter",
-        components: {MyTable},
+        components: {MyTableBase, MyTable},
         data() {
             return {
+                operations: [
+                    {
+                        name: '删除',
+                        type: 'danger',
+                        callback: v => {
+                            let has = [];
+                            let data = JSON.parse(JSON.stringify(this.tableData));
+                            this.tableData = [];
+                            data.forEach(i => {
+                                if (i.name !== v.name) {
+                                    has.push(i);
+                                }
+                            });
+                            this.tableData = has;
+                            this.viewData = has;
+                        }
+                    }
+                ],
                 FD: {
                     name: "",
                     imgWidth: 1200,
@@ -380,12 +403,13 @@
                 this.style[v] = this.FD[v];
             },
             clickDot() {
+                let imgDot = document.getElementsByClassName('BB')[0];
                 if (!this.disabledBtn) {
                     return;
                 }
                 let left = event.clientX;
                 let top = event.clientY;
-                let arr = left + "," + top;
+                let arr = left - imgDot.offsetLeft + "," + top;
                 this.FD[this.FP] = arr;
             },
             //预览
@@ -463,7 +487,8 @@
                 position: absolute;
                 left: 0;
                 bottom: 0;
-                width: calc(100% - 50px);
+                height: 400px !important;
+                width: calc(100% - 10px) !important;
             }
         }
 

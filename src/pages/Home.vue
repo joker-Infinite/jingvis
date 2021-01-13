@@ -279,7 +279,7 @@
                         label: "系统插件",
                         img: require("../assets/Home/6.png"),
                         imgActive: require("../assets/Home/7.png"),
-                        menuItem: [">>服务区平面图录入"],
+                        menuItem: [">>服务区录入"],
                         menuItemUrl: ['/widget/imgParameter']
                     },
                     {

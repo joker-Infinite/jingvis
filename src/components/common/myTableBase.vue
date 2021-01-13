@@ -104,7 +104,9 @@
         props: {
             tableData: {
                 type: Array,
-                default: []
+                default: function () {
+                    return []
+                }
             },
             columns: {
                 type: Array,
