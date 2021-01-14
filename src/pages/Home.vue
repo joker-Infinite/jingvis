@@ -17,10 +17,6 @@
                             @click="menuOC"
                     ></i>
                 </div>
-                <!--<el-menu-item index="">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">首页</span>
-                </el-menu-item>-->
                 <el-submenu
                         v-for="(item, index) in submenu"
                         :index="item.id"
@@ -28,10 +24,6 @@
                         :key="index"
                 >
                     <template slot="title">
-                        <img
-                                :src="isActive == item.id ? item.imgActive : item.img"
-                                style="width: 20px;height: 20px;margin-right: 5px"
-                        />
                         <span slot="title">{{ item.label }}</span>
                     </template>
                     <el-menu-item
@@ -74,15 +66,6 @@
             </el-menu>
         </div>
         <div class="con" id="con_">
-            <!--<div class="history">
-                      <el-tag :closable="tagData.length !==1"
-                              v-for="it in tagData"
-                              :class="{'is-active':key === it.index}"
-                              @click="tagClick(it)"
-                              @close="tagClose(it)">
-                          {{it.content}}
-                      </el-tag>
-                  </div>-->
             <router-view
                     :viewChange="menuStatus % 2 === 0"
                     @clickTable="clickTable"
@@ -96,205 +79,26 @@
         name: "Home",
         data() {
             return {
-                submenu: [
-                    /* {
-                         id: "2",
-                         label: "服务区事业部",
-                         img: require("../assets/Home/2.png"),
-                         imgActive: require("../assets/Home/1.png"),
-                         menuItem: [
-                             ">>服务区比对",
-                             ">>服务区营收",
-                             ">>服务区利润",
-                             ">>服务区成本",
-                             // ">>预算控制",
-                             ">>基础信息",
-                             ">>业态结构",
-                             ">>应收账款",
-                             ">>供应商", //
-                             ">>用户评价", //
-                             ">>服务区片区",
-                             ">>服务区线路"
-                         ],
-                         menuItemUrl: [
-                             "/serviceArea/comparison",
-                             "/serviceArea/revenue",
-                             "/serviceArea/profit",
-                             "/serviceArea/costing",
-                             "/serviceArea/basicInformations",
-                             "/serviceArea/construction",
-                             "/serviceArea/rateOfReturn",
-                             "/serviceArea/supplier",
-                             "/serviceArea/comment",
-                             "#1",
-                             "#2"
-                         ],
-                         childMenuItem: [
-                             ">>>黄冈分公司",
-                             ">>>恩施分公司",
-                             ">>>宜昌分公司",
-                             ">>>咸宁分公司",
-                             ">>>孝感分公司",
-                             ">>>十堰分公司"
-                         ],
-                         childMenuItemUrl: [
-                             "/serviceArea/huangGang",
-                             "/serviceArea/enShi",
-                             "/serviceArea/yiChang",
-                             "/serviceArea/xianNing",
-                             "/serviceArea/xiaoGan",
-                             "/serviceArea/shiYan"
-                         ]
-                     },
-                     {
-                         id: "3",
-                         label: "能源事业部",
-                         img: require("../assets/Home/10.png"),
-                         imgActive: require("../assets/Home/3.png"),
-                         menuItem: [
-                             ">>能源营收",
-                             ">>能源利润",
-                             ">>预算控制",
-                             ">>批零差价",
-                             ">>能源零售",
-                             ">>油品批发",
-                             ">>应收账款",
-                             ">>油库来源",
-                             ">>能源子公司",
-                             ">>能源线路"
-                         ],
-                         menuItemUrl: [
-                             "/energy/energyrevenue",
-                             "/energy/profit",
-                             "/energy/budgetControl",
-                             "/energy/wholesale",
-                             "/energy/gasRetail",
-                             "/energy/gasWholesale",
-                             "/energy/accountsReceivable",
-                             "/energy/gasSource",
-                             "#3",
-                             "#4"
-                         ],
-                         childMenuItem: [
-                             ">>>中化交投",
-                             ">>>新能源",
-                             ">>>中石化",
-                             ">>>国储",
-                             ">>>高路油站",
-                             ">>>荆港嘉瑞"
-                         ],
-                         childMenuItemUrl: [
-                             "/energy/zhongHuaJiaoTou",
-                             "/energy/xinNengYuan",
-                             "/energy/zhongShiHua",
-                             "/energy/guoChu",
-                             "/energy/gaoLuYouZhan",
-                             "/energy/jingGangJiaRui"
-                         ]
-                     },
-                     {
-                         id: "4",
-                         label: "能源公司",
-                         img: require("../assets/Home/8.png"),
-                         imgActive: require("../assets/Home/9.png"),
-                         menuItem: ['>>数据总览', ">>中化交投", ">>石化能源", ">>新能源"],
-                         menuItemUrl: [
-                             '/energy/energy',
-                             '/energy/ZHJiaoTou',
-                             '/comparison/comparison',
-                             '/comparison/comparison'
-                         ]
-                     },
-                     {
-                         id: "5",
-                         label: "能源业务",
-                         img: require("../assets/Home/6.png"),
-                         imgActive: require("../assets/Home/7.png"),
-                         menuItem: [">>批发", ">>油品零售", ">>非油品零售", ">>直分销", ">>大宗采购"],
-                         menuItemUrl: [
-                             '/energy/piFa',
-                             '/energy/YPLingShou',
-                             '/energy/FYPLingShou',
-                             '/energy/FYPLingShou',
-                             '/energy/FYPLingShou',
-                         ]
-                     },
-                     {
-                         id: "6",
-                         label: "传媒事业部",
-                         img: require("../assets/Home/4.png"),
-                         imgActive: require("../assets/Home/5.png")
-                         /!*  menuItem: [
-                                           ">>传媒营收",
-                                           ">>传媒利润",
-                                           ">>传媒成本",
-                                           ">>基础信息",
-                                           // ">>传媒空置",
-                                           // ">>传媒地图展示",
-                                           // ">>传媒车流量",
-                                           ],
-                                       menuItemUrl: [
-                                           "/media/mediarevenue",
-                                           "/media/mediaprofit",
-                                           "/media/mediacosting",
-                                           "/media/mediaAreaNumber",
-                                           // "/media/mediavacancy",
-                                           // "/media/media",
-                                           // "/media/media",
-                                           // "/media/media",
-                                           ]*!/
-                     },
-                     {
-                         id: "7",
-                         label: "商业事业部",
-                         img: require("../assets/Home/4.png"),
-                         imgActive: require("../assets/Home/5.png")
-                         /!*   menuItem: [
-                                             ">>商业营收",
-                                             ">>商业利润",
-                                             ">>商业成本",
-                                             ">>中百比对",
-                                             ">>应收管理",
-                                             // ">>传媒空置",
-                                             // ">>传媒地图展示",
-                                             // ">>传媒车流量",
-                                             ],
-                                         menuItemUrl: [
-                                             "/business/businessrevenue",
-                                             "/business/businessprofit",
-                                             "/business/businesscosting",
-                                             "/business/comparison",
-                                             "/business/rateOfReturn",
-
-                                             // "/media/mediavacancy",
-                                             // "/media/media",
-                                             // "/media/media",
-                                             // "/media/media",
-                                             ]*!/
-                     }*/
-                ],
+                submenu: [],
                 admin: [
                     {
                         id: "7",
                         label: "系统插件",
-                        img: require("../assets/Home/6.png"),
-                        imgActive: require("../assets/Home/7.png"),
-                        menuItem: [">>服务区录入"],
-                        menuItemUrl: ['/widget/imgParameter']
+                        icon: '&#xe600;',
+                        menuItem: [">>服务区录入",">>服务区平面图"],
+                        menuItemUrl: ['/widget/imgParameter',"/widget/serviceArea"]
                     },
                     {
                         id: "8",
                         label: "权限管理",
-                        img: require("../assets/Home/8.png"),
-                        imgActive: require("../assets/Home/9.png"),
+                        icon: '&#xe635;',
                         menuItem: [">>用户管理"],
                         menuItemUrl: ["/authorityManagement/userManagement"]
                     },
                     {
                         id: "9",
                         label: "系统设置",
-                        img: require("../assets/Home/6.png"),
-                        imgActive: require("../assets/Home/7.png"),
+                        icon: '&#xe616;',
                         menuItem: [">>菜单管理", ">>字典管理"],
                         menuItemUrl: [
                             "/systemSettings/menuManagement",

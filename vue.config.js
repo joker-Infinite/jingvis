@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    port: 9080, // 端口号配置
+    port: 9083, // 端口号配置
     proxy: {
       /*通用接口代理*/
       "/api": {
