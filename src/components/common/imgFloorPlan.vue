@@ -32,13 +32,11 @@
                 @showPopover="popoverDisabled = false"
         ></more-information>
         <!--    <img-details-test ref="more" @showPopover="popoverDisabled=false"></img-details-test>-->
-        <start-and-radar :showStar="true"></start-and-radar>
     </div>
 </template>
 
 <script>
     import MyTable from "./myTable";
-    import StartAndRadar from "../widget/startAndRadar";
     import ImgDetailsTest from "./imgDetailsTest";
     import service from "../json/service"
     import MoreInformation from "./moreInformation";
@@ -52,7 +50,7 @@
                 default: ""
             }
         },
-        components: {MoreInformation, ImgDetailsTest, StartAndRadar, MyTable},
+        components: {MoreInformation, ImgDetailsTest, MyTable},
         data() {
             return {
                 popoverDisabled: false,
