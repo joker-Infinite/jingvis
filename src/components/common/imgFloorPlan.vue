@@ -36,8 +36,6 @@
 </template>
 
 <script>
-    import MyTable from "./myTable";
-    import ImgDetailsTest from "./imgDetailsTest";
     import service from "../json/service"
     import MoreInformation from "./moreInformation";
 
@@ -50,7 +48,7 @@
                 default: ""
             }
         },
-        components: {MoreInformation, ImgDetailsTest, MyTable},
+        components: {MoreInformation},
         data() {
             return {
                 popoverDisabled: false,

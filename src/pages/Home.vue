@@ -69,6 +69,7 @@
             <router-view
                     :viewChange="menuStatus % 2 === 0"
                     @clickTable="clickTable"
+                    @callback="callback"
             ></router-view>
         </div>
     </div>
@@ -85,8 +86,8 @@
                         id: "7",
                         label: "系统插件",
                         icon: '&#xe600;',
-                        menuItem: [">>服务区录入",">>服务区平面图"],
-                        menuItemUrl: ['/widget/imgParameter',"/widget/serviceArea"]
+                        menuItem: [">>服务区录入", ">>服务区平面图"],
+                        menuItemUrl: ['/widget/imgParameter', "/widget/serviceArea"]
                     },
                     {
                         id: "8",
@@ -114,6 +115,9 @@
             };
         },
         methods: {
+            callback(i) {
+                console.log(i);
+            },
             clickTable(v) {
                 this.setCookie(
                     document.cookie.split("=")[1].split("-")[0],
