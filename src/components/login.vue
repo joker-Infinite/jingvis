@@ -35,12 +35,12 @@
                     this.$message.error("账号或密码不能为空哦");
                 } else {
                     localStorage.setItem('token', "Bearer " + this.name);
-                    this.$router.push("/serviceArea/revenue");
+                    this.$router.push("/widget/imgParameter");
                 }
             }
         },
         mounted() {
-            document.cookie = "menu=/serviceArea/revenue-";
+            document.cookie = "menu=/widget/imgParameter-";
         }
     };
 </script>

@@ -236,7 +236,7 @@
                 ],
                 FD: {
                     name: "",
-                    imgWidth: 1200,
+                    imgWidth: 920,
                     lt: "",
                     rb: "",
                     width: "",
@@ -327,7 +327,7 @@
             clearBox() {
                 this.FD = {
                     name: "",
-                    imgWidth: 1200,
+                    imgWidth: 920,
                     lt: "",
                     rb: "",
                     width: "",
