@@ -181,6 +181,7 @@
             },
             //单选
             selection(selection) {
+                console.log(selection)
                 this.$emit('selection-change', [selection])
             },
             //点击全选

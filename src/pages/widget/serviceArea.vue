@@ -1,34 +1,32 @@
 <template>
     <div class="imgBox">
-        <img src="../../assets/serviceAreaFP/alfwqdq.jpg" class="img"/>
+        <img src="../../assets/serviceAreaFP/alfwqdq.jpg" class="img" alt=" "/>
         <div class="smallBox"
              v-for="i in box"
              :style="i.style"
              @click="openDetails(i)">
-            <!-- <el-popover
-                     placement="bottom"
-                     :disabled="popoverDisabled"
-                     :title="i.name"
-                     width="300"
-                     v-if="i.name !== '大厅'"
-                     trigger="hover"
-             >
-                 <table class="table" border="1" cellspacing="0">
-                     <tr v-for="(it, ix) in i.data">
-                         <th>{{ it.a }}</th>
-                         <th>{{ it.b }}</th>
-                     </tr>
-                 </table>
-
-                 <div style="width: 100%;height: 100%" slot="reference"></div>
-             </el-popover>-->
+            <el-popover
+                    placement="bottom"
+                    :disabled="popoverDisabled"
+                    v-if="i.name"
+                    :title="i.name"
+                    width="300"
+                    trigger="hover">
+                <table class="table" border="1" cellspacing="0">
+                    <tr v-if=i.data v-for="(it, ix) in i.data">
+                        <th>{{ it.a }}</th>
+                        <th>{{ it.b }}</th>
+                    </tr>
+                </table>
+                <div style="width: 100%;height: 100%" slot="reference"></div>
+            </el-popover>
         </div>
         <more-information
                 NE="imgFloorPlan"
                 :location="location"
                 ref="more"
-                @showPopover="popoverDisabled = false"
-        ></more-information>
+                @showPopover="popoverDisabled = false">
+        </more-information>
     </div>
 </template>
 
@@ -95,7 +93,7 @@
                         }
                     },
                     {
-                        "name": "大厅",
+                        "name": "",
                         "style": {
                             "width": "97px",
                             "height": "61px",
@@ -221,7 +219,7 @@
         methods: {
             openDetails(i) {
                 if (!i.noPopover) {
-                    this.popoverDisabled = true;
+                    // this.popoverDisabled = true;
                     this.$emit('callback', i);
                 }
             }

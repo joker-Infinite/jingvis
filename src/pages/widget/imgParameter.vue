@@ -24,9 +24,9 @@
           background: style.background
         }"
             ></div>
-            <img src="" id="imgDot" :style="{ width: FD.imgWidth + 'px' }"/>
+            <img src="" id="imgDot" :style="{ width: FD.imgWidth + 'px' }" alt=""/>
             <my-table-base
-                    @selectionChange="selectionChange"
+                    @selection-change="selectionChange"
                     chooseItem='single'
                     :pagination="false"
                     :search="false"
@@ -183,8 +183,7 @@
                 <div class="item btn" style="padding: 10px 10px;text-align: center">
                     <el-button type="primary" @click="previewSave(FD)"
                     >预览&保存
-                    </el-button
-                    >
+                    </el-button>
                     <el-button
                             type="primary"
                             :disabled="tableData.length === 0"
@@ -267,7 +266,8 @@
                 disabledBtn: false,
                 view: false,
                 selectTable: false,
-                serviceName: ""
+                serviceName: "",
+                servicePicture: ''
             };
         },
         methods: {
@@ -276,9 +276,21 @@
                 if (!this.serviceName) {
                     return;
                 }
+                let arr = this.serviceName.split('-');
+                let serviceDirection = arr[1];
+                let serviceName = arr[0];
                 let code = this.generateAll(v);
                 let name = this.serviceName + ".json";
                 this.download(name, code);
+                this.$axios.get('/api/jt_service*/add_plan', {
+                    params: {
+                        serviceDirtion: serviceDirection,
+                        serviceJson: JSON.stringify(this.gCode),
+                        serviceName: serviceName,
+                        servicePicture: this.servicePicture
+                    }
+                })
+                ///jt_service*/add_plan
             },
             fake_click(obj) {
                 let ev = document.createEvent("MouseEvents");
@@ -319,8 +331,8 @@
                 if (v) {
                     this.selectTable = true;
                     v = JSON.parse(JSON.stringify(v));
-                    Object.assign(this.FD, v);
-                    this.style = v;
+                    Object.assign(this.FD, v[0]);
+                    this.style = v[0];
                 }
             },
             //清空所填内容
@@ -352,24 +364,22 @@
             },
             //全部生成代码
             generateAll(v) {
-                let code = "";
+                let arr = [];
                 v.forEach((i, x) => {
-                    let end = x === v.length - 1 ? "" : ",";
-                    code +=
-                        JSON.stringify({
-                            name: i.name,
-                            style: {
-                                width: i.width + "px",
-                                height: i.height + "px",
-                                top: i.top + "px",
-                                left: i.left + "px",
-                                background: i.background,
-                                position: "absolute"
-                            }
-                        }) + end;
+                    arr.push({
+                        name: i.name,
+                        style: {
+                            width: i.width + "px",
+                            height: i.height + "px",
+                            top: i.top + "px",
+                            left: i.left + "px",
+                            background: i.background,
+                            position: "absolute"
+                        }
+                    })
                 });
-                this.gCode = "[" + code + "]";
-                return "[" + code + "]";
+                this.gCode = JSON.stringify(arr);
+                return JSON.stringify(arr);
             },
             //添加至表格
             addToTable(v) {
@@ -397,6 +407,7 @@
             uploadImg() {
                 let f = document.getElementById("upload").files[0];
                 let src = window.URL.createObjectURL(f);
+                this.servicePicture = src;
                 document.getElementById("imgDot").src = src;
             },
             changeNumber(v) {
