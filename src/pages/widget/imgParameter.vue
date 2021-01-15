@@ -282,15 +282,16 @@
                 let code = this.generateAll(v);
                 let name = this.serviceName + ".json";
                 this.download(name, code);
-                this.$axios.get('/api/jt_service*/add_plan', {
-                    params: {
-                        serviceDirtion: serviceDirection,
-                        serviceJson: JSON.stringify(this.gCode),
-                        serviceName: serviceName,
-                        servicePicture: this.servicePicture
-                    }
+                this.$axios.post('/api/admin/jt_service/add_plan', {
+                    serviceDirtion: serviceDirection,
+                    serviceJson: this.gCode,
+                    serviceName: serviceName,
+                    servicePicture: '../../XXXX.png'
+                }).then(res => {
+                    this.$message.success('上传成功！');
+                }).catch(err => {
+                    this.$message.error('上传失败！');
                 })
-                ///jt_service*/add_plan
             },
             fake_click(obj) {
                 let ev = document.createEvent("MouseEvents");
