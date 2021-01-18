@@ -41,7 +41,10 @@
         <div class="i_r">
             <el-form :model="FD">
                 <div class="item" style="padding: 10px 10px">
-                    <input id="upload" type="file" @change="uploadImg"/>
+                    img: <input id="upload" type="file" @change="uploadImg"/>
+                </div>
+                <div class="item" style="padding: 10px 10px">
+                    json: <input id="files" type="file" @change="uploadJson"/>
                 </div>
                 <div class="item" style="padding: 10px 10px">
                     <el-button
@@ -410,6 +413,33 @@
                 let src = window.URL.createObjectURL(f);
                 this.servicePicture = src;
                 document.getElementById("imgDot").src = src;
+            },
+            uploadJson() {
+                let selectedFile = document.getElementById("files").files[0];
+                this.serviceName = selectedFile.name.split('.')[0];
+                let reader = new FileReader();
+
+                let that = this;
+                reader.readAsText(selectedFile);
+                reader.onload = function (v) {
+                    let data = JSON.parse(v.target.result);
+                    let arr = [];
+                    data.forEach(i => {
+                        arr.push({
+                            name: i.name,
+                            height: parseInt(i.style.height),
+                            width: parseInt(i.style.width),
+                            top: parseInt(i.style.top),
+                            left: parseInt(i.style.left),
+                            background: i.style.background,
+                            position: i.style.position
+                        })
+                    });
+                    that.$nextTick(_ => {
+                        that.viewData = arr;
+                        that.tableData = arr;
+                    })
+                }
             },
             changeNumber(v) {
                 this.style[v] = this.FD[v];
