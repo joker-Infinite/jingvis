@@ -106,6 +106,15 @@
                             "/systemSettings/dataDictionary"
                         ]
                     },
+                    {
+                        id: "10",
+                        label: "测试页面",
+                        icon: '&#xe616;',
+                        menuItem: [">>测试"],
+                        menuItemUrl: [
+                            "/test/test",
+                        ]
+                    },
                 ],
                 tagData: [],
                 key: "/serviceArea/revenue",
