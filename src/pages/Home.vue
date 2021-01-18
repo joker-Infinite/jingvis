@@ -86,8 +86,8 @@
                         id: "7",
                         label: "系统插件",
                         icon: '&#xe600;',
-                        menuItem: [">>服务区录入", ">>服务区平面图"],
-                        menuItemUrl: ['/widget/imgParameter', "/widget/serviceArea"]
+                        menuItem: [">>服务区录入", ">>服务区平面图", ">>平面图列表"],
+                        menuItemUrl: ['/widget/imgParameter', "/widget/serviceArea", '/widget/pictureList']
                     },
                     {
                         id: "8",
@@ -106,15 +106,15 @@
                             "/systemSettings/dataDictionary"
                         ]
                     },
-                   /* {
-                        id: "10",
-                        label: "测试页面",
-                        icon: '&#xe616;',
-                        menuItem: [">>测试"],
-                        menuItemUrl: [
-                            "/test/test",
-                        ]
-                    },*/
+                    /* {
+                         id: "10",
+                         label: "测试页面",
+                         icon: '&#xe616;',
+                         menuItem: [">>测试"],
+                         menuItemUrl: [
+                             "/test/test",
+                         ]
+                     },*/
                 ],
                 tagData: [],
                 key: "/serviceArea/revenue",

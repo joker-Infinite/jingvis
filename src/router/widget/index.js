@@ -14,4 +14,10 @@ export default [
         name: "serviceArea",
         component: () => import(/* webpackChunkName: "authorityManagement" */ "@/pages/widget/serviceArea.vue")
     },
+    {
+        //服务区平面图列表
+        path: "pictureList",
+        name: "pictureList",
+        component: () => import(/* webpackChunkName: "authorityManagement" */ "@/pages/widget/pictureList.vue")
+    },
 ];
