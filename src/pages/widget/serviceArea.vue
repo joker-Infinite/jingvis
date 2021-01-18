@@ -1,6 +1,6 @@
 <template>
     <div class="imgBox">
-        <img src="../../assets/serviceAreaFP/alfwqdq.jpg" class="img" alt=" "/>
+        <img src="" id="imgDot" class="img" alt="请选择图片"/>
         <div class="smallBox"
              v-for="i in box"
              :style="i.style"
@@ -20,6 +20,10 @@
                 </table>
                 <div style="width: 100%;height: 100%" slot="reference"></div>
             </el-popover>
+        </div>
+        <div class="select">
+            img: <input id="upload" type="file" @change="uploadImg"/>
+            json: <input id="files" type="file" @change="uploadJson"/>
         </div>
         <more-information
                 NE="imgFloorPlan"
@@ -47,176 +51,28 @@
         data() {
             return {
                 popoverDisabled: false,
-                box: [
-                    {
-                        "name": "加油站",
-                        "style": {
-                            "width": "76px",
-                            "height": "35px",
-                            "top": "231px",
-                            "left": "254px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "闲置仓库",
-                        "style": {
-                            "width": "54px",
-                            "height": "61px",
-                            "top": "79px",
-                            "left": "339px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "真功夫",
-                        "style": {
-                            "width": "70px",
-                            "height": "99px",
-                            "top": "111px",
-                            "left": "391px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "猫屎咖啡",
-                        "style": {
-                            "width": "29px",
-                            "height": "23px",
-                            "top": "143px",
-                            "left": "462px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "",
-                        "style": {
-                            "width": "97px",
-                            "height": "61px",
-                            "top": "146px",
-                            "left": "490px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "太白烤鸡",
-                        "style": {
-                            "width": "37px",
-                            "height": "62px",
-                            "top": "79px",
-                            "left": "597px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "楚天舒便利店",
-                        "style": {
-                            "width": "57px",
-                            "height": "21px",
-                            "top": "145px",
-                            "left": "593px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "赶路小吃",
-                        "style": {
-                            "width": "65px",
-                            "height": "29px",
-                            "top": "183px",
-                            "left": "590px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "男厕",
-                        "style": {
-                            "width": "43px",
-                            "height": "67px",
-                            "top": "98px",
-                            "left": "677px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "女厕",
-                        "style": {
-                            "width": "46px",
-                            "height": "48px",
-                            "top": "116px",
-                            "left": "740px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "汽修",
-                        "style": {
-                            "width": "51px",
-                            "height": "46px",
-                            "top": "142px",
-                            "left": "883px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "停车区",
-                        "style": {
-                            "width": "84px",
-                            "height": "43px",
-                            "top": "258px",
-                            "left": "416px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "出口",
-                        "style": {
-                            "width": "85px",
-                            "height": "43px",
-                            "top": "283px",
-                            "left": "137px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "入口",
-                        "style": {
-                            "width": "81px",
-                            "height": "44px",
-                            "top": "280px",
-                            "left": "999px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    },
-                    {
-                        "name": "停车区2",
-                        "style": {
-                            "width": "100px",
-                            "height": "35px",
-                            "top": "260px",
-                            "left": "812px",
-                            "background": "rgba(0,0,0,.4)",
-                            "position": "absolute"
-                        }
-                    }
-                ]
+                box: []
             };
         },
         methods: {
+            uploadImg() {
+                let f = document.getElementById("upload").files[0];
+                let src = window.URL.createObjectURL(f);
+                document.getElementById("imgDot").src = src;
+            },
+            uploadJson() {
+                let selectedFile = document.getElementById("files").files[0];
+                let reader = new FileReader();
+
+                let that = this;
+                reader.readAsText(selectedFile);
+                reader.onload = function (v) {
+                    let data = JSON.parse(v.target.result);
+                    that.$nextTick(_ => {
+                        that.box = data;
+                    })
+                }
+            },
             openDetails(i) {
                 if (!i.noPopover) {
                     // this.popoverDisabled = true;
@@ -242,7 +98,15 @@
 
         .smallBox {
             position: absolute;
-            background: none !important;
+            /*background: none !important;*/
+        }
+
+        .select {
+            width: 100%;
+            height: 80px;
+            position: absolute;
+            right: 0;
+            top: 600px;
         }
     }
 

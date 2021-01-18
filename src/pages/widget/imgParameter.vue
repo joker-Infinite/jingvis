@@ -202,7 +202,7 @@
                 </div>
             </el-form>
             <div class="text_json">
-                <textarea rows="22" v-model="gCode" style="width: 400px"></textarea>
+                <textarea rows="18" v-model="gCode" style="width: 390px"></textarea>
             </div>
         </div>
     </div>
