@@ -167,8 +167,39 @@
             refresh() {
                 this.$axios.get('/api/admin/jt_menu/list_menu').then(res => {
                     let data;
+                    let M = [];
+                    let MID = '';
+                    let S = [];
+                    let SID = '';
+                    let arr = [];
+                    let child = [];
                     data = JSON.parse(JSON.stringify(res.data.data));
-                    this.tableData = this.allMenu = data;
+                    this.tableData = data;
+                    this.allMenu = data;
+                    data.forEach((i, x) => {
+                        i.id = x + '';
+                        if (i.pid !== '0') {
+                            arr.push(i);
+                        }
+                        if (i.menuType === 'M') {
+                            M.push(i);
+                            MID += i.menuId + ',';
+                        }
+                        if (i.menuType === 'S') {
+                            S.push(i);
+                            SID += i.pid + ',';
+                        }
+                    });
+                    console.log(SID);
+                    console.log(MID);
+                    /* for (let i = 0; i < data.length; i++) {
+                         for (let j = 0; j < arr.length; j++) {
+                             if (data[i].menuId === arr[j].pid) {
+                                 child.push(arr[j]);
+                                 data[i].children = child;
+                             }
+                         }
+                     }*/
                 })
             }
         },
