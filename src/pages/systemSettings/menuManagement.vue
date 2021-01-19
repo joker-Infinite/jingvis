@@ -11,28 +11,25 @@
                        @selection-change="selectionChange">
         </my-table-base>
         <my-dialog width="1000px" title="新增" :visible.sync="visible" :closeOnClickModal="true" height="400px">
-            <el-form :model="formData" label-width="100px">
+            <el-form ref="form" :model="formData" :rules="rules" label-width="100px">
                 <el-col :span="8">
-                    <el-form-item label="类型：">
-                        <el-select v-model="formData.type">
-                            <el-option label="主菜单" :value="1"></el-option>
-                            <el-option label="子菜单" :value="2"></el-option>
+                    <el-form-item label="类型：" prop="menuType">
+                        <el-select v-model="formData.menuType" @change="changeMenuType(formData.menuType)">
+                            <el-option label="主菜单" value="M"></el-option>
+                            <el-option label="子菜单" value="S"></el-option>
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :span="8" v-if="formData.type==2">
-                    <el-form-item label="父菜单">
-                        <el-select v-model="formData.fatherName">
-                            <el-option label="服务区事业部" :value="1"></el-option>
-                            <el-option label="能源事业部" :value="2"></el-option>
-                            <el-option label="传媒指标" :value="3"></el-option>
-                            <el-option label="商业指标" :value="4"></el-option>
+                <el-col :span="8" v-if="formData.menuType=='S'">
+                    <el-form-item label="父菜单" prop="pid">
+                        <el-select v-model="formData.pid">
+                            <el-option v-for="i in allMenu" :label="i.menuName" :value="i.menuId"></el-option>
                         </el-select>
                     </el-form-item>
                 </el-col>
                 <el-col :span="8">
-                    <el-form-item label="名称：">
-                        <el-input v-model="formData.name"></el-input>
+                    <el-form-item label="名称：" prop="menuName">
+                        <el-input v-model="formData.menuName"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="8">
@@ -41,18 +38,18 @@
                     </el-form-item>
                 </el-col>
                 <el-col :span="8">
-                    <el-form-item label="排序：">
-                        <el-input v-model="formData.index"></el-input>
+                    <el-form-item label="排序：" prop="sort">
+                        <el-input v-model="formData.sort"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="24">
-                    <el-form-item label="路由：">
-                        <el-input v-model="formData.router"></el-input>
+                    <el-form-item label="路由：" prop="murl">
+                        <el-input v-model="formData.murl"></el-input>
                     </el-form-item>
                 </el-col>
             </el-form>
             <div slot="footerButton">
-                <el-button type="primary">确定</el-button>
+                <el-button type="primary" @click="saveMenu(formData)">确定</el-button>
                 <el-button type="info" @click="visible=false">取消</el-button>
             </div>
         </my-dialog>
@@ -69,20 +66,29 @@
         data() {
             return {
                 visible: false,
-                formData: {
-                    name: '',
-                    fatherName: '',
+                allMenu: [],
+                formData: {},
+                form: {
+                    menuName: '',
+                    pid: '',
                     icon: '',
-                    type: '',
-                    index: '',
-                    router: '',
+                    menuType: '',
+                    sort: '',
+                    murl: '',
+                },
+                rules: {
+                    menuName: [{required: true, message: '请输入菜单名称', trigger: 'blur'}],
+                    pid: [{required: true, message: '请选择父菜单', trigger: 'change'}],
+                    menuType: [{required: true, message: '请选择菜单类型', trigger: 'change'}],
+                    sort: [{required: true, message: '请输入菜单排序', trigger: 'blur'}],
+                    murl: [{required: true, message: '请输入菜单url', trigger: 'blur'}],
                 },
                 columns: [
-                    {prop: 'a', label: '名称', query: true},
-                    {prop: 'b', label: '图标', query: true},
-                    {prop: 'c', label: '类型', query: true},
-                    {prop: 'd', label: '排序', query: true},
-                    {prop: 'e', label: '路由', query: true},
+                    {prop: 'menuName', label: '名称', query: true},
+                    {prop: 'icon', label: '图标', query: true},
+                    {prop: 'menuType', label: '类型', query: true},
+                    {prop: 'sort', label: '排序', query: true},
+                    {prop: 'murl', label: '路由', query: true},
                 ],
                 tableData: [],
                 buttons: [
@@ -91,6 +97,10 @@
                         icon: 'el-icon-plus',
                         callback: _ => {
                             this.visible = true;
+                            this.$nextTick(_ => {
+                                this.formData = JSON.parse(JSON.stringify(this.form));
+                                this.$refs['form'].resetFields();
+                            })
                         }
                     },
                     {
@@ -107,6 +117,9 @@
                         type: 'info',
                         callback: v => {
                             this.visible = true;
+                            this.$nextTick(_ => {
+                                this.formData = JSON.parse(JSON.stringify(v));
+                            })
                         }
                     },
                     {
@@ -119,9 +132,48 @@
             }
         },
         methods: {
+            changeMenuType(v) {
+                if (v === 'M') {
+                    this.formData.pid = 0;
+                }
+                if (v === 'S') {
+                    this.formData.pid = '';
+                }
+            },
+            async saveMenu(v) {
+                let query = '';
+                for (let i in v) {
+                    query += i + '=' + v[i] + '&';
+                }
+                query = query.slice(0, query.length - 1);
+                this.$refs['form'].validate(v => {
+                    if (v) {
+                        this.$axios.post('/api/admin/jt_menu/add_menu?' + query).then(res => {
+                            this.$message.success('添加成功！');
+                            this.visible = false;
+                            this.refresh();
+                        }).catch(error => {
+                            this.$message.error('添加失败！');
+                        })
+                    }
+                    if (!v) {
+                        this.$message.warning('校验未通过！');
+                    }
+                })
+            },
             selectionChange(d) {
                 // console.log(d);
+            },
+            refresh() {
+                this.$axios.get('/api/admin/jt_menu/list_menu').then(res => {
+                    let data;
+                    data = JSON.parse(JSON.stringify(res.data.data));
+                    this.tableData = this.allMenu = data;
+                })
             }
+        },
+        mounted() {
+            this.refresh();
         }
     }
 </script>
