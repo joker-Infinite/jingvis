@@ -14,7 +14,8 @@
             <el-form ref="form" :model="formData" :rules="rules" label-width="100px">
                 <el-col :span="8">
                     <el-form-item label="类型：" prop="menuType">
-                        <el-select v-model="formData.menuType" @change="changeMenuType(formData.menuType)">
+                        <el-select :disabled="btnType !== 'add'" v-model="formData.menuType"
+                                   @change="changeMenuType(formData.menuType)">
                             <el-option label="主菜单" value="M"></el-option>
                             <el-option label="子菜单" value="S"></el-option>
                         </el-select>
@@ -23,7 +24,8 @@
                 <el-col :span="8" v-if="formData.menuType==='S'">
                     <el-form-item label="父菜单" prop="pid">
                         <el-select v-model="formData.pid">
-                            <el-option v-for="(i,x) in allMenu" :key="x" :label="i.menuName" :value="i.menuId"></el-option>
+                            <el-option v-for="(i,x) in allMenu" :key="x" :label="i.menuName"
+                                       :value="i.menuId"></el-option>
                         </el-select>
                     </el-form-item>
                 </el-col>
@@ -84,18 +86,20 @@
                     murl: [{required: true, message: '请输入菜单url', trigger: 'blur'}],
                 },
                 columns: [
-                    {prop: 'menuName', label: '名称', query: true},
+                    {prop: 'menuName', label: '名称', query: true, sortable: true},
                     {prop: 'icon', label: '图标', query: true},
-                    {prop: 'menuType', label: '类型', query: true},
-                    {prop: 'sort', label: '排序', query: true},
-                    {prop: 'murl', label: '路由', query: true},
+                    {prop: 'menuType', label: '类型', query: true, sortable: true},
+                    {prop: 'sort', label: '排序', query: true, sortable: true},
+                    {prop: 'murl', label: '路由', query: true, sortable: true},
                 ],
                 tableData: [],
+                btnType: 'add',
                 buttons: [
                     {
                         name: '新增',
                         icon: 'el-icon-plus',
                         callback: _ => {
+                            this.btnType = 'add';
                             this.visible = true;
                             this.$nextTick(_ => {
                                 this.formData = JSON.parse(JSON.stringify(this.form));
@@ -103,13 +107,13 @@
                             })
                         }
                     },
-                    {
-                        name: '删除',
-                        icon: 'el-icon-close',
-                        type: 'danger',
-                        callback: v => {
-                        }
-                    },
+                    /* {
+                         name: '删除',
+                         icon: 'el-icon-close',
+                         type: 'danger',
+                         callback: v => {
+                         }
+                     },*/
                 ],
                 operations: [
                     {
@@ -117,6 +121,7 @@
                         type: 'info',
                         callback: v => {
                             this.visible = true;
+                            this.btnType = 'edit';
                             this.$nextTick(_ => {
                                 this.formData = JSON.parse(JSON.stringify(v));
                             })
@@ -171,14 +176,16 @@
                     let SID = '';
                     let obj = {};
                     data = JSON.parse(JSON.stringify(res.data.data));
-                    this.allMenu = data;
+                    this.allMenu = JSON.parse(JSON.stringify(res.data.data));
                     data.forEach((i, x) => {
                         i.id = x + '';
                         obj[i.menuId] = [];
                         if (i.menuType === 'M') {
+                            i.menuType = '主菜单';
                             M.push(i);
                         }
                         if (i.menuType === 'S') {
+                            i.menuType = '子菜单';
                             SID += i.pid + ',';
                         }
                     });

@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%;height: 100%;background: white" class="myTable">
+    <div style="width: 99.9%;height: 100%;background: white" class="myTable">
         <div class="headerBox" v-if="buttons.length>0||search">
             <div class="btnBar" v-if="buttons.length>0">
                 <template v-for="btn in buttons">
@@ -20,6 +20,7 @@
             </div>
         </div>
         <el-table
+                ref="eltable"
                 :data="tableData"
                 :height="buttons.length===0&&!pagination&&!search?'100%':(buttons.length!==0||search)&&pagination?'calc(100% - 100px)':'calc(100% - 50px)'"
                 style="width: 100%;"
@@ -41,7 +42,7 @@
                              label="序号"
                              width="50">
                 <template slot-scope="scope">
-                    {{scope.$index+1}}
+                    {{scope.$index+1+(currentPage-1)*pageSize}}
                 </template>
             </el-table-column>
             <template v-for="(item,index) in columns">
@@ -74,11 +75,11 @@
             <el-pagination
                     @size-change="handleSizeChange"
                     @current-change="handleCurrentChange"
-                    :current-page="currentPage4"
-                    :page-sizes="[20,50,100,200]"
-                    :page-size="20"
+                    :current-page="currentPage"
+                    :page-sizes="pageSizes"
+                    :page-size="pageSize"
                     layout="total, sizes, prev, pager, next, jumper"
-                    :total="tableData.length">
+                    :total="totalNum">
             </el-pagination>
         </div>
         <my-drawer v-model="drawer">
@@ -147,12 +148,30 @@
             search: {
                 type: Boolean,
                 default: true
-            }
+            },
+            pageSizes: {
+                type: Array,
+                default: function () {
+                    return []
+                }
+            },
+            pageSize: {
+                type: Number,
+                default: function () {
+                    return 20
+                }
+            },
+            totalNum: {
+                type: Number,
+                default: function () {
+                    return 0
+                }
+            },
         },
         data() {
             return {
                 drawer: false,
-                currentPage4: 1
+                currentPage: 1
             }
         },
         methods: {
@@ -170,10 +189,11 @@
                 }
             },
             handleSizeChange(val) {
-                console.log(`每页 ${val} 条`);
+                this.$emit('size-change', val);
             },
             handleCurrentChange(val) {
-                console.log(`当前页: ${val}`);
+                this.currentPage = val;
+                this.$emit('current-change', val);
             },
             //多选时点击复选框
             select(selection) {
@@ -186,6 +206,9 @@
             //点击全选
             selectAll(selection) {
                 this.$emit('selection-change', selection)
+            },
+            refreshScroll() {
+                this.$refs['eltable'].bodyWrapper.scrollTop = 0;
             }
         }
     }
