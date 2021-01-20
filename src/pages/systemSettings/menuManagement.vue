@@ -20,10 +20,10 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :span="8" v-if="formData.menuType=='S'">
+                <el-col :span="8" v-if="formData.menuType==='S'">
                     <el-form-item label="父菜单" prop="pid">
                         <el-select v-model="formData.pid">
-                            <el-option v-for="i in allMenu" :label="i.menuName" :value="i.menuId"></el-option>
+                            <el-option v-for="(i,x) in allMenu" :key="x" :label="i.menuName" :value="i.menuId"></el-option>
                         </el-select>
                     </el-form-item>
                 </el-col>
@@ -168,38 +168,35 @@
                 this.$axios.get('/api/admin/jt_menu/list_menu').then(res => {
                     let data;
                     let M = [];
-                    let MID = '';
-                    let S = [];
                     let SID = '';
-                    let arr = [];
-                    let child = [];
+                    let obj = {};
                     data = JSON.parse(JSON.stringify(res.data.data));
-                    this.tableData = data;
                     this.allMenu = data;
                     data.forEach((i, x) => {
                         i.id = x + '';
-                        if (i.pid !== '0') {
-                            arr.push(i);
-                        }
+                        obj[i.menuId] = [];
                         if (i.menuType === 'M') {
                             M.push(i);
-                            MID += i.menuId + ',';
                         }
                         if (i.menuType === 'S') {
-                            S.push(i);
                             SID += i.pid + ',';
                         }
                     });
-                    console.log(SID);
-                    console.log(MID);
-                    /* for (let i = 0; i < data.length; i++) {
-                         for (let j = 0; j < arr.length; j++) {
-                             if (data[i].menuId === arr[j].pid) {
-                                 child.push(arr[j]);
-                                 data[i].children = child;
-                             }
-                         }
-                     }*/
+                    for (let i in obj) {
+                        for (let j = 0; j < data.length; j++) {
+                            if (data[j].pid === i) {
+                                obj[i].push(data[j]);
+                            }
+                        }
+                    }
+                    for (let i = 0; i < data.length; i++) {
+                        for (let j in obj) {
+                            if (data[i].menuId === j) {
+                                data[i].children = obj[j];
+                            }
+                        }
+                    }
+                    this.tableData = M;
                 })
             }
         },
