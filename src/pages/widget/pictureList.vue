@@ -7,7 +7,10 @@
                        :totalNum="totalNum"
                        :pageSizes="pageSizes"
                        :columns="columns"
-                       :table-data="tableData"></my-table-base>
+                       :table-data="tableData"
+                       operationsWidth="50"
+                       :operations="operations">
+        </my-table-base>
     </div>
 </template>
 
@@ -21,6 +24,9 @@
             return {
                 tableData: [],
                 pageSizes: [20, 50, 100, 200],
+                operations: [
+                    {name: '删除', type: 'danger'}
+                ],
                 columns: [
                     {prop: 'serviceName', label: '名称', width: '200'},
                     {prop: 'serviceDirtion', label: '方向', width: '200'},

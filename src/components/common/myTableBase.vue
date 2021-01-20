@@ -189,6 +189,7 @@
                 }
             },
             handleSizeChange(val) {
+                this.pageSize = val;
                 this.$emit('size-change', val);
             },
             handleCurrentChange(val) {

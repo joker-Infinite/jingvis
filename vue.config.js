@@ -4,7 +4,7 @@ module.exports = {
         proxy: {
             /*通用接口代理*/
             "/api": {
-                target: "http://111.47.3.250:9084",
+                target: "http://192.168.0.197:9084",
                 changeOrigin: true,
                 pathRewrite: {
                     "^/api": ""
