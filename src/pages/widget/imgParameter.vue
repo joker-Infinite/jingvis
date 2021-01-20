@@ -284,12 +284,12 @@
                 let serviceName = arr[0];
                 let code = this.generateAll(v);
                 let name = this.serviceName + ".json";
-                this.download(name, code);
+                // this.download(name, code);
                 this.$axios.post('/api/admin/jt_service/add_plan', {
                     serviceDirtion: serviceDirection,
                     serviceJson: this.gCode,
                     serviceName: serviceName,
-                    servicePicture: '../../XXXX.png'
+                    servicePicture: this.servicePicture
                 }).then(res => {
                     this.$message.success('上传成功！');
                 }).catch(err => {
@@ -409,10 +409,16 @@
                 this.tableData = data;
             },
             uploadImg() {
-                let f = document.getElementById("upload").files[0];
-                let src = window.URL.createObjectURL(f);
-                this.servicePicture = src;
+                let file = document.getElementById("upload").files[0];
+                let src = window.URL.createObjectURL(file);
                 document.getElementById("imgDot").src = src;
+                let fd = new FormData();
+                fd.append('uploadFile', file);
+                this.$axios.post('/api/admin/feign/upload_file', fd).then((res) => {
+                    this.servicePicture = res.data.data;
+                }).catch(error => {
+                    console.log(error)
+                })
             },
             uploadJson() {
                 let selectedFile = document.getElementById("files").files[0];
