@@ -65,6 +65,7 @@
                                size="mini"
                                v-for="operation in operations"
                                :key="operation.name"
+                               v-if="operation.isShow?operation.isShow(scope.row,scope.$index):true"
                                @click.stop="columnClick(scope.row,scope.$index,operation.callback)">
                         {{operation.name}}
                     </el-button>

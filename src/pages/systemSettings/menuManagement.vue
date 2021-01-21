@@ -132,7 +132,17 @@
                         name: '删除',
                         type: 'danger',
                         callback: v => {
-                        }
+                            if (v.children && v.children.length > 0) {
+                                this.$message.warning('不可删除！');
+                            } else {
+                                this.$message.success('可删除！');
+                            }
+                        }, isShow: v => {
+                            if (v.children && v.children.length > 0) {
+                                return false;
+                            }
+                            return true;
+                        },
                     },
                 ],
             }
