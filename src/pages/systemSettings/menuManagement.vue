@@ -124,6 +124,7 @@
                             this.btnType = 'edit';
                             this.$nextTick(_ => {
                                 this.formData = JSON.parse(JSON.stringify(v));
+                                this.formData.menuType = this.formData.menuType == '子菜单' ? 'S' : 'M'
                             })
                         }
                     },

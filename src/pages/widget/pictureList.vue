@@ -8,24 +8,38 @@
                        :pageSizes="pageSizes"
                        :columns="columns"
                        :table-data="tableData"
-                       operationsWidth="50"
+                       operationsWidth="110"
                        :operations="operations">
         </my-table-base>
+
+        <my-dialog width="1200px" height="350px" :title="name" :visible.sync="visible" :closeOnClickModal="true">
+            <view-img :url="url" :json="json"></view-img>
+        </my-dialog>
     </div>
 </template>
 
 <script>
     import MyTableBase from "../../components/common/myTableBase";
+    import MyDialog from "../../components/common/myDialog";
+    import ViewImg from "./common/viewImg";
 
     export default {
         name: "pictureList",
-        components: {MyTableBase},
+        components: {ViewImg, MyDialog, MyTableBase},
         data() {
             return {
                 tableData: [],
                 pageSizes: [20, 50, 100, 200],
                 operations: [
-                    {name: '删除', type: 'danger'}
+                    {
+                        name: '查看', callback: v => {
+                            this.url = v.servicePicture;
+                            this.json = v.serviceJson;
+                            this.name = v.serviceName + '-' + v.serviceDirtion
+                            this.visible = true;
+                        }
+                    },
+                    {name: '删除', type: 'danger'},
                 ],
                 columns: [
                     {prop: 'serviceName', label: '名称', width: '200'},
@@ -35,7 +49,11 @@
                 ],
                 size: 20,
                 current: 1,
-                totalNum: 0
+                totalNum: 0,
+                visible: false,
+                url: '',
+                json: '',
+                name: ''
             }
         },
         methods: {
