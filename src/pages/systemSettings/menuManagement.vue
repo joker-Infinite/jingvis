@@ -184,7 +184,6 @@
                 this.$axios.get('/api/admin/jt_menu/list_menu').then(res => {
                     let data;
                     let M = [];
-                    let SID = '';
                     let obj = {};
                     data = JSON.parse(JSON.stringify(res.data.data));
                     this.allMenu = JSON.parse(JSON.stringify(res.data.data));
@@ -197,7 +196,6 @@
                         }
                         if (i.menuType === 'S') {
                             i.menuType = '子菜单';
-                            SID += i.pid + ',';
                         }
                     });
                     for (let i in obj) {
