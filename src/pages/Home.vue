@@ -2,10 +2,14 @@
     <div class="container">
         <div class="nav" id="nav">
             <el-menu
+                    background-color="rgb(50, 65, 87)"
+                    text-color="rgb(191, 203, 217)"
+                    active-text-color="rgb(32, 160, 255)"
                     :unique-opened="true"
                     :collapse="menuStatus % 2 === 0"
                     :default-active="key"
                     router
+                    style="height: 100%"
                     class="el-menu-vertical-demo"
                     @select="select"
             >
@@ -222,25 +226,25 @@
                         label: "传媒事业部",
                         img: require("../assets/Home/4.png"),
                         imgActive: require("../assets/Home/5.png"),
-                      /*  menuItem: [
-                            ">>传媒营收",
-                            ">>传媒利润",
-                            ">>传媒成本",
-                            ">>基础信息",
-                            // ">>传媒空置",
-                            // ">>传媒地图展示",
-                            // ">>传媒车流量",
-                            ],
-                        menuItemUrl: [
-                            "/media/mediarevenue",
-                            "/media/mediaprofit",
-                            "/media/mediacosting",
-                            "/media/mediaAreaNumber",
-                            // "/media/mediavacancy",
-                            // "/media/media",
-                            // "/media/media",
-                            // "/media/media",
-                            ]*/
+                        /*  menuItem: [
+                              ">>传媒营收",
+                              ">>传媒利润",
+                              ">>传媒成本",
+                              ">>基础信息",
+                              // ">>传媒空置",
+                              // ">>传媒地图展示",
+                              // ">>传媒车流量",
+                              ],
+                          menuItemUrl: [
+                              "/media/mediarevenue",
+                              "/media/mediaprofit",
+                              "/media/mediacosting",
+                              "/media/mediaAreaNumber",
+                              // "/media/mediavacancy",
+                              // "/media/media",
+                              // "/media/media",
+                              // "/media/media",
+                              ]*/
                     },
                     {
                         id: "7",
@@ -412,6 +416,21 @@
 
             .addTo /deep/ .el-submenu__title > i {
                 color: white !important;
+            }
+
+            /deep/ .el-menu {
+
+                .el-submenu:hover {
+                    background-color: rgb(40, 52, 70) !important;
+
+                    .el-submenu__title:hover {
+                        background-color: rgb(40, 52, 70) !important;
+                    }
+                }
+
+                .el-menu-item:hover {
+                    background-color: rgb(40, 52, 70) !important;
+                }
             }
         }
 
