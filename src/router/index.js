@@ -80,7 +80,10 @@ const routes = [
         path: "/imgParameter",
         component: () =>
             import(/* webpackChunkName: "frame" */ "../../src/components/imgParameter")
-    },
+    }, {
+        path: '/myPage',
+        component: () => import(/* webpackChunkName: \"frame\" */"../../src/components/myPage")
+    }
 ];
 
 const router = new VueRouter({
