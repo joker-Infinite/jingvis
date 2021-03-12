@@ -43,8 +43,7 @@
             <el-select
                     popper-class="DATAselect"
                     v-model="selectValue"
-                    @change="switchStyle(selectValue)"
-            >
+                    @change="switchStyle(selectValue)">
               <el-option label="默认" :value="0"></el-option>
               <el-option label="靛青" :value="1"></el-option>
             </el-select>
