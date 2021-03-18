@@ -52,6 +52,11 @@ const routes = [
             import(/* webpackChunkName: "frame" */ "../pages/homeKanBan/homeKanBan")
     },
     {
+        path: "/mainBody",
+        component: () =>
+            import(/* webpackChunkName: "frame" */ "../pages/homePages/mainBody")
+    },
+    {
         path: "/temporary",
         component: () =>
             import(
